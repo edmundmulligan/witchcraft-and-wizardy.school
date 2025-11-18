@@ -11,7 +11,7 @@
   /* styles for portrait */
   body::before {
     /* Portrait version of Michael Hamments photo on unsplash.com */
-    background-image: url('../artwork/michael-hamments-x6VyE3ie1sM-unsplash-portrait.jpg');
+    background-image: url('../images/');
   }
 
   .circular-button-container {
@@ -24,7 +24,7 @@
     /* styles for landscape */
     body::before {
         /* Landscape version of Michael Hamments photo on unsplash.com */
-        background-image: url('../artwork/michael-hamments-x6VyE3ie1sM-unsplash-landscape.jpg');
+        background-image: url('../images/michael-hamments-x6VyE3ie1sM-unsplash-landscape.jpg');
     }
 
     .circular-button-container {
