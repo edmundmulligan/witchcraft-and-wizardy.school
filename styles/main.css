@@ -102,9 +102,11 @@ footer {
     background-color: lightgreen;
     border: 0.1em solid darkgreen;
     text-align: center;
+/*
     text-decoration: underline;
-    text-decoration-thickness: 0.15em;  /* Make underline thicker */
-    text-underline-offset: 0.2em;       /* Add space between text and underline */
+    text-decoration-thickness: 0.15em;
+    text-underline-offset: 0.2em;
+*/
 
     line-height: normal;
     color: darkgreen;
@@ -122,7 +124,6 @@ footer {
     transform: scale(1.1);
 }
 
-
 /* general link styles */
 a:link {
     color: lightgreen;
@@ -135,14 +136,17 @@ a:hover {
 }
 
 /* link styles for circular buttons */
-.circular-button:link {
+.circular-href:link {
     color: darkgreen;
+    text-decoration: none;
 }
-.circular-button:visited {
+.circular-href:visited {
     color: darkgreen;
+    text-decoration: none;
 }
-.circular-button:hover {
+.circular-href:hover {
     color: darkblue;
+    text-decoration: none;
 }   
 
 /********************************************

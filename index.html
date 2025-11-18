@@ -27,7 +27,6 @@
 
     <!-- Load CSS stylesheet(s) -->
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/navbar.css">
     <!-- media-queries must be the last stylesheet loaded -->
     <link rel="stylesheet" href="styles/media-queries-landing-page.css">
     <!-- End CSS stylesheet link -->
@@ -44,16 +43,22 @@
     </header>
 
     <main>
-        <div class="circular-button-container">
-            <a href="students.html" class="circular-button">I am a Student</a>
-            <a href="mentors.html" class="circular-button">I am a Mentor</a>
-            <a href="about.html" class="circular-button">About Witches and Wizards</a>
-        </div>
+        <section class="circular-button-container">
+            <a href="students.html" class="circular-button circular-href">I am a Student</a>
+
+            <a href="#"
+                class="circular-button circular-href"
+                onclick="showAlert('This page has not been implemented in this phase of the project, as described ' + 
+                                   'in the essay Incorporating usability and user experience into the Web Witchcraft and ' + 
+                                   'Wizardry project (Mulligan, 2025).')">I am a Mentor</a>
+
+            <a href="about.html" class="circular-button circular-href">About Witches and Wizards</a>
+        </section>
     </main>
     <footer>
         <h3>Created by Edmund Mulligan, CITP MBCS</h3>
         <p>
-            &copy; Copyright The Embodied Mind, 2025.
+            &copy; The Embodied Mind, 2025.
             Distributed under the <a href="MIT-license.html" target="_blank">MIT License</a>.
         </p>
     </footer>
