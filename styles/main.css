@@ -1,0 +1,286 @@
+/* Main CSS styles for the Web Witchcraft and Wizardry website */
+
+/* set global styles for the entire body of the html document*/
+/* N.B. All dimensions in em units. px units are only used for screen-related properties in media queries */
+
+body {
+    position: relative;
+
+    /* set margin and padding */
+    margin: 0em;
+    padding: 0em;
+    min-height: 100vh;
+
+    /* use flexbox to layout header, main and footer vertically */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* use a readable font for body text */
+    font-family: "Open Sans", -apple-system, sans-serif;
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.6;
+    color: lightgreen;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* set background image handling (actual image is selected in media-queries.css) */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    /* ensure the background image opaque to enable readability */
+    opacity: 0.7;
+
+    z-index: -1;
+}
+
+/* Center all headings and use Anton (a bold sans-serif Google font) */
+h1, h2, h3, h4, h5, h6 {
+    /* Use Anton font for headings */
+    font-family: "Anton", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+}
+
+/* make h1 larger and bolder */
+h1 {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+header {
+    width: 100%;
+    font-size: 1.2em;
+    text-align: center;
+    margin-bottom: 2em;
+    flex-shrink: 0;  /* Prevents header from shrinking */
+}
+
+main {
+    width: 100%;
+    width: 100%;
+    text-align: center;
+    flex-grow: 1;  /* Allows main to grow and fill available space */
+}
+
+footer {
+    width: 100%;
+    font-size: 0.8em;
+    text-align: center;
+    margin-top: 2em;
+    flex-shrink: 0;  /* Prevents footer from shrinking */
+}
+
+/* container and styles for circular buttons */
+/* N.B. flex-direction in .circular-button-container layout is set in media-queries.css */
+
+.circular-button-container {
+    display: flex;
+    gap: 2em;
+    margin: 2em 0;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.circular-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%; /* Makes it circular */
+    background-color: lightgreen;
+    border: 0.1em solid darkgreen;
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-thickness: 0.15em;  /* Make underline thicker */
+    text-underline-offset: 0.2em;       /* Add space between text and underline */
+
+    line-height: normal;
+    color: darkgreen;
+    font-family: "Anton", sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 1em;
+}
+
+.circular-button:hover {
+    background-color: whitesmoke;
+    color: darkgreen;
+    border-color: darkgreen;
+    transform: scale(1.1);
+}
+
+
+/* general link styles */
+a:link {
+    color: lightgreen;
+}
+a:visited {
+    color: lightgreen;
+}
+a:hover {
+    color: lightgoldenrodyellow;
+}
+
+/* link styles for circular buttons */
+.circular-button:link {
+    color: darkgreen;
+}
+.circular-button:visited {
+    color: darkgreen;
+}
+.circular-button:hover {
+    color: darkblue;
+}   
+
+/********************************************
+ * font styles 
+ ********************************************/
+
+/* Indie Flower font (a Google font) styles for contents of flex boxes */
+.indie-flower-bold {
+  font-family: "Indie Flower", cursive;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.indie-flower-regular {
+  font-family: "Indie Flower", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.anton-regular {
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/********************************************
+ * container classes for flexbox container
+ ********************************************/
+
+/* render the container with a horizontal (row) main axis and align items to the centre of the main axis */
+.container-horizontal-center-wrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* render the container with a horizontal (row) main axis and align items to the centre of the main axis */
+.container-horizontal-center-nowrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* render the container with a vertical (column) main axis and align items to the centre of the main axis */
+.container-vertical-center-wrap {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+/**********************************************
+ * contained classes for flexbox items
+ **********************************************/
+
+/* centered, 5em width */
+.contained-fixed-width-5em {
+    text-align:center;
+    width: 5em;
+    flex-basis: 5em;
+}
+
+/* centered, 10em width */
+.contained-fixed-width-10em {
+    text-align:center;
+    width: 10em;
+    flex-basis: 10em;
+}
+
+.contained-variable-width-15percent {
+    width: 15%;
+    flex-basis: auto;
+}
+
+.non-shrinkable {
+    flex-shrink: 0;
+}
+
+.slightly-shrinkable {
+    flex-shrink: 1;
+}
+
+.very-shrinkable {
+    flex-shrink: 10;
+}
+
+.non-growable {
+    flex-grow: 0;
+}
+
+.slightly-growable {
+    flex-grow: 1;
+}
+.very-growable {
+    flex-grow: 10;
+}
+
+.height-120em {
+    height: 120em;
+}
+
+/********************************************************
+ * border and color classes separate from flexbox styles
+ ********************************************************/
+
+.heavy-border {
+    border: darkblue 0.2em solid;
+    padding: 1em;
+    margin: 0.5em;
+}
+
+.light-border {
+    border: darkblue 0.1em dotted;
+    padding: 1em;
+    margin: 0.5em;
+}
+
+/* when setting a background color, also set a contrasting text color */
+.yellow-background {
+    background-color: palegoldenrod;
+    color: darkblue;
+}
+
+.green-background {
+    background-color: palegreen;
+    color: darkred;
+}
+
+.blue-background {
+    background-color: paleturquoise;
+    color: darkgreen;
+}
+
+/**********************************************
+ * Individual item overrides
+ **********************************************/
