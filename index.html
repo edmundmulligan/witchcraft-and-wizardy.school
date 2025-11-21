@@ -25,11 +25,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- End Google Fonts links -->
 
-    <!-- Load CSS stylesheet(s) -->
+    <!-- Start of CSS stylesheets section -->
+
+    <!-- main.css must be the first stylesheet loaded -->
     <link rel="stylesheet" href="styles/main.css">
+
+    <!-- page specific stylesheet -->
+    <link rel="stylesheet" href="styles/index.css">
+
     <!-- media-queries must be the last stylesheet loaded -->
-    <link rel="stylesheet" href="styles/media-queries-landing-page.css">
-    <!-- End CSS stylesheet link -->
+    <link rel="stylesheet" href="styles/media-queries-index.css">
+
+    <!-- End of CSS stylesheets section -->
 
     <!-- Load JavaScript files -->
     <script src="scripts/alert.js" defer></script>
@@ -37,29 +44,28 @@
 </head>
 
 <body>
-    <header>
+    <header class="header-text-container">
         <h1>Web Witchcraft and Wizardry</h1>
         <h2>Learn to create magical websites</h2>
     </header>
 
-    <main>
-        <section class="circular-button-container">
-            <a href="students.html" class="circular-button circular-href">I am a Student</a>
+    <nav class="circular-button-container">
+        <a href="students.html" class="circular-button circular-href">I am a Student</a>
 
-            <a href="#"
-                class="circular-button circular-href"
-                onclick="showAlert('This page has not been implemented in this phase of the project, as described ' + 
-                                   'in the essay Incorporating usability and user experience into the Web Witchcraft and ' + 
-                                   'Wizardry project (Mulligan, 2025).')">I am a Mentor</a>
+        <a href="#"
+            class="circular-button circular-href"
+            onclick="showAlert('This page has not been implemented in this phase of the project, as described ' + 
+                               'in the essay Incorporating usability and user experience into the Web Witchcraft and ' + 
+                               'Wizardry project (Mulligan, 2025).')">I am a Mentor</a>
 
             <a href="about.html" class="circular-button circular-href">About Witches and Wizards</a>
-        </section>
-    </main>
-    <footer>
+    </nav>
+    
+    <footer class="header-text-container">
         <h3>Created by Edmund Mulligan, CITP MBCS</h3>
         <p>
             &copy; The Embodied Mind, 2025.
-            Distributed under the <a href="MIT-license.html" target="_blank">MIT License</a>.
+            Distributed under the MIT License. <a href="license-and-credits.html" target="_blank">See the license and credits page for more information</a>.
         </p>
     </footer>
 </body>

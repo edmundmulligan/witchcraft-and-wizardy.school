@@ -1,4 +1,44 @@
-/* Main CSS styles for the Web Witchcraft and Wizardry website */
+/*
+ *************************************************************
+ * Main CSS styles for the Web Witchcraft and Wizardry website 
+ * 
+ * These styles apply to all pages and this stylesheet should 
+ * be the first linked from all HTML files.
+ *************************************************************
+ */
+
+ /*
+  **********************************************************************
+  * Define semantic names for colours to be used on all pages
+  * N.B. Use colour names not hex codes for better code readability
+  *
+  * TODO: User switching between light and dark themes is out of scope 
+  * for phase 1 of this project but will be implemented in phase 2
+  * using Javascript.
+  **********************************************************************
+  */
+
+:root {
+    /* light theme colours */
+    --color-light-page-background: lightgoldenrodyellow;
+    --color-light-page-text: darkgreen;
+    --color-light-headings-background: lightblue;
+    --color-light-headings-text: darkblue;
+    --color-light-link-text: darkgreen;
+    --color-light-link-text-hover: darkorange;
+    --color-light-link-text-visited: darkblue;
+    --color-light-link-text-focus: darkorange;
+
+    /* dark theme colours */
+    --color-dark-page-background: darkgreen;
+    --color-dark-page-text: lightgoldenrodyellow;
+    --color-dark-headings-background: darkblue;
+    --color-dark-headings-text: lightblue;
+    --color-dark-link-text: lightgreen;
+    --color-dark-link-text-hover: lightorange;
+    --color-dark-link-text-visited: lightblue;
+    --color-dark-link-text-focus: lightorange;
+}
 
 /* set global styles for the entire body of the html document*/
 /* N.B. All dimensions in em units. px units are only used for screen-related properties in media queries */
@@ -20,7 +60,8 @@ body {
     font-family: "Open Sans", -apple-system, sans-serif;
     font-size: 1.125rem; /* 18px */
     line-height: 1.6;
-    color: lightgreen;
+    color: var(--color-light-page-text);
+    background-color: var(--color-light-page-background);   
 }
 
 body::before {
@@ -43,6 +84,30 @@ body::before {
     z-index: -1;
 }
 
+
+header {
+    width: 100%;
+    font-size: 1.2em;
+    text-align: center;
+    margin-bottom: 2em;
+    flex-shrink: 0;  /* Prevents header from shrinking */
+}
+
+nav, main {
+    width: 100%;
+    width: 100%;
+    text-align: center;
+    flex-grow: 1;  /* Allows main to grow and fill available space */
+}
+
+footer {
+    width: 100%;
+    font-size: 0.8em;
+    text-align: center;
+    margin-top: 2em;
+    flex-shrink: 0;  /* Prevents footer from shrinking */
+}
+
 /* Center all headings and use Anton (a bold sans-serif Google font) */
 h1, h2, h3, h4, h5, h6 {
     /* Use Anton font for headings */
@@ -58,233 +123,50 @@ h1 {
     font-weight: 700;
 }
 
-header {
-    width: 100%;
-    font-size: 1.2em;
-    text-align: center;
-    margin-bottom: 2em;
-    flex-shrink: 0;  /* Prevents header from shrinking */
-}
-
-main {
-    width: 100%;
-    width: 100%;
-    text-align: center;
-    flex-grow: 1;  /* Allows main to grow and fill available space */
-}
-
-footer {
-    width: 100%;
-    font-size: 0.8em;
-    text-align: center;
-    margin-top: 2em;
-    flex-shrink: 0;  /* Prevents footer from shrinking */
-}
-
-/* container and styles for circular buttons */
-/* N.B. flex-direction in .circular-button-container layout is set in media-queries.css */
-
-.circular-button-container {
-    display: flex;
-    gap: 2em;
-    margin: 2em 0;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.circular-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 10%;
-    aspect-ratio: 1 / 1;
-    border-radius: 50%; /* Makes it circular */
-    background-color: lightgreen;
-    border: 0.1em solid darkgreen;
-    text-align: center;
-/*
-    text-decoration: underline;
-    text-decoration-thickness: 0.15em;
-    text-underline-offset: 0.2em;
-*/
-
-    line-height: normal;
-    color: darkgreen;
-    font-family: "Anton", sans-serif;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 1em;
-}
-
-.circular-button:hover {
-    background-color: whitesmoke;
-    color: darkgreen;
-    border-color: darkgreen;
-    transform: scale(1.1);
+/* increas spacing for paragraphs in accordance with WCAG 2.2 */
+p {
+    margin-bottom: 1.5em;
 }
 
 /* general link styles */
 a:link {
-    color: lightgreen;
+    color: var(--color-light-link-text);
 }
 a:visited {
-    color: lightgreen;
+    color: var(--color-light-link-text-visited);
 }
 a:hover {
-    color: lightgoldenrodyellow;
+    color: var(--color-light-link-text-hover);
 }
 
-/* link styles for circular buttons */
-.circular-href:link {
-    color: darkgreen;
-    text-decoration: none;
-}
-.circular-href:visited {
-    color: darkgreen;
-    text-decoration: none;
-}
-.circular-href:hover {
-    color: darkblue;
-    text-decoration: none;
-}   
-
-/********************************************
- * font styles 
- ********************************************/
-
-/* Indie Flower font (a Google font) styles for contents of flex boxes */
-.indie-flower-bold {
-  font-family: "Indie Flower", cursive;
-  font-weight: 800;
-  font-style: normal;
-}
-
-.indie-flower-regular {
-  font-family: "Indie Flower", cursive;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.anton-regular {
-  font-family: "Anton", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-/********************************************
- * container classes for flexbox container
- ********************************************/
-
-/* render the container with a horizontal (row) main axis and align items to the centre of the main axis */
-.container-horizontal-center-wrap {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-}
-
-/* render the container with a horizontal (row) main axis and align items to the centre of the main axis */
-.container-horizontal-center-nowrap {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    align-items: center;
-}
-
-/* render the container with a vertical (column) main axis and align items to the centre of the main axis */
-.container-vertical-center-wrap {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-
-/**********************************************
- * contained classes for flexbox items
- **********************************************/
-
-/* centered, 5em width */
-.contained-fixed-width-5em {
-    text-align:center;
-    width: 5em;
-    flex-basis: 5em;
-}
-
-/* centered, 10em width */
-.contained-fixed-width-10em {
-    text-align:center;
-    width: 10em;
-    flex-basis: 10em;
-}
-
-.contained-variable-width-15percent {
-    width: 15%;
-    flex-basis: auto;
-}
-
-.non-shrinkable {
-    flex-shrink: 0;
-}
-
-.slightly-shrinkable {
-    flex-shrink: 1;
-}
-
-.very-shrinkable {
-    flex-shrink: 10;
-}
-
-.non-growable {
-    flex-grow: 0;
-}
-
-.slightly-growable {
-    flex-grow: 1;
-}
-.very-growable {
-    flex-grow: 10;
-}
-
-.height-120em {
-    height: 120em;
+aLfocus {
+    color: var(--color-light-link-text-focus);
+    outline: 0.1em dashed var(--color-light-link-text-focus);
+    outline-offset: 0.1em;
 }
 
 /********************************************************
- * border and color classes separate from flexbox styles
+ * border and color classes
  ********************************************************/
 
+.header-text-container {
+    border: var(--color-light-headings-text) 0.2em solid;
+    padding: 1em;
+    margin: 0.5em auto;
+    background-color: var(--color-light-headings-background);
+    color: var(--color-light-headings-text);
+    border-radius: 2em;
+    max-width: 80%;
+}
+
 .heavy-border {
-    border: darkblue 0.2em solid;
+    border: var(--color-light-headings-text) 0.2em solid;
     padding: 1em;
     margin: 0.5em;
 }
 
 .light-border {
-    border: darkblue 0.1em dotted;
+    border: var(--color-light-headings-text) 0.1em dotted;
     padding: 1em;
     margin: 0.5em;
 }
-
-/* when setting a background color, also set a contrasting text color */
-.yellow-background {
-    background-color: palegoldenrod;
-    color: darkblue;
-}
-
-.green-background {
-    background-color: palegreen;
-    color: darkred;
-}
-
-.blue-background {
-    background-color: paleturquoise;
-    color: darkgreen;
-}
-
-/**********************************************
- * Individual item overrides
- **********************************************/
