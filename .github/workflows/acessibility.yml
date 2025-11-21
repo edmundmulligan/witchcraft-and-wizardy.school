@@ -1,0 +1,125 @@
+name: Accessibility Testing and Deployment
+
+env:
+  testurl:    'http://localhost:8080'
+  testport:   '8080'
+  resultsdir: 'tests/results'
+
+on:
+  push:
+    branches: [ development, main]
+  pull_request:
+    branches: [ development, main ]
+
+jobs:
+  run-accessibility-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: |
+        npm install -g @axe-core/cli pa11y lighthouse serve wait-on
+
+    - name: Install pa11y locally
+      run: |
+        npm init -y
+        npm install pa11y
+
+    - name: Start local server
+      # serve the root folder;
+      run: |
+        serve -s . -l ${{ env.testport }} &   # start server in background
+        sleep 1                               # give it a moment
+
+    - name: Wait for server
+      run: |
+        npx wait-on ${{ env.testurl }} --timeout 15000
+
+    - name: Ensure results directory exists
+      run: |
+        mkdir -p tests/results
+
+    - name: Run axe accessibility tests
+      run: |
+        axe ${{ env.testurl }} --save ${{ env.resultsdir }}/axe-results.json --stdout --exit  
+
+    - name: Run Pa11y accessibility tests
+      run: |
+        node tests/pa11y/run-pa11y.js
+
+    - name: Run Lighthouse accessibility audit
+      run: |
+        lighthouse ${{ env.testurl }} --only-categories=accessibility --output=json --output-path=${{ env.resultsdir }}/lighthouse-results.json --chrome-flags="--headless --no-sandbox"
+        
+    - name: Upload accessibility reports
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: accessibility-reports
+        path: |
+          ${{ env.resultsdir }}/axe-results.json
+          ${{ env.resultsdir }}/pa11y-results.json
+          ${{ env.resultsdir }}/lighthouse-results.json
+          
+    - name: Check axe violations
+      run: |
+        # Count violations by severity
+        CRITICAL=$(node -p "JSON.parse(require('fs').readFileSync('${{ env.resultsdir }}/axe-results.json')).violations.filter(v => v.impact === 'critical').length")
+        SERIOUS=$(node -p "JSON.parse(require('fs').readFileSync('${{ env.resultsdir }}/axe-results.json')).violations.filter(v => v.impact === 'serious').length")
+        MODERATE=$(node -p "JSON.parse(require('fs').readFileSync('${{ env.resultsdir }}/axe-results.json')).violations.filter(v => v.impact === 'moderate').length")
+        MINOR=$(node -p "JSON.parse(require('fs').readFileSync('${{ env.resultsdir }}/axe-results.json')).violations.filter(v => v.impact === 'minor').length")
+    
+        echo "🔍 Axe Violations:"
+        echo "  Critical: $CRITICAL"
+        echo "  Serious: $SERIOUS"
+        echo "  Moderate: $MODERATE"
+        echo "  Minor: $MINOR"
+    
+        # Fail if any critical or serious violations
+        if [ "$CRITICAL" -gt 0 ] || [ "$SERIOUS" -gt 0 ]; then
+          echo "❌ Critical or serious accessibility violations found"
+          exit 1
+        else
+          echo "✅ No critical or serious violations"
+        fi
+
+    - name: Check Lighthouse accessibility score
+      run: |
+        # Extract Lighthouse accessibility score
+        SCORE=$(node -p "JSON.parse(require('fs').readFileSync('${{ env.resultsdir }}/lighthouse-results.json')).categories.accessibility.score * 100")
+        echo "Lighthouse Accessibility Score: $SCORE"
+        
+        # Fail if score is below 90
+        if (( $(echo "$SCORE < 90" | bc -l) )); then
+          echo "❌ Lighthouse accessibility score ($SCORE) is below minimum threshold (90)"
+          exit 1
+        else
+          echo "✅ Lighthouse accessibility score ($SCORE) meets requirements"
+        fi
+
+  deploy:
+    needs: run-accessibility-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Deploy to production
+      run: |
+        echo "🚀 Deploying to production..."
+        # Add your deployment commands here
+        # For example, if deploying to GitHub Pages:
+        # - uses: peaceiris/actions-gh-pages@v3
+        #   with:
+        #     github_token: ${{ secrets.GITHUB_TOKEN }}
+        #     publish_dir: ./
