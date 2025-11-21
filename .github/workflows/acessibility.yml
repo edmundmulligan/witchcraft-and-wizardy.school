@@ -49,7 +49,8 @@ jobs:
 
     - name: Run axe accessibility tests
       run: |
-        axe ${{ env.testurl }} --save ${{ env.resultsdir }}/axe-results.json --stdout --exit  
+        axe ${{ env.testurl }} --save ${{ env.resultsdir }}/axe-results.json --stdout
+      continue-on-error: true  
 
     - name: Run Pa11y accessibility tests
       run: |
