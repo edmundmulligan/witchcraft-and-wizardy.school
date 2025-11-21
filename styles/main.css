@@ -93,7 +93,7 @@ header {
     flex-shrink: 0;  /* Prevents header from shrinking */
 }
 
-nav, main {
+main {
     width: 100%;
     width: 100%;
     text-align: center;
