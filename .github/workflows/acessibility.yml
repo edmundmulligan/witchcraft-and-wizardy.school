@@ -49,8 +49,7 @@ jobs:
 
     - name: Run axe accessibility tests
       run: |
-        # can't use --save due to exit code on violations, so redirect output and ignore exit code
-        axe ${{ env.testurl }} | grep -v "Running axe-core" | tee ${{ env.resultsdir }}/axe-results.json || true  
+        axe ${{ env.testurl }} --save ${{ env.resultsdir }}/axe-results.json 
 
     - name: Run Pa11y accessibility tests
       run: |
