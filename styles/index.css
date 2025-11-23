@@ -4,12 +4,12 @@
  ***************************************************************************
  */
 
- /* 
-  ********************************************
-  * Page specific landmark element styles
-  * Arranged vertically using flexbox
-  ********************************************
-  */
+/* 
+ ********************************************
+ * Page specific landmark element styles
+ * Arranged vertically using flexbox
+ ********************************************
+ */
 
 /********************************************
  * circular button styles
@@ -32,11 +32,11 @@
     width: 10%;
     aspect-ratio: 1 / 1;
     border-radius: 50%; /* Makes it circular */
+    color: var(--color-light-headings-text);
     background-color: var(--color-light-page-background);
     border: 0.1em solid var(--color-light-headings-text);
     text-align: center;
     line-height: normal;
-    color: var(--color-light-headings-text);
     font-family: "Anton", sans-serif;
     font-weight: bold;
     cursor: pointer;
