@@ -1,9 +1,10 @@
 name: Accessibility Testing and Deployment
 
 env:
-  testurl:    'http://localhost:8080'
-  testport:   '8080'
-  resultsdir: 'tests/results'
+  testurl:      'http://localhost:8080'
+  testport:     '8080'
+  resultsdir:   'tests/results'
+  WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
 
 on:
   push:
@@ -24,11 +25,125 @@ jobs:
       with:
         node-version: '20'
 
-    - name: Install dependencies
+    - name: Install HTML validator
+      run: |
+        npm install -g html-validate
+
+    - name: Install CSS validator
+      run: |
+        npm install -g stylelint stylelint-config-standard
+
+    - name: Install W3C validators
+      run: |
+        npm install -g html-validator-cli css-validator
+
+    - name: Validate HTML with standalone validator
+      run: |
+        # Validate all HTML files
+        html-validate "**/*.html" --formatter json > ${{ env.resultsdir }}/html-validation.json || true
+    
+        # Check results
+        ERRORS=$(node -p "JSON.parse(require('fs').readFileSync('${{ env.resultsdir }}/html-validation.json')).length")
+    
+        echo "📄 HTML Validation Results:"
+        echo "  Files with errors: $ERRORS"
+    
+        if [ "$ERRORS" -gt 0 ]; then
+          echo "❌ HTML validation errors found"
+          html-validate "**/*.html"  # Show errors in log
+          exit 1
+        else
+          echo "✅ All HTML files are valid"
+        fi
+    
+    - name: Create stylelint config
+      run: |
+        echo '{
+          "extends": "stylelint-config-standard",
+          "rules": {
+            "no-descending-specificity": null,
+            "font-family-no-missing-generic-family-keyword": null
+          }
+        }' > .stylelintrc.json
+
+    - name: Validate CSS with stand alone validator
+      run: |
+        # Validate all CSS files
+        stylelint "**/*.css" --formatter json > ${{ env.resultsdir }}/css-validation.json || true
+    
+        # Check results
+        ERRORS=$(node -p "JSON.parse(require('fs').readFileSync('${{ env.resultsdir }}/css-validation.json')).reduce((sum, file) => sum + file.errored, 0)")
+    
+        echo "🎨 CSS Validation Results:"
+        echo "  Files with errors: $ERRORS"
+    
+        if [ "$ERRORS" -gt 0 ]; then
+          echo "❌ CSS validation errors found"
+          stylelint "**/*.css"  # Show errors in log
+          exit 1
+        else
+          echo "✅ All CSS files are valid"
+        fi
+
+    - name: Validate HTML with W3C
+      run: |
+        # Validate each HTML file
+        for file in $(find . -name "*.html" -not -path "./node_modules/*"); do
+          echo "Validating $file"
+          html-validator --file="$file" --verbose || echo "Errors in $file"
+        done
+
+    - name: Validate CSS with W3C
+      run: |
+        # Validate each CSS file
+        for file in $(find . -name "*.css" -not -path "./node_modules/*"); do
+          echo "Validating $file"
+          css-validator "$file" || echo "Errors in $file"
+        done
+        
+    - name: Run WAVE accessibility tests
+      run: |
+        # Start server if not already running (you already have this)
+        # Call WAVE API - note: WAVE needs a publicly accessible URL or use localhost tunneling
+        # For localhost, you'll need to use a tunneling service like ngrok or test with a deployed URL
+    
+        # Using the local server (limited - WAVE API needs public URL)
+        response=$(curl -s "https://wave.webaim.org/api/request?key=${WAVE_API_KEY}&url=${{ env.testurl }}&reporttype=4")
+    
+        # Save results
+        echo "$response" > ${{ env.resultsdir }}/wave-results.json
+    
+        # Parse results (check if API returned valid JSON)
+        if jq empty ${{ env.resultsdir }}/wave-results.json 2>/dev/null; then
+          ERRORS=$(jq -r '.categories.error.count // 0' ${{ env.resultsdir }}/wave-results.json)
+          CONTRAST_ERRORS=$(jq -r '.categories.contrast.count // 0' ${{ env.resultsdir }}/wave-results.json)
+          ALERTS=$(jq -r '.categories.alert.count // 0' ${{ env.resultsdir }}/wave-results.json)
+          FEATURES=$(jq -r '.categories.feature.count // 0' ${{ env.resultsdir }}/wave-results.json)
+      
+          echo "🌊 WAVE Accessibility Results:"
+          echo "  Errors: $ERRORS"
+          echo "  Contrast Errors: $CONTRAST_ERRORS"
+          echo "  Alerts: $ALERTS"
+          echo "  Features: $FEATURES"
+      
+          # Fail on errors
+          if [ "$ERRORS" -gt 0 ] || [ "$CONTRAST_ERRORS" -gt 0 ]; then
+            echo "❌ WAVE found accessibility errors"
+            exit 1
+          else
+            echo "✅ WAVE test passed"
+          fi
+        else
+          echo "⚠️ WAVE API call failed or returned invalid response"
+          cat ${{ env.resultsdir }}/wave-results.json
+        fi
+      continue-on-error: true  # Don't fail the build if WAVE API is unavailable
+
+    - name: Install dependencies for Axe, Pa11y and Lighthouse
       run: |
         npm install -g @axe-core/cli pa11y lighthouse serve wait-on
 
-    - name: Install pa11y locally
+    - name: Install pa11y locally as global install does not work properly
       run: |
         npm init -y
         npm install pa11y
@@ -58,7 +173,7 @@ jobs:
     - name: Run Lighthouse accessibility audit
       run: |
         lighthouse ${{ env.testurl }} --only-categories=accessibility --output=json --output-path=${{ env.resultsdir }}/lighthouse-results.json --chrome-flags="--headless --no-sandbox"
-        
+     
     - name: Upload accessibility reports
       uses: actions/upload-artifact@v4
       if: always()
