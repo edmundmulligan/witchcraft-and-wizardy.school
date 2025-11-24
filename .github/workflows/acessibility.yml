@@ -20,9 +20,39 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Ensure results directory exists
+      run: |
+        mkdir -p tests/results
+
     - name: Validate HTML and CSS
       run: |
         bin/validate-code.sh
+
+    - name: Install dependencies for Pa11y and Lighthouse
+      run: |
+        npm install pa11y lighthouse serve wait-on
+
+    - name: Start local server
+      # serve the root folder;
+      run: |
+        serve -s . -l ${{ env.testport }} &   # start server in background
+        sleep 1                               # give it a moment
+
+    - name: Wait for server
+      run: |
+        npx wait-on ${{ env.testurl }} --timeout 15000
+
+    - name: Run axe accessibility tests
+      run: |
+        bin/run-axe-tests.sh
+
+    - name: Run Pa11y accessibility tests
+      run: |
+        node tests/pa11y/run-pa11y.js
+
+    - name: Run Lighthouse accessibility audit
+      run: |
+        lighthouse ${{ env.testurl }} --only-categories=accessibility --output=json --output-path=${{ env.resultsdir }}/lighthouse-results.json --chrome-flags="--headless --no-sandbox"
 
     - name: Run WAVE accessibility tests
       run: |
@@ -62,41 +92,6 @@ jobs:
         fi
       continue-on-error: true  # Don't fail the build if WAVE API is unavailable
 
-    - name: Install dependencies for Axe, Pa11y and Lighthouse
-      run: |
-        npm install -g @axe-core/cli pa11y lighthouse serve wait-on
-
-    - name: Install pa11y locally as global install does not work properly
-      run: |
-        npm init -y
-        npm install pa11y
-
-    - name: Start local server
-      # serve the root folder;
-      run: |
-        serve -s . -l ${{ env.testport }} &   # start server in background
-        sleep 1                               # give it a moment
-
-    - name: Wait for server
-      run: |
-        npx wait-on ${{ env.testurl }} --timeout 15000
-
-    - name: Ensure results directory exists
-      run: |
-        mkdir -p tests/results
-
-    - name: Run axe accessibility tests
-      run: |
-        axe ${{ env.testurl }} --save ${{ env.resultsdir }}/axe-results.json 
-
-    - name: Run Pa11y accessibility tests
-      run: |
-        node tests/pa11y/run-pa11y.js
-
-    - name: Run Lighthouse accessibility audit
-      run: |
-        lighthouse ${{ env.testurl }} --only-categories=accessibility --output=json --output-path=${{ env.resultsdir }}/lighthouse-results.json --chrome-flags="--headless --no-sandbox"
-     
     - name: Upload accessibility reports
       uses: actions/upload-artifact@v4
       if: always()
@@ -107,28 +102,6 @@ jobs:
           ${{ env.resultsdir }}/pa11y-results.json
           ${{ env.resultsdir }}/lighthouse-results.json
           
-    - name: Check axe violations
-      run: |
-        # Count violations by severity
-        CRITICAL=$(node -p "JSON.parse(require('fs').readFileSync('${{ env.resultsdir }}/axe-results.json')).violations.filter(v => v.impact === 'critical').length")
-        SERIOUS=$(node -p "JSON.parse(require('fs').readFileSync('${{ env.resultsdir }}/axe-results.json')).violations.filter(v => v.impact === 'serious').length")
-        MODERATE=$(node -p "JSON.parse(require('fs').readFileSync('${{ env.resultsdir }}/axe-results.json')).violations.filter(v => v.impact === 'moderate').length")
-        MINOR=$(node -p "JSON.parse(require('fs').readFileSync('${{ env.resultsdir }}/axe-results.json')).violations.filter(v => v.impact === 'minor').length")
-    
-        echo "🔍 Axe Violations:"
-        echo "  Critical: $CRITICAL"
-        echo "  Serious: $SERIOUS"
-        echo "  Moderate: $MODERATE"
-        echo "  Minor: $MINOR"
-    
-        # Fail if any critical or serious violations
-        if [ "$CRITICAL" -gt 0 ] || [ "$SERIOUS" -gt 0 ]; then
-          echo "❌ Critical or serious accessibility violations found"
-          exit 1
-        else
-          echo "✅ No critical or serious violations"
-        fi
-
     - name: Check Lighthouse accessibility score
       run: |
         # Extract Lighthouse accessibility score
