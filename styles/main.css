@@ -40,15 +40,16 @@
     --color-dark-link-text-focus: lightorange;
 }
 
-/* set global styles for the entire body of the html document*/
+/* set global styles for the entire body of the html document */
+
 /* N.B. All dimensions in em units. px units are only used for screen-related properties in media queries */
 
 body {
     position: relative;
 
     /* set margin and padding */
-    margin: 0em;
-    padding: 0em;
+    margin: 0;
+    padding: 0;
     min-height: 100vh;
 
     /* use flexbox to layout header, main and footer vertically */
@@ -80,7 +81,6 @@ body::before {
 
     /* ensure the background image opaque to enable readability */
     opacity: 0.7;
-
     z-index: -1;
 }
 
@@ -94,7 +94,6 @@ header {
 }
 
 main {
-    width: 100%;
     width: 100%;
     text-align: center;
     flex-grow: 1;  /* Allows main to grow and fill available space */
@@ -111,7 +110,7 @@ footer {
 /* Center all headings and use Anton (a bold sans-serif Google font) */
 h1, h2, h3, h4, h5, h6 {
     /* Use Anton font for headings */
-    font-family: "Anton", sans-serif;
+    font-family: Anton, sans-serif;
     font-weight: 400;
     font-style: normal;
     text-align: center;
@@ -132,14 +131,16 @@ p {
 a:link {
     color: var(--color-light-link-text);
 }
+
 a:visited {
     color: var(--color-light-link-text-visited);
 }
+
 a:hover {
     color: var(--color-light-link-text-hover);
 }
 
-aLfocus {
+a:focus {
     color: var(--color-light-link-text-focus);
     outline: 0.1em dashed var(--color-light-link-text-focus);
     outline-offset: 0.1em;

@@ -31,7 +31,7 @@
 }
 
 /* small screen width - treat as portrait */
-@media (max-width: 600px) {
+@media (width <= 600px) {
     body::before {
     /* Portrait version of Michael Hamments photo on unsplash.com */
     background-image: url('../images/michael-hamments-x6VyE3ie1sM-unsplash-portrait.jpg');

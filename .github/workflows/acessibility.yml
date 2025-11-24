@@ -20,77 +20,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-
-    - name: Install HTML validator
+    - name: Validate HTML and CSS
       run: |
-        npm install -g html-validate
+        bin/validate-code.sh
 
-    - name: Install CSS validator
-      run: |
-        npm install -g stylelint stylelint-config-standard
-
-    - name: Install W3C validators
-      run: |
-        npm install -g html-validator-cli css-validator
-
-#    - name: Validate HTML with standalone validator
-#      run: |
-#        # Validate all HTML files
-#        html-validate "**/*.html" --formatter json > ${{ env.resultsdir }}/html-validation.json || true
-#    
-#        # Check results
-#        ERRORS=$(node -p "JSON.parse(require('fs').readFileSync('${{ env.resultsdir }}/html-validation.json')).length")
-#    
-#        echo "📄 HTML Validation Results:"
-#        echo "  Files with errors: $ERRORS"
-#    
-#        if [ "$ERRORS" -gt 0 ]; then
-#          echo "❌ HTML validation errors found"
-#          html-validate "**/*.html"  # Show errors in log
-#          # exit 1
-#        else
-#          echo "✅ All HTML files are valid"
-#        fi
-    
-    - name: Validate CSS with stand alone validator
-      run: |
-        # Validate all CSS files
-        stylelint "styles/*.css" --formatter json > ${{ env.resultsdir }}/css-validation.json || true
-    
-        # Check results
-        ERRORS=$(node -p "JSON.parse(require('fs').readFileSync('${{ env.resultsdir }}/css-validation.json')).reduce((sum, file) => sum + file.errored, 0)")
-   
-        echo "🎨 CSS Validation Results:"
-        echo "  Files with errors: $ERRORS"
-    
-        if [ "$ERRORS" -gt 0 ]; then
-          echo "❌ CSS validation errors found"
-          stylelint "**/*.css"  # Show errors in log
-          # exit 1
-        else
-          echo "✅ All CSS files are valid"
-        fi
-
-    - name: Validate HTML with W3C
-      run: |
-        # Validate each HTML file
-        for file in $(find . -name "*.html" -not -path "./node_modules/*"); do
-          echo "Validating $file"
-          html-validator --file="$file" --verbose || echo "Errors in $file"
-        done
-
-    - name: Validate CSS with W3C
-      run: |
-        # Validate each CSS file
-        for file in $(find . -name "*.css" -not -path "./node_modules/*"); do
-          echo "Validating $file"
-          css-validator "$file" || echo "Errors in $file"
-        done
-        
     - name: Run WAVE accessibility tests
       run: |
         # Start server if not already running (you already have this)

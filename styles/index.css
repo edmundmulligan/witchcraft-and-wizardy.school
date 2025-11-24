@@ -37,7 +37,7 @@
     border: 0.1em solid var(--color-light-headings-text);
     text-align: center;
     line-height: normal;
-    font-family: "Anton", sans-serif;
+    font-family: Anton, sans-serif;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -57,15 +57,17 @@
     color: var(--color-light-link-text);
     text-decoration: none;
 }
+
 .circular-href:visited {
     color: var(--color-light-link-text-visited);
     text-decoration: none;
 }
+
 .circular-href:hover {
     color: var(--color-light-link-text-hover);
     background-color: var(--color-light-page-background-hover);
     text-decoration: none;
-} 
+}
 .circular-href:focus {
     color: var(--color-light-link-text-focus);
     outline: 0.1em dashed var(--color-light-link-text-focus);
