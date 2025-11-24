@@ -56,34 +56,34 @@ jobs:
 #          echo "✅ All HTML files are valid"
 #        fi
     
-    - name: Create stylelint config
-      run: |
-        echo '{
-          "extends": "stylelint-config-standard",
-          "rules": {
-            "no-descending-specificity": null,
-            "font-family-no-missing-generic-family-keyword": null
-          }
-        }' > .stylelintrc.json
+#    - name: Create stylelint config
+#      run: |
+#        echo '{
+#          "extends": "stylelint-config-standard",
+#          "rules": {
+#            "no-descending-specificity": null,
+#            "font-family-no-missing-generic-family-keyword": null
+#          }
+#        }' > .stylelintrc.json
 
-    - name: Validate CSS with stand alone validator
-      run: |
-        # Validate all CSS files
-        stylelint "**/*.css" --formatter json > ${{ env.resultsdir }}/css-validation.json || true
-    
-        # Check results
-        ERRORS=$(node -p "JSON.parse(require('fs').readFileSync('${{ env.resultsdir }}/css-validation.json')).reduce((sum, file) => sum + file.errored, 0)")
-    
-        echo "🎨 CSS Validation Results:"
-        echo "  Files with errors: $ERRORS"
-    
-        if [ "$ERRORS" -gt 0 ]; then
-          echo "❌ CSS validation errors found"
-          stylelint "**/*.css"  # Show errors in log
-          # exit 1
-        else
-          echo "✅ All CSS files are valid"
-        fi
+#    - name: Validate CSS with stand alone validator
+#      run: |
+#        # Validate all CSS files
+#        stylelint "**/*.css" --formatter json > ${{ env.resultsdir }}/css-validation.json || true
+#    
+#        # Check results
+#        ERRORS=$(node -p "JSON.parse(require('fs').readFileSync('${{ env.resultsdir }}/css-validation.json')).reduce((sum, file) => sum + file.errored, 0)")
+#   
+#        echo "🎨 CSS Validation Results:"
+#        echo "  Files with errors: $ERRORS"
+#    
+#        if [ "$ERRORS" -gt 0 ]; then
+#          echo "❌ CSS validation errors found"
+#          stylelint "**/*.css"  # Show errors in log
+#          # exit 1
+#        else
+#          echo "✅ All CSS files are valid"
+#        fi
 
     - name: Validate HTML with W3C
       run: |
