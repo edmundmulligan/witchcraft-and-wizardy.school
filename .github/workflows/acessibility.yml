@@ -28,6 +28,10 @@ jobs:
       run: |
         bin/validate-code.sh
 
+    - name: Run axe accessibility tests
+      run: |
+        bin/run-axe-tests.sh
+
     - name: Install dependencies for Pa11y and Lighthouse
       run: |
         npm install pa11y lighthouse serve wait-on
@@ -37,14 +41,6 @@ jobs:
       run: |
         serve -s . -l ${{ env.testport }} &   # start server in background
         sleep 1                               # give it a moment
-
-    - name: Wait for server
-      run: |
-        npx wait-on ${{ env.testurl }} --timeout 15000
-
-    - name: Run axe accessibility tests
-      run: |
-        bin/run-axe-tests.sh
 
     - name: Run Pa11y accessibility tests
       run: |
