@@ -13,7 +13,15 @@ if [ -z "$WAVE_API_KEY" ]; then
   echo "❌ Error: WAVE_API_KEY environment variable not set"
   echo "   Get your key from: https://wave.webaim.org/api/"
   echo "   Then run: export WAVE_API_KEY='your-key-here'"
-  exit 1
+  exit 0
+fi
+
+# Check for ngrok authtoken
+if [ -z "$NGROK_AUTHTOKEN" ]; then
+  echo "❌ Error: NGROK_AUTHTOKEN environment variable not set"
+  echo "   Get your token from: https://dashboard.ngrok.com/get-started/your-authtoken"
+  echo "   Then run: export NGROK_AUTHTOKEN='your-token-here'"
+  exit 0
 fi
 
 # Get any command line options
@@ -25,24 +33,72 @@ start_server_if_needed "$TEST_URL"
 
 # Install and run ngrok 
 # this is needed to run WAVE as it exposes localhost to the internet
-if [ ! -f /usr/local/bin/ngrok ]
-then
-  echo "Downloading and installing ngrok..."    
-  wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
-  tar -xvzf ngrok-v3-stable-linux-amd64.tgz
+if ! command -v ngrok &> /dev/null; then
+  echo "Downloading and installing ngrok..."
+  
+  # Download ngrok using curl (more reliable in CI)
+  curl -fsSL https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz -o ngrok.tgz
+  
+  if [ $? -ne 0 ]; then
+    echo "❌ Failed to download ngrok"
+    exit 0
+  fi
+  
+  tar -xzf ngrok.tgz
   sudo mv ngrok /usr/local/bin/
   sudo chmod +x /usr/local/bin/ngrok
+  rm -f ngrok.tgz
+  
+  echo "✓ Ngrok installed"
 fi
 
+# Configure ngrok authtoken
+echo "Configuring ngrok authtoken..."
 ngrok config add-authtoken $NGROK_AUTHTOKEN
-ngrok http 8080 &
-sleep 2
 
-export NGROK_URL=$(curl -s localhost:4040/api/tunnels | node -e "console.log(JSON.parse(require('fs').readFileSync(0)).tunnels[0].public_url)")
+if [ $? -ne 0 ]; then
+  echo "❌ Failed to configure ngrok authtoken"
+  exit 0
+fi
+
+# Start ngrok tunnel
+echo "Starting ngrok tunnel..."
+ngrok http 8080 > /dev/null &
+NGROK_PID=$!
+sleep 3
+
+# Get the public URL from ngrok API
+export NGROK_URL=$(curl -s localhost:4040/api/tunnels 2>/dev/null | node -e "
+  try {
+    const data = JSON.parse(require('fs').readFileSync(0, 'utf8'));
+    if (data.tunnels && data.tunnels.length > 0) {
+      console.log(data.tunnels[0].public_url);
+    } else {
+      process.exit(1);
+    }
+  } catch (e) {
+    process.exit(1);
+  }
+" 2>/dev/null)
+
+if [ -z "$NGROK_URL" ]; then
+  echo "❌ Failed to get ngrok URL"
+  kill $NGROK_PID 2>/dev/null
+  exit 0
+fi
 echo "✓ Ngrok tunnel created: $NGROK_URL"
 
 # Set TEST_URL to the ngrok URL
 TEST_URL="$NGROK_URL"
+
+# Cleanup ngrok on exit
+cleanup_ngrok() {
+  if [ ! -z "$NGROK_PID" ]; then
+    echo "Stopping ngrok..."
+    kill $NGROK_PID 2>/dev/null
+  fi
+}
+trap cleanup_ngrok EXIT
 
 # Setup results directory
 setup_results_dir

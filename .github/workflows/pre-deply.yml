@@ -5,6 +5,7 @@ env:
   testport:     '8080'
   resultsdir:   'tests/results'
   WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
+  NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
 
 on:
   push:
@@ -64,7 +65,7 @@ jobs:
           ${{ env.resultsdir }}/pa11y-results.json
           ${{ env.resultsdir }}/lighthouse-results.json
           ${{ env.resultsdir }}/wave-results.json
-          ${{ env.resultsdir }}/reading-age-results.json
+          ${{ env.resultsdir }}/readability-results.json
 
   deploy:
     needs: run-pre-deployment-test
