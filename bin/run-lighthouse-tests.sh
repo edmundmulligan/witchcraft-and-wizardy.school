@@ -34,7 +34,7 @@ for page in $PAGES; do
   
   # Run lighthouse on this page
   TEMP_RESULT="$RESULTS_DIR/lighthouse-temp-$TESTED.json"
-  npx lighthouse "$FULL_URL" --output=json --output-path=$TEMP_RESULT --chrome-flags="--headless --no-sandbox" --only-categories=accessibility --quiet 2>&1 | grep -E "(Testing|Runtime)" || true
+  npx lighthouse "$FULL_URL" --output=json --output-path=$TEMP_RESULT --chrome-flags="--headless --no-sandbox" --quiet 2>&1 | grep -E "(Testing|Runtime)" || true
   
   # Merge results into combined file if temp file exists
   if [ -f "$TEMP_RESULT" ]; then
