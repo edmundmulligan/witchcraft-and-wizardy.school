@@ -3,33 +3,12 @@
 # This script validates code locally before pushing changes.
 # N.B. Do not use the W3C validator as that does not support CSS variables
 
-# define function to parse command line options
-getopt() {
-  local OPTIND
-  while getopts ":hw" opt
-  do
-    case $opt in
-      h)
-        echo "Usage: $0 [-h] [-w]"
-        echo "  -h  Show this help message and exit"
-        echo "  -w  Include warnings in the validation output"  
-        echo "Validates HTML and CSS files in the current directory."
-        exit 0
-        ;;
-      w)
-        INCLUDE_WARNINGS=true
-        ;;
-      \?)
-        echo "Invalid option: -$OPTARG" >&2
-        exit 1
-        ;;
-    esac
-  done
-}
+# Source common helper functions
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/test-helpers.sh"
 
-# get any command line options
-INCLUDE_WARNINGS=false
-getopt "$@"
+# Get any command line options
+parse_test_options "$@"
 
 # silently install dependencies if not already installed
 npm install html-validate stylelint stylelint-config-standard > /dev/null 2>&1

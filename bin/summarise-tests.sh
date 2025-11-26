@@ -90,6 +90,32 @@ else
   echo ""
 fi
 
+# Check WAVE results
+if [ -f "$RESULTS_DIR/wave-results.json" ]; then
+  echo "🌊 WAVE Accessibility Results:"
+  node -e "
+    const fs = require('fs');
+    const data = JSON.parse(fs.readFileSync('$RESULTS_DIR/wave-results.json', 'utf8'));
+    const totalErrors = data.pages.reduce((sum, p) => sum + p.errors, 0);
+    const totalAlerts = data.pages.reduce((sum, p) => sum + p.alerts, 0);
+    const totalContrast = data.pages.reduce((sum, p) => sum + p.contrast, 0);
+    const pagesWithErrors = data.pages.filter(p => p.errors > 0).length;
+    
+    console.log('  Pages tested: ' + data.pages.length);
+    console.log('  ❌ Errors: ' + totalErrors);
+    console.log('  ⚠️  Alerts: ' + totalAlerts);
+    console.log('  🎨 Contrast errors: ' + totalContrast);
+    console.log('  Pages with errors: ' + pagesWithErrors);
+    
+    if (totalErrors > 0) {
+      process.exit(1);
+    }
+  " && echo "" || { echo ""; EXIT_CODE=1; }
+else
+  echo "✅ WAVE: No errors found"
+  echo ""
+fi
+
 # Final summary
 echo "======================"
 if [ $EXIT_CODE -eq 0 ]; then
