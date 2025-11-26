@@ -61,7 +61,7 @@ do
       try {
         const results = JSON.parse(require('fs').readFileSync('$resultFile'));
         const severityMap = { 1: 'warning', 2: 'error' };
-        const includeWarnings = ${INCLUDE_WARNINGS};
+        const includeWarnings = ${INCLUDE_WARNINGS:-false};
       
         if (results.length > 0 && results[0].messages) {
           const filtered = results[0].messages.filter(m => includeWarnings ? m.severity >= 1 : m.severity === 2);
@@ -81,7 +81,7 @@ do
     ERRORS=$(node -p "
       try {
         const results = JSON.parse(require('fs').readFileSync('$resultFile'));
-        const includeWarnings = ${INCLUDE_WARNINGS};
+        const includeWarnings = ${INCLUDE_WARNINGS:-false};
         results.length > 0 && results[0].messages 
           ? results[0].messages.filter(m => includeWarnings ? m.severity >= 1 : m.severity === 2).length 
           : 0;
@@ -102,7 +102,7 @@ do
     node -e "
       try {
         const results = JSON.parse(require('fs').readFileSync('$resultFile'));
-        const includeWarnings = ${INCLUDE_WARNINGS};
+        const includeWarnings = ${INCLUDE_WARNINGS:-false};
       
         if (results.length > 0 && results[0].warnings) {
           const filtered = results[0].warnings.filter(w => includeWarnings ? true : w.severity === 'error');
@@ -122,7 +122,7 @@ do
     ERRORS=$(node -p "
       try {
         const results = JSON.parse(require('fs').readFileSync('$resultFile'));
-        const includeWarnings = ${INCLUDE_WARNINGS};
+        const includeWarnings = ${INCLUDE_WARNINGS:-false};
         results.length > 0 && results[0].warnings 
           ? results[0].warnings.filter(w => includeWarnings ? true : w.severity === 'error').length 
           : 0;
