@@ -19,7 +19,8 @@ fi
 if [ -f "$RESULTS_DIR/axe-results.json" ]; then
   echo "🔍 Axe Accessibility Results:"
   node -e "
-    const data = require('./$RESULTS_DIR/axe-results.json');
+    const fs = require('fs');
+    const data = JSON.parse(fs.readFileSync('$RESULTS_DIR/axe-results.json', 'utf8'));
     const total = data.violations.length;
     const critical = data.violations.filter(v => v.impact === 'critical').length;
     const serious = data.violations.filter(v => v.impact === 'serious').length;
@@ -45,7 +46,8 @@ fi
 if [ -f "$RESULTS_DIR/lighthouse-results.json" ]; then
   echo "💡 Lighthouse Accessibility Results:"
   node -e "
-    const data = require('./$RESULTS_DIR/lighthouse-results.json');
+    const fs = require('fs');
+    const data = JSON.parse(fs.readFileSync('$RESULTS_DIR/lighthouse-results.json', 'utf8'));
     const avgScore = data.pages.reduce((sum, p) => sum + p.score, 0) / data.pages.length;
     const totalFailures = data.pages.reduce((sum, p) => sum + p.failedAudits.length, 0);
     const pagesWithIssues = data.pages.filter(p => p.failedAudits.length > 0).length;
@@ -68,7 +70,8 @@ fi
 if [ -f "$RESULTS_DIR/pa11y-results.json" ]; then
   echo "🔬 Pa11y Accessibility Results:"
   node -e "
-    const data = require('./$RESULTS_DIR/pa11y-results.json');
+    const fs = require('fs');
+    const data = JSON.parse(fs.readFileSync('$RESULTS_DIR/pa11y-results.json', 'utf8'));
     const totalErrors = data.pages.reduce((sum, p) => sum + p.issues.filter(i => i.type === 'error').length, 0);
     const totalWarnings = data.pages.reduce((sum, p) => sum + p.issues.filter(i => i.type === 'warning').length, 0);
     const pagesWithErrors = data.pages.filter(p => p.issues.some(i => i.type === 'error')).length;
