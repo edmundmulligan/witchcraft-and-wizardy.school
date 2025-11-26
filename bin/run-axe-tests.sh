@@ -100,6 +100,7 @@ node -e "
 
 if [ "$TOTAL_VIOLATIONS" -eq 0 ]; then
   echo "✅ No accessibility violations found across all pages."
+  rm -f "$RESULT_FILE"
 else
   echo "❌ Accessibility violations found:"
   echo ""

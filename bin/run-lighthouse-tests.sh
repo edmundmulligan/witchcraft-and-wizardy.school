@@ -130,6 +130,7 @@ node -p "const data = require('./tests/results/lighthouse-results.json'); const 
 
 if [ "$MEETS_THRESHOLD" -eq 1 ]; then
   echo "✅ All pages meet 100% accessibility threshold."
+  rm -f "$RESULT_FILE"
 else
   echo "❌ Some pages below 100% accessibility threshold."
 fi

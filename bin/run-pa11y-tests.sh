@@ -153,6 +153,7 @@ node -p "const data = require('./tests/results/pa11y-results.json'); const total
 
 if [ "$HAS_ERRORS" -eq 0 ]; then
   echo "✅ All pages passed pa11y tests (no errors)."
+  rm -f "$RESULT_FILE"
 else
   echo "❌ Some pages have accessibility errors."
 fi
