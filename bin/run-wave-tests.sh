@@ -36,18 +36,20 @@ start_server_if_needed "$TEST_URL"
 if ! command -v ngrok &> /dev/null; then
   echo "Downloading and installing ngrok..."
   
-  # Download ngrok using curl (more reliable in CI)
-  curl -fsSL https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz -o ngrok.tgz
+  # Use official ngrok installation method for Ubuntu
+  curl -fsSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc | \
+    sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
+  
+  echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | \
+    sudo tee /etc/apt/sources.list.d/ngrok.list
+  
+  sudo apt update > /dev/null 2>&1
+  sudo apt install -y ngrok > /dev/null 2>&1
   
   if [ $? -ne 0 ]; then
-    echo "❌ Failed to download ngrok"
+    echo "❌ Failed to install ngrok"
     exit 0
   fi
-  
-  tar -xzf ngrok.tgz
-  sudo mv ngrok /usr/local/bin/
-  sudo chmod +x /usr/local/bin/ngrok
-  rm -f ngrok.tgz
   
   echo "✓ Ngrok installed"
 fi
