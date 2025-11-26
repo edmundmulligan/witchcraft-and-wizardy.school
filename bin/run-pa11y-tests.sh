@@ -150,7 +150,8 @@ node -e "
   console.log('');
 "
 
-node -p "const data = require('./tests/results/pa11y-results.json'); const totalErrors = data.pages.reduce((sum, p) => sum + p.issues.filter(i => i.type === 'error').length, 0); totalErrors === 0 ? 0 : 1" > /dev/null 2>&1 && HAS_ERRORS=0 || HAS_ERRORS=1
+# Check if any pages have errors
+HAS_ERRORS=$(node -p "const fs = require('fs'); const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8')); data.pages.some(p => p.issues.some(i => i.type === 'error')) ? 1 : 0")
 
 if [ "$HAS_ERRORS" -eq 0 ]; then
   echo "✅ All pages passed pa11y tests (no errors)."
