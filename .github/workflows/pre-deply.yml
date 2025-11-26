@@ -45,7 +45,11 @@ jobs:
     - name: Run WAVE accessibility tests
       run: |
         bin/run-wave-tests.sh
-      
+     
+    - name: Check reading levels
+      run: |
+        bin/check-reading-age.sh
+
     - name: Summrise test results
       run: |
         bin/summarise-tests.sh
@@ -60,6 +64,8 @@ jobs:
           ${{ env.resultsdir }}/pa11y-results.json
           ${{ env.resultsdir }}/lighthouse-results.json
           ${{ env.resultsdir }}/wave-results.json
+          ${{ env.resultsdir }}/reading-age-results.json
+
   deploy:
     needs: run-pre-deployment-test
     runs-on: ubuntu-latest

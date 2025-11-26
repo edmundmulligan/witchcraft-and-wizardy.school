@@ -116,6 +116,37 @@ else
   echo ""
 fi
 
+# Check Readability results
+if [ -f "$RESULTS_DIR/readability-results.json" ]; then
+  echo "📖 Reading Age Results:"
+  node -e "
+    const fs = require('fs');
+    const data = JSON.parse(fs.readFileSync('$RESULTS_DIR/readability-results.json', 'utf8'));
+    
+    if (data.pages.length === 0) {
+      console.log('  No pages analyzed');
+    } else {
+      const avgGrade = data.pages.reduce((sum, p) => sum + p.averageGradeLevel, 0) / data.pages.length;
+      const totalWords = data.pages.reduce((sum, p) => sum + p.wordCount, 0);
+      const difficult = data.pages.filter(p => p.averageGradeLevel > 12);
+      
+      console.log('  Pages analyzed: ' + data.pages.length);
+      console.log('  Total words: ' + totalWords);
+      console.log('  Average grade level: ' + Math.round(avgGrade * 10) / 10);
+      
+      if (difficult.length > 0) {
+        console.log('  ⚠️  College-level pages: ' + difficult.length);
+      } else {
+        console.log('  ✅ All pages at high school level or below');
+      }
+    }
+  "
+  echo ""
+else
+  echo "📖 Reading Age: Not tested"
+  echo ""
+fi
+
 # Final summary
 echo "======================"
 if [ $EXIT_CODE -eq 0 ]; then

@@ -1,0 +1,52 @@
+{
+  "pages": [
+    {
+      "file": "./students.html",
+      "wordCount": 32,
+      "fleschReadingEase": 61.2,
+      "fleschKincaidGrade": 7.4,
+      "smogIndex": 11.2,
+      "colemanLiauIndex": 10.6,
+      "automatedReadabilityIndex": 7.3,
+      "averageGradeLevel": 9.1,
+      "readingLevel": "Plain English (High School)",
+      "readingAge": "15-16 years"
+    },
+    {
+      "file": "./index.html",
+      "wordCount": 46,
+      "fleschReadingEase": 57,
+      "fleschKincaidGrade": 9.1,
+      "smogIndex": 11.9,
+      "colemanLiauIndex": 9.8,
+      "automatedReadabilityIndex": 8.3,
+      "averageGradeLevel": 9.7,
+      "readingLevel": "Plain English (High School)",
+      "readingAge": "15-16 years"
+    },
+    {
+      "file": "./license-and-credits.html",
+      "wordCount": 218,
+      "fleschReadingEase": 35.9,
+      "fleschKincaidGrade": 14.3,
+      "smogIndex": 15.8,
+      "colemanLiauIndex": 12.7,
+      "automatedReadabilityIndex": 14.5,
+      "averageGradeLevel": 14.3,
+      "readingLevel": "Difficult (College)",
+      "readingAge": "18-22 years"
+    },
+    {
+      "file": "./about.html",
+      "wordCount": 33,
+      "fleschReadingEase": 57.2,
+      "fleschKincaidGrade": 8,
+      "smogIndex": 11.2,
+      "colemanLiauIndex": 11.1,
+      "automatedReadabilityIndex": 7.8,
+      "averageGradeLevel": 9.5,
+      "readingLevel": "Plain English (High School)",
+      "readingAge": "15-16 years"
+    }
+  ]
+}
