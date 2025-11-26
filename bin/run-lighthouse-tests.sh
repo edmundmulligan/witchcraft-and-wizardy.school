@@ -54,11 +54,12 @@ for page in $PAGES; do
           failedAudits: []
         };
         
-        // Find failed accessibility audits
+        // Find failed accessibility audits (score < 1 means failed, null means not applicable)
         if (accessibility?.auditRefs) {
           accessibility.auditRefs.forEach(ref => {
             const audit = audits[ref.id];
-            if (audit && (audit.score === 0 || audit.score === null) && audit.score !== 1) {
+            // Only count as failed if score exists and is less than 1
+            if (audit && audit.score !== null && audit.score < 1) {
               pageResult.failedAudits.push({
                 id: ref.id,
                 title: audit.title,
