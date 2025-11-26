@@ -100,19 +100,26 @@ if [ -f "$RESULTS_DIR/wave-results.json" ]; then
     const totalAlerts = data.pages.reduce((sum, p) => sum + p.alerts, 0);
     const totalContrast = data.pages.reduce((sum, p) => sum + p.contrast, 0);
     const pagesWithErrors = data.pages.filter(p => p.errors > 0).length;
+    const pagesWithAlerts = data.pages.filter(p => p.alerts > 0).length;
     
     console.log('  Pages tested: ' + data.pages.length);
     console.log('  ❌ Errors: ' + totalErrors);
     console.log('  ⚠️  Alerts: ' + totalAlerts);
     console.log('  🎨 Contrast errors: ' + totalContrast);
-    console.log('  Pages with errors: ' + pagesWithErrors);
+    
+    if (totalErrors > 0) {
+      console.log('  Pages with errors: ' + pagesWithErrors);
+    }
+    if (totalAlerts > 0) {
+      console.log('  Pages with alerts: ' + pagesWithAlerts);
+    }
     
     if (totalErrors > 0) {
       process.exit(1);
     }
   " && echo "" || { echo ""; EXIT_CODE=1; }
 else
-  echo "✅ WAVE: No errors found"
+  echo "🌊 WAVE: Not tested or no errors found"
   echo ""
 fi
 

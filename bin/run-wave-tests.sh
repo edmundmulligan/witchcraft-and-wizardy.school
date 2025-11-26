@@ -195,16 +195,23 @@ node -e "
   }
 "
 
-# Check if we should delete the file
-HAS_ERRORS=$(node -p "const fs = require('fs'); const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8')); data.pages.some(p => p.errors > 0) ? 1 : 0")
+# Check if we should delete the file (only if no errors AND no alerts)
+HAS_ISSUES=$(node -p "const fs = require('fs'); const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8')); data.pages.some(p => p.errors > 0 || p.alerts > 0 || p.contrast > 0) ? 1 : 0")
 
-if [ "$HAS_ERRORS" -eq 0 ]; then
+if [ "$HAS_ISSUES" -eq 0 ]; then
   echo ""
-  echo "✅ All pages passed WAVE tests (no errors)."
+  echo "✅ All pages passed WAVE tests (no errors, alerts, or contrast issues)."
   rm -f "$RESULT_FILE"
 else
-  echo ""
-  echo "❌ Some pages have accessibility errors."
+  HAS_ERRORS=$(node -p "const fs = require('fs'); const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8')); data.pages.some(p => p.errors > 0) ? 1 : 0")
+  
+  if [ "$HAS_ERRORS" -eq 0 ]; then
+    echo ""
+    echo "⚠️  Pages have alerts or contrast issues (but no errors)."
+  else
+    echo ""
+    echo "❌ Some pages have accessibility errors."
+  fi
 fi
 
 exit 0

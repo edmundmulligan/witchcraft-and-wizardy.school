@@ -1,0 +1,36 @@
+{
+  "pages": [
+    {
+      "url": "students.html",
+      "errors": 0,
+      "alerts": 2,
+      "features": 1,
+      "structural": 7,
+      "contrast": 0
+    },
+    {
+      "url": "index.html",
+      "errors": 0,
+      "alerts": 2,
+      "features": 1,
+      "structural": 7,
+      "contrast": 0
+    },
+    {
+      "url": "license-and-credits.html",
+      "errors": 0,
+      "alerts": 2,
+      "features": 1,
+      "structural": 7,
+      "contrast": 0
+    },
+    {
+      "url": "about.html",
+      "errors": 0,
+      "alerts": 2,
+      "features": 1,
+      "structural": 7,
+      "contrast": 0
+    }
+  ]
+}
