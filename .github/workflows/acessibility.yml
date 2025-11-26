@@ -20,10 +20,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Ensure results directory exists
-      run: |
-        mkdir -p tests/results
-
     - name: Validate HTML and CSS
       run: |
         bin/validate-code.sh
@@ -32,23 +28,13 @@ jobs:
       run: |
         bin/run-axe-tests.sh
 
-    - name: Install dependencies for Pa11y and Lighthouse
-      run: |
-        npm install pa11y lighthouse serve wait-on
-
-    - name: Start local server
-      # serve the root folder;
-      run: |
-        serve -s . -l ${{ env.testport }} &   # start server in background
-        sleep 1                               # give it a moment
-
     - name: Run Pa11y accessibility tests
       run: |
-        node tests/pa11y/run-pa11y.js
+        bin/run-pa11y-tests.sh
 
     - name: Run Lighthouse accessibility audit
       run: |
-        lighthouse ${{ env.testurl }} --only-categories=accessibility --output=json --output-path=${{ env.resultsdir }}/lighthouse-results.json --chrome-flags="--headless --no-sandbox"
+        bin/run-lighthouse-tests.sh
 
     - name: Run WAVE accessibility tests
       run: |
@@ -98,20 +84,6 @@ jobs:
           ${{ env.resultsdir }}/pa11y-results.json
           ${{ env.resultsdir }}/lighthouse-results.json
           
-    - name: Check Lighthouse accessibility score
-      run: |
-        # Extract Lighthouse accessibility score
-        SCORE=$(node -p "JSON.parse(require('fs').readFileSync('${{ env.resultsdir }}/lighthouse-results.json')).categories.accessibility.score * 100")
-        echo "Lighthouse Accessibility Score: $SCORE"
-        
-        # Fail if score is below 90
-        if (( $(echo "$SCORE < 90" | bc -l) )); then
-          echo "❌ Lighthouse accessibility score ($SCORE) is below minimum threshold (90)"
-          exit 1
-        else
-          echo "✅ Lighthouse accessibility score ($SCORE) meets requirements"
-        fi
-
   deploy:
     needs: run-accessibility-test
     runs-on: ubuntu-latest
