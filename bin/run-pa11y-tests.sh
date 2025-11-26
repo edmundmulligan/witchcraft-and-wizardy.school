@@ -11,8 +11,9 @@ source "$SCRIPT_DIR/test-helpers.sh"
 TEST_URL="http://localhost:8080"
 parse_test_options "$@"
 
-# Silently install dependencies if not already installed
-npm install -g serve pa11y > /dev/null 2>&1
+# Install dependencies locally if not already installed
+npm install pa11y > /dev/null 2>&1
+npm install -g serve > /dev/null 2>&1
 
 # Start server and setup
 start_server_if_needed "$TEST_URL"

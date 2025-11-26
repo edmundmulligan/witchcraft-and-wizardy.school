@@ -126,9 +126,9 @@ node -e "
   console.log('');
 "
 
-node -p "const data = require('./tests/results/lighthouse-results.json'); const avgScore = data.pages.reduce((sum, p) => sum + p.score, 0) / data.pages.length; avgScore >= 1.0 ? 0 : 1" > /dev/null 2>&1 && MEETS_THRESHOLD=1 || MEETS_THRESHOLD=0
+node -p "const data = require('./tests/results/lighthouse-results.json'); const avgScore = data.pages.reduce((sum, p) => sum + p.score, 0) / data.pages.length; avgScore < 1.0 ? 1 : 0" > /dev/null 2>&1 && BELOW_THRESHOLD=0 || BELOW_THRESHOLD=1
 
-if [ "$MEETS_THRESHOLD" -eq 1 ]; then
+if [ "$BELOW_THRESHOLD" -eq 0 ]; then
   echo "✅ All pages meet 100% accessibility threshold."
   rm -f "$RESULT_FILE"
 else
