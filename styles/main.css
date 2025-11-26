@@ -21,7 +21,6 @@
 :root {
     /* light theme colours */
     --color-light-page-background: lightgoldenrodyellow;
-/*    --color-light-page-text: darkgreen; */
     --color-light-page-text: white;
     --color-light-headings-background: lightblue;
     --color-light-headings-text: darkblue;
