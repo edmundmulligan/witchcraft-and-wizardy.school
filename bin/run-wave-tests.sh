@@ -121,9 +121,9 @@ for page in $PAGES; do
   
   echo "[$TESTED/$PAGE_COUNT] Testing $URL_PATH"
   
-  # Call WAVE API
+  # Call WAVE API (reporttype=4 returns detailed JSON)
   TEMP_RESULT="$RESULTS_DIR/wave-temp-$TESTED.json"
-  curl -s "https://wave.webaim.org/api/request?key=$WAVE_API_KEY&url=$(echo $FULL_URL | sed 's/:/%3A/g; s/\//%2F/g')" > "$TEMP_RESULT"
+  curl -s "https://wave.webaim.org/api/request?key=$WAVE_API_KEY&reporttype=4&url=$(echo $FULL_URL | sed 's/:/%3A/g; s/\//%2F/g')" > "$TEMP_RESULT"
   
   # Merge results
   if [ -f "$TEMP_RESULT" ]; then
@@ -140,8 +140,61 @@ for page in $PAGES; do
             alerts: newData.categories.alert?.count || 0,
             features: newData.categories.feature?.count || 0,
             structural: newData.categories.structure?.count || 0,
-            contrast: newData.categories.contrast?.count || 0
+            contrast: newData.categories.contrast?.count || 0,
+            errorItems: [],
+            alertItems: [],
+            contrastItems: []
           };
+          
+          // Extract actual error details
+          if (newData.categories.error?.items) {
+            Object.entries(newData.categories.error.items).forEach(([key, item]) => {
+              pageResult.errorItems.push({
+                id: item.id,
+                description: item.description,
+                count: item.count,
+                selectors: item.selectors || []
+              });
+            });
+          }
+          
+          // Store WAVE report URL for detailed information
+          if (newData.statistics && newData.statistics.waveurl) {
+            pageResult.waveUrl = newData.statistics.waveurl;
+          }
+          
+          // Extract actual alert details (if available in API response)
+          if (newData.categories.alert?.items) {
+            Object.entries(newData.categories.alert.items).forEach(([key, item]) => {
+              pageResult.alertItems.push({
+                id: item.id,
+                description: item.description,
+                count: item.count
+              });
+            });
+          }
+          
+          // Extract error details (if available)
+          if (newData.categories.error?.items) {
+            Object.entries(newData.categories.error.items).forEach(([key, item]) => {
+              pageResult.errorItems.push({
+                id: item.id,
+                description: item.description,
+                count: item.count
+              });
+            });
+          }
+          
+          // Extract contrast details (if available)
+          if (newData.categories.contrast?.items) {
+            Object.entries(newData.categories.contrast.items).forEach(([key, item]) => {
+              pageResult.contrastItems.push({
+                id: item.id,
+                description: item.description,
+                count: item.count
+              });
+            });
+          }
           
           combined.pages.push(pageResult);
           console.log('  Errors: ' + pageResult.errors + ', Alerts: ' + pageResult.alerts + ', Contrast: ' + pageResult.contrast);
@@ -191,6 +244,43 @@ node -e "
       console.log('');
       console.log('❌ ' + page.url);
       console.log('   Errors: ' + page.errors + ', Alerts: ' + page.alerts + ', Contrast: ' + page.contrast);
+      
+      // Show error details if available
+      if (page.errorItems && page.errorItems.length > 0) {
+        console.log('');
+        console.log('   Error details:');
+        page.errorItems.forEach(err => {
+          console.log('   • ' + err.description + ' (' + err.count + ' instance(s))');
+        });
+      } else if (page.waveUrl) {
+        console.log('   View detailed report: ' + page.waveUrl);
+      }
+    });
+  }
+  
+  // Show pages with alerts (but no errors)
+  const pagesWithAlerts = data.pages.filter(p => p.errors === 0 && p.alerts > 0);
+  if (pagesWithAlerts.length > 0) {
+    console.log('');
+    console.log('  Pages with alerts:');
+    pagesWithAlerts.forEach(page => {
+      console.log('');
+      console.log('⚠️  ' + page.url);
+      console.log('   Alerts: ' + page.alerts);
+      
+      // Show alert details if available
+      if (page.alertItems && page.alertItems.length > 0) {
+        console.log('');
+        console.log('   Alert details:');
+        page.alertItems.slice(0, 5).forEach(alert => {
+          console.log('   • ' + alert.description + ' (' + alert.count + ' instance(s))');
+        });
+        if (page.alertItems.length > 5) {
+          console.log('   ... and ' + (page.alertItems.length - 5) + ' more alert(s)');
+        }
+      } else if (page.waveUrl) {
+        console.log('   View detailed report: ' + page.waveUrl);
+      }
     });
   }
 "

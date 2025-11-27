@@ -1,0 +1,52 @@
+
+/***********************************************************************************************
+ * Media queries to deal with a differeing screen widths and devices
+ *
+ * Rule of thumb is to put as little as possible in media queries and put common styles in 
+ * main.css
+ **********************************************************************************************/
+
+/* medium screen width */
+@media (width <= 800px) {
+  nav {
+      font-size: smaller;
+  }
+
+  nav a {
+      padding: 0.4em 0.8em;
+  }
+}
+
+/* small screen width */
+@media (width <= 600px) {
+  nav {
+      font-size: small;
+  }
+
+  nav ul {
+      gap: 0.2em;
+      row-gap: 0.1em;
+  }
+
+  nav a {
+      padding: 0.3em 0.5em;
+      font-size: 0.9em;
+  }
+}
+
+/* extra small screen width */
+@media (width <= 400px) {
+  nav {
+      font-size: x-small;
+  }
+
+  nav a {
+      padding: 0.2em 0.3em;
+      font-size: 0.85em;
+  }
+
+  nav a::before {
+      margin-right: 0.2em;
+  }
+}
+

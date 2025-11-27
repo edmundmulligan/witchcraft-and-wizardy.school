@@ -1,43 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="MIT License for Web Witchcraft and Wizardry">
-        <meta name="author" content="Edmund Mulligan">
-        <meta name="license" content="MIT License">
+    <meta charset="UTF-8">
+    <meta name="description" content="Web Witchcraft and Wizardry">
+    <meta name="keywords" content="HTML, CSS, learning">
+    <meta name="author" content="Edmund Mulligan">
+    <meta name="license" content="MIT License">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>MIT License - Web Witchcraft and Wizardry</title>
+    <!-- Set the document title N.B. All pages have the same title.-->
+    <title>Web Witchcraft and Wizardry</title>
 
-        <!--Links for Google Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-        <!-- End Google Fonts links -->
+    <!--Links for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- End Google Fonts links -->
 
-        <!-- Start of CSS stylesheets section -->
+    <!-- Link to Font Awesome Icons (using CSS rather than JS)-->
+    <link rel="stylesheet" href="https://kit.fontawesome.com/3895b3f1a4.css" crossorigin="anonymous">
+    <!-- End Font Awesome Icons -->
 
-        <!-- main.css must be the first stylesheet loaded -->
-        <link rel="stylesheet" href="styles/main.css">
+    <!-- Start of CSS stylesheets section -->
 
-        <!-- page specific stylesheet -->
-        <link rel="stylesheet" href="styles/license.css">
+    <!-- main.css must be the first stylesheet loaded -->
+    <link rel="stylesheet" href="styles/main.css">
 
-        <!-- media-queries must be the last stylesheet loaded -->
-        <link rel="stylesheet" href="styles/media-queries-license.css">
+    <!-- page specific stylesheet -->
+    <link rel="stylesheet" href="styles/license-and-credits.css">
 
+    <!-- media-queries must be the last stylesheets loaded -->
+    <link rel="stylesheet" href="styles/media-queries-main.css">
+    <link rel="stylesheet" href="styles/media-queries-license-and-credits.css">
     <!-- End of CSS stylesheets section -->
+
+    <!-- Load JavaScript files -->
+    <script src="scripts/alert.js" defer></script>
+    <!-- End JavaScript file link -->
     </head>
     <body>
-        <header class="header-text-container">
-            <h1>Web Witchcraft and Wizardry</h1>
-            <h2>MIT License and picture credits</h2>
-        </header>
+    <header class="header-container">
+        <div class="header-text">
+            <p class="site-title">Web Witchcraft and Wizardry</p>
+            <p class="site-subtitle">Learn to create magical websites</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="students.html">Students</a></li>
+                <li><a href="#"
+                       onclick="showAlert('This page has not been implemented in this phase of the project, as described ' + 
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' + 
+                                          'Wizardry project (Mulligan, 2025).')">Mentors</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="glossary-and-faq.html">Glossary</a></li>
+                <li><a href="license-and-credits.html">License</a></li>
+            </ul>
+        </nav>
+    </header>
 
         <main>
+        <h1 class="page-title">License and Credits</h1>
             <section id="license">
-                <h3>&copy; The Embodied Mind, 2025</h3>
+                <h2>&copy; The Embodied Mind, 2025</h2>
                 <p>
                     Permission is hereby granted, free of charge, to any person obtaining
                     a copy of this software and associated documentation files (the
@@ -65,7 +91,7 @@
             </section>
 
             <section id="picture-credits">
-                <h3>Picture credits</h3>
+                <h2>Picture credits</h2>
                 <ul>
                 <li>
                     Photograph of a web by Michael Hamments on
@@ -80,12 +106,15 @@
             </section>
         </main>
 
-        <footer class="header-text-container">
-            <h3>Created by Edmund Mulligan, CITP MBCS</h3>
+    <footer class="footer-container">
+        <div class="footer-text">
+            <h3>Created by Edmund Mulligan, BSc, PgDip, CITP MBCS, GradStat FRSS</h3>
             <p>
                 &copy; The Embodied Mind, 2025.
                 Distributed under the MIT License. <a href="license-and-credits.html">See the license and credits page for more information</a>.
             </p>
-        </footer>
+        </div>
+        <img class="footer-logo" src="images/logo-embodied-mind-with-name-purple.png" alt="The Embodied Mind logo. A brain with a moustache winking">
+    </footer>
     </body>
 </html>

@@ -42,12 +42,16 @@
 
 /* set global styles for the entire body of the html document */
 
-/* N.B. All dimensions in em units. px units are only used for screen-related properties in media queries */
+/* N.B. All dimensions in em units or %. px units are only used for screen-related properties in media queries */
+
+/* *******************************************************
+ * Element styles
+ ******************************************************* */
 
 body {
     position: relative;
 
-    /* set margin and padding */
+    /* set margin and padding. Other elements and classes may override these */
     margin: 0;
     padding: 0;
     min-height: 100vh;
@@ -59,7 +63,7 @@ body {
 
     /* use a readable font for body text */
     font-family: "Open Sans", -apple-system, sans-serif;
-    font-size: 1.125rem; /* 18px */
+    font-size: 1.125em; /* 18px */
     line-height: 1.6;
     color: var(--color-light-page-text);
     background-color: var(--color-light-page-background);   
@@ -84,13 +88,16 @@ body::before {
     z-index: -1;
 }
 
-
 header {
-    width: 100%;
+    max-width: 90%;
     font-size: larger;
     text-align: center;
     margin-bottom: 0;
     flex-shrink: 0;  /* Prevents header from shrinking */
+    border: var(--color-light-headings-text) 0.2em solid;
+    background-color: var(--color-light-headings-background);
+    color: var(--color-light-headings-text);
+    border-radius: 2em;
 }
 
 main {
@@ -107,11 +114,11 @@ footer {
     flex-shrink: 0;  /* Prevents footer from shrinking */
 }
 
-/* Center all headings and use Anton (a bold sans-serif Google font) */
+/* Center all headings and use Cinzel (an elegant serif Google font) */
 h1, h2, h3, h4, h5, h6 {
-    /* Use Anton font for headings */
-    font-family: Anton, sans-serif;
-    font-weight: 400;
+    /* Use Cinzel font for headings */
+    font-family: Cinzel, serif;
+    font-weight: 600;
     font-style: normal;
     text-align: center;
 }
@@ -146,10 +153,82 @@ a:focus {
     outline-offset: 0.1em;
 }
 
+/* styles for the navigation bar */
+nav {
+    /* background-color: var(--color-light-headings-background); */
+    background-color: lightgreen;
+    color: var(--color-light-headings-text);
+    width: 90%;
+    border-radius: 2em;
+    margin-left: 1em;
+    margin-right: 1em;
+    padding: 0.25em 0.5em;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    row-gap: 0.25em;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    display: inline;
+    flex: 0 1 auto;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5em;
+    display: block;
+}
+
+/* Pseudo classes and elements for nav links */
+nav a::before {
+    content: "\f0d0";  /* Font Awesome Magic Wand */
+    font-family: "Font Awesome 7 Pro";
+    font-weight: 900; /* needed for solid style icons */
+}
+
+nav a:hover, 
+nav a:focus {
+    background-color: lightblue;
+    color: darkblue;
+}
+
+nav a:hover::before,
+nav a:focus::before {
+    content: "\e2ca";  /* Font Awesome Magic Wand with sparkles */
+    font-family: "Font Awesome 7 Pro";
+    font-weight: 900; /* needed for solid style icons */
+}
+
+/* Site title and subtitle in header */
+.site-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: larger;
+    font-weight: 700;
+    margin: 0.25em;
+}
+
+.site-subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: large;
+    font-weight: 400;
+    margin: 0.25em;
+}
+
+
 /********************************************************
  * border and color classes
  ********************************************************/
-
 
 .heavy-border {
     border: var(--color-light-headings-text) 0.2em solid;
@@ -165,14 +244,33 @@ a:focus {
 
  /* header and footer styles */
 
-.header-and-footer-container {
-    display: flex;
-    flex-direction: row;
+.header-container {
+    display: grid;
+    grid-template-columns: auto;
+    align-items: center;
+    gap: 1em;
+    justify-content: center;
     border: var(--color-light-headings-text) 0.2em solid;
     background-color: var(--color-light-headings-background);
     color: var(--color-light-headings-text);
     border-radius: 2em;
-    max-width: 80%;
+    width: 90%;
+    padding: 1em;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    grid-template-columns: auto auto;
+    align-items: center;
+    gap: 1em;
+    justify-content: center;
+    border: var(--color-light-headings-text) 0.2em solid;
+    background-color: var(--color-light-headings-background);
+    color: var(--color-light-headings-text);
+    border-radius: 2em;
+    max-width: 90%;
     text-align: center;
 }
 

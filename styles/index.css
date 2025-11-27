@@ -12,11 +12,19 @@
  */
 
 /********************************************
- * circular button styles
+ * container styles
  ********************************************/
 
-/* N.B. flex-direction in .circular-button-container layout is set in the media query */
+.main-container {
+    display: grid;
+    grid-column: auto;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+    gap: 2em;
+}
 
+/* N.B. flex-direction in .circular-button-container layout is set in the media query */
 .circular-button-container {
     display: flex;
     gap: 2em;

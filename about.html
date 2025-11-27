@@ -15,15 +15,19 @@
     <meta name="license" content="MIT License">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Set the document title -->
-    <title>About Witchcraft and Wizardry</title>
+    <!-- Set the document title N.B. All pages have the same title.-->
+    <title>Web Witchcraft and Wizardry</title>
 
     <!--Links for Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- End Google Fonts links -->
+
+    <!-- Link to Font Awesome Icons (using CSS rather than JS)-->
+    <link rel="stylesheet" href="https://kit.fontawesome.com/3895b3f1a4.css" crossorigin="anonymous">
+    <!-- End Font Awesome Icons -->
 
     <!-- Start of CSS stylesheets section -->
 
@@ -33,9 +37,9 @@
     <!-- page specific stylesheet -->
     <link rel="stylesheet" href="styles/about.css">
 
-    <!-- media-queries must be the last stylesheet loaded -->
+    <!-- media-queries must be the last stylesheets loaded -->
+    <link rel="stylesheet" href="styles/media-queries-main.css">
     <link rel="stylesheet" href="styles/media-queries-about.css">
-
     <!-- End of CSS stylesheets section -->
 
     <!-- Load JavaScript files -->
@@ -44,20 +48,58 @@
 </head>
 
 <body>
-    <header class="header-text-container">
-        <h1>Web Witchcraft and Wizardry</h1>
-        <h2>About witches and wizards</h2>
+    <header class="header-container">
+        <div class="header-text">
+            <p class="site-title">Web Witchcraft and Wizardry</p>
+            <p class="site-subtitle">Learn to create magical websites</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="students.html">Students</a></li>
+                <li><a href="#"
+                       onclick="showAlert('This page has not been implemented in this phase of the project, as described ' + 
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' + 
+                                          'Wizardry project (Mulligan, 2025).')">Mentors</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="glossary-and-faq.html">Glossary</a></li>
+                <li><a href="license-and-credits.html">License</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
+        <h1>About Witches and Wizards</h1>
+        <section id="gallery">
+            <h2>Gallery of Witches and Wizards</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+
+                </div>
+                <div class="gallery-item">
+
+                </div>
+                <div class="gallery-item">
+
+                </div>
+                <div class="gallery-item">
+
+                </div>
+            </div>
+        </section>
+        <section id="facts">
+            <h2>Interesting Facts about Witches and Wizards</h2>
     </main>
 
-    <footer class="header-text-container">
-        <h3>Created by Edmund Mulligan, CITP MBCS</h3>
-        <p>
-            &copy; The Embodied Mind, 2025.
-            Distributed under the MIT License. <a href="license-and-credits.html" target="_blank">See the license and credits page for more information</a>.
-        </p>
+    <footer class="footer-container">
+        <div class="footer-text">
+            <h3>Created by Edmund Mulligan, BSc, PgDip, CITP MBCS, GradStat FRSS</h3>
+            <p>
+                &copy; The Embodied Mind, 2025.
+                Distributed under the MIT License. <a href="license-and-credits.html">See the license and credits page for more information</a>.
+            </p>
+        </div>
+        <img class="footer-logo" src="images/logo-embodied-mind-with-name-purple.png" alt="The Embodied Mind logo. A brain with a moustache winking">
     </footer>
 </body>
 </html>

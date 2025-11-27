@@ -6,7 +6,22 @@
       "alerts": 2,
       "features": 1,
       "structural": 7,
-      "contrast": 0
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "h1_missing",
+          "description": "Missing first level heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/students.html"
     },
     {
       "url": "index.html",
@@ -14,7 +29,22 @@
       "alerts": 2,
       "features": 1,
       "structural": 7,
-      "contrast": 0
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "h1_missing",
+          "description": "Missing first level heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/index.html"
     },
     {
       "url": "license-and-credits.html",
@@ -22,7 +52,22 @@
       "alerts": 2,
       "features": 1,
       "structural": 7,
-      "contrast": 0
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "h1_missing",
+          "description": "Missing first level heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/license-and-credits.html"
     },
     {
       "url": "about.html",
@@ -30,7 +75,22 @@
       "alerts": 2,
       "features": 1,
       "structural": 7,
-      "contrast": 0
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "h1_missing",
+          "description": "Missing first level heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/about.html"
     }
   ]
 }
