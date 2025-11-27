@@ -22,8 +22,8 @@
     /* light theme colours */
     --color-light-page-background: lightgoldenrodyellow;
     --color-light-page-text: darkgreen;
-    --color-light-headings-background: lightblue;
-    --color-light-headings-text: darkblue;
+    --color-light-headings-background: lightcyan;
+    --color-light-headings-text: purple;
     --color-light-link-text: darkgreen;
     --color-light-link-text-hover: darkorange;
     --color-light-link-text-visited: darkblue;
@@ -150,15 +150,6 @@ a:focus {
  * border and color classes
  ********************************************************/
 
-.header-text-container {
-    border: var(--color-light-headings-text) 0.2em solid;
-    padding: 1em;
-    margin: 0.5em auto;
-    background-color: var(--color-light-headings-background);
-    color: var(--color-light-headings-text);
-    border-radius: 2em;
-    max-width: 80%;
-}
 
 .heavy-border {
     border: var(--color-light-headings-text) 0.2em solid;
@@ -170,4 +161,45 @@ a:focus {
     border: var(--color-light-headings-text) 0.1em dotted;
     padding: 1em;
     margin: 0.5em;
+}
+
+ /* header and footer styles */
+
+.header-and-footer-container {
+    display: flex;
+    flex-direction: row;
+    border: var(--color-light-headings-text) 0.2em solid;
+    background-color: var(--color-light-headings-background);
+    color: var(--color-light-headings-text);
+    border-radius: 2em;
+    max-width: 80%;
+    text-align: center;
+}
+
+.header-text {
+    margin: 0.25em auto;
+    max-width: 80%;
+}
+
+.footer-text {
+    flex: 1;
+    margin: 0.25em auto;
+    text-align: center;
+}
+
+.header-logo {
+    max-width: 10em;
+    height: auto;
+    margin-right: 1em;
+}
+
+.footer-logo {
+    max-width: 10em;
+    width: 100%;
+    height: auto;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    flex-shrink: 0;
+    object-fit: contain;
 }
