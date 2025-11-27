@@ -26,10 +26,15 @@ jobs:
         bin/clear-tests.sh
 
 
-      # This is a show stopper. If validaion fails, fail the build
+    # This is a show stopper. If validaion fails, fail the build
     - name: Validate HTML and CSS
       run: |
         bin/validate-code.sh
+
+    # Check for broken links
+    - name: Check for broken links
+      run: |
+        bin/check-links.sh
 
     - name: Run axe accessibility tests
       run: |
@@ -55,12 +60,14 @@ jobs:
       run: |
         bin/summarise-tests.sh
   
-    - name: Upload accessibility reports
+    - name: Upload test reports
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: accessibility-reports
+        name: test-reports
         path: |
+          ${{ env.resultsdir }}/validation-results.json
+          ${{ env.resultsdir }}/broken-links-results.json
           ${{ env.resultsdir }}/axe-results.json
           ${{ env.resultsdir }}/pa11y-results.json
           ${{ env.resultsdir }}/lighthouse-results.json

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script validates code locally before pushing changes.
+# This script validates HTML and CSS code
 # N.B. Do not use the W3C validator as that does not support CSS variables
 
 # Source common helper functions
@@ -10,29 +10,30 @@ source "$SCRIPT_DIR/test-helpers.sh"
 # Get any command line options
 parse_test_options "$@"
 
-# silently install dependencies if not already installed
+# Silently install dependencies if not already installed
+echo "Installing dependencies..."
 npm install html-validate stylelint stylelint-config-standard > /dev/null 2>&1
 
-# Initialize error counters
-TOTAL_ERRORS=0
-TOTAL_WARNINGS=0
-FILE_ERRORS=0
-FILE_WARNINGS=0
+# Setup results directory
+setup_results_dir
+RESULT_FILE="$RESULTS_DIR/validation-results.json"
 
-# Determine severity filter based on flag
-if [ "$INCLUDE_WARNINGS" = true ]
-then
-  SEVERITY_FILTER="m.severity >= 1"
-  SEVERITY_TEXT="errors and warnings"
-else
-  SEVERITY_FILTER="m.severity === 2"
-  SEVERITY_TEXT="errors"
-fi
+# Initialize combined results
+echo '{"files":[],"summary":{"htmlErrors":0,"htmlWarnings":0,"cssErrors":0,"cssWarnings":0}}' > "$RESULT_FILE"
 
-# Validate HTML files using standalone validator
-for file in $(find . \( -name "*.html" -o -name "*.css" \) -print)
-do
-  echo "Validating $file"
+echo ""
+echo "📄 Validating HTML and CSS files..."
+echo ""
+
+# Find all HTML and CSS files
+FILES=$(find . \( -name "*.html" -o -name "*.css" \) -not -path "*/node_modules/*" -not -path "*/tests/*" -print)
+FILE_COUNT=$(echo "$FILES" | wc -l)
+TESTED=0
+
+# Validate each file
+for file in $FILES; do
+  TESTED=$((TESTED + 1))
+  echo "[$TESTED/$FILE_COUNT] Validating $file"
 
   # work out which validator to use
   extension="${file##*.}"
@@ -46,128 +47,148 @@ do
     continue
   fi
 
-  # Run validator and save results to a file
-  resultFile="tests/results/${validator}.${file//\//_}.json"
+  # Run validator and save results to temp file
+  TEMP_RESULT="$RESULTS_DIR/validation-temp-$TESTED.json"
+  
   if [ "$extension" = "html" ]; then
-    npx ${validator} --formatter json "${file}" > "$resultFile"
+    npx ${validator} --formatter json "${file}" > "$TEMP_RESULT" 2>&1
   else
-    npx ${validator} --formatter json "${file}" > "$resultFile" 2>&1
+    npx ${validator} --formatter json "${file}" > "$TEMP_RESULT" 2>&1
   fi
 
-  # Parse and display errors with severity and line numbers
-  if [ "$extension" = "html" ]; then
-    # html-validate format
+  # Merge results into combined file
+  if [ -f "$TEMP_RESULT" ]; then
     node -e "
       try {
-        const results = JSON.parse(require('fs').readFileSync('$resultFile'));
-        const severityMap = { 1: 'warning', 2: 'error' };
-        const includeWarnings = ${INCLUDE_WARNINGS:-false};
-      
-        if (results.length > 0 && results[0].messages) {
-          const filtered = results[0].messages.filter(m => includeWarnings ? m.severity >= 1 : m.severity === 2);
-          filtered.forEach(msg => {
-            const icon = msg.severity === 2 ? '❌' : '⚠️';
-            console.log(icon + ' [' + severityMap[msg.severity] + '] Line ' + msg.line + ':' + msg.column + ' - ' + msg.message + ' (rule: ' + msg.ruleId + ')');
-          });
-          if (filtered.length > 0) {
-            console.log('Found ' + filtered.length + ' ' + (includeWarnings ? 'issues' : 'errors'));
+        const fs = require('fs');
+        const combined = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8'));
+        const newData = JSON.parse(fs.readFileSync('$TEMP_RESULT', 'utf8'));
+        
+        const fileResult = {
+          file: '$file',
+          type: '$extension',
+          errors: [],
+          warnings: []
+        };
+        
+        if ('$extension' === 'html') {
+          // html-validate format
+          if (newData.length > 0 && newData[0].messages) {
+            newData[0].messages.forEach(msg => {
+              const issue = {
+                line: msg.line,
+                column: msg.column,
+                message: msg.message,
+                ruleId: msg.ruleId,
+                severity: msg.severity === 2 ? 'error' : 'warning'
+              };
+              
+              if (msg.severity === 2) {
+                fileResult.errors.push(issue);
+                combined.summary.htmlErrors++;
+              } else {
+                fileResult.warnings.push(issue);
+                combined.summary.htmlWarnings++;
+              }
+            });
+          }
+        } else {
+          // stylelint format
+          if (newData.length > 0 && newData[0].warnings) {
+            newData[0].warnings.forEach(w => {
+              const issue = {
+                line: w.line,
+                column: w.column,
+                message: w.text,
+                ruleId: w.rule,
+                severity: w.severity
+              };
+              
+              if (w.severity === 'error') {
+                fileResult.errors.push(issue);
+                combined.summary.cssErrors++;
+              } else {
+                fileResult.warnings.push(issue);
+                combined.summary.cssWarnings++;
+              }
+            });
           }
         }
-      } catch (e) {
-        // Handle case where validator output is not valid JSON
-      }
-    "
-    # Count errors (and warnings if flag is set)
-    ERRORS=$(node -p "
-      try {
-        const results = JSON.parse(require('fs').readFileSync('$resultFile'));
-        const includeWarnings = ${INCLUDE_WARNINGS:-false};
-        results.length > 0 && results[0].messages 
-          ? results[0].messages.filter(m => includeWarnings ? m.severity >= 1 : m.severity === 2).length 
-          : 0;
-      } catch { 0; }
-    ")
-    
-    # Count warnings separately for reporting
-    WARNINGS=$(node -p "
-      try {
-        const results = JSON.parse(require('fs').readFileSync('$resultFile'));
-        results.length > 0 && results[0].messages 
-          ? results[0].messages.filter(m => m.severity === 1).length 
-          : 0;
-      } catch { 0; }
-    ")
-  else
-    # stylelint format
-    node -e "
-      try {
-        const results = JSON.parse(require('fs').readFileSync('$resultFile'));
-        const includeWarnings = ${INCLUDE_WARNINGS:-false};
-      
-        if (results.length > 0 && results[0].warnings) {
-          const filtered = results[0].warnings.filter(w => includeWarnings ? true : w.severity === 'error');
-          filtered.forEach(w => {
-            const icon = w.severity === 'error' ? '❌' : '⚠️';
-            console.log(icon + ' [' + w.severity + '] Line ' + w.line + ':' + w.column + ' - ' + w.text + ' (rule: ' + w.rule + ')');
-          });
-          if (filtered.length > 0) {
-            console.log('Found ' + filtered.length + ' ' + (includeWarnings ? 'issues' : 'errors'));
-          }
+        
+        // Only add file to results if it has errors or warnings
+        if (fileResult.errors.length > 0 || fileResult.warnings.length > 0) {
+          combined.files.push(fileResult);
+          console.log('  ❌ ' + fileResult.errors.length + ' error(s), ⚠️  ' + fileResult.warnings.length + ' warning(s)');
+        } else {
+          console.log('  ✅ Valid');
         }
+        
+        fs.writeFileSync('$RESULT_FILE', JSON.stringify(combined, null, 2));
+        fs.unlinkSync('$TEMP_RESULT');
       } catch (e) {
-        // Handle case where validator output is not valid JSON
+        console.error('  Error processing: ' + e.message);
       }
     "
-    # Count errors
-    ERRORS=$(node -p "
-      try {
-        const results = JSON.parse(require('fs').readFileSync('$resultFile'));
-        const includeWarnings = ${INCLUDE_WARNINGS:-false};
-        results.length > 0 && results[0].warnings 
-          ? results[0].warnings.filter(w => includeWarnings ? true : w.severity === 'error').length 
-          : 0;
-      } catch { 0; }
-    ")
-    
-    # Count warnings separately for reporting
-    WARNINGS=$(node -p "
-      try {
-        const results = JSON.parse(require('fs').readFileSync('$resultFile'));
-        results.length > 0 && results[0].warnings 
-          ? results[0].warnings.filter(w => w.severity === 'warning').length 
-          : 0;
-      } catch { 0; }
-    ")
-  fi
-  
-  TOTAL_ERRORS=$((TOTAL_ERRORS + ERRORS))
-  TOTAL_WARNINGS=$((TOTAL_WARNINGS + WARNINGS))
-  
-  if [ "$ERRORS" -gt 0 ]
-  then
-    FILE_ERRORS=$((FILE_ERRORS + 1))
-  fi
-
-  if [ "$WARNINGS" -gt 0 ]
-  then
-    FILE_WARNINGS=$((FILE_WARNINGS + 1))
   fi
 done
-    
+
 echo ""
-echo "📄 Validation Results:"
-echo "  Files with ${SEVERITY_TEXT}: $FILE_ERRORS"
-echo "  Total errors: $((TOTAL_ERRORS - TOTAL_WARNINGS))"
-if [ "$INCLUDE_WARNINGS" = true ]
-then
-  echo "  Total warnings: $TOTAL_WARNINGS"
-  echo "  Total issues: $TOTAL_ERRORS"
-fi
-    
-if [ "$TOTAL_ERRORS" -gt 0 ]; then
+echo "======================================"
+echo "📄 Validation Summary"
+echo "======================================"
+
+node -e "
+  const fs = require('fs');
+  const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8'));
+  
+  const totalErrors = data.summary.htmlErrors + data.summary.cssErrors;
+  const totalWarnings = data.summary.htmlWarnings + data.summary.cssWarnings;
+  
+  console.log('Files validated: ' + ($FILE_COUNT));
+  console.log('Files with issues: ' + data.files.length);
+  console.log('');
+  console.log('HTML errors: ' + data.summary.htmlErrors);
+  console.log('HTML warnings: ' + data.summary.htmlWarnings);
+  console.log('CSS errors: ' + data.summary.cssErrors);
+  console.log('CSS warnings: ' + data.summary.cssWarnings);
+  console.log('');
+  console.log('Total errors: ' + totalErrors);
+  console.log('Total warnings: ' + totalWarnings);
+  console.log('');
+  
+  if (totalErrors === 0) {
+    console.log('✅ No validation errors found!');
+  } else {
+    console.log('❌ Files with errors:');
+    console.log('');
+    data.files.filter(f => f.errors.length > 0).forEach(file => {
+      console.log('📄 ' + file.file + ' (' + file.errors.length + ' error(s))');
+      file.errors.slice(0, 5).forEach(err => {
+        console.log('  ❌ Line ' + err.line + ':' + err.column + ' - ' + err.message);
+        console.log('     Rule: ' + err.ruleId);
+      });
+      if (file.errors.length > 5) {
+        console.log('  ... and ' + (file.errors.length - 5) + ' more error(s)');
+      }
+      console.log('');
+    });
+  }
+"
+
+# Check if we should delete the file
+HAS_ERRORS=$(node -p "const fs = require('fs'); const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8')); (data.summary.htmlErrors + data.summary.cssErrors) > 0 ? 1 : 0")
+
+if [ "$HAS_ERRORS" -eq 0 ]; then
+  echo ""
+  echo "Detailed results: No errors, file not saved."
+  rm -f "$RESULT_FILE"
+else
+  echo ""
+  echo "Detailed results saved to: $RESULT_FILE"
+  echo ""
   echo "❌ Validation errors found"
   exit 1
-else
-  echo "✅ All files are valid"
 fi
+
+exit 0
 

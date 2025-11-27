@@ -1,0 +1,213 @@
+{
+  "pages": [
+    {
+      "url": "students.html",
+      "links": [
+        {
+          "url": "http://localhost:8080/styles/students.css",
+          "baseUrl": "http://localhost:8080/students",
+          "html": {
+            "text": "",
+            "tagName": "link",
+            "attrName": "href"
+          },
+          "brokenReason": "HTTP_404",
+          "excludedReason": null
+        },
+        {
+          "url": "http://localhost:8080/styles/media-queries-students.css",
+          "baseUrl": "http://localhost:8080/students",
+          "html": {
+            "text": "",
+            "tagName": "link",
+            "attrName": "href"
+          },
+          "brokenReason": "HTTP_404",
+          "excludedReason": null
+        },
+        {
+          "url": "http://localhost:8080/styles/license.css",
+          "baseUrl": "http://localhost:8080/license-and-credits",
+          "html": {
+            "text": "",
+            "tagName": "link",
+            "attrName": "href"
+          },
+          "brokenReason": "HTTP_404",
+          "excludedReason": null
+        },
+        {
+          "url": "http://localhost:8080/styles/media-queries-license.css",
+          "baseUrl": "http://localhost:8080/license-and-credits",
+          "html": {
+            "text": "",
+            "tagName": "link",
+            "attrName": "href"
+          },
+          "brokenReason": "HTTP_404",
+          "excludedReason": null
+        }
+      ],
+      "brokenCount": 4,
+      "totalCount": 14
+    },
+    {
+      "url": "index.html",
+      "links": [
+        {
+          "url": "http://localhost:8080/styles/students.css",
+          "baseUrl": "http://localhost:8080/students",
+          "html": {
+            "text": "",
+            "tagName": "link",
+            "attrName": "href"
+          },
+          "brokenReason": "HTTP_404",
+          "excludedReason": null
+        },
+        {
+          "url": "http://localhost:8080/styles/media-queries-students.css",
+          "baseUrl": "http://localhost:8080/students",
+          "html": {
+            "text": "",
+            "tagName": "link",
+            "attrName": "href"
+          },
+          "brokenReason": "HTTP_404",
+          "excludedReason": null
+        },
+        {
+          "url": "http://localhost:8080/styles/about.css",
+          "baseUrl": "http://localhost:8080/about",
+          "html": {
+            "text": "",
+            "tagName": "link",
+            "attrName": "href"
+          },
+          "brokenReason": "HTTP_404",
+          "excludedReason": null
+        },
+        {
+          "url": "http://localhost:8080/styles/media-queries-about.css",
+          "baseUrl": "http://localhost:8080/about",
+          "html": {
+            "text": "",
+            "tagName": "link",
+            "attrName": "href"
+          },
+          "brokenReason": "HTTP_404",
+          "excludedReason": null
+        },
+        {
+          "url": "http://localhost:8080/styles/license.css",
+          "baseUrl": "http://localhost:8080/license-and-credits",
+          "html": {
+            "text": "",
+            "tagName": "link",
+            "attrName": "href"
+          },
+          "brokenReason": "HTTP_404",
+          "excludedReason": null
+        },
+        {
+          "url": "http://localhost:8080/styles/media-queries-license.css",
+          "baseUrl": "http://localhost:8080/license-and-credits",
+          "html": {
+            "text": "",
+            "tagName": "link",
+            "attrName": "href"
+          },
+          "brokenReason": "HTTP_404",
+          "excludedReason": null
+        }
+      ],
+      "brokenCount": 6,
+      "totalCount": 31
+    },
+    {
+      "url": "license-and-credits.html",
+      "links": [
+        {
+          "url": "http://localhost:8080/styles/media-queries-license.css",
+          "baseUrl": "http://localhost:8080/license-and-credits",
+          "html": {
+            "text": "",
+            "tagName": "link",
+            "attrName": "href"
+          },
+          "brokenReason": "HTTP_404",
+          "excludedReason": null
+        },
+        {
+          "url": "http://localhost:8080/styles/license.css",
+          "baseUrl": "http://localhost:8080/license-and-credits",
+          "html": {
+            "text": "",
+            "tagName": "link",
+            "attrName": "href"
+          },
+          "brokenReason": "HTTP_404",
+          "excludedReason": null
+        }
+      ],
+      "brokenCount": 2,
+      "totalCount": 7
+    },
+    {
+      "url": "about.html",
+      "links": [
+        {
+          "url": "http://localhost:8080/styles/about.css",
+          "baseUrl": "http://localhost:8080/about",
+          "html": {
+            "text": "",
+            "tagName": "link",
+            "attrName": "href"
+          },
+          "brokenReason": "HTTP_404",
+          "excludedReason": null
+        },
+        {
+          "url": "http://localhost:8080/styles/media-queries-about.css",
+          "baseUrl": "http://localhost:8080/about",
+          "html": {
+            "text": "",
+            "tagName": "link",
+            "attrName": "href"
+          },
+          "brokenReason": "HTTP_404",
+          "excludedReason": null
+        },
+        {
+          "url": "http://localhost:8080/styles/license.css",
+          "baseUrl": "http://localhost:8080/license-and-credits",
+          "html": {
+            "text": "",
+            "tagName": "link",
+            "attrName": "href"
+          },
+          "brokenReason": "HTTP_404",
+          "excludedReason": null
+        },
+        {
+          "url": "http://localhost:8080/styles/media-queries-license.css",
+          "baseUrl": "http://localhost:8080/license-and-credits",
+          "html": {
+            "text": "",
+            "tagName": "link",
+            "attrName": "href"
+          },
+          "brokenReason": "HTTP_404",
+          "excludedReason": null
+        }
+      ],
+      "brokenCount": 4,
+      "totalCount": 14
+    }
+  ],
+  "summary": {
+    "totalLinks": 66,
+    "brokenLinks": 16,
+    "excludedLinks": 0
+  }
+}
