@@ -1,22 +1,32 @@
-<!-- This is About page for Web Witchcraft and Wizardry -->
-
- <!-- **********************************************************************
-      * It has a gallery of porraits of witches and wizards and some 
-      * interesting facts abot witches and wizards.
-      ********************************************************************** -->
+<!--
+ **********************************************************************
+ * File     : glossary-and-faq.html
+ * Author   : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright: (c) 2025 The Embodied Mind
+ * License  : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This page provides an indicative glossary and Frequently Asked Questions 
+ *   about web development and the Web Witchcraft and Wizardry project.
+ **********************************************************************
+-->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Start of meta tags -->
     <meta charset="UTF-8">
     <meta name="description" content="Web Witchcraft and Wizardry">
     <meta name="keywords" content="HTML, CSS, learning">
     <meta name="author" content="Edmund Mulligan">
     <meta name="license" content="MIT License">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- End of meta tags -->
 
-    <!-- Set the document title -->
+    <!-- Set the document title N.B. All pages have the same title.-->
     <title>Web Witchcraft and Wizardry</title>
+
+    <!-- Link to Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 
     <!--Links for Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,21 +59,22 @@
 
 <body>
     <header class="header-container">
+        <i class="fa-solid fa-wand-magic header-icon" aria-hidden="true"></i>
         <div class="header-text">
             <p class="site-title">Web Witchcraft and Wizardry</p>
             <p class="site-subtitle">Learn to create magical websites</p>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="students.html">Students</a></li>
-                <li><a href="#"
+        <nav class="site-navigation">
+            <ul class="site-navigation">
+                <li class="site-navigation"><a class="site-navigation" href="index.html">Home</a></li>
+                <li class="site-navigation"><a class="site-navigation" href="students.html">Students</a></li>
+                <li class="site-navigation"><a class="site-navigation" href="#"
                        onclick="showAlert('This page has not been implemented in this phase of the project, as described ' + 
                                           'in the essay Incorporating usability and user experience into the Web Witchcraft and ' + 
                                           'Wizardry project (Mulligan, 2025).')">Mentors</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="glossary-and-faq.html">Glossary</a></li>
-                <li><a href="license-and-credits.html">License</a></li>
+                <li class="site-navigation"><a class="site-navigation" href="about.html">About</a></li>
+                <li class="site-navigation"><a class="site-navigation" href="glossary-and-faq.html">Glossary</a></li>
+                <li class="site-navigation"><a class="site-navigation" href="license-and-credits.html">License</a></li>
             </ul>
         </nav>
     </header>
@@ -92,6 +103,7 @@
 
             <h3>How can I become a mentor?</h3>
             <p>The mentor program is currently under development. Please check back later for more information.</p>
+        </section>
     </main>
 
     <footer class="footer-container">

@@ -37,7 +37,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 10%;
+    width: 20%;
     aspect-ratio: 1 / 1;
     border-radius: 50%; /* Makes it circular */
     color: var(--color-light-headings-text);
@@ -53,11 +53,12 @@
     z-index: 1;
 }
 
-.circular-button:hover {
-    background-color: var(--color-light-headings-text);
+.circular-button:hover,
+.circular-button:focus {
+    background-color: var(--color-light-headings-background);
     color: var(--color-light-headings-text);
     border-color: var(--color-light-headings-text);
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
 
 /* link styles for circular buttons */
@@ -71,18 +72,17 @@
     text-decoration: none;
 }
 
+/*
 .circular-href:hover {
-    color: var(--color-light-link-text-hover);
-    background-color: var(--color-light-page-background-hover);
     text-decoration: none;
 }
 
 .circular-href:focus {
-    color: var(--color-light-link-text-focus);
     outline: 0.1em dashed var(--color-light-link-text-focus);
     outline-offset: 0.1em;
     text-decoration: none;
 }
+*/
 
 /********************************************
  * container classes for flexbox container

@@ -1,0 +1,97 @@
+/*
+ *********************************************************************************
+ * CSS styles for the about page of the Web Witchcraft and Wizardry website 
+ *********************************************************************************
+ */
+
+  /* 
+ ********************************************
+ * Page specific landmark element styles
+ * Arranged vertically using flexbox
+ ********************************************
+ */
+
+main ul {
+    margin: 2em;
+    margin-left: 4em;
+    line-height: 1.5;
+    text-align: left;
+}
+
+main li {
+    margin: 0.5em 0;
+}
+
+.about-text {
+    margin: 2em;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+/********************************************
+ * container classes for grid container
+ ********************************************/
+.facts-container  {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+}
+
+.accessories-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+    width: 100%;
+}
+
+
+/**********************************************
+ * contained classes for grid items
+ **********************************************/
+.facts-item {
+    padding: 1.5em;
+    background-color: var(--color-light-headings-background);
+    color: var( --color-light-headings-text);
+    border-radius: 20%;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.facts-wide-item {
+    padding: 1.5em;
+    grid-column-start: 1;
+    grid-column-end: span 3;
+}
+
+.accessory-item {
+    padding: 1em;
+    background-color: var(--color-light-headings-background);
+    color: var( --color-light-headings-text);
+    border-radius: 1em;
+    text-align: center;
+    width: 12em;
+    display: flex;
+    flex-direction: column;
+}
+
+.accessory-image {
+    width: 5em;
+    height: auto;
+    margin: 0 auto 0.5em auto;
+}
+
+.accessory-name {
+    font-weight: bold;
+    margin-bottom: 0.3em;
+}
+
+.accessory-description {
+    font-size: 0.9em;
+}
+
+/**********************************************
+ * Individual item overrides
+ **********************************************/

@@ -69,6 +69,7 @@ body {
     background-color: var(--color-light-page-background);   
 }
 
+/* Use body:before to stop the background image scrolling */
 body::before {
     content: "";
     position: fixed;
@@ -83,7 +84,8 @@ body::before {
     background-repeat: no-repeat;
     background-attachment: fixed;
 
-    /* ensure the background image opaque to enable readability */
+    /* ensure the background image tranparent so it 
+       takes a tint of the site background colour */
     opacity: 0.7;
     z-index: -1;
 }
@@ -143,72 +145,101 @@ a:visited {
     color: var(--color-light-link-text-visited);
 }
 
-a:hover {
-    color: var(--color-light-link-text-hover);
-}
 
-a:focus {
+a:hover, a:focus {
     color: var(--color-light-link-text-focus);
     outline: 0.1em dashed var(--color-light-link-text-focus);
     outline-offset: 0.1em;
 }
 
 /* styles for the navigation bar */
-nav {
-    /* background-color: var(--color-light-headings-background); */
-    background-color: lightgreen;
+nav.site-navigation {
+    background-color: var(--color-light-headings-background);
     color: var(--color-light-headings-text);
     width: 90%;
     border-radius: 2em;
-    margin-left: 1em;
-    margin-right: 1em;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0.25em 0.5em;
-    display: flex;
-    justify-content: center;
+    box-sizing: border-box;
 }
 
-nav ul {
+ul.site-navigation {
     list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
     width: 100%;
+    gap: 0.5em;
     row-gap: 0.25em;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
-nav ul li {
+li.site-navigation {
     display: inline;
     flex: 0 1 auto;
 }
 
-nav a {
-    color: white;
+a.site-navigation {
+    color: var(--color-light-headings-text);
     text-decoration: none;
     padding: 0.5em;
     display: block;
 }
 
 /* Pseudo classes and elements for nav links */
-nav a::before {
+nav.site-navigation  a.site-navigation::before {
     content: "\f0d0";  /* Font Awesome Magic Wand */
     font-family: "Font Awesome 7 Pro";
     font-weight: 900; /* needed for solid style icons */
 }
 
-nav a:hover, 
-nav a:focus {
+nav.site-navigation a.site-navigation:hover, 
+nav.site-navigation a.site-navigation:focus {
     background-color: lightblue;
-    color: darkblue;
+    color: var(--color-light-headings-text);
 }
 
-nav a:hover::before,
-nav a:focus::before {
+nav.site-navigation a.site-navigation:hover::before,
+nav.site-navigation a.site-navigation:focus::before {
     content: "\e2ca";  /* Font Awesome Magic Wand with sparkles */
     font-family: "Font Awesome 7 Pro";
     font-weight: 900; /* needed for solid style icons */
 }
+nav.in-page-nav {
+    margin: 1em 0;
+    padding: 0.5em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+}
+
+ul.in-page-nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    gap: 0.5em;
+    row-gap: 0.25em;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+li.in-page-nav {
+    display: inline;
+    flex: 0 1 auto;
+}
+
+a.in-page-nav {
+    color: var(--color-light-headings-text);
+    text-decoration: none;
+    padding: 0.5em;
+    display: block;
+}
+
 
 /* Site title and subtitle in header */
 .site-title {
@@ -216,6 +247,7 @@ nav a:focus::before {
     font-size: larger;
     font-weight: 700;
     margin: 0.25em;
+    text-align: center;
 }
 
 .site-subtitle {
@@ -223,8 +255,20 @@ nav a:focus::before {
     font-size: large;
     font-weight: 400;
     margin: 0.25em;
+    text-align: center;
 }
 
+/* page title in main */
+.page-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: x-large;
+    font-weight: 700;
+    margin: 0.5em;
+    padding: 0 2em;
+    background-color: var(--color-light-page-background);
+    color: var(--color-light-page-text);
+    border-radius: 2em;
+}
 
 /********************************************************
  * border and color classes
@@ -246,10 +290,12 @@ nav a:focus::before {
 
 .header-container {
     display: grid;
-    grid-template-columns: auto;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
     align-items: center;
-    gap: 1em;
-    justify-content: center;
+    gap: 0.5em;
+    column-gap: 1em;
+    justify-items: center;
     border: var(--color-light-headings-text) 0.2em solid;
     background-color: var(--color-light-headings-background);
     color: var(--color-light-headings-text);
@@ -262,7 +308,7 @@ nav a:focus::before {
 
 .footer-container {
     display: flex;
-    grid-template-columns: auto auto;
+    flex-direction: row;
     align-items: center;
     gap: 1em;
     justify-content: center;
@@ -271,18 +317,58 @@ nav a:focus::before {
     color: var(--color-light-headings-text);
     border-radius: 2em;
     max-width: 90%;
+    padding: 1em;
     text-align: center;
+}
+
+.header-icon {
+    font-size: xx-large;
+    color: var(--color-light-site-text);
+    align-self: center;
+    grid-row: 1;
+    grid-column: 1;
+    transition: all 0.3s ease;
+    background-color: var(--color-light-headings-background);
+    border: 0.15em solid var(--color-light-headings-text);
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-icon:hover {
+    transform: rotate(15deg);
+}
+
+.header-container:hover .header-icon::before {
+    content: "\e2ca"; /* Font Awesome Magic Wand with sparkles */
 }
 
 .header-text {
     margin: 0.25em auto;
     max-width: 80%;
+    grid-row: 1;
+    grid-column: 2;
+}
+
+nav {
+    grid-row: 2;
+    grid-column: 1 / -1;
 }
 
 .footer-text {
-    flex: 1;
     margin: 0.25em auto;
     text-align: center;
+}
+
+.footer-text h3 {
+    margin: 0 0 0.25em 0;
+}
+
+.footer-text p {
+    margin: 0.25em 0 0 0;
 }
 
 .header-logo {
@@ -295,9 +381,6 @@ nav a:focus::before {
     max-width: 10em;
     width: 100%;
     height: auto;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    margin-left: auto;
-    flex-shrink: 0;
+    margin: 0.5em auto;
     object-fit: contain;
 }

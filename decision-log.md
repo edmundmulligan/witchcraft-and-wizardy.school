@@ -6,10 +6,11 @@ This log records any design and development decisions and any coding standards t
 
 ### Scope
 - 1 landing page - index.html
-- 1 student home page - students/index.html
+- 1 student home page - students.html
 - 2 student lesson pages - students/lesson{1,2}.html
-- 1 mentor home page - mentors/index.html
 - 1 about page - about.html
+- 1 glossary page - glossary-and-faq.html
+- 1 license page - license.html
 
 ## CSS
 - 1 css file for all media queries
@@ -19,7 +20,7 @@ This log records any design and development decisions and any coding standards t
 - px only used in media queries, em used everywhere else
 
 ## JS
-- No JavaScr    ipt, except for a message box to alert users that content is out of scope for this iteration of the project
+- No JavaScript, except for a message box to alert users that content is out of scope for this iteration of the project
 
 ## Testing, Validation and compliance
 - Test all pages with main browsers
