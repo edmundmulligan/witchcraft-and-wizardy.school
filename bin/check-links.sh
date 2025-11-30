@@ -49,7 +49,7 @@ for page in $PAGES; do
       totalCount: 0
     };
     
-    const siteChecker = new blc.SiteChecker({
+    const urlChecker = new blc.UrlChecker({
       excludeExternalLinks: false,
       filterLevel: 3,
       honorRobotExclusions: false,
@@ -96,7 +96,7 @@ for page in $PAGES; do
       }
     });
     
-    siteChecker.enqueue('$FULL_URL');
+    urlChecker.enqueue('$FULL_URL');
   " 2>/dev/null
   
   echo ""
@@ -122,11 +122,11 @@ node -e "
   if (data.summary.brokenLinks === 0) {
     console.log('✅ No broken links found!');
   } else {
-    console.log('❌ Broken links found on the following pages:');
+    console.log('❌ Broken links found:');
     console.log('');
     
     data.pages.filter(p => p.brokenCount > 0).forEach(page => {
-      console.log('📄 ' + page.url + ' (' + page.brokenCount + ' broken)');
+      console.log('📄 ' + page.url + ' (' + page.brokenCount + ' broken link(s))');
       page.links.forEach(link => {
         console.log('  ❌ ' + link.url);
         console.log('     Text: ' + (link.html.text || '(no text)'));
@@ -136,6 +136,9 @@ node -e "
     });
   }
 "
+
+# Check if we should delete the file
+HAS_BROKEN=$(node -p "const fs = require('fs'); const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8')); data.summary.brokenLinks > 0 ? 1 : 0")
 
 if [ "$HAS_BROKEN" -eq 0 ]; then
   echo ""
