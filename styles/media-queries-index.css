@@ -1,0 +1,43 @@
+
+/***********************************************************************************************
+ * Media queries to deal with a differeing screen widths and devices
+ *
+ * Rule of thumb is to put as little as possible in media queries and put common styles in 
+ * main.css
+ **********************************************************************************************/
+
+ /* Portrait (mostly applies to mobile phones) */
+@media (orientation: portrait) {
+  body::before {
+    /* Portrait version of Michael Hamments photo on unsplash.com */
+    background-image: url('../images/michael-hamments-x6VyE3ie1sM-unsplash-portrait.jpg');
+  }
+
+  .circular-button-container {
+      flex-direction: column;
+  }
+}
+
+/* Landscape (mostly applies to computers and tablets) */
+@media (orientation: landscape) {
+    body::before {
+        /* Landscape version of Michael Hamments photo on unsplash.com */
+        background-image: url('../images/michael-hamments-x6VyE3ie1sM-unsplash-landscape.jpg');
+    }
+
+    .circular-button-container {
+        flex-direction: row;
+    }
+}
+
+/* small screen width - treat as portrait */
+@media (width <= 600px) {
+  body::before {
+    /* Portrait version of Michael Hamments photo on unsplash.com */
+    background-image: url('../images/michael-hamments-x6VyE3ie1sM-unsplash-portrait.jpg');
+  }
+
+  .circular-button-container {
+    flex-direction: column;
+  }
+} 

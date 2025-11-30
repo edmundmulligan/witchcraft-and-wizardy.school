@@ -1,0 +1,386 @@
+/*
+ *************************************************************
+ * Main CSS styles for the Web Witchcraft and Wizardry website 
+ * 
+ * These styles apply to all pages and this stylesheet should 
+ * be the first linked from all HTML files.
+ *************************************************************
+ */
+
+ /*
+  **********************************************************************
+  * Define semantic names for colours to be used on all pages
+  * N.B. Use colour names not hex codes for better code readability
+  *
+  * TODO: User switching between light and dark themes is out of scope 
+  * for phase 1 of this project but will be implemented in phase 2
+  * using Javascript.
+  **********************************************************************
+  */
+
+:root {
+    /* light theme colours */
+    --color-light-page-background: lightgoldenrodyellow;
+    --color-light-page-text: darkgreen;
+    --color-light-headings-background: lightcyan;
+    --color-light-headings-text: purple;
+    --color-light-link-text: darkgreen;
+    --color-light-link-text-hover: darkorange;
+    --color-light-link-text-visited: darkblue;
+    --color-light-link-text-focus: darkorange;
+
+    /* dark theme colours */
+    --color-dark-page-background: darkgreen;
+    --color-dark-page-text: lightgoldenrodyellow;
+    --color-dark-headings-background: darkblue;
+    --color-dark-headings-text: lightblue;
+    --color-dark-link-text: lightgreen;
+    --color-dark-link-text-hover: lightorange;
+    --color-dark-link-text-visited: lightblue;
+    --color-dark-link-text-focus: lightorange;
+}
+
+/* set global styles for the entire body of the html document */
+
+/* N.B. All dimensions in em units or %. px units are only used for screen-related properties in media queries */
+
+/* *******************************************************
+ * Element styles
+ ******************************************************* */
+
+body {
+    position: relative;
+
+    /* set margin and padding. Other elements and classes may override these */
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+
+    /* use flexbox to layout header, main and footer vertically */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* use a readable font for body text */
+    font-family: "Open Sans", -apple-system, sans-serif;
+    font-size: 1.125em; /* 18px */
+    line-height: 1.6;
+    color: var(--color-light-page-text);
+    background-color: var(--color-light-page-background);   
+}
+
+/* Use body:before to stop the background image scrolling */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* set background image handling (actual image is selected in media-queries.css) */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    /* ensure the background image tranparent so it 
+       takes a tint of the site background colour */
+    opacity: 0.7;
+    z-index: -1;
+}
+
+header {
+    max-width: 90%;
+    font-size: larger;
+    text-align: center;
+    margin-bottom: 0;
+    flex-shrink: 0;  /* Prevents header from shrinking */
+    border: var(--color-light-headings-text) 0.2em solid;
+    background-color: var(--color-light-headings-background);
+    color: var(--color-light-headings-text);
+    border-radius: 2em;
+}
+
+main {
+    width: 100%;
+    text-align: center;
+    flex-grow: 1;  /* Allows main to grow and fill available space */
+}
+
+footer {
+    width: 100%;
+    font-size: smaller;
+    text-align: center;
+    margin-top: 0;
+    flex-shrink: 0;  /* Prevents footer from shrinking */
+}
+
+/* Center all headings and use Cinzel (an elegant serif Google font) */
+h1, h2, h3, h4, h5, h6 {
+    /* Use Cinzel font for headings */
+    font-family: Cinzel, serif;
+    font-weight: 600;
+    font-style: normal;
+    text-align: center;
+}
+
+/* make h1 larger and bolder */
+h1 {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+/* increas spacing for paragraphs in accordance with WCAG 2.2 */
+p {
+    margin-bottom: 1.5em;
+}
+
+/* general link styles */
+a:link {
+    color: var(--color-light-link-text);
+}
+
+a:visited {
+    color: var(--color-light-link-text-visited);
+}
+
+
+a:hover, a:focus {
+    color: var(--color-light-link-text-focus);
+    outline: 0.1em dashed var(--color-light-link-text-focus);
+    outline-offset: 0.1em;
+}
+
+/* styles for the navigation bar */
+nav.site-navigation {
+    background-color: var(--color-light-headings-background);
+    color: var(--color-light-headings-text);
+    width: 90%;
+    border-radius: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.25em 0.5em;
+    box-sizing: border-box;
+}
+
+ul.site-navigation {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    gap: 0.5em;
+    row-gap: 0.25em;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+li.site-navigation {
+    display: inline;
+    flex: 0 1 auto;
+}
+
+a.site-navigation {
+    color: var(--color-light-headings-text);
+    text-decoration: none;
+    padding: 0.5em;
+    display: block;
+}
+
+/* Pseudo classes and elements for nav links */
+nav.site-navigation  a.site-navigation::before {
+    content: "\f0d0";  /* Font Awesome Magic Wand */
+    font-family: "Font Awesome 7 Pro";
+    font-weight: 900; /* needed for solid style icons */
+}
+
+nav.site-navigation a.site-navigation:hover, 
+nav.site-navigation a.site-navigation:focus {
+    background-color: lightblue;
+    color: var(--color-light-headings-text);
+}
+
+nav.site-navigation a.site-navigation:hover::before,
+nav.site-navigation a.site-navigation:focus::before {
+    content: "\e2ca";  /* Font Awesome Magic Wand with sparkles */
+    font-family: "Font Awesome 7 Pro";
+    font-weight: 900; /* needed for solid style icons */
+}
+
+nav.in-page-nav {
+    margin: 1em 0;
+    padding: 0.5em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+}
+
+ul.in-page-nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    gap: 0.5em;
+    row-gap: 0.25em;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+li.in-page-nav {
+    display: inline;
+    flex: 0 1 auto;
+}
+
+a.in-page-nav {
+    color: var(--color-light-headings-text);
+    text-decoration: none;
+    padding: 0.5em;
+    display: block;
+}
+
+
+/* Site title and subtitle in header */
+.site-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: larger;
+    font-weight: 700;
+    margin: 0.25em;
+    text-align: center;
+}
+
+.site-subtitle {
+    font-family: Cinzel, serif;
+    font-size: large;
+    font-weight: 400;
+    margin: 0.25em;
+    text-align: center;
+}
+
+/* page title in main */
+.page-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: x-large;
+    font-weight: 700;
+    margin: 0.5em;
+    padding: 0 2em;
+    background-color: var(--color-light-page-background);
+    color: var(--color-light-page-text);
+    border-radius: 2em;
+}
+
+/********************************************************
+ * border and color classes
+ ********************************************************/
+
+.heavy-border {
+    border: var(--color-light-headings-text) 0.2em solid;
+    padding: 1em;
+    margin: 0.5em;
+}
+
+.light-border {
+    border: var(--color-light-headings-text) 0.1em dotted;
+    padding: 1em;
+    margin: 0.5em;
+}
+
+ /* header and footer styles */
+
+.header-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    place-items: center;
+    gap: 0.5em;
+    column-gap: 1em;
+    border: var(--color-light-headings-text) 0.2em solid;
+    background-color: var(--color-light-headings-background);
+    color: var(--color-light-headings-text);
+    border-radius: 2em;
+    width: 90%;
+    padding: 1em;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+    justify-content: center;
+    border: var(--color-light-headings-text) 0.2em solid;
+    background-color: var(--color-light-headings-background);
+    color: var(--color-light-headings-text);
+    border-radius: 2em;
+    max-width: 90%;
+    padding: 1em;
+    text-align: center;
+}
+
+.header-icon {
+    font-size: xx-large;
+    color: var(--color-light-site-text);
+    align-self: center;
+    grid-row: 1;
+    grid-column: 1;
+    transition: all 0.3s ease;
+    background-color: var(--color-light-headings-background);
+    border: 0.15em solid var(--color-light-headings-text);
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-icon:hover {
+    transform: rotate(15deg);
+}
+
+.header-container:hover .header-icon::before {
+    content: "\e2ca"; /* Font Awesome Magic Wand with sparkles */
+}
+
+.header-text {
+    margin: 0.25em auto;
+    max-width: 80%;
+    grid-row: 1;
+    grid-column: 2;
+}
+
+nav {
+    grid-row: 2;
+    grid-column: 1 / -1;
+}
+
+.footer-text {
+    margin: 0.25em auto;
+    text-align: center;
+}
+
+.footer-text h3 {
+    margin: 0 0 0.25em;
+}
+
+.footer-text p {
+    margin: 0.25em 0 0;
+}
+
+.header-logo {
+    max-width: 10em;
+    height: auto;
+    margin-right: 1em;
+}
+
+.footer-logo {
+    max-width: 10em;
+    width: 100%;
+    height: auto;
+    margin: 0.5em auto;
+    object-fit: contain;
+}

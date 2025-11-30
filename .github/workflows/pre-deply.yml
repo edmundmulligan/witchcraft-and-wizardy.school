@@ -1,0 +1,120 @@
+name: Accessibility Testing and Deployment
+
+env:
+  testurl:      'http://localhost:8080'
+  testport:     '8080'
+  resultsdir:   'tests/results'
+  WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
+  NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
+
+on:
+  push:
+    branches: [ development, main]
+  pull_request:
+    branches: [ development, main ]
+
+jobs:
+  run-pre-deployment-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Clear previous accessibility results
+      run: |
+        bin/clear-tests.sh
+
+
+    # This is a show stopper. If validaion fails, fail the build
+    - name: Validate HTML and CSS
+      continue-on-error: true
+      run: |
+        bin/validate-code.sh
+
+    # Check for broken links
+    - name: Check for broken links
+      continue-on-error: true
+      run: |
+        bin/check-links.sh
+
+    - name: Check site works in different browsers
+      continue-on-error: true
+      run: |
+        bin/run-browser-tests.sh
+
+    - name: Run axe accessibility tests
+      continue-on-error: true
+      run: |
+        bin/run-axe-tests.sh
+
+    - name: Run Pa11y accessibility tests
+      continue-on-error: true
+      run: |
+        bin/run-pa11y-tests.sh
+
+    - name: Run Lighthouse accessibility tests
+      continue-on-error: true
+      run: |
+        bin/run-lighthouse-tests.sh
+
+    - name: Run WAVE accessibility tests
+      continue-on-error: true
+      run: |
+        bin/run-wave-tests.sh
+     
+    - name: Check reading levels
+      continue-on-error: true
+      run: |
+        bin/check-reading-age.sh --exclude license-and-credits.html
+
+    - name: Summrise test results
+      continue-on-error: false
+      run: |
+        bin/summarise-tests.sh
+  
+    - name: Upload test reports
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-reports
+        path: |
+          ${{ env.resultsdir }}/validation-results.json
+          ${{ env.resultsdir }}/broken-links-results.json
+          ${{ env.resultsdir }}/axe-results.json
+          ${{ env.resultsdir }}/pa11y-results.json
+          ${{ env.resultsdir }}/lighthouse-results.json
+          ${{ env.resultsdir }}/wave-results.json
+          ${{ env.resultsdir }}/readability-results.json
+
+  deploy:
+    needs: run-pre-deployment-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+    
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: '.'
+    
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
