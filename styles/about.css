@@ -62,8 +62,7 @@ main li {
 
 .facts-wide-item {
     padding: 1.5em;
-    grid-column-start: 1;
-    grid-column-end: span 3;
+    grid-column: 1 / span 3;
 }
 
 .accessory-item {
@@ -80,7 +79,7 @@ main li {
 .accessory-image {
     width: 5em;
     height: auto;
-    margin: 0 auto 0.5em auto;
+    margin: 0 auto 0.5em;
 }
 
 .accessory-name {

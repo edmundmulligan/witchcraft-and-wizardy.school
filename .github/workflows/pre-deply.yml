@@ -28,35 +28,43 @@ jobs:
 
     # This is a show stopper. If validaion fails, fail the build
     - name: Validate HTML and CSS
+      continue-on-error: true
       run: |
         bin/validate-code.sh
 
     # Check for broken links
     - name: Check for broken links
+      continue-on-error: true
       run: |
         bin/check-links.sh
 
     - name: Run axe accessibility tests
+      continue-on-error: true
       run: |
         bin/run-axe-tests.sh
 
     - name: Run Pa11y accessibility tests
+      continue-on-error: true
       run: |
         bin/run-pa11y-tests.sh
 
     - name: Run Lighthouse accessibility tests
+      continue-on-error: true
       run: |
         bin/run-lighthouse-tests.sh
 
     - name: Run WAVE accessibility tests
+      continue-on-error: true
       run: |
         bin/run-wave-tests.sh
      
     - name: Check reading levels
+      continue-on-error: true
       run: |
         bin/check-reading-age.sh
 
     - name: Summrise test results
+      continue-on-error: false
       run: |
         bin/summarise-tests.sh
   

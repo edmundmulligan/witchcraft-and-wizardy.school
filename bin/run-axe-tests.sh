@@ -104,6 +104,7 @@ TOTAL_VIOLATIONS=$(node -p "const data = JSON.parse(require('fs').readFileSync('
 if [ "$TOTAL_VIOLATIONS" -eq 0 ]; then
   echo "✅ No accessibility violations found across all pages."
   rm -f "$RESULT_FILE"
+  exit 0
 else
   echo "❌ Accessibility violations found:"
   echo ""
@@ -139,6 +140,5 @@ else
       console.log('');
     });
   "
+  exit 1
 fi
-
-exit 0

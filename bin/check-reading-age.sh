@@ -185,4 +185,14 @@ node -e "
 
 echo ""
 echo "Detailed results saved to: $RESULT_FILE"
-exit 0
+
+# Check if any pages are too difficult
+HAS_DIFFICULT=$(node -p "const fs = require('fs'); const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8')); data.pages.some(p => p.averageGradeLevel > 12) ? 1 : 0")
+
+if [ "$HAS_DIFFICULT" -eq 0 ]; then
+  exit 0
+else
+  echo ""
+  echo "❌ Some pages have college-level reading difficulty!"
+  exit 1
+fi

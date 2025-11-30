@@ -156,8 +156,8 @@ HAS_ERRORS=$(node -p "const fs = require('fs'); const data = JSON.parse(fs.readF
 if [ "$HAS_ERRORS" -eq 0 ]; then
   echo "✅ All pages passed pa11y tests (no errors)."
   rm -f "$RESULT_FILE"
+  exit 0
 else
   echo "❌ Some pages have accessibility errors."
+  exit 1
 fi
-
-exit 0

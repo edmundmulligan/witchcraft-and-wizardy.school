@@ -207,6 +207,7 @@ nav.site-navigation a.site-navigation:focus::before {
     font-family: "Font Awesome 7 Pro";
     font-weight: 900; /* needed for solid style icons */
 }
+
 nav.in-page-nav {
     margin: 1em 0;
     padding: 0.5em;
@@ -251,7 +252,7 @@ a.in-page-nav {
 }
 
 .site-subtitle {
-    font-family: 'Cinzel', serif;
+    font-family: Cinzel, serif;
     font-size: large;
     font-weight: 400;
     margin: 0.25em;
@@ -292,10 +293,9 @@ a.in-page-nav {
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: auto auto;
-    align-items: center;
+    place-items: center;
     gap: 0.5em;
     column-gap: 1em;
-    justify-items: center;
     border: var(--color-light-headings-text) 0.2em solid;
     background-color: var(--color-light-headings-background);
     color: var(--color-light-headings-text);
@@ -364,11 +364,11 @@ nav {
 }
 
 .footer-text h3 {
-    margin: 0 0 0.25em 0;
+    margin: 0 0 0.25em;
 }
 
 .footer-text p {
-    margin: 0.25em 0 0 0;
+    margin: 0.25em 0 0;
 }
 
 .header-logo {

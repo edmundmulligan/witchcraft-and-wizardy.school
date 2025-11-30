@@ -137,16 +137,14 @@ node -e "
   }
 "
 
-# Check if we should delete the file
-HAS_BROKEN=$(node -p "const fs = require('fs'); const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8')); data.summary.brokenLinks > 0 ? 1 : 0")
-
 if [ "$HAS_BROKEN" -eq 0 ]; then
   echo ""
-  echo "Detailed results: No broken links, file not saved."
+  echo "✅ No broken links found!"
   rm -f "$RESULT_FILE"
+  exit 0
 else
   echo ""
+  echo "❌ Broken links found!"
   echo "Detailed results saved to: $RESULT_FILE"
+  exit 1
 fi
-
-exit 0
