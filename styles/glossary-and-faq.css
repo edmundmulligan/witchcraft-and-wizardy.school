@@ -61,20 +61,20 @@ pre {
     display: none;
 }
 
-.magicInvisible:before {
+.magic-invisible::before {
     content: "\f0d0";  /* Font Awesome Magic Wand */
     font-family: "Font Awesome 7 Pro";
     font-weight: 900; /* needed for solid style icons */
 }
 
-.magicVisible:before {
+.magic-visible::before {
     content: "\e2ca";  /* Font Awesome Magic Wand with sparkles */
     font-family: "Font Awesome 7 Pro";
     font-weight: 900; /* needed for solid style icons */
 }
 
-.magicInvisible:hover,
-.magicVisible:hover {
+.magic-invisible:hover,
+.magic-visible:hover {
     cursor: pointer;
 }
 
