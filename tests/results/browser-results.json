@@ -2,44 +2,65 @@
   "browsers": [
     {
       "name": "chrome",
-      "status": "failed",
-      "error": "unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: chrome=142.0.7444.175)",
+      "status": "passed",
+      "error": null,
       "tests": [
         {
-          "name": "browser test",
-          "status": "failed",
-          "error": "unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: chrome=142.0.7444.175)"
+          "name": "home page title",
+          "status": "passed"
+        },
+        {
+          "name": "navigation links",
+          "status": "passed"
+        },
+        {
+          "name": "students page",
+          "status": "passed"
         }
       ]
     },
     {
       "name": "firefox",
-      "status": "failed",
-      "error": "Reached error page: about:neterror?e=connectionFailure&u=http%3A//localhost%3A8080/&c=UTF-8&d=Firefox%20can%E2%80%99t%20establish%20a%20connection%20to%20the%20server%20at%20localhost%3A8080.",
+      "status": "passed",
+      "error": null,
       "tests": [
         {
-          "name": "browser test",
-          "status": "failed",
-          "error": "Reached error page: about:neterror?e=connectionFailure&u=http%3A//localhost%3A8080/&c=UTF-8&d=Firefox%20can%E2%80%99t%20establish%20a%20connection%20to%20the%20server%20at%20localhost%3A8080."
+          "name": "home page title",
+          "status": "passed"
+        },
+        {
+          "name": "navigation links",
+          "status": "passed"
+        },
+        {
+          "name": "students page",
+          "status": "passed"
         }
       ]
     },
     {
       "name": "edge",
-      "status": "failed",
-      "error": "unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: MicrosoftEdge=142.0.3595.94)",
+      "status": "passed",
+      "error": null,
       "tests": [
         {
-          "name": "browser test",
-          "status": "failed",
-          "error": "unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: MicrosoftEdge=142.0.3595.94)"
+          "name": "home page title",
+          "status": "passed"
+        },
+        {
+          "name": "navigation links",
+          "status": "passed"
+        },
+        {
+          "name": "students page",
+          "status": "passed"
         }
       ]
     }
   ],
   "summary": {
-    "passed": 0,
-    "failed": 3,
+    "passed": 3,
+    "failed": 0,
     "total": 3
   }
 }

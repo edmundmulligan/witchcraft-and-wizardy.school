@@ -34,7 +34,7 @@ bin/check-reading-age.sh "$@" || FAILED=1
 
 echo ""
 echo "🌐 Running cross-browser tests..."
-bin/run-browser-tests.js "$@" || FAILED=1
+bin/run-browser-tests.sh "$@" || FAILED=1
 
 echo ""
 echo "📊 Generating test summary..."

@@ -41,7 +41,7 @@ jobs:
     - name: Check site works in different browsers
       continue-on-error: true
       run: |
-        bin/run-browser-tests.js 
+        bin/run-browser-tests.sh
 
     - name: Run axe accessibility tests
       continue-on-error: true
