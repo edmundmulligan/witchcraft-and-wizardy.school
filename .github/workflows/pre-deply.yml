@@ -38,6 +38,11 @@ jobs:
       run: |
         bin/check-links.sh
 
+    - name: Check site works in different browsers
+      continue-on-error: true
+      run: |
+        bin/run-browser-tests.js 
+
     - name: Run axe accessibility tests
       continue-on-error: true
       run: |

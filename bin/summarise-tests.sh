@@ -15,6 +15,84 @@ if [ ! -d "$RESULTS_DIR" ]; then
   exit 0
 fi
 
+# Check Validation results
+if [ -f "$RESULTS_DIR/validation-results.json" ]; then
+  echo "📄 Code Validation Results:"
+  node -e "
+    const fs = require('fs');
+    const data = JSON.parse(fs.readFileSync('$RESULTS_DIR/validation-results.json', 'utf8'));
+    
+    const totalErrors = data.summary.htmlErrors + data.summary.cssErrors;
+    const totalWarnings = data.summary.htmlWarnings + data.summary.cssWarnings;
+    
+    console.log('  Files with issues: ' + data.files.length);
+    console.log('  HTML errors: ' + data.summary.htmlErrors);
+    console.log('  CSS errors: ' + data.summary.cssErrors);
+    console.log('  Total errors: ' + totalErrors);
+    console.log('  Total warnings: ' + totalWarnings);
+    
+    if (totalErrors > 0) {
+      process.exit(1);
+    }
+  " && echo "" || { echo ""; EXIT_CODE=1; }
+else
+  echo "📄 Code Validation: No errors found"
+  echo ""
+fi
+
+# Check Broken Links results
+if [ -f "$RESULTS_DIR/broken-links-results.json" ]; then
+  echo "🔗 Broken Links Results:"
+  node -e "
+    const fs = require('fs');
+    const data = JSON.parse(fs.readFileSync('$RESULTS_DIR/broken-links-results.json', 'utf8'));
+    
+    console.log('  Pages checked: ' + data.pages.length);
+    console.log('  Total links: ' + data.summary.totalLinks);
+    console.log('  Broken links: ' + data.summary.brokenLinks);
+    
+    if (data.summary.brokenLinks > 0) {
+      console.log('  Pages with broken links: ' + data.pages.filter(p => p.brokenCount > 0).length);
+      process.exit(1);
+    }
+  " && echo "" || { echo ""; EXIT_CODE=1; }
+else
+  echo "🔗 Broken Links: No broken links found"
+  echo ""
+fi
+
+# Final summary
+echo "======================"
+if [ $EXIT_CODE -eq 0 ]; then
+  echo "✅ All tests passed (no critical/serious issues)"
+else
+  echo "❌ Critical or serious accessibility issues found"
+fi
+
+# Check Browser Compatibility results
+if [ -f "$RESULTS_DIR/browser-results.json" ]; then
+  echo "🌐 Browser Compatibility Results:"
+  node -e "
+    const fs = require('fs');
+    const data = JSON.parse(fs.readFileSync('$RESULTS_DIR/browser-results.json', 'utf8'));
+    
+    console.log('  Browsers tested: ' + data.browsers.length);
+    console.log('  Passed: ' + data.summary.passed);
+    console.log('  Failed: ' + data.summary.failed);
+    
+    if (data.summary.failed > 0) {
+      console.log('  Failed browsers:');
+      data.browsers.filter(b => b.status === 'failed').forEach(b => {
+        console.log('    ❌ ' + b.name + ': ' + b.error);
+      });
+      process.exit(1);
+    }
+  " && echo "" || { echo ""; EXIT_CODE=1; }
+else
+  echo "🌐 Browser Compatibility: Not tested"
+  echo ""
+fi
+
 # Check Axe results
 if [ -f "$RESULTS_DIR/axe-results.json" ]; then
   echo "🔍 Axe Accessibility Results:"
@@ -154,58 +232,5 @@ else
   echo ""
 fi
 
-# Check Validation results
-if [ -f "$RESULTS_DIR/validation-results.json" ]; then
-  echo "📄 Code Validation Results:"
-  node -e "
-    const fs = require('fs');
-    const data = JSON.parse(fs.readFileSync('$RESULTS_DIR/validation-results.json', 'utf8'));
-    
-    const totalErrors = data.summary.htmlErrors + data.summary.cssErrors;
-    const totalWarnings = data.summary.htmlWarnings + data.summary.cssWarnings;
-    
-    console.log('  Files with issues: ' + data.files.length);
-    console.log('  HTML errors: ' + data.summary.htmlErrors);
-    console.log('  CSS errors: ' + data.summary.cssErrors);
-    console.log('  Total errors: ' + totalErrors);
-    console.log('  Total warnings: ' + totalWarnings);
-    
-    if (totalErrors > 0) {
-      process.exit(1);
-    }
-  " && echo "" || { echo ""; EXIT_CODE=1; }
-else
-  echo "📄 Code Validation: No errors found"
-  echo ""
-fi
-
-# Check Broken Links results
-if [ -f "$RESULTS_DIR/broken-links-results.json" ]; then
-  echo "🔗 Broken Links Results:"
-  node -e "
-    const fs = require('fs');
-    const data = JSON.parse(fs.readFileSync('$RESULTS_DIR/broken-links-results.json', 'utf8'));
-    
-    console.log('  Pages checked: ' + data.pages.length);
-    console.log('  Total links: ' + data.summary.totalLinks);
-    console.log('  Broken links: ' + data.summary.brokenLinks);
-    
-    if (data.summary.brokenLinks > 0) {
-      console.log('  Pages with broken links: ' + data.pages.filter(p => p.brokenCount > 0).length);
-      process.exit(1);
-    }
-  " && echo "" || { echo ""; EXIT_CODE=1; }
-else
-  echo "🔗 Broken Links: No broken links found"
-  echo ""
-fi
-
-# Final summary
-echo "======================"
-if [ $EXIT_CODE -eq 0 ]; then
-  echo "✅ All tests passed (no critical/serious issues)"
-else
-  echo "❌ Critical or serious accessibility issues found"
-fi
 
 exit $EXIT_CODE

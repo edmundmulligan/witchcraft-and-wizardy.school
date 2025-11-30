@@ -33,6 +33,10 @@ echo "📖 Running reading age checks..."
 bin/check-reading-age.sh "$@" || FAILED=1
 
 echo ""
+echo "🌐 Running cross-browser tests..."
+bin/run-browser-tests.js "$@" || FAILED=1
+
+echo ""
 echo "📊 Generating test summary..."
 bin/summarise-tests.sh
 

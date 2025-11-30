@@ -1,0 +1,45 @@
+{
+  "browsers": [
+    {
+      "name": "chrome",
+      "status": "failed",
+      "error": "unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: chrome=142.0.7444.175)",
+      "tests": [
+        {
+          "name": "browser test",
+          "status": "failed",
+          "error": "unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: chrome=142.0.7444.175)"
+        }
+      ]
+    },
+    {
+      "name": "firefox",
+      "status": "failed",
+      "error": "Reached error page: about:neterror?e=connectionFailure&u=http%3A//localhost%3A8080/&c=UTF-8&d=Firefox%20can%E2%80%99t%20establish%20a%20connection%20to%20the%20server%20at%20localhost%3A8080.",
+      "tests": [
+        {
+          "name": "browser test",
+          "status": "failed",
+          "error": "Reached error page: about:neterror?e=connectionFailure&u=http%3A//localhost%3A8080/&c=UTF-8&d=Firefox%20can%E2%80%99t%20establish%20a%20connection%20to%20the%20server%20at%20localhost%3A8080."
+        }
+      ]
+    },
+    {
+      "name": "edge",
+      "status": "failed",
+      "error": "unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: MicrosoftEdge=142.0.3595.94)",
+      "tests": [
+        {
+          "name": "browser test",
+          "status": "failed",
+          "error": "unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: MicrosoftEdge=142.0.3595.94)"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 3,
+    "total": 3
+  }
+}
