@@ -11,12 +11,59 @@ source "$SCRIPT_DIR/test-helpers.sh"
 echo "Installing dependencies..."
 npm install syllable cheerio > /dev/null 2>&1
 
+# Parse command line arguments
+EXCLUDE_LIST=""
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -x|--exclude)
+      shift
+      if [[ $1 == *","* ]]; then
+        # Comma-separated list
+        EXCLUDE_LIST=$(echo "$1" | tr ',' ' ')
+      else
+        # Space-separated list (take all remaining arguments)
+        EXCLUDE_LIST="$*"
+        break
+      fi
+      ;;
+    *)
+      echo "❌ Unknown option: $1"
+      echo "Usage: $0 [-x|--exclude file1.html,file2.html] or [-x|--exclude file1.html file2.html]"
+      exit 1
+      ;;
+  esac
+  shift
+done
+EXCLUDED_COUNT=0
+
 # Setup results directory
 setup_results_dir
 RESULT_FILE="$RESULTS_DIR/readability-results.json"
 
 # Find all HTML pages
 discover_html_pages
+
+# Filter out excluded pages
+if [ -n "$EXCLUDE_LIST" ]; then
+  FILTERED_PAGES=""
+  for page in $PAGES; do
+    # Get basename for comparison
+    page_base=$(basename "$page")
+    EXCLUDED=0
+    for exclude in $EXCLUDE_LIST; do
+      if [ "$page_base" = "$exclude" ]; then
+        EXCLUDED=1
+        EXCLUDED_COUNT=$((EXCLUDED_COUNT + 1))
+        break
+      fi
+    done
+    if [ $EXCLUDED -eq 0 ]; then
+      FILTERED_PAGES="$FILTERED_PAGES $page"
+    fi
+  done
+  PAGES="$FILTERED_PAGES"
+  PAGE_COUNT=$(echo "$PAGES" | wc -w)
+fi
 
 # Initialize results
 echo '{"pages":[]}' > "$RESULT_FILE"
@@ -152,6 +199,7 @@ done
 echo "======================================"
 echo "📊 Readability Summary"
 echo "======================================"
+echo "Pages excluded: $EXCLUDED_COUNT"
 
 node -e "
   const fs = require('fs');

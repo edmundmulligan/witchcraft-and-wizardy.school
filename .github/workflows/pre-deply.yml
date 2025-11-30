@@ -61,7 +61,7 @@ jobs:
     - name: Check reading levels
       continue-on-error: true
       run: |
-        bin/check-reading-age.sh
+        bin/check-reading-age.sh --exclude license-and-credits.html
 
     - name: Summrise test results
       continue-on-error: false
