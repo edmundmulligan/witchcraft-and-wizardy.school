@@ -63,6 +63,17 @@ if [ $? -ne 0 ]; then
   exit 0
 fi
 
+# Stop any existing ngrok tunnels
+echo "Stopping any existing ngrok tunnels..."
+ngrok tunnel list 2>/dev/null | grep -o '"name":"[^"]*"' | sed 's/"name":"//;s/"//' | while read -r tunnel_name; do
+  echo "Stopping tunnel: $tunnel_name"
+  ngrok tunnel stop "$tunnel_name" 2>/dev/null || true
+done
+
+# Also try to kill any running ngrok processes
+pkill -f ngrok || true
+sleep 2
+
 # Start ngrok tunnel
 echo "Starting ngrok tunnel..."
 ngrok http 8080 > /dev/null &

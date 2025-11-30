@@ -19,6 +19,22 @@ start_server_if_needed "$TEST_URL"
 setup_results_dir
 discover_html_pages
 
+# Wait for server to be ready
+echo "Waiting for server to be ready..."
+for i in {1..10}; do
+  if curl -s -f "$TEST_URL" > /dev/null 2>&1; then
+    echo "✓ Server is responding"
+    break
+  fi
+  echo "  Waiting... ($i/10)"
+  sleep 1
+done
+
+if ! curl -s -f "$TEST_URL" > /dev/null 2>&1; then
+  echo "❌ Server failed to start or is not responding"
+  exit 1
+fi
+
 RESULT_FILE="$RESULTS_DIR/broken-links-results.json"
 
 # Initialize results
