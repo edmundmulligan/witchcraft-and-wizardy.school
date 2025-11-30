@@ -11,6 +11,12 @@
  ********************************************
  */
 
+/* override h4-h6 to make them left justified rather tha centered */
+h4, h5, h6 {
+    text-align: left;
+        margin: 2em;
+}
+
 dl {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -43,6 +49,39 @@ dd {
     min-height: 100%;
     display: flex;
     align-items: center;
+}
+
+pre {
+    margin: 5em;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.hidden {
+    display: none;
+}
+
+.magicInvisible:before {
+    content: "\f0d0";  /* Font Awesome Magic Wand */
+    font-family: "Font Awesome 7 Pro";
+    font-weight: 900; /* needed for solid style icons */
+}
+
+.magicVisible:before {
+    content: "\e2ca";  /* Font Awesome Magic Wand with sparkles */
+    font-family: "Font Awesome 7 Pro";
+    font-weight: 900; /* needed for solid style icons */
+}
+
+.magicInvisible:hover,
+.magicVisible:hover {
+    cursor: pointer;
+}
+
+.faq-text {
+    margin: 2em;
+    line-height: 1.5;
+    text-align: justify;
 }
 
 /**********************************************
