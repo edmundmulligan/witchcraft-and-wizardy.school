@@ -8,6 +8,9 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/test-helpers.sh"
 
+# Change to project root directory
+cd "$SCRIPT_DIR/.."
+
 # Check for API key
 if [ -z "$WAVE_API_KEY" ]; then
   echo "❌ Error: WAVE_API_KEY environment variable not set"
@@ -151,6 +154,13 @@ for page in $PAGES; do
         const fs = require('fs');
         const combined = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8'));
         const newData = JSON.parse(fs.readFileSync('$TEMP_RESULT', 'utf8'));
+        
+        // Check for API errors
+        if (newData.status && newData.status.success === false) {
+          console.log('  ❌ API Error: ' + (newData.status.error || 'Unknown error'));
+          fs.unlinkSync('$TEMP_RESULT');
+          process.exit(1);
+        }
         
         if (newData.categories) {
           const pageResult = {
