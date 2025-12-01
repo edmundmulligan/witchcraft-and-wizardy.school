@@ -58,14 +58,19 @@
     <!-- Load JavaScript files -->
     <script src="scripts/alert.js" defer></script>
     <!-- End JavaScript file link -->
-    
+
     <noscript>
         <style>
             .js-required { display: none; }
+            body::before {
+                content: "This page uses JavaScript for enhanced functionality. Please enable JavaScript for the best experience.";
+                display: block;
+                text-align: center;
+                padding: 1.25em;
+                background-color: var(--color-light-warning-background);
+                color: var(--color-light-warning-text);
+            }
         </style>
-        <p style="text-align: center; padding: 20px; background-color: #fff3cd; color: #856404;">
-            This page uses JavaScript for enhanced functionality. Please enable JavaScript for the best experience.
-        </p>
     </noscript>
 </head>
 

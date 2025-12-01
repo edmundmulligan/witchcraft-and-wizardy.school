@@ -1,0 +1,80 @@
+{
+  "files": [
+    {
+      "file": "./students.html",
+      "type": "html",
+      "errors": [
+        {
+          "line": 69,
+          "column": 10,
+          "message": "<p> element is not permitted as content under <head>",
+          "ruleId": "element-permitted-content",
+          "severity": "error"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "file": "./index.html",
+      "type": "html",
+      "errors": [
+        {
+          "line": 64,
+          "column": 10,
+          "message": "<p> element is not permitted as content under <head>",
+          "ruleId": "element-permitted-content",
+          "severity": "error"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "file": "./glossary-and-faq.html",
+      "type": "html",
+      "errors": [
+        {
+          "line": 63,
+          "column": 10,
+          "message": "<p> element is not permitted as content under <head>",
+          "ruleId": "element-permitted-content",
+          "severity": "error"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "file": "./license-and-credits.html",
+      "type": "html",
+      "errors": [
+        {
+          "line": 63,
+          "column": 10,
+          "message": "<p> element is not permitted as content under <head>",
+          "ruleId": "element-permitted-content",
+          "severity": "error"
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "file": "./about.html",
+      "type": "html",
+      "errors": [
+        {
+          "line": 66,
+          "column": 10,
+          "message": "<p> element is not permitted as content under <head>",
+          "ruleId": "element-permitted-content",
+          "severity": "error"
+        }
+      ],
+      "warnings": []
+    }
+  ],
+  "summary": {
+    "htmlErrors": 5,
+    "htmlWarnings": 0,
+    "cssErrors": 0,
+    "cssWarnings": 0
+  }
+}

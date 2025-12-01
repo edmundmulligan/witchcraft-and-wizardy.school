@@ -28,6 +28,9 @@
     --color-light-link-text-hover: darkorange;
     --color-light-link-text-visited: darkblue;
     --color-light-link-text-focus: darkorange;
+    --color-light-error-text: darkred;
+    --color-light-warning-background: #fff3cd;
+    --color-light-warning-text: #856404;
 
     /* dark theme colours */
     --color-dark-page-background: darkgreen;
@@ -38,6 +41,8 @@
     --color-dark-link-text-hover: lightorange;
     --color-dark-link-text-visited: lightblue;
     --color-dark-link-text-focus: lightorange;
+    --color-dark-warning-background: #664d03;
+    --color-dark-warning-text: #ffecb5;
 }
 
 /* set global styles for the entire body of the html document */
@@ -383,4 +388,11 @@ nav {
     height: auto;
     margin: 0.5em auto;
     object-fit: contain;
+}
+
+.noscript {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff3cd;
+    color: #856404;
 }

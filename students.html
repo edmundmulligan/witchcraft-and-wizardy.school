@@ -5,13 +5,13 @@
  * Copyright  : (c) 2025 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
  * Description:
- *   This is the students dashboard of the Web Witchcraft and Wizardry 
- *   website. It has a form to collect some information about the student 
- *   and a tile for each lesson. The data collected in the form is not 
+ *   This is the students dashboard of the Web Witchcraft and Wizardry
+ *   website. It has a form to collect some information about the student
+ *   and a tile for each lesson. The data collected in the form is not
  *   saved anywhere as this requires a sever back end to process the request,
- *   which is out of scope for this phase of the project. The choice of 
- *   day and night will eventully select a theme for the web site, but 
- *   again that is out of scope as it requires JavaScript to modify the 
+ *   which is out of scope for this phase of the project. The choice of
+ *   day and night will eventully select a theme for the web site, but
+ *   again that is out of scope as it requires JavaScript to modify the
  *   DOM.
  **********************************************************************
 -->
@@ -61,14 +61,19 @@
     <!-- Load JavaScript files -->
     <script src="scripts/alert.js" defer></script>
     <!-- End JavaScript file link -->
-    
+
     <noscript>
         <style>
             .js-required { display: none; }
+            body::before {
+                content: "This page uses JavaScript for enhanced functionality. Please enable JavaScript for the best experience.";
+                display: block;
+                text-align: center;
+                padding: 1.25em;
+                background-color: var(--color-light-warning-background);
+                color: var(--color-light-warning-text);
+            }
         </style>
-        <p style="text-align: center; padding: 20px; background-color: #fff3cd; color: #856404;">
-            This page uses JavaScript for enhanced functionality. Please enable JavaScript for the best experience.
-        </p>
     </noscript>
 </head>
 
@@ -84,8 +89,8 @@
                 <li class="site-navigation"><a class="site-navigation" href="index.html">Home</a></li>
                 <li class="site-navigation"><a class="site-navigation" href="students.html">Students</a></li>
                 <li class="site-navigation"><a class="site-navigation" href="#"
-                       onclick="showAlert('This page has not been implemented in this phase of the project, as described ' + 
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' + 
+                       onclick="showAlert('This page has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
                                           'Wizardry project (Mulligan, 2025).')">Mentors</a></li>
                 <li class="site-navigation"><a class="site-navigation" href="about.html">About</a></li>
                 <li class="site-navigation"><a class="site-navigation" href="glossary-and-faq.html">Glossary</a></li>
@@ -121,16 +126,16 @@
                     <h3>Lesson 1: Introduction to HTML</h3>
                     <p>Learn the basics of HTML and how to structure a web page.</p>
                     <a href="#" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' + 
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' + 
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
                                           'Wizardry project (Mulligan, 2025).')">Start Lesson</a>
                 </div>
                 <div class="lesson-tile">
                     <h3>Lesson 2: Styling with CSS</h3>
                     <p>Discover how to style your web pages using CSS.</p>
                     <a href="#" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' + 
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' + 
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
                                           'Wizardry project (Mulligan, 2025).')">Start Lesson</a>
                 </div>
                 <!-- Additional lesson tiles can be added here -->
