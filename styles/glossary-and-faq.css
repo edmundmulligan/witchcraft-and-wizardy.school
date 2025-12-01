@@ -61,27 +61,31 @@ pre {
     display: none;
 }
 
-.magic-invisible::before {
-    content: "\f0d0";  /* Font Awesome Magic Wand */
-    font-family: "Font Awesome 7 Pro";
-    font-weight: 900; /* needed for solid style icons */
-}
-
-.magic-visible::before {
-    content: "\e2ca";  /* Font Awesome Magic Wand with sparkles */
-    font-family: "Font Awesome 7 Pro";
-    font-weight: 900; /* needed for solid style icons */
-}
-
-.magic-invisible:hover,
-.magic-visible:hover {
-    cursor: pointer;
-}
-
 .faq-text {
     margin: 2em;
     line-height: 1.5;
     text-align: justify;
+}
+
+.faq-button {
+    display: block;
+    margin: 1em auto;
+    padding: 1em;
+    font-size: large;
+    font-weight: bold;
+    color: var(--color-light-page-text);
+    background-color: var(--color-light-page-background);
+    border: 0.2em solid var(--color-light-headings-text);
+    border-radius: 1em;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.faq-button:hover,
+.faq-button:focus {
+    background-color: var(--color-light-headings-background);
+    color: var(--color-light-headings-text);
 }
 
 /**********************************************
