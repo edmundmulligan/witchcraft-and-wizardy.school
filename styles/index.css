@@ -84,6 +84,12 @@
 }
 */
 
+.student-form {
+    display: grid;
+    grid-auto-flow: row;
+    gap: 1em;
+    max-width: 300px;
+}   
 /********************************************
  * container classes for flexbox container
  ********************************************/

@@ -103,20 +103,56 @@
         <h2 class="page-title">Welcome to Your Learning Dashboard</h2>
         <section id="student-info-form-section">
             <h3>Student Information</h3>
-            <form id="student-info-form" action="#" method="post">
-                <label for="student-name">Name:</label>
-                <input type="text" id="student-name" name="student-name" required>
+            <form
+                id="student-info-form"
+                action="#" 
+                method="post"
+                class="student-form"
+            >
+                <h4 class="student-form-item-wide">Enter your name</h4>
+                <label
+                    for="student-name"
+                    class="student-form-item"
+                >
+                    Your Name:
+                </label>
+                <input
+                    type="text"
+                    id="student-name"
+                    name="student-name"
+                    required
+                    class="student-form-item"
+                >
+                <p class="student-form-wide">
+                    To protect your privacy, please only give your firstname or a nickname
+                </p>
 
-                <label for="student-email">Email:</label>
-                <input type="email" id="student-email" name="student-email" required>
+                <h4>Choose your avatar</h4>
+                <div>
+                    <label for="avatar-choice">Avatar:</label>
+                    <input type="radio" id="avatar-choice" name="avatar-choice" value="witch"> I am a Witch
+                    <input type="radio" id="avatar-choice" name="avatar-choice" value="wizard"> I am a Wizard
+                </div>
 
-                <label for="preferred-theme">Preferred Theme:</label>
-                <select id="preferred-theme" name="preferred-theme">
-                    <option value="day">Day</option>
-                    <option value="night">Night</option>
-                </select>
+                <div>
+                    <label for="gender-choice">Gender:</label>
+                    <input type="radio" id="gender-choice" name="gender-choice" value="female"> I am Female
+                    <input type="radio" id="gender-choice" name="gender-choice" value="male"> I am Male
+                </div>
 
-                <button type="submit">Save Information</button>
+                <div>
+                    <label for="age-choice">Age:</label>
+                <input type="radio" id="age-choice" name="age-choice" value="young"> I am Young
+                <input type="radio" id="age-choice" name="age-choice" value="old"> I am Old
+                </div>
+
+                <div>
+                    <label for="preferred-theme">What time do you prefer:</label>
+                <input type="radio" id="theme-choice" name="theme-choice" value="light"> I prefer Daytime
+                <input type="radio" id="theme-choice" name="theme-choice" value="dark"> I prefer Nighttime
+                </div>
+
+                 <button type="submit">Save Information</button>
             </form>
         </section>
         <section id="lessons-section">
