@@ -1,10 +1,10 @@
 /*
  *********************************************************************************
- * CSS styles for the about page of the Web Witchcraft and Wizardry website 
+ * CSS styles for the about page of the Web Witchcraft and Wizardry website
  *********************************************************************************
  */
 
-  /* 
+  /*
  ********************************************
  * Page specific landmark element styles
  * Arranged vertically using flexbox
@@ -90,6 +90,38 @@ main li {
 .accessory-description {
     font-size: 0.9em;
 }
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+    margin: 2em;
+    max-width: 100%;
+}
+
+.gallery-item {
+    text-align: center;
+    padding: 1em;
+    background-color: var(--color-light-headings-background);
+    color: var( --color-light-headings-text);
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 20em;
+    object-fit: contain;
+    border-radius: 0.5em;
+}
+
+.gallery-caption {
+    margin-top: 0.5em;
+    font-weight: bold;
+}
+
 
 /**********************************************
  * Individual item overrides

@@ -52,17 +52,32 @@
 
     <!-- media-queries must be the last stylesheets loaded -->
     <link rel="stylesheet" href="styles/media-queries-main.css">
-    <link rel="stylesheet" href="styles/media-queries-about.css">
     <!-- End of CSS stylesheets section -->
 
     <!-- Load JavaScript files -->
     <script src="scripts/alert.js" defer></script>
     <!-- End JavaScript file link -->
+
+    <noscript>
+        <style>
+            .js-required { display: none; }
+            body::before {
+                content: "This page uses JavaScript for enhanced functionality. Please enable JavaScript for the best experience.";
+                display: block;
+                text-align: center;
+                padding: 1.25em;
+                background-color: var(--color-light-warning-background);
+                color: var(--color-light-warning-text);
+            }
+        </style>
+    </noscript>
 </head>
 
 <body>
     <header class="header-container">
-        <i class="fa-solid fa-wand-magic header-icon" aria-hidden="true"></i>
+        <a class="site-navigation" href="index.html" aria-label="Go to home page">
+            <i class="fa-solid fa-wand-magic header-icon" aria-hidden="true"></i>
+        </a>
         <div class="header-text">
             <h1 class="site-title">Web Witchcraft and Wizardry</h1>
             <h2 class="site-subtitle">Learn to create magical websites</h2>
@@ -165,7 +180,7 @@
                 always ask one of the mentors for help.
             </p>
             <p class="about-text">
-                On the Student home page you can choose an avatar
+                On the Student Dashboard you can choose an avatar
                 to represent you as you progress through the lessons.
                 And before you begin you can browse the avatars in
                 the Gallery of Witches and Wizards below and look through
@@ -174,14 +189,14 @@
             </p>
 
             <p class="about-text">
-                So when you are ready, just say the magig incantation and
+                So when you are ready, just say the magic incantation and
                 fly off to the <a href="students.html">Student Dashboard</a>
                 to begin your journey into Web Witchcraft and Wizardry!
             </p>
 
             <p class="about-text">
                 Oh, yes. The magic incantation is:
-                <a href="students.html"><strong>Izzy, wizzy, let's get busy!</strong></a>.
+                <a href="students.html"><strong>Izzy, wizzy, let's get busy!</strong></a>
             </p>
         </section>
 
@@ -198,16 +213,44 @@
             <h2>Gallery of Witches and Wizards</h2>
             <div class="gallery-grid">
                 <div class="gallery-item">
-
+                    <img
+                        src="images/witch-4521410.svg"
+                        alt="A cartoon illustration of a young witch"
+                        class="gallery-image"
+                    >
+                    <p class="gallery-caption">
+                        A young witch
+                    </p>
                 </div>
                 <div class="gallery-item">
-
+                    <img
+                        src="images/evil-witch-9820120_1280.png"
+                        alt="A cartoon illustration of an old witch"
+                        class="gallery-image"
+                    >
+                    <p class="gallery-caption">
+                        An old witch
+                    </p>
                 </div>
                 <div class="gallery-item">
-
+                    <img
+                        src="images/character-7371514_1920.png"
+                        alt="A cartoon illustration of a young wizard"
+                        class="gallery-image"
+                    >
+                    <p class="gallery-caption">
+                        A young wizard
+                    </p>
                 </div>
                 <div class="gallery-item">
-
+                    <img
+                        src="images/wizard-36676.svg"
+                        alt="A cartoon illustration of an old wizard"
+                        class="gallery-image"
+                    >
+                    <p class="gallery-caption">
+                        An old wizard
+                    </p>
                 </div>
             </div>
         </section>
@@ -312,9 +355,9 @@
                     <p class="accessory-description">A sturdy broomstick
                         for those tough cleaning jobs or long-distance flying.
                         Maximum capacity 2 persons (or 1 wizard if they
-                        are of a generous dimension) and 50kg cargo or
-                        small animal familiar, not including owls as they
-                        can fly alongside.
+                        are of a generous dimension) and a small animal
+                        familiar, not including owls as they can fly.
+                        alongside.
                     </p>
                 </div>
 
@@ -404,27 +447,27 @@
                 <div class="accessory-item">
                     <img
                         src="images/fontawesome/cat-duotone-light-full.svg"
-                        alt="An icon of a black cat"
+                        alt="An icon of a cat"
                         class="accessory-image"
                     >
-                    <p class="accessory-name">Black Cat Familiar</p>
-                    <p class="accessory-description">A friendly black cat
-                        for any witch. Pre-enchanted to dispel allergies
-                        for those with sensitivities.
+                    <p class="accessory-name"> Cat Familiar</p>
+                    <p class="accessory-description">A friendly cat suitable
+                        for any witch. Comes in any colour you
+                        like as long as it's black.
                     </p>
                 </div>
 
                 <div class="accessory-item">
                     <img
                         src="images/fontawesome/bat-duotone-light-full.svg"
-                        alt="An icon of a black bat"
+                        alt="An icon of a bat"
                         class="accessory-image"
                     >
-                    <p class="accessory-name">Black Bat Familiar</p>
-                    <p class="accessory-description">A sinister black bat
-                        familiar for any wizard. Does not require feeding
-                        with blood but squeaks at night. Suitable for those
-                        who are hard of hearing.
+                    <p class="accessory-name">Bat Familiar</p>
+                    <p class="accessory-description">A sinister bat
+                        familiar for any wizard. The manual states that
+                        it drinks blood, but in fact any red coloured
+                        liquid will do. Squeaks at night.
                     </p>
                 </div>
 
@@ -436,9 +479,10 @@
                     >
                     <p class="accessory-name">Raven Familiar</p>
                     <p class="accessory-description">A wise old
-                        bird for any wizard. Known for its intelligence
-                        and dry wit. One previous owner who taught it
-                        to say "Nevermore" and now it won't stop.
+                        bird for any wizard or witch. Known for its
+                        intelligence and dry wit. Only one previous
+                        owner who taught it to say "Nevermore" and
+                        now it won't stop.
                     </p>
                 </div>
 
@@ -466,8 +510,9 @@
                     <p class="accessory-name">Toad Familiar</p>
                     <p class="accessory-description">
                         A slimy toad familiar. Venemous skin makes
-                        it unsuitable for handling. Excellent at
-                        catching flies and other small insects.
+                        it unsuitable for handling. Missing a toe, due
+                        to use by witches in creating double toil and
+                        trouble.
                     </p>
                 </div>
 
@@ -486,6 +531,20 @@
                     </p>
                 </div>
 
+                <div class="accessory-item">
+                    <img
+                        src="images/fontawesome/octopus-duotone-regular-full.svg"
+                        alt="An icon of an octopus"
+                        class="accessory-image"
+                    >
+                    <p class="accessory-name">Octopus Familiar</p>
+                    <p class="accessory-description">
+                        A highly intelligent octopus. Can solve puzzles
+                        and open jam jars with its tenticles. N.B.
+                        Do not leave with unattended jam jars or
+                        unfinished soduku puzzles.
+                    </p>
+                </div>h
             </div>
         </section>
 

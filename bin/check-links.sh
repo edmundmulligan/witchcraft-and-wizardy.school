@@ -53,67 +53,8 @@ for page in $PAGES; do
   
   echo "[$TESTED/$PAGE_COUNT] Checking $URL_PATH"
   
-  # Use Node.js to check links on this page
-  node -e "
-    const blc = require('broken-link-checker');
-    const fs = require('fs');
-    
-    const pageResult = {
-      url: '$URL_PATH',
-      links: [],
-      brokenCount: 0,
-      totalCount: 0
-    };
-    
-    const urlChecker = new blc.UrlChecker({
-      excludeExternalLinks: false,
-      filterLevel: 3,
-      honorRobotExclusions: false,
-      maxSocketsPerHost: 10
-    }, {
-      link: (result) => {
-        // Skip preconnect, dns-prefetch, and prefetch links (they're not meant to be loaded)
-        const rel = result.html.attrs && result.html.attrs.rel;
-        if (rel && (rel === 'preconnect' || rel === 'dns-prefetch' || rel === 'prefetch')) {
-          return;
-        }
-        
-        pageResult.totalCount++;
-        
-        if (result.broken) {
-          pageResult.brokenCount++;
-          pageResult.links.push({
-            url: result.url.resolved,
-            baseUrl: result.base.resolved,
-            html: {
-              text: result.html.text || '',
-              tagName: result.html.tagName,
-              attrName: result.html.attrName
-            },
-            brokenReason: result.brokenReason,
-            excludedReason: result.excludedReason
-          });
-        }
-      },
-      end: () => {
-        // Add to results file
-        const combined = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8'));
-        combined.pages.push(pageResult);
-        combined.summary.totalLinks += pageResult.totalCount;
-        combined.summary.brokenLinks += pageResult.brokenCount;
-        
-        fs.writeFileSync('$RESULT_FILE', JSON.stringify(combined, null, 2));
-        
-        if (pageResult.brokenCount > 0) {
-          console.log('  ❌ Found ' + pageResult.brokenCount + ' broken link(s)');
-        } else {
-          console.log('  ✅ All ' + pageResult.totalCount + ' links OK');
-        }
-      }
-    });
-    
-    urlChecker.enqueue('$FULL_URL');
-  " 2>/dev/null
+  # Use the Node.js helper script to check links
+  node "$SCRIPT_DIR/check-links-helper.js" "$FULL_URL" "$URL_PATH" "$RESULT_FILE"
   
   echo ""
 done
@@ -145,8 +86,19 @@ node -e "
       console.log('📄 ' + page.url + ' (' + page.brokenCount + ' broken link(s))');
       page.links.forEach(link => {
         console.log('  ❌ ' + link.url);
-        console.log('     Text: ' + (link.html.text || '(no text)'));
-        console.log('     Reason: ' + link.brokenReason);
+        if (link.original && link.original !== link.url) {
+          console.log('     Original: ' + link.original);
+        }
+        if (link.text) {
+          console.log('     Text: ' + link.text);
+        }
+        if (link.statusCode) {
+          console.log('     Status: ' + link.statusCode);
+        }
+        if (link.error) {
+          console.log('     Error: ' + link.error);
+        }
+        console.log('     Tag: <' + link.tagName + '>');
       });
       console.log('');
     });

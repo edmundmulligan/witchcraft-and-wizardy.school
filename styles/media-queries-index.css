@@ -2,7 +2,7 @@
 /***********************************************************************************************
  * Media queries to deal with a differeing screen widths and devices
  *
- * Rule of thumb is to put as little as possible in media queries and put common styles in 
+ * Rule of thumb is to put as little as possible in media queries and put common styles in
  * main.css
  **********************************************************************************************/
 
@@ -40,4 +40,4 @@
   .circular-button-container {
     flex-direction: column;
   }
-} 
+}
