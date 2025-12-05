@@ -29,6 +29,11 @@ echo "🦜 Running pa11y accessibility tests..."
 bin/run-pa11y-tests.sh "$@" || FAILED=1
 
 echo ""
+echo " Running Wave accessibility tests..."
+bin/run-wave-tests.sh "$@" || FAILED=1
+
+
+echo ""
 echo "📖 Running reading age checks..."
 bin/check-reading-age.sh "$@" || FAILED=1
 

@@ -1,10 +1,10 @@
 /*
  ***************************************************************************
- * CSS styles for the students page of the Web Witchcraft and Wizardry website 
+ * CSS styles for the students page of the Web Witchcraft and Wizardry website
  ***************************************************************************
  */
 
-  /* 
+/*
  ********************************************
  * Page specific landmark element styles
  * Arranged vertically using flexbox
@@ -13,7 +13,99 @@
 
 /********************************************
  * container styles
- ********************************************/
+ ********************************************
+ */
+
+.lessons-flexbox {
+   display: flex;
+}
+
+.lesson-tile {
+   padding: 1.5em;
+   background-color: var(--color-light-headings-background);
+   color: var( --color-light-headings-text);
+   border-radius: 20%;
+   justify-self: center;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.student-form {
+   display: grid;
+   grid-template-columns: 30% auto auto auto;
+   gap: 0.5em;
+   row-gap: 0.1em;
+   max-width: 50em;
+   margin: 0 auto;
+   align-items: center;
+   border: 0.2em solid var(--color-light-headings-text);
+   border-radius: 1em;
+}
+
+.student-form input[type="text"] {
+   max-width: 30em;
+}
+
+.student-form button[type="submit"] {
+   max-width: 15em;
+   justify-self: start;
+}
+
+.student-form-item {
+   margin: 0.2em 0;
+   text-align: left;
+}
+
+.student-form label {
+   text-align: left;
+}
+
+.student-form-item-wide {
+   grid-column: 1 / span 4;
+   text-align: center;
+}
+
+.student-form h4.student-form-item-wide {
+   border-top: 0.1em solid var(--color-light-headings-text);
+   padding-top: 0.5em;
+   margin-top: 0.5em;
+}
+
+.student-form h4.student-form-item-wide:first-of-type {
+   border-top: none;
+   padding-top: 0;
+   margin-top: 0;
+}
+
+.student-form div.student-form-item-wide:has(label[for="student-name"]) {
+   grid-column: 1 / span 2;
+   text-align: left;
+   justify-self: start;
+}
+
+.student-form label[for="student-name"],
+.student-form input#student-name {
+   text-align: left;
+}
+
+.student-form p.student-form-item-wide {
+   text-align: left;
+   grid-column: 1 / span 4;
+}
+
+.avatar-preview {
+   grid-column: 1;
+   grid-row: 5 / span 12;
+   background-color: var(--color-light-headings-background);
+   border: 0.1em solid var(--color-light-headings-text);
+   border-radius: 0.5em;
+   padding: 1em;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   min-height: 15em;
+}
 
 /********************************************
  * container classes for flexbox container

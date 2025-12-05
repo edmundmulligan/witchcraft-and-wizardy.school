@@ -1,8 +1,8 @@
 /*
  *************************************************************
- * Main CSS styles for the Web Witchcraft and Wizardry website 
- * 
- * These styles apply to all pages and this stylesheet should 
+ * Main CSS styles for the Web Witchcraft and Wizardry website
+ *
+ * These styles apply to all pages and this stylesheet should
  * be the first linked from all HTML files.
  *************************************************************
  */
@@ -12,7 +12,7 @@
   * Define semantic names for colours to be used on all pages
   * N.B. Use colour names not hex codes for better code readability
   *
-  * TODO: User switching between light and dark themes is out of scope 
+  * TODO: User switching between light and dark themes is out of scope
   * for phase 1 of this project but will be implemented in phase 2
   * using Javascript.
   **********************************************************************
@@ -71,7 +71,7 @@ body {
     font-size: 1.125em; /* 18px */
     line-height: 1.6;
     color: var(--color-light-page-text);
-    background-color: var(--color-light-page-background);   
+    background-color: var(--color-light-page-background);
 }
 
 /* Use body:before to stop the background image scrolling */
@@ -89,7 +89,7 @@ body::before {
     background-repeat: no-repeat;
     background-attachment: fixed;
 
-    /* ensure the background image tranparent so it 
+    /* ensure the background image tranparent so it
        takes a tint of the site background colour */
     opacity: 0.7;
     z-index: -1;
@@ -153,9 +153,13 @@ a:visited {
 
 a:hover, a:focus {
     color: var(--color-light-link-text-focus);
+}
+
+a:focus {
     outline: 0.1em dashed var(--color-light-link-text-focus);
     outline-offset: 0.1em;
 }
+
 
 /* styles for the navigation bar */
 nav.site-navigation {
@@ -200,7 +204,7 @@ nav.site-navigation  a.site-navigation::before {
     font-weight: 900; /* needed for solid style icons */
 }
 
-nav.site-navigation a.site-navigation:hover, 
+nav.site-navigation a.site-navigation:hover,
 nav.site-navigation a.site-navigation:focus {
     background-color: lightblue;
     color: var(--color-light-headings-text);

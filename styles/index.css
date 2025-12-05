@@ -1,10 +1,10 @@
 /*
  ***************************************************************************
- * CSS styles for the index page of the Web Witchcraft and Wizardry website 
+ * CSS styles for the index page of the Web Witchcraft and Wizardry website
  ***************************************************************************
  */
 
-  /* 
+  /*
  ********************************************
  * Page specific landmark element styles
  * Arranged vertically using flexbox
@@ -89,7 +89,8 @@
     grid-auto-flow: row;
     gap: 1em;
     max-width: 300px;
-}   
+}
+
 /********************************************
  * container classes for flexbox container
  ********************************************/

@@ -79,7 +79,9 @@
 
 <body>
     <header class="header-container">
-        <i class="fa-solid fa-wand-magic header-icon" aria-hidden="true"></i>
+        <a class="site-navigation" href="index.html">
+            <i class="fa-solid fa-wand-magic header-icon" aria-hidden="true"></i>
+        </a>
         <div class="header-text">
             <h1 class="site-title">Web Witchcraft and Wizardry</h1>
             <p class="site-subtitle">Learn to create magical websites</p>
@@ -110,61 +112,101 @@
                 class="student-form"
             >
                 <h4 class="student-form-item-wide">Enter your name</h4>
-                <label
-                    for="student-name"
-                    class="student-form-item"
-                >
-                    Your Name:
-                </label>
-                <input
-                    type="text"
-                    id="student-name"
-                    name="student-name"
-                    required
-                    class="student-form-item"
-                >
-                <p class="student-form-wide">
-                    To protect your privacy, please only give your firstname or a nickname
+                <div class="student-form-item-wide">
+                    <label for="student-name" class="student-form-item">
+                        Your Name:
+                    </label>
+                    <input
+                        type="text"
+                        id="student-name"
+                        name="student-name"
+                        required
+                        class="student-form-item"
+                    >
+                </div>
+                <p class="student-form-item-wide">
+                    To protect your privacy, please only give your first name or a nickname
                 </p>
 
-                <h4>Choose your avatar</h4>
-                <div>
-                    <label for="avatar-choice">Avatar:</label>
-                    <input type="radio" id="avatar-choice" name="avatar-choice" value="witch"> I am a Witch
-                    <input type="radio" id="avatar-choice" name="avatar-choice" value="wizard"> I am a Wizard
+                <h4 class="student-form-item-wide">Choose your avatar</h4>
+                <div class="avatar-preview" id="avatar-preview">
+                    <!-- Avatar preview will appear here -->
                 </div>
 
                 <div>
-                    <label for="gender-choice">Gender:</label>
-                    <input type="radio" id="gender-choice" name="gender-choice" value="female"> I am Female
-                    <input type="radio" id="gender-choice" name="gender-choice" value="male"> I am Male
+                    <label>Are you a witch or wizard?</label>
+                </div>
+                <div>
+                    <input type="radio" id="avatar-choice-witch" name="avatar-choice" value="witch">
+                    <label for="avatar-choice-witch">I am a witch</label>
+                </div>
+                <div>
+                    <input type="radio" id="avatar-choice-wizard" name="avatar-choice" value="wizard">
+                    <label for="avatar-choice-wizard">I am a wizard</label>
                 </div>
 
                 <div>
-                    <label for="age-choice">Age:</label>
-                <input type="radio" id="age-choice" name="age-choice" value="young"> I am Young
-                <input type="radio" id="age-choice" name="age-choice" value="old"> I am Old
+                    <label>Are you female or male?</label>
+                </div>
+                <div>
+                    <input type="radio" id="gender-choice-female" name="gender-choice" value="female">
+                    <label for="gender-choice-female">I am female</label>
+                </div>
+                <div>
+                    <input type="radio" id="gender-choice-male" name="gender-choice" value="male">
+                    <label for="gender-choice-male">I am male</label>
                 </div>
 
                 <div>
-                    <label for="preferred-theme">What time do you prefer:</label>
-                <input type="radio" id="theme-choice" name="theme-choice" value="light"> I prefer Daytime
-                <input type="radio" id="theme-choice" name="theme-choice" value="dark"> I prefer Nighttime
+                    <label>Are you young or old?</label>
+                </div>
+                <div>
+                    <input type="radio" id="age-choice-young" name="age-choice" value="young">
+                    <label for="age-choice-young">I am young</label>
+                </div>
+                <div>
+                    <input type="radio" id="age-choice-old" name="age-choice" value="old">
+                    <label for="age-choice-old">I am old</label>
                 </div>
 
-                 <button type="submit">Save Information</button>
+                <div>
+                    <label>Do you prefer day or night time?</label>
+                </div>
+                <div>
+                    <input type="radio" id="theme-choice-light" name="theme-choice" value="light">
+                    <label for="theme-choice-light">I prefer day time</label>
+                </div>
+                <div>
+                    <input type="radio" id="theme-choice-dark" name="theme-choice" value="dark">
+                    <label for="theme-choice-dark">I prefer night time</label>
+                </div>
+
+                <div class="student-form-item-wide">
+                 <button
+                    type="submit"
+                    aria-expanded="false"
+                    aria-controls="submit"
+                    onclick="showAlert('The Save Information button has not been implemented in this phase of the project as it relies on JavaScript, as described in the essay Incorporating usability and user experience into the Web Witchcraft and Wizardry project (Mulligan, 2025).')"
+>
+                    Save Information</button>
+                </div>
             </form>
         </section>
         <section id="lessons-section">
             <h3>Your Lessons</h3>
-            <div class="lessons-grid">
+            <div class="lessons-flexbox">
                 <div class="lesson-tile">
-                    <h3>Lesson 1: Introduction to HTML</h3>
-                    <p>Learn the basics of HTML and how to structure a web page.</p>
                     <a href="#" class="lesson-link"
                        onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
                                           'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">Start Lesson</a>
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 0: Setting up</h4>
+                        <p>
+                            Set up your computer with the tools required to do the lessons.
+                            If you are using a club computer at a Code Dojo then this will
+                            have alredy been done and you may skip this lesson.
+                        </p>
+                    </a>
                 </div>
                 <div class="lesson-tile">
                     <h3>Lesson 2: Styling with CSS</h3>
