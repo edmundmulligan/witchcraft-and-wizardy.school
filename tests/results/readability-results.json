@@ -2,13 +2,13 @@
   "pages": [
     {
       "file": "./students.html",
-      "wordCount": 180,
-      "fleschReadingEase": 69.2,
-      "fleschKincaidGrade": 8.1,
+      "wordCount": 179,
+      "fleschReadingEase": 70,
+      "fleschKincaidGrade": 7.9,
       "smogIndex": 10.4,
-      "colemanLiauIndex": 7.8,
-      "automatedReadabilityIndex": 7.8,
-      "averageGradeLevel": 8.5,
+      "colemanLiauIndex": 7.6,
+      "automatedReadabilityIndex": 7.6,
+      "averageGradeLevel": 8.4,
       "readingLevel": "Plain English (High School)",
       "readingAge": "15-16 years"
     },
@@ -50,13 +50,13 @@
     },
     {
       "file": "./about.html",
-      "wordCount": 1972,
-      "fleschReadingEase": 56.2,
-      "fleschKincaidGrade": 9.8,
-      "smogIndex": 12.1,
-      "colemanLiauIndex": 10.5,
-      "automatedReadabilityIndex": 9.8,
-      "averageGradeLevel": 10.6,
+      "wordCount": 1988,
+      "fleschReadingEase": 56.6,
+      "fleschKincaidGrade": 9.6,
+      "smogIndex": 12,
+      "colemanLiauIndex": 10.4,
+      "automatedReadabilityIndex": 9.5,
+      "averageGradeLevel": 10.4,
       "readingLevel": "Fairly Difficult (High School)",
       "readingAge": "17-18 years"
     }
