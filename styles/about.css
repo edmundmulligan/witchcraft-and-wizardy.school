@@ -35,6 +35,7 @@ main li {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1em;
+    margin: 2em;
 }
 
 .accessories-container {
@@ -53,9 +54,9 @@ main li {
     padding: 1.5em;
     background-color: var(--color-light-headings-background);
     color: var( --color-light-headings-text);
-    border-radius: 20%;
+    border: 1px solid var(--color-light-headings-text);
+    border-radius: 2em;
     justify-self: center;
-    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -63,12 +64,20 @@ main li {
 .facts-wide-item {
     padding: 1.5em;
     grid-column: 1 / span 3;
+    background-color: var(--color-light-headings-background);
+    color: var( --color-light-headings-text);
+    border: 1px solid var(--color-light-headings-text);
+    border-radius: 2em;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .accessory-item {
     padding: 1em;
     background-color: var(--color-light-headings-background);
     color: var( --color-light-headings-text);
+    border: 1px solid var(--color-light-headings-text);
     border-radius: 1em;
     text-align: center;
     width: 12em;
@@ -104,6 +113,7 @@ main li {
     padding: 1em;
     background-color: var(--color-light-headings-background);
     color: var( --color-light-headings-text);
+    border: 1px solid var(--color-light-headings-text);
     border-radius: 1em;
     display: flex;
     flex-direction: column;

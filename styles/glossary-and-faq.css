@@ -51,20 +51,8 @@ dd {
     align-items: center;
 }
 
-pre {
-    margin: 5em;
-    line-height: 1.5;
-    text-align: left;
-}
-
 .hidden {
     display: none;
-}
-
-.faq-text {
-    margin: 2em;
-    line-height: 1.5;
-    text-align: justify;
 }
 
 .faq-button {
@@ -73,8 +61,8 @@ pre {
     padding: 1em;
     font-size: large;
     font-weight: bold;
-    color: var(--color-light-page-text);
-    background-color: var(--color-light-page-background);
+    background-color: var(--color-light-headings-background);
+    color: var(--color-light-headings-text);
     border: 0.2em solid var(--color-light-headings-text);
     border-radius: 1em;
     cursor: pointer;
@@ -84,7 +72,7 @@ pre {
 
 .faq-button:hover,
 .faq-button:focus {
-    background-color: var(--color-light-headings-background);
+    background-color: var(--color-light-link-text-hover);
     color: var(--color-light-headings-text);
 }
 
