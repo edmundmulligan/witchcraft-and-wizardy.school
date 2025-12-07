@@ -4,60 +4,95 @@
  ***************************************************************************
  */
 
-/*
- ********************************************
- * Page specific landmark element styles
- * Arranged vertically using flexbox
- ********************************************
- */
-
 /********************************************
- * container styles
+ * styles for the student form
  ********************************************
  */
-
-.lessons-flexbox {
-   display: flex;
-}
-
-.lesson-tile {
-   padding: 1.5em;
-   background-color: var(--color-light-headings-background);
-   color: var( --color-light-headings-text);
-   border-radius: 20%;
-   justify-self: center;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-}
 
 .student-form {
    display: grid;
-   grid-template-columns: 30% auto auto auto;
+   grid-template-columns: 30% auto;
    gap: 0.5em;
    row-gap: 0.1em;
-   max-width: 50em;
+   max-width: 80%;
    margin: 0 auto;
    align-items: center;
    border: 0.2em solid var(--color-light-headings-text);
    border-radius: 1em;
 }
 
+.student-form-avatar-output-area {
+   grid-column: 1;
+   background-color: var(--color-light-headings-background);
+   border: 0.1em solid var(--color-light-headings-text);
+   border-radius: 0.5em;
+   padding: 1em;
+   margin: 1em;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   min-height: 15em;
+}
+
+.student-form-avatar-input-area {
+   grid-column: 2;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 0;
+   margin: 1em 0;
+   border-top: 0.1em solid var(--color-light-headings-text);
+}
+
+.student-form label {
+   text-align: left;
+}
+
 .student-form input[type="text"] {
-   max-width: 30em;
+   max-width: 60%;
 }
 
 .student-form button[type="submit"] {
-   max-width: 15em;
+   max-width: 20em;
    justify-self: start;
+   padding: 1em 2em;
+   font-size: 1.1em;
+   margin: 1em 0;
+   border-radius: 0.5em;
+   background-color: var(--color-light-headings-background);
+   color: var(--color-light-headings-text);
+}
+
+.student-form button[type="submit"]:hover,
+.student-form button[type="submit"]:focus {
+   background-color: var(--color-light-link-text-hover);
+   color: var(--color-light-headings-text);
+   cursor: pointer;
+}
+
+.student-form hr {
+   border: none;
+   border-top: 0.1em solid var(--color-light-headings-text);
+   margin: 0.5em 0 0;
+}
+
+.student-form h4 {
+   border-top: 0.1em solid var(--color-light-headings-text);
+   padding-top: 0.5em;
+   margin-top: 0.5em;
+}
+
+.student-form h4:first-of-type {
+   border-top: none;
+   padding-top: 0;
+   margin-top: 0;
+}
+
+.student-form-indent {
+   padding-left: 2em;
 }
 
 .student-form-item {
    margin: 0.2em 0;
-   text-align: left;
-}
-
-.student-form label {
    text-align: left;
 }
 
@@ -66,59 +101,47 @@
    text-align: center;
 }
 
-.student-form h4.student-form-item-wide {
-   border-top: 0.1em solid var(--color-light-headings-text);
-   padding-top: 0.5em;
-   margin-top: 0.5em;
+.student-form-choice {
+   display: flex;
+   align-items: center;
+   gap: 0.5em;
+   padding: 0.5em;
+   border-bottom: 0.1em solid var(--color-light-headings-text);
 }
 
-.student-form h4.student-form-item-wide:first-of-type {
-   border-top: none;
-   padding-top: 0;
-   margin-top: 0;
+/********************************************
+ * styles for the lessons tiles
+ ********************************************
+ */
+
+.lessons-flexbox {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
 }
 
-.student-form div.student-form-item-wide:has(label[for="student-name"]) {
-   grid-column: 1 / span 2;
-   text-align: left;
-   justify-self: start;
-}
-
-.student-form label[for="student-name"],
-.student-form input#student-name {
-   text-align: left;
-}
-
-.student-form p.student-form-item-wide {
-   text-align: left;
-   grid-column: 1 / span 4;
-}
-
-.avatar-preview {
-   grid-column: 1;
-   grid-row: 5 / span 12;
+.lesson-tile {
    background-color: var(--color-light-headings-background);
    border: 0.1em solid var(--color-light-headings-text);
    border-radius: 0.5em;
    padding: 1em;
-   display: flex;
+   margin: 1em;
+   flex: 0 0 25%;
+   max-width: 25%;
+   color: var( --color-light-headings-text);
+   justify-self: center;
    align-items: center;
    justify-content: center;
-   min-height: 15em;
 }
 
-/********************************************
- * container classes for flexbox container
- ********************************************/
+.lesson-tile a {
+   text-decoration: none;
+   color: var(--color-light-headings-text);
+}
 
-/**********************************************
- * contained classes for flexbox items
- **********************************************/
-
-/********************************************************
- * border and color classes separate from flexbox styles
- ********************************************************/
-
-/**********************************************
- * Individual item overrides
- **********************************************/
+.lesson-tile:hover,
+.lesson-tile:focus {
+   background-color: var(--color-light-link-text-hover);
+   color: var(--color-light-headings-text);
+   cursor: pointer;
+}

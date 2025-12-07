@@ -25,7 +25,7 @@
     --color-light-headings-background: lightcyan;
     --color-light-headings-text: purple;
     --color-light-link-text: darkgreen;
-    --color-light-link-text-hover: darkorange;
+    --color-light-link-text-hover: lightblue;
     --color-light-link-text-visited: darkblue;
     --color-light-link-text-focus: darkorange;
     --color-light-error-text: darkred;
@@ -206,7 +206,7 @@ nav.site-navigation  a.site-navigation::before {
 
 nav.site-navigation a.site-navigation:hover,
 nav.site-navigation a.site-navigation:focus {
-    background-color: lightblue;
+    background-color: var(--color-light-link-text-hover);
     color: var(--color-light-headings-text);
 }
 
