@@ -132,7 +132,6 @@ HAS_ISSUES=$(node -p "const fs = require('fs'); const data = JSON.parse(fs.readF
 
 if [ "$HAS_ISSUES" -eq 0 ]; then
   echo "✅ All pages meet 100% accessibility threshold."
-  rm -f "$RESULT_FILE"
   exit 0
 else
   echo "❌ Some pages below 100% accessibility threshold."

@@ -180,8 +180,7 @@ HAS_ERRORS=$(node -p "const fs = require('fs'); const data = JSON.parse(fs.readF
 
 if [ "$HAS_ERRORS" -eq 0 ]; then
   echo ""
-  echo "Detailed results: No errors, file not saved."
-  rm -f "$RESULT_FILE"
+  echo "Detailed results: No errors."
 else
   echo ""
   echo "Detailed results saved to: $RESULT_FILE"
