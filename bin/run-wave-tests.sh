@@ -320,7 +320,6 @@ HAS_ISSUES=$(node -p "const fs = require('fs'); const data = JSON.parse(fs.readF
 if [ "$HAS_ISSUES" -eq 0 ]; then
   echo ""
   echo "✅ All pages passed WAVE tests (no errors, alerts, or contrast issues)."
-  rm -f "$RESULT_FILE"
   exit 0
 else
   HAS_ERRORS=$(node -p "const fs = require('fs'); const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8')); data.pages.some(p => p.errors > 0) ? 1 : 0")
