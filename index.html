@@ -44,6 +44,7 @@
 
     <!-- main.css must be the first stylesheet loaded -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/buttons.css">
 
     <!-- page specific stylesheet -->
     <link rel="stylesheet" href="styles/index.css">
@@ -81,6 +82,8 @@
             <h1 class="site-title">Web Witchcraft and Wizardry</h1>
             <h2 class="site-subtitle">Learn to create magical websites</h2>
         </div>
+        <img class="header-image" src="images/witch-151167_1280.png" alt="" aria-hidden="true">
+
         <nav class="site-navigation" aria-label="Site navigation">
             <ul class="site-navigation">
                 <li class="site-navigation"><a class="site-navigation" href="index.html">Home</a></li>
@@ -96,13 +99,13 @@
         </nav>
     </header>
 
-    <main class="main-container">
+    <main>
         <h2 class="page-title">Click on your chosen path</h2>
         <div class="circular-button-container">
-            <a href="about.html" class="circular-button circular-href">Start</a>
-            <a href="students.html" class="circular-button circular-href">I am a Student</a>
+            <a href="about.html" class="button-circle">Start</a>
+            <a href="students.html" class="button-circle">I am a Student</a>
             <a href="#"
-                class="circular-button circular-href"
+                class="button-circle"
                 onclick="showAlert('This page has not been implemented in this phase of the project, as described ' +
                                    'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
                                    'Wizardry project (Mulligan, 2025).')">I am a Mentor</a>
@@ -111,14 +114,16 @@
     </main>
 
     <footer class="footer-container">
-        <div class="footer-text">
+        <div class="footer-content">
             <h2>Created by Edmund Mulligan, BSc, PgDip, CITP MBCS, GradStat FRSS</h2>
             <p>
                 &copy; The Embodied Mind, 2025.
                 MIT License. <a href="license-and-credits.html">See the license page for more details</a>.
             </p>
         </div>
-        <img class="footer-logo" src="images/logo-embodied-mind-with-name-purple.png" alt="The Embodied Mind logo. A brain with a moustache winking">
+        <div class="footer-content">
+            <img src="images/logo-embodied-mind-with-name-purple.png" alt="The Embodied Mind logo. A brain with a moustache winking">
+        </div>
     </footer>
 </body>
 </html>

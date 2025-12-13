@@ -49,6 +49,7 @@
 
     <!-- main.css must be the first stylesheet loaded -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/buttons.css">
 
     <!-- page specific stylesheet -->
     <link rel="stylesheet" href="styles/students.css">
@@ -86,6 +87,8 @@
             <h1 class="site-title">Web Witchcraft and Wizardry</h1>
             <p class="site-subtitle">Learn to create magical websites</p>
         </div>
+        <img class="header-image" src="images/witch-151167_1280.png" alt="" aria-hidden="true">
+
         <nav class="site-navigation" aria-label="Site navigation">
             <ul class="site-navigation">
                 <li class="site-navigation"><a class="site-navigation" href="index.html">Home</a></li>
@@ -120,13 +123,9 @@
                 method="post"
                 class="student-form"
             >
-                <h4 class="student-form-item-wide">Enter your name</h4>
-
                 <div class="student-form-item-wide">
-                    <label
-                        for="student-name"
-                        class="student-form-item student-form-indent"
-                    >
+                    <h4>Enter your name</h4>
+                    <label for="student-name">
                         Your Name:
                     </label>
                     <input
@@ -134,20 +133,18 @@
                         id="student-name"
                         name="student-name"
                         required
-                        class="student-form-item"
                     >
+                    <p>
+                        To protect your privacy, please only give your first
+                        name or a nickname
+                    </p>
+                    <hr>
                 </div>
-
-                <p class="student-form-item-wide student-form-indent">
-                    To protect your privacy, please only give your first
-                    name or a nickname
-                </p>
-
+ 
                 <h4 class="student-form-item-wide">Choose your avatar</h4>
 
                 <output
                     for="avatar-choice gender-choice age-choice theme-choice"
-                    class="student-form-avatar-output-area"
                     id="avatar-preview"
                 >
                     Your avatar will appear here. This will be
@@ -155,7 +152,7 @@
                     included.
                 </output>
 
-                <div class="student-form-avatar-input-area">
+                <div class="student-form-avatar">
                     <div class="student-form-choice">
                         <input type="radio" id="avatar-choice-witch" name="avatar-choice" value="witch">
                         <label for="avatar-choice-witch">I am a witch</label>
@@ -204,6 +201,7 @@
                         type="submit"
                         aria-expanded="false"
                         aria-controls="submit"
+                        class="button-rectangle"
                         onclick="showAlert('The Save Information button has not been implemented in this phase of the project as it relies on JavaScript, as described in the essay Incorporating usability and user experience into the Web Witchcraft and Wizardry project (Mulligan, 2025).')"
                     >
                         Save Information
@@ -537,14 +535,16 @@
     </main>
 
     <footer class="footer-container">
-        <div class="footer-text">
+        <div class="footer-content">
             <h2>Created by Edmund Mulligan, BSc, PgDip, CITP MBCS, GradStat FRSS</h2>
             <p>
                 &copy; The Embodied Mind, 2025.
-                Distributed under the MIT License. <a href="license-and-credits.html">See the license and credits page for more information</a>.
+                MIT License. <a href="license-and-credits.html">See the license page for more details</a>.
             </p>
         </div>
-        <img class="footer-logo" src="images/logo-embodied-mind-with-name-purple.png" alt="The Embodied Mind logo. A brain with a moustache winking">
+        <div class="footer-content">
+            <img src="images/logo-embodied-mind-with-name-purple.png" alt="The Embodied Mind logo. A brain with a moustache winking">
+        </div>
     </footer>
 </body>
 </html>

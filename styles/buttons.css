@@ -1,0 +1,60 @@
+/*
+ **********************************************************************
+ * File       : buttons.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This stylesheet defines styles for buttons used across the site.
+ **********************************************************************
+ */
+
+/* Styles common to all buttons. Class name must start with "button-" */
+ [class^="button-"],
+ [class*=" button-"] {
+    margin: 1rem auto;
+    padding: 1rem;
+    font-size: large;
+    font-weight: bold;
+    background-color: var(--color-light-headings-background);
+    color: var(--color-light-headings-text);
+    border: 0.2rem solid var(--color-light-headings-text);
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+} 
+
+[class^="button"]:hover,
+[class*=" button"]:hover,
+[class^="button"]:focus,
+[class*=" button"]:focus {
+    color: var(--color-light-headings-text);
+    background-color: var(--color-light-headings-background);
+    border-color: var(--color-light-headings-text);
+    transform: scale(1.2);
+}
+
+/* not all buttons are links, but those that are use these styles */
+[class^="button"]:link,
+[class*=" button"]:link,
+[class^="button"]:visited,
+[class*=" button"]:visited {
+    color: var(--color-light-link-text);
+    text-decoration: none;
+}
+
+/* Style override for rectangular buttons */
+.button-rectangle {
+    display: block;
+    border-radius: var(--border-radius);
+}
+
+/* Style override for circular buttons */
+.button-circle {
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    width: 20%;
+    background-color: var(--color-light-page-background);
+}

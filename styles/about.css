@@ -1,35 +1,35 @@
 /*
- *********************************************************************************
- * CSS styles for the about page of the Web Witchcraft and Wizardry website
- *********************************************************************************
+ **********************************************************************
+ * File       : about.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This is the page specific stylesheet for the Web Witchcraft and 
+ *   Wizardry about page. It defines styles that apply only to the 
+ *   about page.
+ **********************************************************************
  */
 
-  /*
- ********************************************
- * Page specific landmark element styles
- * Arranged vertically using flexbox
- ********************************************
- */
-
-main ul {
+ul.about-text {
     margin: 2em;
     margin-left: 4em;
     line-height: 1.5;
     text-align: left;
 }
 
-main li {
+ul.about-text li {
     margin: 0.5em 0;
 }
 
-.about-text {
+p.about-text {
     margin: 2em;
     line-height: 1.5;
     text-align: justify;
 }
 
 /********************************************
- * container classes for grid container
+ * container classes for facts and accessories
  ********************************************/
 .facts-container  {
     display: grid;

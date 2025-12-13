@@ -1,23 +1,28 @@
 /*
- *********************************************************************************
- * CSS styles for the glossary-and-faq page of the Web Witchcraft and Wizardry website
- *********************************************************************************
+ **********************************************************************
+ * File       : glossary-and-faq.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This is the page specific stylesheet for the Web Witchcraft and 
+ *   Wizardry glossary and FAQ page. It defines styles that apply only to the 
+ *   glossary and FAQ page.
+ **********************************************************************
  */
 
 /*
  ********************************************
- * Page specific landmark element styles
- * Arranged vertically using flexbox
+ * Styles for glossary text and table
  ********************************************
  */
 
-/* override h4-h6 to make them left justified rather tha centered */
-h4, h5, h6 {
-    text-align: left;
-        margin: 2em;
+p.clossary {
+    margin: 2em;
+    text-align: justify;
 }
 
-dl {
+dl.glossary {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 0;
@@ -26,7 +31,7 @@ dl {
     align-items: stretch;
 }
 
-dt {
+dt.glossary {
     font-weight: bold;
     grid-column: 1;
     margin: 0;
@@ -39,7 +44,7 @@ dt {
     align-items: center;
 }
 
-dd {
+dd.glossary {
     grid-column: 2;
     margin: 0;
     padding: 0 0.5em;
@@ -50,32 +55,3 @@ dd {
     display: flex;
     align-items: center;
 }
-
-.hidden {
-    display: none;
-}
-
-.faq-button {
-    display: block;
-    margin: 1em auto;
-    padding: 1em;
-    font-size: large;
-    font-weight: bold;
-    background-color: var(--color-light-headings-background);
-    color: var(--color-light-headings-text);
-    border: 0.2em solid var(--color-light-headings-text);
-    border-radius: 1em;
-    cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-}
-
-.faq-button:hover,
-.faq-button:focus {
-    background-color: var(--color-light-link-text-hover);
-    color: var(--color-light-headings-text);
-}
-
-/**********************************************
- * Individual item overrides
- **********************************************/

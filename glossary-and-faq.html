@@ -22,8 +22,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- End of meta tags -->
 
-    <!-- Set the document title N.B. All pages have the same title.-->
-    <title>Web Witchcraft and Wizardry</title>
+    <!-- Set the document title -->
+    <title>Glossary and FAQ|Web Witchcraft and Wizardry</title>
 
     <!-- Link to Favicon -->
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
@@ -43,6 +43,7 @@
 
     <!-- main.css must be the first stylesheet loaded -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/buttons.css">
 
     <!-- page specific stylesheet -->
     <link rel="stylesheet" href="styles/glossary-and-faq.css">
@@ -79,6 +80,7 @@
             <h1 class="site-title">Web Witchcraft and Wizardry</h1>
             <h2 class="site-subtitle">Learn to create magical websites</h2>
         </div>
+        <img class="header-image" src="images/witch-151167_1280.png" alt="" aria-hidden="true">
 
         <nav class="site-navigation" aria-label="Site navigation">
             <ul class="site-navigation">
@@ -108,20 +110,23 @@
 
         <section id="glossary">
             <h3>Glossary</h3>
-            <p>
+
+            <p class="glossary">
                 This is a basic glossary. More terms will be added later.
             </p>
-            <p>
+
+            <p class="glossary">
                 Whenever you see a <i class="fa-duotone fa-circle-question" aria-hidden="true"></i>
-                symbol next to a word or phrase, you can click on it to see its definition.
+                symbol next to a word or phrase in a lesson, you can click on it to see its definition.
             </p>
-            <dl>
-                <dt id="glossary-css">CSS</dt>
-                <dd>Cascading Style Sheets - code that controls how web pages look and feel.</dd>
-                <dt id="glossary-html">HTML</dt>
-                <dd>HyperText Markup Language - the basic code used to build web pages.</dd>
-                <dt id="glossary-javascript">JavaScript</dt>
-                <dd>A programming language that adds interactive features to websites.</dd>
+
+            <dl class="glossary">
+                <dt id="glossary-css" class="glossary">CSS</dt>
+                <dd class="glossary">Cascading Style Sheets - code that controls how web pages look and feel.</dd>
+                <dt id="glossary-html" class="glossary">HTML</dt>
+                <dd class="glossary">HyperText Markup Language - the basic code used to build web pages.</dd>
+                <dt id="glossary-javascript" class="glossary">JavaScript</dt>
+                <dd class="glossary">A programming language that adds interactive features to websites.</dd>
             </dl>
         </section>
 
@@ -138,7 +143,7 @@
 
             <button
                 type="button"
-                class="faq-button"
+                class="rectangular-button"
                 aria-expanded="false"
                 aria-controls="faq1-answer"
                 onclick="showAlert('The FAQ section has not been implemented in this phase of the project as it relies on JavaScript, as described in the essay Incorporating usability and user experience into the Web Witchcraft and Wizardry project (Mulligan, 2025).')"
@@ -147,7 +152,7 @@
             </button>
         </section>
 
-                <nav class="in-page-nav" aria-label="Page sections before footer">
+        <nav class="in-page-nav" aria-label="Page sections before footer">
             <ul class="in-page-nav">
                 <li class="in-page-nav">Jump to:</li>
                 <li class="in-page-nav"><a href="#glossary">Glossary</a></li>
@@ -158,14 +163,16 @@
     </main>
 
     <footer class="footer-container">
-        <div class="footer-text">
+        <div class="footer-content">
             <h2>Created by Edmund Mulligan, BSc, PgDip, CITP MBCS, GradStat FRSS</h2>
             <p>
                 &copy; The Embodied Mind, 2025.
-                Distributed under the MIT License. <a href="license-and-credits.html">See the license and credits page for more information</a>.
+                MIT License. <a href="license-and-credits.html">See the license page for more details</a>.
             </p>
         </div>
-        <img class="footer-logo" src="images/logo-embodied-mind-with-name-purple.png" alt="The Embodied Mind logo. A brain with a moustache winking">
+        <div class="footer-content">
+            <img src="images/logo-embodied-mind-with-name-purple.png" alt="The Embodied Mind logo. A brain with a moustache winking">
+        </div>
     </footer>
 </body>
 </html>
