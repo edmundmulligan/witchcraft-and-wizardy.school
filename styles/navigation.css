@@ -1,0 +1,110 @@
+/*
+ **********************************************************************
+ * File       : navigation.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This stylesheet defines styles for sitewide and in-page navigation
+ *   elements. These styles ensure a consistent look and feel
+ *   across all pages of the Web Witchcraft and Wizardry website.
+ **********************************************************************
+ */
+
+/********************************************************
+ * Styles for sitewide navigation elements
+ ********************************************************/
+
+nav.site-navigation {
+    color: var(--color-light-headings-text);
+    background-color: var(--color-light-headings-background);
+    width: 90%;
+    border-radius: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.25rem 0.5rem;
+    box-sizing: border-box;
+    grid-column: 1 / -1;
+    grid-row: 2;
+}
+
+ul.site-navigation {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    gap: 0.5rem;
+    row-gap: 0.25rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+li.site-navigation {
+    display: inline;
+    flex: 0 1 auto;
+}
+
+a.site-navigation {
+    color: var(--color-light-headings-text);
+    text-decoration: none;
+    padding: 0.5rem;
+    display: block;
+}
+
+/* Pseudo classes and elements for nav links */
+nav.site-navigation  a.site-navigation::before {
+    content: "\f0d0";  /* Font Awesome Magic Wand */
+    font-family: "Font Awesome 7 Pro";
+    font-weight: 900; /* needed for solid style icons */
+}
+
+nav.site-navigation a.site-navigation:hover,
+nav.site-navigation a.site-navigation:focus {
+    background-color: var(--color-light-link-text-hover);
+    color: var(--color-light-headings-text);
+}
+
+nav.site-navigation a.site-navigation:hover::before,
+nav.site-navigation a.site-navigation:focus::before {
+    content: "\e2ca";  /* Font Awesome Magic Wand with sparkles */
+    font-family: "Font Awesome 7 Pro";
+    font-weight: 900; /* needed for solid style icons */
+}
+
+/********************************************************
+ * Styles for in page navigation elements
+ ********************************************************/
+
+nav.in-page-nav {
+    margin: 1rem 0;
+    padding: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+ul.in-page-nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    gap: 0.5rem;
+    row-gap: 0.25rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+li.in-page-nav {
+    display: inline;
+    flex: 0 1 auto;
+}
+
+a.in-page-nav {
+    color: var(--color-light-headings-text);
+    text-decoration: none;
+    padding: 0.5rem;
+    display: block;
+}
