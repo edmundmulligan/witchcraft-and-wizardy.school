@@ -1,6 +1,6 @@
 /*
  **********************************************************************
- * File       : buttons.css
+ * File       : components/buttons.css
  * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
  * Copyright  : (c) 2025 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
@@ -18,7 +18,7 @@
     font-weight: bold;
     background-color: var(--color-light-headings-background);
     color: var(--color-light-headings-text);
-    border: 0.2rem solid var(--color-light-headings-text);
+    border: var(--border-style) var(--border-weight) var(--color-light-headings-text);
     cursor: pointer;
     text-align: center;
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;

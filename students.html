@@ -51,17 +51,18 @@
     <link rel="stylesheet" href="styles/main.css">
 
     <!-- These stylesheets are common to all pages -->
-    <link rel="stylesheet" href="styles/buttons.css">
-    <link rel="stylesheet" href="styles/header-and-footer.css">
-    <link rel="stylesheet" href="styles/navigation.css">
-    <link rel="stylesheet" href="styles/titles.css">
+    <link rel="stylesheet" href="styles/components/buttons.css">
+    <link rel="stylesheet" href="styles/components/header-and-footer.css">
+    <link rel="stylesheet" href="styles/components/navigation.css">
+    <link rel="stylesheet" href="styles/components/titles.css">
 
     <!-- page specific stylesheet -->
     <link rel="stylesheet" href="styles/students.css">
 
     <!-- media-queries must be the last stylesheets loaded -->
-    <link rel="stylesheet" href="styles/media-queries-main.css">
-    <link rel="stylesheet" href="styles/media-queries-students.css">
+    <link rel="stylesheet" href="styles/media-queries/header-and-footer.css">
+    <link rel="stylesheet" href="styles/media-queries/students.css">
+    <link rel="stylesheet" href="styles/media-queries/main.css">
     <!-- End of CSS stylesheets section -->
 
     <!-- Load JavaScript files -->
@@ -69,44 +70,39 @@
     <!-- End JavaScript file link -->
 
     <noscript>
-        <style>
-            .js-required { display: none; }
-            body::before {
-                content: "This page uses JavaScript for enhanced functionality. Please enable JavaScript for the best experience.";
-                display: block;
-                text-align: center;
-                padding: 1.25em;
-                background-color: var(--color-light-warning-background);
-                color: var(--color-light-warning-text);
-            }
-        </style>
+        <link rel="stylesheet" href="styles/noscript.css">
     </noscript>
 </head>
 
 <body>
-    <header class="header-container">
-        <a class="site-navigation" href="index.html" aria-label="Go to home page">
-            <i class="fa-solid fa-wand-magic header-icon" aria-hidden="true"></i>
-        </a>
-        <div class="header-text">
-            <h1 class="site-title">Web Witchcraft and Wizardry</h1>
-            <p class="site-subtitle">Learn to create magical websites</p>
+    <header class="header">
+        <div class="header-left">
+            <img class="header-image mirror" src="images/cat-1299082.svg" alt="" aria-hidden="true">
         </div>
-        <img class="header-image" src="images/witch-151167_1280.png" alt="" aria-hidden="true">
 
-        <nav class="site-navigation" aria-label="Site navigation">
-            <ul class="site-navigation">
-                <li class="site-navigation"><a class="site-navigation" href="index.html">Home</a></li>
-                <li class="site-navigation"><a class="site-navigation" href="students.html">Students</a></li>
-                <li class="site-navigation"><a class="site-navigation" href="#"
-                       onclick="showAlert('This page has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">Mentors</a></li>
-                <li class="site-navigation"><a class="site-navigation" href="about.html">About</a></li>
-                <li class="site-navigation"><a class="site-navigation" href="glossary-and-faq.html">Glossary</a></li>
-                <li class="site-navigation"><a class="site-navigation" href="license-and-credits.html">License</a></li>
-            </ul>
-        </nav>
+        <div class="header-center">
+            <div class="header-text">
+                <h1 class="site-title">Web Witchcraft and Wizardry</h1>
+                <h2 class="site-subtitle">Learn to create magical websites</h2>
+                <nav class="site-navigation" aria-label="Site navigation">
+                    <ul class="site-navigation">
+                        <li class="site-navigation"><a class="site-navigation" href="index.html">Home</a></li>
+                        <li class="site-navigation"><a class="site-navigation" href="students.html">Students</a></li>
+                        <li class="site-navigation"><a class="site-navigation" href="#"
+                               onclick="showAlert('This page has not been implemented in this phase of the project, as described ' +
+                                                  'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                                  'Wizardry project (Mulligan, 2025).')">Mentors</a></li>
+                        <li class="site-navigation"><a class="site-navigation" href="about.html">About</a></li>
+                        <li class="site-navigation"><a class="site-navigation" href="glossary-and-faq.html">Glossary</a></li>
+                        <li class="site-navigation"><a class="site-navigation" href="license-and-credits.html">License</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="header-right">
+          <img class="header-image" src="images/witch-151167.svg" alt="" aria-hidden="true">
+        </div>
     </header>
 
     <main>
@@ -539,15 +535,16 @@
         </nav>
     </main>
 
-    <footer class="footer-container">
-        <div class="footer-content">
-            <h2>Created by Edmund Mulligan, BSc, PgDip, CITP MBCS, GradStat FRSS</h2>
+    <footer class="footer">
+        <div class="footer-text">
+            <h2>Created by Edmund Mulligan, BSc, PgDip, CITP&nbsp;MBCS, GradStat&nbsp;FRSS</h2>
             <p>
                 &copy; The Embodied Mind, 2025.
                 MIT License. <a href="license-and-credits.html">See the license page for more details</a>.
             </p>
         </div>
-        <div class="footer-content">
+
+        <div class="footer-logo">
             <img src="images/logo-embodied-mind-with-name-purple.png" alt="The Embodied Mind logo. A brain with a moustache winking">
         </div>
     </footer>
