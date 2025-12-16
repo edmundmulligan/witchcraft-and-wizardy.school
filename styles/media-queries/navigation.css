@@ -1,0 +1,27 @@
+/*
+ **********************************************************************
+ * File       : media-queries/header-and-footer.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This stylesheet contains media queries for the header and 
+ *   footer sections used across the Web Witchcraft and Wizardry 
+ *   website.
+ **********************************************************************
+ */
+
+ /* Media query for small screens */
+ /* switchs from horizontal to vertical flex layout */
+
+@media (width <= 600px) {
+    ul.site-navigation {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    ul.in-page-navigation {
+        flex-direction: column;
+        align-items: center;
+    }
+}

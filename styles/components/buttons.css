@@ -14,7 +14,7 @@
  [class*=" button-"] {
     margin: 1rem auto;
     padding: 1rem;
-    font-size: large;
+    font-size: clamp(0.5rem, 2vw, 1.5rem);
     font-weight: bold;
     background-color: var(--color-light-headings-background);
     color: var(--color-light-headings-text);
@@ -26,8 +26,8 @@
 
 [class^="button"]:hover,
 [class*=" button"]:hover,
-[class^="button"]:focus,
-[class*=" button"]:focus {
+[class^="button"]:focus-visible,
+[class*=" button"]:focus-visible {
     color: var(--color-light-headings-text);
     background-color: var(--color-light-headings-background);
     border-color: var(--color-light-headings-text);

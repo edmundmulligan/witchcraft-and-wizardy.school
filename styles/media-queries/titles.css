@@ -1,0 +1,31 @@
+/*
+ **********************************************************************
+ * File       : components/titles.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This stylesheet defines styles for site titles, subtitles and page
+ *   titles used across the Web Witchcraft and Wizardry website.
+ **********************************************************************
+ */
+
+/* Media query for small screens */
+/* adjusts margins and padding for better fit */
+
+@media (width <= 600px) {
+    .site-title {
+        margin: 0;
+        padding: 0;
+    }
+
+    .site-subtitle {
+        margin: 0;
+        padding: 0;
+    }
+
+    .page-title {
+        margin: 0;
+        padding: 0;
+    }
+}

@@ -58,11 +58,15 @@
 
     <!-- media-queries must be the last stylesheets loaded -->
     <link rel="stylesheet" href="styles/media-queries/header-and-footer.css">
+    <link rel="stylesheet" href="styles/media-queries/navigation.css">
+    <link rel="stylesheet" href="styles/media-queries/titles.css">  
     <link rel="stylesheet" href="styles/media-queries/main.css">
     <!-- End of CSS stylesheets section -->
 
     <!-- Load JavaScript files -->
     <script src="scripts/alert.js" defer></script>
+    <script src="scripts/header.js" defer></script>
+    <script src="scripts/footer.js" defer></script>
     <!-- End JavaScript file link -->
 
     <noscript>
@@ -72,45 +76,19 @@
 
 <body>
     <header class="header">
-        <div class="header-left">
-            <img class="header-image mirror" src="images/cat-1299082.svg" alt="" aria-hidden="true">
-        </div>
-
-        <div class="header-center">
-            <div class="header-text">
-                <h1 class="site-title">Web Witchcraft and Wizardry</h1>
-                <h2 class="site-subtitle">Learn to create magical websites</h2>
-                <nav class="site-navigation" aria-label="Site navigation">
-                    <ul class="site-navigation">
-                        <li class="site-navigation"><a class="site-navigation" href="index.html">Home</a></li>
-                        <li class="site-navigation"><a class="site-navigation" href="students.html">Students</a></li>
-                        <li class="site-navigation"><a class="site-navigation" href="#"
-                               onclick="showAlert('This page has not been implemented in this phase of the project, as described ' +
-                                                  'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                                  'Wizardry project (Mulligan, 2025).')">Mentors</a></li>
-                        <li class="site-navigation"><a class="site-navigation" href="about.html">About</a></li>
-                        <li class="site-navigation"><a class="site-navigation" href="glossary-and-faq.html">Glossary</a></li>
-                        <li class="site-navigation"><a class="site-navigation" href="license-and-credits.html">License</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-
-        <div class="header-right">
-          <img class="header-image" src="images/witch-151167.svg" alt="" aria-hidden="true">
-        </div>
+        <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
     </header>
 
     <main>
         <h2 class="page-title">About Web Witchcraft and Wizardry</h2>
 
-        <nav class="in-page-nav" aria-label="Page sections before introduction">
-            <ul class="in-page-nav">
-                <li class="in-page-nav">Jump to:</li>
-                <li class="in-page-nav"><a href="#introduction">Introduction</a></li>
-                <li class="in-page-nav"><a href="#gallery">Gallery</a></li>
-                <li class="in-page-nav"><a href="#accessories">Accessories</a></li>
-                <li class="in-page-nav"><a href="#facts">Interesting Facts</a></li>
+        <nav class="in-page-navigationigation" aria-label="Page sections before introduction">
+            <ul class="in-page-navigationigation">
+                <li class="in-page-navigationigation">Jump to:</li>
+                <li class="in-page-navigationigation"><a href="#introduction">Introduction</a></li>
+                <li class="in-page-navigationigation"><a href="#gallery">Gallery</a></li>
+                <li class="in-page-navigationigation"><a href="#accessories">Accessories</a></li>
+                <li class="in-page-navigationigation"><a href="#facts">Interesting Facts</a></li>
             </ul>
         </nav>
 
@@ -190,13 +168,13 @@
             </p>
         </section>
 
-        <nav class="in-page-nav" aria-label="Page sections before gallery">
-            <ul class="in-page-nav">
-                <li class="in-page-nav">Jump to:</li>
-                <li class="in-page-nav"><a href="#introduction">Introduction</a></li>
-                <li class="in-page-nav"><a href="#gallery">Gallery</a></li>
-                <li class="in-page-nav"><a href="#accessories">Accessories</a></li>
-                <li class="in-page-nav"><a href="#facts">Interesting Facts</a></li>
+        <nav class="in-page-navigationigation" aria-label="Page sections before gallery">
+            <ul class="in-page-navigationigation">
+                <li class="in-page-navigationigation">Jump to:</li>
+                <li class="in-page-navigationigation"><a href="#introduction">Introduction</a></li>
+                <li class="in-page-navigationigation"><a href="#gallery">Gallery</a></li>
+                <li class="in-page-navigationigation"><a href="#accessories">Accessories</a></li>
+                <li class="in-page-navigationigation"><a href="#facts">Interesting Facts</a></li>
             </ul>
         </nav>
         <section id="gallery">
@@ -245,13 +223,13 @@
             </div>
         </section>
 
-        <nav class="in-page-nav" aria-label="Page sections before accessories">
-            <ul class="in-page-nav">
-                <li class="in-page-nav">Jump to:</li>
-                <li class="in-page-nav"><a href="#introduction">Introduction</a></li>
-                <li class="in-page-nav"><a href="#gallery">Gallery</a></li>
-                <li class="in-page-nav"><a href="#accessories">Accessories</a></li>
-                <li class="in-page-nav"><a href="#facts">Interesting Facts</a></li>
+        <nav class="in-page-navigationigation" aria-label="Page sections before accessories">
+            <ul class="in-page-navigationigation">
+                <li class="in-page-navigationigation">Jump to:</li>
+                <li class="in-page-navigationigation"><a href="#introduction">Introduction</a></li>
+                <li class="in-page-navigationigation"><a href="#gallery">Gallery</a></li>
+                <li class="in-page-navigationigation"><a href="#accessories">Accessories</a></li>
+                <li class="in-page-navigationigation"><a href="#facts">Interesting Facts</a></li>
             </ul>
         </nav>
         <section id="accessories">
@@ -554,13 +532,13 @@
             </div>
         </section>
 
-        <nav class="in-page-nav" aria-label="Page sections before interesting facts">
-            <ul class="in-page-nav">
-                <li class="in-page-nav">Jump to:</li>
-                <li class="in-page-nav"><a href="#introduction">Introduction</a></li>
-                <li class="in-page-nav"><a href="#gallery">Gallery</a></li>
-                <li class="in-page-nav"><a href="#accessories">Accessories</a></li>
-                <li class="in-page-nav"><a href="#facts">Interesting Facts</a></li>
+        <nav class="in-page-navigationigation" aria-label="Page sections before interesting facts">
+            <ul class="in-page-navigationigation">
+                <li class="in-page-navigationigation">Jump to:</li>
+                <li class="in-page-navigationigation"><a href="#introduction">Introduction</a></li>
+                <li class="in-page-navigationigation"><a href="#gallery">Gallery</a></li>
+                <li class="in-page-navigationigation"><a href="#accessories">Accessories</a></li>
+                <li class="in-page-navigationigation"><a href="#facts">Interesting Facts</a></li>
             </ul>
         </nav>
 
@@ -750,29 +728,19 @@
             </div>
         </section>
 
-        <nav class="in-page-nav" aria-label="Page sections at end of interesting facts">
-            <ul class="in-page-nav">
-                <li class="in-page-nav">Jump to:</li>
-                <li class="in-page-nav"><a href="#introduction">Introduction</a></li>
-                <li class="in-page-nav"><a href="#gallery">Gallery</a></li>
-                <li class="in-page-nav"><a href="#accessories">Accessories</a></li>
-                <li class="in-page-nav"><a href="#facts">Interesting Facts</a></li>
+        <nav class="in-page-navigationigation" aria-label="Page sections at end of interesting facts">
+            <ul class="in-page-navigationigation">
+                <li class="in-page-navigationigation">Jump to:</li>
+                <li class="in-page-navigationigation"><a href="#introduction">Introduction</a></li>
+                <li class="in-page-navigationigation"><a href="#gallery">Gallery</a></li>
+                <li class="in-page-navigationigation"><a href="#accessories">Accessories</a></li>
+                <li class="in-page-navigationigation"><a href="#facts">Interesting Facts</a></li>
             </ul>
         </nav>
     </main>
 
     <footer class="footer">
-        <div class="footer-text">
-            <h2>Created by Edmund Mulligan, BSc, PgDip, CITP&nbsp;MBCS, GradStat&nbsp;FRSS</h2>
-            <p>
-                &copy; The Embodied Mind, 2025.
-                MIT License. <a href="license-and-credits.html">See the license page for more details</a>.
-            </p>
-        </div>
-
-        <div class="footer-logo">
-            <img src="images/logo-embodied-mind-with-name-purple.png" alt="The Embodied Mind logo. A brain with a moustache winking">
-        </div>
+        <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
     </footer>
 </body>
 </html>

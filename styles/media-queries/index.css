@@ -6,8 +6,8 @@
  * main.css
  **********************************************************************************************/
 
- /* Portrait and small screens (mostly applies to mobile phones) */
-@media (orientation: portrait), (width <= 600px)  {
+/* small screens (mostly applies to mobile phones) */
+@media (width <= 800px)  {
   body::before {
     /* Portrait version of Michael Hamments photo on unsplash.com */
     background-image: url('../images/michael-hamments-x6VyE3ie1sM-unsplash-portrait.jpg');
@@ -18,8 +18,8 @@
   }
 }
 
-/* Landscape (mostly applies to computers and tablets) */
-@media (orientation: landscape) {
+/* Large screens (mostly applies to computers and tablets) */
+@media (width > 800px)  {
     body::before {
         /* Landscape version of Michael Hamments photo on unsplash.com */
         background-image: url('../images/michael-hamments-x6VyE3ie1sM-unsplash-landscape.jpg');

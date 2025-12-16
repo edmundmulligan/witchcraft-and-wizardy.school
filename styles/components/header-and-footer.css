@@ -10,8 +10,8 @@
  **********************************************************************
  */
 
-
 .header {
+    /* default layout is grid for larger screens */
     display: grid;
     grid-template-columns: auto 1fr auto;
     color: var(--color-light-headings-text);
@@ -19,20 +19,24 @@
     border: var(--color-light-headings-text) var(--border-weight) var(--border-style);
     border-radius: var(--border-radius);
     place-items: center;
-    gap: 0;
     width: 100%;
+    gap: 0;
     padding: 0;
     box-sizing: border-box;
-    font-size: clamp(0.5rem, 2vw, 3rem);
+    font-size: clamp(0.5rem, 2vw, 3rem); /* responsive font size */
 
 }
 
+/*  three sections of the header, by default left, center, and right */
 .header-left {
     grid-column: 1;
     grid-row: 1;
     justify-self: start;
+    align-self: stretch;
     margin: 0;
-    padding: 0;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
 }
 
 .header-center {
@@ -47,10 +51,14 @@
     grid-column: 3;
     grid-row: 1;
     justify-self: end;
+    align-self: stretch;
     margin: 0;
-    padding: 0;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
 }
 
+/* Header text styling */
 .header-text {
     margin: 0.25rem auto;
     line-height: 1.2;
@@ -59,15 +67,21 @@
     grid-column: 2;
 }
 
+/* header image styling */
 .header-image {
-    width: 3rem;
-    height: auto;
-    grid-row: 1;
-    grid-column: 3;
-    justify-self: end;
+    width: auto;
+    height: 5rem;
+    max-height: 100%;
+    object-fit: contain;
 }
 
-.footer {     
+/* header warning banner - only visible on very small screens */
+.header-warning {
+    display: none;
+}
+
+.footer {
+    /* default layout is grid for larger screens */
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
@@ -103,12 +117,12 @@
 .footer-logo {
     grid-column: 2;
     justify-self: end;
-    display: flex;
     align-items: center;
     min-width: 0;
 }
 
-.footer-logo img {
+.footer-logo img 
+    /* responsive logo sizing */{
     max-height: clamp(2rem, 10vw, 10rem);
     object-fit: contain;
 }

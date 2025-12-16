@@ -33,8 +33,8 @@
     --color-light-link-text-visited: darkblue;
     --color-light-link-text-focus: darkblue;
     --color-light-error-text: darkred;
-    --color-light-warning-background: lightgoldenrodyellow;
-    --color-light-warning-text: red;
+    --color-light-warning-background: red;
+    --color-light-warning-text: white;
 
     /* dark theme colours */
     --color-dark-page-background: darkgreen;
@@ -74,6 +74,14 @@ body {
     width: 100%;
     text-align: center;
     min-height: 100vh;
+    max-width: 100%;
+
+    /* ensure padding is included in element width calculations */
+    box-sizing: border-box;
+
+    /* Enable text wrapping */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 
     /* use flexbox to layout header, main and footer vertically */
     display: flex;
@@ -115,6 +123,10 @@ header {
 
 main {
     flex-grow: 1;  /* Allows main to grow and fill available space */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 footer {
