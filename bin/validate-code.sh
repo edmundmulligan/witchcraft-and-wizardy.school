@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script validates HTML and CSS code
+# This script validates HTML, CSS, and JavaScript code
 # N.B. Do not use the W3C validator as that does not support CSS variables
 
 # Source common helper functions
@@ -12,21 +12,21 @@ parse_test_options "$@"
 
 # Silently install dependencies if not already installed
 echo "Installing dependencies..."
-npm install html-validate stylelint stylelint-config-standard > /dev/null 2>&1
+npm install html-validate stylelint stylelint-config-standard eslint > /dev/null 2>&1
 
 # Setup results directory
 setup_results_dir
 RESULT_FILE="$RESULTS_DIR/validation-results.json"
 
 # Initialize combined results
-echo '{"files":[],"summary":{"htmlErrors":0,"htmlWarnings":0,"cssErrors":0,"cssWarnings":0}}' > "$RESULT_FILE"
+echo '{"files":[],"summary":{"htmlErrors":0,"htmlWarnings":0,"cssErrors":0,"cssWarnings":0,"jsErrors":0,"jsWarnings":0}}' > "$RESULT_FILE"
 
 echo ""
-echo "📄 Validating HTML and CSS files..."
+echo "📄 Validating HTML, CSS, and JavaScript files..."
 echo ""
 
-# Find all HTML and CSS files
-FILES=$(find . \( -name "*.html" -o -name "*.css" \) -not -path "*/node_modules/*" -not -path "*/tests/*" -print)
+# Find all HTML, CSS, and JS files
+FILES=$(find . \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -not -path "*/node_modules/*" -not -path "*/tests/*" -not -path "*/bin/*" -not -name "eslint.config.js" -print)
 FILE_COUNT=$(echo "$FILES" | wc -l)
 TESTED=0
 
@@ -43,17 +43,23 @@ for file in $FILES; do
   elif [ "$extension" = "css" ]
   then
     validator='stylelint'
+  elif [ "$extension" = "js" ]
+  then
+    validator='eslint'
   else
     continue
   fi
 
   # Run validator and save results to temp file
   TEMP_RESULT="$RESULTS_DIR/validation-temp-$TESTED.json"
-  
+  TEMP_ERROR="$RESULTS_DIR/validation-error-$TESTED.txt"
+
   if [ "$extension" = "html" ]; then
     npx ${validator} --formatter json "${file}" > "$TEMP_RESULT" 2>&1
-  else
+  elif [ "$extension" = "css" ]; then
     npx ${validator} --formatter json "${file}" > "$TEMP_RESULT" 2>&1
+  else
+    npx ${validator} --format json "${file}" > "$TEMP_RESULT" 2>"$TEMP_ERROR"
   fi
 
   # Merge results into combined file
@@ -63,14 +69,14 @@ for file in $FILES; do
         const fs = require('fs');
         const combined = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8'));
         const newData = JSON.parse(fs.readFileSync('$TEMP_RESULT', 'utf8'));
-        
+
         const fileResult = {
           file: '$file',
           type: '$extension',
           errors: [],
           warnings: []
         };
-        
+
         if ('$extension' === 'html') {
           // html-validate format
           if (newData.length > 0 && newData[0].messages) {
@@ -82,7 +88,7 @@ for file in $FILES; do
                 ruleId: msg.ruleId,
                 severity: msg.severity === 2 ? 'error' : 'warning'
               };
-              
+
               if (msg.severity === 2) {
                 fileResult.errors.push(issue);
                 combined.summary.htmlErrors++;
@@ -92,7 +98,7 @@ for file in $FILES; do
               }
             });
           }
-        } else {
+        } else if ('$extension' === 'css') {
           // stylelint format
           if (newData.length > 0 && newData[0].warnings) {
             newData[0].warnings.forEach(w => {
@@ -103,7 +109,7 @@ for file in $FILES; do
                 ruleId: w.rule,
                 severity: w.severity
               };
-              
+
               if (w.severity === 'error') {
                 fileResult.errors.push(issue);
                 combined.summary.cssErrors++;
@@ -113,8 +119,29 @@ for file in $FILES; do
               }
             });
           }
+        } else if ('$extension' === 'js') {
+          // eslint format
+          if (newData.length > 0 && newData[0].messages) {
+            newData[0].messages.forEach(msg => {
+              const issue = {
+                line: msg.line,
+                column: msg.column,
+                message: msg.message,
+                ruleId: msg.ruleId,
+                severity: msg.severity === 2 ? 'error' : 'warning'
+              };
+
+              if (msg.severity === 2) {
+                fileResult.errors.push(issue);
+                combined.summary.jsErrors++;
+              } else {
+                fileResult.warnings.push(issue);
+                combined.summary.jsWarnings++;
+              }
+            });
+          }
         }
-        
+
         // Only add file to results if it has errors or warnings
         if (fileResult.errors.length > 0 || fileResult.warnings.length > 0) {
           combined.files.push(fileResult);
@@ -122,28 +149,30 @@ for file in $FILES; do
         } else {
           console.log('  ✅ Valid');
         }
-        
+
         fs.writeFileSync('$RESULT_FILE', JSON.stringify(combined, null, 2));
-        fs.unlinkSync('$TEMP_RESULT');
       } catch (e) {
-        console.error('  Error processing: ' + e.message);
+        console.error('  ⚠️  Error parsing validation results: ' + e.message);
       }
     "
+
+    rm -f "$TEMP_RESULT" "$TEMP_ERROR"
   fi
 done
 
 echo ""
-echo "======================================"
-echo "📄 Validation Summary"
-echo "======================================"
+echo "=================================="
+echo "     VALIDATION SUMMARY"
+echo "=================================="
+echo ""
 
 node -e "
   const fs = require('fs');
   const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8'));
-  
-  const totalErrors = data.summary.htmlErrors + data.summary.cssErrors;
-  const totalWarnings = data.summary.htmlWarnings + data.summary.cssWarnings;
-  
+
+  const totalErrors = data.summary.htmlErrors + data.summary.cssErrors + data.summary.jsErrors;
+  const totalWarnings = data.summary.htmlWarnings + data.summary.cssWarnings + data.summary.jsWarnings;
+
   console.log('Files validated: ' + ($FILE_COUNT));
   console.log('Files with issues: ' + data.files.length);
   console.log('');
@@ -151,11 +180,13 @@ node -e "
   console.log('HTML warnings: ' + data.summary.htmlWarnings);
   console.log('CSS errors: ' + data.summary.cssErrors);
   console.log('CSS warnings: ' + data.summary.cssWarnings);
+  console.log('JavaScript errors: ' + data.summary.jsErrors);
+  console.log('JavaScript warnings: ' + data.summary.jsWarnings);
   console.log('');
   console.log('Total errors: ' + totalErrors);
   console.log('Total warnings: ' + totalWarnings);
   console.log('');
-  
+
   if (totalErrors === 0) {
     console.log('✅ No validation errors found!');
   } else {
@@ -176,7 +207,7 @@ node -e "
 "
 
 # Check if we should delete the file
-HAS_ERRORS=$(node -p "const fs = require('fs'); const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8')); (data.summary.htmlErrors + data.summary.cssErrors) > 0 ? 1 : 0")
+HAS_ERRORS=$(node -p "const fs = require('fs'); const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8')); (data.summary.htmlErrors + data.summary.cssErrors + data.summary.jsErrors) > 0 ? 1 : 0")
 
 if [ "$HAS_ERRORS" -eq 0 ]; then
   echo ""

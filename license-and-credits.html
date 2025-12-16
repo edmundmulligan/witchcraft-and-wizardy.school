@@ -44,71 +44,50 @@
     <!-- main.css must be the first stylesheet loaded -->
     <link rel="stylesheet" href="styles/main.css">
 
+    <!-- These stylesheets are common to all pages -->
+    <link rel="stylesheet" href="styles/components/buttons.css">
+    <link rel="stylesheet" href="styles/components/header-and-footer.css">
+    <link rel="stylesheet" href="styles/components/navigation.css">
+    <link rel="stylesheet" href="styles/components/titles.css">
+
     <!-- page specific stylesheet -->
-    <link rel="stylesheet" href="styles/license-and-credits.css">
+    <link rel="stylesheet" href="styles/pages/license-and-credits.css">
 
     <!-- media-queries must be the last stylesheets loaded -->
-    <link rel="stylesheet" href="styles/media-queries-main.css">
+    <link rel="stylesheet" href="styles/media-queries/header-and-footer.css">
+    <link rel="stylesheet" href="styles/media-queries/navigation.css">
     <!-- End of CSS stylesheets section -->
 
     <!-- Load JavaScript files -->
     <script src="scripts/alert.js" defer></script>
+    <script src="scripts/header.js" defer></script>
+    <script src="scripts/footer.js" defer></script>
     <!-- End JavaScript file link -->
 
     <noscript>
-        <style>
-            .js-required { display: none; }
-            body::before {
-                content: "This page uses JavaScript for enhanced functionality. Please enable JavaScript for the best experience.";
-                display: block;
-                text-align: center;
-                padding: 1.25em;
-                background-color: var(--color-light-warning-background);
-                color: var(--color-light-warning-text);
-            }
-        </style>
+        <link rel="stylesheet" href="styles/noscript.css">
     </noscript>
 </head>
 
 <body>
-    <header class="header-container">
-        <a class="site-navigation" href="index.html" aria-label="Go to home page">
-            <i class="fa-solid fa-wand-magic header-icon" aria-hidden="true"></i>
-        </a>
-        <div class="header-text">
-            <h1 class="site-title">Web Witchcraft and Wizardry</h1>
-            <h2 class="site-subtitle">Learn to create magical websites</h2>
-        </div>
-
-        <nav class="site-navigation" aria-label="Site navigation">
-            <ul class="site-navigation">
-                <li class="site-navigation"><a class="site-navigation" href="index.html">Home</a></li>
-                <li class="site-navigation"><a class="site-navigation" href="students.html">Students</a></li>
-                <li class="site-navigation"><a class="site-navigation" href="#"
-                       onclick="showAlert('This page has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">Mentors</a></li>
-                <li class="site-navigation"><a class="site-navigation" href="about.html">About</a></li>
-                <li class="site-navigation"><a class="site-navigation" href="glossary-and-faq.html">Glossary</a></li>
-                <li class="site-navigation"><a class="site-navigation" href="license-and-credits.html">License</a></li>
-            </ul>
-        </nav>
+    <header class="header">
+        <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
     </header>
 
     <main>
-    <h2 class="page-title">License and Credits</h2>
+        <h2 class="page-title">License and Credits</h2>
 
-        <nav class="in-page-nav" aria-label="Page sections before license">
-            <ul class="in-page-nav">
-                <li class="in-page-nav">Jump to:</li>
-                <li class="in-page-nav"><a href="#license">License</a></li>
-                <li class="in-page-nav"><a href="#credits">Credits</a></li>
+        <nav class="in-page-navigation" aria-label="Page sections before license">
+            <ul>
+                <li>Jump to:</li>
+                <li><a href="#license">License</a></li>
+                <li><a href="#credits">Credits</a></li>
             </ul>
         </nav>
 
        <section id="license">
             <h3>&copy; The Embodied Mind, 2025</h3>
-            <p class="license-text">
+            <p class="license">
                 Permission is hereby granted, free of charge, to any person obtaining
                 a copy of this software and associated documentation files (the
                 “Software”), to deal in the Software without restriction, including
@@ -117,12 +96,12 @@
                 the following conditions:
             </p>
 
-            <p class="license-text">
+            <p class="license">
                 The above copyright notice and this permission notice shall be included
                 in all copies or substantial portions of the Software.
             </p>
 
-            <p class="license-text">
+            <p class="license">
                 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS
                 OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
                 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -133,89 +112,134 @@
             </p>
         </section>
 
-        <nav class="in-page-nav" aria-label="Page sections before credits">
-            <ul class="in-page-nav">
-                <li class="in-page-nav">Jump to:</li>
-                <li class="in-page-nav"><a href="#license">License</a></li>
-                <li class="in-page-nav"><a href="#credits">Credits</a></li>
+        <nav class="in-page-navigation" aria-label="Page sections before credits">
+            <ul>
+                <li>Jump to:</li>
+                <li><a href="#license">License</a></li>
+                <li><a href="#credits">Credits</a></li>
             </ul>
         </nav>
 
         <section id="credits">
             <h3>Third party credits</h3>
-            <ul>
+            <ul class="credits">
                 <li>
                     Photograph of a web by Michael Hamments on
-                    <a href="https://unsplash.com/@35mmtodgt/" target="_blank">www.unsplash.com</a>,
-                    a repository of free-to-use images, licened under the <a href="https://unsplash.com/license" target="_blank">Unsplash License</a>.
+                    <a href="https://unsplash.com/@35mmtodgt/" target="_blank">
+                        unsplash.com
+                    </a>,
+                    a repository of free-to-use images, licened under the
+                    <a href="https://unsplash.com/license" target="_blank">
+                        Unsplash License
+                    </a>.
                 </li>
+
                 <li>
                     Picture of old witch by SerenityArt on
                     <a href="https://pixabay.com/users/serenityart-38195676" target="_blank">
                         pixabay.com
                     </a>
-                        licensed under the <a href="https://pixabay.com/service/license/" target="_blank">Pixabay License</a>.
+                    licensed under the
+                    <a href="https://pixabay.com/service/license/" target="_blank">
+                        Pixabay License
+                    </a>.
                 </li>
+
                 <li>
                     Picture of young witch by Maria Endresz on
                     <a href="https://pixabay.com/users/endresz-3286579" target="_blank">
                         pixabay.com
                     </a>
-                        licensed under the <a href="https://pixabay.com/service/license/" target="_blank">Pixabay License</a>.
+                    licensed under the
+                    <a href="https://pixabay.com/service/license/" target="_blank">
+                        Pixabay License
+                    </a>.
                 </li>
+
                 <li>
                     Picture of old wizard by Clker-Free-Vector-Images on
                     <a href="https://pixabay.com/users/clker-free-vector-images-3736" target="_blank">
                         pixabay.com
                     </a>
-                    licensed under the <a href="https://pixabay.com/service/license/" target="_blank">Pixabay License</a>.
+                    licensed under the
+                    <a href="https://pixabay.com/service/license/" target="_blank">
+                        Pixabay License
+                    </a>.
                 </li>
+
                 <li>
                     Picture of young wizard by Annette on
                     <a href="https://pixabay.com/users/pendleburyannette-1860575/" target="_blank">
                         pixabay.com
                     </a>
-                        licensed under the <a href="https://pixabay.com/service/license/" target="_blank">Pixabay License</a>.
+                    licensed under the
+                    <a href="https://pixabay.com/service/license/" target="_blank">
+                        Pixabay License
+                    </a>.
                 </li>
+
+                <li>
+                    Picture of witch and wizard sillhouettes by OpenClipart-Vectors on
+                    <a href="https://pixabay.com/users/openclipart-vectors-30363" target="_blank">
+                        pixabay.com
+                    </a>
+                    licensed under the <a href="https://pixabay.com/service/license/" target="_blank">Pixabay License</a>.
+                </li>
+
                 <li>
                     Cinzel and Cinzel Decorative fonts by Natanael Gama on
-                    <a href="https://fonts.google.com/?query=Natanael+Gama" target="_blank">Google Fonts</a>
-                        licensed under the <a href="https://openfontlicense.org/" target="_blank">SIL Open Font License</a>.
+                    <a href="https://fonts.google.com/?query=Natanael+Gama" target="_blank">
+                        Google Fonts
+                    </a>
+                    licensed under the
+                    <a href="https://openfontlicense.org/" target="_blank">
+                        SIL Open Font License
+                    </a>.
                 </li>
+
                 <li>
                     Open Sans font by Steve Matteson on
-                    <a href="https://fonts.google.com/?query=Steve+Matteson" target="_blank">Google Fonts</a>
-                        licensed under the <a href="https://openfontlicense.org/" target="_blank">SIL Open Font License</a>.
+                    <a href="https://fonts.google.com/?query=Steve+Matteson" target="_blank">
+                        Google Fonts
+                    </a>
+                    licensed under the
+                    <a href="https://openfontlicense.org/" target="_blank">
+                        SIL Open Font License
+                    </a>.
                 </li>
+
                 <li>
                     Font Awesome icons by Fonticons, Inc. on
-                    <a href="https://fontawesome.com/" target="_blank">Font Awesome</a>
-                        licensed under the <a href="https://fontawesome.com/license" target="_blank">Font Awesome Pro License</a>.
+                    <a href="https://fontawesome.com/" target="_blank">
+                        Font Awesome
+                    </a>
+                    licensed under the
+                    <a href="https://fontawesome.com/license" target="_blank">
+                        Font Awesome Pro License
+                    </a>.
                 </li>
+
                 <li>
-                    The Embodied Mind logo &copy; 2020, <a href="https://www.embodied-mind.org/" target="_blank">The Embodied Mind</a>. Used with permission.
+                    The Embodied Mind logo &copy; 2020,
+                    <a href="https://www.embodied-mind.org/" target="_blank">
+                        The Embodied Mind
+                    </a>
+                    Used with permission.
                 </li>
             </ul>
         </section>
 
-        <nav class="in-page-nav" aria-label="Page sections after credits">
-            <ul class="in-page-nav">
-                <li class="in-page-nav">Jump to:</li>
-                <li class="in-page-nav"><a href="#license">License</a></li>
-                <li class="in-page-nav"><a href="#credits">Credits</a></li>
+        <nav class="in-page-navigation" aria-label="Page sections after credits">
+            <ul>
+                <li>Jump to:</li>
+                <li><a href="#license">License</a></li>
+                <li><a href="#credits">Credits</a></li>
             </ul>
         </nav>
     </main>
 
-    <footer class="footer-container">
-        <div class="footer-text">
-            <h2>Created by Edmund Mulligan, BSc, PgDip, CITP MBCS, GradStat FRSS</h2>
-            <p>
-                &copy; The Embodied Mind, 2025.
-                Distributed under the MIT License. <a href="license-and-credits.html">See the license and credits page for more information</a>.
-            </p>
-        </div>
-        <img class="footer-logo" src="images/logo-embodied-mind-with-name-purple.png" alt="The Embodied Mind logo. A brain with a moustache winking">
+    <footer class="footer">
+        <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
     </footer>
 </body>
 </html>

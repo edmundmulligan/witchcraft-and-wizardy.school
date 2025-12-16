@@ -1,0 +1,21 @@
+/*
+ **********************************************************************
+ * File       : index.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This is the page specific stylesheet for the Web Witchcraft and 
+ *   Wizardry index page. It defines styles that apply only to the 
+ *   landing page.
+ **********************************************************************
+ */
+
+/* N.B. flex-direction in .circular-button-container layout is set in the media query */
+.circular-button-container {
+    display: flex;
+    gap: 2em;
+    margin: 2em 0;
+    justify-content: space-evenly;
+    align-items: center;
+}

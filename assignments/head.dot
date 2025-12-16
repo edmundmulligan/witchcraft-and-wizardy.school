@@ -1,0 +1,45 @@
+digraph DOM {
+    rankdir=TB;
+    node [shape=box, style=rounded, fontname="Arial"];
+    edge [fontname="Arial", fontsize=10];
+
+    node0 [label="html", fillcolor="#FFE6E6", style="rounded,filled"];
+    node1 [label="head", fillcolor="#E6F3FF", style="rounded,filled"];
+    node0 -> node1;
+    node2 [label="meta", fillcolor="#FFFFFF", style="rounded,filled"];
+    node1 -> node2;
+    node3 [label="meta", fillcolor="#FFFFFF", style="rounded,filled"];
+    node1 -> node3;
+    node4 [label="meta", fillcolor="#FFFFFF", style="rounded,filled"];
+    node1 -> node4;
+    node5 [label="meta", fillcolor="#FFFFFF", style="rounded,filled"];
+    node1 -> node5;
+    node6 [label="meta", fillcolor="#FFFFFF", style="rounded,filled"];
+    node1 -> node6;
+    node7 [label="meta", fillcolor="#FFFFFF", style="rounded,filled"];
+    node1 -> node7;
+    node8 [label="title", fillcolor="#FFFFFF", style="rounded,filled"];
+    node1 -> node8;
+    node9 [label="link", fillcolor="#FFFFFF", style="rounded,filled"];
+    node1 -> node9;
+    node10 [label="link", fillcolor="#FFFFFF", style="rounded,filled"];
+    node1 -> node10;
+    node11 [label="link", fillcolor="#FFFFFF", style="rounded,filled"];
+    node1 -> node11;
+    node12 [label="link", fillcolor="#FFFFFF", style="rounded,filled"];
+    node1 -> node12;
+    node13 [label="link", fillcolor="#FFFFFF", style="rounded,filled"];
+    node1 -> node13;
+    node14 [label="link", fillcolor="#FFFFFF", style="rounded,filled"];
+    node1 -> node14;
+    node15 [label="link", fillcolor="#FFFFFF", style="rounded,filled"];
+    node1 -> node15;
+    node16 [label="link", fillcolor="#FFFFFF", style="rounded,filled"];
+    node1 -> node16;
+    node17 [label="link", fillcolor="#FFFFFF", style="rounded,filled"];
+    node1 -> node17;
+    node18 [label="noscript", fillcolor="#FFFFFF", style="rounded,filled"];
+    node1 -> node18;
+    node19 [label="body", fillcolor="#E6FFE6", style="rounded,filled"];
+    node0 -> node19;
+}

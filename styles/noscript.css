@@ -1,0 +1,25 @@
+/*
+ **********************************************************************
+ * File       : noscript.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *    Noscript CSS styles for the Web Witchcraft and Wizardry
+ *    website. These styles only apply when JavaScript is
+ *    disabled.
+ *************************************************************
+ */
+
+.js-required {
+    display: none;
+}
+
+body::before {
+    display: block;
+    color: var(--color-light-warning-text);
+    background-color: var(--color-light-warning-background);
+    content: "This page uses JavaScript for enhanced functionality. Please enable JavaScript for the best experience.";
+    text-align: center;
+    padding: 1.25em;
+}

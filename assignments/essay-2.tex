@@ -1,0 +1,109 @@
+\documentclass[a4paper, 12pt]{article}
+
+% include required packages
+\usepackage[a4paper, margin=2cm]{geometry} % Set page margins
+\usepackage[round,authoryear]{natbib}      % For citations
+\usepackage{url}                           % For formatting URLs
+\usepackage{indentfirst}                   % Indent first paragraph of sections
+\usepackage{booktabs}                      % For better table formatting
+\usepackage{float}                         % For [H] table placement
+\usepackage{enumitem}                      % For customizing lists
+\usepackage{tikz}                          % For drawing diagrams
+\usetikzlibrary{positioning}               % For relative positioning
+
+% set paragraph and list formatting
+\setlength{\parindent}{1.5em}
+\setlength{\parskip}{0pt}
+\setlist[itemize]{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt,after=\vspace{0.5em}}
+
+
+% set title information
+\title{A critical reflection on refactoring the Web Witchcraft and Wizardry project}
+\author{Edmund Mulligan}
+\date{\today}
+
+% document start
+\begin{document}
+
+% set bibliography style and page numbering
+\bibliographystyle{plainnat}
+\pagenumbering{arabic}
+
+\maketitle
+
+\begin{abstract}
+\textit{Abstract goes here.}
+\end{abstract}
+
+\section*{Introduction}
+
+Web Witchcraft and Wizardry \citep{mulligan2024witchcraftandwizardry} is a website for children  
+to learn the basics of web development through fantasy-themed metaphors. The original version of 
+the website was neither accessible (except by accident) nor responsive. This essay reflects on the 
+design and implementation of a refactored version of the project, focusing on accessibility, 
+usability, and quality of the new code. Detailed decisions are documented as comments in 
+the source code, which should be read alongside this essay, so the essay focuses on higher level
+design decisions and reflections.
+
+The development process used was iterative and incremental \citep{beck2004extreme}, and 
+while there are many criticisms of this approach, particularly around its lack of documentation, 
+endles changes and lack of scalability to large teams (see, for example, \citep{boehm2004balancing}), 
+it was well suited to this small project with a single developer fulfilling all team roles.
+
+\section*{Responsiveness and Accessibility}
+A primary goal of the refactor was to make the website responsive and accessible.
+
+\section*{Site Architecture and Navigation}
+
+information arcitecture and layout choices
+navigation design
+site navigation vs page navigation
+
+\section*{Third party resources}
+Kevin Powell YouTube channel \citep{powell_youtube}
+Coding2GO YouTube channel \citep{coding2go_youtube}
+
+
+
+\section*{Testing}
+
+\section*{Challenges and Solutions}
+
+responsive design techniques
+Fluid grids, flexible images, and media queries \citep{marcotte2010responsive}
+prefer responsive 
+Viewport cutoffs
+< 80px too small - unusable
+80px - 200px very small - give warning but still usable
+200px - 800px small - mobile layout - prefer vertical stacking
+> 800phx - desktop layout - prefer horizontal layout
+
+
+accessibility features implemented
+
+
+grid vs flexbox
+use of media queries
+semantic HTML
+ARIA roles and attributes
+colour contrast
+keyboard navigation
+alt text for images
+form accessibility
+
+performance improvements (minification, image optimisation)
+
+dry code \citep{hunt1999pragmatic}
+
+automated testing (Lighthouse, axe, pa11y, Wave)
+manual testing (screen readers, keyboard only navigation)
+
+\section*{Conclusion}
+
+% Include word count N.B. Run wordcount.sh to generate wordcount.txt before compiling
+\section*{Word count}
+Word count: \input{wordcount.txt} words (excluding references)
+\\
+\bibliography{EdmundLibrary}
+
+\end{document}

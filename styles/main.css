@@ -1,10 +1,14 @@
 /*
- *************************************************************
- * Main CSS styles for the Web Witchcraft and Wizardry website
- *
- * These styles apply to all pages and this stylesheet should
- * be the first linked from all HTML files.
- *************************************************************
+ **********************************************************************
+ * File       : main.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This is the main stylesheet for the Web Witchcraft and Wizardry website.
+ *   It defines global styles that apply to all pages of the site and should
+ *   be the first stylesheet linked from all HTML files.
+ **********************************************************************
  */
 
  /*
@@ -27,10 +31,10 @@
     --color-light-link-text: darkgreen;
     --color-light-link-text-hover: lightblue;
     --color-light-link-text-visited: darkblue;
-    --color-light-link-text-focus: darkorange;
+    --color-light-link-text-focus: darkblue;
     --color-light-error-text: darkred;
-    --color-light-warning-background: #fff3cd;
-    --color-light-warning-text: #856404;
+    --color-light-warning-background: red;
+    --color-light-warning-text: white;
 
     /* dark theme colours */
     --color-dark-page-background: darkgreen;
@@ -41,25 +45,39 @@
     --color-dark-link-text-hover: lightorange;
     --color-dark-link-text-visited: lightblue;
     --color-dark-link-text-focus: lightorange;
-    --color-dark-warning-background: #664d03;
-    --color-dark-warning-text: #ffecb5;
+    --color-dark-warning-background: darkgreen;
+    --color-dark-warning-text: red;
+
+    /* other global variables to ensure sitewide consistency */
+    --border-radius: 2rem;
+    --border-weight: 0.2rem;
+    --border-style: solid;
 }
 
 /* set global styles for the entire body of the html document */
 
-/* N.B. All dimensions in em units or %. px units are only used for screen-related properties in media queries */
+/* N.B. All dimensions in rem units or %. px units are only used for screen-related properties in media queries */
 
-/* *******************************************************
+/*
+ *******************************************************
  * Element styles
- ******************************************************* */
+ ******************************************************* 
+ */
 
 body {
+    /* create positioning context for absolutely positioned child elements */
     position: relative;
 
     /* set margin and padding. Other elements and classes may override these */
     margin: 0;
     padding: 0;
+    width: 100%;
+    text-align: center;
     min-height: 100vh;
+    max-width: 100%;
+
+    /* ensure padding is included in element width calculations */
+    box-sizing: border-box;
 
     /* use flexbox to layout header, main and footer vertically */
     display: flex;
@@ -68,7 +86,7 @@ body {
 
     /* use a readable font for body text */
     font-family: "Open Sans", -apple-system, sans-serif;
-    font-size: 1.125em; /* 18px */
+    font-size: 1.125rem; /* 18px */
     line-height: 1.6;
     color: var(--color-light-page-text);
     background-color: var(--color-light-page-background);
@@ -83,7 +101,7 @@ body::before {
     width: 100%;
     height: 100%;
 
-    /* set background image handling (actual image is selected in media-queries.css) */
+    /* set background image handling (actual image is selected in a media query) */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -96,28 +114,18 @@ body::before {
 }
 
 header {
-    max-width: 90%;
-    font-size: larger;
-    text-align: center;
-    margin-bottom: 0;
     flex-shrink: 0;  /* Prevents header from shrinking */
-    border: var(--color-light-headings-text) 0.2em solid;
-    background-color: var(--color-light-headings-background);
-    color: var(--color-light-headings-text);
-    border-radius: 2em;
 }
 
 main {
-    width: 100%;
-    text-align: center;
     flex-grow: 1;  /* Allows main to grow and fill available space */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 footer {
-    width: 100%;
-    font-size: smaller;
-    text-align: center;
-    margin-top: 0;
     flex-shrink: 0;  /* Prevents footer from shrinking */
 }
 
@@ -132,271 +140,38 @@ h1, h2, h3, h4, h5, h6 {
 
 /* make h1 larger and bolder */
 h1 {
-    font-size: 1.5em;
+    font-size: 1.5rem;
     font-weight: 700;
 }
 
 /* increas spacing for paragraphs in accordance with WCAG 2.2 */
 p {
-    margin-bottom: 1.5em;
+    margin-bottom: 1.5rem;
 }
 
-/* general link styles */
-a:link {
+/*
+ **************************************************
+ * Styles for general link pseudo elements
+ **************************************************
+ */
+
+ /* do not distinguish between a visited and non-visited link */
+ a:link,
+ a:visited {
     color: var(--color-light-link-text);
 }
 
-a:visited {
-    color: var(--color-light-link-text-visited);
-}
-
-
-a:hover, a:focus {
+a:hover,
+a:focus-visible {
     color: var(--color-light-link-text-focus);
 }
 
-a:focus {
-    outline: 0.1em dashed var(--color-light-link-text-focus);
+a:focus-visible {
+    outline: 0.1rem dashed var(--color-light-link-text-focus);
     outline-offset: 0.1em;
 }
 
-
-/* styles for the navigation bar */
-nav.site-navigation {
-    background-color: var(--color-light-headings-background);
-    color: var(--color-light-headings-text);
-    width: 90%;
-    border-radius: 2em;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0.25em 0.5em;
-    box-sizing: border-box;
-}
-
-ul.site-navigation {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    width: 100%;
-    gap: 0.5em;
-    row-gap: 0.25em;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-li.site-navigation {
-    display: inline;
-    flex: 0 1 auto;
-}
-
-a.site-navigation {
-    color: var(--color-light-headings-text);
-    text-decoration: none;
-    padding: 0.5em;
-    display: block;
-}
-
-/* Pseudo classes and elements for nav links */
-nav.site-navigation  a.site-navigation::before {
-    content: "\f0d0";  /* Font Awesome Magic Wand */
-    font-family: "Font Awesome 7 Pro";
-    font-weight: 900; /* needed for solid style icons */
-}
-
-nav.site-navigation a.site-navigation:hover,
-nav.site-navigation a.site-navigation:focus {
-    background-color: var(--color-light-link-text-hover);
-    color: var(--color-light-headings-text);
-}
-
-nav.site-navigation a.site-navigation:hover::before,
-nav.site-navigation a.site-navigation:focus::before {
-    content: "\e2ca";  /* Font Awesome Magic Wand with sparkles */
-    font-family: "Font Awesome 7 Pro";
-    font-weight: 900; /* needed for solid style icons */
-}
-
-nav.in-page-nav {
-    margin: 1em 0;
-    padding: 0.5em;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
-    justify-content: center;
-}
-
-ul.in-page-nav {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    width: 100%;
-    gap: 0.5em;
-    row-gap: 0.25em;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-li.in-page-nav {
-    display: inline;
-    flex: 0 1 auto;
-}
-
-a.in-page-nav {
-    color: var(--color-light-headings-text);
-    text-decoration: none;
-    padding: 0.5em;
-    display: block;
-}
-
-
-/* Site title and subtitle in header */
-.site-title {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: larger;
-    font-weight: 700;
-    margin: 0.25em;
-    text-align: center;
-}
-
-.site-subtitle {
-    font-family: Cinzel, serif;
-    font-size: large;
-    font-weight: 400;
-    margin: 0.25em;
-    text-align: center;
-}
-
-/* page title in main */
-.page-title {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: x-large;
-    font-weight: 700;
-    margin: 0.5em;
-    padding: 0 2em;
-    background-color: var(--color-light-page-background);
-    color: var(--color-light-page-text);
-    border-radius: 2em;
-}
-
-/********************************************************
- * border and color classes
- ********************************************************/
-
-.heavy-border {
-    border: var(--color-light-headings-text) 0.2em solid;
-    padding: 1em;
-    margin: 0.5em;
-}
-
-.light-border {
-    border: var(--color-light-headings-text) 0.1em dotted;
-    padding: 1em;
-    margin: 0.5em;
-}
-
- /* header and footer styles */
-
-.header-container {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto auto;
-    place-items: center;
-    gap: 0.5em;
-    column-gap: 1em;
-    border: var(--color-light-headings-text) 0.2em solid;
-    background-color: var(--color-light-headings-background);
-    color: var(--color-light-headings-text);
-    border-radius: 2em;
-    width: 90%;
-    padding: 1em;
-    box-sizing: border-box;
-    text-align: center;
-}
-
-.footer-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1em;
-    justify-content: center;
-    border: var(--color-light-headings-text) 0.2em solid;
-    background-color: var(--color-light-headings-background);
-    color: var(--color-light-headings-text);
-    border-radius: 2em;
-    max-width: 90%;
-    padding: 1em;
-    text-align: center;
-}
-
-.header-icon {
-    font-size: xx-large;
-    color: var(--color-light-site-text);
-    align-self: center;
-    grid-row: 1;
-    grid-column: 1;
-    transition: all 0.3s ease;
-    background-color: var(--color-light-headings-background);
-    border: 0.15em solid var(--color-light-headings-text);
-    border-radius: 50%;
-    width: 2.5em;
-    height: 2.5em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.header-icon:hover {
-    transform: rotate(15deg);
-}
-
-.header-container:hover .header-icon::before {
-    content: "\e2ca"; /* Font Awesome Magic Wand with sparkles */
-}
-
-.header-text {
-    margin: 0.25em auto;
-    max-width: 80%;
-    grid-row: 1;
-    grid-column: 2;
-}
-
-nav {
-    grid-row: 2;
-    grid-column: 1 / -1;
-}
-
-.footer-text {
-    margin: 0.25em auto;
-    text-align: center;
-}
-
-.footer-text h3 {
-    margin: 0 0 0.25em;
-}
-
-.footer-text p {
-    margin: 0.25em 0 0;
-}
-
-.header-logo {
-    max-width: 10em;
-    height: auto;
-    margin-right: 1em;
-}
-
-.footer-logo {
-    max-width: 10em;
-    width: 100%;
-    height: auto;
-    margin: 0.5em auto;
-    object-fit: contain;
-}
-
-.noscript {
-    text-align: center;
-    padding: 20px;
-    background-color: #fff3cd;
-    color: #856404;
+/* Utility class to mirror an image horizontally */
+.mirror {
+    transform: scaleX(-1);
 }

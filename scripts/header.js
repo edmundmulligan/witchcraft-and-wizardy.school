@@ -1,0 +1,60 @@
+/*
+ **********************************************************************
+ * File       : scripts/header.js
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Injects header content into all pages to follow DRY principle
+ **********************************************************************
+ */
+
+document.addEventListener('DOMContentLoaded', function() {
+    const header = document.querySelector('header.header');
+    if (header && header.children.length === 0) {
+        header.innerHTML = `
+        <div class="header-left">
+            <img class="header-image mirror" src="images/cat-1299082.svg" alt="" aria-hidden="true">
+        </div>
+
+        <div class="header-center">
+            <div class="header-warning">
+                <h2>Warning</h2>
+                <p>
+                    You are either vewing this website on a very small
+                    device or have resized your browser window to be 
+                    very narrow.
+                </p>
+                <p>
+                    Some of the page content may not be displayed corectly.
+                    For the best experience, please view this website
+                    on a device with a wider screen or resize your browser
+                    window to be wider.
+                </p>
+            </div>
+
+            <div class="header-text">
+                <h1 class="site-title">Web Witchcraft and Wizardry</h1>
+                <h2 class="site-subtitle">Learn to create magical websites</h2>
+                <nav class="site-navigation" aria-label="Site navigation">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="students.html">Students</a></li>
+                        <li><a href="#"
+                               onclick="showAlert('This page has not been implemented in this phase of the project, as described ' +
+                                                  'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                                  'Wizardry project (Mulligan, 2025).')">Mentors</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="glossary-and-faq.html">Glossary</a></li>
+                        <li><a href="license-and-credits.html">License</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="header-right">
+          <img class="header-image" src="images/witch-151167.svg" alt="" aria-hidden="true">
+        </div>
+        `;
+    }
+});

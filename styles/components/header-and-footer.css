@@ -1,0 +1,126 @@
+/*
+ **********************************************************************
+ * File       : components/header-and-footer.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This stylesheet defines styles for the header and footer sections
+ *   used across the Web Witchcraft and Wizardry website.
+ **********************************************************************
+ */
+
+.header {
+    /* default layout is grid for larger screens */
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    color: var(--color-light-headings-text);
+    background-color: var(--color-light-headings-background);
+    border: var(--color-light-headings-text) var(--border-weight) var(--border-style);
+    border-radius: var(--border-radius);
+    place-items: center;
+    width: 100%;
+    gap: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: clamp(0.5rem, 2vw, 3rem); /* responsive font size */
+
+}
+
+/*  three sections of the header, by default left, center, and right */
+.header-left {
+    grid-column: 1;
+    grid-row: 1;
+    place-self: stretch start;
+    margin: 0;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.header-center {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+    margin: 0;
+    padding: 0;
+}
+
+.header-right {
+    grid-column: 3;
+    grid-row: 1;
+    place-self: stretch end;
+    margin: 0;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Header text styling */
+.header-text {
+    margin: 0.25rem auto;
+    line-height: 1.2;
+    width: 100%;
+    grid-row: 1;
+    grid-column: 2;
+}
+
+/* header image styling */
+.header-image {
+    width: auto;
+    height: 5rem;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* header warning banner - only visible on very small screens */
+.header-warning {
+    display: none;
+}
+
+.footer {
+    /* default layout is grid for larger screens */
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    border: var(--color-light-headings-text) var(--border-weight) var(--border-style);
+    background-color: var(--color-light-headings-background);
+    color: var(--color-light-headings-text);
+    border-radius: var(--border-radius);
+    width: 100%;
+    padding: 0.25rem 1rem;
+    box-sizing: border-box;
+    font-size: clamp(0.5rem, 1vw, 1rem);
+}
+
+.footer-text {
+    text-align: center;
+    grid-column: 1;
+    justify-self: center;
+}
+
+.footer-text h2 {
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+}
+
+.footer-text p {
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+}
+
+.footer-logo {
+    grid-column: 2;
+    justify-self: end;
+    align-items: center;
+    min-width: 0;
+}
+
+.footer-logo img 
+    /* responsive logo sizing */{
+    max-height: clamp(2rem, 10vw, 10rem);
+    object-fit: contain;
+}

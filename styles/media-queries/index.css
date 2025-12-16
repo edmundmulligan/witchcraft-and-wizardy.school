@@ -6,8 +6,8 @@
  * main.css
  **********************************************************************************************/
 
- /* Portrait (mostly applies to mobile phones) */
-@media (orientation: portrait) {
+/* small screens (mostly applies to mobile phones) */
+@media (width <= 800px)  {
   body::before {
     /* Portrait version of Michael Hamments photo on unsplash.com */
     background-image: url('../images/michael-hamments-x6VyE3ie1sM-unsplash-portrait.jpg');
@@ -18,8 +18,8 @@
   }
 }
 
-/* Landscape (mostly applies to computers and tablets) */
-@media (orientation: landscape) {
+/* Large screens (mostly applies to computers and tablets) */
+@media (width > 800px)  {
     body::before {
         /* Landscape version of Michael Hamments photo on unsplash.com */
         background-image: url('../images/michael-hamments-x6VyE3ie1sM-unsplash-landscape.jpg');
@@ -28,16 +28,4 @@
     .circular-button-container {
         flex-direction: row;
     }
-}
-
-/* small screen width - treat as portrait */
-@media (width <= 600px) {
-  body::before {
-    /* Portrait version of Michael Hamments photo on unsplash.com */
-    background-image: url('../images/michael-hamments-x6VyE3ie1sM-unsplash-portrait.jpg');
-  }
-
-  .circular-button-container {
-    flex-direction: column;
-  }
 }
