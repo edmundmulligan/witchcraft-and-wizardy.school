@@ -1,67 +1,38 @@
 #!/usr/bin/env node
 
 /**
- * Cross-browser testing script using Selenium WebDriver
- * Tests basic functionality across Chrome, Firefox, Edge, and Opera
+ * Cross-browser testing script using Playwright
+ * Tests basic functionality across Chromium (Chrome/Edge/Opera), Firefox, and WebKit (Safari)
  */
 
-const { Builder, By, until } = require('selenium-webdriver');
-const chrome = require('selenium-webdriver/chrome');
-const firefox = require('selenium-webdriver/firefox');
-const edge = require('selenium-webdriver/edge');
+const { chromium, firefox, webkit } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 
 async function testBrowser(browserName) {
   console.log(`\n🧪 Testing ${browserName}...`);
 
-  let driver;
+  let browser;
+  let page;
   let tests = [];
   let error = null;
 
   try {
-    // Configure browser options
-    let options;
-    if (browserName === 'chrome') {
-      options = new chrome.Options();
-      options.addArguments('--headless'); // Run headless for CI
-      options.addArguments('--no-sandbox');
-      options.addArguments('--disable-dev-shm-usage');
-      options.addArguments('--window-size=1920,1080'); // Set desktop size to avoid mobile layouts
-      driver = await new Builder()
-        .forBrowser('chrome')
-        .setChromeOptions(options)
-        .build();
+    // Launch appropriate browser with Playwright
+    if (browserName === 'chromium') {
+      browser = await chromium.launch({ headless: true });
     } else if (browserName === 'firefox') {
-      options = new firefox.Options();
-      options.addArguments('--headless');
-      options.addArguments('--width=1920');
-      options.addArguments('--height=1080');
-      driver = await new Builder()
-        .forBrowser('firefox')
-        .setFirefoxOptions(options)
-        .build();
-    } else if (browserName === 'edge') {
-      options = new edge.Options();
-      options.addArguments('--headless');
-      options.addArguments('--no-sandbox');
-      options.addArguments('--disable-dev-shm-usage');
-      options.addArguments('--window-size=1920,1080');
-      driver = await new Builder()
-        .forBrowser('MicrosoftEdge')
-        .setEdgeOptions(options)
-        .build();
-    } else if (browserName === 'opera') {
-      options = new chrome.Options();
-      options.addArguments('--headless');
-      options.addArguments('--no-sandbox');
-      options.addArguments('--disable-dev-shm-usage');
-      options.addArguments('--window-size=1920,1080');
-      driver = await new Builder()
-        .forBrowser('chrome')
-        .setChromeOptions(options)
-        .build();
+      browser = await firefox.launch({ headless: true });
+    } else if (browserName === 'webkit') {
+      browser = await webkit.launch({ headless: true });
+    } else {
+      throw new Error(`Unknown browser: ${browserName}`);
     }
+
+    const context = await browser.newContext({
+      viewport: { width: 1920, height: 1080 }
+    });
+    page = await context.newPage();
 
     // Define all pages to test
     const pages = [
@@ -73,133 +44,123 @@ async function testBrowser(browserName) {
     ];
 
     // Test each page
-    for (const page of pages) {
-      console.log(`  📄 Testing ${page.name} page...`);
-      await driver.get(page.url);
-
-      // Wait for page to load
-      await driver.wait(until.titleContains('Web Witchcraft'), 10000);
+    for (const pageInfo of pages) {
+      console.log(`   📄 Testing ${pageInfo.name} page...`);
+      await page.goto(pageInfo.url, { waitUntil: 'networkidle' });
 
       // Check title
-      const title = await driver.getTitle();
+      const title = await page.title();
       if (title.includes('Web Witchcraft')) {
-        console.log(`  ✅ ${page.name} page title correct`);
-        tests.push({ name: `${page.name} page title`, status: 'passed' });
+        console.log(`     ✅ ${pageInfo.name} page title correct`);
+        tests.push({ name: `${pageInfo.name} page title`, status: 'passed' });
       } else {
-        throw new Error(`${page.name} title incorrect: ${title}`);
+        throw new Error(`${pageInfo.name} title incorrect: ${title}`);
       }
 
       // Check navigation links
-      const navLinks = await driver.findElements(By.css('nav a'));
+      const navLinks = await page.$$('nav a');
       if (navLinks.length >= 4) {
-        console.log(`  ✅ ${page.name} page navigation links present`);
-        tests.push({ name: `${page.name} navigation links`, status: 'passed' });
+        console.log(`     ✅ ${pageInfo.name} page navigation links present`);
+        tests.push({ name: `${pageInfo.name} navigation links`, status: 'passed' });
       } else {
-        throw new Error(`Expected at least 4 nav links on ${page.name}, found ${navLinks.length}`);
+        throw new Error(`Expected at least 4 nav links on ${pageInfo.name}, found ${navLinks.length}`);
       }
 
       // Check JavaScript execution - header/footer should be injected
-      const header = await driver.findElement(By.css('header'));
-      const headerContent = await header.findElements(By.css('*'));
+      const headerContent = await page.$$('header *');
       if (headerContent.length > 0) {
-        console.log(`  ✅ ${page.name} JavaScript executed (header injected)`);
-        tests.push({ name: `${page.name} JavaScript execution`, status: 'passed' });
+        console.log(`     ✅ ${pageInfo.name} JavaScript executed (header injected)`);
+        tests.push({ name: `${pageInfo.name} JavaScript execution`, status: 'passed' });
       } else {
-        throw new Error(`${page.name} header not injected - JavaScript may have failed`);
+        throw new Error(`${pageInfo.name} header not injected - JavaScript may have failed`);
       }
 
       // Check CSS Grid support - header should use grid layout (or flex on mobile)
-      const headerDisplay = await driver.executeScript(
-        'return window.getComputedStyle(arguments[0]).display;',
-        header
-      );
+      const headerDisplay = await page.$eval('header', el => window.getComputedStyle(el).display);
       if (headerDisplay === 'grid' || headerDisplay === 'flex') {
-        console.log(`  ✅ ${page.name} CSS Grid/Flexbox layout working (${headerDisplay})`);
-        tests.push({ name: `${page.name} CSS Grid`, status: 'passed' });
+        console.log(`     ✅ ${pageInfo.name} CSS Grid/Flexbox layout working (${headerDisplay})`);
+        tests.push({ name: `${pageInfo.name} CSS Grid`, status: 'passed' });
       } else {
-        throw new Error(`${page.name} CSS Grid/Flex not working: display is ${headerDisplay}`);
+        throw new Error(`${pageInfo.name} CSS Grid/Flex not working: display is ${headerDisplay}`);
       }
 
       // Check CSS Flexbox support - navigation should use flex
-      const nav = await driver.findElement(By.css('nav.site-navigation ul'));
-      const navDisplay = await driver.executeScript(
-        'return window.getComputedStyle(arguments[0]).display;',
-        nav
-      );
+      const navDisplay = await page.$eval('nav.site-navigation ul', el => window.getComputedStyle(el).display);
       if (navDisplay === 'flex') {
-        console.log(`  ✅ ${page.name} CSS Flexbox supported`);
-        tests.push({ name: `${page.name} CSS Flexbox`, status: 'passed' });
+        console.log(`     ✅ ${pageInfo.name} CSS Flexbox supported`);
+        tests.push({ name: `${pageInfo.name} CSS Flexbox`, status: 'passed' });
       } else {
-        throw new Error(`${page.name} CSS Flexbox not working: display is ${navDisplay}`);
+        throw new Error(`${pageInfo.name} CSS Flexbox not working: display is ${navDisplay}`);
       }
 
       // Check CSS Variables support - check if custom property is applied
-      const body = await driver.findElement(By.css('body'));
-      const bgColor = await driver.executeScript(
-        'return window.getComputedStyle(arguments[0]).backgroundColor;',
-        body
-      );
+      const bgColor = await page.$eval('body', el => window.getComputedStyle(el).backgroundColor);
       if (bgColor && bgColor !== 'rgba(0, 0, 0, 0)' && bgColor !== 'transparent') {
-        console.log(`  ✅ ${page.name} CSS Variables supported`);
-        tests.push({ name: `${page.name} CSS Variables`, status: 'passed' });
+        console.log(`     ✅ ${pageInfo.name} CSS Variables supported`);
+        tests.push({ name: `${pageInfo.name} CSS Variables`, status: 'passed' });
       } else {
-        throw new Error(`${page.name} CSS Variables not applied correctly`);
+        throw new Error(`${pageInfo.name} CSS Variables not applied correctly`);
       }
 
       // Check SVG support - header images should be present
-      const svgImages = await driver.findElements(By.css('header img[src*=".svg"]'));
+      const svgImages = await page.$$('header img[src*=".svg"]');
       if (svgImages.length >= 2) {
-        console.log(`  ✅ ${page.name} SVG images loaded`);
-        tests.push({ name: `${page.name} SVG support`, status: 'passed' });
+        console.log(`     ✅ ${pageInfo.name} SVG images loaded`);
+        tests.push({ name: `${pageInfo.name} SVG support`, status: 'passed' });
       } else {
-        throw new Error(`${page.name} SVG images not found: expected 2, found ${svgImages.length}`);
+        throw new Error(`${pageInfo.name} SVG images not found: expected 2, found ${svgImages.length}`);
       }
 
       // Check responsive design - verify viewport meta tag
-      const viewportMeta = await driver.findElements(By.css('meta[name="viewport"]'));
+      const viewportMeta = await page.$$('meta[name="viewport"]');
       if (viewportMeta.length > 0) {
-        console.log(`  ✅ ${page.name} viewport meta tag present`);
-        tests.push({ name: `${page.name} responsive viewport`, status: 'passed' });
+        console.log(`     ✅ ${pageInfo.name} viewport meta tag present`);
+        tests.push({ name: `${pageInfo.name} responsive viewport`, status: 'passed' });
       } else {
-        throw new Error(`${page.name} viewport meta tag missing`);
+        throw new Error(`${pageInfo.name} viewport meta tag missing`);
       }
 
       // Check CSS calc() support - page title uses calc() for max-width
-      const pageTitle = await driver.findElements(By.css('.page-title'));
-      if (pageTitle.length > 0) {
-        const titleMaxWidth = await driver.executeScript(
-          'return window.getComputedStyle(arguments[0]).maxWidth;',
-          pageTitle[0]
-        );
+      const pageTitles = await page.$$('.page-title');
+      if (pageTitles.length > 0) {
+        const titleMaxWidth = await page.$eval('.page-title', el => window.getComputedStyle(el).maxWidth);
         if (titleMaxWidth && titleMaxWidth !== 'none') {
-          console.log(`  ✅ ${page.name} CSS calc() supported`);
-          tests.push({ name: `${page.name} CSS calc()`, status: 'passed' });
+          console.log(`     ✅ ${pageInfo.name} CSS calc() supported`);
+          tests.push({ name: `${pageInfo.name} CSS calc()`, status: 'passed' });
         }
       }
 
       // Check font loading - verify fonts are rendered
-      const siteTitle = await driver.findElements(By.css('.site-title'));
-      if (siteTitle.length > 0) {
-        const fontFamily = await driver.executeScript(
-          'return window.getComputedStyle(arguments[0]).fontFamily;',
-          siteTitle[0]
-        );
+      const siteTitles = await page.$$('.site-title');
+      if (siteTitles.length > 0) {
+        const fontFamily = await page.$eval('.site-title', el => window.getComputedStyle(el).fontFamily);
         if (fontFamily && fontFamily !== '') {
-          console.log(`  ✅ ${page.name} fonts loaded`);
-          tests.push({ name: `${page.name} font rendering`, status: 'passed' });
+          console.log(`     ✅ ${pageInfo.name} fonts loaded`);
+          tests.push({ name: `${pageInfo.name} font rendering`, status: 'passed' });
         }
       }
     }
 
-    console.log(`  ✅ ${browserName} tests passed`);
+    console.log(`     ✅ ${browserName} tests passed`);
 
   } catch (err) {
-    console.error(`  ❌ ${browserName} test failed:`, err.message);
+    // Check if it's a system dependency error
+    if (err.message && err.message.includes('missing dependencies')) {
+      console.log(`   ⚠️  ${browserName} skipped: System dependencies not installed`);
+      console.log(`   ℹ️  To enable ${browserName}: sudo npx playwright install-deps ${browserName}`);
+      return {
+        name: browserName,
+        status: 'skipped',
+        error: 'System dependencies not installed',
+        tests: []
+      };
+    }
+    console.error(`   ❌ ${browserName} test failed:`, err.message);
     error = err.message;
     tests.push({ name: 'browser test', status: 'failed', error: err.message });
   } finally {
-    if (driver) {
-      await driver.quit();
+    if (browser) {
+      await browser.close();
     }
   }
 
@@ -214,9 +175,11 @@ async function testBrowser(browserName) {
 async function runTests() {
   console.log('🚀 Starting cross-browser tests...');
 
-  const browsers = ['chrome', 'firefox', 'edge', 'opera'];
+  const browsers = ['chromium', 'firefox', 'webkit'];
+  
   let passed = 0;
   let failed = 0;
+  let skipped = 0;
   const results = [];
 
   for (const browser of browsers) {
@@ -224,6 +187,8 @@ async function runTests() {
     results.push(result);
     if (result.status === 'passed') {
       passed++;
+    } else if (result.status === 'skipped') {
+      skipped++;
     } else {
       failed++;
     }
@@ -241,6 +206,7 @@ async function runTests() {
     summary: {
       passed: passed,
       failed: failed,
+      skipped: skipped,
       total: browsers.length
     }
   };
@@ -251,6 +217,9 @@ async function runTests() {
   console.log(`\n📊 Test Results:`);
   console.log(`  Passed: ${passed}`);
   console.log(`  Failed: ${failed}`);
+  if (skipped > 0) {
+    console.log(`  Skipped: ${skipped}`);
+  }
   console.log(`  Total: ${browsers.length}`);
 
   if (failed > 0) {
