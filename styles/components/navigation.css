@@ -90,7 +90,7 @@ nav.in-page-navigation {
 
 nav.in-page-navigation ul {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -99,7 +99,6 @@ nav.in-page-navigation ul {
     gap: 0.25rem;
     row-gap: 0.25rem;
     justify-content: center;
-    flex-wrap: wrap;
 }
 
 nav.in-page-navigation li {

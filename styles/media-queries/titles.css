@@ -10,8 +10,7 @@
  **********************************************************************
  */
 
-/* Media query for small screens */
-/* adjusts margins and padding for better fit */
+/* Media query for small screens - adjusts margins and padding for better fit */
 
 @media (width <= 600px) {
     .site-title {

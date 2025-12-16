@@ -31,8 +31,7 @@
 .header-left {
     grid-column: 1;
     grid-row: 1;
-    justify-self: start;
-    align-self: stretch;
+    place-self: stretch start;
     margin: 0;
     padding: 0.5rem;
     display: flex;
@@ -50,8 +49,7 @@
 .header-right {
     grid-column: 3;
     grid-row: 1;
-    justify-self: end;
-    align-self: stretch;
+    place-self: stretch end;
     margin: 0;
     padding: 0.5rem;
     display: flex;

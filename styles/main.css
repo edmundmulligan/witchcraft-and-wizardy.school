@@ -79,10 +79,6 @@ body {
     /* ensure padding is included in element width calculations */
     box-sizing: border-box;
 
-    /* Enable text wrapping */
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-
     /* use flexbox to layout header, main and footer vertically */
     display: flex;
     flex-direction: column;

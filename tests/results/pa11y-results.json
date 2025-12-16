@@ -1,0 +1,34 @@
+{
+  "pages": [
+    {
+      "url": "students.html",
+      "documentTitle": "Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/students",
+      "issues": []
+    },
+    {
+      "url": "index.html",
+      "documentTitle": "Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/",
+      "issues": []
+    },
+    {
+      "url": "glossary-and-faq.html",
+      "documentTitle": "Glossary and FAQ|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/glossary-and-faq",
+      "issues": []
+    },
+    {
+      "url": "license-and-credits.html",
+      "documentTitle": "Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/license-and-credits",
+      "issues": []
+    },
+    {
+      "url": "about.html",
+      "documentTitle": "About|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/about",
+      "issues": []
+    }
+  ]
+}

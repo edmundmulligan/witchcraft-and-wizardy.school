@@ -11,8 +11,7 @@
  **********************************************************************
  */
 
- /* media query for tiny screens */
- /* this displays a warning in the header that the screen is too small */
+/* media query for tiny screens - this displays a warning in the header that the screen is too small */
 
 @media (width < 200px) {
     .header {
@@ -41,8 +40,7 @@
     }
 }
 
- /* Media query for small to medium screens */
- /* switchs from grid to vertical flex layout */
+ /* Media query for small to medium screens - switchs from grid to vertical flex layout */
 
 @media (width < 800px) {
     /* switch header to vertical layout */

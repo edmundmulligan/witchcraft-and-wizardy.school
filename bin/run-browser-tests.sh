@@ -13,7 +13,7 @@ parse_test_options "$@"
 
 # Install required npm packages for Selenium testing
 echo "Installing Selenium WebDriver dependencies..."
-npm install selenium-webdriver chromedriver geckodriver msedgedriver > /dev/null 2>&1
+npm install selenium-webdriver chromedriver geckodriver msedgedriver operadriver > /dev/null 2>&1
 
 # Start server and setup
 start_server_if_needed "$TEST_URL"

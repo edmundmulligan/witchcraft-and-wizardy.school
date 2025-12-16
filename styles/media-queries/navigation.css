@@ -11,8 +11,7 @@
  **********************************************************************
  */
 
- /* Media query for small screens */
- /* switchs from horizontal to vertical flex layout */
+/* Media query for small screens - switchs from horizontal to vertical flex layout */
 
 @media (width <= 600px) {
     ul.site-navigation {

@@ -1,0 +1,19 @@
+export default [
+  {
+    languageOptions: {
+      ecmaVersion: 2021,
+      sourceType: 'module',
+      globals: {
+        window: 'readonly',
+        document: 'readonly',
+        console: 'readonly'
+      }
+    },
+    rules: {
+      'indent': ['error', 4],
+      'linebreak-style': ['error', 'unix'],
+      'quotes': ['error', 'single'],
+      'semi': ['error', 'always']
+    }
+  }
+];
