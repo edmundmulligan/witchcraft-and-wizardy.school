@@ -17,12 +17,12 @@
  ********************************************
  */
 
-p.clossary {
+.glossary p{
     margin: 2em;
     text-align: justify;
 }
 
-dl.glossary {
+.glossary dl {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 0;
@@ -31,7 +31,7 @@ dl.glossary {
     align-items: stretch;
 }
 
-dt.glossary {
+.glossary dt {
     font-weight: bold;
     grid-column: 1;
     margin: 0;
@@ -44,7 +44,7 @@ dt.glossary {
     align-items: center;
 }
 
-dd.glossary {
+.glossary dd {
     grid-column: 2;
     margin: 0;
     padding: 0 0.5em;
@@ -55,3 +55,6 @@ dd.glossary {
     display: flex;
     align-items: center;
 }
+
+/* no styles for FAQ at the moment as the FAQ button is a 
+   placeholder for future content */

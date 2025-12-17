@@ -50,7 +50,7 @@ async function testBrowser(browserName) {
 
       // Check title
       const title = await page.title();
-      if (title.includes('Web Witchcraft')) {
+      if (title.includes('Web Witchcraft and Wizardry')) {
         console.log(`     ✅ ${pageInfo.name} page title correct`);
         tests.push({ name: `${pageInfo.name} page title`, status: 'passed' });
       } else {

@@ -38,14 +38,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 <nav class="site-navigation" aria-label="Site navigation">
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="students.html">Students</a></li>
+                        <li><a href="pages/students.html">Students</a></li>
                         <li><a href="#"
                                onclick="showAlert('This page has not been implemented in this phase of the project, as described ' +
                                                   'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
                                                   'Wizardry project (Mulligan, 2025).')">Mentors</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="glossary-and-faq.html">Glossary</a></li>
-                        <li><a href="license-and-credits.html">License</a></li>
+                        <li><a href="pages/about.html">About</a></li>
+                        <li><a href="pages/glossary-and-faq.html">Glossary</a></li>
+                        <li><a href="pages/license-and-credits.html">License</a></li>
                     </ul>
                 </nav>
             </div>

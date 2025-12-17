@@ -4,7 +4,6 @@
 
 # First, get the word count and save it to wordcount.txt
 texcount -nobib $1.tex | awk -F: ' $1 == "Words in text" {print $2}' > wordcount.txt
-./wordcount.sh $1
 
 # Generate the PDF
 pdflatex $1.tex

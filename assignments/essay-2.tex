@@ -59,15 +59,43 @@ information arcitecture and layout choices
 navigation design
 site navigation vs page navigation
 
-\section*{Third party resources}
-Kevin Powell YouTube channel \citep{powell_youtube}
-Coding2GO YouTube channel \citep{coding2go_youtube}
+\section*{Third party credits and resources}
+All code submitted for assessment is my own work. No code has been copied from 
+any external sources, such as online tutorials or code. I have, however,  relied 
+heavily on two YouTube channels, those of Kevin Powell \citep{powell_youtube} and 
+Coding2GO \citep{coding2go_youtube}, for guidance on best practices 
+in responsive web design. I have also used Stack Overflow 
+\citep{stackoverflow2025} extensively to troubleshoot specific issues that I encountered. 
 
-
+The automation tools used for testing accessibility and performance (Lighthouse, axe, 
+pa11y, Wave) are all open source tools developed by third parties and the scripts used 
+to run them were adapted from examples found in their respective documentations. I was 
+assisted by a colleague at my employer, Transport for London, in writing the 
+playwright tests used for testing browser compatibility. The automation scripts are 
+included in the git repositry but are not part of the submission for assessment.
 
 \section*{Testing}
 
-\section*{Challenges and Solutions}
+\section*{Outstanding issues and Future Improvements}
+The poject submitted for assessment is phase one of a larger project to refactor and
+improve the Web Witchcraft and Wizardry website. Some content was deliberatly ommitted 
+from this phase as it will be developed in phase 2 using JavaScript. There are alo 
+some known issues and areas for improvement that could not be addressed within the
+time constraints of this phase.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+\textbf{Bug Id} & \textbf{Description} & \textbf{Symptoms} & \textbf{Work around} \\
+\hline
+1 & Reactive code does not work well at extreme viewport sizes & Text overflows boxes or content does not fill screen properly. & Warning displayed when viewport is too small. \\
+\hline
+\end{tabular}
+\caption{Known issues and workarounds}
+\label{tab:bugs}
+\end{table}
+
 
 responsive design techniques
 Fluid grids, flexible images, and media queries \citep{marcotte2010responsive}

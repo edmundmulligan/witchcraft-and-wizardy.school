@@ -1,13 +1,18 @@
 /*
  **********************************************************************
- * File       : media-queries/header-and-footer.css
+ * File       : media-queries/navigation.css
  * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
  * Copyright  : (c) 2025 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
  * Description:
- *   This stylesheet contains media queries for the header and 
- *   footer sections used across the Web Witchcraft and Wizardry 
- *   website.
+ *   Style overrides for navigation elements for different screen sizes.
+ * Note:
+ *   Cutoffs for media queries are (arbitarily) as follows:
+ *      Very small screen : width <= 200px
+ *      Small screen      : width <= 600px
+ *      Medium screen     : width <= 800px
+ *      Large screen      : width <= 1200px
+ *      Very large screen : width > 1200px
  **********************************************************************
  */
 

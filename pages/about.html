@@ -66,6 +66,7 @@
     <script src="scripts/alert.js" defer></script>
     <script src="scripts/header.js" defer></script>
     <script src="scripts/footer.js" defer></script>
+    <script src="scripts/in-page-navigation-about.js" defer></script>
     <!-- End JavaScript file link -->
 
     <noscript>
@@ -81,18 +82,13 @@
     <main>
         <h2 class="page-title">About Web Witchcraft and Wizardry</h2>
 
-        <nav class="in-page-navigationigation" aria-label="Page sections before introduction">
-            <ul class="in-page-navigationigation">
-                <li class="in-page-navigationigation">Jump to:</li>
-                <li class="in-page-navigationigation"><a href="#introduction">Introduction</a></li>
-                <li class="in-page-navigationigation"><a href="#gallery">Gallery</a></li>
-                <li class="in-page-navigationigation"><a href="#accessories">Accessories</a></li>
-                <li class="in-page-navigationigation"><a href="#facts">Interesting Facts</a></li>
-            </ul>
+        <nav class="in-page-navigation" aria-label="Page sections before introduction">
+            <!-- Navigation content is injected by JavaScript to ensure it is the same across the page -->
         </nav>
 
         <section id="introduction">
             <h2>Introduction</h2>
+
             <p class="about-text">
                 Welcome <strong>Web Witch or Wizard</strong> to the world
                 of web development! Here, you will learn the art of
@@ -105,7 +101,9 @@
                 witches and wizards are always curious. So you are in
                 the right place.
             </p>
+
             <h3>Prior Knowledge</h3>
+
             <p class="about-text">
                 This course teaches you how to write good web pages. By
                 good, I mean well built and secure. The content is up to
@@ -113,10 +111,13 @@
                 Scratch or Python, but you do not need to know JavaScript.
                 You should know how to browse the web and click on links.
             </p>
+
             <h3>Getting Started</h3>
+
             <p class="about-text">
                 You will need:
             </p>
+
             <ul class="about-text">
                 <li>A computer (desktop or laptop) capable of running a modern web browser.
                     If you don't have a computer, you can still follow the lessons using
@@ -138,16 +139,19 @@
                 <li>Sqlite. This is a lightweight database engine that will be
                     used in later lessons.</li>
             </ul>
+
             <p class="about-text">
                 The first lesson will help you install these tools if you
                 need them.
             </p>
+
             <p class="about-text">
                 If you are not sure about something, check the
                 <a href="glossary-and-faq.html">Glossary and FAQ page</a>.
                 If you are at a Code Dojo or coding club, ask a mentor
                 for help.
             </p>
+
             <p class="about-text">
                 On the Student Dashboard you can pick an avatar to
                 represent you. Before you start, look at the avatars
@@ -167,17 +171,13 @@
             </p>
         </section>
 
-        <nav class="in-page-navigationigation" aria-label="Page sections before gallery">
-            <ul class="in-page-navigationigation">
-                <li class="in-page-navigationigation">Jump to:</li>
-                <li class="in-page-navigationigation"><a href="#introduction">Introduction</a></li>
-                <li class="in-page-navigationigation"><a href="#gallery">Gallery</a></li>
-                <li class="in-page-navigationigation"><a href="#accessories">Accessories</a></li>
-                <li class="in-page-navigationigation"><a href="#facts">Interesting Facts</a></li>
-            </ul>
+        <nav class="in-page-navigation" aria-label="Page sections before gallery">
+            <!-- Navigation content is injected by JavaScript to ensure it is the same across the page -->
         </nav>
+
         <section id="gallery">
             <h2>Gallery of Witches and Wizards</h2>
+
             <div class="gallery-grid">
                 <div class="gallery-item">
                     <img
@@ -189,6 +189,7 @@
                         A young witch
                     </p>
                 </div>
+
                 <div class="gallery-item">
                     <img
                         src="images/evil-witch-9820120_1280.png"
@@ -199,6 +200,7 @@
                         An old witch
                     </p>
                 </div>
+
                 <div class="gallery-item">
                     <img
                         src="images/character-7371514_1920.png"
@@ -209,6 +211,7 @@
                         A young wizard
                     </p>
                 </div>
+
                 <div class="gallery-item">
                     <img
                         src="images/wizard-36676.svg"
@@ -222,17 +225,13 @@
             </div>
         </section>
 
-        <nav class="in-page-navigationigation" aria-label="Page sections before accessories">
-            <ul class="in-page-navigationigation">
-                <li class="in-page-navigationigation">Jump to:</li>
-                <li class="in-page-navigationigation"><a href="#introduction">Introduction</a></li>
-                <li class="in-page-navigationigation"><a href="#gallery">Gallery</a></li>
-                <li class="in-page-navigationigation"><a href="#accessories">Accessories</a></li>
-                <li class="in-page-navigationigation"><a href="#facts">Interesting Facts</a></li>
-            </ul>
+        <nav class="in-page-navigation" aria-label="Page sections before accessories">
+            <!-- Navigation content is injected by JavaScript to ensure it is the same across the page -->
         </nav>
+
         <section id="accessories">
             <h2>Accessories</h2>
+
             <p class="about-text">
                 All witches and wizards need their magical accessories to help
                 them perform their craft effectively. In Terry Pratchett's
@@ -241,6 +240,7 @@
                 Beware, though. The magic items may look stunning, but they
                 often have unexpected side effects, if they work at all.
             </p>
+
             <p class="about-text">
                 <strong>But</strong>, if you absolutely must accessorise your
                 witch or wizard, then here is a selection of hand picked items
@@ -258,7 +258,7 @@
                     <p class="accessory-description">A basic wand to cast your spells with.</p>
                 </div>
 
-                                <div class="accessory-item">
+                <div class="accessory-item">
                     <img
                         src="images/fontawesome/wand-magic-sparkles-sharp-duotone-regular-full.svg"
                         alt="An icon of a magic wand with sparkles"
@@ -317,7 +317,7 @@
                         src="images/fontawesome/broom-wide-duotone-regular-full.svg"
                         alt="An icon of a heavy duty broomstick"
                         class="accessory-image"
-                    >x
+                    >
                     <p class="accessory-name">Heavy Duty Broomstick</p>
                     <p class="accessory-description">A sturdy broomstick
                         for those tough cleaning jobs or long-distance flying.
@@ -531,54 +531,59 @@
             </div>
         </section>
 
-        <nav class="in-page-navigationigation" aria-label="Page sections before interesting facts">
-            <ul class="in-page-navigationigation">
-                <li class="in-page-navigationigation">Jump to:</li>
-                <li class="in-page-navigationigation"><a href="#introduction">Introduction</a></li>
-                <li class="in-page-navigationigation"><a href="#gallery">Gallery</a></li>
-                <li class="in-page-navigationigation"><a href="#accessories">Accessories</a></li>
-                <li class="in-page-navigationigation"><a href="#facts">Interesting Facts</a></li>
-            </ul>
+        <nav class="in-page-navigation" aria-label="Page sections before interesting facts">
+            <!-- Navigation content is injected by JavaScript to ensure it is the same across the page -->
         </nav>
 
         <section id="facts">
             <h2>Interesting Facts about Witches and Wizards</h2>
+
             <div class="facts-container">
                 <div class="facts-wide-item" id="item-1">
+
                     <h3>Some famous witches (apart from Hermione Granger)</h3>
+
                     <ul>
                         <li>
                             From Terry Pratchett's Discworld series: Granny
                             Weatherwax, Nanny Ogg and Magrat Garlick
                         </li>
+
                         <li>
                             From Shakespeare's Macbeth: The Weird Sisters
                             (he doesn't actually name them - they are just called
                             First Witch, Second Witch, and Third Witch)
                         </li>
+
                         <li>
                             From Mozart's opera The Magic Flute: The Queen
                             of the Night
                         </li>
+
                         <li>
                             From the Wizard of Oz and the musical Wicked:
                             Glinda the Good and Elphaba the Wicked Witch of the
                             West
                         </li>
+
                         <li>
                             From King Arthur legends: Morgan le Fay and the
                             Lady of the Lake
                         </li>
+
                         <li>
                             From East European folklore: Baba Yaga
                         </li>
+
                         <li>
                             From Greek mythology: Circe and Medea
                         </li>
+
                         <li>
                             From the TV show Charmed: Piper, Phoebe, and Paige
                             Halliwell
                         </li>
+
                         <li>
                             From the TV show Sabrina the Teenage Witch: Sabrina
                             Spellman
@@ -587,7 +592,9 @@
                 </div>
 
                 <div class="facts-wide-item" id="item-2">
+
                     <h3>Some famous wizards (apart from Harry Potter)</h3>
+
                     <ul>
                         <li>
                             From Terry Pratchett's Discworld series: Rincewind
@@ -595,32 +602,40 @@
                             He doesn't care where he runs to, what's important
                             is what he is running from)
                         </li>
+
                         <li>
                             From Lord of the Rings: Gandalf the Grey,
                             Saruman the White and Radagast the Brown
                         </li>
+
                         <li>
                             From King Arthur legends: Merlin
                         </li>
+
                         <li>
                             From the TV show Merlin: Merlin (who is a young
                             wizard in this version)
                         </li>
+
                         <li>
                             From T.H. White's The Once and Future King:
                             Merlin (who is, you guessed it, the same Merlin as
                             above, but portrayed differently)
                         </li>
+
                         <li>
                             From Shakespeare's The Tempest: Prospero
                         </li>
+
                         <li>
                             From Ursula K. Le Guin's Earthsea series: Ged (also
                             known as Sparrowhawk)
                         </li>
+
                         <li>
                             From The Wizard of Oz: The Wizard of Oz
                         </li>
+
                         <li>
                             From Jim Butcher's book series The Dresden Files:
                             Harry Dresden (who is a wizard detective living in
@@ -727,14 +742,8 @@
             </div>
         </section>
 
-        <nav class="in-page-navigationigation" aria-label="Page sections at end of interesting facts">
-            <ul class="in-page-navigationigation">
-                <li class="in-page-navigationigation">Jump to:</li>
-                <li class="in-page-navigationigation"><a href="#introduction">Introduction</a></li>
-                <li class="in-page-navigationigation"><a href="#gallery">Gallery</a></li>
-                <li class="in-page-navigationigation"><a href="#accessories">Accessories</a></li>
-                <li class="in-page-navigationigation"><a href="#facts">Interesting Facts</a></li>
-            </ul>
+        <nav class="in-page-navigation" aria-label="Page sections at end of interesting facts">
+            <!-- Navigation content is injected by JavaScript to ensure it is the same across the page -->
         </nav>
     </main>
 
