@@ -32,6 +32,6 @@ main {
 
 /* insert the landing page background image */
 body::before {
-    background-image: url('../../images/michael-hamments-x6VyE3ie1sM-unsplash-landscape.jpg');
+    background-image: url('//images/michael-hamments-x6VyE3ie1sM-unsplash-landscape.jpg');
 }
 

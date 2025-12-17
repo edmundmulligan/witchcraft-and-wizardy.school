@@ -10,7 +10,7 @@
 @media (width <= 800px) or (orientation: portrait) {
   /* insert the landing page background image for small screens */
   body::before {
-    background-image: url('../../images/michael-hamments-x6VyE3ie1sM-unsplash-portrait.jpg');
+    background-image: url('//images/michael-hamments-x6VyE3ie1sM-unsplash-portrait.jpg');
   }
 
   /* change the circular button container to a column layout */

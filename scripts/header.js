@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (header && header.children.length === 0) {
         header.innerHTML = `
         <div class="header-left">
-            <img class="header-image mirror" src="images/cat-1299082.svg" alt="" aria-hidden="true">
+            <img class="header-image mirror" src="/images/cat-1299082.svg" alt="" aria-hidden="true">
         </div>
 
         <div class="header-center">
@@ -37,22 +37,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 <h2 class="site-subtitle">Learn to create magical websites</h2>
                 <nav class="site-navigation" aria-label="Site navigation">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="pages/students.html">Students</a></li>
+                        <li><a href="/index.html">Home</a></li>
+                        <li><a href="/pages/students.html">Students</a></li>
                         <li><a href="#"
                                onclick="showAlert('This page has not been implemented in this phase of the project, as described ' +
                                                   'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
                                                   'Wizardry project (Mulligan, 2025).')">Mentors</a></li>
-                        <li><a href="pages/about.html">About</a></li>
-                        <li><a href="pages/glossary-and-faq.html">Glossary</a></li>
-                        <li><a href="pages/license-and-credits.html">License</a></li>
+                        <li><a href="/pages/about.html">About</a></li>
+                        <li><a href="/pages/glossary-and-faq.html">Glossary</a></li>
+                        <li><a href="/pages/license-and-credits.html">License</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
 
         <div class="header-right">
-          <img class="header-image" src="images/witch-151167.svg" alt="" aria-hidden="true">
+          <img class="header-image" src="/images/witch-151167.svg" alt="" aria-hidden="true">
         </div>
         `;
     }

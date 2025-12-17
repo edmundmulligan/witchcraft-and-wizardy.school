@@ -11,7 +11,8 @@
  **********************************************************************
  */
 
- /* very small screen width - do not indent or justify text*/
+/* very small screen width - do not indent or justify text */
+
 @media (width <= 400px) {
     .license p {
         margin: 0.1rem;

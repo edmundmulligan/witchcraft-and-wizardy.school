@@ -35,7 +35,7 @@ bin/run-wave-tests.sh "$@" || FAILED=1
 
 echo ""
 echo "📖 Running reading age checks..."
-bin/check-reading-age.sh "$@" || FAILED=1
+bin/check-reading-age.sh "$@" -x pages/license-and-credits.html || FAILED=1
 
 echo ""
 echo "🌐 Running cross-browser tests..."

@@ -80,8 +80,7 @@ nav.site-navigation a:focus::before {
 
 nav.in-page-navigation {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    flex-flow: row nowrap;
     flex-shrink: 1;
     margin: 1rem auto;
     padding: 0.25rem;

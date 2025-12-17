@@ -37,10 +37,10 @@ async function testBrowser(browserName) {
     // Define all pages to test
     const pages = [
       { url: 'http://localhost:8080/index.html', name: 'Home' },
-      { url: 'http://localhost:8080/about.html', name: 'About' },
-      { url: 'http://localhost:8080/students.html', name: 'Students' },
-      { url: 'http://localhost:8080/glossary-and-faq.html', name: 'Glossary & FAQ' },
-      { url: 'http://localhost:8080/license-and-credits.html', name: 'License & Credits' }
+      { url: 'http://localhost:8080/pages/about.html', name: 'About' },
+      { url: 'http://localhost:8080/pages/students.html', name: 'Students' },
+      { url: 'http://localhost:8080/pages/glossary-and-faq.html', name: 'Glossary & FAQ' },
+      { url: 'http://localhost:8080/pages/license-and-credits.html', name: 'License & Credits' }
     ];
 
     // Test each page

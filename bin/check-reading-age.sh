@@ -51,7 +51,9 @@ if [ -n "$EXCLUDE_LIST" ]; then
     page_base=$(basename "$page")
     EXCLUDED=0
     for exclude in $EXCLUDE_LIST; do
-      if [ "$page_base" = "$exclude" ]; then
+      exclude_base=$(basename "$exclude")
+      # Match against basename or full path (with or without ./ prefix)
+      if [ "$page_base" = "$exclude_base" ] || [ "$page" = "./$exclude" ] || [ "$page" = "$exclude" ]; then
         EXCLUDED=1
         EXCLUDED_COUNT=$((EXCLUDED_COUNT + 1))
         break
