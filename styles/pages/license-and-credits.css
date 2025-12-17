@@ -11,18 +11,32 @@
  **********************************************************************
  */
 
-p.license {
+nav.in-page-navigation ul {
+    align-items: center;
+}
+
+.license, .credits {
+    font-size: clamp(0.5rem, calc(0.5vm + 0.5rem), 1rem);
+}
+
+.license h3, .credits h3 {
+    margin-top: 2em;
+    text-align: center;
+    font-size: clamp(1rem, calc(1vw + 1rem), 2rem);
+}
+
+.license p {
     margin: 2em;
     line-height: 1.5;
     text-align: justify;
 }
 
-ul.credits {
+.credits ul {
     margin: 2em;
+    padding-left: 1.5em;
     line-height: 1.5;
     text-align: left;
 }
-
 
 /**********************************************
  * Individual item overrides

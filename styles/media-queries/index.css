@@ -7,25 +7,14 @@
  **********************************************************************************************/
 
 /* small screens (mostly applies to mobile phones) */
-@media (width <= 800px)  {
+@media (width <= 800px) or (orientation: portrait) {
+  /* insert the landing page background image for small screens */
   body::before {
-    /* Portrait version of Michael Hamments photo on unsplash.com */
-    background-image: url('../images/michael-hamments-x6VyE3ie1sM-unsplash-portrait.jpg');
+    background-image: url('../../images/michael-hamments-x6VyE3ie1sM-unsplash-portrait.jpg');
   }
 
+  /* change the circular button container to a column layout */
   .circular-button-container {
       flex-direction: column;
   }
-}
-
-/* Large screens (mostly applies to computers and tablets) */
-@media (width > 800px)  {
-    body::before {
-        /* Landscape version of Michael Hamments photo on unsplash.com */
-        background-image: url('../images/michael-hamments-x6VyE3ie1sM-unsplash-landscape.jpg');
-    }
-
-    .circular-button-container {
-        flex-direction: row;
-    }
 }

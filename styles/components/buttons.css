@@ -12,9 +12,9 @@
 /* Styles common to all buttons. Class name must start with "button-" */
  [class^="button-"],
  [class*=" button-"] {
-    margin: 1rem auto;
-    padding: 1rem;
-    font-size: clamp(0.5rem, 2vw, 1.5rem);
+    margin: 1em auto;
+    padding: 1em;  
+    font-size: clamp(0.5em, calc(1vw + 1em), 4em);
     font-weight: bold;
     background-color: var(--color-light-headings-background);
     color: var(--color-light-headings-text);
@@ -51,10 +51,19 @@
 
 /* Style override for circular buttons */
 .button-circle {
-    display: grid;
-    place-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     border-radius: 50%;
     aspect-ratio: 1 / 1;
-    width: 20%;
+    width: clamp(4em, calc(8vw + 5em), 12em);
+    height: clamp(4em, calc(8vw + 5em), 12em);
+    max-width: 25vw;
+    max-height: 25vw;
+    padding: 1rem;
+    font-size: clamp(0.5em, calc(0.5vw + 0.5em), 1em);
+    overflow: hidden;
+    word-wrap: break-word;
     background-color: var(--color-light-page-background);
 }

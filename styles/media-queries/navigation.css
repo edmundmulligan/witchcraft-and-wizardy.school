@@ -23,4 +23,11 @@
         flex-direction: column;
         align-items: center;
     }
+
+    /* switch to column and change background color of in-page navigation 
+       to make it a bit more distinguishable from the background */
+    nav.in-page-navigation {
+        flex-direction: column;
+        background-color: var(--color-light-headings-background);
+    }
 }

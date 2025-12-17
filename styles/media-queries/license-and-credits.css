@@ -11,13 +11,14 @@
  **********************************************************************
  */
 
- /* small and medium screen width - do not indent */
-@media (width <= 800px) {
-    p.license {
-        margin:0;
+ /* very small screen width - do not indent or justify text*/
+@media (width <= 400px) {
+    .license p {
+        margin: 0.1rem;
+        text-align: left;
     }
 
-    ul.credits {
-        margin: 0;
+    .credits ul{
+        margin: 0.1rem;
     }
 }

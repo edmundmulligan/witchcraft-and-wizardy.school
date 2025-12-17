@@ -79,13 +79,17 @@ nav.site-navigation a:focus::before {
  ********************************************************/
 
 nav.in-page-navigation {
-    margin: 1rem 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    flex-shrink: 1;
+    margin: 1rem auto;
     padding: 0.25rem;
-    flex-wrap: wrap;
     gap: 0.5rem;
     justify-content: center;
-    max-width: 100%;
+    align-items: center;
     box-sizing: border-box;
+    width: fit-content;
 }
 
 nav.in-page-navigation ul {
@@ -104,12 +108,14 @@ nav.in-page-navigation ul {
 nav.in-page-navigation li {
     display: inline;
     flex: 0 1 auto;
+    text-align: center;
 }
 
 nav.in-page-navigation a {
     display: block;
     color: var(--color-light-headings-text);
-    text-decoration: none;
+    text-decoration: underline;
     padding: 0.25rem 0.5rem;
     white-space: nowrap;
+    text-align: center;
 }

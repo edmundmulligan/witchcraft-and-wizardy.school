@@ -56,12 +56,14 @@
     <!-- media-queries must be the last stylesheets loaded -->
     <link rel="stylesheet" href="styles/media-queries/header-and-footer.css">
     <link rel="stylesheet" href="styles/media-queries/navigation.css">
+    <link rel="stylesheet" href="styles/media-queries/license-and-credits.css">
     <!-- End of CSS stylesheets section -->
 
     <!-- Load JavaScript files -->
     <script src="scripts/alert.js" defer></script>
     <script src="scripts/header.js" defer></script>
     <script src="scripts/footer.js" defer></script>
+    <script src="scripts/in-page-navigation-license-and-credits.js" defer></script>
     <!-- End JavaScript file link -->
 
     <noscript>
@@ -78,16 +80,12 @@
         <h2 class="page-title">License and Credits</h2>
 
         <nav class="in-page-navigation" aria-label="Page sections before license">
-            <ul>
-                <li>Jump to:</li>
-                <li><a href="#license">License</a></li>
-                <li><a href="#credits">Credits</a></li>
-            </ul>
+            <!-- Navigation content is injected by JavaScript to ensure it is the same across the page -->
         </nav>
 
-       <section id="license">
+       <section id="license" class="license">
             <h3>&copy; The Embodied Mind, 2025</h3>
-            <p class="license">
+            <p>
                 Permission is hereby granted, free of charge, to any person obtaining
                 a copy of this software and associated documentation files (the
                 “Software”), to deal in the Software without restriction, including
@@ -96,12 +94,12 @@
                 the following conditions:
             </p>
 
-            <p class="license">
+            <p>
                 The above copyright notice and this permission notice shall be included
                 in all copies or substantial portions of the Software.
             </p>
 
-            <p class="license">
+            <p>
                 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS
                 OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
                 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -113,16 +111,12 @@
         </section>
 
         <nav class="in-page-navigation" aria-label="Page sections before credits">
-            <ul>
-                <li>Jump to:</li>
-                <li><a href="#license">License</a></li>
-                <li><a href="#credits">Credits</a></li>
-            </ul>
+            <!-- Navigation content is injected by JavaScript to ensure it is the same across the page -->
         </nav>
 
-        <section id="credits">
+        <section id="credits" class="credits">
             <h3>Third party credits</h3>
-            <ul class="credits">
+            <ul>
                 <li>
                     Photograph of a web by Michael Hamments on
                     <a href="https://unsplash.com/@35mmtodgt/" target="_blank">
@@ -131,7 +125,7 @@
                     a repository of free-to-use images, licened under the
                     <a href="https://unsplash.com/license" target="_blank">
                         Unsplash License
-                    </a>.
+                    </a>
                 </li>
 
                 <li>
@@ -142,7 +136,7 @@
                     licensed under the
                     <a href="https://pixabay.com/service/license/" target="_blank">
                         Pixabay License
-                    </a>.
+                    </a>
                 </li>
 
                 <li>
@@ -153,7 +147,7 @@
                     licensed under the
                     <a href="https://pixabay.com/service/license/" target="_blank">
                         Pixabay License
-                    </a>.
+                    </a>
                 </li>
 
                 <li>
@@ -164,7 +158,7 @@
                     licensed under the
                     <a href="https://pixabay.com/service/license/" target="_blank">
                         Pixabay License
-                    </a>.
+                    </a>
                 </li>
 
                 <li>
@@ -175,7 +169,7 @@
                     licensed under the
                     <a href="https://pixabay.com/service/license/" target="_blank">
                         Pixabay License
-                    </a>.
+                    </a>
                 </li>
 
                 <li>
@@ -183,7 +177,10 @@
                     <a href="https://pixabay.com/users/openclipart-vectors-30363" target="_blank">
                         pixabay.com
                     </a>
-                    licensed under the <a href="https://pixabay.com/service/license/" target="_blank">Pixabay License</a>.
+                    licensed under the 
+                    <a href="https://pixabay.com/service/license/" target="_blank">
+                        Pixabay License
+                    </a>
                 </li>
 
                 <li>
@@ -194,7 +191,7 @@
                     licensed under the
                     <a href="https://openfontlicense.org/" target="_blank">
                         SIL Open Font License
-                    </a>.
+                    </a>
                 </li>
 
                 <li>
@@ -205,7 +202,7 @@
                     licensed under the
                     <a href="https://openfontlicense.org/" target="_blank">
                         SIL Open Font License
-                    </a>.
+                    </a>
                 </li>
 
                 <li>
@@ -216,7 +213,7 @@
                     licensed under the
                     <a href="https://fontawesome.com/license" target="_blank">
                         Font Awesome Pro License
-                    </a>.
+                    </a>
                 </li>
 
                 <li>
@@ -224,17 +221,13 @@
                     <a href="https://www.embodied-mind.org/" target="_blank">
                         The Embodied Mind
                     </a>
-                    Used with permission.
+                    Used with permission
                 </li>
             </ul>
         </section>
 
         <nav class="in-page-navigation" aria-label="Page sections after credits">
-            <ul>
-                <li>Jump to:</li>
-                <li><a href="#license">License</a></li>
-                <li><a href="#credits">Credits</a></li>
-            </ul>
+            <!-- Navigation content is injected by JavaScript to ensure it is the same across the page -->
         </nav>
     </main>
 

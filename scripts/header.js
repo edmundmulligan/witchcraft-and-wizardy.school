@@ -22,14 +22,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 <h2>Warning</h2>
                 <p>
                     You are either vewing this website on a very small
-                    device or have resized your browser window to be 
-                    very narrow.
+                    device or have zoomed your browser window to a high level.
                 </p>
                 <p>
                     Some of the page content may not be displayed corectly.
                     For the best experience, please view this website
-                    on a device with a wider screen or resize your browser
-                    window to be wider.
+                    on a device with a wider screen or zoom your browser
+                    window out to be wider.
                 </p>
             </div>
 
