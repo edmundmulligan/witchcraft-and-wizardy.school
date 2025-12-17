@@ -51,6 +51,7 @@
     /* other global variables to ensure sitewide consistency */
     --border-radius: 2rem;
     --border-weight: 0.2rem;
+    --border-weight-thin: 0.1rem;
     --border-style: solid;
 }
 
@@ -86,7 +87,7 @@ body {
 
     /* use a readable font for body text */
     font-family: "Open Sans", -apple-system, sans-serif;
-    font-size: 1.125rem; /* 18px */
+    font-size: clamp(0.5rem, calc(0.7vw + 0.2rem), 1.125rem);
     line-height: 1.6;
     color: var(--color-light-page-text);
     background-color: var(--color-light-page-background);
@@ -138,9 +139,15 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
-/* make h1 larger and bolder */
-h1 {
-    font-size: 1.5rem;
+/* make h1 and h2 larger and bolder */
+h1, h2{
+    font-size: clamp(0.5rem, calc(1vw + 0.5rem), 4rem);
+    font-weight: 700;
+}
+
+/* h3 not quite as big */
+h3, h4{
+    font-size: clamp(0.5rem, calc(0.8vw + 0.5rem), 2rem);
     font-weight: 700;
 }
 

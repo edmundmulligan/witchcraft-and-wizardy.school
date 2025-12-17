@@ -2,13 +2,13 @@
   "pages": [
     {
       "file": "./pages/students.html",
-      "wordCount": 526,
-      "fleschReadingEase": 64.4,
+      "wordCount": 514,
+      "fleschReadingEase": 65.2,
       "fleschKincaidGrade": 8.9,
-      "smogIndex": 11.6,
-      "colemanLiauIndex": 9,
+      "smogIndex": 11.5,
+      "colemanLiauIndex": 8.8,
       "automatedReadabilityIndex": 9.1,
-      "averageGradeLevel": 9.7,
+      "averageGradeLevel": 9.6,
       "readingLevel": "Plain English (High School)",
       "readingAge": "15-16 years"
     },

@@ -12,6 +12,9 @@ FAILED=0
 echo "📄 Running code validation..."
 bin/validate-code.sh "$@" || FAILED=1
 
+echo "Running comments check..."
+bin/check-file-comments.sh "$@" || FAILED=1
+
 echo ""
 echo "🔗 Running link checks..."
 bin/check-links.sh "$@" || FAILED=1

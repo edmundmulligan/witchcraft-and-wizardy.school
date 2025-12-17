@@ -10,7 +10,7 @@
       "url": "pages/students.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 45
+      "totalCount": 40
     },
     {
       "url": "pages/glossary-and-faq.html",
@@ -32,7 +32,7 @@
     }
   ],
   "summary": {
-    "totalLinks": 161,
+    "totalLinks": 156,
     "brokenLinks": 0,
     "excludedLinks": 0
   }

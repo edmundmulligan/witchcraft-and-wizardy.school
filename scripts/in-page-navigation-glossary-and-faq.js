@@ -14,11 +14,11 @@ document.addEventListener('DOMContentLoaded', function() {
     navElements.forEach(function(nav) {
         if (nav && nav.children.length === 0) {
             nav.innerHTML = `
-            <ul>
-                <li>Jump to:</li>
-                <li><a href="#glossary">Glossary</a></li>
-                <li><a href="#faq">FAQ</a></li>
-            </ul>
+                <ul>
+                    <li>Jump to:</li>
+                    <li><a href="#glossary">Glossary</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
             `;
         }
     });

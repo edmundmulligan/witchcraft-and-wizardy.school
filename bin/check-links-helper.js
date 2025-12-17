@@ -1,5 +1,17 @@
 #!/usr/bin/env node
 
+/*
+ **********************************************************************
+ * File       : bin/check-links-helper.js
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Helper script for checking broken links in HTML pages.
+ *   Uses cheerio to parse HTML and validates internal and external links.
+ **********************************************************************
+ */
+
 const cheerio = require('cheerio');
 const fs = require('fs');
 const https = require('https');

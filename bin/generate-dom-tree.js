@@ -1,15 +1,19 @@
 #!/usr/bin/env node
 
-/**
- * generate-dom-tree.js
- * 
- * Generates a Graphviz DOT file from an HTML file's DOM structure.
- * Usage: node generate-dom-tree.js <html-file> [output-file]
- * 
- * Example:
- *   node generate-dom-tree.js index.html index.dot
- *   dot -Tpng index.dot -o index-dom-tree.png
- *   dot -Tsvg index.dot -o index-dom-tree.svg
+/*
+ **********************************************************************
+ * File       : bin/generate-dom-tree.js
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Generates a Graphviz DOT file from an HTML file's DOM structure.
+ *   Usage: node generate-dom-tree.js <html-file> [output-file]
+ *   Example:
+ *     node generate-dom-tree.js index.html index.dot
+ *     dot -Tpng index.dot -o index-dom-tree.png
+ *     dot -Tsvg index.dot -o index-dom-tree.svg
+ **********************************************************************
  */
 
 const fs = require('fs');

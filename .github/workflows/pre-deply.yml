@@ -26,11 +26,15 @@ jobs:
         bin/clear-tests.sh
 
 
-    # This is a show stopper. If validaion fails, fail the build
     - name: Validate HTML and CSS
       continue-on-error: true
       run: |
         bin/validate-code.sh
+
+    - name: Check for file comments
+      continue-on-error: true
+      run: |
+        bin/check-file-comments.sh
 
     # Check for broken links
     - name: Check for broken links

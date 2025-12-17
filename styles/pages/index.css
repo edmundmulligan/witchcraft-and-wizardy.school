@@ -17,7 +17,6 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: clamp(1em, calc(2vw + 1em), 2em);
 }
 
 /* N.B. flex-direction in .circular-button-container layout is set in the media query */

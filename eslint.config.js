@@ -1,3 +1,15 @@
+/*
+ **********************************************************************
+ * File       : eslint.config.js
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   ESLint configuration for the Web Witchcraft and Wizardry project.
+ *   Defines code quality rules for JavaScript files.
+ **********************************************************************
+ */
+
 export default [
   {
     languageOptions: {

@@ -13,18 +13,18 @@
  *      Medium screen     : width <= 800px
  *      Large screen      : width <= 1200px
  *      Very large screen : width > 1200px
+ *   Avoid changing font-sizes here; use relative units in the main stylesheets.
  **********************************************************************
  */
 
 /* Media query for small screens - switchs from horizontal to vertical flex layout */
 
 @media (width <= 600px) {
-    ul.site-navigation {
-        flex-direction: column;
+    nav.site-navigation ul {
         align-items: center;
     }
 
-    ul.in-page-navigation {
+    nav.in-page-navigation ul {
         flex-direction: column;
         align-items: center;
     }
@@ -33,6 +33,7 @@
        to make it a bit more distinguishable from the background */
     nav.in-page-navigation {
         flex-direction: column;
-        background-color: var(--color-light-headings-background);
+        border-radius: var(--border-radius);
+        border: var(--border-weight-thin) var(--border-style) var(--color-light-headings-text);
     }
 }

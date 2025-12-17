@@ -1,8 +1,16 @@
 #!/usr/bin/env node
 
-/**
- * Cross-browser testing script using Playwright
- * Tests basic functionality across Chromium (Chrome/Edge/Opera), Firefox, and WebKit (Safari)
+/*
+ **********************************************************************
+ * File       : bin/run-browser-tests.js
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Cross-browser testing script using Playwright.
+ *   Tests basic functionality across Chromium (Chrome/Edge/Opera),
+ *   Firefox, and WebKit (Safari).
+ **********************************************************************
  */
 
 const { chromium, firefox, webkit } = require('playwright');

@@ -33,7 +33,6 @@ nav.site-navigation ul {
     padding: 0;
     width: 100%;
     gap: 0.25rem;
-    row-gap: 0.25rem;
     justify-content: center;
     flex-wrap: wrap;
 }
@@ -89,6 +88,7 @@ nav.in-page-navigation {
     align-items: center;
     box-sizing: border-box;
     width: fit-content;
+    font-size: clamp(0.875rem, 2vw, 1rem);
 }
 
 nav.in-page-navigation ul {
@@ -98,10 +98,9 @@ nav.in-page-navigation ul {
     margin: 0;
     padding: 0;
     max-width: 100%;
-    box-sizing: border-box;
     gap: 0.25rem;
-    row-gap: 0.25rem;
     justify-content: center;
+    font-size: clamp(0.5rem, 2vw, 1rem);
 }
 
 nav.in-page-navigation li {

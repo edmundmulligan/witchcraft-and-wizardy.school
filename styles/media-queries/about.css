@@ -8,6 +8,14 @@
  *   This is the page specific stylesheet for the Web Witchcraft and 
  *   Wizardry about page. It defines styles that apply only to the 
  *   about page.
+ * Note:
+ *   Cutoffs for media queries are (arbitarily) as follows:
+ *      Very small screen : width <= 200px
+ *      Small screen      : width <= 600px
+ *      Medium screen     : width <= 800px
+ *      Large screen      : width <= 1200px
+ *      Very large screen : width > 1200px
+ *   Avoid changing font-sizes here; use relative units in the main stylesheets.
  **********************************************************************
  */
 

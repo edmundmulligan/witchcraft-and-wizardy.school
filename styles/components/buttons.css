@@ -14,7 +14,7 @@
  [class*=" button-"] {
     margin: 1em auto;
     padding: 1em;  
-    font-size: clamp(0.5em, calc(1vw + 1em), 4em);
+    font-size: clamp(0.75em, calc(1vw + 1em), 4em);
     font-weight: bold;
     background-color: var(--color-light-headings-background);
     color: var(--color-light-headings-text);
@@ -62,6 +62,8 @@
     max-width: 25vw;
     max-height: 25vw;
     padding: 1rem;
+    
+    /* ensure text scales within the circle */
     font-size: clamp(0.5em, calc(0.5vw + 0.5em), 1em);
     background-color: var(--color-light-page-background);
 }
