@@ -1,0 +1,186 @@
+\section{Folder tree of the Project}
+The following is the folder tree of the refactored Web Witchcraft and Wizardry project, showing the organization of files and directories.
+N.B. Folders in the git repository that are not relevant to this project are omitted (e.g., .github, tests).
+
+{\small
+\begin{verbatim}
+.
+├── images
+│   ├── cat-1299082.svg
+│   ├── character-7371514_1920.png
+│   ├── evil-witch-9820120_1280.png
+│   ├── favicon.svg
+│   ├── fontawesome
+│   │   ├── bat-duotone-light-full.svg
+│   │   ├── book-open-lines-duotone-regular-full.svg
+│   │   ├── book-spine-duotone-regular-full.svg
+│   │   ├── broom-duotone-light-full.svg
+│   │   ├── broom-wide-duotone-regular-full.svg
+│   │   ├── candle-holder-duotone-light-full.svg
+│   │   ├── cat-duotone-light-full.svg
+│   │   ├── cauldron-duotone-light-full.svg
+│   │   ├── cloud-bolt-sharp-duotone-light-full.svg
+│   │   ├── crow-duotone-solid-full.svg
+│   │   ├── dragon-duotone-thin-full.svg
+│   │   ├── dragon-solid-full.svg
+│   │   ├── flask-round-potion-duotone-light-full.svg
+│   │   ├── frog-duotone-regular-full.svg
+│   │   ├── hat-witch-sharp-duotone-regular-full.svg
+│   │   ├── hat-witch-solid-full.svg
+│   │   ├── hat-wizard-duotone-solid-full.svg
+│   │   ├── octopus-duotone-regular-full.svg
+│   │   ├── spider-duotone-light-full.svg
+│   │   ├── wand-magic-duotone-regular-full.svg
+│   │   └── wand-magic-sparkles-sharp-duotone-regular-full.svg
+│   ├── logo-embodied-mind-with-name-cyan.png
+│   ├── logo-embodied-mind-with-name-purple.png
+│   ├── michael-hamments-x6VyE3ie1sM-unsplash-landscape.jpg
+│   ├── michael-hamments-x6VyE3ie1sM-unsplash-portrait.jpg
+│   ├── rachel-mulligan-wiitch-old-male.jpeg
+│   ├── rachel-mulligan-witch-old-female.jpeg
+│   ├── rachel-mulligan-witch-young-female.jpeg
+│   ├── rachel-mulligan-witch-young-male.jpeg
+│   ├── rachel-mulligan-wizard-old-female.jpeg
+│   ├── rachel-mulligan-wizard-old-male.jpeg
+│   ├── rachel-mulligan-wizard-young-female.jpeg
+│   ├── rachel-mulligan-wizard-young-male.jpeg
+│   ├── witch-151167.svg
+│   ├── witch-4521410.svg
+│   └── wizard-36676.svg
+├── index.html
+├── mentors
+├── pages
+│   ├── about.html
+│   ├── glossary-and-faq.html
+│   ├── license-and-credits.html
+│   └── students.html
+├── scripts
+│   ├── alert.js
+│   ├── footer.js
+│   ├── header.js
+│   ├── in-page-navigation-about.js
+│   ├── in-page-navigation-glossary-and-faq.js
+│   ├── in-page-navigation-license-and-credits.js
+├── sitemap.xml
+├── sitemap.xsl
+├── students
+└── styles
+    ├── components
+    │   ├── buttons.css
+    │   ├── header-and-footer.css
+    │   ├── navigation.css
+    │   └── titles.css
+    ├── main.css
+    ├── media-queries
+    │   ├── about.css
+    │   ├── header-and-footer.css
+    │   ├── index.css
+    │   ├── license-and-credits.css
+    │   ├── navigation.css
+    │   ├── students.css
+    │   └── titles.css
+    │   ├── noscript.css
+    └── pages
+        ├── about.css
+        ├── glossary-and-faq.css
+        ├── index.css
+        ├── license-and-credits.css
+        └── students.css
+\end{verbatim}
+}
+
+\pagebreak
+\section{Test Outputs}
+
+This appendix contains the complete test results from the automated test suite. All tests were executed on \today{} and demonstrate compliance with web standards, accessibility guidelines, and readability requirements.
+
+\subsection*{Summary of Test Results}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|r|}
+\hline
+\textbf{Test Type} & \textbf{Metric} & \textbf{Result} \\
+\hline
+Code Validation & Files validated & 29 \\
+ & HTML errors & 0 \\
+ & CSS errors & 0 \\
+ & JavaScript errors & 0 \\
+\hline
+Link Checking & Total links checked & 161 \\
+ & Broken links & 0 \\
+ & Pages checked & 5 \\
+\hline
+Axe Accessibility & Total violations & 0 \\
+ & Critical issues & 0 \\
+ & Serious issues & 0 \\
+\hline
+Lighthouse & Average score & 100\% \\
+ & Pages tested & 5 \\
+ & Failed audits & 0 \\
+\hline
+Pa11y Accessibility & Total errors & 0 \\
+ & Total warnings & 0 \\
+ & Pages tested & 5 \\
+\hline
+WAVE Accessibility & Total errors & 0 \\
+ & Alerts (non-critical) & 10 \\
+ & Pages tested & 5 \\
+\hline
+Reading Age & Average grade level & 9.1 \\
+ & Pages analyzed & 3 \\
+ & College-level pages & 0 \\
+\hline
+Browser Tests & Browsers tested & 3 \\
+ & Tests passed & 150 \\
+ & Tests failed & 0 \\
+\hline
+\end{tabular}
+\caption{Summary of all automated test results}
+\label{tab:test-summary}
+\end{table}
+
+\clearpage
+
+\subsection*{Detailed Test Results}
+
+The following sections contain the complete JSON output from each test suite.
+
+\subsubsection*{Code Validation Results}
+\lstinputlisting[language=json]{../tests/results/validation-results.json}
+
+\clearpage
+
+\subsubsection*{Broken Links Check Results}
+\lstinputlisting[language=json]{../tests/results/broken-links-results.json}
+
+\clearpage
+
+\subsubsection*{Axe Accessibility Results}
+\lstinputlisting[language=json]{../tests/results/axe-results.json}
+
+\clearpage
+
+\subsubsection*{Lighthouse Accessibility Results}
+\lstinputlisting[language=json]{../tests/results/lighthouse-results.json}
+
+\clearpage
+
+\subsubsection*{Pa11y Accessibility Results}
+\lstinputlisting[language=json]{../tests/results/pa11y-results.json}
+
+\clearpage
+
+\subsubsection*{WAVE Accessibility Results}
+\lstinputlisting[language=json]{../tests/results/wave-results.json}
+
+\clearpage
+
+\subsubsection*{Reading Age Analysis Results}
+\lstinputlisting[language=json]{../tests/results/readability-results.json}
+
+\clearpage
+
+\subsubsection*{Cross-Browser Compatibility Results}
+\lstinputlisting[language=json]{../tests/results/browser-results.json}
+
