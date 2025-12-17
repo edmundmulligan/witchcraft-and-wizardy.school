@@ -24,5 +24,5 @@ jobs:
             host: ${{ env.SERVER }}
             username: ${{ secrets.SERVER_USERNAME }}
             key: ${{ secrets.SERVER_SSH_KEY }}
-            source: "images/*,mentors/*,students/*,styles/*,sitemap.*,*.html"
+            source: "images/*,mentors/*,students/*,styles/*,scripts/*,sitemap.*,*.html"
             target: ${{ env.DEPLOY_PATH }}
