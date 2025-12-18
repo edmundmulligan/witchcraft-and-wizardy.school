@@ -9,7 +9,7 @@ source "$SCRIPT_DIR/test-helpers.sh"
 
 # Install dependencies
 echo "Installing dependencies..."
-npm install syllable cheerio > /dev/null 2>&1
+npm install text-readability cheerio > /dev/null 2>&1
 
 # Parse command line arguments
 EXCLUDE_LIST=""
@@ -84,7 +84,7 @@ for page in $PAGES; do
   node -e "
     const fs = require('fs');
     const cheerio = require('cheerio');
-    const { syllable } = require('syllable');
+    const rs = require('text-readability').default;
     
     try {
       // Read and parse HTML
@@ -104,43 +104,30 @@ for page in $PAGES; do
         process.exit(0);
       }
       
-      // Count sentences, words, and syllables
-      const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
-      const words = text.split(/\s+/).filter(w => w.length > 0);
-      const wordCount = words.length;
-      const syllableCount = words.reduce((sum, word) => sum + syllable(word), 0);
+      // Count words for word count
+      const wordCount = text.split(/\s+/).filter(w => w.length > 0).length;
       
-      if (sentences === 0 || wordCount === 0) {
+      if (sentenceCount === 0 || wordCount === 0) {
         console.log('  ⚠️  Not enough text content to analyze');
         process.exit(0);
       }
       
-      // Calculate readability scores
-      const wordsPerSentence = wordCount / sentences;
-      const syllablesPerWord = syllableCount / wordCount;
+      // Calculate readability scores using text-readability package
+      const fleschEase = rs.fleschReadingEase(text);
+      const fkGrade = rs.fleschKincaidGrade(text);
+      const smog = rs.smogIndex(text);
+      const coleman = rs.colemanLiauIndex(text);
+      const ari = rs.automatedReadabilityIndex(text);
+      const gunningFog = rs.gunningFog(text);
+      const daleChall = rs.daleChallReadabilityScore(text);
       
-      // Flesch Reading Ease: 206.835 - 1.015 × (words/sentences) - 84.6 × (syllables/words)
-      const fleschEase = 206.835 - (1.015 * wordsPerSentence) - (84.6 * syllablesPerWord);
+      // Get additional metrics
+      const textStandard = rs.textStandard(text, false); // false = return numeric
+      const difficultWordCount = rs.difficultWords(text);
+      const avgSentenceLength = rs.averageSentenceLength(text);
       
-      // Flesch-Kincaid Grade Level: 0.39 × (words/sentences) + 11.8 × (syllables/words) - 15.59
-      const fkGrade = (0.39 * wordsPerSentence) + (11.8 * syllablesPerWord) - 15.59;
-      
-      // SMOG Index (simplified): 1.0430 × sqrt(polysyllables × 30/sentences) + 3.1291
-      const polysyllables = words.filter(w => syllable(w) >= 3).length;
-      const smog = 1.043 * Math.sqrt(polysyllables * (30 / sentences)) + 3.1291;
-      
-      // Coleman-Liau Index: 0.0588 × L - 0.296 × S - 15.8
-      // L = average letters per 100 words, S = average sentences per 100 words
-      const letters = words.join('').replace(/[^a-zA-Z]/g, '').length;
-      const L = (letters / wordCount) * 100;
-      const S = (sentences / wordCount) * 100;
-      const coleman = (0.0588 * L) - (0.296 * S) - 15.8;
-      
-      // Automated Readability Index: 4.71 × (letters/words) + 0.5 × (words/sentences) - 21.43
-      const ari = (4.71 * (letters / wordCount)) + (0.5 * wordsPerSentence) - 21.43;
-      
-      // Calculate average grade level
-      const avgGrade = (fkGrade + smog + coleman + ari) / 4;
+      // Calculate average grade level (including Gunning Fog)
+      const avgGrade = (fkGrade + smog + coleman + ari + gunningFog) / 5;
       
       // Determine reading level description
       let level = '';
@@ -167,13 +154,18 @@ for page in $PAGES; do
       
       const result = {
         file: '$page',
-        wordCount: text.split(/\s+/).length,
+        wordCount: wordCount,
         fleschReadingEase: Math.round(fleschEase * 10) / 10,
         fleschKincaidGrade: Math.round(fkGrade * 10) / 10,
         smogIndex: Math.round(smog * 10) / 10,
         colemanLiauIndex: Math.round(coleman * 10) / 10,
         automatedReadabilityIndex: Math.round(ari * 10) / 10,
+        gunningFogIndex: Math.round(gunningFog * 10) / 10,
+        daleChallScore: Math.round(daleChall * 10) / 10,
         averageGradeLevel: Math.round(avgGrade * 10) / 10,
+        textStandard: textStandard,
+        difficultWords: difficultWordCount,
+        averageSentenceLength: Math.round(avgSentenceLength * 10) / 10,
         readingLevel: level,
         readingAge: age
       };
@@ -186,8 +178,12 @@ for page in $PAGES; do
       
       console.log('  Grade Level: ' + result.averageGradeLevel + ' (' + result.readingAge + ')');
       console.log('  Reading Level: ' + result.readingLevel);
+      console.log('  Text Standard: ' + result.textStandard);
       console.log('  Flesch Reading Ease: ' + result.fleschReadingEase + '/100');
+      console.log('  Gunning Fog Index: ' + result.gunningFogIndex);
       console.log('  Word Count: ' + result.wordCount);
+      console.log('  Difficult Words: ' + result.difficultWords);
+      console.log('  Avg Sentence Length: ' + result.averageSentenceLength + ' words');
       
     } catch (e) {
       console.error('  Error: ' + e.message);
