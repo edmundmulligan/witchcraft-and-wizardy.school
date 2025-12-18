@@ -89,6 +89,9 @@ nav.in-page-navigation {
     box-sizing: border-box;
     width: fit-content;
     font-size: clamp(0.875rem, 2vw, 1rem);
+    border-radius: var(--border-radius);
+    border: var(--border-weight-thin) var(--border-style) var(--color-light-headings-text);
+
 }
 
 nav.in-page-navigation ul {
@@ -100,12 +103,14 @@ nav.in-page-navigation ul {
     max-width: 100%;
     gap: 0.25rem;
     justify-content: center;
+    align-items: center;
     font-size: clamp(0.5rem, 2vw, 1rem);
 }
 
 nav.in-page-navigation li {
-    display: inline;
+    display: flex;
     flex: 0 1 auto;
+    align-items: center;
     text-align: center;
 }
 

@@ -33,7 +33,5 @@
        to make it a bit more distinguishable from the background */
     nav.in-page-navigation {
         flex-direction: column;
-        border-radius: var(--border-radius);
-        border: var(--border-weight-thin) var(--border-style) var(--color-light-headings-text);
     }
 }

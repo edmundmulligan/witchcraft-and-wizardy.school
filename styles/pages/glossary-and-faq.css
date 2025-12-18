@@ -29,6 +29,7 @@
     margin: 5% 0;
     padding: 0 1em;
     align-items: stretch;
+    box-sizing: border-box;
 }
 
 .glossary dt {
@@ -39,9 +40,10 @@
     border: 1px solid var(--color-light-page-text);
     background-color: var(--color-light-page-background);
     text-align: left;
-    min-height: 100%;
-    display: flex;
     align-items: center;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    box-sizing: border-box;
 }
 
 .glossary dd {
@@ -51,9 +53,10 @@
     border: 1px solid var(--color-light-headings-text);
     background-color: var(--color-light-page-background);
     text-align: left;
-    min-height: 100%;
-    display: flex;
     align-items: center;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    box-sizing: border-box;
 }
 
 /* no styles for FAQ at the moment as the FAQ button is a 
