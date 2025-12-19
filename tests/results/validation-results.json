@@ -1,7 +1,22 @@
 {
-  "files": [],
+  "files": [
+    {
+      "file": "./pages/license-and-credits.html",
+      "type": "html",
+      "errors": [
+        {
+          "line": 121,
+          "column": 75,
+          "message": "Trailing whitespace",
+          "ruleId": "no-trailing-whitespace",
+          "severity": "error"
+        }
+      ],
+      "warnings": []
+    }
+  ],
   "summary": {
-    "htmlErrors": 0,
+    "htmlErrors": 1,
     "htmlWarnings": 0,
     "cssErrors": 0,
     "cssWarnings": 0,
