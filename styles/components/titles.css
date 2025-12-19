@@ -29,7 +29,6 @@
     padding: 0.5rem 1rem;
     width: fit-content;
     max-width: calc(100% - 1rem);
-    box-sizing: border-box;
     display: block;
     
     /* specify these so that page title is legiible on pages with background images */

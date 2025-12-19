@@ -9,8 +9,7 @@
  * Note:
  *   Cutoffs for media queries are (arbitarily) as follows:
  *      Very small screen : width <= 200px
- *      Small screen      : width <= 600px
- *      Medium screen     : width <= 800px
+ *      Small screen      : width <= 800px
  *      Large screen      : width <= 1200px
  *      Very large screen : width > 1200px
  *   Avoid changing font-sizes here; use relative units in the main stylesheets.
@@ -21,11 +20,21 @@
 
 @media (width <= 400px) {
     .license p {
-        margin: 0.1rem;
+        margin: 0.5rem;
+        padding: 0 0.5rem;
         text-align: left;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
     }
 
     .credits ul{
-        margin: 0.1rem;
+        margin: 0.5rem;
+        padding-left: 1.5rem;
+        padding-right: 0.5rem;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 }

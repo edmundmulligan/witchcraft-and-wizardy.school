@@ -21,7 +21,6 @@ nav.site-navigation {
     border-radius: var(--border-radius);
     margin: 0;
     padding: 0.25rem 0.5rem;
-    box-sizing: border-box;
     grid-column: 1 / -1;
     grid-row: 2;
 }
@@ -43,6 +42,7 @@ nav.site-navigation li {
     background-color: var(--color-light-headings-background);
     border-radius: var(--border-radius);
     border: 1px solid var(--color-light-headings-text);
+    font-size: var(--fontsize-nav-site);
 }
 
 nav.site-navigation a {
@@ -86,9 +86,7 @@ nav.in-page-navigation {
     gap: 0.5rem;
     justify-content: center;
     align-items: center;
-    box-sizing: border-box;
     width: fit-content;
-    font-size: clamp(0.875rem, 2vw, 1rem);
     border-radius: var(--border-radius);
     border: var(--border-weight-thin) var(--border-style) var(--color-light-headings-text);
 
@@ -104,7 +102,7 @@ nav.in-page-navigation ul {
     gap: 0.25rem;
     justify-content: center;
     align-items: center;
-    font-size: clamp(0.5rem, 2vw, 1rem);
+    font-size: var(--fontsize-nave-page);
 }
 
 nav.in-page-navigation li {

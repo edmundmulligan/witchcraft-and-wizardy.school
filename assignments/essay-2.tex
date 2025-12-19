@@ -250,11 +250,10 @@ all pages listed in table~\ref{tab:viewport-breakpoints}.
 \toprule
 	\textbf{Viewport width} & \textbf{Layout} & \textbf{Impact}\\
 \midrule
-0px to 80px & Too small to be useable & \\
-81px to 200px & Very small & Warn users but make best effort to display contents reasonably \\
-201px to 800px & Mobile layout & Prefer vertical stacking \\
-801px to 1600px & Desktop layout & Prefer horizontal layout \\
-1601px and above & Large desktop layout & Need to avoid fonts looking too small in large viewports \\
+0px to 199px & Very small & Warn users but make best effort to display contents reasonably \\
+200px to 799px & Mobile layout & Prefer vertical stacking \\
+800px to 1199px & Desktop layout & Prefer horizontal layout \\
+1200px and above & Large desktop layout & Need to avoid fonts looking too small in large viewports \\
 \bottomrule
 \end{tabular}
 \caption{Viewport width breakpoints}\label{tab:viewport-breakpoints}

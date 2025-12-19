@@ -11,18 +11,42 @@
  **********************************************************************
  */
 
+.license {
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
 
 .license p {
-    margin: 2em;
-    line-height: 1.5;
-    text-align: justify;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.credits {
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 .credits ul {
-    margin: 2em;
-    padding-left: 1.5em;
+    margin: 1rem;
+    padding-left: 2rem;
+    padding-right: 1rem;
     line-height: 1.5;
     text-align: left;
+    max-width: 100%;
+    box-sizing: border-box;
+    font-size: var(--fontsize-p);
 }
 
 /**********************************************

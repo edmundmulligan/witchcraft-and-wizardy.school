@@ -11,131 +11,46 @@
  * Note:
  *   Cutoffs for media queries are (arbitarily) as follows:
  *      Very small screen : width <= 200px
- *      Small screen      : width <= 600px
- *      Medium screen     : width <= 800px
+ *      Small screen      : width <= 800px
  *      Large screen      : width <= 1200px
  *      Very large screen : width > 1200px
  *   Avoid changing font-sizes here; use relative units in the main stylesheets.
  **********************************************************************
  */
 
-.about-text ul {
-    margin: 2em;
-    margin-left: 4em;
-    line-height: 1.5;
-    text-align: left;
+/* very small screen width - do not indent or justify text */
+
+@media (width <= 800px) {
+    .introduction p {
+        margin: 0.5rem;
+        padding: 0 0.5rem;
+        text-align: left;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+
+    .introduction ul {
+        margin: 0.5rem;
+        padding-left: 1.5rem;
+        padding-right: 0.5rem;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .gallery-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin: 1rem;
+        max-width: 100%;
+    }
 }
 
-.about-text ul li {
-    margin: 0.5em 0;
-}
-
-.about-text p { 
-    margin: 2em;
-    line-height: 1.5;
-    text-align: justify;
-}
-
-/********************************************
- * container classes for facts and accessories
- ********************************************/
-.facts-container  {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1em;
-    margin: 2em;
-}
-
-.accessories-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1em;
-    width: 100%;
-}
-
-
-/**********************************************
- * contained classes for grid items
- **********************************************/
-.facts-item {
-    padding: 1.5em;
-    background-color: var(--color-light-headings-background);
-    color: var( --color-light-headings-text);
-    border: 1px solid var(--color-light-headings-text);
-    border-radius: 2em;
-    justify-self: center;
-    align-items: center;
-    justify-content: center;
-}
-
-.facts-wide-item {
-    padding: 1.5em;
-    grid-column: 1 / span 3;
-    background-color: var(--color-light-headings-background);
-    color: var( --color-light-headings-text);
-    border: 1px solid var(--color-light-headings-text);
-    border-radius: 2em;
-    align-items: center;
-    justify-content: center;
-
-}
-
-.accessory-item {
-    padding: 1em;
-    background-color: var(--color-light-headings-background);
-    color: var( --color-light-headings-text);
-    border: 1px solid var(--color-light-headings-text);
-    border-radius: 1em;
-    text-align: center;
-    width: 12em;
-    display: flex;
-    flex-direction: column;
-}
-
-.accessory-image {
-    width: 5em;
-    height: auto;
-    margin: 0 auto 0.5em;
-}
-
-.accessory-name {
-    font-weight: bold;
-    margin-bottom: 0.3em;
-}
-
-.accessory-description {
-    font-size: 0.9em;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1em;
-    margin: 2em;
-    max-width: 100%;
-}
-
-.gallery-item {
-    text-align: center;
-    padding: 1em;
-    background-color: var(--color-light-headings-background);
-    color: var( --color-light-headings-text);
-    border: 1px solid var(--color-light-headings-text);
-    border-radius: 1em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.gallery-image {
-    width: 100%;
-    height: 20em;
-    object-fit: contain;
-    border-radius: 0.5em;
-}
-
-.gallery-caption {
-    margin-top: 0.5em;
-    font-weight: bold;
-}
+@media (width > 1200px) {
+    .gallery-container {
+        grid-template-columns: repeat(4,1fr);
+    }
+ }

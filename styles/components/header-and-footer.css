@@ -22,7 +22,6 @@
     width: 100%;
     gap: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 /*  three sections of the header, by default left, center, and right */
@@ -87,7 +86,6 @@
     border-radius: var(--border-radius);
     width: 100%;
     padding: 0.25rem 1rem;
-    box-sizing: border-box;
 }
 
 .footer-text {
