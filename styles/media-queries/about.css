@@ -51,8 +51,9 @@
     .introduction ul,
     .gallery ul,
     .accessories ul {
-        padding-left: 0;
+        padding-left: 1rem;
         padding-right: 0;
+        text-align: left;
     }
 }
 
