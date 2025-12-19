@@ -1,0 +1,55 @@
+{
+  "pages": [
+    {
+      "file": "./pages/students.html",
+      "wordCount": 514,
+      "fleschReadingEase": 69.1,
+      "fleschKincaidGrade": 8.3,
+      "smogIndex": 11.5,
+      "colemanLiauIndex": 9,
+      "automatedReadabilityIndex": 9.9,
+      "gunningFogIndex": 10.6,
+      "daleChallScore": 7.1,
+      "averageGradeLevel": 9.9,
+      "textStandard": "8th and 9th grade",
+      "difficultWords": 81,
+      "averageSentenceLength": 19,
+      "readingLevel": "Plain English (High School)",
+      "readingAge": "15-16 years"
+    },
+    {
+      "file": "./pages/glossary-and-faq.html",
+      "wordCount": 81,
+      "fleschReadingEase": 68.5,
+      "fleschKincaidGrade": 6.5,
+      "smogIndex": 10.3,
+      "colemanLiauIndex": 8.9,
+      "automatedReadabilityIndex": 7.1,
+      "gunningFogIndex": 9.1,
+      "daleChallScore": 7.8,
+      "averageGradeLevel": 8.4,
+      "textStandard": "8th and 9th grade",
+      "difficultWords": 18,
+      "averageSentenceLength": 11.3,
+      "readingLevel": "Plain English (High School)",
+      "readingAge": "15-16 years"
+    },
+    {
+      "file": "./pages/about.html",
+      "wordCount": 1942,
+      "fleschReadingEase": 62.7,
+      "fleschKincaidGrade": 8.7,
+      "smogIndex": 11.7,
+      "colemanLiauIndex": 9.7,
+      "automatedReadabilityIndex": 10,
+      "gunningFogIndex": 10.6,
+      "daleChallScore": 7.3,
+      "averageGradeLevel": 10.1,
+      "textStandard": "9th and 10th grade",
+      "difficultWords": 349,
+      "averageSentenceLength": 17,
+      "readingLevel": "Fairly Difficult (High School)",
+      "readingAge": "17-18 years"
+    }
+  ]
+}
