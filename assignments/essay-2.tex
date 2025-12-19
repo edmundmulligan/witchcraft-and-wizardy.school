@@ -15,7 +15,7 @@
 \usepackage{url}                           % For formatting URLs
 \usepackage{verbatim}                      % For including verbatim files
 \usepackage{xcolor}                        % For colors
-\usetikzlibrary{positioning}               % For relative positioning
+\usetikzlibrary{positioning, shapes.geometric}               % For relative positioning and diamond node shape
 
 % set paragraph and list formatting
 \setlength{\parindent}{1.5em}
@@ -51,7 +51,7 @@
 
 \begin{abstract}
 \textit{This is a personal reflection on the design and implementation of a refactored version of a
-website. The new architecture is described, along with the navigation design, responsive and
+website.\@ The new architecture is described, along with the navigation design, responsive and
 accessibility features, testing strategy, known issues and future improvements. Third party
 credits and resources are also acknowledged.}
 \end{abstract}
@@ -66,23 +66,23 @@ accessibility and quality of the new code. Detailed decisions are documented as 
 the source code, which should be read alongside this essay, so the essay focuses on higher level
 design decisions and reflections.
 
-For reference the old and new landing pages can be seen in 
+For comparison the old and new landing pages can be seen in 
 figures~\ref{fig:old-landing-page},~\ref{fig:new-landing-page-computer} 
 and~\ref{fig:new-landing-page-mobile}.
 
-\begin{figure}[H]
+\begin{figure}[htp]
     \centering
     \includegraphics[width=0.8\textwidth]{screenshots/Original Website.png}
     \caption{Old landing page}\label{fig:old-landing-page}
 \end{figure}
 
-    \begin{figure}[H]
+    \begin{figure}[htp]
         \centering
         \includegraphics[width=0.8\textwidth]{screenshots/New-Landing-Page-Computer.png}
         \caption{New landing page on a computer}\label{fig:new-landing-page-computer}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htp]
     \centering
     \includegraphics[width=0.3\textwidth]{screenshots/New-Landing-Page-Mobile.jpg}
     \caption{New landing page on a mobile device}\label{fig:new-landing-page-mobile}
@@ -91,7 +91,41 @@ and~\ref{fig:new-landing-page-mobile}.
 The development process used was iterative and incremental \citep{beck2004extreme}, and 
 while there are many criticisms of this approach, particularly around its lack of documentation, 
 endless changes and lack of scalability to large teams (see, for example, \citealt{boehm2004balancing}), 
-it was well suited to this small project with a single developer fulfilling all team roles.
+it was well suited to this small project with a single developer fulfilling all team roles. The
+advantage of being able to make quick changes and see immediate results (especially valuable when
+learning new techniques) was to some extent offset by the extra work required to frequently 
+refactor code to maintain quality and consistency. The process is informally summarised in 
+figure~\ref{fig:dev-process-flowchart}. 
+\begin{figure}[htp]
+    \centering
+    % Add 'shapes.geometric' to the TikZ libraries for diamond node support
+    \usetikzlibrary{positioning, shapes.geometric}
+
+    \begin{tikzpicture}
+        [node 
+            distance=2cm, 
+            every node/.style={draw, rectangle, align=center, rounded corners, font=\footnotesize}, 
+            ->, 
+            >=stealth
+        ]
+        \node (try) [draw, rectangle, align=center, minimum width=2.5cm, text width=2.5cm] {Try something out};
+        \node (work) [draw, rectangle, align=center, minimum width=2.5cm, text width=2.5cm, below=1cm of try] {Get it working};
+        \node (test1) [draw, rectangle, align=center, minimum width=2.5cm, text width=2.5cm, right=1cm of work] {Test it};
+        \node (refactor) [draw, rectangle, align=center, minimum width=2.5cm, text width=2.5cm, right=1cm of test1] {Refactor to improve quality};
+        \node (test2) [draw, rectangle, align=center, minimum width=2.5cm, text width=2.5cm, below=1cm of refactor] {Test it again};
+        \node[draw, diamond, align=center, aspect=2, minimum width=2.5cm, text width=2.5cm, below=1cm of test2] (check) {Is code optimal\\ or time run out?};
+        \node (finish) [draw, rectangle, align=center, minimum width=2.5cm, text width=2.5cm, below=1cm of check] {Finish};
+        \draw[->, >=stealth, line width=1pt] (try) -- (work);
+        \draw[->, >=stealth, line width=1pt] (work) -- (test1);
+        \draw[->, >=stealth, line width=1pt] (test1) -- (refactor);
+        \draw[->, >=stealth, line width=1pt] (refactor) -- (test2);
+        \draw[->, >=stealth, line width=1pt] (test2) -- (check);
+        % Arrow from east of diamond horizontally 2cm, up 4cm, left 4cm, then down to refactor box north, labeled 'No'
+        \draw[->, >=stealth, line width=1pt] (check.east) -- ++(2cm,0) node[midway, below=5pt]{No} -- ++(0,4.5cm) -- (refactor.east);
+        \draw[->, >=stealth, line width=1pt] (check) -- node[midway, xshift=1.5em]{Yes} (finish);
+    \end{tikzpicture}
+    \caption{Iterative development process flowchart}\label{fig:dev-process-flowchart}
+\end{figure}
 
 This essay was written in parallel with the development of the website, so screenshots may 
 not exactly reflect the final version of the code submitted for assessment, but are 
@@ -111,12 +145,17 @@ duplicating these values throughout the CSS files. The third principle was follo
 throughout the codebase with meaningful names for files, classes, etc.,
 and comments where necessary to explain non-obvious decisions. A consistent naming convention
 was used throughout, specifically kebab-case for file names, class names and IDs,
-and camelCase for JavaScript variables and functions (although, admitedly, there is currently 
-only one JavaScript function).
+and camelCase for JavaScript variables and functions (although, admittedly, there is currently 
+only one JavaScript function). A fourth principle, which is not referenced as I worked it out 
+the hard way, is Keep the CSS as simple as possible and make use of the power of cascading. I am 
+sure this is something experienced web developers know and if I were to redo this project I 
+would put much more effort into writing simple CSS first time rather than trying to refactor 
+complex CSS later. The current codebase is not optimal in this regard and with more time 
+could be improved significantly.
 
-\begin{figure}[H]
+\begin{figure}[htp]
     \centering
-    \small
+    \footnotesize
     \begin{verbatim}
 root/
 ├── index.html
@@ -170,23 +209,24 @@ within all pages except the landing page (e.g.~figure~\ref{fig:in-page-navigatio
 although each page is slightly different). Incidentally, the wizard and witch in the 
 site header are informally known to the development team as `Joe' and `Helena' respectively.
 
-\begin{figure}[H]
+\begin{figure}[htp]
     \centering
     \includegraphics[width=0.8\textwidth]{screenshots/site-navigation.png}
     \caption{Site navigation bar structure}\label{fig:site-navigation}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htp]
     \centering
     \includegraphics[width=0.8\textwidth]{screenshots/in-page-navigation.png}
     \caption{In-page navigation bar structure}\label{fig:in-page-navigation}
 \end{figure}  
 
-\section{A Responsive and Accessibile Website}
+\section{A Responsive and Accessible Website}
 A primary goal of the refactor was to make the website responsive and accessible.
 Indeed, this is my main personal learning outcome for this module. My thinking 
-in this area has been highly influenced by two YouTube channels, those of Kevin Powell 
-\citep{powell_youtube} and Coding2GO \citep{coding2go_youtube}, both of whom produce 
+in this area has been highly influenced by three YouTube channels, those of Kevin Powell 
+\citep{powell_youtube}, Daily Css \citep{dailycss_youtube} and 
+Coding2GO \citep{coding2go_youtube}, all of which produce 
  video tutorials and discussions on modern web development techniques.
 
 The primary techniques used to achieve responsiveness are media queries and
@@ -200,30 +240,29 @@ A point Powell makes in several videos is that while media queries are
 important, they should not be overused. The main layout should be flexible
 enough to adapt to a wide range of viewport sizes without the need for
 frequent breakpoints. Exactly which breakpoints to use is a matter of 
-experience (which I lack) and judgement (which I possess in abundence), 
-and I eventually settled on the following standardised breakpoints across 
-all pages:
+experience (which I lack) and judgement (which I possess in abundance), 
+and I eventually settled on standardised breakpoints across 
+all pages listed in table~\ref{tab:viewport-breakpoints}.
 
-\begin{table}
+\begin{table}[htp]
 \centering
-\begin{tabular}{|l|l|p{6cm}|}
-\hline
-\textbf{Viewport width} & \textbf{Layout} & \textbf{Impact}\\
-\hline
+\begin{tabular}{llp{6cm}}
+\toprule
+	\textbf{Viewport width} & \textbf{Layout} & \textbf{Impact}\\
+\midrule
 0px to 80px & Too small to be useable & \\
-\hline
 81px to 200px & Very small & Warn users but make best effort to display contents reasonably \\
-\hline
 201px to 800px & Mobile layout & Prefer vertical stacking \\
-\hline
-801px and above & Desktop layout & Prefer horizontal layout \\
-\hline
+801px to 1600px & Desktop layout & Prefer horizontal layout \\
+1601px and above & Large desktop layout & Need to avoid fonts looking too small in large viewports \\
+\bottomrule
 \end{tabular}
-\caption{Viewport width breakpoints}
-\label{tab:viewport-breakpoints}
+\caption{Viewport width breakpoints}\label{tab:viewport-breakpoints}
 \end{table}
 
+
 In order to minimise the use of media queries, I used the clamp() CSS function 
+% chktex 36
 to define fluid typography that scales smoothly between
 a minimum and maximum size, rather than jumping between discrete sizes at
 breakpoints. A limitation of this is that if the middle value of clamp() is
@@ -237,52 +276,75 @@ a rem unit, so that zooming the browser window also changes the text size.
 
 One downside of this approach is that it takes a lot of trial and error
 to find suitable values to pass to clamp() that work well across a wide range of
+% chktex 36
 viewport sizes and this took up most of my testing time. Indeed, I would say that
-this is still a work in progress and further refinements could be made in future phases.
+this is still a work in progress and further refinements could be made in the 
+future. The process was made a lot easier when I discovered, at a late stage, 
+an online tool to help calculate fluid typography values \citep{bece2025}. 
 
 \subsection{Flexbox vs Grid}
+One of the debates I encountered in many tutorials was whether to use CSS Flexbox
+\citep{w3c_flexbox} or CSS Grid \citep{w3c_grid} for layout. 
+My conclusion for this project was to use flexbox in narrower viewports 
+(mobile layout) as this could make vertical stacking of elements easier with 
+flex-direction: column, and to prefer flexbox with flex-direction: row in wider 
+viewports unless there was an obvious case for a grid such as the input form on the 
+student page. Due to my experimental approach to development, early versions of 
+the website had several levels of nested grids and flexboxes which then had to 
+be refactored to simpler layouts as I learned more about the strengths and 
+weaknesses of each choice.
 
 \subsection{Units of measurement}
 Another way to achieve responsiveness is to use relative units of measurement
-rather than absolute units. Thus, I used rem units for font sizes, padding
-and margins, and percentages for widths of containers. I avoided using px units
-except where absolutely necessary such as in media queries where absolute measurements 
+rather than absolute units. Thus, I used rem units for specifying element sizes. 
+I avoided using px units except in media queries where absolute measurements 
 are required. I preferred rem units over em units as rems are relative to the root 
 font size, making them more predictable, whereas ems are relative to the font size of
-the parent element, which can lead to unexpected results if not carefully managed.
+the parent element, which can (and did) lead to unexpected results.
 
 \subsection{Other accessibility features}
-ARIA roles and attributes
+The accessibility testing tools sometimes flagged issues with ARIA \citep{w3c_aria} 
+compliance. I did not have time to fully investigate these issues, but I
+incorporated sufficient ARIA features to satisfy the testing tools. This certainly
+deserves further investigation in the future.
 
-choice of colours and contrasts
+Choice of colours and contrast is very important, not only to make a site accessible
+but also visually appealing. This is another area where I have little design
+experience so I defer the aesthetic aspects of colour choice to next term's module,
+where that is covered more fully. For this phase of the project, I limited 
+myself to ensuring that the colour choices were not too garish and that 
+the choices passed the contrast tests in the accessibility tools.
 
-keyboard navigation
-
-alt text for images
+Testing without a mouse and with a screen reader ensured that that the~::focus 
+pseudo-class was styled appropriately to make it clear which element had focus and 
+meaningful alt text was provided for all images. Using the web site in this way
+was not particularly pleasant or easy and emphasises how important it is to design for
+accessibility from the start to ensure that those who have no choice but to use 
+assistive technologies have as good a user experience as can be achieved.
 
 \section{Testing}
 Testing software is not only a critical part of development 
 (\cite{myers2011art},\cite{mesbah2012invariant}), but it is also difficult and 
-time consuming. Many authorities (e.g. \cite{boehm1981software}, \cite{jones2008applied})
+time consuming. Many authorities (e.g.~\cite{boehm1981software},~\cite{jones2008applied})
 claim that testing can take at least 50\% of total development time, and that concurs with 
 my experience.
 
 My approach to testing was to automate as much as possible using
 open source tools (see Appendix A for results). The tests were designed to check for compliance 
 with web standards (as a proxy for accessibility) and (given the age of the target users) text 
-readability. Both static and dynamic tesing tools \citep{myers2011art} were used \textemdash{} 
+readability. Both static and dynamic testing tools \citep{myers2011art} were used \textemdash{} 
 static tools to check code validity, and dynamic tools to check accessibility of the rendered pages.
 
 The tests were run frequently during development to catch issues early and ensure that the 
 code remained compliant as code was refactored (regression testing). A github action was 
-written to ensure the tests were run whenver code was pushed to the remote development and 
+written to ensure the tests were run whenever code was pushed to the remote development and 
 main branches in github. Testing tools were discovered using a google search and the most 
 popular ones were chosen:
 
 \begin{itemize}
     \item Lighthouse \citep{lighthouse2025}
     \item Axe \citep{axe2025}
-    \item Pa11y \citep{pa11y5}
+    \item Pa11y \citep{pa11y2025}
     \item Wave \citep{wave2025} 
 \end{itemize}
 
@@ -296,9 +358,9 @@ code with CSS variables. A simple script was written to ensure all files contain
 header comments. Browser compatibility was tested using Playwright \citep{playwright2025} to 
 run tests in multiple browsers and I acknowledge, with thanks, the assistance I received to 
 get this working from a senior tester colleague at TfL. This allowed automated testing of 
-the latest versions af all three major browser engines (Chrome, Firefox and Safari). 
+the latest versions of all three major browser engines (Chrome, Firefox and Safari). 
 Playwright has potential for much more and could enable a test driven 
-developmeent (TDD) \citep{beck2003test} approach in future phases of this project.
+development (TDD) \citep{beck2003test} approach in future phases of this project.
 
 Implementing Wave testing was the most difficult as it requires a public URL to test and 
 github pages are based on a private repository. Making the github repository public was 
@@ -307,16 +369,15 @@ consultation with testing colleagues, ngrok \citep{ngrok2025} was used to expose
 localhost to allow Wave tests to complete.
 
 There was insufficient time to fully evaluate the third party tools used and decide which 
-was the best for this project, so a `black box' approach was taken without investigaing exactly 
-what each tool was testing. This did have the benefit that gaps in one tool's coverage 
-could potentally be caught by one of the other tools, but it did introduce a problem of 
+was the best for this project, so a `black box' approach was taken without investigating exactly 
+what each tool was testing. This did have the benefit that gaps in one tool's coverage
+could potentially be caught by one of the other tools, but it did introduce a problem of
 tools having conflicting standards. Wave, in particular requires the <h1> element to be in 
 the <main> section, which would mean that the site title in the <header> section would have to 
 be either an <h2> or a <p> element, which would be flagged by the other testing tools. Thus 
 a decision to accept the warning from Wave was taken as the least bad alternative. The other 
 alert from Wave was for the use of <noscript>, but this was simply a warning to check this 
-usage as it may have accessibility implcations.
-
+usage as it may have accessibility implications.
 Automated testing is not a substitute for manual testing, and the site was also tested manually
 on a variety of devices, specifically
 
@@ -330,7 +391,7 @@ on a variety of devices, specifically
 
 I did not have access to an iOS device so could not test on Apple hardware.
 
-I did not test the website with JavaScript disabled and this is I acknowlege this as a limitation
+I did not test the website with JavaScript disabled and I acknowledge this as a limitation
 of the current testing, driven by the available time. Security, performance, and user testing 
 were also not possible within the time constraints, but will be essential in the later phases 
 where actual lessons are implemented and students' data are collected. In particular, expert 
@@ -338,28 +399,22 @@ testing from an experienced teacher will be needed to ensure the content is age 
 and pedagogically sound.
 
 \section{Outstanding issues and Future Improvements}
-The poject submitted for assessment is phase one of a larger project to refactor and
-improve the Web Witchcraft and Wizardry website. Some content was deliberatly ommitted 
+The project submitted for assessment is phase one of a larger project to refactor and
+improve the Web Witchcraft and Wizardry website. Some content was deliberately omitted 
 from this phase as it will be developed in phase 2 using JavaScript. There are also 
 some known issues and areas for improvement that could not be addressed within the
 time constraints of this phase.
 
-\begin{table}[h]
+\begin{table}[htp]
 \centering
-\begin{tabular}{|l|p{4cm}|p{4cm}|p{4cm}|}
-\hline
+\begin{tabular}{l p{3.5cm} p{3.5cm} p{3.5cm}}
+\toprule
 \textbf{Issue Id} & \textbf{Description} & \textbf{Symptoms} & \textbf{Work around} \\
-\hline
-1 & Reactive code does not work well at extreme viewport sizes & Text overflows boxes or 
-content does not fill screen properly. & Warning displayed when viewport is too small. \\
-\hline
-2 & Font sizes are not optimal & Text is too small or too large on some devices. & Further 
-refinement of clamp() values needed. \\
-\hline
-3 & Images need editing. The artwork provided by Rachel Mulligan is in JPEG format with 
-a white background. & The picture gallery looks unprofessional with white boxes around images. &
-Images need to be edited to have transparent backgrounds (PNG or SVG format). \\
-\hline
+\midrule
+1 & Reactive code does not work well at extreme viewport sizes & Text overflows boxes or content does not fill screen properly. & Warning displayed when viewport is too small.\hfill \\
+2 & Font sizes are not optimal\hfill & Text is too small or too large on some devices. & Further refinement of clamp() values needed.\hfill \\
+3 & Images need editing. The artwork provided by Rachel Mulligan is in JPEG format with a white background. & The picture gallery looks unprofessional with white boxes around images. & Images need to be edited to have transparent backgrounds (PNG or SVG format). \\
+\bottomrule
 \end{tabular}
 \caption{Known issues and workarounds}
 \label{tab:bugs}
@@ -368,13 +423,14 @@ Images need to be edited to have transparent backgrounds (PNG or SVG format). \\
 \section{Third party credits and resources}
 All code submitted for assessment is my own work. No code has been copied from 
 any external sources, such as online tutorials or code. I have, however, relied 
-heavily on two YouTube channels, those of Kevin Powell \citep{powell_youtube} and 
-Coding2GO \citep{coding2go_youtube}, for guidance on best practices and inspiration.
+heavily on three YouTube channels, those of Kevin Powell \citep{powell_youtube}, 
+Daily CSS \citep{dailycss_youtube}, and Coding2GO \citep{coding2go_youtube}, for 
+guidance on best practices and inspiration.
 
 No Generative AI was used in creating code for this project, but I did make extensive 
 use of Google Search which automatically generates AI summaries that cannot be disabled. 
 I partly mitigated this by using Google Scholar where appropriate which at the moment 
-does not use user accessible AI. I also used Stack Overflow \citep{stackoverflow2025} 
+does not use user accessible AI.\@ I also used Stack Overflow \citep{stackoverflow2025} 
 to troubleshoot specific issues I encountered.
 
 The automation tools used for testing accessibility and performance (Lighthouse, Axe, 
@@ -385,10 +441,11 @@ in writing the playwright tests used for testing browser compatibility.
 
 The artwork used in the website was created by Rachel Mulligan, a professional 
 stained glass artist. I am grateful to her for allowing me to use her work in this 
-project.
+project. The images used in this iteration are an early version and will be refined 
+in future phases.
 
 \section{Conclusion}
-This has been a challenging and rewarding project. The challeng has not been coding the 
+This has been a challenging and rewarding project. The challenge has not been coding the 
 website, as I have 40 years of experience doing that, but in learning a lot of new 
 material around modern CSS in a short space of time and applying that in a standards based 
 development paradigm. The refactored Web Witchcraft and Wizardry website, while not yet 
