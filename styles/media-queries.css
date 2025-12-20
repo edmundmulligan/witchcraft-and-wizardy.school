@@ -152,10 +152,16 @@
  ************************************************************
  * Small screen
  * Generally a mobile phone or a computer in portrait mode.
+ * hover and pointer queries are to catch touch devices,
+ * which are generally mobile devices. Need this as some phones
+ * have  high enough resolution to be over 800px wide.
+ * This is not perfect since tablets will also be caught in 
+ * this media query, but with not much time left, this is the
+ * best compromise.
  ************************************************************
  */
 
-@media (width >= 200px) and (width < 800px) {
+@media (width < 800px) or ((hover:none) and (pointer:coarse)) {
     /* switch header to vertical layout */
     .header {
         display: flex;
