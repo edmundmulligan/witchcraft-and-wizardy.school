@@ -22,7 +22,7 @@
     cursor: pointer;
     text-align: center;
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-} 
+}
 
 [class^="button"]:hover,
 [class*=" button"]:hover,
@@ -62,7 +62,7 @@
     max-width: 25vw;
     max-height: 25vw;
     padding: 1rem;
-    
+
     /* ensure text scales within the circle */
     font-size: var(--fontsize-button-circle);
     background-color: var(--color-light-page-background);

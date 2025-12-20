@@ -12,6 +12,7 @@
 \usepackage{listings}                      % For code listings
 \usepackage[round,authoryear]{natbib}      % For citations
 \usepackage{tikz}                          % For drawing diagrams
+\usepackage{titling}                       % For customizing title
 \usepackage{url}                           % For formatting URLs
 \usepackage{verbatim}                      % For including verbatim files
 \usepackage{xcolor}                        % For colors
@@ -24,6 +25,7 @@
 
 % set title information
 \title{A critical reflection on refactoring the Web Witchcraft and Wizardry project}
+\posttitle{\par\end{center}\begin{center}\large\url{https://witches-and-wizards.edmundmulligan.name}\end{center}\vskip 0.5em}
 \author{Edmund Mulligan}
 \date{\today}
 
@@ -63,8 +65,9 @@ to learn the basics of web development through fantasy-themed metaphors. The ori
 the website was neither accessible (except by accident) nor responsive. This essay reflects on the 
 design and implementation of a refactored version of the project, focusing on architecture, 
 accessibility and quality of the new code. Detailed decisions are documented as comments in 
-the source code, which should be read alongside this essay, so the essay focuses on higher level
-design decisions and reflections.
+the source code, which should be read alongside this essay (available on the main branch at 
+\url{https://github.com/Birkbeck2/puffin-web-development-website-edmundmulligan}), so the essay 
+focuses on higher level design decisions and reflections.
 
 For comparison the old and new landing pages can be seen in 
 figures~\ref{fig:old-landing-page},~\ref{fig:new-landing-page-computer} 
@@ -137,21 +140,28 @@ and extensible \citep{gamma1994design}. The three main principles applied in thi
 separation of concerns \citep{parnas1972criteria}, DRY (Don't Repeat Yourself) 
 \citep{hunt1999pragmatic}, and self-documenting code \citep{martin2008clean}.
 The first principle lead to the folder structure shown in 
-figure~\ref{fig:directory-structure}. The second principle influenced the use of 
+figure~\ref{fig:directory-structure}. One advantage of this is that finding and fixing 
+bugs is much easier in well structured code.
+
+The second principle influenced the use of 
 JavaScript to inject common elements (header, footer, in-page navigation) into each page 
 at runtime, rather than duplicating the code in each HTML file. This also inspired the 
 use of CSS variables to define common colours and other styles in one place, rather than
-duplicating these values throughout the CSS files. The third principle was followed 
+duplicating these values throughout the CSS files.
+
+The third principle was followed 
 throughout the codebase with meaningful names for files, classes, etc.,
 and comments where necessary to explain non-obvious decisions. A consistent naming convention
 was used throughout, specifically kebab-case for file names, class names and IDs,
 and camelCase for JavaScript variables and functions (although, admittedly, there is currently 
-only one JavaScript function). A fourth principle, which is not referenced as I worked it out 
+only one JavaScript function).
+
+A fourth principle, which is not referenced as I worked it out 
 the hard way, is Keep the CSS as simple as possible and make use of the power of cascading. I am 
 sure this is something experienced web developers know and if I were to redo this project I 
 would put much more effort into writing simple CSS first time rather than trying to refactor 
-complex CSS later. The current codebase is not optimal in this regard and with more time 
-could be improved significantly.
+complex CSS later. The current codebase is still not optimal in this regard and with more time 
+could be improved.
 
 \begin{figure}[htp]
     \centering
@@ -178,19 +188,13 @@ root/
 │   └── inject-in-page-navigation-*.js
 └── styles/
     ├── main.css
+    ├── media-queries.css
+    ├── media-query-index.css
     ├── noscript.css
     ├── components/
     │   ├── buttons.css
     │   ├── header-and-footer.css
     │   ├── navigation.css
-    │   └── titles.css
-    ├── media-queries/
-    │   ├── about.css
-    │   ├── header-and-footer.css
-    │   ├── index.css
-    │   ├── license-and-credits.css
-    │   ├── navigation.css
-    │   └── students.css
     │   └── titles.css
     └── pages/
         ├── about.css
@@ -253,24 +257,23 @@ all pages listed in table~\ref{tab:viewport-breakpoints}.
 0px to 199px & Very small & Warn users but make best effort to display contents reasonably \\
 200px to 799px & Mobile layout & Prefer vertical stacking \\
 800px to 1199px & Desktop layout & Prefer horizontal layout \\
-1200px and above & Large desktop layout & Need to avoid fonts looking too small in large viewports \\
+1200px and above & Large desktop layout & Take advantage of wider screen \\
 \bottomrule
 \end{tabular}
 \caption{Viewport width breakpoints}\label{tab:viewport-breakpoints}
 \end{table}
 
 
-In order to minimise the use of media queries, I used the clamp() CSS function 
-% chktex 36
+In order to minimise the use of media queries, I used the clamp~() CSS function 
 to define fluid typography that scales smoothly between
 a minimum and maximum size, rather than jumping between discrete sizes at
-breakpoints. A limitation of this is that if the middle value of clamp() is
+breakpoints. A limitation of this is that if the middle value of clamp~() is
 defined using a viewport width unit (vw), then the text will not scale if 
 the user zooms their browser without changing the viewport window size. 
 This contravenes WCAG 2.2 Success Criterion 1.4.4 \citep{caldwell2024} which 
 requires text to be resizable up to 200\% without loss of content or 
 functionality. A clever workaround recommended by Powell is to calculate the 
-middle value of clamp() from a vw unit and 
+middle value of clamp () from a vw unit and 
 a rem unit, so that zooming the browser window also changes the text size.
 
 One downside of this approach is that it takes a lot of trial and error
@@ -288,10 +291,12 @@ My conclusion for this project was to use flexbox in narrower viewports
 (mobile layout) as this could make vertical stacking of elements easier with 
 flex-direction: column, and to prefer flexbox with flex-direction: row in wider 
 viewports unless there was an obvious case for a grid such as the input form on the 
-student page. Due to my experimental approach to development, early versions of 
-the website had several levels of nested grids and flexboxes which then had to 
-be refactored to simpler layouts as I learned more about the strengths and 
-weaknesses of each choice.
+student page and the gallery of portraits. Due to my experimental approach to 
+development, early versions of the website had several levels of nested grids and 
+flexboxes which then had to be refactored to simpler layouts later. I also evetually 
+realised that flexbox for vertical stacking is not always necessary as block elements 
+naturally stack vertically. This is another area where more experience would have helped 
+in making better design decisions earlier in the development process.
 
 \subsection{Units of measurement}
 Another way to achieve responsiveness is to use relative units of measurement
@@ -312,7 +317,9 @@ but also visually appealing. This is another area where I have little design
 experience so I defer the aesthetic aspects of colour choice to next term's module,
 where that is covered more fully. For this phase of the project, I limited 
 myself to ensuring that the colour choices were not too garish and that 
-the choices passed the contrast tests in the accessibility tools.
+the choices passed the contrast tests in the accessibility tools. The putple and 
+cyan colours were choses as they (approximately) match the Embodied Mind logo used 
+in the footer; the yellow and green were more arbitary.
 
 Testing without a mouse and with a screen reader ensured that that the~::focus 
 pseudo-class was styled appropriately to make it clear which element had focus and 
@@ -377,6 +384,7 @@ be either an <h2> or a <p> element, which would be flagged by the other testing 
 a decision to accept the warning from Wave was taken as the least bad alternative. The other 
 alert from Wave was for the use of <noscript>, but this was simply a warning to check this 
 usage as it may have accessibility implications.
+
 Automated testing is not a substitute for manual testing, and the site was also tested manually
 on a variety of devices, specifically
 
@@ -388,30 +396,36 @@ on a variety of devices, specifically
     \item A mobile phone (running Android)
 \end{itemize}
 
-I did not have access to an iOS device so could not test on Apple hardware.
+I did not have access to an iOS device so could not test on Apple hardware, nor did I have 
+time to test on non-Linux operating systems. Testing was informal and ad hoc rather than
+systematic, and with more time, test scripts would be written to ensure consistent coverage
+across all devices. This would be more necessary if more than one developer were involved in
+the project to ensure everyone tested the same way.
 
 I did not test the website with JavaScript disabled and I acknowledge this as a limitation
-of the current testing, driven by the available time. Security, performance, and user testing 
-were also not possible within the time constraints, but will be essential in the later phases 
-where actual lessons are implemented and students' data are collected. In particular, expert 
-testing from an experienced teacher will be needed to ensure the content is age appropriate 
-and pedagogically sound.
+of the current testing, driven by the available time. Testing thus far has mainly been 
+verification rather than validation \citep{myers2011art}, \citep{IEEE1990}, but when actual
+lessons are implemented user and expert validation from a teacher will be needed to ensure 
+the content is age appropriate and pedagogically sound. Security, and performance testing 
+will also be needed when student data (tracking lesson progress) are collected. 
 
-\section{Outstanding issues and Future Improvements}
+\section{Outstanding issues and future improvements}
 The project submitted for assessment is phase one of a larger project to refactor and
 improve the Web Witchcraft and Wizardry website. Some content was deliberately omitted 
-from this phase as it will be developed in phase 2 using JavaScript. There are also 
-some known issues and areas for improvement that could not be addressed within the
+from this phase as it will be developed in phase 2 using JavaScript. Table \ref{tab:bugs}
+lists some known issues and areas for improvement that could not be addressed within the
 time constraints of this phase.
 
-\begin{table}[htp]
+\begin{table}[H]
 \centering
-\begin{tabular}{l p{3.5cm} p{3.5cm} p{3.5cm}}
+\begin{tabular}{l p{4cm} p{4cm} p{4cm}}
 \toprule
 \textbf{Issue Id} & \textbf{Description} & \textbf{Symptoms} & \textbf{Work around} \\
-\midrule
+\toprule
 1 & Reactive code does not work well at extreme viewport sizes & Text overflows boxes or content does not fill screen properly. & Warning displayed when viewport is too small.\hfill \\
+\midrule
 2 & Font sizes are not optimal\hfill & Text is too small or too large on some devices. & Further refinement of clamp() values needed.\hfill \\
+\midrule
 3 & Images need editing. The artwork provided by Rachel Mulligan is in JPEG format with a white background. & The picture gallery looks unprofessional with white boxes around images. & Images need to be edited to have transparent backgrounds (PNG or SVG format). \\
 \bottomrule
 \end{tabular}
@@ -436,7 +450,7 @@ The automation tools used for testing accessibility and performance (Lighthouse,
 pa11y, Wave) are all open source tools developed by third parties and the scripts used 
 to run them were adapted from examples found in their respective documentations and in 
 online resources. I was assisted by a colleague at my employer, Transport for London, 
-in writing the playwright tests used for testing browser compatibility.
+in writing the Playwright tests used for testing browser compatibility.
 
 The artwork used in the website was created by Rachel Mulligan, a professional 
 stained glass artist. I am grateful to her for allowing me to use her work in this 

@@ -5,8 +5,8 @@
  * Copyright  : (c) 2025 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
  * Description:
- *   This is the page specific stylesheet for the Web Witchcraft and 
- *   Wizardry about page. It defines styles that apply only to the 
+ *   This is the page specific stylesheet for the Web Witchcraft and
+ *   Wizardry about page. It defines styles that apply only to the
  *   about page.
  **********************************************************************
  */
@@ -15,7 +15,6 @@
 .gallery,
 .accessories {
     max-width: 100%;
-    width: 100%;
     box-sizing: border-box;
     padding: 0;
     margin: 0;
@@ -27,11 +26,7 @@
     max-width: 100%;
     box-sizing: border-box;
     overflow-wrap: break-word;
-    word-wrap: break-word;
-    margin-left: 2rem;
-    margin-right: 2rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin: 1rem 2rem;
 }
 
 .introduction ul,
@@ -61,8 +56,7 @@
 
 .accessories-container {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     justify-content: center;
     gap: 1rem;
     margin: 2rem;
@@ -75,6 +69,7 @@
     gap: 1rem;
     margin: 2rem;
     max-width: 100%;
+    box-sizing: border-box;
 }
 
 /**********************************************
@@ -116,7 +111,7 @@
     text-align: center;
     width: 20rem;
 }
-v
+
 .accessory-image {
     width: 20rem;
     height: auto;
@@ -124,6 +119,7 @@ v
 }
 
 .accessory-name {
+    font-family: Cinzel, serif;
     font-weight: bold;
 }
 
@@ -131,26 +127,23 @@ v
     font-size: var(--fontsize-smallprint);
 }
 
- .facts-item {
-    padding: 1.5rem;
+.facts-item {
+    display: block;
     background-color: var(--color-light-headings-background);
     color: var( --color-light-headings-text);
     border: var(--border-weight) var(--border-style) var(--color-light-headings-text);
-    border-radius: 2rem;
-    justify-self: center;
-    align-items: center;
-    justify-content: center;
+    border-radius: var(--border-radius);
+    font-size: var(--fontsize-p);
+    min-width: 0;
+    padding: 1rem;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
 }
 
-.facts-wide-item {
-    padding: 1.5rem;
-    grid-column: 1 / span 3;
-    background-color: var(--color-light-headings-background);
-    color: var( --color-light-headings-text);
-    border: 1px solid var(--color-light-headings-text);
-    border-radius: 2rem;
-    align-items: center;
-    justify-content: center;
+.wide {
+    grid-column: 1 / 4;
+    text-align: left;
 }
 
 

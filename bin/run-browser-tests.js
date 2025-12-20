@@ -184,7 +184,7 @@ async function runTests() {
   console.log('🚀 Starting cross-browser tests...');
 
   const browsers = ['chromium', 'firefox', 'webkit'];
-  
+
   let passed = 0;
   let failed = 0;
   let skipped = 0;

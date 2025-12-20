@@ -113,7 +113,7 @@
     min-width: 0;
 }
 
-.footer-logo img 
+.footer-logo img
     /* responsive logo sizing */{
     max-height: clamp(2rem, 10vw, 10rem);
     object-fit: contain;

@@ -5,8 +5,8 @@
  * License    : MIT License (see license-and-credits.html page)
  * Description:
  *     This module provides a simple function to display an alert
- *     with a given message. It is only used (at this stage) for 
- *     indicating that a feature is not yet implemented. 
+ *     with a given message. It is only used (at this stage) for
+ *     indicating that a feature is not yet implemented.
  ***********************************************************************/
 
 /**

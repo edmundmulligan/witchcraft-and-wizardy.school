@@ -5,8 +5,8 @@
  * Copyright  : (c) 2025 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
  * Description:
- *   This is the page specific stylesheet for the Web Witchcraft and 
- *   Wizardry license and credits page. It defines styles that apply 
+ *   This is the page specific stylesheet for the Web Witchcraft and
+ *   Wizardry license and credits page. It defines styles that apply
  *   only to the license and credits page.
  **********************************************************************
  */
@@ -23,11 +23,7 @@
     max-width: 100%;
     box-sizing: border-box;
     overflow-wrap: break-word;
-    word-wrap: break-word;
-    margin-left: 2rem;
-    margin-right: 2rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin: 1rem 2rem;
 }
 
 .credits {

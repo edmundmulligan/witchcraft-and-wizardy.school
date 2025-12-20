@@ -3,50 +3,7 @@
 This appendix contains the complete test results from the automated test suite. All tests were executed on \today{} and demonstrate compliance with web standards, accessibility guidelines, and readability requirements.
 
 \subsection*{Summary of Test Results}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{|l|l|r|}
-\hline
-\textbf{Test Type} & \textbf{Metric} & \textbf{Result} \\
-\hline
-Code Validation & Files validated & 29 \\
- & HTML errors & 0 \\
- & CSS errors & 0 \\
- & JavaScript errors & 0 \\
-\hline
-Link Checking & Total links checked & 161 \\
- & Broken links & 0 \\
- & Pages checked & 5 \\
-\hline
-Axe Accessibility & Total violations & 0 \\
- & Critical issues & 0 \\
- & Serious issues & 0 \\
-\hline
-Lighthouse & Average score & 100\% \\
- & Pages tested & 5 \\
- & Failed audits & 0 \\
-\hline
-Pa11y Accessibility & Total errors & 0 \\
- & Total warnings & 0 \\
- & Pages tested & 5 \\
-\hline
-WAVE Accessibility & Total errors & 0 \\
- & Alerts (non-critical) & 10 \\
- & Pages tested & 5 \\
-\hline
-Reading Age & Average grade level & 9.1 \\
- & Pages analyzed & 3 \\
- & College-level pages & 0 \\
-\hline
-Browser Tests & Browsers tested & 3 \\
- & Tests passed & 150 \\
- & Tests failed & 0 \\
-\hline
-\end{tabular}
-\caption{Summary of all automated test results}
-\label{tab:test-summary}
-\end{table}
+\verbatiminput{../tests/results/test-summary.txt}
 
 \clearpage
 
@@ -56,6 +13,11 @@ The following sections contain the complete JSON output from each test suite.
 
 \subsubsection*{Code Validation Results}
 \lstinputlisting[language=json]{../tests/results/validation-results.json}
+
+\clearpage
+
+\subsubsection*{File Comments Results}
+\verbatiminput{../tests/results/file-comments-check-results.txt}
 
 \clearpage
 

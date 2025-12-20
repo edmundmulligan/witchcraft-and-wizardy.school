@@ -36,20 +36,20 @@
     },
     {
       "file": "./pages/about.html",
-      "wordCount": 1942,
-      "fleschReadingEase": 62.7,
-      "fleschKincaidGrade": 8.7,
-      "smogIndex": 11.7,
-      "colemanLiauIndex": 9.7,
-      "automatedReadabilityIndex": 10,
-      "gunningFogIndex": 10.6,
-      "daleChallScore": 7.3,
-      "averageGradeLevel": 10.1,
+      "wordCount": 1985,
+      "fleschReadingEase": 63.4,
+      "fleschKincaidGrade": 8.5,
+      "smogIndex": 11.5,
+      "colemanLiauIndex": 9.6,
+      "automatedReadabilityIndex": 9.5,
+      "gunningFogIndex": 10.2,
+      "daleChallScore": 7.2,
+      "averageGradeLevel": 9.9,
       "textStandard": "9th and 10th grade",
-      "difficultWords": 349,
-      "averageSentenceLength": 17,
-      "readingLevel": "Fairly Difficult (High School)",
-      "readingAge": "17-18 years"
+      "difficultWords": 350,
+      "averageSentenceLength": 16.3,
+      "readingLevel": "Plain English (High School)",
+      "readingAge": "15-16 years"
     }
   ]
 }

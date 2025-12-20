@@ -34,26 +34,26 @@ parse_test_options "$@"
 # Start server
 start_server_if_needed "$TEST_URL"
 
-# Install and run ngrok 
+# Install and run ngrok
 # this is needed to run WAVE as it exposes localhost to the internet
 if ! command -v ngrok &> /dev/null; then
   echo "Downloading and installing ngrok..."
-  
+
   # Use official ngrok installation method for Ubuntu
   curl -fsSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc | \
     sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
-  
+
   echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | \
     sudo tee /etc/apt/sources.list.d/ngrok.list
-  
+
   sudo apt update > /dev/null 2>&1
   sudo apt install -y ngrok > /dev/null 2>&1
-  
+
   if [ $? -ne 0 ]; then
     echo "❌ Failed to install ngrok"
     exit 0
   fi
-  
+
   echo "✓ Ngrok installed"
 fi
 
@@ -140,13 +140,13 @@ for page in $PAGES; do
   TESTED=$((TESTED + 1))
   URL_PATH="${page#./}"
   FULL_URL="$TEST_URL/$URL_PATH"
-  
+
   echo "[$TESTED/$PAGE_COUNT] Testing $URL_PATH"
-  
+
   # Call WAVE API (reporttype=4 returns detailed JSON)
   TEMP_RESULT="$RESULTS_DIR/wave-temp-$TESTED.json"
   curl -s "https://wave.webaim.org/api/request?key=$WAVE_API_KEY&reporttype=4&url=$(echo $FULL_URL | sed 's/:/%3A/g; s/\//%2F/g')" > "$TEMP_RESULT"
-  
+
   # Merge results
   if [ -f "$TEMP_RESULT" ]; then
     node -e "
@@ -154,14 +154,14 @@ for page in $PAGES; do
         const fs = require('fs');
         const combined = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8'));
         const newData = JSON.parse(fs.readFileSync('$TEMP_RESULT', 'utf8'));
-        
+
         // Check for API errors
         if (newData.status && newData.status.success === false) {
           console.log('  ❌ API Error: ' + (newData.status.error || 'Unknown error'));
           fs.unlinkSync('$TEMP_RESULT');
           process.exit(1);
         }
-        
+
         if (newData.categories) {
           const pageResult = {
             url: '$URL_PATH',
@@ -174,7 +174,7 @@ for page in $PAGES; do
             alertItems: [],
             contrastItems: []
           };
-          
+
           // Extract actual error details
           if (newData.categories.error?.items) {
             Object.entries(newData.categories.error.items).forEach(([key, item]) => {
@@ -186,12 +186,12 @@ for page in $PAGES; do
               });
             });
           }
-          
+
           // Store WAVE report URL for detailed information
           if (newData.statistics && newData.statistics.waveurl) {
             pageResult.waveUrl = newData.statistics.waveurl;
           }
-          
+
           // Extract actual alert details (if available in API response)
           if (newData.categories.alert?.items) {
             Object.entries(newData.categories.alert.items).forEach(([key, item]) => {
@@ -202,7 +202,7 @@ for page in $PAGES; do
               });
             });
           }
-          
+
           // Extract error details (if available)
           if (newData.categories.error?.items) {
             Object.entries(newData.categories.error.items).forEach(([key, item]) => {
@@ -213,7 +213,7 @@ for page in $PAGES; do
               });
             });
           }
-          
+
           // Extract contrast details (if available)
           if (newData.categories.contrast?.items) {
             Object.entries(newData.categories.contrast.items).forEach(([key, item]) => {
@@ -224,13 +224,13 @@ for page in $PAGES; do
               });
             });
           }
-          
+
           combined.pages.push(pageResult);
           console.log('  Errors: ' + pageResult.errors + ', Alerts: ' + pageResult.alerts + ', Contrast: ' + pageResult.contrast);
         } else if (newData.message) {
           console.error('  API Error: ' + newData.message);
         }
-        
+
         fs.writeFileSync('$RESULT_FILE', JSON.stringify(combined, null, 2));
         fs.unlinkSync('$TEMP_RESULT');
       } catch (e) {
@@ -247,22 +247,22 @@ echo "📊 WAVE Accessibility Results:"
 node -e "
   const fs = require('fs');
   const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8'));
-  
+
   if (!data.pages || data.pages.length === 0) {
     console.log('  No pages tested');
     process.exit(0);
   }
-  
+
   const totalErrors = data.pages.reduce((sum, p) => sum + p.errors, 0);
   const totalAlerts = data.pages.reduce((sum, p) => sum + p.alerts, 0);
   const totalContrast = data.pages.reduce((sum, p) => sum + p.contrast, 0);
-  
+
   console.log('  Pages tested: ' + data.pages.length);
   console.log('  ❌ Total errors: ' + totalErrors);
   console.log('  ⚠️  Total alerts: ' + totalAlerts);
   console.log('  🎨 Contrast errors: ' + totalContrast);
   console.log('');
-  
+
   // Show pages with errors
   const pagesWithErrors = data.pages.filter(p => p.errors > 0);
   if (pagesWithErrors.length === 0) {
@@ -273,7 +273,7 @@ node -e "
       console.log('');
       console.log('❌ ' + page.url);
       console.log('   Errors: ' + page.errors + ', Alerts: ' + page.alerts + ', Contrast: ' + page.contrast);
-      
+
       // Show error details if available
       if (page.errorItems && page.errorItems.length > 0) {
         console.log('');
@@ -286,7 +286,7 @@ node -e "
       }
     });
   }
-  
+
   // Show pages with alerts (but no errors)
   const pagesWithAlerts = data.pages.filter(p => p.errors === 0 && p.alerts > 0);
   if (pagesWithAlerts.length > 0) {
@@ -296,7 +296,7 @@ node -e "
       console.log('');
       console.log('⚠️  ' + page.url);
       console.log('   Alerts: ' + page.alerts);
-      
+
       // Show alert details if available
       if (page.alertItems && page.alertItems.length > 0) {
         console.log('');
@@ -323,7 +323,7 @@ if [ "$HAS_ISSUES" -eq 0 ]; then
   exit 0
 else
   HAS_ERRORS=$(node -p "const fs = require('fs'); const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8')); data.pages.some(p => p.errors > 0) ? 1 : 0")
-  
+
   if [ "$HAS_ERRORS" -eq 0 ]; then
     echo ""
     echo "⚠️  Pages have alerts or contrast issues (but no errors)."

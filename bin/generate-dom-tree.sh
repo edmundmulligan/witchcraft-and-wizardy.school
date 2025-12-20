@@ -59,26 +59,26 @@ generate_tree() {
     local dot_file="$OUTPUT_DIR/${filename}.dot"
     local png_file="$OUTPUT_DIR/${filename}-dom-tree.png"
     local svg_file="$OUTPUT_DIR/${filename}-dom-tree.svg"
-    
+
     echo "Processing: $html_file"
-    
+
     # Generate DOT file
     node "$SCRIPT_DIR/generate-dom-tree.js" "$html_file" "$dot_file"
-    
+
     # Generate PNG
     if dot -Tpng "$dot_file" -o "$png_file" 2>/dev/null; then
         echo "  ✓ PNG diagram: $png_file"
     else
         echo "  ❌ Failed to generate PNG"
     fi
-    
+
     # Generate SVG
     if dot -Tsvg "$dot_file" -o "$svg_file" 2>/dev/null; then
         echo "  ✓ SVG diagram: $svg_file"
     else
         echo "  ❌ Failed to generate SVG"
     fi
-    
+
     echo ""
 }
 
@@ -98,7 +98,7 @@ else
     echo "Generating DOM trees for all HTML pages..."
     echo "=========================================="
     echo ""
-    
+
     for html_file in index.html about.html students.html glossary-and-faq.html license-and-credits.html; do
         if [ -f "$html_file" ]; then
             generate_tree "$html_file"

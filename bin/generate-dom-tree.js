@@ -55,20 +55,20 @@ function getNodeLabel(element) {
     const tagName = element.name;
     const id = $(element).attr('id');
     const classes = $(element).attr('class');
-    
+
     let label = tagName;
-    
+
     if (id) {
         label += `\\n#${id}`;
     }
-    
+
     if (classes) {
         const classList = classes.split(/\s+/).slice(0, 2); // Max 2 classes
         if (classList.length > 0) {
             label += `\\n.${classList.join(' .')}`;
         }
     }
-    
+
     return label;
 }
 
@@ -103,24 +103,24 @@ function buildGraph(element, parentId = null) {
     if (element.type !== 'tag') {
         return;
     }
-    
+
     const nodeId = `node${nodeCounter++}`;
     nodeMap.set(element, nodeId);
-    
+
     const label = getNodeLabel(element);
     const color = getNodeColor(element.name);
-    
+
     // Add node
     dotContent += `    ${nodeId} [label="${label}", fillcolor="${color}", style="rounded,filled"];\n`;
-    
+
     // Add edge from parent
     if (parentId) {
         dotContent += `    ${parentId} -> ${nodeId};\n`;
     }
-    
+
     // Process children
     const children = $(element).children().toArray();
-    
+
     // Limit depth to avoid huge diagrams
     if (children.length > 0 && nodeCounter < 500) {
         children.forEach(child => {

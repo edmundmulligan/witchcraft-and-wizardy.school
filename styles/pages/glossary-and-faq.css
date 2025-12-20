@@ -5,8 +5,8 @@
  * Copyright  : (c) 2025 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
  * Description:
- *   This is the page specific stylesheet for the Web Witchcraft and 
- *   Wizardry glossary and FAQ page. It defines styles that apply only to the 
+ *   This is the page specific stylesheet for the Web Witchcraft and
+ *   Wizardry glossary and FAQ page. It defines styles that apply only to the
  *   glossary and FAQ page.
  **********************************************************************
  */
@@ -29,11 +29,7 @@
     max-width: 100%;
     box-sizing: border-box;
     overflow-wrap: break-word;
-    word-wrap: break-word;
-    margin-left: 2rem;
-    margin-right: 2rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin: 1rem 2rem;
 }
 
 .glossary dl {
@@ -71,5 +67,5 @@
     hyphens: auto;
 }
 
-/* no styles for FAQ at the moment as the FAQ button is a 
+/* no styles for FAQ at the moment as the FAQ button is a
    placeholder for future content */

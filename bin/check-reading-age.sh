@@ -79,39 +79,39 @@ TESTED=0
 for page in $PAGES; do
   TESTED=$((TESTED + 1))
   echo "[$TESTED/$PAGE_COUNT] Analyzing $page"
-  
+
   # Analyze readability using Node.js
   node -e "
     const fs = require('fs');
     const cheerio = require('cheerio');
     const rs = require('text-readability').default;
-    
+
     try {
       // Read and parse HTML
       const html = fs.readFileSync('$page', 'utf8');
       const \$ = cheerio.load(html);
-      
+
       // Extract text content (remove scripts, styles, etc.)
       \$('script, style').remove();
       const text = \$('body').text()
         .replace(/\s+/g, ' ')
         .trim();
-      
+
       // Need at least 3 sentences to get meaningful readability scores
       const sentenceCount = text.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
       if (!text || text.length < 50 || sentenceCount < 3) {
         console.log('  ⚠️  Not enough text content to analyze (need at least 3 sentences)');
         process.exit(0);
       }
-      
+
       // Count words for word count
       const wordCount = text.split(/\s+/).filter(w => w.length > 0).length;
-      
+
       if (sentenceCount === 0 || wordCount === 0) {
         console.log('  ⚠️  Not enough text content to analyze');
         process.exit(0);
       }
-      
+
       // Calculate readability scores using text-readability package
       const fleschEase = rs.fleschReadingEase(text);
       const fkGrade = rs.fleschKincaidGrade(text);
@@ -120,15 +120,15 @@ for page in $PAGES; do
       const ari = rs.automatedReadabilityIndex(text);
       const gunningFog = rs.gunningFog(text);
       const daleChall = rs.daleChallReadabilityScore(text);
-      
+
       // Get additional metrics
       const textStandard = rs.textStandard(text, false); // false = return numeric
       const difficultWordCount = rs.difficultWords(text);
       const avgSentenceLength = rs.averageSentenceLength(text);
-      
+
       // Calculate average grade level (including Gunning Fog)
       const avgGrade = (fkGrade + smog + coleman + ari + gunningFog) / 5;
-      
+
       // Determine reading level description
       let level = '';
       let age = '';
@@ -151,7 +151,7 @@ for page in $PAGES; do
         level = 'Very Difficult (College Graduate)';
         age = '22+ years';
       }
-      
+
       const result = {
         file: '$page',
         wordCount: wordCount,
@@ -169,13 +169,13 @@ for page in $PAGES; do
         readingLevel: level,
         readingAge: age
       };
-      
+
       // Add to results file
       const resultsFile = '$RESULT_FILE';
       const combined = JSON.parse(fs.readFileSync(resultsFile, 'utf8'));
       combined.pages.push(result);
       fs.writeFileSync(resultsFile, JSON.stringify(combined, null, 2));
-      
+
       console.log('  Grade Level: ' + result.averageGradeLevel + ' (' + result.readingAge + ')');
       console.log('  Reading Level: ' + result.readingLevel);
       console.log('  Text Standard: ' + result.textStandard);
@@ -184,12 +184,12 @@ for page in $PAGES; do
       console.log('  Word Count: ' + result.wordCount);
       console.log('  Difficult Words: ' + result.difficultWords);
       console.log('  Avg Sentence Length: ' + result.averageSentenceLength + ' words');
-      
+
     } catch (e) {
       console.error('  Error: ' + e.message);
     }
   "
-  
+
   echo ""
 done
 
@@ -202,21 +202,21 @@ echo "Pages excluded: $EXCLUDED_COUNT"
 node -e "
   const fs = require('fs');
   const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8'));
-  
+
   if (data.pages.length === 0) {
     console.log('No pages analyzed');
     process.exit(0);
   }
-  
+
   // Calculate averages
   const avgGrade = data.pages.reduce((sum, p) => sum + p.averageGradeLevel, 0) / data.pages.length;
   const totalWords = data.pages.reduce((sum, p) => sum + p.wordCount, 0);
-  
+
   console.log('Pages analyzed: ' + data.pages.length);
   console.log('Total words: ' + totalWords);
   console.log('Average Grade Level: ' + Math.round(avgGrade * 10) / 10);
   console.log('');
-  
+
   // Show pages that are too difficult (grade > 12)
   const difficult = data.pages.filter(p => p.averageGradeLevel > 12);
   if (difficult.length > 0) {

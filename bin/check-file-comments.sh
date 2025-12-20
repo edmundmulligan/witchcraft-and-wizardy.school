@@ -39,7 +39,7 @@ for file in $FILES; do
     TOTAL_FILES=$((TOTAL_FILES + 1))
     FILE_HAS_ISSUES=0
     ISSUES=""
-    
+
     # Determine comment style based on file extension
     if [[ $file == *.html ]]; then
         # HTML uses <!-- --> comments
@@ -48,7 +48,7 @@ for file in $FILES; do
         # CSS and JS use /* */ comments
         HEADER=$(head -20 "$file" | grep -A 15 "/\*")
     fi
-    
+
     # Check if header comment block exists
     if [ -z "$HEADER" ]; then
         MISSING_HEADER=$((MISSING_HEADER + 1))
@@ -67,21 +67,21 @@ for file in $FILES; do
                 fi
             fi
         done
-        
+
         if [ -n "$MISSING" ]; then
             MISSING_FIELDS=$((MISSING_FIELDS + 1))
             FILE_HAS_ISSUES=1
             ISSUES="  ⚠️  Missing required fields: $MISSING"
         fi
     fi
-    
+
     # Report results
     if [ $FILE_HAS_ISSUES -eq 1 ]; then
         FILES_WITH_ISSUES=$((FILES_WITH_ISSUES + 1))
         echo "❌ $file"
         echo "$ISSUES"
         echo ""
-        
+
         # Write to results file
         echo "$file" >> "$RESULT_FILE"
         echo "$ISSUES" >> "$RESULT_FILE"

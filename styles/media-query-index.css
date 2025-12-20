@@ -1,0 +1,53 @@
+/*
+ **********************************************************************
+ * File       : media-query-index.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Special media query for index page to add a backgound image in
+ *   the correct orientation.
+ * Note:
+ *   Cutoffs for media queries are (arbitarily) as follows:
+ *      Very small screen : width < 200px
+ *      Small screen      : width < 800px
+ *      Large screen      : width < 1200px
+ *      Very large screen : width >= 1200px
+ *   Avoid changing font-sizes here; use relative units in the main stylesheets.
+ **********************************************************************
+ */
+
+/*
+ ************************************************************
+ * Small screen.
+ * Generally a mobile phone or a computer in portrait mode.
+ ************************************************************
+ */
+
+@media ((width >= 200px) and (width < 800px)) or (orientation: portrait) {
+    /* insert the landing page background image for small screens */
+    body::before {
+        background-image: url('/images/michael-hamments-x6VyE3ie1sM-unsplash-portrait.jpg');
+    }
+}
+
+/*
+ ************************************************************
+ * Large screen.
+ * No media query as this is the default size.
+ ************************************************************
+ */
+
+/*
+ ************************************************************
+ * Very large screen.
+ * Not much here as generally will behave like a large screen
+ * but gallery grid can have 4 columns instead of 2.
+ ************************************************************
+ */
+
+@media (width >= 1200px) {
+    .gallery-container {
+        grid-template-columns: repeat(4,1fr);
+    }
+}

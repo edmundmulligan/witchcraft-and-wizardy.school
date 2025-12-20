@@ -66,7 +66,7 @@ jobs:
       continue-on-error: true
       run: |
         bin/run-wave-tests.sh
-     
+
     - name: Check reading levels
       continue-on-error: true
       run: |
@@ -76,7 +76,7 @@ jobs:
       continue-on-error: false
       run: |
         bin/summarise-tests.sh
-  
+
     - name: Upload test reports
       uses: actions/upload-artifact@v4
       if: always()
@@ -95,30 +95,30 @@ jobs:
     needs: run-pre-deployment-test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-    
+
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
       contents: read
       pages: write
       id-token: write
-    
+
     # Deploy to the github-pages environment
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-    
+
     - name: Setup Pages
       uses: actions/configure-pages@v4
-    
+
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
         path: '.'
-    
+
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4

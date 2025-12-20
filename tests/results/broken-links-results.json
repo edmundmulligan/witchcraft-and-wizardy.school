@@ -4,13 +4,13 @@
       "url": "index.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 19
+      "totalCount": 18
     },
     {
       "url": "pages/students.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 40
+      "totalCount": 38
     },
     {
       "url": "pages/glossary-and-faq.html",
@@ -22,17 +22,17 @@
       "url": "pages/license-and-credits.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 29
+      "totalCount": 27
     },
     {
       "url": "pages/about.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 49
+      "totalCount": 47
     }
   ],
   "summary": {
-    "totalLinks": 152,
+    "totalLinks": 145,
     "brokenLinks": 0,
     "excludedLinks": 0
   }

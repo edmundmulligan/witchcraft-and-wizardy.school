@@ -28,7 +28,7 @@ parse_test_options() {
 # Start local server if not running
 start_server_if_needed() {
   local url="$1"
-  
+
   if ! curl -s -f "$url" > /dev/null 2>&1
   then
     echo "⚠️  No server detected at $url"
