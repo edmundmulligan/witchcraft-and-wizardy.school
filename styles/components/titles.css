@@ -13,13 +13,12 @@
 .site-title {
     font-family: 'Cinzel Decorative', serif;
     font-weight: 700;
-    margin: 0.25rem;
+
 }
 
 .site-subtitle {
     font-family: Cinzel, serif;
     font-weight: 400;
-    margin: 0.25rem;
 }
 
 .page-title {
@@ -28,10 +27,9 @@
     margin: 0.5rem auto;
     padding: 0.5rem 1rem;
     width: fit-content;
-    max-width: calc(100% - 2rem);
+    max-width: 100%;
     display: block;
     white-space: normal;
-    overflow-wrap: break-word;
 
     /* specify these so that page title is legiible on pages with background images */
     color: var(--color-light-page-text);

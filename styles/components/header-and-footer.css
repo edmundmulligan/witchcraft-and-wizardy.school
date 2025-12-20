@@ -20,8 +20,10 @@
     border-radius: var(--border-radius);
     place-items: center;
     width: 100%;
+    max-width: 100%;
     gap: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 /*  three sections of the header, by default left, center, and right */
@@ -55,7 +57,6 @@
 
 /* Header text styling */
 .header-text {
-    margin: 0.25rem auto;
     line-height: 1.2;
     width: 100%;
     grid-row: 1;
@@ -76,8 +77,9 @@
 
 .footer {
     /* default layout is grid for larger screens */
-    display: grid;
-    grid-template-columns: 1fr auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     gap: 1rem;
     border: var(--color-light-headings-text) var(--border-weight) var(--border-style);
@@ -85,36 +87,44 @@
     color: var(--color-light-headings-text);
     border-radius: var(--border-radius);
     width: 100%;
-    padding: 0.25rem 1rem;
+    max-width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
 .footer-text {
     text-align: center;
-    grid-column: 1;
     justify-self: center;
 }
 
 .footer-text h2 {
+    display: inline;
     margin: 0;
     padding: 0;
     line-height: 1.2;
 }
 
 .footer-text p {
+    display: inline;
     margin: 0;
     padding: 0;
     line-height: 1.2;
 }
 
 .footer-logo {
-    grid-column: 2;
     justify-self: end;
-    align-items: center;
     min-width: 0;
+    max-width: 40%;
+    flex-shrink: 1;
+    display: flex;
+    align-items: center;
 }
 
 .footer-logo img
-    /* responsive logo sizing */{
-    max-height: clamp(2rem, 10vw, 10rem);
+{
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
     object-fit: contain;
 }

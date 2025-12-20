@@ -19,13 +19,26 @@
 /*
  ***********************************************************************
  * Very small screen.
- * This displays a warning in the header that the  screen is too small.
+ * This is substantially the same as 200-800px with the addition of a 
+ * warning displayed in the header.
+ * It violates the DRY principle but is done this way out of expediency.
  ***********************************************************************
  */
 
 @media (width < 200px) {
+    .header-warning {
+        /* turn on the warning message (normally it's display: none) */
+        display: block;
+        max-width: 100%;
+        color: var(--color-light-warning-text);
+        background-color: var(--color-light-warning-background);
+        text-align: center;
+    }
+
+    /* from here on, same as small screen */
+
+    /* switch header to vertical layout */
     .header {
-        display: flex;
         flex-direction: column;
         align-items: center;
     }
@@ -35,18 +48,42 @@
         justify-content: center;
     }
 
-    .header-warning {
-        display: block;
-        width: 100%;
-        max-width: 100%;
-        color: var(--color-light-warning-text);
-        background-color: var(--color-light-warning-background);
+    /* switch footer to vertical layout */
+    .footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header-image {
+        height: 5rem;
+    }
+
+    nav.site-navigation ul {
+        align-items: center;
+    }
+
+    nav.in-page-navigation ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav.in-page-navigation {
+        flex-direction: column;
+    }
+
+    .site-title {
         padding: 0.1rem;
-        margin: 0;
+        text-align: center;
+    }
+
+    .site-subtitle {
+        padding: 0.1rem;
         text-align: center;
     }
 
     .page-title {
+        padding: 0.1rem;
         width: auto;
         text-align: center;
     }
@@ -56,14 +93,59 @@
     .accessories p,
     .license p,
     .glossary p {
-        margin: 0.5rem;
-        padding: 0 0.5rem;
         max-width: 100%;
         box-sizing: border-box;
         overflow-wrap: break-word;
+    }
+
+    .introduction ul,
+    .gallery ul,
+    .accessories ul,
+    .credits ul {
+        padding-left: 1.5rem;
+        padding-right: 0.5rem;
+        max-width: 100%;
+        box-sizing: border-box;
         text-align: left;
     }
 
+    .gallery-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 100%;
+    }
+
+    /* change the circular button container to a column layout */
+    .circular-button-container {
+        flex-direction: column;
+    }
+
+    .facts-container  {
+        gap: 1rem;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .accessories-container {
+        gap: 1rem;
+        max-width: 100%;
+    }
+
+    .accessory-item {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .accessory-image {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .footer-logo img {
+        max-height: 8rem;
+    }
 }
 
 /*
@@ -112,19 +194,16 @@
     }
 
     .site-title {
-        margin: 0.1rem;
         padding: 0.1rem;
         text-align: center;
     }
 
     .site-subtitle {
-        margin: 0.1rem;
         padding: 0.1rem;
         text-align: center;
     }
 
     .page-title {
-        margin: 0.1rem;
         padding: 0.1rem;
         width: auto;
         text-align: center;
@@ -135,8 +214,6 @@
     .accessories p,
     .license p,
     .glossary p {
-        margin: 0.5rem 1rem;
-        padding: 0 0.5rem;
         max-width: 100%;
         box-sizing: border-box;
         overflow-wrap: break-word;
@@ -146,7 +223,6 @@
     .gallery ul,
     .accessories ul,
     .credits ul {
-        margin: 0.5rem;
         padding-left: 1.5rem;
         padding-right: 0.5rem;
         max-width: 100%;
@@ -158,7 +234,6 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        margin: 1rem;
         max-width: 100%;
     }
 
@@ -168,14 +243,26 @@
     }
 
     .facts-container  {
-        display: flex;
-        flex-direction: column;
         gap: 1rem;
-        margin: 2rem;
         max-width: 100%;
         box-sizing: border-box;
-}
+    }
 
+    .accessories-container {
+        gap: 1rem;
+        max-width: 100%;
+    }
+
+    .accessory-item {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .accessory-image {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
 }
 
 /*

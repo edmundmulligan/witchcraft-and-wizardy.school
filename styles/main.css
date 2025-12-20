@@ -15,10 +15,6 @@
   **********************************************************************
   * Define semantic names for colours to be used on all pages
   * N.B. Use colour names not hex codes for better code readability
-  *
-  * TODO: User switching between light and dark themes is out of scope
-  * for phase 1 of this project but will be implemented in phase 2
-  * using Javascript.
   **********************************************************************
   */
 
@@ -52,11 +48,13 @@
     --fontsize-smallprint:    clamp(0.5rem, 1vw + 0.5rem, 1rem);
     --fontsize-h1h2:          clamp(0.875rem, 2vw + 1rem, 2.5rem);
     --fontsize-h3h4:          clamp(0.8rem, 2vw + 1rem, 2.5rem);
-    --fontsize-button:        clamp(0.75rem, calc(1vw + 1rem), 4rem);
-    --fontsize-button-circle: clamp(0.5rem, calc(0.5vw + 0.5rem), 1rem);
+    --fontsize-button:        clamp(0.75rem, 1vw + 1rem, 4rem);
+    --fontsize-button-circle: clamp(0.5rem, 0.5vw + 0.5rem, 1rem);
     --fontsize-nav-site:      clamp(0.875rem, 2vw, 1rem);
     --fontsize-nave-page:     clamp(0.5rem, 2vw, 1rem);
-    --buttonsize-circle:      clamp(4rem, calc(8vw + 5rem), 12rem);
+    --buttonsize-circle:      clamp(4rem, 8vw + 5rem, 12rem);
+    --margin-vertical:        clamp(0.333rem, 0.5vw + 0.5rem, 1rem);;
+    --margin-horizontal:      clamp(0.333rem, 1vw + 1rem, 2rem);;
 }
 
 /*
@@ -73,6 +71,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    /* prevent horizontal overflow */
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
 
     /*
     * use a readable font for body text

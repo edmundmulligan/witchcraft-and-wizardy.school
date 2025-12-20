@@ -18,7 +18,7 @@
 
 .student-form {
    display: grid;
-   grid-template-columns: 30% auto;
+   grid-template-columns: 30% 1fr;
    gap: 0.5em;
    row-gap: 0.1em;
    max-width: 80%;
@@ -103,7 +103,7 @@
  ********************************************
  */
 
-.lessons-flexbox {
+.lessons-container {
    display: flex;
    flex-wrap: wrap;
    justify-content: center;
@@ -129,7 +129,7 @@
 }
 
 .lesson-tile:hover,
-.lesson-tile:focus {
+.lesson-tile:focus-visible {
    background-color: var(--color-light-link-text-hover);
    color: var(--color-light-headings-text);
    cursor: pointer;

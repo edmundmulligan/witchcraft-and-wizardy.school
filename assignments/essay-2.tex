@@ -25,7 +25,12 @@
 
 % set title information
 \title{A critical reflection on refactoring the Web Witchcraft and Wizardry project}
-\posttitle{\par\end{center}\begin{center}\large\url{https://witches-and-wizards.edmundmulligan.name}\end{center}\vskip 0.5em}
+\posttitle{\par\end{center}
+    \begin{center}
+    \large\url{https://witches-and-wizards.edmundmulligan.name}
+    \end{center}
+    \vskip 0.5em
+}
 \author{Edmund Mulligan}
 \date{\today}
 
@@ -277,7 +282,7 @@ middle value of clamp () from a vw unit and
 a rem unit, so that zooming the browser window also changes the text size.
 
 One downside of this approach is that it takes a lot of trial and error
-to find suitable values to pass to clamp() that work well across a wide range of
+to find suitable values to pass to clamp~() that work well across a wide range of
 % chktex 36
 viewport sizes and this took up most of my testing time. Indeed, I would say that
 this is still a work in progress and further refinements could be made in the 
@@ -412,7 +417,7 @@ will also be needed when student data (tracking lesson progress) are collected.
 \section{Outstanding issues and future improvements}
 The project submitted for assessment is phase one of a larger project to refactor and
 improve the Web Witchcraft and Wizardry website. Some content was deliberately omitted 
-from this phase as it will be developed in phase 2 using JavaScript. Table \ref{tab:bugs}
+from this phase as it will be developed in phase 2 using JavaScript. Table~\ref{tab:bugs}
 lists some known issues and areas for improvement that could not be addressed within the
 time constraints of this phase.
 
@@ -424,13 +429,12 @@ time constraints of this phase.
 \toprule
 1 & Reactive code does not work well at extreme viewport sizes & Text overflows boxes or content does not fill screen properly. & Warning displayed when viewport is too small.\hfill \\
 \midrule
-2 & Font sizes are not optimal\hfill & Text is too small or too large on some devices. & Further refinement of clamp() values needed.\hfill \\
+2 & Font sizes are not optimal\hfill & Text is too small or too large on some devices. & Further refinement of clamp~() values needed.\hfill \\
 \midrule
 3 & Images need editing. The artwork provided by Rachel Mulligan is in JPEG format with a white background. & The picture gallery looks unprofessional with white boxes around images. & Images need to be edited to have transparent backgrounds (PNG or SVG format). \\
 \bottomrule
 \end{tabular}
-\caption{Known issues and workarounds}
-\label{tab:bugs}
+\caption{Known issues and workarounds}\label{tab:bugs}
 \end{table}
 
 \section{Third party credits and resources}

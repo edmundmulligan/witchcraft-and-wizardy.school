@@ -12,7 +12,6 @@
 /* Styles common to all buttons. Class name must start with "button-" */
  [class^="button-"],
  [class*=" button-"] {
-    margin: 1rem auto;
     padding: 1rem;
     font-size: var(--fontsize-button);
     font-weight: bold;

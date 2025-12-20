@@ -22,21 +22,18 @@
     width: 100%;
     box-sizing: border-box;
     padding: 0;
-    margin: 0;
 }
 
 .glossary p {
     max-width: 100%;
     box-sizing: border-box;
     overflow-wrap: break-word;
-    margin: 1rem 2rem;
 }
 
 .glossary dl {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 0;
-    margin: 5% 0;
     padding: 0 1em;
     align-items: stretch;
     font-size: clamp(0.5rem, 2vw + 1rem, 2.25rem);
@@ -45,7 +42,6 @@
 .glossary dt {
     font-weight: bold;
     grid-column: 1;
-    margin: 0;
     padding: 0 0.5em;
     border: 1px solid var(--color-light-page-text);
     background-color: var(--color-light-page-background);
@@ -57,7 +53,6 @@
 
 .glossary dd {
     grid-column: 2;
-    margin: 0;
     padding: 0 0.5em;
     border: 1px solid var(--color-light-headings-text);
     background-color: var(--color-light-page-background);
