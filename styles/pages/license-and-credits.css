@@ -22,6 +22,7 @@
     max-width: 100%;
     box-sizing: border-box;
     overflow-wrap: break-word;
+    margin: var(--margin-vertical) var(--margin-horizontal);
 }
 
 .credits {
