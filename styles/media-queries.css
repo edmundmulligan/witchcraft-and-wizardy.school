@@ -214,6 +214,7 @@
     .accessories p,
     .license p,
     .glossary p {
+        margin: 0.5rem 1rem;
         max-width: 100%;
         box-sizing: border-box;
         overflow-wrap: break-word;
@@ -223,6 +224,7 @@
     .gallery ul,
     .accessories ul,
     .credits ul {
+        margin: 0.5rem 1rem;
         padding-left: 1.5rem;
         padding-right: 0.5rem;
         max-width: 100%;
