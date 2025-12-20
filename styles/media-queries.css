@@ -155,7 +155,7 @@
  ************************************************************
  */
 
-@media ((width >= 200px) and (width < 800px)) or (orientation: portrait) {
+@media (width >= 200px) and (width < 800px) {
     /* switch header to vertical layout */
     .header {
         display: flex;

@@ -34,7 +34,7 @@
 .accessories ul {
     margin: var(--margin-vertical) var(--margin-horizontal);
     padding-left: 2rem;
-    padding-right: 1rem;
+    padding-right: 2rem;
     line-height: 1.5;
     text-align: left;
     max-width: 100%;
