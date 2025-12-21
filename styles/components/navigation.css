@@ -43,31 +43,47 @@ nav.site-navigation li {
     border-radius: var(--border-radius);
     border: 1px solid var(--color-light-headings-text);
     font-size: var(--fontsize-nav-site);
+    overflow: hidden;
 }
 
-nav.site-navigation a {
+nav.site-navigation a,
+nav.site-navigation button {
     display: block;
     color: var(--color-light-headings-text);
     text-decoration: none;
     padding: 0.5rem;
-    border-radius: var(--border-radius);
+    border-radius: 0;
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
 }
 
-/* Pseudo classes and elements for nav links */
-nav.site-navigation a::before {
+/* Pseudo classes and elements for nav links This makes the 
+   wand sparkle when it is hovered over or gets focus */
+nav.site-navigation a::before,
+nav.site-navigation button::before {
     content: "\f0d0";  /* Font Awesome Magic Wand */
     font-family: "Font Awesome 7 Pro";
     font-weight: 900; /* needed for solid style icons */
 }
 
 nav.site-navigation a:hover,
-nav.site-navigation a:focus {
+nav.site-navigation a:focus-visible,
+nav.site-navigation button:hover,
+nav.site-navigation button:focus-visible {
     background-color: var(--color-light-link-text-hover);
     color: var(--color-light-headings-text);
 }
 
 nav.site-navigation a:hover::before,
-nav.site-navigation a:focus::before {
+nav.site-navigation a:focus-visible::before,
+nav.site-navigation button:hover::before,
+nav.site-navigation button:focus-visible::before {
     content: "\e2ca";  /* Font Awesome Magic Wand with sparkles */
     font-family: "Font Awesome 7 Pro";
     font-weight: 900; /* needed for solid style icons */

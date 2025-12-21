@@ -28,7 +28,8 @@
     --color-light-link-text-hover:     lightblue;
     --color-light-link-text-visited:   darkblue;
     --color-light-link-text-focus:     darkblue;
-    --color-light-error-text:          darkred;
+    --color-light-error-background:    darkred;
+    --color-light-error-text:          white;
     --color-light-warning-background:  red;
     --color-light-warning-text:        white;
 
@@ -45,17 +46,23 @@
     /* see https://modern-fluid-typography.vercel.app for a size calculator */
 
     --fontsize-p:             clamp(0.5rem, 2vw + 1rem, 2.25rem);
-    --fontsize-smallprint:    clamp(0.5rem, 1vw + 0.5rem, 1rem);
+    --fontsize-smallprint:    clamp(0.5rem, 1.5vw + 0.75rem, 1.75rem);
     --fontsize-largeprint:    clamp(1rem, 3vw + 1rem, 3rem);
     --fontsize-h1h2:          clamp(0.875rem, 2vw + 1rem, 2.5rem);
     --fontsize-h3h4:          clamp(0.8rem, 2vw + 1rem, 2.5rem);
     --fontsize-button:        clamp(0.75rem, 1vw + 1rem, 4rem);
     --fontsize-button-circle: clamp(0.75rem, 1vw + 0.75rem, 1.5rem);
     --fontsize-nav-site:      clamp(0.875rem, 2vw, 1rem);
-    --fontsize-nave-page:     clamp(0.5rem, 2vw, 1rem);
+    --fontsize-nave-page:     clamp(0.5rem, 2vw + 1rem, 2.25rem);
     --buttonsize-circle:      clamp(4rem, 8vw + 5rem, 12rem);
     --margin-vertical:        clamp(0.333rem, 0.5vw + 0.5rem, 1rem);;
     --margin-horizontal:      clamp(0.333rem, 1vw + 1rem, 2rem);;
+
+    /* 
+        there are probably more things that could be defined here 
+        to ensure sitewide consistency such as margin and padding
+        sizes, but that means more refactoring and this is a good start
+    */
 }
 
 /*
@@ -69,6 +76,8 @@ body {
     position: relative;
 
     /* use flexbox to layout header, main and footer vertically */
+
+    /* probably not neccessary, but it does allow align-items to be used */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -81,6 +90,7 @@ body {
     padding: 0;
     overflow-x: hidden;
     box-sizing: border-box;
+    overflow-wrap: break-word;
 
     /*
     * use a readable font for body text
@@ -104,7 +114,8 @@ body::before {
     width: 100%;
     height: 100%;
 
-    /* set background image handling (actual image is selected in a media query) */
+    /* set background image handling (actual image is selected in index.css 
+       as that is the only page to use a background image) */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -124,6 +135,10 @@ header {
 main {
     flex-shrink: 1;  /* Allow main to shrink */
     flex-grow: 1;  /* Allowsmain to grow and fill available space */
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    width: 100%;
 }
 
 footer {
@@ -176,12 +191,14 @@ a:focus-visible {
     color: var(--color-light-link-text-focus);
 }
 
+/* this may be a bit subtle but it meets WCAG 2.2 guidelines */
 a:focus-visible {
     outline: 0.1rem dashed var(--color-light-link-text-focus);
     outline-offset: 0.1em;
 }
 
-/* Utility class to mirror an image horizontally */
+/* Utility class to mirror an image horizontally. Used by the wizard 
+   silhouette in the header as the original image faces the wrong way */
 .mirror {
     transform: scaleX(-1);
 }

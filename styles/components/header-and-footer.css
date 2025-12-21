@@ -10,6 +10,12 @@
  **********************************************************************
  */
 
+ /* the header and fotter took a lot of tral and error to get working 
+    reasonaby on all screen sizes. They are still not perfect and that 
+    is mainly down to getting the clamp() font sizes right in main.css
+    But this is good enough for now.
+ */
+
 .header {
     /* default layout is grid for larger screens */
     display: grid;
@@ -76,7 +82,7 @@
 }
 
 .footer {
-    /* default layout is grid for larger screens */
+    /* default layout is horizontal flexbox for larger screens */
     display: flex;
     flex-direction: row;
     justify-content: space-between;

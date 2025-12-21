@@ -6,6 +6,8 @@
  * License    : MIT License (see license-and-credits.html page)
  * Description:
  *   Injects in-page navigation content into glossary-and-faq page to follow DRY principle
+ *   Probably better to do all injections from a single javascript function
+ *   but this is simpler for now
  **********************************************************************
  */
 

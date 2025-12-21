@@ -9,10 +9,19 @@
  *   which needs significant refactoring before it is ready to be included 
  *   here.
  *
- * TODO: Add styles for student.html 
+ *   Originally, each page had its own stlesheed and media-query stylesheel,
+ *   but there was so much repetion between them that it made sense to
+ *   put them all in one file to follow the DRY principle.
+ *
+ *   TODO: Add styles for student.html 
  **********************************************************************
  */
 
+/* these class names are the same as the section id names in the HTML files 
+   and are unique across the web site. This may become uncalable if there 
+   are a lot of pages *i.e. whenactual lessons are implements, but for now 
+   it works. This is why I refactored from one file per page so a single file.
+*/
 .introduction,
 .gallery,
 .accessories,
@@ -58,6 +67,9 @@
 
 /**********************************************************
  * container classes for gallery, accessories and facts
+ * use generic term container so they can change from 
+ * grid to flexbox in media queries and the class name is 
+ * still appropriate 
  **********************************************************/
 
  .gallery-container {
@@ -87,7 +99,9 @@
 }
 
 /**********************************************
- * contained classes for contained items
+ * contained classes for contained items.
+ * Would be nice to call everting a *-item but
+ * this is clear enough for now
  **********************************************/
 .gallery-item {
     text-align: center;
@@ -122,11 +136,13 @@
     border-radius: var(--border-radius);
     text-align: center;
     width: 21rem;
+    max-width: 100%;
 }
 
 .accessory-image {
     display: block;
     width: 20rem;
+    max-width: 100%;
     height: auto;
     margin: 0;
 }
@@ -156,6 +172,11 @@
     text-align: center;
 }
 
+/* this is only used in the interesting facts section 
+   if it needs to be used anywhere else it will probably 
+   need to be renamed to identify which grid it applies to
+ */
+ 
 .wide {
     grid-column: 1 / 3;
     text-align: left;

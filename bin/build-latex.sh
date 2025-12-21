@@ -11,6 +11,7 @@ pdflatex $1.tex
 # Run BibTeX to handle references
 bibtex $1
 
-# Run pdflatex twice more to ensure all references are updated
+# Run pdflatex thrice more to ensure all references are updated
+pdflatex $1.tex
 pdflatex $1.tex
 pdflatex $1.tex
