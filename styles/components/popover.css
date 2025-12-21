@@ -1,0 +1,50 @@
+/*
+ **********************************************************************
+ * File       : components/popover.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This stylesheet defines styles for popovers used across the 
+ *   Web Witchcraft and Wizardry website.
+ **********************************************************************
+ */
+
+
+/* Popover styling It's a bit in-your-face but it's only used for a warning 
+   when something isn't implemented yet at the moment, so that's OK. */
+
+.popover {
+    background-color: var(--color-light-error-background);
+    color: var(--color-light-error-text);
+    border: var(--border-weight) var(--border-style) var(--color-light-headings-text);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    max-width: 30rem;
+}
+
+.popover h2 {
+    margin-top: 0;
+    font-family: Cinzel, serif;
+    font-size: var(--fontsize-h3h4);
+    font-weight: bold;
+}
+
+.popover p {
+    font-size: var(--fontsize-smallprint);
+    font-weight: bold;
+}
+
+.popover button {
+    background-color: var(--color-light-error-text);
+    color: var(--color-light-error-background);
+    border: var(--border-weight) var(--border-style) var(--color-light-headings-text);
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+    font-family: Cinzel, serif;
+    font-size: var(--fontsize-button);
+    font-weight: bold;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

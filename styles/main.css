@@ -57,6 +57,12 @@
     --buttonsize-circle:      clamp(4rem, 8vw + 5rem, 12rem);
     --margin-vertical:        clamp(0.333rem, 0.5vw + 0.5rem, 1rem);;
     --margin-horizontal:      clamp(0.333rem, 1vw + 1rem, 2rem);;
+
+    /* 
+        there are probably more things that could be defined here 
+        to ensure sitewide consistency such as margin and padding
+        sizes, but that means more refactoring and this is a good start
+    */
 }
 
 /*
@@ -70,6 +76,8 @@ body {
     position: relative;
 
     /* use flexbox to layout header, main and footer vertically */
+
+    /* probably not neccessary, but it does allow align-items to be used */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -106,7 +114,8 @@ body::before {
     width: 100%;
     height: 100%;
 
-    /* set background image handling (actual image is selected in a media query) */
+    /* set background image handling (actual image is selected in index.css 
+       as that is the only page to use a background image) */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -182,49 +191,14 @@ a:focus-visible {
     color: var(--color-light-link-text-focus);
 }
 
+/* this may be a bit subtle but it meets WCAG 2.2 guidelines */
 a:focus-visible {
     outline: 0.1rem dashed var(--color-light-link-text-focus);
     outline-offset: 0.1em;
 }
 
-/* Utility class to mirror an image horizontally */
+/* Utility class to mirror an image horizontally. Used by the wizard 
+   silhouette in the header as the original image faces the wrong way */
 .mirror {
     transform: scaleX(-1);
-}
-
-/* Popover styling */
-.popover {
-    background-color: var(--color-light-error-background);
-    color: var(--color-light-error-text);
-    border: var(--border-weight) var(--border-style) var(--color-light-headings-text);
-    border-radius: var(--border-radius);
-    padding: 2rem;
-    max-width: 30rem;
-}
-
-.popover h2 {
-    margin-top: 0;
-    font-family: Cinzel, serif;
-    font-size: var(--fontsize-h3h4);
-    font-weight: bold;
-}
-
-.popover p {
-    font-size: var(--fontsize-smallprint);
-    font-weight: bold;
-}
-
-.popover button {
-    margin-top: 1rem;
-    font-family: Cinzel, serif;
-    font-size: var(--fontsize-button);
-    font-weight: bold;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: var(--color-light-error-text);
-    color: var(--color-light-error-background);
-    border: var(--border-weight) var(--border-style) var(--color-light-headings-text);
-    border-radius: var(--border-radius);
-
 }

@@ -114,6 +114,8 @@
                 <h4 class="student-form-item">Choose your avatar</h4>
 
                 <div class="student-form-item avatar-container">
+                    <!-- The output does not render well at all scales, but that will be addressed 
+                         when the form is implemented and an image is added -->
                 <output
                     for="avatar-choice gender-choice age-choice theme-choice"
                     id="avatar-preview"
@@ -200,7 +202,9 @@
                          </span>
                     </button>
                 </div>
-
+                <!-- Ideally I'd like to store the lessons in a database and generate 
+                    the tiles dynamically. That is out of scope for now so they are 
+                    hardcoded here. But it does make the file longer than I would like.-->
                 <div class="lesson-tile" id="lesson-01">
                     <button type="button" class="lesson-link"
                         popovertarget="not-implemented">
