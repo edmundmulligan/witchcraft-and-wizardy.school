@@ -175,7 +175,8 @@
 /* this is only used in the interesting facts section 
    if it needs to be used anywhere else it will probably 
    need to be renamed to identify which grid it applies to
-
+ */
+ 
 .wide {
     grid-column: 1 / 3;
     text-align: left;
