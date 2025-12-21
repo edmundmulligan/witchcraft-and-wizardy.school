@@ -309,7 +309,9 @@
     }
 
     .lesson-tile {
+        flex: 0 0 80%;
         max-width: 80%;
+        width: 80%;
     }
 }
 

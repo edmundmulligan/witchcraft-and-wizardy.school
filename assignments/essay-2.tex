@@ -304,6 +304,12 @@ I was mostly successful but could not get it to work with the form submit button
 (in student.html) so the Save Information button currently does nothing when 
 clicked. That will be resolved with JavaScript in phase 2 of the project.
 
+On a related note, all file pathes were specified as absolute rather than relative. 
+This is not best practice, but it
+avoided issues as I moved files around during development and refactoring. 
+The website will break if it is not deployed into the root directory of a 
+web server, but that is an acceptable limitation for now.
+
 \subsection{Other accessibility features}\label{subsec:other-accessibility}
 The accessibility testing tools sometimes flagged issues with ARIA \citep{w3c_aria} 
 compliance. I did not have time to fully investigate these issues, but I
