@@ -28,8 +28,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- End of meta tags -->
 
-    <!-- Set the document title N.B. All pages have the same title.-->
-    <title>Web Witchcraft and Wizardry</title>
+    <!-- Set the document title -->
+    <title>Student Dashboard|Web Witchcraft and Wizardry</title>
 
     <!-- Link to Favicon -->
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
@@ -64,9 +64,9 @@
     <!-- End of CSS stylesheets section -->
 
     <!-- Load JavaScript files -->
-    <script src="/scripts/alert.js" defer></script>
     <script src="/scripts/inject-header.js" defer></script>
     <script src="/scripts/inject-footer.js" defer></script>
+    <script src="/scripts/inject-popover-text.js" defer></script>
     <script src="/scripts/inject-in-page-navigation-students.js" defer></script>
     <!-- End JavaScript file link -->
 
@@ -91,7 +91,6 @@
             <h3>Student Information</h3>
             <form
                 id="student-info-form"
-                action="#"
                 method="post"
             >
                 <div class="student-form-item">
@@ -170,12 +169,14 @@
                 <hr class="student-form-item">
 
                 <div class="student-form-item">
+                    <!-- popovertarget does not work on submit buttons :( -->
                     <button
                         type="submit"
                         aria-expanded="false"
-                        aria-controls="submit"
+                        aria-controls="not-implemented"
+
+                        popovertarget="not-implemented"
                         class="button-rectangle"
-                        onclick="showAlert('The Save Information button has not been implemented in this phase of the project as it relies on JavaScript, as described in the essay Incorporating usability and user experience into the Web Witchcraft and Wizardry project (Mulligan, 2025).')"
                     >
                         Save Information
                     </button>
@@ -191,302 +192,256 @@
              <h3>Lessons</h3>
             <div class="lessons-container">
                 <div class="lesson-tile" id="lesson-00">
-                    <a href="#lesson-00" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 0: Setting up</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 0: Setting up</span>
+                        <span class="lesson-description">
                             Set up your computer with the tools required to do the lessons.
-                         </p>
-                    </a>
+                         </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-01">
-                    <a href="#lesson-01" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 1: Your first web page</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 1: Your first web page</span>
+                        <span class="lesson-description">
                             Build a simple web page using  HTML.
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-02">
-                    <a href="#lesson-02" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 2: Landmarks</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 2: Landmarks</span>
+                        <span class="lesson-description">
                             Add landmarks and other structural elements to your
                             web page.
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-03">
-                    <a href="#lesson-03" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 3: Lists</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 3: Lists</span>
+                        <span class="lesson-description">
                             Add lists to your web page, both ordered and unordered.
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-04">
-                    <a href="#lesson-04" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 4: Images</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 4: Images</span>
+                        <span class="lesson-description">
                             Add some images to your web page.
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-05">
-                    <a href="#lesson-05" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 5: Tables and hyperlinks</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 5: Tables and hyperlinks</span>
+                        <span class="lesson-description">
                             Add tables and hyperlinks to your web page.
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-06">
-                    <a href="#lesson-06" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 6: Introducing CSS</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 6: Introducing CSS</span>
+                        <span class="lesson-description">
                             Learn about Cascading Style Sheets (CSS) and how
                             they can change the look of your web pages.
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-07">
-                    <a href="#lesson-07" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 7: External CSS</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 7: External CSS</span>
+                        <span class="lesson-description">
                             Learn how to use an external CSS stylesheet to
                             change the look of your web pages and separate
                             content from presentation.
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-08">
-                    <a href="#lesson-08" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 8: CSS and lists</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 8: CSS and lists</span>
+                        <span class="lesson-description">
                             Make your lists more visually appealing using CSS.
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-09">
-                    <a href="#lesson-09" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 9: Links and CSS</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 9: Links and CSS</span>
+                        <span class="lesson-description">
                             Make your hyperlinks more visually appealing using
                             CSS.
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-10">
-                    <a href="#lesson-10" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 10: Responsive Design</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 10: Responsive Design</span>
+                        <span class="lesson-description">
                             Learn about media queries and how they can be used
                             to create responsive web pages that work on both
                             desktop and mobile devices.
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-11">
-                    <a href="#lesson-11" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 11: Javascript</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 11: Javascript</span>
+                        <span class="lesson-description">
                             Use JavaScript to add interactivity
                             to your web pages.
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-12">
-                    <a href="#lesson-12" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 12: External Javascript files</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 12: External Javascript files</span>
+                        <span class="lesson-description">
                             Just as CSS can be put in external files, so can
                             JavaScript. In this lesson you will learn how to
                             use external JavaScript files.
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-13">
-                    <a href="#lesson-13" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 13: Errors and Exceptions</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 13: Errors and Exceptions</span>
+                        <span class="lesson-description">
                             In this lesson you will learn about errors and
                             exceptions in JavaScript and how to handle them.
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-14">
-                    <a href="#lesson-14" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 14: Testing and Debugging</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 14: Testing and Debugging</span>
+                        <span class="lesson-description">
                             Learn how to test and debug your JavaScript code
                             using the browser's developer tools.
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-15">
-                    <a href="#lesson-15" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 15: Forms</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 15: Forms</span>
+                        <span class="lesson-description">
                             Learn how to create forms to collect information
                             from users.
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-16">
-                    <a href="#lesson-16" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 16: Cookies</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 16: Cookies</span>
+                        <span class="lesson-description">
                             In this lesson you will learn about cookies and
                             how they can be used to store information on the
                             user's computer.
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-17">
-                    <a href="#lesson-17" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 17: Clients and Servers</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 17: Clients and Servers</span>
+                        <span class="lesson-description">
                             In this lesson you will learn about the client-
                             server model of the web.
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-18">
-                    <a href="#lesson-18" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 18: A server page</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 18: A server page</span>
+                        <span class="lesson-description">
                             In this lesson you will learn how to create a
                             simple server page using a server-side language.
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-19">
-                    <a href="#lesson-19" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 19: Processing Forms on the server</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 19: Processing Forms on the server</span>
+                        <span class="lesson-description">
                             Learn how to process the data you collect from forms
                             on the server.
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-20">
-                    <a href="#lesson-20" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 20: Databases</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 20: Databases</span>
+                        <span class="lesson-description">
                             In this lesson you will learn about databases
                             and how to use them to store data for your
                             web applications.
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-21">
-                    <a href="#lesson-21" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 21: Security</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 21: Security</span>
+                        <span class="lesson-description">
                             In this lesson you will learn about basic web
                             security concepts,
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <div class="lesson-tile" id="lesson-22">
-                    <a href="#lesson-22" class="lesson-link"
-                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
-                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                          'Wizardry project (Mulligan, 2025).')">
-                        <h4>Lesson 22: Passwords</h4>
-                        <p>
+                    <button type="button" class="lesson-link"
+                        popovertarget="not-implemented">
+                        <span class="lesson-title">Lesson 22: Passwords</span>
+                        <span class="lesson-description">
                             Passwords require special handling to keep them
                             secure. In this lesson you will learn how to
                             handle passwords safely.
-                        </p>
-                    </a>
+                        </span>
+                    </button>
                 </div>
 
                 <!-- Additional lesson tiles can be added here -->
@@ -501,5 +456,8 @@
     <footer class="footer">
         <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
     </footer>
+    <div id="not-implemented" popover="auto" class="popover">
+        <!-- Popover content is injected by JavaScript to ensure it is the same across all pages -->
+    </div>
 </body>
 </html>

@@ -60,9 +60,9 @@
     <!-- End of CSS stylesheets section -->
 
     <!-- Load JavaScript files -->
-    <script src="/scripts/alert.js" defer></script>
     <script src="/scripts/inject-header.js" defer></script>
     <script src="/scripts/inject-footer.js" defer></script>
+    <script src="/scripts/inject-popover-text.js" defer></script>
     <!-- End JavaScript file link -->
 
     <!-- Handle no JavaScript scenario -->
@@ -81,12 +81,12 @@
         <div class="circular-button-container">
             <a href="/pages/about.html" class="button-circle" id="start-button">Start</a>
             <a href="/pages/students.html" class="button-circle" id="students-button">I am a Student</a>
-            <a href="#mentors-button"
+            <button
+                type="button"
                 class="button-circle"
                 id="mentors-button"
-                onclick="showAlert('This page has not been implemented in this phase of the project, as described ' +
-                                   'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
-                                   'Wizardry project (Mulligan, 2025).')">I am a Mentor</a>
+                popovertarget="not-implemented"
+            >I am a Mentor</button>
 
         </div>
     </main>
@@ -94,5 +94,8 @@
     <footer class="footer">
         <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
     </footer>
+    <div id="not-implemented" popover="auto" class="popover">
+        <!-- Popover content is injected by JavaScript to ensure it is the same across all pages -->
+    </div>
 </body>
 </html>

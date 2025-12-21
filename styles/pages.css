@@ -122,11 +122,13 @@
     border-radius: var(--border-radius);
     text-align: center;
     width: 21rem;
+    max-width: 100%;
 }
 
 .accessory-image {
     display: block;
     width: 20rem;
+    max-width: 100%;
     height: auto;
     margin: 0;
 }

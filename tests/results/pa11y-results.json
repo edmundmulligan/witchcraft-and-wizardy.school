@@ -8,7 +8,7 @@
     },
     {
       "url": "pages/students.html",
-      "documentTitle": "Web Witchcraft and Wizardry",
+      "documentTitle": "Student Dashboard|Web Witchcraft and Wizardry",
       "pageUrl": "http://localhost:8080/pages/students",
       "issues": []
     },
@@ -20,7 +20,7 @@
     },
     {
       "url": "pages/license-and-credits.html",
-      "documentTitle": "Web Witchcraft and Wizardry",
+      "documentTitle": "License and Credits|Web Witchcraft and Wizardry",
       "pageUrl": "http://localhost:8080/pages/license-and-credits",
       "issues": []
     },

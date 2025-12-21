@@ -56,9 +56,9 @@
     <!-- End of CSS stylesheets section -->
 
     <!-- Load JavaScript files -->
-    <script src="/scripts/alert.js" defer></script>
     <script src="/scripts/inject-header.js" defer></script>
     <script src="/scripts/inject-footer.js" defer></script>
+    <script src="/scripts/inject-popover-text.js" defer></script>
     <script src="/scripts/inject-in-page-navigation-glossary-and-faq.js" defer></script>
     <!-- End JavaScript file links -->
 
@@ -111,7 +111,7 @@
                 class="button-rectangle"
                 aria-expanded="false"
                 aria-controls="faq1-answer"
-                onclick="showAlert('The FAQ section has not been implemented in this phase of the project as it relies on JavaScript, as described in the essay Incorporating usability and user experience into the Web Witchcraft and Wizardry project (Mulligan, 2025).')"
+                popovertarget="not-implemented"
             >
                 Browse FAQs
             </button>
@@ -126,5 +126,9 @@
     <footer class="footer">
         <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
     </footer>
+    <div id="not-implemented" popover="auto" class="popover">
+        <!-- Popover content is injected by JavaScript to ensure it is the same across all pages -->
+    </div>
+
 </body>
 </html>

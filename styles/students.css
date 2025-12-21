@@ -154,10 +154,34 @@
    text-align: center;
 }
 
-.lesson-tile a {
+.lesson-tile a,
+.lesson-tile button {
    text-decoration: none;
    color: var(--color-light-headings-text);
    font-weight: normal;
+   background: none;
+   border: none;
+   padding: 0;
+   font-family: inherit;
+   font-size: inherit;
+   cursor: pointer;
+   width: 100%;
+   text-align: center;
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
+}
+
+.lesson-title {
+   display: block;
+   font-family: Cinzel, serif;
+   font-weight: 600;
+   font-size: var(--fontsize-h3h4);
+}
+
+.lesson-description {
+   display: block;
+   font-size: var(--fontsize-p);
 }
 
 .lesson-tile:hover,
