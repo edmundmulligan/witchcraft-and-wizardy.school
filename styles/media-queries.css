@@ -150,6 +150,10 @@
     .footer-logo img {
         max-height: 8rem;
     }
+
+    .lessons-container {
+        flex-direction: column;
+    }
 }
 
 /*
@@ -159,9 +163,11 @@
  * hover and pointer queries are to catch touch devices,
  * which are generally mobile devices. Need this as some phones
  * have  high enough resolution to be over 800px wide.
- * This is not perfect since tablets will also be caught in 
+ * This is not perfect(!) since tablets will also be caught in 
  * this media query, but with not much time left, this is the
- * best compromise.
+ * best hacky compromise, I could come up with.
+ *
+ * TODO: Fix this later
  ************************************************************
  */
 
@@ -278,6 +284,32 @@
         width: 100%;
         max-width: 100%;
         height: auto;
+    }
+
+    /* Reorder avatar container: output box above radio buttons */
+    .avatar-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .student-info form output {
+        order: 1;
+        grid-column: unset;
+    }
+
+    .student-info form .student-form-avatar {
+        order: 2;
+        grid-column: unset;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .lessons-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .lesson-tile {
+        max-width: 80%;
     }
 }
 

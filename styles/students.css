@@ -16,19 +16,42 @@
  ********************************************
  */
 
-.student-form {
-   display: grid;
-   grid-template-columns: 30% 1fr;
+.student-info,
+.lessons {
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.student-info p,
+.lessons p {
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    margin: var(--margin-vertical) var(--margin-horizontal);
+}
+
+.student-info form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
    gap: 0.5em;
    row-gap: 0.1em;
    max-width: 80%;
    margin: 0 auto;
-   align-items: center;
    border: 0.2em solid var(--color-light-headings-text);
    border-radius: 1em;
 }
 
-.student-form output {
+.avatar-container {
+   display: grid;
+   grid-template-columns: 33% 1fr;
+   justify-content: center;
+   align-items: center;
+}
+
+.student-info form output {
    grid-column: 1;
    background-color: var(--color-light-headings-background);
    border: 0.1em solid var(--color-light-headings-text);
@@ -39,9 +62,13 @@
    align-items: center;
    justify-content: center;
    min-height: 15em;
+   font-size: var(--fontsize-p);
+   overflow-wrap: break-word;
+   hyphens: auto;
+   box-sizing: border-box;
 }
 
-.student-form-avatar {
+.student-info form .student-form-avatar {
    grid-column: 2;
    display: grid;
    grid-template-columns: 1fr 1fr;
@@ -50,34 +77,38 @@
    border-top: 0.1em solid var(--color-light-headings-text);
 }
 
-.student-form label {
+.student-info form label {
    text-align: left;
+   font-size: var(--fontsize-p);
 }
 
-.student-form input[type="text"] {
+.student-info form input[type="radio"] {
+   width: 1em;
+   height: 1em;
+   font-size: var(--fontsize-p);
+}
+
+.student-info form input[type="text"] {
    max-width: 60%;
+   font-size: var(--fontsize-p);
 }
 
-.student-form hr {
+.student-info form hr {
    border: none;
    border-top: 0.1em solid var(--color-light-headings-text);
    margin: 0.5em 0 0;
 }
 
-.student-form h4 {
+.student-info form h4 {
    border-top: 0.1em solid var(--color-light-headings-text);
    padding-top: 0.5em;
    margin-top: 0.5em;
 }
 
-.student-form h4:first-of-type {
+.student-info form h4:first-of-type {
    border-top: none;
    padding-top: 0;
    margin-top: 0;
-}
-
-.student-form-indent {
-   padding-left: 2em;
 }
 
 .student-form-item {
@@ -85,8 +116,7 @@
    text-align: left;
 }
 
-.student-form-item-wide {
-   grid-column: 1 / span 2;
+.student-form-item:first-of-type {
    text-align: center;
 }
 
@@ -105,14 +135,14 @@
 
 .lessons-container {
    display: flex;
-   flex-wrap: wrap;
+   flex-flow: row wrap;
    justify-content: center;
 }
 
 .lesson-tile {
    background-color: var(--color-light-headings-background);
-   border: 0.1em solid var(--color-light-headings-text);
-   border-radius: 0.5em;
+   border: var(--border-weight) var(--border-style) var(--color-light-headings-text);
+   border-radius: var(--border-radius);
    padding: 1em;
    margin: 1em;
    flex: 0 0 25%;
@@ -121,11 +151,13 @@
    justify-self: center;
    align-items: center;
    justify-content: center;
+   text-align: center;
 }
 
 .lesson-tile a {
    text-decoration: none;
    color: var(--color-light-headings-text);
+   font-weight: normal;
 }
 
 .lesson-tile:hover,

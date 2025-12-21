@@ -1,19 +1,25 @@
 /*
  **********************************************************************
- * File       : about.css
+ * File       : pages.css
  * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
  * Copyright  : (c) 2025 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
  * Description:
- *   This is the page specific stylesheet for the Web Witchcraft and
- *   Wizardry about page. It defines styles that apply only to the
- *   about page.
+ *   This has the page specific styles for all pages except student.html,
+ *   which needs significant refactoring before it is ready to be included 
+ *   here.
+ *
+ * TODO: Add styles for student.html 
  **********************************************************************
  */
 
 .introduction,
 .gallery,
-.accessories {
+.accessories,
+.facts,
+.glossary,
+.license,
+.credits {
     max-width: 100%;
     box-sizing: border-box;
     padding: 0;
@@ -22,7 +28,11 @@
 
 .introduction p,
 .gallery p,
-.accessories p {
+.accessories p,
+.facts p,
+.glossary p,
+.license p,
+.credits p {
     max-width: 100%;
     box-sizing: border-box;
     overflow-wrap: break-word;
@@ -31,7 +41,11 @@
 
 .introduction ul,
 .gallery ul,
-.accessories ul {
+.accessories ul,
+.facts ul,
+.glossary ul,
+.license ul,
+.credits ul {
     margin: var(--margin-vertical) var(--margin-horizontal);
     padding-left: 2rem;
     padding-right: 2rem;
@@ -147,4 +161,39 @@
     text-align: left;
 }
 
+.glossary dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0;
+    padding: 0 1rem;
+    align-items: stretch;
+    font-size: clamp(0.5rem, 2vw + 1rem, 2.25rem);
+}
 
+.glossary dt {
+    font-weight: bold;
+    grid-column: 1;
+    padding: 0 0.5em;
+    margin: 0;
+    border: 1px solid var(--color-light-page-text);
+    background-color: var(--color-light-page-background);
+    text-align: left;
+    align-items: center;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.glossary dd {
+    grid-column: 2;
+    padding: 0 0.5em;
+    margin: 0;
+    border-top: 1px solid var(--color-light-headings-text);
+    border-right: 1px solid var(--color-light-headings-text);
+    border-bottom: 1px solid var(--color-light-headings-text);
+    border-left: none;
+    background-color: var(--color-light-page-background);
+    text-align: left;
+    align-items: center;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}

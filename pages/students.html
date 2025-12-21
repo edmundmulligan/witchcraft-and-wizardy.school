@@ -57,7 +57,7 @@
     <link rel="stylesheet" href="/styles/components/titles.css">
 
     <!-- page specific stylesheet -->
-    <link rel="stylesheet" href="/styles/pages/students.css">
+    <link rel="stylesheet" href="/styles/students.css">
 
     <!-- media-queries must be the last stylesheets loaded -->
     <link rel="stylesheet" href="/styles/media-queries.css">
@@ -93,9 +93,8 @@
                 id="student-info-form"
                 action="#"
                 method="post"
-                class="student-form"
             >
-                <div class="student-form-item-wide">
+                <div class="student-form-item">
                     <h4>Enter your name</h4>
                     <label for="student-name">
                         Your Name:
@@ -113,8 +112,9 @@
                     <hr>
                 </div>
 
-                <h4 class="student-form-item-wide">Choose your avatar</h4>
+                <h4 class="student-form-item">Choose your avatar</h4>
 
+                <div class="student-form-item avatar-container">
                 <output
                     for="avatar-choice gender-choice age-choice theme-choice"
                     id="avatar-preview"
@@ -165,10 +165,11 @@
                         <label for="theme-choice-dark">I prefer night time</label>
                     </div>
                 </div>
+                </div>
 
-                <hr class="student-form-item-wide">
+                <hr class="student-form-item">
 
-                <div class="student-form-item-wide">
+                <div class="student-form-item">
                     <button
                         type="submit"
                         aria-expanded="false"

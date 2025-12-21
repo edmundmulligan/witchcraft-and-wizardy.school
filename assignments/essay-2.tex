@@ -1,3 +1,4 @@
+% chktex-file 10
 \documentclass[a4paper, 12pt]{article}
 
 % include required packages
@@ -16,6 +17,7 @@
 \usepackage{url}                           % For formatting URLs
 \usepackage{verbatim}                      % For including verbatim files
 \usepackage{xcolor}                        % For colors
+\usepackage{array}                         % For advanced table column formatting
 \usetikzlibrary{positioning, shapes.geometric}               % For relative positioning and diamond node shape
 
 % set paragraph and list formatting
@@ -92,7 +94,7 @@ and~\ref{fig:new-landing-page-mobile}.
 
 \begin{figure}[htp]
     \centering
-    \includegraphics[width=0.3\textwidth]{screenshots/New-Landing-Page-Mobile.jpg}
+    \includegraphics[width=0.3\textwidth]{screenshots/New-Landing-Page-Mobile.png}
     \caption{New landing page on a mobile device}\label{fig:new-landing-page-mobile}
 \end{figure}
 
@@ -166,7 +168,8 @@ the hard way, is Keep the CSS as simple as possible and make use of the power of
 sure this is something experienced web developers know and if I were to redo this project I 
 would put much more effort into writing simple CSS first time rather than trying to refactor 
 complex CSS later. The current codebase is still not optimal in this regard and with more time 
-could be improved.
+could be improved. The student.html page is a particular example where the CSS is more complex
+than necessary and needs more refactoring but I ran out of time to complete this.
 
 \begin{figure}[htp]
     \centering
@@ -192,21 +195,18 @@ root/
 │   ├── inject-footer.js
 │   └── inject-in-page-navigation-*.js
 └── styles/
+    ├── index.css
     ├── main.css
     ├── media-queries.css
     ├── media-query-index.css
+    ├── pages.css
     ├── noscript.css
-    ├── components/
-    │   ├── buttons.css
-    │   ├── header-and-footer.css
-    │   ├── navigation.css
-    │   └── titles.css
-    └── pages/
-        ├── about.css
-        ├── glossary-and-faq.css
-        ├── index.css
-        ├── license-and-credits.css
-        └── students.css
+    ├── students.css
+    └── components/
+        ├── buttons.css
+        ├── header-and-footer.css
+        ├── navigation.css
+        └── titles.css
     \end{verbatim}
     \caption{Directory structure of the project}\label{fig:directory-structure}
 \end{figure}
@@ -423,16 +423,27 @@ time constraints of this phase.
 
 \begin{table}[H]
 \centering
-\begin{tabular}{l p{4cm} p{4cm} p{4cm}}
+\begin{tabular}{l p{4.5cm} p{4.5cm} p{4cm}}
 \toprule
 \textbf{Issue Id} & \textbf{Description} & \textbf{Symptoms} & \textbf{Work around} \\
 \toprule
-1 & Reactive code does not work well at extreme viewport sizes & Text overflows boxes or content does not fill screen properly. & Warning displayed when viewport is too small.\hfill \\
+1 & Reactive code does not work well at extreme viewport sizes & 
+    Text overflows boxes or content does not fill screen properly. & 
+    Warning displayed when viewport is too small. \\
 \midrule
-2 & Font sizes are not optimal\hfill & Text is too small or too large on some devices. & Further refinement of clamp~() values needed.\hfill \\
+2 & Font sizes are not optimal & 
+    Text is too small or too large on some devices. & 
+    Further refinement of clamp() values is needed. \\
 \midrule
-3 & Images need editing. The artwork provided by Rachel Mulligan is in JPEG format with a white background. & The picture gallery looks unprofessional with white boxes around images. & Images need to be edited to have transparent backgrounds (PNG or SVG format). \\
-\bottomrule
+3 & The artwork provided by Rachel Mulligan is in JPEG format with a white background. & 
+    The picture gallery looks unprofessional with white boxes around images. & 
+    Images need to be edited to have transparent backgrounds (PNG or SVG format). \\
+\midrule
+4 & student.css is a mess. &
+    Doesn't conform to standards in other css files. &
+    More refactoring needed. \\
+\\bottomrule
+
 \end{tabular}
 \caption{Known issues and workarounds}\label{tab:bugs}
 \end{table}

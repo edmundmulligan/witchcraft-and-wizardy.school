@@ -46,10 +46,11 @@
 
     --fontsize-p:             clamp(0.5rem, 2vw + 1rem, 2.25rem);
     --fontsize-smallprint:    clamp(0.5rem, 1vw + 0.5rem, 1rem);
+    --fontsize-largeprint:    clamp(1rem, 3vw + 1rem, 3rem);
     --fontsize-h1h2:          clamp(0.875rem, 2vw + 1rem, 2.5rem);
     --fontsize-h3h4:          clamp(0.8rem, 2vw + 1rem, 2.5rem);
     --fontsize-button:        clamp(0.75rem, 1vw + 1rem, 4rem);
-    --fontsize-button-circle: clamp(0.5rem, 0.5vw + 0.5rem, 1rem);
+    --fontsize-button-circle: clamp(0.75rem, 1vw + 0.75rem, 1.5rem);
     --fontsize-nav-site:      clamp(0.875rem, 2vw, 1rem);
     --fontsize-nave-page:     clamp(0.5rem, 2vw, 1rem);
     --buttonsize-circle:      clamp(4rem, 8vw + 5rem, 12rem);
@@ -71,6 +72,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
 
     /* prevent horizontal overflow */
     width: 100%;

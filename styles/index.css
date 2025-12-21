@@ -8,6 +8,9 @@
  *   This is the page specific stylesheet for the Web Witchcraft and
  *   Wizardry index page. It defines styles that apply only to the
  *   landing page.
+ *   Styles here are not in pages.css as the landing page is 
+ *   sufficiently different from other pages to warrant its own
+ *   stylesheet.
  **********************************************************************
  */
 
@@ -17,9 +20,10 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 2rem 1rem;
+    flex-grow: 1;
 }
 
-/* N.B. flex-direction in .circular-button-container layout is set in the media query */
 .circular-button-container {
     display: flex;
     flex-direction: row;
@@ -32,4 +36,3 @@ main {
 body::before {
     background-image: url('/images/michael-hamments-x6VyE3ie1sM-unsplash-landscape.jpg');
 }
-
