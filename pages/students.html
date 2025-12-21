@@ -1,0 +1,505 @@
+<!--
+ **********************************************************************
+ * File       : students.html
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This is the students dashboard of the Web Witchcraft and Wizardry
+ *   website. It has a form to collect some information about the student
+ *   and a tile for each lesson. The data collected in the form is not
+ *   saved anywhere as this requires a sever back end to process the request,
+ *   which is out of scope for this phase of the project. The choice of
+ *   day and night will eventully select a theme for the web site, but
+ *   again that is out of scope as it requires JavaScript to modify the
+ *   DOM.
+ **********************************************************************
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Start of meta tags -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Web Witchcraft and Wizardry">
+    <meta name="keywords" content="HTML, CSS, learning">
+    <meta name="author" content="Edmund Mulligan">
+    <meta name="license" content="MIT License">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- End of meta tags -->
+
+    <!-- Set the document title N.B. All pages have the same title.-->
+    <title>Web Witchcraft and Wizardry</title>
+
+    <!-- Link to Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
+    <!--Links for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- End Google Fonts links -->
+
+    <!-- Link to Font Awesome Icons (using CSS rather than JS)-->
+    <link rel="stylesheet" href="https://kit.fontawesome.com/3895b3f1a4.css" crossorigin="anonymous">
+    <!-- End Font Awesome Icons -->
+
+    <!-- Start of CSS stylesheets section -->
+
+    <!-- main.css must be the first stylesheet loaded -->
+    <link rel="stylesheet" href="/styles/main.css">
+
+    <!-- These stylesheets are common to all pages -->
+    <link rel="stylesheet" href="/styles/components/buttons.css">
+    <link rel="stylesheet" href="/styles/components/header-and-footer.css">
+    <link rel="stylesheet" href="/styles/components/navigation.css">
+    <link rel="stylesheet" href="/styles/components/titles.css">
+
+    <!-- page specific stylesheet -->
+    <link rel="stylesheet" href="/styles/students.css">
+
+    <!-- media-queries must be the last stylesheets loaded -->
+    <link rel="stylesheet" href="/styles/media-queries.css">
+    <!-- End of CSS stylesheets section -->
+
+    <!-- Load JavaScript files -->
+    <script src="/scripts/alert.js" defer></script>
+    <script src="/scripts/inject-header.js" defer></script>
+    <script src="/scripts/inject-footer.js" defer></script>
+    <script src="/scripts/inject-in-page-navigation-students.js" defer></script>
+    <!-- End JavaScript file link -->
+
+    <noscript>
+        <link rel="stylesheet" href="/styles/noscript.css">
+    </noscript>
+</head>
+
+<body>
+    <header class="header">
+        <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
+    </header>
+
+    <main>
+        <h2 class="page-title">Welcome to Your Dashboard</h2>
+
+        <nav class="in-page-navigation" aria-label="Page sections before student information">
+            <!-- Navigation content is injected by JavaScript to ensure it is the same across the page -->
+        </nav>
+
+        <section id="student-info" class="student-info">
+            <h3>Student Information</h3>
+            <form
+                id="student-info-form"
+                action="#"
+                method="post"
+            >
+                <div class="student-form-item">
+                    <h4>Enter your name</h4>
+                    <label for="student-name">
+                        Your Name:
+                    </label>
+                    <input
+                        type="text"
+                        id="student-name"
+                        name="student-name"
+                        required
+                    >
+                    <p>
+                        To protect your privacy, please only give your first
+                        name or a nickname
+                    </p>
+                    <hr>
+                </div>
+
+                <h4 class="student-form-item">Choose your avatar</h4>
+
+                <div class="student-form-item avatar-container">
+                <output
+                    for="avatar-choice gender-choice age-choice theme-choice"
+                    id="avatar-preview"
+                >
+                    Your avatar will appear here. This will be
+                    implemented in phase 2 when JavaScript is
+                    included.
+                </output>
+
+                <div class="student-form-avatar">
+                    <div class="student-form-choice">
+                        <input type="radio" id="avatar-choice-witch" name="avatar-choice" value="witch">
+                        <label for="avatar-choice-witch">I am a witch</label>
+                    </div>
+
+                    <div class="student-form-choice">
+                        <input type="radio" id="avatar-choice-wizard" name="avatar-choice" value="wizard">
+                        <label for="avatar-choice-wizard">I am a wizard</label>
+                    </div>
+
+                    <div class="student-form-choice">
+                        <input type="radio" id="gender-choice-female" name="gender-choice" value="female">
+                        <label for="gender-choice-female">I am female</label>
+                    </div>
+
+                    <div class="student-form-choice">
+                        <input type="radio" id="gender-choice-male" name="gender-choice" value="male">
+                        <label for="gender-choice-male">I am male</label>
+                    </div>
+
+                    <div class="student-form-choice">
+                        <input type="radio" id="age-choice-young" name="age-choice" value="young">
+                        <label for="age-choice-young">I am young</label>
+                    </div>
+
+                    <div class="student-form-choice">
+                        <input type="radio" id="age-choice-old" name="age-choice" value="old">
+                        <label for="age-choice-old">I am old</label>
+                    </div>
+
+                    <div class="student-form-choice">
+                        <input type="radio" id="theme-choice-light" name="theme-choice" value="light">
+                        <label for="theme-choice-light">I prefer day time</label>
+                    </div>
+
+                    <div class="student-form-choice">
+                        <input type="radio" id="theme-choice-dark" name="theme-choice" value="dark">
+                        <label for="theme-choice-dark">I prefer night time</label>
+                    </div>
+                </div>
+                </div>
+
+                <hr class="student-form-item">
+
+                <div class="student-form-item">
+                    <button
+                        type="submit"
+                        aria-expanded="false"
+                        aria-controls="submit"
+                        class="button-rectangle"
+                        onclick="showAlert('The Save Information button has not been implemented in this phase of the project as it relies on JavaScript, as described in the essay Incorporating usability and user experience into the Web Witchcraft and Wizardry project (Mulligan, 2025).')"
+                    >
+                        Save Information
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <nav class="in-page-navigation" aria-label="Page sections before lessons">
+            <!-- Navigation content is injected by JavaScript to ensure it is the same across the page -->
+        </nav>
+
+        <section id="lessons" class="lessons">
+             <h3>Lessons</h3>
+            <div class="lessons-container">
+                <div class="lesson-tile" id="lesson-00">
+                    <a href="#lesson-00" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 0: Setting up</h4>
+                        <p>
+                            Set up your computer with the tools required to do the lessons.
+                         </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-01">
+                    <a href="#lesson-01" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 1: Your first web page</h4>
+                        <p>
+                            Build a simple web page using  HTML.
+                        </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-02">
+                    <a href="#lesson-02" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 2: Landmarks</h4>
+                        <p>
+                            Add landmarks and other structural elements to your
+                            web page.
+                        </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-03">
+                    <a href="#lesson-03" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 3: Lists</h4>
+                        <p>
+                            Add lists to your web page, both ordered and unordered.
+                        </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-04">
+                    <a href="#lesson-04" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 4: Images</h4>
+                        <p>
+                            Add some images to your web page.
+                        </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-05">
+                    <a href="#lesson-05" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 5: Tables and hyperlinks</h4>
+                        <p>
+                            Add tables and hyperlinks to your web page.
+                        </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-06">
+                    <a href="#lesson-06" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 6: Introducing CSS</h4>
+                        <p>
+                            Learn about Cascading Style Sheets (CSS) and how
+                            they can change the look of your web pages.
+                        </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-07">
+                    <a href="#lesson-07" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 7: External CSS</h4>
+                        <p>
+                            Learn how to use an external CSS stylesheet to
+                            change the look of your web pages and separate
+                            content from presentation.
+                        </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-08">
+                    <a href="#lesson-08" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 8: CSS and lists</h4>
+                        <p>
+                            Make your lists more visually appealing using CSS.
+                        </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-09">
+                    <a href="#lesson-09" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 9: Links and CSS</h4>
+                        <p>
+                            Make your hyperlinks more visually appealing using
+                            CSS.
+                        </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-10">
+                    <a href="#lesson-10" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 10: Responsive Design</h4>
+                        <p>
+                            Learn about media queries and how they can be used
+                            to create responsive web pages that work on both
+                            desktop and mobile devices.
+                        </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-11">
+                    <a href="#lesson-11" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 11: Javascript</h4>
+                        <p>
+                            Use JavaScript to add interactivity
+                            to your web pages.
+                        </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-12">
+                    <a href="#lesson-12" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 12: External Javascript files</h4>
+                        <p>
+                            Just as CSS can be put in external files, so can
+                            JavaScript. In this lesson you will learn how to
+                            use external JavaScript files.
+                        </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-13">
+                    <a href="#lesson-13" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 13: Errors and Exceptions</h4>
+                        <p>
+                            In this lesson you will learn about errors and
+                            exceptions in JavaScript and how to handle them.
+                        </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-14">
+                    <a href="#lesson-14" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 14: Testing and Debugging</h4>
+                        <p>
+                            Learn how to test and debug your JavaScript code
+                            using the browser's developer tools.
+                        </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-15">
+                    <a href="#lesson-15" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 15: Forms</h4>
+                        <p>
+                            Learn how to create forms to collect information
+                            from users.
+                        </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-16">
+                    <a href="#lesson-16" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 16: Cookies</h4>
+                        <p>
+                            In this lesson you will learn about cookies and
+                            how they can be used to store information on the
+                            user's computer.
+                        </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-17">
+                    <a href="#lesson-17" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 17: Clients and Servers</h4>
+                        <p>
+                            In this lesson you will learn about the client-
+                            server model of the web.
+                        </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-18">
+                    <a href="#lesson-18" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 18: A server page</h4>
+                        <p>
+                            In this lesson you will learn how to create a
+                            simple server page using a server-side language.
+                        </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-19">
+                    <a href="#lesson-19" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 19: Processing Forms on the server</h4>
+                        <p>
+                            Learn how to process the data you collect from forms
+                            on the server.
+                        </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-20">
+                    <a href="#lesson-20" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 20: Databases</h4>
+                        <p>
+                            In this lesson you will learn about databases
+                            and how to use them to store data for your
+                            web applications.
+                        </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-21">
+                    <a href="#lesson-21" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 21: Security</h4>
+                        <p>
+                            In this lesson you will learn about basic web
+                            security concepts,
+                        </p>
+                    </a>
+                </div>
+
+                <div class="lesson-tile" id="lesson-22">
+                    <a href="#lesson-22" class="lesson-link"
+                       onclick="showAlert('This lesson has not been implemented in this phase of the project, as described ' +
+                                          'in the essay Incorporating usability and user experience into the Web Witchcraft and ' +
+                                          'Wizardry project (Mulligan, 2025).')">
+                        <h4>Lesson 22: Passwords</h4>
+                        <p>
+                            Passwords require special handling to keep them
+                            secure. In this lesson you will learn how to
+                            handle passwords safely.
+                        </p>
+                    </a>
+                </div>
+
+                <!-- Additional lesson tiles can be added here -->
+            </div>
+        </section>
+
+        <nav class="in-page-navigation" aria-label="Page sections after lessons">
+            <!-- Navigation content is injected by JavaScript to ensure it is the same across the page -->
+        </nav>
+    </main>
+
+    <footer class="footer">
+        <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
+    </footer>
+</body>
+</html>

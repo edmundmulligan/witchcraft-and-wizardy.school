@@ -1,8 +1,16 @@
 #!/usr/bin/env node
 
-/**
- * Cross-browser testing script using Playwright
- * Tests basic functionality across Chromium (Chrome/Edge/Opera), Firefox, and WebKit (Safari)
+/*
+ **********************************************************************
+ * File       : bin/run-browser-tests.js
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Cross-browser testing script using Playwright.
+ *   Tests basic functionality across Chromium (Chrome/Edge/Opera),
+ *   Firefox, and WebKit (Safari).
+ **********************************************************************
  */
 
 const { chromium, firefox, webkit } = require('playwright');
@@ -37,10 +45,10 @@ async function testBrowser(browserName) {
     // Define all pages to test
     const pages = [
       { url: 'http://localhost:8080/index.html', name: 'Home' },
-      { url: 'http://localhost:8080/about.html', name: 'About' },
-      { url: 'http://localhost:8080/students.html', name: 'Students' },
-      { url: 'http://localhost:8080/glossary-and-faq.html', name: 'Glossary & FAQ' },
-      { url: 'http://localhost:8080/license-and-credits.html', name: 'License & Credits' }
+      { url: 'http://localhost:8080/pages/about.html', name: 'About' },
+      { url: 'http://localhost:8080/pages/students.html', name: 'Students' },
+      { url: 'http://localhost:8080/pages/glossary-and-faq.html', name: 'Glossary & FAQ' },
+      { url: 'http://localhost:8080/pages/license-and-credits.html', name: 'License & Credits' }
     ];
 
     // Test each page
@@ -50,7 +58,7 @@ async function testBrowser(browserName) {
 
       // Check title
       const title = await page.title();
-      if (title.includes('Web Witchcraft')) {
+      if (title.includes('Web Witchcraft and Wizardry')) {
         console.log(`     ✅ ${pageInfo.name} page title correct`);
         tests.push({ name: `${pageInfo.name} page title`, status: 'passed' });
       } else {
@@ -176,7 +184,7 @@ async function runTests() {
   console.log('🚀 Starting cross-browser tests...');
 
   const browsers = ['chromium', 'firefox', 'webkit'];
-  
+
   let passed = 0;
   let failed = 0;
   let skipped = 0;

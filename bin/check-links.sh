@@ -50,12 +50,12 @@ for page in $PAGES; do
   TESTED=$((TESTED + 1))
   URL_PATH="${page#./}"
   FULL_URL="$TEST_URL/$URL_PATH"
-  
+
   echo "[$TESTED/$PAGE_COUNT] Checking $URL_PATH"
-  
+
   # Use the Node.js helper script to check links
   node "$SCRIPT_DIR/check-links-helper.js" "$FULL_URL" "$URL_PATH" "$RESULT_FILE"
-  
+
   echo ""
 done
 
@@ -70,18 +70,18 @@ echo "======================================"
 node -e "
   const fs = require('fs');
   const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8'));
-  
+
   console.log('Pages checked: ' + data.pages.length);
   console.log('Total links: ' + data.summary.totalLinks);
   console.log('Broken links: ' + data.summary.brokenLinks);
   console.log('');
-  
+
   if (data.summary.brokenLinks === 0) {
     console.log('✅ No broken links found!');
   } else {
     console.log('❌ Broken links found:');
     console.log('');
-    
+
     data.pages.filter(p => p.brokenCount > 0).forEach(page => {
       console.log('📄 ' + page.url + ' (' + page.brokenCount + ' broken link(s))');
       page.links.forEach(link => {

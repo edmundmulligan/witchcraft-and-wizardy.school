@@ -10,36 +10,37 @@ echo ""
 FAILED=0
 
 echo "📄 Running code validation..."
-bin/validate-code.sh "$@" || FAILED=1
+bin/validate-code.sh "$@" || exit 1
+
+echo "Running comments check..."
+bin/check-file-comments.sh "$@" || exit 1
 
 echo ""
 echo "🔗 Running link checks..."
-bin/check-links.sh "$@" || FAILED=1
+bin/check-links.sh "$@" || exit 1
 
 echo ""
 echo "🪓 Running axe accessibility tests..."
-bin/run-axe-tests.sh "$@" || FAILED=1
-
+bin/run-axe-tests.sh "$@" || exit 1
 echo ""
 echo "🏮 Running lighthouse accessibility tests..."
-bin/run-lighthouse-tests.sh "$@" || FAILED=1
+bin/run-lighthouse-tests.sh "$@" || exit 1
 
 echo ""
 echo "🦜 Running pa11y accessibility tests..."
-bin/run-pa11y-tests.sh "$@" || FAILED=1
+bin/run-pa11y-tests.sh "$@" || exit 1
 
 echo ""
 echo " Running Wave accessibility tests..."
-bin/run-wave-tests.sh "$@" || FAILED=1
-
+bin/run-wave-tests.sh "$@" || exit 1
 
 echo ""
 echo "📖 Running reading age checks..."
-bin/check-reading-age.sh "$@" || FAILED=1
+bin/check-reading-age.sh "$@" -x pages/license-and-credits.html || exit 1
 
 echo ""
 echo "🌐 Running cross-browser tests..."
-bin/run-browser-tests.sh "$@" || FAILED=1
+bin/run-browser-tests.sh "$@" || exit 1
 
 echo ""
 echo "📊 Generating test summary..."

@@ -1,15 +1,19 @@
 #!/usr/bin/env node
 
-/**
- * generate-dom-tree.js
- * 
- * Generates a Graphviz DOT file from an HTML file's DOM structure.
- * Usage: node generate-dom-tree.js <html-file> [output-file]
- * 
- * Example:
- *   node generate-dom-tree.js index.html index.dot
- *   dot -Tpng index.dot -o index-dom-tree.png
- *   dot -Tsvg index.dot -o index-dom-tree.svg
+/*
+ **********************************************************************
+ * File       : bin/generate-dom-tree.js
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Generates a Graphviz DOT file from an HTML file's DOM structure.
+ *   Usage: node generate-dom-tree.js <html-file> [output-file]
+ *   Example:
+ *     node generate-dom-tree.js index.html index.dot
+ *     dot -Tpng index.dot -o index-dom-tree.png
+ *     dot -Tsvg index.dot -o index-dom-tree.svg
+ **********************************************************************
  */
 
 const fs = require('fs');
@@ -51,20 +55,20 @@ function getNodeLabel(element) {
     const tagName = element.name;
     const id = $(element).attr('id');
     const classes = $(element).attr('class');
-    
+
     let label = tagName;
-    
+
     if (id) {
         label += `\\n#${id}`;
     }
-    
+
     if (classes) {
         const classList = classes.split(/\s+/).slice(0, 2); // Max 2 classes
         if (classList.length > 0) {
             label += `\\n.${classList.join(' .')}`;
         }
     }
-    
+
     return label;
 }
 
@@ -99,24 +103,24 @@ function buildGraph(element, parentId = null) {
     if (element.type !== 'tag') {
         return;
     }
-    
+
     const nodeId = `node${nodeCounter++}`;
     nodeMap.set(element, nodeId);
-    
+
     const label = getNodeLabel(element);
     const color = getNodeColor(element.name);
-    
+
     // Add node
     dotContent += `    ${nodeId} [label="${label}", fillcolor="${color}", style="rounded,filled"];\n`;
-    
+
     // Add edge from parent
     if (parentId) {
         dotContent += `    ${parentId} -> ${nodeId};\n`;
     }
-    
+
     // Process children
     const children = $(element).children().toArray();
-    
+
     // Limit depth to avoid huge diagrams
     if (children.length > 0 && nodeCounter < 500) {
         children.forEach(child => {

@@ -1,0 +1,199 @@
+/*
+ **********************************************************************
+ * File       : pages.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This has the page specific styles for all pages except student.html,
+ *   which needs significant refactoring before it is ready to be included 
+ *   here.
+ *
+ * TODO: Add styles for student.html 
+ **********************************************************************
+ */
+
+.introduction,
+.gallery,
+.accessories,
+.facts,
+.glossary,
+.license,
+.credits {
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.introduction p,
+.gallery p,
+.accessories p,
+.facts p,
+.glossary p,
+.license p,
+.credits p {
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    margin: var(--margin-vertical) var(--margin-horizontal);
+}
+
+.introduction ul,
+.gallery ul,
+.accessories ul,
+.facts ul,
+.glossary ul,
+.license ul,
+.credits ul {
+    margin: var(--margin-vertical) var(--margin-horizontal);
+    padding-left: 2rem;
+    padding-right: 2rem;
+    line-height: 1.5;
+    text-align: left;
+    max-width: 100%;
+    box-sizing: border-box;
+    font-size: var(--fontsize-p);
+}
+
+/**********************************************************
+ * container classes for gallery, accessories and facts
+ **********************************************************/
+
+ .gallery-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: var(--margin-vertical) var(--margin-horizontal);
+    max-width: 100%;
+}
+
+.accessories-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin: var(--margin-vertical) var(--margin-horizontal);
+    max-width: 100%;
+}
+
+ .facts-container  {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: var(--margin-vertical) var(--margin-horizontal);
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/**********************************************
+ * contained classes for contained items
+ **********************************************/
+.gallery-item {
+    text-align: center;
+    padding: 1em;
+    background-color: var(--color-light-headings-background);
+    color: var( --color-light-headings-text);
+    border: var(--border-weight) var(--border-style) var(--color-light-headings-text);
+    border-radius: var(--border-radius);
+    align-items: center;
+}
+
+.gallery-image {
+    display:block;
+    width: 100%;
+    height: 20rem;
+    object-fit: contain;
+    border-radius: 0.5rem;
+}
+
+.gallery-caption {
+    display: block;
+    margin: var(--margin-vertical) var(--margin-horizontal);
+    font-weight: bold;
+}
+
+.accessory-item {
+    display: block;
+    padding: 0;
+    background-color: var(--color-light-headings-background);
+    color: var( --color-light-headings-text);
+    border: var(--border-weight) var(--border-style) var(--color-light-headings-text);
+    border-radius: var(--border-radius);
+    text-align: center;
+    width: 21rem;
+}
+
+.accessory-image {
+    display: block;
+    width: 20rem;
+    height: auto;
+    margin: 0;
+}
+
+.accessory-name {
+    display:block;
+    font-family: Cinzel, serif;
+    font-weight: bold;
+}
+
+.accessory-description {
+    display:block;
+    font-size: var(--fontsize-smallprint);
+}
+
+.facts-item {
+    display: block;
+    background-color: var(--color-light-headings-background);
+    color: var( --color-light-headings-text);
+    border: var(--border-weight) var(--border-style) var(--color-light-headings-text);
+    border-radius: var(--border-radius);
+    font-size: var(--fontsize-p);
+    min-width: 0;
+    padding: 1rem;
+    margin: var(--margin-vertical) var(--margin-horizontal);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.wide {
+    grid-column: 1 / 3;
+    text-align: left;
+}
+
+.glossary dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0;
+    padding: 0 1rem;
+    align-items: stretch;
+    font-size: clamp(0.5rem, 2vw + 1rem, 2.25rem);
+}
+
+.glossary dt {
+    font-weight: bold;
+    grid-column: 1;
+    padding: 0 0.5em;
+    margin: 0;
+    border: 1px solid var(--color-light-page-text);
+    background-color: var(--color-light-page-background);
+    text-align: left;
+    align-items: center;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.glossary dd {
+    grid-column: 2;
+    padding: 0 0.5em;
+    margin: 0;
+    border-top: 1px solid var(--color-light-headings-text);
+    border-right: 1px solid var(--color-light-headings-text);
+    border-bottom: 1px solid var(--color-light-headings-text);
+    border-left: none;
+    background-color: var(--color-light-page-background);
+    text-align: left;
+    align-items: center;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}

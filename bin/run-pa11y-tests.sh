@@ -30,16 +30,16 @@ for page in $PAGES; do
   # Convert file path to URL path
   URL_PATH="${page#./}"
   FULL_URL="$TEST_URL/$URL_PATH"
-  
+
   echo "[$TESTED/$PAGE_COUNT] Testing $URL_PATH"
-  
+
   # Run pa11y on this page using inline Node.js
   TEMP_RESULT="$RESULTS_DIR/pa11y-temp-$TESTED.json"
   node -e "
     (async () => {
       const pa11y = require('pa11y');
       const fs = require('fs');
-      
+
       try {
         const results = await pa11y('$FULL_URL', {
           standard: 'WCAG2AA',
@@ -52,20 +52,20 @@ for page in $PAGES; do
             ]
           }
         });
-        
+
         fs.writeFileSync('$TEMP_RESULT', JSON.stringify(results, null, 2));
-        
+
         const errors = results.issues.filter(i => i.type === 'error').length;
         const warnings = results.issues.filter(i => i.type === 'warning').length;
         console.log('  Errors: ' + errors + ', Warnings: ' + warnings);
-        
+
       } catch (error) {
         console.error('  Failed: ' + error.message);
         process.exit(1);
       }
     })();
   "
-  
+
   # Merge results into combined file if temp file exists
   if [ -f "$TEMP_RESULT" ]; then
     node -e "
@@ -73,14 +73,14 @@ for page in $PAGES; do
         const fs = require('fs');
         const combined = JSON.parse(fs.readFileSync('$RESULTS_DIR/pa11y-results.json'));
         const newData = JSON.parse(fs.readFileSync('$TEMP_RESULT'));
-        
+
         const pageResult = {
           url: '$URL_PATH',
           documentTitle: newData.documentTitle,
           pageUrl: newData.pageUrl,
           issues: newData.issues || []
         };
-        
+
         combined.pages.push(pageResult);
         fs.writeFileSync('$RESULTS_DIR/pa11y-results.json', JSON.stringify(combined, null, 2));
         fs.unlinkSync('$TEMP_RESULT');
@@ -101,32 +101,32 @@ echo "📊 Pa11y Accessibility Results:"
 
 node -e "
   const data = JSON.parse(require('fs').readFileSync('$RESULT_FILE'));
-  
+
   if (!data.pages || data.pages.length === 0) {
     console.log('  No pages tested');
     process.exit(0);
   }
-  
+
   // Count total issues
   let totalErrors = 0;
   let totalWarnings = 0;
   let totalNotices = 0;
-  
+
   data.pages.forEach(page => {
     totalErrors += page.issues.filter(i => i.type === 'error').length;
     totalWarnings += page.issues.filter(i => i.type === 'warning').length;
     totalNotices += page.issues.filter(i => i.type === 'notice').length;
   });
-  
+
   console.log('  Pages tested: ' + data.pages.length);
   console.log('  ❌ Total errors: ' + totalErrors);
   console.log('  ⚠️  Total warnings: ' + totalWarnings);
   console.log('  ℹ️  Total notices: ' + totalNotices);
   console.log('');
-  
+
   // Show only pages with errors
   const pagesWithErrors = data.pages.filter(p => p.issues.some(i => i.type === 'error'));
-  
+
   if (pagesWithErrors.length === 0) {
     console.log('  No errors found! ✨');
   } else {
@@ -135,18 +135,18 @@ node -e "
       const errors = page.issues.filter(i => i.type === 'error');
       console.log('');
       console.log('❌ ' + page.url + ' (' + errors.length + ' errors)');
-      
+
       errors.slice(0, 5).forEach(issue => {
         console.log('    • ' + issue.message);
         console.log('      ' + issue.selector);
       });
-      
+
       if (errors.length > 5) {
         console.log('    ... and ' + (errors.length - 5) + ' more');
       }
     });
   }
-  
+
   console.log('');
 "
 

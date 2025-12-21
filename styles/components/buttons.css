@@ -12,9 +12,8 @@
 /* Styles common to all buttons. Class name must start with "button-" */
  [class^="button-"],
  [class*=" button-"] {
-    margin: 1rem auto;
     padding: 1rem;
-    font-size: clamp(0.5rem, 2vw, 1.5rem);
+    font-size: var(--fontsize-button);
     font-weight: bold;
     background-color: var(--color-light-headings-background);
     color: var(--color-light-headings-text);
@@ -22,7 +21,7 @@
     cursor: pointer;
     text-align: center;
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-} 
+}
 
 [class^="button"]:hover,
 [class*=" button"]:hover,
@@ -47,14 +46,25 @@
 .button-rectangle {
     display: block;
     border-radius: var(--border-radius);
+    margin: 1rem auto;
 }
 
 /* Style override for circular buttons */
 .button-circle {
-    display: grid;
-    place-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     border-radius: 50%;
     aspect-ratio: 1 / 1;
-    width: 20%;
+    width: var(--buttonsize-circle);
+    height: var(--buttonsize-circle);
+    max-width: 15rem;
+    max-height: 15rem;
+    padding: 1rem;
+
+    /* ensure text scales within the circle */
+    font-family: Cinzel, serif;
+    font-size: var(--fontsize-button-circle);
     background-color: var(--color-light-page-background);
 }
