@@ -75,7 +75,7 @@ to learn the basics of web development through fantasy-themed metaphors. The ori
 the website was neither accessible (except by accident) nor responsive. This essay reflects on the 
 design and implementation of a refactored version of the project, focusing on architecture, 
 accessibility and code quality. Detailed decisions are documented as comments in 
-the source code (available on the main branch at 
+the source code (available on the \texttt{main} branch at 
 \url{https://github.com/Birkbeck2/puffin-web-development-website-edmundmulligan}), so this essay 
 focuses on higher level design decisions and reflections.
 
@@ -140,10 +140,6 @@ figure~\ref{fig:dev-process-flowchart}.
     \caption{Iterative development process flowchart}\label{fig:dev-process-flowchart}
 \end{figure}
 
-This essay was written in parallel with the development of the website, so screenshots may 
-not exactly reflect the final version of the code submitted for assessment, but are 
-intended to illustrate the design decisions discussed.
-
 \section{Architecture}\label{sec:architecture}
 Even in a small project, software design principles are important to keep the code 
 maintainable
@@ -159,8 +155,8 @@ at runtime, rather than duplicating the code in each HTML file. This also inspir
 use of CSS variables to define common colours and other styles in one place, rather than
 duplicating these values throughout the CSS files.
 
-The third principle required meaningful names and a consistent naming convention
-was used throughout.
+The third principle required meaningful names and comments and a consistent naming 
+convention was used throughout.
 
 A fourth (informal) principle is Keep the CSS as simple as possible and make use of 
 cascading styles. 
@@ -169,7 +165,7 @@ would put much more effort into writing simple CSS first time rather than trying
 complex CSS later. The student.html page is a particular example where the CSS is more complex
 than necessary and needs more refactoring but I ran out of time to complete this.
 
-\begin{figure}[htp]
+\begin{figure}[H]
     \centering
     \footnotesize
     \begin{verbatim}
@@ -256,18 +252,18 @@ all pages listed in table~\ref{tab:viewport-breakpoints}.
 \caption{Viewport width breakpoints}\label{tab:viewport-breakpoints}
 \end{table}
 
-In order to minimise the use of media queries, I used the clamp~() CSS function 
+In order to minimise the use of media queries, I used the \texttt{clamp()} CSS function 
 to define fluid typography. A limitation of this is that if the middle value of 
-clamp~() is defined using a viewport width unit (vw), then the text will not scale if 
-the user zooms their browser without changing the viewport window size. 
+\texttt{clamp()} is defined using a viewport width unit (vw), then the text will 
+not scale if the user zooms their browser without changing the viewport window size. 
 This contravenes WCAG 2.2 Success Criterion 1.4.4 \citep{caldwell2024} which 
 requires text to be resizable up to 200\% without loss of content or 
 functionality. The workaround for this is to calculate the 
-middle value of clamp~() from a vw unit and a rem unit, so that zooming 
+middle value of \texttt{clamp()} from a vw unit and a rem unit, so that zooming 
 the browser window also changes the text size.
 
 One downside of this approach is that it takes a lot of trial and error
-to find suitable values to pass to clamp~() that work well across a wide range of
+to find suitable values to pass to \texttt{clamp()} that work well across a wide range of
 viewport sizes and this took up much of my testing time. The process was made 
 a lot easier when I discovered, at a late stage, an online tool to help calculate 
 fluid typography values \citep{bece2025}. 
@@ -277,7 +273,7 @@ One of the debates I encountered in many tutorials was whether to use CSS Flexbo
 \citep{w3c_flexbox} or CSS Grid \citep{w3c_grid} for layout. 
 My conclusion was to use flexbox in narrower viewports as this could make vertical 
 stacking of elements easier with 
-flex-direction: column, and to prefer flexbox with flex-direction: row in wider 
+\texttt{flex-direction: column}, and to prefer flexbox with \texttt{flex-direction: row} in wider 
 viewports unless there was an obvious case for a grid such as the input form on the 
 student page and the gallery of portraits. Due to my experimental approach to 
 development, early versions of the website had several levels of nested grids and 
@@ -288,9 +284,9 @@ in making better design decisions earlier in the development process.
 
 \subsection{Units of measurement}\label{subsec:units}
 Another way to achieve responsiveness is to use relative units of measurement
-rather than absolute units. Thus, I used rem units for specifying element sizes. 
-I avoided using px units except in media queries where absolute measurements 
-are required. I preferred rem units over em units as rems are relative to the root 
+rather than absolute units. Thus, I used \texttt{rem} units for specifying element sizes. 
+I avoided using \texttt{px} units except in media queries where absolute measurements 
+are required. I preferred \texttt{rem} units over \texttt{em} units as rems are relative to the root 
 font size, making them more predictable, whereas ems are relative to the font size of
 the parent element, which can (and did) lead to unexpected results.
 
@@ -299,7 +295,7 @@ Ensuring browser compatibility is an important part of web development,
 particularly when using newer CSS features that may not be supported in all browsers.
 I used caniuse.com \citep{caniuse2025} and only used HTML/CSS features that were 
 supported by all major browsers (Chrome, Firefox, Safari and Edge). One feature I 
-particularly wanted to try was popover to avoid having to use JavaScript alert~(). 
+particularly wanted to try was \texttt{popover} to avoid having to use JavaScript \texttt{alert()}. 
 I was mostly successful but could not get it to work with the form submit button 
 (in student.html) so the Save Information button currently does nothing when 
 clicked. That will be resolved with JavaScript in phase 2 of the project.
@@ -325,7 +321,7 @@ the choices passed the contrast tests in the accessibility tools. The purple and
 cyan colours were chosen as they (approximately) match the Embodied Mind logo used 
 in the footer; the yellow and green were more arbitary.
 
-Testing without a mouse and with a screen reader ensured that that the~::focus 
+Testing without a mouse and with a screen reader ensured that that the \texttt{:focus} 
 pseudo-class was styled appropriately to make it clear which element had focus and 
 meaningful alt text was provided for all images. Using the web site in this way
 was not particularly pleasant or easy and emphasises how important it is to design for
@@ -360,9 +356,9 @@ popular ones were chosen:
 
 A script to check reading age using the Flesch-Kincaid formula 
 \citep{flesch1948new} and Gunning Fog index \citep{gunning1952technique} 
-was developed using the text-readability node.js module \citep{textreadability2025}. 
-Code was checked for validity using node.js modules html-validate \citep{htmlvalidate2025},
-stylelint \citep{stylelint2025} and eslint \citep{eslint2025}. The official W3C 
+was developed using the \texttt{text-readability} node.js module \citep{textreadability2025}. 
+Code was checked for validity using node.js modules \texttt{html-validate} \citep{htmlvalidate2025},
+\texttt{stylelint} \citep{stylelint2025} and \texttt{eslint} \citep{eslint2025}. The official W3C 
 validator for CSS \citep{w3c_css_validator} was not used as this cannot currently validate 
 code with CSS variables. Browser compatibility was tested using Playwright \citep{playwright2025} to 
 run tests in multiple browsers and I acknowledge, with thanks, the assistance I received to 
@@ -374,19 +370,17 @@ development (TDD) \citep{beck2003test} approach in future phases of this project
 Implementing Wave testing was the most difficult as it requires a public URL to test and 
 github pages are based on a private repository. Making the github repository public was 
 considered and rejected as it could introduce unanticipated security risks so, after 
-consultation with testing colleagues, ngrok \citep{ngrok2025} was used to expose the 
+consultation with testing colleagues, \texttt{ngrok} \citep{ngrok2025} was used to expose the 
 localhost to allow Wave tests to complete.
 
 There was insufficient time to fully evaluate the third party tools used and decide which 
 was the best for this project, so a `black box' approach was taken without investigating exactly 
 what each tool was testing. This did have the benefit that gaps in one tool's coverage
-could potentially be caught by one of the other tools, but it did introduce a problem of
-tools having conflicting standards. Wave, in particular requires the <h1> element to be in 
-the <main> section, which would mean that the site title in the <header> section would have to 
-be either an <h2> or a <p> element, which would be flagged by the other testing tools. Thus 
-a decision to accept the warning from Wave was taken as the least bad alternative. The other 
-alert from Wave was for the use of <noscript>, but this was simply a warning to check this 
-usage as it may have accessibility implications.
+could potentially be caught by one of the other tools, but it did incur a risk that the tools 
+could change what they reported without notice. Indeed this occured with Wave during the
+development of this project, when it stopped reporting that <h1> was in the <header> rather 
+than <main> element. This brought it into line with the other tools, but decreases confidence
+ in the reliability of the tools.
 
 Automated testing is not a substitute for manual testing, and the site was also tested manually
 on a variety of devices, specifically
@@ -416,12 +410,12 @@ will also be needed when student data (tracking lesson progress) are collected.
 The project submitted for assessment is phase one of a larger project to refactor and
 improve the Web Witchcraft and Wizardry website. Some content was deliberately omitted 
 from this phase as it will be developed in phase 2 using JavaScript. 
-Table~\ref{tab:bugs} in Appendix~\ref{sec:bugs} lists some known issues and areas 
+Appendix~\ref{sec:bugs} lists some known issues and areas 
 for improvement that could not be addressed within the time constraints of this phase.
 
 \section{Third party credits and resources}\label{sec:third-party-credits}
 All code submitted for assessment is my own work. No code has been copied from 
-any external sources, such as online tutorials or code. I have, however, relied 
+any external sources, such as online tutorials or example code. I have, however, relied 
 heavily on three YouTube channels, those of Kevin Powell \citep{powell_youtube}, 
 Daily CSS \citep{dailycss_youtube}, and Coding2GO \citep{coding2go_youtube}, for 
 guidance on best practices and inspiration.
@@ -455,6 +449,7 @@ the project.
 \section*{Word count}
 Word count: \input{wordcount.txt} words (excluding references)
 \\
+
 \bibliography{EdmundLibrary}
 
 % include appendices

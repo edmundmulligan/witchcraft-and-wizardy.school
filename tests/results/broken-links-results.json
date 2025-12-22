@@ -4,25 +4,25 @@
       "url": "index.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 17
+      "totalCount": 18
     },
     {
       "url": "pages/students.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 15
+      "totalCount": 16
     },
     {
       "url": "pages/glossary-and-faq.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 15
+      "totalCount": 16
     },
     {
       "url": "pages/license-and-credits.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 27
+      "totalCount": 28
     },
     {
       "url": "pages/about.html",
@@ -32,7 +32,7 @@
     }
   ],
   "summary": {
-    "totalLinks": 121,
+    "totalLinks": 125,
     "brokenLinks": 0,
     "excludedLinks": 0
   }

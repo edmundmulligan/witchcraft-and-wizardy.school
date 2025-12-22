@@ -100,7 +100,7 @@ body {
     font-family: "Open Sans", -apple-system, sans-serif;
     font-style: normal;
     line-height: 1.6;
-    text-align: justify;
+    text-align: left;
     color: var(--color-light-page-text);
     background-color: var(--color-light-page-background);
 }
