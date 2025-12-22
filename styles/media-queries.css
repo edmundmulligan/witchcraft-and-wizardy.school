@@ -140,6 +140,11 @@
         box-sizing: border-box;
     }
 
+    .wide {
+        padding: 0.5rem;
+        margin: 0.5rem 0.5rem;
+    }
+
     .lessons-container {
         flex-direction: column;
         align-items: center;
@@ -300,6 +305,11 @@
         gap: 1rem;
         max-width: 100%;
         box-sizing: border-box;
+    }
+
+    .wide {
+        padding: 0.5rem;
+        margin: 0.5rem 0.5rem;
     }
 
     .lessons-container {
