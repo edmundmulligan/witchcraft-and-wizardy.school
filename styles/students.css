@@ -63,7 +63,7 @@
    display: flex;
    align-items: center;
    justify-content: center;
-   min-height: 15em;
+   aspect-ratio: 4 / 3;
    font-size: var(--fontsize-p);
    overflow-wrap: break-word;
    hyphens: auto;
@@ -76,12 +76,30 @@
    grid-template-columns: 1fr 1fr;
    gap: 0;
    margin: 1em 0;
-   border-top: 0.1em solid var(--color-light-headings-text);
 }
 
 .student-info form label {
    text-align: left;
-   font-size: var(--fontsize-p);
+   font-size: var(--fontsize-smallprint);
+}
+
+.student-info form legend {
+   font-size: var(--fontsize-smallprint);
+}
+
+.student-info form fieldset {
+   border: var(--border-weight) var(--border-style) var(--color-light-headings-text);
+   border-radius: var(--border-radius);
+   padding: 1em;
+   margin: 0.5em;
+}
+
+.student-info form fieldset legend {
+   float: left;
+   width: 100%;
+   padding: 0;
+   margin-bottom: 0.5em;
+   font-size: var(--fontsize-smallprint);
 }
 
 .student-info form input[type="radio"] {
@@ -127,7 +145,6 @@
    align-items: center;
    gap: 0.5em;
    padding: 0.5em;
-   border-bottom: 0.1em solid var(--color-light-headings-text);
 }
 
 /********************************************

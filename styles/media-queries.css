@@ -183,7 +183,12 @@
     .student-info form .student-form-avatar {
         order: 2;
         grid-column: unset;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
+    }
+
+    .student-info form fieldset {
+        display: flex;
+        flex-direction: column;
     }
 
     .lesson-tile {
@@ -350,7 +355,12 @@
     .student-info form .student-form-avatar {
         order: 2;
         grid-column: unset;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
+    }
+
+    .student-info form fieldset {
+        display: flex;
+        flex-direction: column;
     }
 
     .lesson-tile {
