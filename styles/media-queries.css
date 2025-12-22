@@ -8,7 +8,7 @@
  *   Style overrides for media queries.
  * Note:
  *   Cutoffs for media queries are (arbitarily) as follows:
- *      Very small screen : width < 200px
+ *      Very small screen : width < 300px
  *      Small screen      : width < 800px
  *      Large screen      : width < 1200px
  *      Very large screen : width >= 1200px
@@ -26,7 +26,7 @@
  ***********************************************************************
  */
 
-@media (width < 200px) {
+@media (width < 300px) {
     .header-warning {
         /* turn on the warning message (normally it's display: none) */
         display: block;
@@ -39,7 +39,7 @@
     /* from here on, same as small screen. Would be nice if 
        DRY principle could be applied here, but only the first 
        matching media query is applied by browsers so this has to
-       repeat everything in 200px-800px. Grrrr :(
+       repeat everything in 300px-800px. Grrrr :(
     */
 
     /* switch header to vertical layout */
