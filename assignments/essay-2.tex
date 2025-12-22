@@ -140,10 +140,6 @@ figure~\ref{fig:dev-process-flowchart}.
     \caption{Iterative development process flowchart}\label{fig:dev-process-flowchart}
 \end{figure}
 
-This essay was written in parallel with the development of the website, so screenshots may 
-not exactly reflect the final version of the code submitted for assessment, but are 
-intended to illustrate the design decisions discussed.
-
 \section{Architecture}\label{sec:architecture}
 Even in a small project, software design principles are important to keep the code 
 maintainable
@@ -159,8 +155,8 @@ at runtime, rather than duplicating the code in each HTML file. This also inspir
 use of CSS variables to define common colours and other styles in one place, rather than
 duplicating these values throughout the CSS files.
 
-The third principle required meaningful names and a consistent naming convention
-was used throughout.
+The third principle required meaningful names and comments and a consistent naming 
+convention was used throughout.
 
 A fourth (informal) principle is Keep the CSS as simple as possible and make use of 
 cascading styles. 
@@ -380,13 +376,11 @@ localhost to allow Wave tests to complete.
 There was insufficient time to fully evaluate the third party tools used and decide which 
 was the best for this project, so a `black box' approach was taken without investigating exactly 
 what each tool was testing. This did have the benefit that gaps in one tool's coverage
-could potentially be caught by one of the other tools, but it did introduce a problem of
-tools having conflicting standards. Wave, in particular requires the <h1> element to be in 
-the <main> section, which would mean that the site title in the <header> section would have to 
-be either an <h2> or a <p> element, which would be flagged by the other testing tools. Thus 
-a decision to accept the warning from Wave was taken as the least bad alternative. The other 
-alert from Wave was for the use of <noscript>, but this was simply a warning to check this 
-usage as it may have accessibility implications.
+could potentially be caught by one of the other tools, but it did incur a risk that the tools 
+could change what they reported without notice. Indeed this occured with Wave during the
+development of this project, when it stopped reporting that <h1> was in the <header> rather 
+than <main> element. This brought it into line with the other tools, but decreases confidence
+ in the reliability of the tools.
 
 Automated testing is not a substitute for manual testing, and the site was also tested manually
 on a variety of devices, specifically

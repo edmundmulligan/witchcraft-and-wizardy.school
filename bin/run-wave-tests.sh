@@ -68,20 +68,7 @@ fi
 
 # Stop any existing ngrok tunnels
 echo "Stopping any existing ngrok tunnels..."
-# Kill all ngrok processes first
-pkill -9 -f ngrok || true
-sleep 3
-
-# Try to stop tunnels by name if ngrok is still running
-if pgrep -f ngrok > /dev/null; then
-  ngrok tunnel list 2>/dev/null | grep -o '"name":"[^"]*"' | sed 's/"name":"//;s/"//' | while read -r tunnel_name; do
-    echo "Stopping tunnel: $tunnel_name"
-    ngrok tunnel stop "$tunnel_name" 2>/dev/null || true
-  done
-  sleep 2
-fi
-
-# Final cleanup - kill any remaining ngrok processes
+# Kill all ngrok processes
 pkill -9 -f ngrok || true
 sleep 2
 
