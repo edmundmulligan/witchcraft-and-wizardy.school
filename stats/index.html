@@ -40,11 +40,11 @@
     <!-- Start of CSS stylesheets section -->
 
     <!-- main.css must be the first stylesheet loaded -->
- 
+
     <!-- These stylesheets are common to all pages -->
- 
+
     <!-- page specific stylesheet -->
- 
+
     <!-- media-queries must be the last stylesheets loaded -->
     <!-- End of CSS stylesheets section -->
 
@@ -63,6 +63,18 @@
     </header>
 
     <main>
+        <h2 class="page-title">Click on your chosen path</h2>
+        <div class="circular-button-container">
+            <a href="pages/about.html" class="button-circle" id="start-button">Start</a>
+            <a href="pages/students.html" class="button-circle" id="students-button">I am a Student</a>
+            <!-- Use a button rather than a link for mentors as there is nothing to link to and button supports popovers -->
+            <button
+                type="button"
+                class="button-circle"
+                id="mentors-button"
+                popovertarget="not-implemented"
+            >I am a Mentor</button>
+        </div>
     </main>
 
     <footer class="footer">
