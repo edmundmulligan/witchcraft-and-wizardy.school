@@ -1,0 +1,125 @@
+name: Test and Deploy (Reusable)
+
+on:
+  workflow_call:
+    inputs:
+      application:
+        required: true
+        type: string
+        description: 'Application folder name (web, stats, sound)'
+      deploy-path:
+        required: true
+        type: string
+        description: 'Server deployment path'
+      server:
+        required: false
+        type: string
+        default: 'prod.edmundmulligan.name'
+        description: 'Server hostname'
+    secrets:
+      WAVE_API_KEY:
+        required: false
+      NGROK_AUTHTOKEN:
+        required: false
+      SERVER_USERNAME:
+        required: true
+      SERVER_SSH_KEY:
+        required: true
+
+env:
+  testurl: 'http://localhost:8080'
+  testport: '8080'
+
+jobs:
+  run-pre-deployment-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Clear previous accessibility results
+      run: |
+        bin/clear-tests.sh ${{ inputs.application }}
+
+    - name: Validate HTML, CSS and JavaScript
+      continue-on-error: true
+      run: |
+        bin/validate-code.sh ${{ inputs.application }}
+
+    - name: Check for file comments
+      continue-on-error: true
+      run: |
+        bin/check-file-comments.sh ${{ inputs.application }}
+
+    - name: Check for broken links
+      continue-on-error: true
+      run: |
+        bin/check-links.sh ${{ inputs.application }}
+
+    - name: Check site works in different browsers
+      continue-on-error: true
+      run: |
+        bin/run-browser-tests.sh ${{ inputs.application }}
+
+    - name: Run axe accessibility tests
+      continue-on-error: true
+      run: |
+        bin/run-axe-tests.sh ${{ inputs.application }}
+      env:
+        WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
+        NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
+
+    - name: Run Pa11y accessibility tests
+      continue-on-error: true
+      run: |
+        bin/run-pa11y-tests.sh ${{ inputs.application }}
+
+    - name: Run Lighthouse accessibility tests
+      continue-on-error: true
+      run: |
+        bin/run-lighthouse-tests.sh ${{ inputs.application }}
+
+    - name: Run WAVE accessibility tests
+      continue-on-error: true
+      run: |
+        bin/run-wave-tests.sh ${{ inputs.application }}
+      env:
+        WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
+        NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
+
+    - name: Check reading levels
+      continue-on-error: true
+      run: |
+        bin/check-reading-age.sh ${{ inputs.application }}
+
+    - name: Summarise test results
+      continue-on-error: false
+      run: |
+        bin/summarise-tests.sh ${{ inputs.application }}
+
+    - name: Upload test reports
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: ${{ inputs.application }}-test-reports
+        path: |
+          ${{ inputs.application }}/test-results/validation-results.json
+          ${{ inputs.application }}/test-results/broken-links-results.json
+          ${{ inputs.application }}/test-results/axe-results.json
+          ${{ inputs.application }}/test-results/pa11y-results.json
+          ${{ inputs.application }}/test-results/lighthouse-results.json
+          ${{ inputs.application }}/test-results/wave-results.json
+          ${{ inputs.application }}/test-results/readability-results.json
+
+  deploy:
+    needs: run-pre-deployment-test
+    if: github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/push-code-reusable.yml
+    with:
+      application: ${{ inputs.application }}
+      deploy-path: ${{ inputs.deploy-path }}
+      server: ${{ inputs.server }}
+    secrets:
+      SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
+      SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}

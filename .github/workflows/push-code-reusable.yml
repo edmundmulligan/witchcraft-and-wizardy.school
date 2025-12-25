@@ -1,0 +1,40 @@
+name: Push Code to Server (Reusable)
+
+on:
+  workflow_call:
+    inputs:
+      application:
+        required: true
+        type: string
+        description: 'Application folder name (web, stats, sound)'
+      deploy-path:
+        required: true
+        type: string
+        description: 'Server deployment path'
+      server:
+        required: false
+        type: string
+        default: 'prod.edmundmulligan.name'
+        description: 'Server hostname'
+    secrets:
+      SERVER_USERNAME:
+        required: true
+      SERVER_SSH_KEY:
+        required: true
+
+jobs:
+  deploy-to-server:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Copy files to server
+      uses: appleboy/scp-action@v0.1.4
+      with:
+        host: ${{ inputs.server }}
+        username: ${{ secrets.SERVER_USERNAME }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        source: "${{ inputs.application }}/*"
+        target: ${{ inputs.deploy-path }}

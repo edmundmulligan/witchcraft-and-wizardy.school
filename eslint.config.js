@@ -5,27 +5,31 @@
  * Copyright  : (c) 2025 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
  * Description:
- *   ESLint configuration for the Web Witchcraft and Wizardry project.
- *   Defines code quality rules for JavaScript files.
+ *   ESLint configuration for JavaScript files
  **********************************************************************
  */
 
-export default [
+// ESLint flat config for v9+
+/** @type {import('eslint').FlatConfig[]} */
+module.exports = [
   {
+    files: ["**/*.js"],
     languageOptions: {
       ecmaVersion: 2021,
-      sourceType: 'module',
+      sourceType: "module",
       globals: {
-        window: 'readonly',
-        document: 'readonly',
-        console: 'readonly'
+        window: "readonly",
+        document: "readonly",
+        console: "readonly"
       }
     },
     rules: {
-      'indent': ['error', 4],
-      'linebreak-style': ['error', 'unix'],
-      'quotes': ['error', 'single'],
-      'semi': ['error', 'always']
+      "indent": ["error", 4],
+      "linebreak-style": ["error", "unix"],
+      "quotes": ["error", "single"],
+      "semi": ["error", "always"],
+      "no-undef": "error",
+      "no-unused-expressions": "error"
     }
   }
 ];

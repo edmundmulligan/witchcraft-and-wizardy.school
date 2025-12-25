@@ -1,0 +1,17 @@
+name: Push Code to Dev Server
+
+on:
+    push:
+      branches: [ main]
+    pull_request:
+      branches: [ main ]
+
+jobs:
+    deploy-to-server:
+        uses: ./.github/workflows/push-code-reusable.yml
+        with:
+          application: web
+          deploy-path: /var/www/web.witchcraft-and-wizardy.school
+        secrets:
+          SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
+          SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
