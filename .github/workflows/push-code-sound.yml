@@ -15,7 +15,7 @@ jobs:
         uses: ./.github/workflows/push-code-reusable.yml
         with:
           application: sound
-          deploy-path: /var/www/sound.witchcraft-and-wizardy.school
+          deploy-path: /var/www/sound.witchcraft-and-wizardry.school
         secrets:
           SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
           SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
