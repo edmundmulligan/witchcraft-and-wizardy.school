@@ -7,10 +7,6 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/test-helpers.sh"
 
-# Setup results directory
-setup_results_dir
-RESULT_FILE="$RESULTS_DIR/file-comments-check-results.txt"
-
 # Initialize counters
 TOTAL_FILES=0
 FILES_WITH_ISSUES=0
@@ -20,11 +16,24 @@ MISSING_FIELDS=0
 # Required fields in header comments
 REQUIRED_FIELDS=("File" "Author" "Copyright" "License" "Description")
 
+# Validate folder parameter
+ORIGINAL_DIR=$(pwd)
+FOLDER="${1:-.}"
+if [ ! -d "$FOLDER" ]; then
+  echo "❌ Error: '$FOLDER' is not a valid directory"
+  exit 1
+fi
+
+# Setup results directory in application folder
+RESULTS_DIR="$ORIGINAL_DIR/$FOLDER/test-results"
+mkdir -p "$RESULTS_DIR"
+RESULT_FILE="$RESULTS_DIR/file-comments-check-results.txt"
+
 echo "📝 Checking file header comments..."
 echo ""
 
 # Find all HTML, CSS, and JS files (excluding node_modules and tests)
-FILES=$(find . -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) \
+FILES=$(find "$FOLDER" -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) \
     ! -path "*/node_modules/*" \
     ! -path "*/.git/*" \
     ! -path "*/tests/*" \

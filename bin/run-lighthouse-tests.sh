@@ -14,10 +14,23 @@ parse_test_options "$@"
 # Silently install dependencies if not already installed
 npm install -g lighthouse serve > /dev/null 2>&1
 
+
+# Accept optional folder parameter
+FOLDER="${1:-.}"
+if [ ! -d "$FOLDER" ]; then
+  echo "❌ Error: '$FOLDER' is not a valid directory"
+  exit 1
+fi
+
+# Change to the specified folder to serve files from there
+ORIGINAL_DIR=$(pwd)
+RESULTS_DIR="$ORIGINAL_DIR/$FOLDER/test-results"
+mkdir -p "$RESULTS_DIR"
+cd "$FOLDER" || exit 1
+
 # Start server and setup
 start_server_if_needed "$TEST_URL"
-setup_results_dir
-discover_html_pages
+discover_html_pages "."
 
 # Initialize combined results
 echo '{"pages":[]}' > "$RESULTS_DIR/lighthouse-results.json"

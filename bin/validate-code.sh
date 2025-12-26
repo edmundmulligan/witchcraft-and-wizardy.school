@@ -14,19 +14,27 @@ parse_test_options "$@"
 echo "Installing dependencies..."
 npm install html-validate stylelint stylelint-config-standard eslint > /dev/null 2>&1
 
-# Setup results directory
-setup_results_dir
+echo ""
+echo "📄 Validating HTML, CSS, and JavaScript files..."
+echo ""
+
+ORIGINAL_DIR=$(pwd)
+FOLDER="${1:-.}"
+if [ ! -d "$FOLDER" ]; then
+  echo "Error: Provided folder '$FOLDER' does not exist."
+  exit 1
+fi
+
+# Setup results directory in application folder
+RESULTS_DIR="$ORIGINAL_DIR/$FOLDER/test-results"
+mkdir -p "$RESULTS_DIR"
 RESULT_FILE="$RESULTS_DIR/validation-results.json"
 
 # Initialize combined results
 echo '{"files":[],"summary":{"htmlErrors":0,"htmlWarnings":0,"cssErrors":0,"cssWarnings":0,"jsErrors":0,"jsWarnings":0}}' > "$RESULT_FILE"
 
-echo ""
-echo "📄 Validating HTML, CSS, and JavaScript files..."
-echo ""
-
-# Find all HTML, CSS, and JS files
-FILES=$(find . \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -not -path "*/node_modules/*" -not -path "*/tests/*" -not -path "*/bin/*" -not -name "eslint.config.js" -print)
+# Find all HTML, CSS, and JS files in the specified folder
+FILES=$(find "$FOLDER" \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -not -path "*/node_modules/*" -not -path "*/tests/*" -not -path "*/bin/*" -not -name "eslint.config.js" -print)
 FILE_COUNT=$(echo "$FILES" | wc -l)
 TESTED=0
 
@@ -58,6 +66,57 @@ for file in $FILES; do
     npx ${validator} --formatter json "${file}" > "$TEMP_RESULT" 2>&1
   elif [ "$extension" = "css" ]; then
     npx ${validator} --formatter json "${file}" > "$TEMP_RESULT" 2>&1
+  elif [ "$extension" = "js" ]; then
+    # First, check for JS syntax errors using node --check
+    node --check "$file" 2> "$TEMP_ERROR"
+    if [ $? -ne 0 ]; then
+      # Write a JSON error result for syntax error
+      echo "[{\"filePath\": \"$file\", \"messages\": [{\"fatal\": true, \"message\": \"Syntax error detected by node --check\"}], \"errorCount\": 1, \"fatalErrorCount\": 1}]" > "$TEMP_RESULT"
+    else
+      # Run JSHint for stricter static analysis (plain text output)
+      JSHINT_OUTPUT=$(npx jshint "$file" 2>&1)
+      JSHINT_EXIT=$?
+      
+      # Parse JSHint plain text output and convert to JSON
+      if [ $JSHINT_EXIT -eq 0 ]; then
+        # No errors
+        echo "[]" > "$TEMP_RESULT"
+      else
+        # Parse errors and convert to ESLint-like JSON format
+        echo "$JSHINT_OUTPUT" | node -e "
+          const fs = require('fs');
+          const readline = require('readline');
+          const rl = readline.createInterface({ input: process.stdin });
+          
+          const messages = [];
+          rl.on('line', (line) => {
+            // Parse JSHint output format: filename: line X, col Y, message
+            const match = line.match(/^.*: line (\\d+), col (\\d+), (.+)$/);
+            if (match) {
+              const [, line, col, message] = match;
+              messages.push({
+                line: parseInt(line),
+                column: parseInt(col),
+                message: message,
+                ruleId: null,
+                severity: message.toLowerCase().includes('warning') ? 'warning' : 'error'
+              });
+            }
+          });
+          
+          rl.on('close', () => {
+            const formatted = [{
+              filePath: '$file',
+              messages: messages,
+              errorCount: messages.filter(m => m.severity === 'error').length,
+              warningCount: messages.filter(m => m.severity === 'warning').length,
+              fatalErrorCount: 0
+            }];
+            fs.writeFileSync('$TEMP_RESULT', JSON.stringify(formatted, null, 2));
+          });
+        "
+      fi
+    fi
   else
     npx ${validator} --format json "${file}" > "$TEMP_RESULT" 2>"$TEMP_ERROR"
   fi
@@ -68,7 +127,19 @@ for file in $FILES; do
       try {
         const fs = require('fs');
         const combined = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8'));
-        const newData = JSON.parse(fs.readFileSync('$TEMP_RESULT', 'utf8'));
+        const tempResultContent = fs.readFileSync('$TEMP_RESULT', 'utf8');
+        let newData = [];
+        if (!tempResultContent.trim()) {
+          // Treat empty output as valid (no errors/warnings)
+          // newData remains as empty array
+        } else {
+          try {
+            newData = JSON.parse(tempResultContent);
+          } catch (e) {
+            console.error('  ⚠️  Skipping: Validation result is not valid JSON.');
+            process.exit(0);
+          }
+        }
 
         const fileResult = {
           file: '$file',
@@ -120,25 +191,40 @@ for file in $FILES; do
             });
           }
         } else if ('$extension' === 'js') {
-          // eslint format
-          if (newData.length > 0 && newData[0].messages) {
-            newData[0].messages.forEach(msg => {
+          // JSHint/ESLint format
+          if (newData.length > 0) {
+            const result = newData[0];
+            // Check for fatal parsing errors
+            if (result.fatalErrorCount && result.fatalErrorCount > 0) {
+              const fatalMsg = result.messages.find(m => m.fatal) || result.messages[0];
               const issue = {
-                line: msg.line,
-                column: msg.column,
-                message: msg.message,
-                ruleId: msg.ruleId,
-                severity: msg.severity === 2 ? 'error' : 'warning'
+                line: fatalMsg.line || 1,
+                column: fatalMsg.column || 1,
+                message: fatalMsg.message || 'Fatal parsing error',
+                ruleId: fatalMsg.ruleId || null,
+                severity: 'error'
               };
-
-              if (msg.severity === 2) {
-                fileResult.errors.push(issue);
-                combined.summary.jsErrors++;
-              } else {
-                fileResult.warnings.push(issue);
-                combined.summary.jsWarnings++;
-              }
-            });
+              fileResult.errors.push(issue);
+              combined.summary.jsErrors++;
+            } else if (result.messages && result.messages.length > 0) {
+              result.messages.forEach(msg => {
+                const issue = {
+                  line: msg.line,
+                  column: msg.column,
+                  message: msg.message,
+                  ruleId: msg.ruleId,
+                  severity: msg.severity
+                };
+                // Check severity - handle both ESLint (severity === 2) and string format
+                if (msg.severity === 'error' || msg.severity === 2) {
+                  fileResult.errors.push(issue);
+                  combined.summary.jsErrors++;
+                } else {
+                  fileResult.warnings.push(issue);
+                  combined.summary.jsWarnings++;
+                }
+              });
+            }
           }
         }
 

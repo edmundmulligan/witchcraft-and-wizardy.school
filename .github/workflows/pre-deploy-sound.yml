@@ -1,0 +1,29 @@
+name: Sound - Accessibility Testing and Deployment
+
+on:
+  push:
+    branches: [ development, main]
+    paths:
+      - 'sound/**'
+      - 'bin/**'
+      - '.github/workflows/pre-deploy-sound.yml'
+      - '.github/workflows/test-and-deploy-reusable.yml'
+  pull_request:
+    branches: [ development, main ]
+    paths:
+      - 'sound/**'
+      - 'bin/**'
+      - '.github/workflows/pre-deploy-sound.yml'
+      - '.github/workflows/test-and-deploy-reusable.yml'
+
+jobs:
+  test-and-deploy:
+    uses: ./.github/workflows/test-and-deploy-reusable.yml
+    with:
+      application: 'sound'
+      deploy-path: '/var/www/sound.witchcraft-and-wizardy.school'
+    secrets:
+      WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
+      NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
+      SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
+      SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}

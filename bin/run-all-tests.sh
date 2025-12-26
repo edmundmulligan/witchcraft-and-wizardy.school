@@ -1,7 +1,19 @@
 #!/bin/bash
 # This script runs all tests: accessibility, HTML/CSS validation, broken links
 
-bin/clear-tests.sh
+# Validate folder parameter
+if [ -z "$1" ]; then
+  echo "❌ Error: Folder parameter is required"
+  echo "Usage: $0 <folder>"
+  exit 1
+fi
+
+if [ ! -d "$1" ]; then
+  echo "❌ Error: '$1' is not a valid directory"
+  exit 1
+fi
+
+bin/clear-tests.sh "$1"
 
 # Run all tests and collect exit codes
 echo "Running all tests..."
@@ -36,7 +48,7 @@ bin/run-wave-tests.sh "$@" || exit 1
 
 echo ""
 echo "📖 Running reading age checks..."
-bin/check-reading-age.sh "$@" -x pages/license-and-credits.html || exit 1
+bin/check-reading-age.sh "$@" || exit 1
 
 echo ""
 echo "🌐 Running cross-browser tests..."
@@ -44,7 +56,7 @@ bin/run-browser-tests.sh "$@" || exit 1
 
 echo ""
 echo "📊 Generating test summary..."
-bin/summarise-tests.sh
+bin/summarise-tests.sh "$1"
 
 if [ "$FAILED" -eq 1 ]; then
   echo ""

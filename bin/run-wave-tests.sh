@@ -31,9 +31,24 @@ fi
 TEST_URL=""
 parse_test_options "$@"
 
+
+# Accept optional folder parameter
+FOLDER="${1:-.}"
+if [ ! -d "$FOLDER" ]; then
+  echo "❌ Error: '$FOLDER' is not a valid directory"
+  exit 1
+fi
+
+# Change to the specified folder to serve files from there
+ORIGINAL_DIR=$(pwd)
+RESULTS_DIR="$ORIGINAL_DIR/$FOLDER/test-results"
+mkdir -p "$RESULTS_DIR"
+cd "$FOLDER" || exit 1
+
 # Start server
 start_server_if_needed "$TEST_URL"
 
+discover_html_pages "."
 # Install and run ngrok
 # this is needed to run WAVE as it exposes localhost to the internet
 if ! command -v ngrok &> /dev/null; then

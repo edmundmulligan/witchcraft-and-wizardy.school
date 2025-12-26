@@ -1,0 +1,38 @@
+/*
+ **********************************************************************
+ * File       : index.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This is the page specific stylesheet for the Web Witchcraft and
+ *   Wizardry index page. It defines styles that apply only to the
+ *   landing page.
+ *   Styles here are not in pages.css as the landing page is 
+ *   sufficiently different from other pages to warrant its own
+ *   stylesheet.
+ **********************************************************************
+ */
+
+/* Center main content vertically on the index page */
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    flex-grow: 1;
+}
+
+.circular-button-container {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* insert the landing page background image */
+body::before {
+    background-image: url('../images/background-landscape-light-web.svg');
+}

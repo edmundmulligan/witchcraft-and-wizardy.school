@@ -1,38 +1,38 @@
 {
   "pages": [
     {
-      "url": "index.html",
+      "url": "web/index.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 18
+      "totalCount": 0
     },
     {
-      "url": "pages/students.html",
+      "url": "web/pages/students.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 16
+      "totalCount": 0
     },
     {
-      "url": "pages/glossary-and-faq.html",
+      "url": "web/pages/about.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 16
+      "totalCount": 0
     },
     {
-      "url": "pages/license-and-credits.html",
+      "url": "web/pages/license-and-credits.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 28
+      "totalCount": 0
     },
     {
-      "url": "pages/about.html",
+      "url": "web/pages/glossary-and-faq.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 47
+      "totalCount": 0
     }
   ],
   "summary": {
-    "totalLinks": 125,
+    "totalLinks": 0,
     "brokenLinks": 0,
     "excludedLinks": 0
   }

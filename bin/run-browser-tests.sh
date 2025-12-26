@@ -7,8 +7,16 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/test-helpers.sh"
 
-# Get any command line options
+# Accept optional folder parameter
+FOLDER="${1:-.}"
+if [ ! -d "$FOLDER" ]; then
+  echo "❌ Error: '$FOLDER' is not a valid directory"
+  exit 1
+fi
+
+# Get any command line options (skip folder parameter)
 TEST_URL="http://localhost:8080"
+shift
 parse_test_options "$@"
 
 # Install Playwright for browser testing
@@ -29,13 +37,18 @@ else
     npx playwright install-deps webkit > /dev/null 2>&1 && echo "✓ WebKit dependencies installed" || echo "⚠️  WebKit dependencies installation failed"
 fi
 
+# Change to the specified folder to serve files from there
+ORIGINAL_DIR=$(pwd)
+RESULTS_DIR="$ORIGINAL_DIR/$FOLDER/test-results"
+mkdir -p "$RESULTS_DIR"
+cd "$FOLDER" || exit 1
+
 # Start server and setup
 start_server_if_needed "$TEST_URL"
-setup_results_dir
 
-# Run the browser tests
+# Run the browser tests - pass the original folder path as an environment variable
 echo "Running browser compatibility tests..."
-node "$SCRIPT_DIR/run-browser-tests.js" "$@"
+BROWSER_TEST_FOLDER="$ORIGINAL_DIR/$FOLDER" node "$SCRIPT_DIR/run-browser-tests.js" "$@"
 EXIT_CODE=$?
 
 # Stop server if we started it

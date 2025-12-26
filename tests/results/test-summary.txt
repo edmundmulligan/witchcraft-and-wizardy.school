@@ -10,7 +10,7 @@
 
 [Links] Broken Links Results:
   Pages checked: 5
-  Total links: 125
+  Total links: 0
   Broken links: 0
 
 ======================
@@ -39,12 +39,7 @@
   [Warning]  Warnings: 0
   Pages with errors: 0
 
-[WAVE] WAVE Accessibility Results:
-  Pages tested: 5
-  [X] Errors: 0
-  [Warning]  Alerts: 8
-  [Contrast] Contrast errors: 0
-  Pages with alerts: 5
+[WAVE] WAVE: Not tested or no errors found
 
 [Reading] Reading Age Results:
   Pages analyzed: 3

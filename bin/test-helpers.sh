@@ -53,8 +53,15 @@ stop_server_if_started() {
 
 # Find all HTML files to test
 discover_html_pages() {
-  echo "Discovering pages to test..."
-  PAGES=$(find . -name "*.html" -not -path "./node_modules/*" -not -path "./tests/*" -print)
+  local folder="${1:-.}"
+  echo "Discovering pages to test in $folder..."
+  if [ ! -d "$folder" ]; then
+    echo "Error: Provided folder '$folder' does not exist."
+    PAGES=""
+    PAGE_COUNT=0
+    return
+  fi
+  PAGES=$(find "$folder" -name "*.html" -not -path "*/node_modules/*" -not -path "*/tests/*" -print)
   PAGE_COUNT=$(echo "$PAGES" | wc -l)
   echo "Found $PAGE_COUNT pages to test"
 }

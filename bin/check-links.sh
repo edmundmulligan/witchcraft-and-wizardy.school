@@ -10,14 +10,28 @@ source "$SCRIPT_DIR/test-helpers.sh"
 TEST_URL="http://localhost:8080"
 parse_test_options "$@"
 
+# Validate folder parameter
+ORIGINAL_DIR=$(pwd)
+FOLDER="${1:-.}"
+if [ ! -d "$FOLDER" ]; then
+  echo "❌ Error: '$FOLDER' is not a valid directory"
+  exit 1
+fi
+
 # Install dependencies
 echo "Installing dependencies..."
 npm install broken-link-checker cheerio > /dev/null 2>&1
 
+# Setup results directory in application folder
+RESULTS_DIR="$ORIGINAL_DIR/$FOLDER/test-results"
+mkdir -p "$RESULTS_DIR"
+
+# Change to the specified folder to serve files from there
+cd "$FOLDER" || exit 1
+
 # Start server and setup
 start_server_if_needed "$TEST_URL"
-setup_results_dir
-discover_html_pages
+discover_html_pages "."
 
 # Wait for server to be ready
 echo "Waiting for server to be ready..."

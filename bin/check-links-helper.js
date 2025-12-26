@@ -159,7 +159,8 @@ function checkLink(link) {
 
     const req = client.request(options, (res) => {
       // Skip 403 (Forbidden) as many sites block automated requests but work in browsers
-      if (res.statusCode >= 400 && res.statusCode !== 403) {
+      // Skip 429 (Too Many Requests) as this is rate limiting, not a broken link
+      if (res.statusCode >= 400 && res.statusCode !== 403 && res.statusCode !== 429) {
         pageResult.brokenCount++;
         pageResult.links.push({
           url: linkUrl,

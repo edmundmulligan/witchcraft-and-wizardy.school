@@ -1,0 +1,39 @@
+{
+  "pages": [
+    {
+      "url": "index.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 18
+    },
+    {
+      "url": "pages/students.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 16
+    },
+    {
+      "url": "pages/about.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 47
+    },
+    {
+      "url": "pages/license-and-credits.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 28
+    },
+    {
+      "url": "pages/glossary-and-faq.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 16
+    }
+  ],
+  "summary": {
+    "totalLinks": 125,
+    "brokenLinks": 0,
+    "excludedLinks": 0
+  }
+}

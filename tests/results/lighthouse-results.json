@@ -7,22 +7,22 @@
     },
     {
       "url": "pages/students.html",
-      "score": 1,
-      "failedAudits": []
-    },
-    {
-      "url": "pages/glossary-and-faq.html",
-      "score": 1,
-      "failedAudits": []
-    },
-    {
-      "url": "pages/license-and-credits.html",
-      "score": 1,
+      "score": 0,
       "failedAudits": []
     },
     {
       "url": "pages/about.html",
-      "score": 1,
+      "score": 0,
+      "failedAudits": []
+    },
+    {
+      "url": "pages/license-and-credits.html",
+      "score": 0,
+      "failedAudits": []
+    },
+    {
+      "url": "pages/glossary-and-faq.html",
+      "score": 0,
       "failedAudits": []
     }
   ]

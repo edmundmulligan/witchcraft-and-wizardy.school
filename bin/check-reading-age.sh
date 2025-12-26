@@ -11,7 +11,8 @@ source "$SCRIPT_DIR/test-helpers.sh"
 echo "Installing dependencies..."
 npm install text-readability cheerio > /dev/null 2>&1
 
-# Parse command line arguments
+# Validate folder parameter
+FOLDER=""
 EXCLUDE_LIST=""
 while [[ $# -gt 0 ]]; do
   case $1 in
@@ -27,21 +28,38 @@ while [[ $# -gt 0 ]]; do
       fi
       ;;
     *)
-      echo "❌ Unknown option: $1"
-      echo "Usage: $0 [-x|--exclude file1.html,file2.html] or [-x|--exclude file1.html file2.html]"
-      exit 1
+      # First non-option argument is the folder
+      if [ -z "$FOLDER" ]; then
+        FOLDER="$1"
+      else
+        echo "❌ Unknown option: $1"
+        echo "Usage: $0 [folder] [-x|--exclude file1.html,file2.html] or [folder] [-x|--exclude file1.html file2.html]"
+        exit 1
+      fi
       ;;
   esac
   shift
 done
+
+# Set default folder if not provided
+FOLDER="${FOLDER:-.}"
+
+# Validate folder exists
+if [ ! -d "$FOLDER" ]; then
+  echo "❌ Error: '$FOLDER' is not a valid directory"
+  exit 1
+fi
+
 EXCLUDED_COUNT=0
 
-# Setup results directory
-setup_results_dir
+# Setup results directory in application folder
+ORIGINAL_DIR=$(pwd)
+RESULTS_DIR="$ORIGINAL_DIR/$FOLDER/test-results"
+mkdir -p "$RESULTS_DIR"
 RESULT_FILE="$RESULTS_DIR/readability-results.json"
 
 # Find all HTML pages
-discover_html_pages
+discover_html_pages "$FOLDER"
 
 # Filter out excluded pages
 if [ -n "$EXCLUDE_LIST" ]; then
@@ -76,6 +94,7 @@ echo ""
 
 # Process each page
 TESTED=0
+SKIPPED=0
 for page in $PAGES; do
   TESTED=$((TESTED + 1))
   echo "[$TESTED/$PAGE_COUNT] Analyzing $page"
@@ -90,6 +109,13 @@ for page in $PAGES; do
       // Read and parse HTML
       const html = fs.readFileSync('$page', 'utf8');
       const \$ = cheerio.load(html);
+
+      // Check for meta tag that disables reading age check
+      const checkReadingAge = \$('meta[name=\"check-reading-age\"]').attr('content');
+      if (checkReadingAge === 'false') {
+        console.log('  ⏭️  Skipping (check-reading-age=false)');
+        process.exit(0);
+      }
 
       // Extract text content (remove scripts, styles, etc.)
       \$('script, style').remove();

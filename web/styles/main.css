@@ -1,0 +1,216 @@
+/*
+ **********************************************************************
+ * File       : main.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This is the main stylesheet for the Web Witchcraft and Wizardry website.
+ *   It defines global styles that apply to all pages of the site and should
+ *   be the first stylesheet linked from all HTML files.
+ **********************************************************************
+ */
+
+ /*
+  **********************************************************************
+  * Define semantic names for colours to be used on all pages
+  * N.B. Use colour names not hex codes for better code readability
+  **********************************************************************
+  */
+
+:root {
+    /* light theme colours */
+    --color-light-page-background:     lightgoldenrodyellow;
+    --color-light-page-text:           darkgreen;
+    --color-light-headings-background: lightcyan;
+    --color-light-headings-text:       purple;
+    --color-light-link-text:           darkgreen;
+    --color-light-link-text-hover:     lightblue;
+    --color-light-link-text-visited:   darkblue;
+    --color-light-link-text-focus:     darkblue;
+    --color-light-error-background:    darkred;
+    --color-light-error-text:          white;
+    --color-light-warning-background:  red;
+    --color-light-warning-text:        white;
+
+    /* dark theme colours */
+    --color-dark-page-background:      black;
+    --color-dark-page-text:            lightgreen;
+    --color-dark-headings-background:  darkcyan;
+    --color-dark-headings-text:        orchid;
+    --color-dark-link-text:            lightgreen;
+    --color-dark-link-text-hover:      lightblue;
+    --color-dark-link-text-visited:    cornflowerblue;
+    --color-dark-link-text-focus:      cornflowerblue;
+    --color-dark-error-background:     darkred;
+    --color-dark-error-text:           white;
+    --color-dark-warning-background:   crimson;
+    --color-dark-warning-text:         white;
+
+    /* other global variables to ensure sitewide consistency */
+    --border-radius:          2rem;
+    --border-weight:          0.2rem;
+    --border-weight-thin:     0.1rem;
+    --border-style:           solid;
+
+    /* responsive font and button sizes using clamp() */
+    
+    /* see https://modern-fluid-typography.vercel.app for a size calculator */
+
+    --fontsize-p:             clamp(0.5rem, 2vw + 1rem, 2.25rem);
+    --fontsize-smallprint:    clamp(0.5rem, 1.5vw + 0.75rem, 1.75rem);
+    --fontsize-largeprint:    clamp(1rem, 3vw + 1rem, 3rem);
+    --fontsize-h1h2:          clamp(0.875rem, 2vw + 1rem, 2.5rem);
+    --fontsize-h3h4:          clamp(0.8rem, 2vw + 1rem, 2.5rem);
+    --fontsize-button:        clamp(0.75rem, 1vw + 1rem, 4rem);
+    --fontsize-button-circle: clamp(0.75rem, 1vw + 0.75rem, 1.5rem);
+    --fontsize-nav-site:      clamp(0.875rem, 2vw, 1rem);
+    --fontsize-nave-page:     clamp(0.5rem, 2vw + 1rem, 2.25rem);
+    --buttonsize-circle:      clamp(4rem, 8vw + 5rem, 12rem);
+    --margin-vertical:        clamp(0.333rem, 0.5vw + 0.5rem, 1rem);;
+    --margin-horizontal:      clamp(0.333rem, 1vw + 1rem, 2rem);;
+
+    /* 
+        there are probably more things that could be defined here 
+        to ensure sitewide consistency such as margin and padding
+        sizes, but that means more refactoring and this is a good start
+    */
+}
+
+/*
+ *******************************************************
+ * Element styles
+ *******************************************************
+ */
+
+body {
+    /* create positioning context for absolutely positioned child elements */
+    position: relative;
+
+    /* use flexbox to layout header, main and footer vertically */
+
+    /* probably not neccessary, but it does allow align-items to be used */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+
+    /* prevent horizontal overflow */
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+
+    /*
+    * use a readable font for body text
+    * N.B. These are inherited by child elements unless overridden
+    */
+
+    font-family: "Open Sans", -apple-system, sans-serif;
+    font-style: normal;
+    line-height: 1.6;
+    text-align: left;
+    color: var(--color-light-page-text);
+    background-color: var(--color-light-page-background);
+}
+
+/* Use body:before to stop the background image scrolling */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* set background image handling (actual image is selected in index.css 
+       as that is the only page to use a background image) */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    /* ensure the background image tranparent so it
+       takes a tint of the site background colour */
+    opacity: 0.7;
+    z-index: -1;
+}
+
+header {
+    flex-shrink: 1;  /* Allow header to shrink */
+    flex-grow: 0;  /* Prevent header from growing */
+}
+
+main {
+    flex-shrink: 1;  /* Allow main to shrink */
+    flex-grow: 1;  /* Allowsmain to grow and fill available space */
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    width: 100%;
+}
+
+footer {
+    flex-shrink: 1;  /* Allow footer to shrink */
+    flex-grow: 0;  /* Prevent footer from growing */
+}
+
+/* Center all headings and use Cinzel (an elegant serif Google font) */
+h1, h2, h3, h4, h5, h6 {
+    /* Use Cinzel font for headings */
+    font-family: Cinzel, serif;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* make h1 and h2 larger and bolder */
+h1, h2{
+    font-size: var(--fontsize-h1h2);
+    font-weight: 700;
+}
+
+/* h3 not quite as big */
+h3, h4{
+    font-size: var(--fontsize-h3h4);
+    font-weight: 700;
+}
+
+/* increas spacing for paragraphs in accordance with WCAG 2.2 */
+p {
+    font-size: var(--fontsize-p);
+    margin-bottom: 1.5rem;
+}
+
+/*
+ **************************************************
+ * Styles for general link pseudo elements
+ **************************************************
+ */
+
+ /* do not distinguish between a visited and non-visited link */
+ a:link,
+ a:visited {
+    color: var(--color-light-link-text);
+    text-decoration: underline;
+    font-weight: 800;
+}
+
+a:hover,
+a:focus-visible {
+    color: var(--color-light-link-text-focus);
+}
+
+/* this may be a bit subtle but it meets WCAG 2.2 guidelines */
+a:focus-visible {
+    outline: 0.1rem dashed var(--color-light-link-text-focus);
+    outline-offset: 0.1em;
+}
+
+/* Utility class to mirror an image horizontally. Used by the wizard 
+   silhouette in the header as the original image faces the wrong way */
+.mirror {
+    transform: scaleX(-1);
+}

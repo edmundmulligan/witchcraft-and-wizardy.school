@@ -9,9 +9,14 @@ env:
 
 on:
   push:
-    branches: [ development, main]
+    branches: [ development]
+    paths:
+      - 'web/**'
+
   pull_request:
-    branches: [ development, main ]
+    branches: [ development ]
+    paths:
+      - 'web/**'
 
 jobs:
   run-pre-deployment-test:
@@ -29,48 +34,48 @@ jobs:
     - name: Validate HTML and CSS
       continue-on-error: true
       run: |
-        bin/validate-code.sh
+        bin/validate-code.sh web
 
     - name: Check for file comments
       continue-on-error: true
       run: |
-        bin/check-file-comments.sh
+        bin/check-file-comments.sh web
 
     # Check for broken links
     - name: Check for broken links
       continue-on-error: true
       run: |
-        bin/check-links.sh
+        bin/check-links.sh web
 
     - name: Check site works in different browsers
       continue-on-error: true
       run: |
-        bin/run-browser-tests.sh
+        bin/run-browser-tests.sh web
 
     - name: Run axe accessibility tests
       continue-on-error: true
       run: |
-        bin/run-axe-tests.sh
+        bin/run-axe-tests.sh web
 
     - name: Run Pa11y accessibility tests
       continue-on-error: true
       run: |
-        bin/run-pa11y-tests.sh
+        bin/run-pa11y-tests.sh web
 
     - name: Run Lighthouse accessibility tests
       continue-on-error: true
       run: |
-        bin/run-lighthouse-tests.sh
+        bin/run-lighthouse-tests.sh web
 
     - name: Run WAVE accessibility tests
       continue-on-error: true
       run: |
-        bin/run-wave-tests.sh
+        bin/run-wave-tests.sh web
 
     - name: Check reading levels
       continue-on-error: true
       run: |
-        bin/check-reading-age.sh --exclude pages/license-and-credits.html
+        bin/check-reading-age.sh web
 
     - name: Summrise test results
       continue-on-error: false

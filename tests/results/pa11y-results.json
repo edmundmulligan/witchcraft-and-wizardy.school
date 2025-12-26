@@ -2,33 +2,117 @@
   "pages": [
     {
       "url": "index.html",
-      "documentTitle": "Web Witchcraft and Wizardry",
+      "documentTitle": "Files within witchcraft-and-wizardy.school/",
       "pageUrl": "http://localhost:8080/",
       "issues": []
     },
     {
       "url": "pages/students.html",
-      "documentTitle": "Student Dashboard|Web Witchcraft and Wizardry",
+      "documentTitle": "",
       "pageUrl": "http://localhost:8080/pages/students",
-      "issues": []
-    },
-    {
-      "url": "pages/glossary-and-faq.html",
-      "documentTitle": "Glossary and FAQ|Web Witchcraft and Wizardry",
-      "pageUrl": "http://localhost:8080/pages/glossary-and-faq",
-      "issues": []
-    },
-    {
-      "url": "pages/license-and-credits.html",
-      "documentTitle": "License and Credits|Web Witchcraft and Wizardry",
-      "pageUrl": "http://localhost:8080/pages/license-and-credits",
-      "issues": []
+      "issues": [
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_2.H25.1.NoTitleEl",
+          "type": "error",
+          "typeCode": 1,
+          "message": "A title should be provided for the document, using a non-empty title element in the head section.",
+          "context": "<head> <meta name=\"viewport\" content=...</head>",
+          "selector": "html > head",
+          "runner": "htmlcs",
+          "runnerExtras": {}
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_1.3_1_1.H57.2",
+          "type": "error",
+          "typeCode": 1,
+          "message": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
+          "context": "<html><head> <meta name=\"viewport\" co...</html>",
+          "selector": "html",
+          "runner": "htmlcs",
+          "runnerExtras": {}
+        }
+      ]
     },
     {
       "url": "pages/about.html",
-      "documentTitle": "About|Web Witchcraft and Wizardry",
+      "documentTitle": "",
       "pageUrl": "http://localhost:8080/pages/about",
-      "issues": []
+      "issues": [
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_2.H25.1.NoTitleEl",
+          "type": "error",
+          "typeCode": 1,
+          "message": "A title should be provided for the document, using a non-empty title element in the head section.",
+          "context": "<head> <meta name=\"viewport\" content=...</head>",
+          "selector": "html > head",
+          "runner": "htmlcs",
+          "runnerExtras": {}
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_1.3_1_1.H57.2",
+          "type": "error",
+          "typeCode": 1,
+          "message": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
+          "context": "<html><head> <meta name=\"viewport\" co...</html>",
+          "selector": "html",
+          "runner": "htmlcs",
+          "runnerExtras": {}
+        }
+      ]
+    },
+    {
+      "url": "pages/license-and-credits.html",
+      "documentTitle": "",
+      "pageUrl": "http://localhost:8080/pages/license-and-credits",
+      "issues": [
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_2.H25.1.NoTitleEl",
+          "type": "error",
+          "typeCode": 1,
+          "message": "A title should be provided for the document, using a non-empty title element in the head section.",
+          "context": "<head> <meta name=\"viewport\" content=...</head>",
+          "selector": "html > head",
+          "runner": "htmlcs",
+          "runnerExtras": {}
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_1.3_1_1.H57.2",
+          "type": "error",
+          "typeCode": 1,
+          "message": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
+          "context": "<html><head> <meta name=\"viewport\" co...</html>",
+          "selector": "html",
+          "runner": "htmlcs",
+          "runnerExtras": {}
+        }
+      ]
+    },
+    {
+      "url": "pages/glossary-and-faq.html",
+      "documentTitle": "",
+      "pageUrl": "http://localhost:8080/pages/glossary-and-faq",
+      "issues": [
+        {
+          "code": "WCAG2AA.Principle2.Guideline2_4.2_4_2.H25.1.NoTitleEl",
+          "type": "error",
+          "typeCode": 1,
+          "message": "A title should be provided for the document, using a non-empty title element in the head section.",
+          "context": "<head> <meta name=\"viewport\" content=...</head>",
+          "selector": "html > head",
+          "runner": "htmlcs",
+          "runnerExtras": {}
+        },
+        {
+          "code": "WCAG2AA.Principle3.Guideline3_1.3_1_1.H57.2",
+          "type": "error",
+          "typeCode": 1,
+          "message": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
+          "context": "<html><head> <meta name=\"viewport\" co...</html>",
+          "selector": "html",
+          "runner": "htmlcs",
+          "runnerExtras": {}
+        }
+      ]
     }
   ]
 }
