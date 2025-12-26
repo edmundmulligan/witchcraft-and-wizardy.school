@@ -21,7 +21,7 @@ jobs:
     uses: ./.github/workflows/test-and-deploy-reusable.yml
     with:
       application: 'sound'
-      deploy-path: '/var/www/sound.witchcraft-and-wizardy.school'
+      deploy-path: '/var/www/sound.witchcraft-and-wizardry.school'
     secrets:
       WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
       NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
