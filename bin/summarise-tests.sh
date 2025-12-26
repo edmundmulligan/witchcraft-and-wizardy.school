@@ -13,6 +13,10 @@ fi
 RESULTS_DIR="$APP_FOLDER/test-results"
 EXIT_CODE=0
 OUTPUT_FILE="$RESULTS_DIR/test-summary.txt"
+TEMP_EXIT_FILE="$RESULTS_DIR/.exit_code"
+
+# Initialize exit code file
+echo "0" > "$TEMP_EXIT_FILE"
 
 # Run the main script logic in a subshell and capture output
 {
@@ -67,7 +71,7 @@ if [ -f "$RESULTS_DIR/broken-links-results.json" ]; then
       console.log('  Pages with broken links: ' + data.pages.filter(p => p.brokenCount > 0).length);
       process.exit(1);
     }
-  " && echo "" || { echo ""; EXIT_CODE=1; }
+  " && echo "" || { echo ""; echo "1" > "$TEMP_EXIT_FILE"; }
 else
   echo "🔗 Broken Links: No broken links found"
   echo ""
@@ -75,6 +79,7 @@ fi
 
 # Final summary
 echo "======================"
+EXIT_CODE=$(cat "$TEMP_EXIT_FILE")
 if [ $EXIT_CODE -eq 0 ]; then
   echo "✅ All tests passed (no critical/serious issues)"
 else
@@ -99,7 +104,7 @@ if [ -f "$RESULTS_DIR/browser-results.json" ]; then
       });
       process.exit(1);
     }
-  " && echo "" || { echo ""; EXIT_CODE=1; }
+  " && echo "" || { echo ""; echo "1" > "$TEMP_EXIT_FILE"; }
 else
   echo "🌐 Browser Compatibility: Not tested"
   echo ""
@@ -126,7 +131,7 @@ if [ -f "$RESULTS_DIR/axe-results.json" ]; then
     if (critical > 0 || serious > 0) {
       process.exit(1);
     }
-  " && echo "" || { echo ""; EXIT_CODE=1; }
+  " && echo "" || { echo ""; echo "1" > "$TEMP_EXIT_FILE"; }
 else
   echo "✅ Axe: No violations found"
   echo ""
@@ -150,7 +155,7 @@ if [ -f "$RESULTS_DIR/lighthouse-results.json" ]; then
     if (avgScore < 0.9) {
       process.exit(1);
     }
-  " && echo "" || { echo ""; EXIT_CODE=1; }
+  " && echo "" || { echo ""; echo "1" > "$TEMP_EXIT_FILE"; }
 else
   echo "✅ Lighthouse: No issues found"
   echo ""
@@ -174,7 +179,7 @@ if [ -f "$RESULTS_DIR/pa11y-results.json" ]; then
     if (totalErrors > 0) {
       process.exit(1);
     }
-  " && echo "" || { echo ""; EXIT_CODE=1; }
+  " && echo "" || { echo ""; echo "1" > "$TEMP_EXIT_FILE"; }
 else
   echo "✅ Pa11y: No errors found"
   echo ""
@@ -207,7 +212,7 @@ if [ -f "$RESULTS_DIR/wave-results.json" ]; then
     if (totalErrors > 0) {
       process.exit(1);
     }
-  " && echo "" || { echo ""; EXIT_CODE=1; }
+  " && echo "" || { echo ""; echo "1" > "$TEMP_EXIT_FILE"; }
 else
   echo "🌊 WAVE: Not tested or no errors found"
   echo ""
@@ -245,5 +250,9 @@ else
 fi
 
 } | tee >(sed 's/📊/[Test Results]/g; s/📄/[Code]/g; s/🔗/[Links]/g; s/✅/[OK]/g; s/❌/[X]/g; s/🌐/[Browser]/g; s/🔍/[Axe]/g; s/🔴/[Critical]/g; s/🟠/[Serious]/g; s/🟡/[Moderate]/g; s/⚪/[Minor]/g; s/💡/[Lighthouse]/g; s/🔬/[Pa11y]/g; s/⚠️/[Warning]/g; s/🌊/[WAVE]/g; s/🎨/[Contrast]/g; s/📖/[Reading]/g' > "$OUTPUT_FILE")
+
+# Read exit code from temp file
+EXIT_CODE=$(cat "$TEMP_EXIT_FILE")
+rm -f "$TEMP_EXIT_FILE"
 
 exit $EXIT_CODE
