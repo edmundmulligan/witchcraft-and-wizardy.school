@@ -28,6 +28,6 @@
 @media (width < 800px) or ((hover:none) and (pointer:coarse)) {
     /* insert the landing page background image for small screens */
     body::before {
-        background-image: url('/images/michael-hamments-x6VyE3ie1sM-unsplash-portrait.jpg');
+        background-image: url('../images/background-portrait-light-web.svg');
     }
 }

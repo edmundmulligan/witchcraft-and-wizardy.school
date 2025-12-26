@@ -14,9 +14,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('header.header');
     if (header && header.children.length === 0) {
+        // Determine path prefix based on current page location
+        const pathPrefix = window.location.pathname.includes('/pages/') ? '../' : '';
+        
         header.innerHTML = `
         <div class="header-left">
-            <img class="header-image mirror" src="/images/cat-1299082.svg" alt="" aria-hidden="true">
+            <img class="header-image mirror" src="${pathPrefix}images/cat-1299082.svg" alt="" aria-hidden="true">
         </div>
 
         <div class="header-center">
@@ -39,19 +42,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 <h2 class="site-subtitle">Learn to create magical websites</h2>
                 <nav class="site-navigation" aria-label="Site navigation">
                     <ul>
-                        <li><a href="/index.html">Home</a></li>
-                        <li><a href="/pages/students.html">Students</a></li>
+                        <li><a href="${pathPrefix}index.html">Home</a></li>
+                        <li><a href="${pathPrefix}pages/students.html">Students</a></li>
                         <li><button popovertarget="not-implemented">Mentors</button></li>
-                        <li><a href="/pages/about.html">About</a></li>
-                        <li><a href="/pages/glossary-and-faq.html">Glossary</a></li>
-                        <li><a href="/pages/license-and-credits.html">License</a></li>
+                        <li><a href="${pathPrefix}pages/about.html">About</a></li>
+                        <li><a href="${pathPrefix}pages/glossary-and-faq.html">Glossary</a></li>
+                        <li><a href="${pathPrefix}pages/license-and-credits.html">License</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
 
         <div class="header-right">
-          <img class="header-image" src="/images/witch-151167.svg" alt="" aria-hidden="true">
+          <img class="header-image" src="${pathPrefix}images/witch-151167.svg" alt="" aria-hidden="true">
         </div>
         `;
     }

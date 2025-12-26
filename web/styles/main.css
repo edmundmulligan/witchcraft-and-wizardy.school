@@ -33,7 +33,19 @@
     --color-light-warning-background:  red;
     --color-light-warning-text:        white;
 
-    /* dark theme colours - Not defined as dark mode not yet implemented */
+    /* dark theme colours */
+    --color-dark-page-background:      black;
+    --color-dark-page-text:            lightgreen;
+    --color-dark-headings-background:  darkcyan;
+    --color-dark-headings-text:        orchid;
+    --color-dark-link-text:            lightgreen;
+    --color-dark-link-text-hover:      lightblue;
+    --color-dark-link-text-visited:    cornflowerblue;
+    --color-dark-link-text-focus:      cornflowerblue;
+    --color-dark-error-background:     darkred;
+    --color-dark-error-text:           white;
+    --color-dark-warning-background:   crimson;
+    --color-dark-warning-text:         white;
 
     /* other global variables to ensure sitewide consistency */
     --border-radius:          2rem;
