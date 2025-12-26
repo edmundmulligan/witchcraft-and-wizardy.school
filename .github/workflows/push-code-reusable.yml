@@ -31,10 +31,11 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Copy files to server
-      uses: appleboy/scp-action@v0.1.4
+      uses: appleboy/scp-action@v0.1.7
       with:
         host: ${{ inputs.server }}
         username: ${{ secrets.SERVER_USERNAME }}
         key: ${{ secrets.SERVER_SSH_KEY }}
         source: "${{ inputs.application }}/*"
         target: ${{ inputs.deploy-path }}
+        strip_components: 1

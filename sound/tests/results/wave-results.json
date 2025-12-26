@@ -1,0 +1,22 @@
+{
+  "pages": [
+    {
+      "url": "index.html",
+      "errors": 0,
+      "alerts": 1,
+      "features": 4,
+      "structural": 11,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/index.html"
+    }
+  ]
+}
