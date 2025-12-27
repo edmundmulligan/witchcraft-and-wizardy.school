@@ -24,8 +24,8 @@
  ************************************************************
  */
 
-/* same comments about this being hacky as in media-queries.css apply here */
-@media (width < 800px) or ((hover:none) and (pointer:coarse)) {
+/* if we are in a portrait orientation, use a portrait background image */
+@media (orientation: portrait) {
     /* insert the landing page background image for small screens */
     body::before {
         background-image: url('../images/background-portrait-light-web.svg');

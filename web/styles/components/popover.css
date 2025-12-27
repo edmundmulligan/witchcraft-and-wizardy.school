@@ -20,7 +20,12 @@
     border: var(--border-weight) var(--border-style) var(--color-light-headings-text);
     border-radius: var(--border-radius);
     padding: 2rem;
-    max-width: 30rem;
+    max-width: min(30rem, 90vw);
+    max-height: 80vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+    inset: auto;
+    margin: auto;
 }
 
 .popover h2 {
@@ -33,6 +38,7 @@
 .popover p {
     font-size: var(--fontsize-smallprint);
     font-weight: bold;
+    text-align: center;
 }
 
 .popover button {
