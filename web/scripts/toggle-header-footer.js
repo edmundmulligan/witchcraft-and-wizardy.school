@@ -30,7 +30,7 @@ function setupHeaderToggle() {
                     headerFull.style.display = 'grid';
                 } else {
                     // Up arrow clicked - show minimal header
-                    headerMinimal.style.display = 'block';
+                    headerMinimal.style.display = 'grid';
                     headerFull.style.display = 'none';
                 }
             });

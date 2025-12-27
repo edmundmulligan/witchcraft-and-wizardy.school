@@ -143,6 +143,11 @@
     transform: scale(1.1);
 }
 
+.header-button button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 0.5px;
+}
+
 /* header warning banner - only visible on very small screens */
 .header-warning {
     display: none;
@@ -212,6 +217,12 @@
 
 .footer-button button:active {
     transform: scale(1.1);
+}
+
+.footer-button button:focus-visible,
+.header-button button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 0.5px;
 }
 
 .footer {

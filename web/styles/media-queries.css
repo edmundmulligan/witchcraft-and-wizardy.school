@@ -82,6 +82,11 @@
         gap: 0.5rem;
     }
 
+    .footer-logo {
+        max-width: 50%;
+        min-width: 200px;
+    }
+
     .header-image {
         height: 5rem;
     }
