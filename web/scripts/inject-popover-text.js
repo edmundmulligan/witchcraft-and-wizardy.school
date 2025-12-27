@@ -15,11 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const popover = document.getElementById('not-implemented');
     if (popover) {
         popover.innerHTML = `
-           <h2>Alert</h2>
+           <h2>Under Construction</h2>
             <p>
-                This feature has not been implemented in this phase of the project, as 
-                described in the essay Incorporating usability and user experience into 
-                the Web Witchcraft and Wizardry project (Mulligan, 2025).
+                This feature has not been implemented yet&nbsp;&mdash;&nbsp;please
+                check back later!
             </p>
             <button popovertarget="not-implemented" popovertargetaction="hide">
                 Close
