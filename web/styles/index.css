@@ -24,14 +24,6 @@ main {
     flex-grow: 1;
 }
 
-.circular-button-container {
-    display: flex;
-    flex-direction: row;
-    gap: 2em;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
 /* insert the landing page background image */
 body::before {
     background-image: url('../images/background-landscape-light-web.svg');

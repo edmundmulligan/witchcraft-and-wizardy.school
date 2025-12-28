@@ -35,191 +35,6 @@
         background-color: var(--color-light-warning-background);
         text-align: center;
     }
-
-    /* from here on, same as small screen. Would be nice if 
-       DRY principle could be applied here, but only the first 
-       matching media query is applied by browsers so this has to
-       repeat everything in 200px-800px. Grrrr :(
-    */
-
-    /* switch header to vertical layout */
-    .header-full {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
-        align-items: center;
-    }
-
-    .header-left {
-        grid-column: 1;
-        grid-row: 1;
-        justify-self: center;
-    }
-
-    .header-center {
-        grid-column: 1;
-        grid-row: 2;
-        justify-self: center;
-    }
-
-    .header-right {
-        grid-column: 1;
-        grid-row: 3;
-        justify-self: center;
-    }
-
-    /* centee header icons */
-    .header-left,
-    .header-right {
-        justify-content: center;
-    }
-
-    /* switch footer to vertical layout */
-    .footer-full {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .footer-logo {
-        max-width: 50%;
-        min-width: 200px;
-    }
-
-    .header-image {
-        height: 5rem;
-    }
-
-    nav.site-navigation ul {
-        align-items: center;
-    }
-
-    nav.in-page-navigation ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    nav.in-page-navigation {
-        flex-direction: column;
-    }
-
-    .site-title {
-        padding: 0.1rem;
-        text-align: center;
-    }
-
-    .site-subtitle {
-        padding: 0.1rem;
-        text-align: center;
-    }
-
-    .page-title {
-        padding: 0.1rem;
-        width: auto;
-        text-align: center;
-    }
-
-    .introduction p,
-    .gallery p,
-    .accessories p,
-    .license p,
-    .glossary p {
-        margin: 0.5rem 1rem;
-        max-width: 100%;
-        box-sizing: border-box;
-        overflow-wrap: break-word;
-    }
-
-    .introduction ul,
-    .gallery ul,
-    .accessories ul,
-    .credits ul {
-        margin: 0.5rem 1rem;
-        padding-left: 1.5rem;
-        padding-right: 0.5rem;
-        max-width: 100%;
-        box-sizing: border-box;
-        text-align: left;
-    }
-
-    .gallery-container {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        max-width: 100%;
-    }
-
-    /* change the containers to a column layout */
-
-    .circular-button-container {
-        flex-direction: column;
-    }
-
-    .facts-container  {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-
-    .wide {
-        padding: 0.5rem;
-        margin: 0.5rem;
-    }
-
-    .lessons-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .accessories-container {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        max-width: 100%;
-    }
-
-    /* Reorder avatar container: output box above radio buttons */
-    .avatar-container {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .accessory-item {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .accessory-image {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-    }
-
-    /* put the output box above the radio buttons */
-    .student-info form output {
-        order: 1;
-        grid-column: unset;
-    }
-
-    .student-info form .student-form-avatar {
-        order: 2;
-        grid-column: unset;
-        grid-template-columns: 1fr;
-    }
-
-    .student-info form fieldset {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .lesson-tile {
-        flex: 0 0 80%;
-        max-width: 80%;
-        width: 80%;
-    }
 }
 
 /*
@@ -319,8 +134,12 @@
     .introduction p,
     .gallery p,
     .accessories p,
+    .facts p,
+    .glossary p,
     .license p,
-    .glossary p {
+    .credits p,
+    .student-info p,
+    .lessons p {
         margin: 0.5rem 1rem;
         max-width: 100%;
         box-sizing: border-box;
@@ -330,6 +149,9 @@
     .introduction ul,
     .gallery ul,
     .accessories ul,
+    .facts ul,
+    .glossary ul,
+    .license ul,
     .credits ul {
         margin: 0.5rem 1rem;
         padding-left: 1.5rem;
@@ -394,10 +216,62 @@
         height: auto;
     }
 
+    /* Stack label above input for student name */
+    .student-form-item {
+        text-align: center;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 0.5rem;
+        overflow: hidden;
+    }
+
+    .student-form-item h4,
+    .student-form-item label,
+    .student-form-item p {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .student-form-item label,
+    .student-form-item input[type="text"] {
+        display: block;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .student-form-item label {
+        margin-bottom: 0.5em;
+    }
+
+    .student-form-item hr {
+        max-width: calc(100% - 2em);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     /* put the output box above the radio buttons */
     .student-info form output {
         order: 1;
         grid-column: unset;
+        width: 100%;
+        max-width: 100%;
+        overflow-wrap: break-word;
+        padding: 0.5em;
+        aspect-ratio: auto;
+        min-height: 5em;
+        align-items: flex-start;
+        text-align: center;
     }
 
     .student-info form .student-form-avatar {
@@ -409,6 +283,20 @@
     .student-info form fieldset {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .student-form-choice {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5em;
+        padding: 0.5em;
+    }
+
+    .student-form-choice label {
+        text-align: center;
     }
 
     .lesson-tile {
