@@ -28,7 +28,7 @@
 .facts,
 .glossary,
 .license,
-.credits
+.credits,
 .student-info,
 .lessons {
     max-width: 100%;
@@ -79,7 +79,7 @@
    max-width: 80%;
    margin: 0 auto;
    border: 0.2em solid var(--color-headings-text);
-   border-radius: 1em;
+   border-radius: var(--border-radius);
 }
 
 .avatar-container {
@@ -92,17 +92,12 @@
 .student-info form output {
    grid-column: 1;
    background-color: var(--color-headings-background);
-   border: 0.1em solid var(--color-headings-text);
-   border-radius: 0.5em;
+   border: var(--border-weight) var(--border-style) var(--color-headings-text);
+   border-radius: var(--border-radius);
    padding: 1em;
    margin: 1em;
-   display: flex;
    align-items: center;
    justify-content: center;
-   aspect-ratio: 4 / 3;
-   font-size: var(--fontsize-p);
-   overflow-wrap: break-word;
-   hyphens: auto;
    box-sizing: border-box;
 }
 
@@ -134,13 +129,13 @@
    float: left;
    width: 100%;
    padding: 0;
-   margin-bottom: 0.5em;
+   margin-bottom: 0.5rem;
    font-size: var(--fontsize-smallprint);
 }
 
 .student-info form input[type="radio"] {
-   width: 1em;
-   height: 1em;
+   width: 1rem;
+   height: 1rem;
    font-size: var(--fontsize-p);
 }
 
@@ -151,14 +146,14 @@
 
 .student-info form hr {
    border: none;
-   border-top: 0.1em solid var(--color-headings-text);
-   margin: 0.5em 0 0;
+   border-top: var(--border-weight) var(--border-style) var(--color-headings-text);
+   margin: 0.5rem 0 0;
 }
 
 .student-info form h4 {
-   border-top: 0.1em solid var(--color-headings-text);
-   padding-top: 0.5em;
-   margin-top: 0.5em;
+   border-top: var(--border-weight) var(--border-style) var(--color-headings-text);
+   padding-top: 0.5rem;
+   margin-top: 0.5rem;
 }
 
 .student-info form h4:first-of-type {
@@ -168,7 +163,7 @@
 }
 
 .student-form-item {
-   margin: 0.2em 0;
+   margin: 0.2rem 0;
    text-align: left;
 }
 
@@ -188,8 +183,8 @@
 .student-form-choice {
    display: inline-block;
    align-items: center;
-   gap: 0.5em;
-   padding: 0.5em;
+   gap: 0.5rem;
+   padding: 0.5rem;
 }
 
 
@@ -235,9 +230,10 @@
 .circular-button-container {
     display: flex;
     flex-direction: row;
-    gap: 2em;
+    gap: 2rem;
     justify-content: space-evenly;
     align-items: center;
+    margin-top: 3rem;
 }
 
 
@@ -248,7 +244,7 @@
  **********************************************/
 .gallery-item {
     text-align: center;
-    padding: 1em;
+    padding: 1rem;
     background-color: var(--color-headings-background);
     color: var(--color-headings-text);
     border: var(--border-weight) var(--border-style) var(--color-headings-text);
@@ -337,12 +333,12 @@
 .facts dt {
     font-weight: bold;
     grid-column: 1;
-    padding: 0.5em;
+    padding: 0.5rem;
     margin: 0;
     text-align: center;
     align-self: stretch;
     max-width: 100%;
-    border-bottom: 1px solid var(--color-headings-text);
+    border-bottom: 0.3rem solid var(--color-headings-text);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -350,11 +346,11 @@
 
 .facts dd {
     grid-column: 2;
-    padding: 0.5em;
+    padding: 0.5rem;
     margin: 0;
     text-align: center;
     align-self: stretch;
-    border-bottom: 1px solid var(--color-headings-text);
+    border-bottom: var(--border-weight) var(--border-style) var(--color-headings-text);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -380,9 +376,9 @@
 .glossary dt {
     font-weight: bold;
     grid-column: 1;
-    padding: 0 0.5em;
+    padding: 0 0.5rem;
     margin: 0;
-    border: 1px solid var(--color-page-text);
+    border: var(--border-weight) var(--border-style) solid var(--color-page-text);
     background-color: var(--color-page-background);
     text-align: left;
     align-items: center;
@@ -392,11 +388,11 @@
 
 .glossary dd {
     grid-column: 2;
-    padding: 0 0.5em;
+    padding: 0 0.5rem;
     margin: 0;
-    border-top: 1px solid var(--color-headings-text);
-    border-right: 1px solid var(--color-headings-text);
-    border-bottom: 1px solid var(--color-headings-text);
+    border-top: var(--border-weight) var(--border-style) var(--color-headings-text);
+    border-right: var(--border-weight) var(--border-style) var(--color-headings-text);
+    border-bottom: var(--border-weight) var(--border-style) var(--color-headings-text);
     border-left: none;
     background-color: var(--color-page-background);
     text-align: left;
@@ -409,8 +405,8 @@
    background-color: var(--color-headings-background);
    border: var(--border-weight) var(--border-style) var(--color-headings-text);
    border-radius: var(--border-radius);
-   padding: 1em;
-   margin: 1em;
+   padding: 1rem;
+   margin: 1rem;
    flex: 0 0 25%;
    max-width: 25%;
    color: var(--color-headings-text);
