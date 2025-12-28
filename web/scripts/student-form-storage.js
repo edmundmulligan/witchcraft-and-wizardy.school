@@ -1,3 +1,4 @@
+/* global window, document, console, alert, localStorage */
 /*
  **********************************************************************
  * File       : student-form-storage.js

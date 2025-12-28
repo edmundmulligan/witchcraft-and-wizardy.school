@@ -241,7 +241,7 @@
     text-align: center;
     padding: 1em;
     background-color: var(--color-headings-background);
-    color: var( --color-light-headings-text);
+    color: var(--color-headings-text);
     border: var(--border-weight) var(--border-style) var(--color-headings-text);
     border-radius: var(--border-radius);
     align-items: center;
@@ -265,7 +265,7 @@
     display: block;
     padding: 0;
     background-color: var(--color-headings-background);
-    color: var( --color-light-headings-text);
+    color: var(--color-headings-text);
     border: var(--border-weight) var(--border-style) var(--color-headings-text);
     border-radius: var(--border-radius);
     text-align: center;
@@ -295,7 +295,7 @@
 .facts-item {
     display: block;
     background-color: var(--color-headings-background);
-    color: var( --color-light-headings-text);
+    color: var(--color-headings-text);
     border: var(--border-weight) var(--border-style) var(--color-headings-text);
     border-radius: var(--border-radius);
     font-size: var(--fontsize-p);
@@ -404,7 +404,7 @@
    margin: 1em;
    flex: 0 0 25%;
    max-width: 25%;
-   color: var( --color-light-headings-text);
+   color: var(--color-headings-text);
    justify-self: center;
    align-items: center;
    justify-content: center;

@@ -20,7 +20,9 @@ module.exports = [
       globals: {
         window: "readonly",
         document: "readonly",
-        console: "readonly"
+        console: "readonly",
+        alert: "readonly",
+        localStorage: "readonly"
       }
     },
     rules: {

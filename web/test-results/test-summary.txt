@@ -10,7 +10,7 @@
 
 [Links] Broken Links Results:
   Pages checked: 5
-  Total links: 128
+  Total links: 135
   Broken links: 0
 
 ======================
@@ -43,7 +43,7 @@
 
 [Reading] Reading Age Results:
   Pages analyzed: 3
-  Total words: 2608
-  Average grade level: 9.5
+  Total words: 2612
+  Average grade level: 9.6
   [OK] All pages at high school level or below
 

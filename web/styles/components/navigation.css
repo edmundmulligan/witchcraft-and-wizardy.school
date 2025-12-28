@@ -16,8 +16,8 @@
  ********************************************************/
 
 nav.site-navigation {
-    color: var(--color-light-headings-text);
-    background-color: var(--color-light-textackground);
+    color: var(--color-headings-text);
+    background-color: var(--color-textackground);
     border-radius: var(--border-radius);
     margin: 0;
     padding: 0.25rem 0.5rem;
@@ -39,9 +39,9 @@ nav.site-navigation ul {
 nav.site-navigation li {
     display: inline-block;
     flex: 0 1 auto;
-    background-color: var(--color-light-headings-background);
+    background-color: var(--color-headings-background);
     border-radius: var(--border-radius);
-    border: 1px solid var(--color-light-headings-text);
+    border: 1px solid var(--color-headings-text);
     font-size: var(--fontsize-nav-site);
     overflow: hidden;
 }
@@ -49,7 +49,7 @@ nav.site-navigation li {
 nav.site-navigation a,
 nav.site-navigation button {
     display: block;
-    color: var(--color-light-headings-text);
+    color: var(--color-headings-text);
     text-decoration: none;
     padding: 0.5rem;
     border-radius: 0;
@@ -76,8 +76,8 @@ nav.site-navigation a:hover,
 nav.site-navigation a:focus-visible,
 nav.site-navigation button:hover,
 nav.site-navigation button:focus-visible {
-    background-color: var(--color-light-link-text-hover);
-    color: var(--color-light-headings-text);
+    background-color: var(--color-link-text-hover);
+    color: var(--color-headings-text);
 }
 
 nav.site-navigation a:hover::before,
@@ -104,7 +104,7 @@ nav.in-page-navigation {
     align-items: center;
     width: fit-content;
     border-radius: var(--border-radius);
-    border: var(--border-weight-thin) var(--border-style) var(--color-light-headings-text);
+    border: var(--border-weight-thin) var(--border-style) var(--color-headings-text);
 
 }
 
@@ -130,7 +130,7 @@ nav.in-page-navigation li {
 
 nav.in-page-navigation a {
     display: block;
-    color: var(--color-light-headings-text);
+    color: var(--color-headings-text);
     text-decoration: underline;
     padding: 0.25rem 0.5rem;
     white-space: nowrap;

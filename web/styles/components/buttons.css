@@ -15,9 +15,9 @@
     padding: 1rem;
     font-size: var(--fontsize-button);
     font-weight: bold;
-    background-color: var(--color-light-headings-background);
-    color: var(--color-light-headings-text);
-    border: var(--border-style) var(--border-weight) var(--color-light-headings-text);
+    background-color: var(--color-headings-background);
+    color: var(--color-headings-text);
+    border: var(--border-style) var(--border-weight) var(--color-headings-text);
     cursor: pointer;
     text-align: center;
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
@@ -31,9 +31,9 @@
 [class*=" button"]:hover,
 [class^="button"]:focus-visible,
 [class*=" button"]:focus-visible {
-    color: var(--color-light-headings-text);
-    background-color: var(--color-light-headings-background);
-    border-color: var(--color-light-headings-text);
+    color: var(--color-headings-text);
+    background-color: var(--color-headings-background);
+    border-color: var(--color-headings-text);
     transform: scale(1.2);
 }
 
@@ -42,7 +42,7 @@
 [class*=" button"]:link,
 [class^="button"]:visited,
 [class*=" button"]:visited {
-    color: var(--color-light-link-text);
+    color: var(--color-link-text);
     text-decoration: none;
 }
 
@@ -71,5 +71,5 @@
     /* ensure text scales within the circle */
     font-family: Cinzel, serif;
     font-size: var(--fontsize-button-circle);
-    background-color: var(--color-light-page-background);
+    background-color: var(--color-page-background);
 }
