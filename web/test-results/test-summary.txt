@@ -43,7 +43,7 @@
 
 [Reading] Reading Age Results:
   Pages analyzed: 3
-  Total words: 2612
+  Total words: 2639
   Average grade level: 9.6
   [OK] All pages at high school level or below
 

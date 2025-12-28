@@ -145,7 +145,7 @@
 }
 
 .header-button button:focus-visible {
-    outline: 0.5rem solid currentColor;
+    outline: 0.5rem solid currentcolor;
     outline-offset: 0.1rem;
 }
 
@@ -222,7 +222,7 @@
 
 .footer-button button:focus-visible,
 .header-button button:focus-visible {
-    outline: 0.5rem solid currentColor;
+    outline: 0.5rem solid currentcolor;
     outline-offset: 0.1rem;
 }
 
