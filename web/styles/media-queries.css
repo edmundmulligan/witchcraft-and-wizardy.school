@@ -20,9 +20,8 @@
 /*
  ***********************************************************************
  * Very small screen.
- * This is substantially the same as 200-800px with the addition of a 
- * warning displayed in the header.
- * It violates the DRY principle but is done this way out of expediency.
+ * This puts a warning displayed in the header. Then the <800px will 
+ * apply as well.
  ***********************************************************************
  */
 
