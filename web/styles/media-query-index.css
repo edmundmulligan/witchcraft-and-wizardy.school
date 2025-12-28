@@ -28,6 +28,6 @@
 @media (orientation: portrait) {
     /* insert the landing page background image for small screens */
     body::before {
-        background-image: url('../images/background-portrait-light-web.svg');
+        background-image: var(--bg-portrait);
     }
 }

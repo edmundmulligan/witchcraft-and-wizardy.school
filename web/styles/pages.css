@@ -78,7 +78,7 @@
    row-gap: 0.1em;
    max-width: 80%;
    margin: 0 auto;
-   border: 0.2em solid var(--color-light-headings-text);
+   border: 0.2em solid var(--color-headings-text);
    border-radius: 1em;
 }
 
@@ -91,8 +91,8 @@
 
 .student-info form output {
    grid-column: 1;
-   background-color: var(--color-light-headings-background);
-   border: 0.1em solid var(--color-light-headings-text);
+   background-color: var(--color-headings-background);
+   border: 0.1em solid var(--color-headings-text);
    border-radius: 0.5em;
    padding: 1em;
    margin: 1em;
@@ -124,7 +124,7 @@
 }
 
 .student-info form fieldset {
-   border: var(--border-weight) var(--border-style) var(--color-light-headings-text);
+   border: var(--border-weight) var(--border-style) var(--color-headings-text);
    border-radius: var(--border-radius);
    padding: 1em;
    margin: 0.5em;
@@ -151,12 +151,12 @@
 
 .student-info form hr {
    border: none;
-   border-top: 0.1em solid var(--color-light-headings-text);
+   border-top: 0.1em solid var(--color-headings-text);
    margin: 0.5em 0 0;
 }
 
 .student-info form h4 {
-   border-top: 0.1em solid var(--color-light-headings-text);
+   border-top: 0.1em solid var(--color-headings-text);
    padding-top: 0.5em;
    margin-top: 0.5em;
 }
@@ -240,9 +240,9 @@
 .gallery-item {
     text-align: center;
     padding: 1em;
-    background-color: var(--color-light-headings-background);
+    background-color: var(--color-headings-background);
     color: var( --color-light-headings-text);
-    border: var(--border-weight) var(--border-style) var(--color-light-headings-text);
+    border: var(--border-weight) var(--border-style) var(--color-headings-text);
     border-radius: var(--border-radius);
     align-items: center;
 }
@@ -264,9 +264,9 @@
 .accessory-item {
     display: block;
     padding: 0;
-    background-color: var(--color-light-headings-background);
+    background-color: var(--color-headings-background);
     color: var( --color-light-headings-text);
-    border: var(--border-weight) var(--border-style) var(--color-light-headings-text);
+    border: var(--border-weight) var(--border-style) var(--color-headings-text);
     border-radius: var(--border-radius);
     text-align: center;
     width: 21rem;
@@ -294,9 +294,9 @@
 
 .facts-item {
     display: block;
-    background-color: var(--color-light-headings-background);
+    background-color: var(--color-headings-background);
     color: var( --color-light-headings-text);
-    border: var(--border-weight) var(--border-style) var(--color-light-headings-text);
+    border: var(--border-weight) var(--border-style) var(--color-headings-text);
     border-radius: var(--border-radius);
     font-size: var(--fontsize-p);
     min-width: 0;
@@ -333,7 +333,7 @@
     text-align: center;
     align-self: stretch;
     max-width: 100%;
-    border-bottom: 1px solid var(--color-light-headings-text);
+    border-bottom: 1px solid var(--color-headings-text);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -345,7 +345,7 @@
     margin: 0;
     text-align: center;
     align-self: stretch;
-    border-bottom: 1px solid var(--color-light-headings-text);
+    border-bottom: 1px solid var(--color-headings-text);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -373,8 +373,8 @@
     grid-column: 1;
     padding: 0 0.5em;
     margin: 0;
-    border: 1px solid var(--color-light-page-text);
-    background-color: var(--color-light-page-background);
+    border: 1px solid var(--color-page-text);
+    background-color: var(--color-page-background);
     text-align: left;
     align-items: center;
     overflow-wrap: break-word;
@@ -385,11 +385,11 @@
     grid-column: 2;
     padding: 0 0.5em;
     margin: 0;
-    border-top: 1px solid var(--color-light-headings-text);
-    border-right: 1px solid var(--color-light-headings-text);
-    border-bottom: 1px solid var(--color-light-headings-text);
+    border-top: 1px solid var(--color-headings-text);
+    border-right: 1px solid var(--color-headings-text);
+    border-bottom: 1px solid var(--color-headings-text);
     border-left: none;
-    background-color: var(--color-light-page-background);
+    background-color: var(--color-page-background);
     text-align: left;
     align-items: center;
     overflow-wrap: break-word;
@@ -397,8 +397,8 @@
 }
 
 .lesson-tile {
-   background-color: var(--color-light-headings-background);
-   border: var(--border-weight) var(--border-style) var(--color-light-headings-text);
+   background-color: var(--color-headings-background);
+   border: var(--border-weight) var(--border-style) var(--color-headings-text);
    border-radius: var(--border-radius);
    padding: 1em;
    margin: 1em;
@@ -414,7 +414,7 @@
 .lesson-tile a,
 .lesson-tile button {
    text-decoration: none;
-   color: var(--color-light-headings-text);
+   color: var(--color-headings-text);
    font-weight: normal;
    background: none;
    border: none;
@@ -443,7 +443,7 @@
 
 .lesson-tile:hover,
 .lesson-tile:focus-visible {
-   background-color: var(--color-light-link-text-hover);
-   color: var(--color-light-headings-text);
+   background-color: var(--color-link-text-hover);
+   color: var(--color-headings-text);
    cursor: pointer;
 }

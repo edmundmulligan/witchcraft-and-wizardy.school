@@ -92,6 +92,11 @@
                 if (themeRadio) {
                     themeRadio.checked = true;
                 }
+                
+                // Apply the theme if theme switcher is available
+                if (window.ThemeSwitcher) {
+                    window.ThemeSwitcher.set(data.themeChoice);
+                }
             }
 
             // Update the avatar preview
@@ -129,6 +134,11 @@
 
             // Update the avatar preview
             updateAvatarPreview(data);
+
+            // Apply theme if theme switcher is available and theme was selected
+            if (data.themeChoice && window.ThemeSwitcher) {
+                window.ThemeSwitcher.set(data.themeChoice);
+            }
 
             // Provide visual feedback
             const submitButton = event.target.querySelector('button[type="submit"]');
@@ -168,9 +178,15 @@
                     const data = {
                         avatarChoice: formData.get('avatar-choice') || '',
                         genderChoice: formData.get('gender-choice') || '',
-                        ageChoice: formData.get('age-choice') || ''
+                        ageChoice: formData.get('age-choice') || '',
+                        themeChoice: formData.get('theme-choice') || ''
                     };
                     updateAvatarPreview(data);
+                    
+                    // Apply theme immediately if theme choice changed
+                    if (radio.name === 'theme-choice' && data.themeChoice && window.ThemeSwitcher) {
+                        window.ThemeSwitcher.set(data.themeChoice);
+                    }
                 });
             });
         }

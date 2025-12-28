@@ -17,8 +17,8 @@
 
 body::before {
     display: block;
-    color: var(--color-light-warning-text);
-    background-color: var(--color-light-warning-background);
+    color: var(--color-warning-text);
+    background-color: var(--color-warning-background);
     content: "This page uses JavaScript for enhanced functionality. Please enable JavaScript for the best experience.";
     text-align: center;
     padding: 1.25em;

@@ -26,5 +26,5 @@ main {
 
 /* insert the landing page background image */
 body::before {
-    background-image: url('../images/background-landscape-light-web.svg');
+    background-image: var(--bg-landscape);
 }
