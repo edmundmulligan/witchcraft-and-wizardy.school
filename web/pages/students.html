@@ -119,12 +119,9 @@
                     <!-- The output does not render well at all scales, but that will be addressed 
                          when the form is implemented and an image is added -->
                 <output
-                    for="avatar-choice gender-choice age-choice theme-choice"
+                    for="avatar-choice gender-choice age-choice"
                     id="avatar-preview"
                 >
-                    Your avatar will appear here. This will be
-                    implemented in phase 2 when JavaScript is
-                    included.
                 </output>
 
                 <div class="student-form-avatar">
@@ -184,7 +181,7 @@
 
                 <hr class="student-form-item">
 
-                <div class="student-form-item">
+                <div class="student-form-item button-group">
                     <!-- popovertarget does not work on submit buttons :( -->
                     <button
                         type="submit"
@@ -195,6 +192,14 @@
                         class="button-rectangle"
                     >
                         Save Information
+                    </button>
+                    <button
+                        type="button"
+                        id="clear-information-btn"
+                        class="button-rectangle"
+                        aria-label="Clear all saved information"
+                    >
+                        Clear Information
                     </button>
                 </div>
             </form>

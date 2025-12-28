@@ -109,6 +109,7 @@
     width: auto;
     height: 15rem;
     object-fit: contain;
+    filter: var(--header-svg-filter, none);
 }
 
 .header-button {

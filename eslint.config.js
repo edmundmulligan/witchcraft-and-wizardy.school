@@ -22,7 +22,9 @@ module.exports = [
         document: "readonly",
         console: "readonly",
         alert: "readonly",
-        localStorage: "readonly"
+        localStorage: "readonly",
+        btoa: "readonly",
+        atob: "readonly"
       }
     },
     rules: {

@@ -50,6 +50,7 @@
             root.style.setProperty('--bg-landscape', 'var(--bg-landscape-dark)');
             root.style.setProperty('--bg-portrait', 'var(--bg-portrait-dark)');
             root.style.setProperty('--svg-filter', 'var(--svg-filter-dark)');
+            root.style.setProperty('--header-svg-filter', 'var(--header-svg-filter-dark)');
             root.setAttribute('data-theme', 'dark');
             
             // Update logo if present
@@ -70,6 +71,7 @@
             root.style.setProperty('--bg-landscape', 'var(--bg-landscape-light)');
             root.style.setProperty('--bg-portrait', 'var(--bg-portrait-light)');
             root.style.setProperty('--svg-filter', 'var(--svg-filter-light)');
+            root.style.setProperty('--header-svg-filter', 'var(--header-svg-filter-light)');
             root.setAttribute('data-theme', 'light');
             
             // Update logo if present
@@ -178,6 +180,15 @@
                 }
             });
         }
+
+        // Listen for footer injection to update logo
+        document.addEventListener('footerInjected', () => {
+            const currentTheme = getThemePreference();
+            const effectiveTheme = (currentTheme === 'auto') ?
+                (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') :
+                currentTheme;
+            updateLogo(effectiveTheme);
+        });
     }
 
     // Apply theme as early as possible to prevent flash

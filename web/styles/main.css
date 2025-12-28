@@ -36,7 +36,7 @@
     /* dark theme colours */
     --color-dark-page-background:      darkgreen;
     --color-dark-page-text:            lightgreen;
-    --color-dark-headings-background:  darkblue;
+    --color-dark-headings-background:  darkolivegreen;
     --color-dark-headings-text:        lemonchiffon;
     --color-dark-link-text:            lightgreen;
     --color-dark-link-text-hover:      lightblue;
@@ -73,8 +73,13 @@
 
     /* SVG filter for theme switching */
     --svg-filter-light:                none;
-    --svg-filter-dark:                 brightness(0.8) invert(1) sepia(1) saturate(3) hue-rotate(180deg);
+    --svg-filter-dark:                 none;
     --svg-filter:                      var(--svg-filter-light);
+
+    /* SVG filter for header silhouettes - yellow in dark mode */
+    --header-svg-filter-light:         none;
+    --header-svg-filter-dark:          none;
+    --header-svg-filter:               var(--header-svg-filter-light);
 
     /* other global variables to ensure sitewide consistency */
     --border-radius:          2rem;

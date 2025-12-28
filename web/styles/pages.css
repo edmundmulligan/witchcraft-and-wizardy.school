@@ -176,6 +176,15 @@
    text-align: center;
 }
 
+.student-form-item.button-group {
+   display: flex;
+   gap: 2rem;
+   justify-content: center;
+   flex-wrap: wrap;
+   background-color: var(--color-page-background);
+   border: none;
+}
+
 .student-form-choice {
    display: inline-block;
    align-items: center;
