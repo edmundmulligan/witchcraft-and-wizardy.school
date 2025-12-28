@@ -56,20 +56,20 @@
     <link rel="stylesheet" href="../styles/components/navigation.css">
     <link rel="stylesheet" href="../styles/components/popover.css">
     <link rel="stylesheet" href="../styles/components/titles.css">
-
-    <!-- page specific stylesheet -->
-    <link rel="stylesheet" href="../styles/students.css">
+    <link rel="stylesheet" href="../styles/pages.css">
 
     <!-- media-queries must be the last stylesheets loaded -->
     <link rel="stylesheet" href="../styles/media-queries.css">
     <!-- End of CSS stylesheets section -->
 
     <!-- Load JavaScript files -->
+    <script src="../scripts/theme-switcher.js"></script>
     <script src="../scripts/toggle-header-footer.js" defer></script>
     <script src="../scripts/inject-header.js" defer></script>
     <script src="../scripts/inject-footer.js" defer></script>
     <script src="../scripts/inject-popover-text.js" defer></script>
     <script src="../scripts/inject-in-page-navigation-students.js" defer></script>
+    <script src="../scripts/student-form-storage.js" defer></script>
     <!-- End JavaScript file link -->
 
     <noscript>
@@ -119,12 +119,9 @@
                     <!-- The output does not render well at all scales, but that will be addressed 
                          when the form is implemented and an image is added -->
                 <output
-                    for="avatar-choice gender-choice age-choice theme-choice"
+                    for="avatar-choice gender-choice age-choice"
                     id="avatar-preview"
                 >
-                    Your avatar will appear here. This will be
-                    implemented in phase 2 when JavaScript is
-                    included.
                 </output>
 
                 <div class="student-form-avatar">
@@ -184,7 +181,7 @@
 
                 <hr class="student-form-item">
 
-                <div class="student-form-item">
+                <div class="student-form-item button-group">
                     <!-- popovertarget does not work on submit buttons :( -->
                     <button
                         type="submit"
@@ -195,6 +192,14 @@
                         class="button-rectangle"
                     >
                         Save Information
+                    </button>
+                    <button
+                        type="button"
+                        id="clear-information-btn"
+                        class="button-rectangle"
+                        aria-label="Clear all saved information"
+                    >
+                        Clear Information
                     </button>
                 </div>
             </form>

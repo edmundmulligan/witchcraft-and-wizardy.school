@@ -34,18 +34,52 @@
     --color-light-warning-text:        white;
 
     /* dark theme colours */
-    --color-dark-page-background:      black;
+    --color-dark-page-background:      darkgreen;
     --color-dark-page-text:            lightgreen;
-    --color-dark-headings-background:  darkcyan;
-    --color-dark-headings-text:        orchid;
+    --color-dark-headings-background:  darkolivegreen;
+    --color-dark-headings-text:        lemonchiffon;
     --color-dark-link-text:            lightgreen;
     --color-dark-link-text-hover:      lightblue;
-    --color-dark-link-text-visited:    cornflowerblue;
-    --color-dark-link-text-focus:      cornflowerblue;
-    --color-dark-error-background:     darkred;
-    --color-dark-error-text:           white;
-    --color-dark-warning-background:   crimson;
+    --color-dark-link-text-visited:    lightblue;
+    --color-dark-link-text-focus:      lightblue;
+    --color-dark-error-background:     lightcoral;
+    --color-dark-error-text:           black;
+    --color-dark-warning-background:   red;
     --color-dark-warning-text:         white;
+
+    /* Active theme colors - default to light, overridden by theme-switcher.js */
+    --color-page-background:           var(--color-light-page-background);
+    --color-page-text:                 var(--color-light-page-text);
+    --color-headings-background:       var(--color-light-headings-background);
+    --color-headings-text:             var(--color-light-headings-text);
+    --color-link-text:                 var(--color-light-link-text);
+    --color-link-text-hover:           var(--color-light-link-text-hover);
+    --color-link-text-visited:         var(--color-light-link-text-visited);
+    --color-link-text-focus:           var(--color-light-link-text-focus);
+    --color-error-background:          var(--color-light-error-background);
+    --color-error-text:                var(--color-light-error-text);
+    --color-warning-background:        var(--color-light-warning-background);
+    --color-warning-text:              var(--color-light-warning-text);
+
+    /* Background images for light and dark themes */
+    --bg-landscape-light:              url('../images/background-landscape-light-web.svg');
+    --bg-landscape-dark:               url('../images/background-landscape-dark-web.svg');
+    --bg-portrait-light:               url('../images/background-portrait-light-web.svg');
+    --bg-portrait-dark:                url('../images/background-portrait-dark-web.svg');
+    
+    /* Active background images - default to light, overridden by theme-switcher.js */
+    --bg-landscape:                    var(--bg-landscape-light);
+    --bg-portrait:                     var(--bg-portrait-light);
+
+    /* SVG filter for theme switching */
+    --svg-filter-light:                none;
+    --svg-filter-dark:                 none;
+    --svg-filter:                      var(--svg-filter-light);
+
+    /* SVG filter for header silhouettes - yellow in dark mode */
+    --header-svg-filter-light:         none;
+    --header-svg-filter-dark:          none;
+    --header-svg-filter:               var(--header-svg-filter-light);
 
     /* other global variables to ensure sitewide consistency */
     --border-radius:          2rem;
@@ -113,8 +147,8 @@ body {
     font-style: normal;
     line-height: 1.6;
     text-align: left;
-    color: var(--color-light-page-text);
-    background-color: var(--color-light-page-background);
+    color: var(--color-page-text);
+    background-color: var(--color-page-background);
 }
 
 /* Use body:before to stop the background image scrolling */
@@ -192,19 +226,19 @@ p {
  /* do not distinguish between a visited and non-visited link */
  a:link,
  a:visited {
-    color: var(--color-light-link-text);
+    color: var(--color-link-text);
     text-decoration: underline;
     font-weight: 800;
 }
 
 a:hover,
 a:focus-visible {
-    color: var(--color-light-link-text-focus);
+    color: var(--color-link-text-focus);
 }
 
 /* this may be a bit subtle but it meets WCAG 2.2 guidelines */
 a:focus-visible {
-    outline: 0.1rem dashed var(--color-light-link-text-focus);
+    outline: 0.1rem dashed var(--color-link-text-focus);
     outline-offset: 0.1em;
 }
 
@@ -212,4 +246,9 @@ a:focus-visible {
    silhouette in the header as the original image faces the wrong way */
 .mirror {
     transform: scaleX(-1);
+}
+
+/* Make SVG images with black strokes/fills lighter in dark mode */
+img[src$=".svg"] {
+    filter: var(--svg-filter, none);
 }

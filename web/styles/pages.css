@@ -28,7 +28,9 @@
 .facts,
 .glossary,
 .license,
-.credits {
+.credits
+.student-info,
+.lessons {
     max-width: 100%;
     box-sizing: border-box;
     padding: 0;
@@ -41,7 +43,9 @@
 .facts p,
 .glossary p,
 .license p,
-.credits p {
+.credits p,
+.student-info p,
+.lessons p {
     max-width: 100%;
     box-sizing: border-box;
     overflow-wrap: break-word;
@@ -64,6 +68,130 @@
     box-sizing: border-box;
     font-size: var(--fontsize-p);
 }
+
+
+.student-info form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 0.5em;
+   row-gap: 0.1em;
+   max-width: 80%;
+   margin: 0 auto;
+   border: 0.2em solid var(--color-headings-text);
+   border-radius: 1em;
+}
+
+.avatar-container {
+   display: grid;
+   grid-template-columns: 33% 1fr;
+   justify-content: center;
+   align-items: center;
+}
+
+.student-info form output {
+   grid-column: 1;
+   background-color: var(--color-headings-background);
+   border: 0.1em solid var(--color-headings-text);
+   border-radius: 0.5em;
+   padding: 1em;
+   margin: 1em;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   aspect-ratio: 4 / 3;
+   font-size: var(--fontsize-p);
+   overflow-wrap: break-word;
+   hyphens: auto;
+   box-sizing: border-box;
+}
+
+.student-info form .student-form-avatar {
+   grid-column: 2;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 0;
+   margin: 1em 0;
+}
+
+.student-info form label {
+   text-align: left;
+   font-size: var(--fontsize-smallprint);
+}
+
+.student-info form legend {
+   font-size: var(--fontsize-smallprint);
+}
+
+.student-info form fieldset {
+   border: var(--border-weight) var(--border-style) var(--color-headings-text);
+   border-radius: var(--border-radius);
+   padding: 1em;
+   margin: 0.5em;
+}
+
+.student-info form fieldset legend {
+   float: left;
+   width: 100%;
+   padding: 0;
+   margin-bottom: 0.5em;
+   font-size: var(--fontsize-smallprint);
+}
+
+.student-info form input[type="radio"] {
+   width: 1em;
+   height: 1em;
+   font-size: var(--fontsize-p);
+}
+
+.student-info form input[type="text"] {
+   max-width: 60%;
+   font-size: var(--fontsize-p);
+}
+
+.student-info form hr {
+   border: none;
+   border-top: 0.1em solid var(--color-headings-text);
+   margin: 0.5em 0 0;
+}
+
+.student-info form h4 {
+   border-top: 0.1em solid var(--color-headings-text);
+   padding-top: 0.5em;
+   margin-top: 0.5em;
+}
+
+.student-info form h4:first-of-type {
+   border-top: none;
+   padding-top: 0;
+   margin-top: 0;
+}
+
+.student-form-item {
+   margin: 0.2em 0;
+   text-align: left;
+}
+
+.student-form-item:first-of-type {
+   text-align: center;
+}
+
+.student-form-item.button-group {
+   display: flex;
+   gap: 2rem;
+   justify-content: center;
+   flex-wrap: wrap;
+   background-color: var(--color-page-background);
+   border: none;
+}
+
+.student-form-choice {
+   display: inline-block;
+   align-items: center;
+   gap: 0.5em;
+   padding: 0.5em;
+}
+
 
 /**********************************************************
  * container classes for gallery, accessories and facts
@@ -98,6 +226,21 @@
     box-sizing: border-box;
 }
 
+.lessons-container {
+   display: flex;
+   flex-flow: row wrap;
+   justify-content: center;
+}
+
+.circular-button-container {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
 /**********************************************
  * contained classes for contained items.
  * Would be nice to call everting a *-item but
@@ -106,9 +249,9 @@
 .gallery-item {
     text-align: center;
     padding: 1em;
-    background-color: var(--color-light-headings-background);
-    color: var( --color-light-headings-text);
-    border: var(--border-weight) var(--border-style) var(--color-light-headings-text);
+    background-color: var(--color-headings-background);
+    color: var(--color-headings-text);
+    border: var(--border-weight) var(--border-style) var(--color-headings-text);
     border-radius: var(--border-radius);
     align-items: center;
 }
@@ -130,9 +273,9 @@
 .accessory-item {
     display: block;
     padding: 0;
-    background-color: var(--color-light-headings-background);
-    color: var( --color-light-headings-text);
-    border: var(--border-weight) var(--border-style) var(--color-light-headings-text);
+    background-color: var(--color-headings-background);
+    color: var(--color-headings-text);
+    border: var(--border-weight) var(--border-style) var(--color-headings-text);
     border-radius: var(--border-radius);
     text-align: center;
     width: 21rem;
@@ -160,9 +303,9 @@
 
 .facts-item {
     display: block;
-    background-color: var(--color-light-headings-background);
-    color: var( --color-light-headings-text);
-    border: var(--border-weight) var(--border-style) var(--color-light-headings-text);
+    background-color: var(--color-headings-background);
+    color: var(--color-headings-text);
+    border: var(--border-weight) var(--border-style) var(--color-headings-text);
     border-radius: var(--border-radius);
     font-size: var(--fontsize-p);
     min-width: 0;
@@ -182,6 +325,49 @@
     text-align: left;
 }
 
+.facts dl {
+    display: grid;
+    grid-template-columns: minmax(auto, 33%) 1fr;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+    align-items: stretch;
+}
+
+.facts dt {
+    font-weight: bold;
+    grid-column: 1;
+    padding: 0.5em;
+    margin: 0;
+    text-align: center;
+    align-self: stretch;
+    max-width: 100%;
+    border-bottom: 1px solid var(--color-headings-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.facts dd {
+    grid-column: 2;
+    padding: 0.5em;
+    margin: 0;
+    text-align: center;
+    align-self: stretch;
+    border-bottom: 1px solid var(--color-headings-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.facts dt:last-of-type {
+    border-bottom: none;
+}
+
+.facts dd:last-of-type {
+    border-bottom: none;
+}
+
 .glossary dl {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -196,8 +382,8 @@
     grid-column: 1;
     padding: 0 0.5em;
     margin: 0;
-    border: 1px solid var(--color-light-page-text);
-    background-color: var(--color-light-page-background);
+    border: 1px solid var(--color-page-text);
+    background-color: var(--color-page-background);
     text-align: left;
     align-items: center;
     overflow-wrap: break-word;
@@ -208,13 +394,65 @@
     grid-column: 2;
     padding: 0 0.5em;
     margin: 0;
-    border-top: 1px solid var(--color-light-headings-text);
-    border-right: 1px solid var(--color-light-headings-text);
-    border-bottom: 1px solid var(--color-light-headings-text);
+    border-top: 1px solid var(--color-headings-text);
+    border-right: 1px solid var(--color-headings-text);
+    border-bottom: 1px solid var(--color-headings-text);
     border-left: none;
-    background-color: var(--color-light-page-background);
+    background-color: var(--color-page-background);
     text-align: left;
     align-items: center;
     overflow-wrap: break-word;
     hyphens: auto;
+}
+
+.lesson-tile {
+   background-color: var(--color-headings-background);
+   border: var(--border-weight) var(--border-style) var(--color-headings-text);
+   border-radius: var(--border-radius);
+   padding: 1em;
+   margin: 1em;
+   flex: 0 0 25%;
+   max-width: 25%;
+   color: var(--color-headings-text);
+   justify-self: center;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+}
+
+.lesson-tile a,
+.lesson-tile button {
+   text-decoration: none;
+   color: var(--color-headings-text);
+   font-weight: normal;
+   background: none;
+   border: none;
+   padding: 0;
+   font-family: inherit;
+   font-size: inherit;
+   cursor: pointer;
+   width: 100%;
+   text-align: center;
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
+}
+
+.lesson-title {
+   display: block;
+   font-family: Cinzel, serif;
+   font-weight: 600;
+   font-size: var(--fontsize-h3h4);
+}
+
+.lesson-description {
+   display: block;
+   font-size: var(--fontsize-p);
+}
+
+.lesson-tile:hover,
+.lesson-tile:focus-visible {
+   background-color: var(--color-link-text-hover);
+   color: var(--color-headings-text);
+   cursor: pointer;
 }

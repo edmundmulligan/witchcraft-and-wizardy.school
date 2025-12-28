@@ -44,7 +44,13 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
 
             <div class="footer-logo">
-                <img src="${pathPrefix}images/logo-embodied-mind-with-name-purple.png" alt="The Embodied Mind logo. A brain with a moustache winking">
+                <img 
+                    id="embodied-mind-logo"
+                    src="${pathPrefix}images/logo-embodied-mind-with-name-purple.png" 
+                    alt="The Embodied Mind logo. A brain with a moustache winking"
+                    data-light-logo="${pathPrefix}images/logo-embodied-mind-with-name-purple.png"
+                    data-dark-logo="${pathPrefix}images/logo-embodied-mind-with-name-cyan.png"
+                >
             </div>
         </div>
         `;

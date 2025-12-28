@@ -32,7 +32,7 @@
     white-space: normal;
 
     /* specify these so that page title is legiible on pages with background images */
-    color: var(--color-light-page-text);
-    background-color: var(--color-light-page-background);
+    color: var(--color-page-text);
+    background-color: var(--color-page-background);
     border-radius: var(--border-radius);
 }

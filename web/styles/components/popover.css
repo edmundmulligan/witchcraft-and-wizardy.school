@@ -15,9 +15,9 @@
    when something isn't implemented yet at the moment, so that's OK. */
 
 .popover {
-    background-color: var(--color-light-error-background);
-    color: var(--color-light-error-text);
-    border: var(--border-weight) var(--border-style) var(--color-light-headings-text);
+    background-color: var(--color-error-background);
+    color: var(--color-error-text);
+    border: var(--border-weight) var(--border-style) var(--color-headings-text);
     border-radius: var(--border-radius);
     padding: 2rem;
     max-width: min(30rem, 90vw);
@@ -42,9 +42,9 @@
 }
 
 .popover button {
-    background-color: var(--color-light-error-text);
-    color: var(--color-light-error-background);
-    border: var(--border-weight) var(--border-style) var(--color-light-headings-text);
+    background-color: var(--color-error-text);
+    color: var(--color-error-background);
+    border: var(--border-weight) var(--border-style) var(--color-headings-text);
     border-radius: var(--border-radius);
     margin-top: 1rem;
     font-family: Cinzel, serif;
