@@ -12,6 +12,8 @@
  **********************************************************************
  */
 
+/* global window */
+
 function toggleSection(sectionId, event) {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -25,3 +27,6 @@ function toggleSection(sectionId, event) {
         }
     }
 }
+
+// Make function globally available for inline onclick handlers
+window.toggleSection = toggleSection;

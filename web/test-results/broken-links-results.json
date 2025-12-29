@@ -4,35 +4,35 @@
       "url": "index.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 21
+      "totalCount": 22
     },
     {
       "url": "pages/students.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 19
+      "totalCount": 20
     },
     {
       "url": "pages/about.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 49
+      "totalCount": 50
     },
     {
       "url": "pages/license-and-credits.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 28
+      "totalCount": 29
     },
     {
       "url": "pages/glossary-and-faq.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 18
+      "totalCount": 21
     }
   ],
   "summary": {
-    "totalLinks": 135,
+    "totalLinks": 142,
     "brokenLinks": 0,
     "excludedLinks": 0
   }

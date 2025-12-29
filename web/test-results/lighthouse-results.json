@@ -2,26 +2,61 @@
   "pages": [
     {
       "url": "index.html",
+      "theme": "light",
       "score": 1,
       "failedAudits": []
     },
     {
       "url": "pages/students.html",
+      "theme": "light",
       "score": 1,
       "failedAudits": []
     },
     {
       "url": "pages/about.html",
+      "theme": "light",
       "score": 1,
       "failedAudits": []
     },
     {
       "url": "pages/license-and-credits.html",
+      "theme": "light",
       "score": 1,
       "failedAudits": []
     },
     {
       "url": "pages/glossary-and-faq.html",
+      "theme": "light",
+      "score": 1,
+      "failedAudits": []
+    },
+    {
+      "url": "index.html",
+      "theme": "dark",
+      "score": 1,
+      "failedAudits": []
+    },
+    {
+      "url": "pages/students.html",
+      "theme": "dark",
+      "score": 1,
+      "failedAudits": []
+    },
+    {
+      "url": "pages/about.html",
+      "theme": "dark",
+      "score": 1,
+      "failedAudits": []
+    },
+    {
+      "url": "pages/license-and-credits.html",
+      "theme": "dark",
+      "score": 1,
+      "failedAudits": []
+    },
+    {
+      "url": "pages/glossary-and-faq.html",
+      "theme": "dark",
       "score": 1,
       "failedAudits": []
     }

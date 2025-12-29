@@ -486,7 +486,7 @@
                         language, pseudocode, or flowcharts.
                     </p>
                 </div>
-    
+
                 <h5 onclick="toggleSection('web-development-basics-06', event);" class="magic-invisible faq-title">What is a variable?</h5>
                 <div id="web-development-basics-06" class="hidden">
                     <p>
@@ -582,8 +582,8 @@
                 <div id="tips-and-tricks-01" class="hidden">
                     <p>
                         Always make backups of your work to avoid losing it in case of a computer crash or other
-                        disaster. Use cloud storage or external hard drives to keep your files safe. Even if you don't use the cloud, copy 
-                        your files to another folder. Back up everything before you make changes to it - you never know when you might make 
+                        disaster. Use cloud storage or external hard drives to keep your files safe. Even if you don't use the cloud, copy
+                        your files to another folder. Back up everything before you make changes to it - you never know when you might make
                         a mistake and get back the original version.
                     </p>
 
@@ -591,7 +591,7 @@
                         If you ignore all the other tips on this page, at least remember this one. It will save you a lot of wasted time and frustration.
                     </p>
                 </div>
-    
+
                 <h5 onclick="toggleSection('tips-and-tricks-02', event);" class="magic-invisible faq-title">Use folders to organize your files.</h5>
                 <div id="tips-and-tricks-02" class="hidden">
                     <p>
@@ -613,7 +613,7 @@
                    </p>
 
                     <p>
-                        You won't believe how much easier it is to write programs when you use consistent naming conventions. 
+                        You won't believe how much easier it is to write programs when you use consistent naming conventions.
                         It makes it easier to read and understand your code, and it helps you avoid mistakes.
                     </p>
 
@@ -629,13 +629,13 @@
                     <p>
                         Don't repeat yourself (DRY) is a principle of software development that states that you
                         should not write the same code multiple times. If you find you are writing the same or similar code in multiple places,
-                        it is a sign that you need to refactor your code to make it more modular and reusable. You can do this by 
+                        it is a sign that you need to refactor your code to make it more modular and reusable. You can do this by
                         creating functions or classes that encapsulate the reusable code.
                     </p>
                     <p>
                         For example, suppose you have three buttons in your HTML that all need to respond in the same way:
                     </p>
-                    <code><>
+                    <pre><code>
 &lt;button id="button1"&gt;Button 1&lt;/button&gt;
 &lt;button id="button2"&gt;Button 2&lt;/button&gt;
 &lt;button id="button3"&gt;Button 3&lt;/button&gt;
@@ -653,7 +653,7 @@ document.getElementById("button3").addEventListener("click", function() { alert(
                         But this is not very DRY, because you are repeating the same code three times. Instead, you could
                         create a function that handles the button click event and pass the button ID as a parameter:
                     </p>
-                    <pr><code>
+                    <pre><code>
 function handleButtonClick(buttonId) {
     alert(buttonId + " clicked!");
 }
@@ -665,7 +665,7 @@ document.getElementById("button3").addEventListener("click", function() { handle
                         Now you have a single function that handles the button click event, and you can easily add more
                         buttons without repeating the same code. It may not look much better in this simple example,
                         but in larger programs, it can make a big difference in terms of readability and maintainability.
-                    </p>    
+                    </p>
                 </div>
 
                 <h5 onclick="toggleSection('tips-and-tricks-05', event);" class="magic-invisible faq-title">Comment your code.</h5>
@@ -677,8 +677,8 @@ document.getElementById("button3").addEventListener("click", function() { handle
                     <p>
                         A really useful comment you can add to your code is a "TODO" comment. This is a comment that
                         reminds you to do something later, such as fix a bug or add a feature. You can use it to keep
-                        track of things you need to do in your code. In fact, many code editors and IDEs 
-                        like Visual Studio have built-in support for TODO comments, 
+                        track of things you need to do in your code. In fact, many code editors and IDEs
+                        like Visual Studio have built-in support for TODO comments,
                         which makes it easy to find and manage them.
                     </p>
                     <p>
@@ -712,9 +712,9 @@ function myFunction() {
                         end-to-end testing. Each type of testing has its own purpose and can help you catch different
                         types of bugs.
                     </p>
-                
+
                     <p>
-                        Real software developers spend more time testing their code than writing it. They know that testing 
+                        Real software developers spend more time testing their code than writing it. They know that testing
                         is the key to delivering high-quality software that meets the needs of users.
                     </p>
                 </div>
@@ -726,7 +726,7 @@ function myFunction() {
                         HTTPS, validate user input, and keep your software up to date.
                     </p>
                     <p>
-                        It is very easy to make a web page that is vulnerable to hacking. 
+                        It is very easy to make a web page that is vulnerable to hacking.
                         Hackers can exploit vulnerabilities in your code to gain access to your server, steal data, or even take control of your website.
                     </p>
                     <p>
@@ -770,7 +770,7 @@ function myFunction() {
             function validateForm() {
                 const username = document.getElementById("username").value;
                 const password = document.getElementById("password").value;
-                if (username.length < 3 || password.length < 6) {
+                if (username.length &lt; 3 || password.length &lt; 6) {
                     alert("Username must be at least 3 characters and password must be at least 6 characters long.");
                     return false;
                 }

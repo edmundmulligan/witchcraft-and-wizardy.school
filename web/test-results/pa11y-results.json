@@ -2,30 +2,70 @@
   "pages": [
     {
       "url": "index.html",
+      "theme": "light",
       "documentTitle": "Web Witchcraft and Wizardry",
       "pageUrl": "http://localhost:8080/",
       "issues": []
     },
     {
       "url": "pages/students.html",
+      "theme": "light",
       "documentTitle": "Student Dashboard|Web Witchcraft and Wizardry",
       "pageUrl": "http://localhost:8080/pages/students",
       "issues": []
     },
     {
       "url": "pages/about.html",
+      "theme": "light",
       "documentTitle": "About|Web Witchcraft and Wizardry",
       "pageUrl": "http://localhost:8080/pages/about",
       "issues": []
     },
     {
       "url": "pages/license-and-credits.html",
+      "theme": "light",
       "documentTitle": "License and Credits|Web Witchcraft and Wizardry",
       "pageUrl": "http://localhost:8080/pages/license-and-credits",
       "issues": []
     },
     {
       "url": "pages/glossary-and-faq.html",
+      "theme": "light",
+      "documentTitle": "Glossary and FAQ|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/glossary-and-faq",
+      "issues": []
+    },
+    {
+      "url": "index.html",
+      "theme": "dark",
+      "documentTitle": "Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/",
+      "issues": []
+    },
+    {
+      "url": "pages/students.html",
+      "theme": "dark",
+      "documentTitle": "Student Dashboard|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/students",
+      "issues": []
+    },
+    {
+      "url": "pages/about.html",
+      "theme": "dark",
+      "documentTitle": "About|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/about",
+      "issues": []
+    },
+    {
+      "url": "pages/license-and-credits.html",
+      "theme": "dark",
+      "documentTitle": "License and Credits|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/license-and-credits",
+      "issues": []
+    },
+    {
+      "url": "pages/glossary-and-faq.html",
+      "theme": "dark",
       "documentTitle": "Glossary and FAQ|Web Witchcraft and Wizardry",
       "pageUrl": "http://localhost:8080/pages/glossary-and-faq",
       "issues": []

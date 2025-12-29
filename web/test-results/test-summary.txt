@@ -10,7 +10,7 @@
 
 [Links] Broken Links Results:
   Pages checked: 5
-  Total links: 135
+  Total links: 142
   Broken links: 0
 
 ======================
@@ -28,13 +28,13 @@
   [Minor] Minor: 0
 
 [Lighthouse] Lighthouse Accessibility Results:
-  Pages tested: 5
+  Pages tested: 10
   Average score: 100%
   Pages with issues: 0
   Total failed audits: 0
 
 [Pa11y] Pa11y Accessibility Results:
-  Pages tested: 5
+  Pages tested: 10
   [X] Errors: 0
   [Warning]  Warnings: 0
   Pages with errors: 0
@@ -43,7 +43,7 @@
 
 [Reading] Reading Age Results:
   Pages analyzed: 3
-  Total words: 2639
-  Average grade level: 9.6
+  Total words: 6396
+  Average grade level: 10.2
   [OK] All pages at high school level or below
 
