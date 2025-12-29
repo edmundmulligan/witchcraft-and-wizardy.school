@@ -34,14 +34,14 @@
     --color-light-warning-text:        white;
 
     /* dark theme colours */
-    --color-dark-page-background:      darkgreen;
-    --color-dark-page-text:            lightgreen;
-    --color-dark-headings-background:  darkolivegreen;
-    --color-dark-headings-text:        lemonchiffon;
-    --color-dark-link-text:            lightgreen;
-    --color-dark-link-text-hover:      lightblue;
-    --color-dark-link-text-visited:    lightblue;
-    --color-dark-link-text-focus:      lightblue;
+    --color-dark-page-background:      #0a3d0a; /* very dark green */
+    --color-dark-page-text:            #c8ffc8; /* lighter green */
+    --color-dark-headings-background:  #1a5c1a; /* dark teal green */
+    --color-dark-headings-text:        #ff6; /* light yellow */
+    --color-dark-link-text:            #90ee90; /* light green */
+    --color-dark-link-text-hover:      darkgreen;
+    --color-dark-link-text-visited:    #add8e6; /* light blue */
+    --color-dark-link-text-focus:      #add8e6; /* light blue */
     --color-dark-error-background:     lightcoral;
     --color-dark-error-text:           black;
     --color-dark-warning-background:   red;
@@ -238,8 +238,8 @@ a:focus-visible {
 
 /* this may be a bit subtle but it meets WCAG 2.2 guidelines */
 a:focus-visible {
-    outline: 0.1rem dashed var(--color-link-text-focus);
-    outline-offset: 0.1em;
+    outline: var(--border-weight-thin) dashed var(--color-link-text-focus);
+    outline-offset: 0.2rem;
 }
 
 /* Utility class to mirror an image horizontally. Used by the wizard 
