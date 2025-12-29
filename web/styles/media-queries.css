@@ -166,17 +166,17 @@
 
     .facts dt {
         font-weight: bold;
-        padding: 0.5em 0 0.25em;
+        padding: 0.5rem 0 0.25rem;
         margin: 0;
         text-align: left;
         border-bottom: none;
     }
 
     .facts dd {
-        padding: 0.25em 0 0.5em;
-        margin: 0 0 0.5em;
+        padding: 0.25rem 0 0.5rem;
+        margin: 0 0 0.5rem;
         text-align: left;
-        border-bottom: 0.3rem solid var(--color-headings-text);
+        border-bottom: var(--border-weight) var(--border-style) var(--color-headings-text);
     }
 
     .facts dd:last-of-type {
