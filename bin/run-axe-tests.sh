@@ -35,46 +35,55 @@ discover_html_pages "."
 # Initialize combined results
 echo '{"violations":[],"passes":[],"incomplete":[]}' > "$RESULTS_DIR/axe-results.json"
 
-# Test each page
+# Test each page in both light and dark modes
 TESTED=0
-for page in $PAGES; do
-  TESTED=$((TESTED + 1))
-  # Convert file path to URL path
-  URL_PATH="${page#./}"
-  FULL_URL="$TEST_URL/$URL_PATH"
+for THEME in light dark; do
+  echo ""
+  echo "🎨 Testing in $THEME mode..."
+  echo ""
+  
+  for page in $PAGES; do
+    TESTED=$((TESTED + 1))
+    # Convert file path to URL path
+    URL_PATH="${page#./}"
+    FULL_URL="$TEST_URL/$URL_PATH"
 
-  echo "[$TESTED/$PAGE_COUNT] Testing $URL_PATH"
+    echo "[$TESTED/$((PAGE_COUNT * 2))] Testing $URL_PATH ($THEME mode)"
 
-  # Run axe on this page
-  TEMP_RESULT="$RESULTS_DIR/axe-temp-$TESTED.json"
-  axe "$FULL_URL" --disable page-has-heading-one --save "$TEMP_RESULT" 2>&1 | grep -E "(violations|Testing|Saved)" || true
+    # Run axe on this page with color scheme emulation
+    TEMP_RESULT="$RESULTS_DIR/axe-temp-$TESTED.json"
+    axe "$FULL_URL" --disable page-has-heading-one --save "$TEMP_RESULT" \
+      --chromedriver-options="{\"args\":[\"--force-prefers-color-scheme=$THEME\"]}" \
+      2>&1 | grep -E "(violations|Testing|Saved)" || true
 
-  # Merge violations into combined results if file exists
-  if [ -f "$TEMP_RESULT" ]; then
-    node -e "
-      try {
-        const fs = require('fs');
-        const combined = JSON.parse(fs.readFileSync('$RESULTS_DIR/axe-results.json'));
-        const newData = JSON.parse(fs.readFileSync('$TEMP_RESULT'));
+    # Merge violations into combined results if file exists
+    if [ -f "$TEMP_RESULT" ]; then
+      node -e "
+        try {
+          const fs = require('fs');
+          const combined = JSON.parse(fs.readFileSync('$RESULTS_DIR/axe-results.json'));
+          const newData = JSON.parse(fs.readFileSync('$TEMP_RESULT'));
 
-        // Axe saves results as an array [{violations: [...]}]
-        const result = Array.isArray(newData) ? newData[0] : newData;
+          // Axe saves results as an array [{violations: [...]}]
+          const result = Array.isArray(newData) ? newData[0] : newData;
 
-        // Add page URL to each violation
-        if (result.violations && result.violations.length > 0) {
-          result.violations.forEach(v => {
-            v.pageUrl = '$URL_PATH';
-            combined.violations.push(v);
-          });
+          // Add page URL and theme to each violation
+          if (result.violations && result.violations.length > 0) {
+            result.violations.forEach(v => {
+              v.pageUrl = '$URL_PATH';
+              v.theme = '$THEME';
+              combined.violations.push(v);
+            });
+          }
+
+          fs.writeFileSync('$RESULTS_DIR/axe-results.json', JSON.stringify(combined, null, 2));
+          fs.unlinkSync('$TEMP_RESULT');
+        } catch (e) {
+          console.error('Error merging results:', e.message);
         }
-
-        fs.writeFileSync('$RESULTS_DIR/axe-results.json', JSON.stringify(combined, null, 2));
-        fs.unlinkSync('$TEMP_RESULT');
-      } catch (e) {
-        console.error('Error merging results:', e.message);
-      }
-    "
-  fi
+      "
+    fi
+  done
 done
 
 # Stop server if we started it
@@ -148,7 +157,20 @@ else
       console.log(icon + isContrast + ' ' + id + ' (' + v.impact + ')');
       console.log('  Description: ' + v.description);
       console.log('  Help: ' + v.help);
-      console.log('  Affected pages: ' + v.pages.join(', '));
+      
+      // Group by theme
+      const byTheme = {};
+      data.violations.forEach(violation => {
+        if (violation.id === id) {
+          const theme = violation.theme || 'unknown';
+          if (!byTheme[theme]) byTheme[theme] = [];
+          byTheme[theme].push(violation.pageUrl || 'unknown');
+        }
+      });
+      
+      Object.keys(byTheme).forEach(theme => {
+        console.log('  ' + theme + ' mode: ' + byTheme[theme].join(', '));
+      });
       console.log('');
     });
   "

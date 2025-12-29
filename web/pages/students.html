@@ -70,6 +70,8 @@
     <script src="../scripts/inject-popover-text.js" defer></script>
     <script src="../scripts/inject-in-page-navigation-students.js" defer></script>
     <script src="../scripts/student-form-storage.js" defer></script>
+    <script src="../scripts/toggle-section.js" defer></script>
+
     <!-- End JavaScript file link -->
 
     <noscript>
@@ -193,6 +195,7 @@
                         type="button"
                         id="clear-information-btn"
                         class="button-rectangle"
+                        popovertarget="confirm-clear"
                     >
                         Clear Information
                     </button>
@@ -476,6 +479,14 @@
     </footer>
     <div id="not-implemented" popover="auto" class="popover">
         <!-- Popover content is injected by JavaScript to ensure it is the same across all pages -->
+    </div>
+    <div id="confirm-clear" popover="auto" class="popover">
+        <h3>Clear All Information?</h3>
+        <p>Are you sure you want to clear all saved information? This action cannot be undone.</p>
+        <div class="button-group">
+            <button type="button" id="confirm-clear-yes" class="button-rectangle">Yes, Clear It</button>
+            <button type="button" id="confirm-clear-no" class="button-rectangle" popovertarget="confirm-clear" popovertargetaction="hide">Cancel</button>
+        </div>
     </div>
 </body>
 </html>

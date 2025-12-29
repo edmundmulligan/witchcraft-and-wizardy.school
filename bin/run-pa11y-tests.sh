@@ -35,35 +35,43 @@ discover_html_pages "."
 # Initialize combined results
 echo '{"pages":[]}' > "$RESULTS_DIR/pa11y-results.json"
 
-# Test each page
+# Test each page in both light and dark modes
 TESTED=0
-for page in $PAGES; do
-  TESTED=$((TESTED + 1))
-  # Convert file path to URL path
-  URL_PATH="${page#./}"
-  FULL_URL="$TEST_URL/$URL_PATH"
+for THEME in light dark; do
+  echo ""
+  echo "🎨 Testing in $THEME mode..."
+  echo ""
+  
+  for page in $PAGES; do
+    TESTED=$((TESTED + 1))
+    # Convert file path to URL path
+    URL_PATH="${page#./}"
+    FULL_URL="$TEST_URL/$URL_PATH"
 
-  echo "[$TESTED/$PAGE_COUNT] Testing $URL_PATH"
+    echo "[$TESTED/$((PAGE_COUNT * 2))] Testing $URL_PATH ($THEME mode)"
 
-  # Run pa11y on this page using inline Node.js
-  TEMP_RESULT="$RESULTS_DIR/pa11y-temp-$TESTED.json"
-  node -e "
-    (async () => {
-      const pa11y = require('pa11y');
-      const fs = require('fs');
+    # Run pa11y on this page using inline Node.js
+    TEMP_RESULT="$RESULTS_DIR/pa11y-temp-$TESTED.json"
+    node -e "
+      (async () => {
+        const pa11y = require('pa11y');
+        const fs = require('fs');
 
-      try {
-        const results = await pa11y('$FULL_URL', {
-          standard: 'WCAG2AA',
-          chromeLaunchConfig: {
-            args: [
-              '--no-sandbox',
-              '--disable-setuid-sandbox',
-              '--disable-dev-shm-usage',
-              '--disable-gpu'
-            ]
-          }
-        });
+        try {
+          const results = await pa11y('$FULL_URL', {
+            standard: 'WCAG2AA',
+            emulateMediaFeatures: [
+              { name: 'prefers-color-scheme', value: '$THEME' }
+            ],
+            chromeLaunchConfig: {
+              args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+                '--disable-gpu'
+              ]
+            }
+          });
 
         fs.writeFileSync('$TEMP_RESULT', JSON.stringify(results, null, 2));
 
@@ -78,29 +86,31 @@ for page in $PAGES; do
     })();
   "
 
-  # Merge results into combined file if temp file exists
-  if [ -f "$TEMP_RESULT" ]; then
-    node -e "
-      try {
-        const fs = require('fs');
-        const combined = JSON.parse(fs.readFileSync('$RESULTS_DIR/pa11y-results.json'));
-        const newData = JSON.parse(fs.readFileSync('$TEMP_RESULT'));
+    # Merge results into combined file if temp file exists
+    if [ -f "$TEMP_RESULT" ]; then
+      node -e "
+        try {
+          const fs = require('fs');
+          const combined = JSON.parse(fs.readFileSync('$RESULTS_DIR/pa11y-results.json'));
+          const newData = JSON.parse(fs.readFileSync('$TEMP_RESULT'));
 
-        const pageResult = {
-          url: '$URL_PATH',
-          documentTitle: newData.documentTitle,
-          pageUrl: newData.pageUrl,
-          issues: newData.issues || []
-        };
+          const pageResult = {
+            url: '$URL_PATH',
+            theme: '$THEME',
+            documentTitle: newData.documentTitle,
+            pageUrl: newData.pageUrl,
+            issues: newData.issues || []
+          };
 
-        combined.pages.push(pageResult);
-        fs.writeFileSync('$RESULTS_DIR/pa11y-results.json', JSON.stringify(combined, null, 2));
-        fs.unlinkSync('$TEMP_RESULT');
-      } catch (e) {
-        console.error('Error merging results for $URL_PATH:', e.message);
-      }
-    "
-  fi
+          combined.pages.push(pageResult);
+          fs.writeFileSync('$RESULTS_DIR/pa11y-results.json', JSON.stringify(combined, null, 2));
+          fs.unlinkSync('$TEMP_RESULT');
+        } catch (e) {
+          console.error('Error merging results for $URL_PATH:', e.message);
+        }
+      "
+    fi
+  done
 done
 
 # Stop server if we started it
@@ -145,8 +155,8 @@ node -e "
     console.log('  Pages with errors:');
     pagesWithErrors.forEach(page => {
       const errors = page.issues.filter(i => i.type === 'error');
-      console.log('');
-      console.log('❌ ' + page.url + ' (' + errors.length + ' errors)');
+    console.log('');  
+    console.log('❌ ' + page.url + ' [' + (page.theme || 'unknown') + ' mode] (' + errors.length + ' errors)');
 
       errors.slice(0, 5).forEach(issue => {
         console.log('    • ' + issue.message);

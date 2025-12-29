@@ -36,3 +36,7 @@
     background-color: var(--color-page-background);
     border-radius: var(--border-radius);
 }
+
+.faq-title {
+    text-align: left;
+}

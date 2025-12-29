@@ -136,14 +136,25 @@ echo '{"pages":[]}' > "$RESULT_FILE"
 # Find all HTML pages
 discover_html_pages
 
-# Test each page
+# Test each page in both light and dark modes
 TESTED=0
-for page in $PAGES; do
-  TESTED=$((TESTED + 1))
-  URL_PATH="${page#./}"
-  FULL_URL="$TEST_URL/$URL_PATH"
+for THEME in light dark; do
+  echo ""
+  echo "🎨 Testing in $THEME mode..."
+  echo ""
+  
+  for page in $PAGES; do
+    TESTED=$((TESTED + 1))
+    URL_PATH="${page#./}"
+    
+    # Add theme parameter to URL
+    if [[ "$URL_PATH" == *"?"* ]]; then
+      FULL_URL="$TEST_URL/$URL_PATH&theme=$THEME"
+    else
+      FULL_URL="$TEST_URL/$URL_PATH?theme=$THEME"
+    fi
 
-  echo "[$TESTED/$PAGE_COUNT] Testing $URL_PATH"
+    echo "[$TESTED/$((PAGE_COUNT * 2))] Testing $URL_PATH ($THEME mode)"
 
   # Call WAVE API (reporttype=4 returns detailed JSON)
   TEMP_RESULT="$RESULTS_DIR/wave-temp-$TESTED.json"
@@ -167,6 +178,7 @@ for page in $PAGES; do
         if (newData.categories) {
           const pageResult = {
             url: '$URL_PATH',
+            theme: '$THEME',
             errors: newData.categories.error?.count || 0,
             alerts: newData.categories.alert?.count || 0,
             features: newData.categories.feature?.count || 0,
@@ -240,6 +252,7 @@ for page in $PAGES; do
       }
     "
   fi
+  done
 done
 
 # Display summary
@@ -273,7 +286,7 @@ node -e "
     console.log('  Pages with errors:');
     pagesWithErrors.forEach(page => {
       console.log('');
-      console.log('❌ ' + page.url);
+      console.log('❌ ' + page.url + ' [' + (page.theme || 'unknown') + ' mode]');
       console.log('   Errors: ' + page.errors + ', Alerts: ' + page.alerts + ', Contrast: ' + page.contrast);
 
       // Show error details if available
@@ -296,7 +309,7 @@ node -e "
     console.log('  Pages with alerts:');
     pagesWithAlerts.forEach(page => {
       console.log('');
-      console.log('⚠️  ' + page.url);
+      console.log('⚠️  ' + page.url + ' [' + (page.theme || 'unknown') + ' mode]');
       console.log('   Alerts: ' + page.alerts);
 
       // Show alert details if available

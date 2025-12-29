@@ -177,9 +177,14 @@
                     themeRadio.checked = true;
                 }
                 
-                // Apply the theme if theme switcher is available
+                // Only apply the theme if no theme preference is currently set
+                // This prevents overriding the user's active theme choice
                 if (window.ThemeSwitcher) {
-                    window.ThemeSwitcher.set(data.themeChoice);
+                    const currentTheme = window.ThemeSwitcher.get();
+                    // Only apply saved theme if current preference is 'auto' (default)
+                    if (currentTheme === 'auto') {
+                        window.ThemeSwitcher.set(data.themeChoice);
+                    }
                 }
             }
 
@@ -278,25 +283,36 @@
 
         // Set up clear button handler
         const clearButton = document.getElementById('clear-information-btn');
-        if (clearButton) {
-            clearButton.addEventListener('click', () => {
-                if (confirm('Are you sure you want to clear all saved information?')) {
-                    // Clear localStorage
-                    localStorage.removeItem(STORAGE_KEY);
-                    
-                    // Reset the form
-                    const form = document.getElementById('student-info-form');
-                    if (form) {
-                        form.reset();
-                    }
-                    
-                    // Clear avatar preview
-                    const output = document.getElementById('avatar-preview');
-                    if (output) {
-                        output.innerHTML = '';
-                    }
-                    
-                    // Visual feedback
+        const confirmYesButton = document.getElementById('confirm-clear-yes');
+        const confirmPopover = document.getElementById('confirm-clear');
+        
+        if (confirmYesButton && confirmPopover) {
+            confirmYesButton.addEventListener('click', () => {
+                // Clear localStorage
+                localStorage.removeItem(STORAGE_KEY);
+                
+                // Reset the form
+                const form = document.getElementById('student-info-form');
+                if (form) {
+                    form.reset();
+                }
+                
+                // Clear avatar preview
+                const output = document.getElementById('avatar-preview');
+                if (output) {
+                    output.innerHTML = '';
+                }
+                
+                // Reset theme to browser default (auto)
+                if (window.ThemeSwitcher) {
+                    window.ThemeSwitcher.set('auto');
+                }
+                
+                // Close the popover
+                confirmPopover.hidePopover();
+                
+                // Visual feedback on the clear button
+                if (clearButton) {
                     clearButton.textContent = 'Information Cleared!';
                     clearButton.style.backgroundColor = 'var(--color-warning-background)';
                     
