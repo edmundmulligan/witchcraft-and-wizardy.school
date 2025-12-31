@@ -220,13 +220,14 @@ h5, h6{
 }
 
 /* increas spacing for paragraphs in accordance with WCAG 2.2 */
-p {
+p, li {
     font-size: var(--fontsize-p);
     margin-bottom: 1.5rem;
 }
 
 /* Make inline code elements the same size as paragraph text */
 code {
+    font-family: 'Fira Code', monospace;
     font-size: var(--fontsize-p);
 }
 

@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('header.header');
     if (header && header.children.length === 0) {
         // Determine path prefix based on current page location
-        const pathPrefix = window.location.pathname.includes('/pages/') ? '../' : '';
+        // Check if we're in a subdirectory (pages, students, or mentors)
+        const pathname = window.location.pathname;
+        const pathPrefix = (pathname.includes('/pages/') || pathname.includes('/students/') || pathname.includes('/mentors/')) ? '../' : '';
         
         header.innerHTML = `
         <div class="header-minimal">

@@ -3,6 +3,7 @@
     {
       "url": "index.html",
       "theme": "light",
+      "viewport": "150",
       "errors": 0,
       "alerts": 2,
       "features": 4,
@@ -27,6 +28,7 @@
     {
       "url": "pages/students.html",
       "theme": "light",
+      "viewport": "150",
       "errors": 0,
       "alerts": 3,
       "features": 17,
@@ -56,6 +58,7 @@
     {
       "url": "pages/about.html",
       "theme": "light",
+      "viewport": "150",
       "errors": 0,
       "alerts": 3,
       "features": 33,
@@ -80,6 +83,7 @@
     {
       "url": "pages/license-and-credits.html",
       "theme": "light",
+      "viewport": "150",
       "errors": 0,
       "alerts": 2,
       "features": 4,
@@ -104,8 +108,9 @@
     {
       "url": "pages/glossary-and-faq.html",
       "theme": "light",
+      "viewport": "150",
       "errors": 0,
-      "alerts": 41,
+      "alerts": 2,
       "features": 4,
       "structural": 60,
       "contrast": 0,
@@ -120,11 +125,6 @@
           "id": "noscript",
           "description": "Noscript element",
           "count": 1
-        },
-        {
-          "id": "event_handler",
-          "description": "Device dependent event handler",
-          "count": 39
         }
       ],
       "contrastItems": [],
@@ -133,6 +133,7 @@
     {
       "url": "index.html",
       "theme": "dark",
+      "viewport": "150",
       "errors": 0,
       "alerts": 2,
       "features": 4,
@@ -157,6 +158,7 @@
     {
       "url": "pages/students.html",
       "theme": "dark",
+      "viewport": "150",
       "errors": 0,
       "alerts": 3,
       "features": 17,
@@ -186,6 +188,7 @@
     {
       "url": "pages/about.html",
       "theme": "dark",
+      "viewport": "150",
       "errors": 0,
       "alerts": 3,
       "features": 33,
@@ -210,6 +213,7 @@
     {
       "url": "pages/license-and-credits.html",
       "theme": "dark",
+      "viewport": "150",
       "errors": 0,
       "alerts": 2,
       "features": 4,
@@ -230,6 +234,811 @@
       ],
       "contrastItems": [],
       "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/license-and-credits.html?theme=dark"
+    },
+    {
+      "url": "pages/glossary-and-faq.html",
+      "theme": "dark",
+      "viewport": "150",
+      "errors": 0,
+      "alerts": 2,
+      "features": 4,
+      "structural": 60,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/glossary-and-faq.html?theme=dark"
+    },
+    {
+      "url": "index.html",
+      "theme": "light",
+      "viewport": "400",
+      "errors": 0,
+      "alerts": 2,
+      "features": 4,
+      "structural": 12,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/index.html?theme=light"
+    },
+    {
+      "url": "pages/students.html",
+      "theme": "light",
+      "viewport": "400",
+      "errors": 0,
+      "alerts": 3,
+      "features": 17,
+      "structural": 23,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "link_redundant",
+          "description": "Redundant link",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/students.html?theme=light"
+    },
+    {
+      "url": "pages/about.html",
+      "theme": "light",
+      "viewport": "400",
+      "errors": 0,
+      "alerts": 3,
+      "features": 33,
+      "structural": 62,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 2
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/about.html?theme=light"
+    },
+    {
+      "url": "pages/license-and-credits.html",
+      "theme": "light",
+      "viewport": "400",
+      "errors": 0,
+      "alerts": 2,
+      "features": 4,
+      "structural": 21,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/license-and-credits.html?theme=light"
+    },
+    {
+      "url": "pages/glossary-and-faq.html",
+      "theme": "light",
+      "viewport": "400",
+      "errors": 0,
+      "alerts": 2,
+      "features": 4,
+      "structural": 60,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/glossary-and-faq.html?theme=light"
+    },
+    {
+      "url": "index.html",
+      "theme": "dark",
+      "viewport": "400",
+      "errors": 0,
+      "alerts": 2,
+      "features": 4,
+      "structural": 12,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/index.html?theme=dark"
+    },
+    {
+      "url": "pages/students.html",
+      "theme": "dark",
+      "viewport": "400",
+      "errors": 0,
+      "alerts": 3,
+      "features": 17,
+      "structural": 23,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "link_redundant",
+          "description": "Redundant link",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/students.html?theme=dark"
+    },
+    {
+      "url": "pages/about.html",
+      "theme": "dark",
+      "viewport": "400",
+      "errors": 0,
+      "alerts": 3,
+      "features": 33,
+      "structural": 62,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 2
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/about.html?theme=dark"
+    },
+    {
+      "url": "pages/license-and-credits.html",
+      "theme": "dark",
+      "viewport": "400",
+      "errors": 0,
+      "alerts": 2,
+      "features": 4,
+      "structural": 21,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/license-and-credits.html?theme=dark"
+    },
+    {
+      "url": "pages/glossary-and-faq.html",
+      "theme": "dark",
+      "viewport": "400",
+      "errors": 0,
+      "alerts": 2,
+      "features": 4,
+      "structural": 60,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/glossary-and-faq.html?theme=dark"
+    },
+    {
+      "url": "index.html",
+      "theme": "light",
+      "viewport": "900",
+      "errors": 0,
+      "alerts": 2,
+      "features": 4,
+      "structural": 12,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/index.html?theme=light"
+    },
+    {
+      "url": "pages/students.html",
+      "theme": "light",
+      "viewport": "900",
+      "errors": 0,
+      "alerts": 3,
+      "features": 17,
+      "structural": 23,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "link_redundant",
+          "description": "Redundant link",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/students.html?theme=light"
+    },
+    {
+      "url": "pages/about.html",
+      "theme": "light",
+      "viewport": "900",
+      "errors": 0,
+      "alerts": 3,
+      "features": 33,
+      "structural": 62,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 2
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/about.html?theme=light"
+    },
+    {
+      "url": "pages/license-and-credits.html",
+      "theme": "light",
+      "viewport": "900",
+      "errors": 0,
+      "alerts": 2,
+      "features": 4,
+      "structural": 21,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/license-and-credits.html?theme=light"
+    },
+    {
+      "url": "pages/glossary-and-faq.html",
+      "theme": "light",
+      "viewport": "900",
+      "errors": 0,
+      "alerts": 2,
+      "features": 4,
+      "structural": 60,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/glossary-and-faq.html?theme=light"
+    },
+    {
+      "url": "index.html",
+      "theme": "dark",
+      "viewport": "900",
+      "errors": 0,
+      "alerts": 2,
+      "features": 4,
+      "structural": 12,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/index.html?theme=dark"
+    },
+    {
+      "url": "pages/students.html",
+      "theme": "dark",
+      "viewport": "900",
+      "errors": 0,
+      "alerts": 3,
+      "features": 17,
+      "structural": 23,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "link_redundant",
+          "description": "Redundant link",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/students.html?theme=dark"
+    },
+    {
+      "url": "pages/about.html",
+      "theme": "dark",
+      "viewport": "900",
+      "errors": 0,
+      "alerts": 3,
+      "features": 33,
+      "structural": 62,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 2
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/about.html?theme=dark"
+    },
+    {
+      "url": "pages/license-and-credits.html",
+      "theme": "dark",
+      "viewport": "900",
+      "errors": 0,
+      "alerts": 2,
+      "features": 4,
+      "structural": 21,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/license-and-credits.html?theme=dark"
+    },
+    {
+      "url": "pages/glossary-and-faq.html",
+      "theme": "dark",
+      "viewport": "900",
+      "errors": 0,
+      "alerts": 2,
+      "features": 4,
+      "structural": 60,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/glossary-and-faq.html?theme=dark"
+    },
+    {
+      "url": "index.html",
+      "theme": "light",
+      "viewport": "1300",
+      "errors": 0,
+      "alerts": 2,
+      "features": 4,
+      "structural": 12,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/index.html?theme=light"
+    },
+    {
+      "url": "pages/students.html",
+      "theme": "light",
+      "viewport": "1300",
+      "errors": 0,
+      "alerts": 3,
+      "features": 17,
+      "structural": 23,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "link_redundant",
+          "description": "Redundant link",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/students.html?theme=light"
+    },
+    {
+      "url": "pages/about.html",
+      "theme": "light",
+      "viewport": "1300",
+      "errors": 0,
+      "alerts": 3,
+      "features": 33,
+      "structural": 62,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 2
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/about.html?theme=light"
+    },
+    {
+      "url": "pages/license-and-credits.html",
+      "theme": "light",
+      "viewport": "1300",
+      "errors": 0,
+      "alerts": 2,
+      "features": 4,
+      "structural": 21,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/license-and-credits.html?theme=light"
+    },
+    {
+      "url": "pages/glossary-and-faq.html",
+      "theme": "light",
+      "viewport": "1300",
+      "errors": 0,
+      "alerts": 2,
+      "features": 4,
+      "structural": 60,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/glossary-and-faq.html?theme=light"
+    },
+    {
+      "url": "index.html",
+      "theme": "dark",
+      "viewport": "1300",
+      "errors": 0,
+      "alerts": 2,
+      "features": 4,
+      "structural": 12,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/index.html?theme=dark"
+    },
+    {
+      "url": "pages/students.html",
+      "theme": "dark",
+      "viewport": "1300",
+      "errors": 0,
+      "alerts": 3,
+      "features": 17,
+      "structural": 23,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "link_redundant",
+          "description": "Redundant link",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/students.html?theme=dark"
+    },
+    {
+      "url": "pages/about.html",
+      "theme": "dark",
+      "viewport": "1300",
+      "errors": 0,
+      "alerts": 3,
+      "features": 33,
+      "structural": 62,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 2
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/about.html?theme=dark"
+    },
+    {
+      "url": "pages/license-and-credits.html",
+      "theme": "dark",
+      "viewport": "1300",
+      "errors": 0,
+      "alerts": 2,
+      "features": 4,
+      "structural": 21,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/license-and-credits.html?theme=dark"
+    },
+    {
+      "url": "pages/glossary-and-faq.html",
+      "theme": "dark",
+      "viewport": "1300",
+      "errors": 0,
+      "alerts": 2,
+      "features": 4,
+      "structural": 60,
+      "contrast": 0,
+      "errorItems": [],
+      "alertItems": [
+        {
+          "id": "heading_possible",
+          "description": "Possible heading",
+          "count": 1
+        },
+        {
+          "id": "noscript",
+          "description": "Noscript element",
+          "count": 1
+        }
+      ],
+      "contrastItems": [],
+      "waveUrl": "http://wave.webaim.org/report?url=https://crinkly-majorie-dramatic.ngrok-free.dev/pages/glossary-and-faq.html?theme=dark"
     }
   ]
 }

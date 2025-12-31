@@ -1,0 +1,2153 @@
+<!--
+ **********************************************************************
+ * File       : students/lesson-00.html
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Lesson 0 page for students on the Web Witchcraft and Wizardry website.
+ *   This lesson ensures students have the tools installed on their computers.
+ **********************************************************************
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Start of meta tags -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Web Witchcraft and Wizardry">
+    <meta name="keywords" content="HTML, CSS, learning">
+    <meta name="author" content="Edmund Mulligan">
+    <meta name="license" content="MIT License">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- End of meta tags -->
+
+    <!-- Set the document title-->
+    <title>Lesson0|Web Witchcraft and Wizardry</title>
+
+    <!-- Link to Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+
+    <!--Links for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- End Google Fonts links -->
+
+    <!-- Link to Font Awesome Icons (using CSS rather than JS)-->
+    <link rel="stylesheet" href="https://kit.fontawesome.com/3895b3f1a4.css" crossorigin="anonymous">
+    <!-- End Font Awesome Icons -->
+
+    <!-- Start of CSS stylesheets section -->
+
+    <!-- main.css must be the first stylesheet loaded -->
+    <link rel="stylesheet" href="../styles/main.css">
+
+    <!-- These stylesheets are common to all pages -->
+    <link rel="stylesheet" href="../styles/components/buttons.css">
+    <link rel="stylesheet" href="../styles/components/header-and-footer.css">
+    <link rel="stylesheet" href="../styles/components/navigation.css">
+    <link rel="stylesheet" href="../styles/components/popover.css">
+    <link rel="stylesheet" href="../styles/components/titles.css">
+    <link rel="stylesheet" href="../styles/components/toggle.css">
+    <link rel="stylesheet" href="../styles/pages.css">
+
+    <!-- page specific stylesheet -->
+    <link rel="stylesheet" href="../styles/students/lesson.css">
+
+    <!-- media-queries must be the last stylesheets loaded -->
+    <link rel="stylesheet" href="../styles/media-queries.css">
+    <link rel="stylesheet" href="../styles/students/media-queries-students.css">
+    <!-- End of CSS stylesheets section -->
+
+    <!-- Load JavaScript files -->
+    <script src="../scripts/theme-switcher.js"></script>
+    <script src="../scripts/student-form-storage.js" defer></script>
+    <script src="../scripts/toggle-header-footer.js" defer></script>
+    <script src="../scripts/inject-header.js" defer></script>
+    <script src="../scripts/inject-footer.js" defer></script>
+    <script src="../scripts/inject-popover-text.js" defer></script>
+    <script src="../scripts/toggle-section.js" defer></script>
+    <script src="../scripts/show-os-instructions.js" defer></script>
+
+    <!-- End JavaScript file link -->
+
+    <!-- Handle no JavaScript scenario -->
+    <noscript>
+        <link rel="stylesheet" href="../styles/noscript.css">
+    </noscript>
+</head>
+
+<body>
+    <header class="header">
+        <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
+    </header>
+
+    <main>
+        <h2 class="page-title">Lesson 0 - Getting Started</h2>
+        <section id="introduction" class="introduction">
+            <div class="intro-container">
+                <div class="student-image"></div>
+                <div class="intro-content">
+                    <h3>Introduction</h3>
+                    <p>
+                        In this lesson, you will ensure that you have all the necessary tools installed on your computer to start learning web development. By the end of this lesson, you will be ready to create your first web page. If you are at a Code Dojo and are using a club computer, these tools will already be installed for you so you can skip to the next lesson.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="installing-required-software" class="installing-required-software">
+            <h3>Installing Required Software</h3>
+            <p>These are the tools you need to install. Some may already be installed on your computer, in which case you can skip those sectios. You may use other tools if you prefer, but these are the ones the lessons will assume you have.</p>
+            <ul>
+                <li>Microsoft Visual Studio Code (or another code editor).</li>
+                <li>Mozilla Firefox (or another modern web browser such as Google Chrome or Apple Safari).</li>
+                <li>Git (optional, for version control, used in later lessons).</li>
+                <li>PHP (optional, for server-side scripting, used in later lessons).</li>
+                <li>SQLite (optional, for database management, used in later lessons).</li>
+            </ul>
+            <p>
+                If you don't want to install Git, PHP, or SQLite right now, that's okay; you can install them later when you get to the lessons that need them.
+            </p>
+            <p>
+                Please select your operating system below to see the specific installation instructions.
+            </p>
+            <form>
+                <fieldset class="operating-systems">
+                    <legend>What computer do you use?</legend>
+                    <label>
+                        <input type="radio" name="os" value="windows" required>
+                        Windows
+                    </label>
+                    <label>
+                        <input type="radio" name="os" value="macos" required>
+                        macOS
+                    </label>
+                        <label>
+                            <input type="radio" name="os" value="linux" required>
+                            Linux
+                    </label>
+                    <label>
+                        <input type="radio" name="os" value="chromebook" required>
+                        Chromebook
+                    </label>
+                    <label>
+                        <input type="radio" name="os" value="android" required>
+                        Android device
+                    </label>
+                    <label>
+                        <input type="radio" name="os" value="ios" required>
+                        iPhone/iPad
+                    </label>
+                </fieldset>
+            </form>
+            <div id="instructions-windows">
+                <h4>Windows Installation Instructions</h4>
+                <p>
+                    The latest version of Windows is <strong>Windows 11</strong>, but you should be able to use <strong>Windows 10</strong> as well. The lessons have not been tested on earlier versions of Windows, but they may work ok. It's possible that the browser on older versions of windows won't run all the features used in the lessons. In particular, beware of using Internet Explorer - it is not supported anymore and Microsoft Edge is recommended instead. Here are the instructions for installing the recommended software on your Windows computer:
+                </p>
+
+                <h5 onclick="toggleSection('vsc-windows', event);" onkeydown="toggleSection('vsc-windows', event);" class="magic-invisible faq-title">Visual Studio Code</h5>
+                <div id="vsc-windows" class="hidden">
+                    <p>Check whether Visual Studio Code is already installed:</p>
+                    <ul>
+                        <li>Press <code>Windows key + R</code></li>
+                        <li>Type <code>code</code> and press Enter</li>
+                        <li>If VS Code opens, you have it installed. If you get an error message, you need to install it.</li>
+                    </ul>
+                    <p>If you need to install Visual Studio Code, follow these steps:</p>
+                    <ol>
+                        <li>Download VS Code from the Official Website
+                            <ul>
+                                <li>Open your web browser</li>
+                                <li>Go to <a href="https://code.visualstudio.com" target="_blank" rel="noopener noreferrer">https://code.visualstudio.com</a></li>
+                                <li>Click the large blue "Download for Windows" button</li>
+                                <li>The file <code>VSCodeUserSetup-x64-[version].exe</code> will download (usually to your Downloads folder)</li>
+                            </ul>
+                        </li>
+                        <li>Run the Installer
+                            <ul>
+                                <li>Open your Downloads folder (press <code>Windows key + E</code>, then click Downloads)</li>
+                                <li>Double-click the VSCodeUserSetup file you just downloaded</li>
+                                <li>If Windows asks "Do you want to allow this app to make changes?", click Yes</li>
+                            </ul>
+                        </li>
+                        <li>Setup Wizard
+                            <ul>
+                                <li>Accept the license agreement, then click Next</li>
+                                <li>Choose installation location (default is fine), click Next</li>
+                                <li>Choose Start Menu folder (default is fine), click Next</li>
+                            </ul>
+                        </li>
+                        <li>Select Additional Tasks
+                            <ul>
+                                <li>Check these recommended options:
+                                    <ul>
+                                        <li>Create a desktop icon</li>
+                                        <li>Add "Open with Code" action to Windows Explorer file context menu</li>
+                                        <li>Add "Open with Code" action to Windows Explorer directory context menu</li>
+                                        <li>Register Code as an editor for supported file types</li>
+                                        <li>Add to PATH</li>
+                                    </ul>
+                                </li>
+                                <li>Click Next</li>
+                            </ul>
+                        </li>
+                        <li>Install
+                            <ul>
+                                <li>Review your choices, then click Install</li>
+                                <li>Wait for installation to complete (takes about 1-2 minutes)</li>
+                                <li>Check "Launch Visual Studio Code", then click Finish</li>
+                            </ul>
+                        </li>
+                        <li>First Launch
+                            <ul>
+                                <li>VS Code opens with a Welcome screen</li>
+                                <li>You can choose your color theme (light or dark)</li>
+                                <li>You're ready to start coding!</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <h5 onclick="toggleSection('firefox-windows', event);" onkeydown="toggleSection('firefox-windows', event);" class="magic-invisible faq-title">Mozilla Firefox</h5>
+                <div id="firefox-windows" class="hidden">
+                    <p>Check whether Firefox is already installed:</p>
+                    <ul>
+                        <li>Press <code>Windows key</code></li>
+                        <li>Type <code>Firefox</code></li>
+                        <li>If Firefox appears in the search results, you have it installed. If not, you need to install it.</li>
+                    </ul>
+                    <p>If you need to install Firefox, follow these steps:</p>
+                    <ol>
+                        <li>Download Firefox from the Official Website
+                            <ul>
+                                <li>Open your web browser (Microsoft Edge or another browser)</li>
+                                <li>Go to <a href="https://www.mozilla.org/firefox/" target="_blank" rel="noopener noreferrer">https://www.mozilla.org/firefox/</a></li>
+                                <li>Click the blue "Download Firefox" button</li>
+                                <li>The file <code>Firefox Installer.exe</code> will download (usually to your Downloads folder)</li>
+                            </ul>
+                        </li>
+                        <li>Run the Installer
+                            <ul>
+                                <li>Open your Downloads folder (press <code>Windows key + E</code>, then click Downloads)</li>
+                                <li>Double-click the <code>Firefox Installer.exe</code> file you just downloaded</li>
+                                <li>If Windows asks "Do you want to allow this app to make changes?", click Yes</li>
+                            </ul>
+                        </li>
+                        <li>Installation Process
+                            <ul>
+                                <li>The installer will start automatically</li>
+                                <li>Firefox will install to the default location (usually <code>C:\Program Files\Mozilla Firefox</code>)</li>
+                                <li>Wait for installation to complete (takes about 30 seconds to 1 minute)</li>
+                                <li>Firefox will automatically launch when installation is complete</li>
+                            </ul>
+                        </li>
+                        <li>First Launch
+                            <ul>
+                                <li>Firefox opens with a Welcome screen</li>
+                                <li>You can choose to set Firefox as your default browser (optional)</li>
+                                <li>You can import bookmarks and settings from other browsers (optional)</li>
+                                <li>You're ready to browse!</li>
+                            </ul>
+                        </li>
+                        <li>Pin to Taskbar (Optional)
+                            <ul>
+                                <li>With Firefox running, right-click the Firefox icon in the taskbar</li>
+                                <li>Select "Pin to taskbar"</li>
+                                <li>Now you can launch Firefox quickly from the taskbar</li>
+                            </ul>
+                        </li>
+                        <li>Verify Installation
+                            <ul>
+                                <li>In Firefox, click the menu button (three horizontal lines) in the top-right corner</li>
+                                <li>Click "Help" → "About Firefox"</li>
+                                <li>You should see the Firefox version number</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <h5 onclick="toggleSection('git-windows', event);" onkeydown="toggleSection('git-windows', event);" class="magic-invisible faq-title">Git</h5>
+                <div id="git-windows" class="hidden">
+                    <p>Check whether Git is already installed:</p>
+                    <ul>
+                        <li>Press <code>Windows key + R</code></li>
+                        <li>Type <code>cmd</code> and press Enter to open Command Prompt</li>
+                        <li>Type <code>git --version</code> and press Enter</li>
+                        <li>If you see a version number, you have it installed. If you get an error message, you need to install it.</li>
+                    </ul>
+                    <p>If you need to install Git, follow these steps:</p>
+                    <ol>
+                        <li>Download Git from the Official Website
+                            <ul>
+                                <li>Open your web browser</li>
+                                <li>Go to <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">https://git-scm.com/</a></li>
+                                <li>Click the "Download for Windows" button</li>
+                                <li>The file <code>Git-[version]-64-bit.exe</code> will download (usually to your Downloads folder)</li>
+                            </ul>
+                        </li>
+                        <li>Run the Installer
+                            <ul>
+                                <li>Open your Downloads folder (press <code>Windows key + E</code>, then click Downloads)</li>
+                                <li>Double-click the Git installer file you just downloaded</li>
+                                <li>If Windows asks "Do you want to allow this app to make changes?", click Yes</li>
+                            </ul>
+                        </li>
+                        <li>Setup Wizard - License
+                            <ul>
+                                <li>Read the GNU General Public License</li>
+                                <li>Click Next</li>
+                            </ul>
+                        </li>
+                        <li>Setup Wizard - Installation Location
+                            <ul>
+                                <li>Default location is fine (<code>C:\Program Files\Git</code>)</li>
+                                <li>Click Next</li>
+                            </ul>
+                        </li>
+                        <li>Setup Wizard - Select Components
+                            <ul>
+                                <li>Keep the default selections (recommended):
+                                    <ul>
+                                        <li>Additional icons (On the Desktop)</li>
+                                        <li>Git Bash Here</li>
+                                        <li>Git GUI Here</li>
+                                        <li>Associate .git* configuration files</li>
+                                        <li>Associate .sh files to be run with Bash</li>
+                                    </ul>
+                                </li>
+                                <li>Click Next</li>
+                            </ul>
+                        </li>
+                        <li>Setup Wizard - Start Menu Folder
+                            <ul>
+                                <li>Default is fine ("Git")</li>
+                                <li>Click Next</li>
+                            </ul>
+                        </li>
+                        <li>Setup Wizard - Default Editor
+                            <ul>
+                                <li>Select "Use Visual Studio Code as Git's default editor" from the dropdown</li>
+                                <li>Click Next</li>
+                            </ul>
+                        </li>
+                        <li>Setup Wizard - Path Environment
+                            <ul>
+                                <li>Select "Git from the command line and also from 3rd-party software" (recommended)</li>
+                                <li>Click Next</li>
+                            </ul>
+                        </li>
+                        <li>Setup Wizard - Remaining Options
+                            <ul>
+                                <li>For all remaining screens, keep the default settings</li>
+                                <li>Click Next through each screen</li>
+                                <li>Finally, click Install</li>
+                                <li>Wait for installation to complete (takes about 1-2 minutes)</li>
+                                <li>Uncheck "View Release Notes" and click Finish</li>
+                            </ul>
+                        </li>
+                        <li>Configure Git
+                            <ul>
+                                <li>Press <code>Windows key + R</code></li>
+                                <li>Type <code>cmd</code> and press Enter</li>
+                                <li>Set your name (replace "Your Name" with your actual name):
+                                    <pre><code>git config --global user.name "Your Name"</code></pre>
+                                </li>
+                                <li>Set your email (replace with your actual email):
+                                    <pre><code>git config --global user.email "your.email@example.com"</code></pre>
+                                </li>
+                                <li>These settings will be used to identify you in your Git commits</li>
+                            </ul>
+                        </li>
+                        <li>Verify Installation
+                            <ul>
+                                <li>In the same Command Prompt, type:
+                                    <pre><code>git --version</code></pre>
+                                </li>
+                                <li>You should see the Git version number</li>
+                                <li>Check your configuration:
+                                    <pre><code>git config --global --list</code></pre>
+                                </li>
+                                <li>You should see your name and email listed</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <h5 onclick="toggleSection('php-windows', event);" onkeydown="toggleSection('php-windows', event);" class="magic-invisible faq-title">PHP</h5>
+                <div id="php-windows" class="hidden">
+                    <p>Check whether PHP is already installed:</p>
+                    <ul>
+                        <li>Press <code>Windows key + R</code></li>
+                        <li>Type <code>cmd</code> and press Enter to open Command Prompt</li>
+                        <li>Type <code>php --version</code> and press Enter</li>
+                        <li>If you see a version number, you have it installed. If you get an error message, you need to install it.</li>
+                    </ul>
+                    <p>If you need to install PHP, follow these steps:</p>
+                    <ol>
+                        <li>Download PHP from the Official Website
+                            <ul>
+                                <li>Open your web browser</li>
+                                <li>Go to <a href="https://windows.php.net/download/" target="_blank" rel="noopener noreferrer">https://windows.php.net/download/</a></li>
+                                <li>Under "Current Stable PHP", find the latest version</li>
+                                <li>Download the <strong>Non-Thread Safe (NTS)</strong> ZIP file for x64 (64-bit)
+                                    <ul>
+                                        <li>Look for something like "VS16 x64 Non Thread Safe" ZIP</li>
+                                        <li>Non-Thread Safe is recommended for most users and works with PHP's built-in server</li>
+                                    </ul>
+                                </li>
+                                <li>The file will be named something like <code>php-8.x.x-nts-Win32-vs16-x64.zip</code></li>
+                            </ul>
+                        </li>
+                        <li>Extract PHP
+                            <ul>
+                                <li>Open your Downloads folder</li>
+                                <li>Right-click the PHP ZIP file you downloaded</li>
+                                <li>Select "Extract All..."</li>
+                                <li>Change the destination to <code>C:\php</code> (create this folder if needed)</li>
+                                <li>Click "Extract"</li>
+                                <li>You should now have PHP files in <code>C:\php</code></li>
+                            </ul>
+                        </li>
+                        <li>Add PHP to System PATH
+                            <ul>
+                                <li>Press <code>Windows key</code> and type "environment variables"</li>
+                                <li>Click "Edit the system environment variables"</li>
+                                <li>Click the "Environment Variables" button at the bottom</li>
+                                <li>In the "System variables" section, find and select "Path"</li>
+                                <li>Click "Edit"</li>
+                                <li>Click "New"</li>
+                                <li>Type <code>C:\php</code> and press Enter</li>
+                                <li>Click "OK" on all windows to save</li>
+                            </ul>
+                        </li>
+                        <li>Configure PHP (Basic Setup)
+                            <ul>
+                                <li>Open File Explorer and go to <code>C:\php</code></li>
+                                <li>Find the file <code>php.ini-development</code></li>
+                                <li>Right-click it and select "Copy"</li>
+                                <li>Right-click in the same folder and select "Paste"</li>
+                                <li>Rename the copy to <code>php.ini</code> (remove the "-development" part)</li>
+                                <li>This creates your PHP configuration file</li>
+                            </ul>
+                        </li>
+                        <li>Enable Common Extensions (Optional)
+                            <ul>
+                                <li>Right-click <code>php.ini</code> and open it with Notepad or VS Code</li>
+                                <li>Find these lines (use Ctrl+F to search) and remove the semicolon (;) at the start:
+                                    <pre><code>;extension=curl
+;extension=fileinfo
+;extension=gd
+;extension=mbstring
+;extension=mysqli
+;extension=openssl
+;extension=pdo_mysql
+;extension=pdo_sqlite</code></pre>
+                                </li>
+                                <li>After removing semicolons, they should look like:
+                                    <pre><code>extension=curl
+extension=fileinfo</code></pre>
+                                    (and so on...)
+                                </li>
+                                <li>Save the file and close it</li>
+                            </ul>
+                        </li>
+                        <li>Restart Command Prompt and Verify
+                            <ul>
+                                <li>Close any open Command Prompt windows</li>
+                                <li>Press <code>Windows key + R</code>, type <code>cmd</code>, press Enter</li>
+                                <li>Type:
+                                    <pre><code>php --version</code></pre>
+                                </li>
+                                <li>You should see the PHP version number</li>
+                                <li>Test PHP by running:
+                                    <pre><code>php -r "echo 'PHP is working!';"</code></pre>
+                                </li>
+                                <li>You should see "PHP is working!" printed</li>
+                            </ul>
+                        </li>
+                        <li>Test PHP Built-in Server (Optional)
+                            <ul>
+                                <li>Create a test folder: <code>mkdir C:\test-php</code></li>
+                                <li>Navigate to it: <code>cd C:\test-php</code></li>
+                                <li>Create a test file:
+                                    <pre><code>echo ^&lt;?php phpinfo(); ?^&gt; &gt; index.php</code></pre>
+                                </li>
+                                <li>Start the PHP server:
+                                    <pre><code>php -S localhost:8000</code></pre>
+                                </li>
+                                <li>Open your browser and go to <code>http://localhost:8000</code></li>
+                                <li>You should see the PHP information page</li>
+                                <li>Press <code>Ctrl + C</code> in Command Prompt to stop the server</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <h5 onclick="toggleSection('sqlite-windows', event);" onkeydown="toggleSection('sqlite-windows', event);" class="magic-invisible faq-title">SQLite</h5>
+                <div id="sqlite-windows" class="hidden">
+                    <p>Check whether SQLite is already installed:</p>
+                    <ul>
+                        <li>Press <code>Windows key + R</code></li>
+                        <li>Type <code>cmd</code> and press Enter to open Command Prompt</li>
+                        <li>Type <code>sqlite3 --version</code> and press Enter</li>
+                        <li>If you see a version number, you have it installed. If you get an error message, you need to install it.</li>
+                    </ul>
+                    <p>If you need to install SQLite, follow these steps:</p>
+                    <ol>
+                        <li>Download SQLite from the Official Website
+                            <ul>
+                                <li>Open your web browser</li>
+                                <li>Go to <a href="https://www.sqlite.org/download.html" target="_blank" rel="noopener noreferrer">https://www.sqlite.org/download.html</a></li>
+                                <li>Scroll down to the "Precompiled Binaries for Windows" section</li>
+                                <li>Download two files:
+                                    <ul>
+                                        <li><strong>sqlite-tools-win32-x86-*.zip</strong> (contains sqlite3.exe command-line tool)</li>
+                                        <li><strong>sqlite-dll-win64-x64-*.zip</strong> (contains the DLL library)</li>
+                                    </ul>
+                                </li>
+                                <li>Both files will download to your Downloads folder</li>
+                            </ul>
+                        </li>
+                        <li>Create SQLite Directory
+                            <ul>
+                                <li>Press <code>Windows key + E</code> to open File Explorer</li>
+                                <li>Navigate to your C: drive</li>
+                                <li>Create a new folder called <code>sqlite</code> (full path: <code>C:\sqlite</code>)</li>
+                            </ul>
+                        </li>
+                        <li>Extract SQLite Files
+                            <ul>
+                                <li>Go to your Downloads folder</li>
+                                <li>Right-click <code>sqlite-tools-win32-x86-*.zip</code></li>
+                                <li>Select "Extract All..."</li>
+                                <li>Change destination to <code>C:\sqlite</code> and click Extract</li>
+                                <li>Right-click <code>sqlite-dll-win64-x64-*.zip</code></li>
+                                <li>Select "Extract All..."</li>
+                                <li>Change destination to <code>C:\sqlite</code> and click Extract</li>
+                                <li>Move all .exe and .dll files from the subfolders directly into <code>C:\sqlite</code></li>
+                            </ul>
+                        </li>
+                        <li>Add SQLite to System PATH
+                            <ul>
+                                <li>Press <code>Windows key</code> and type "environment variables"</li>
+                                <li>Click "Edit the system environment variables"</li>
+                                <li>Click the "Environment Variables" button at the bottom</li>
+                                <li>In the "System variables" section, find and select "Path"</li>
+                                <li>Click "Edit"</li>
+                                <li>Click "New"</li>
+                                <li>Type <code>C:\sqlite</code> and press Enter</li>
+                                <li>Click "OK" on all windows to save</li>
+                            </ul>
+                        </li>
+                        <li>Verify Installation
+                            <ul>
+                                <li>Close any open Command Prompt windows</li>
+                                <li>Press <code>Windows key + R</code>, type <code>cmd</code>, press Enter</li>
+                                <li>Type:
+                                    <pre><code>sqlite3 --version</code></pre>
+                                </li>
+                                <li>You should see the SQLite version number</li>
+                            </ul>
+                        </li>
+                        <li>Test SQLite (Optional)
+                            <ul>
+                                <li>In Command Prompt, type:
+                                    <pre><code>sqlite3</code></pre>
+                                </li>
+                                <li>You should see the SQLite prompt: <code>sqlite&gt;</code></li>
+                                <li>Try a simple command:
+                                    <pre><code>SELECT 'SQLite is working!';</code></pre>
+                                </li>
+                                <li>You should see the message printed</li>
+                                <li>Type <code>.quit</code> and press Enter to exit SQLite</li>
+                            </ul>
+                        </li>
+                        <li>Create a Test Database (Optional)
+                            <ul>
+                                <li>In Command Prompt, navigate to a test folder:
+                                    <pre><code>mkdir C:\test-sqlite
+cd C:\test-sqlite</code></pre>
+                                </li>
+                                <li>Create a database:
+                                    <pre><code>sqlite3 test.db</code></pre>
+                                </li>
+                                <li>Create a simple table:
+                                    <pre><code>CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT);
+INSERT INTO users (name) VALUES ('Alice');
+SELECT * FROM users;</code></pre>
+                                </li>
+                                <li>You should see the data you inserted</li>
+                                <li>Type <code>.quit</code> to exit</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <h5 onclick="toggleSection('extensions-windows', event);" onkeydown="toggleSection('extensions-windows', event);" class="magic-invisible faq-title">Visual Studio Code Extensions</h5>
+                <div id="extensions-windows" class="hidden">
+                    <p>VS Code extensions add extra features and functionality to your editor. Here are the recommended extensions for web development:</p>
+                    
+                    <h6>How to Install Extensions</h6>
+                    <ol>
+                        <li>
+                            <strong>Open Extensions Panel</strong>
+                            <ul>
+                                <li>Open VS Code</li>
+                                <li>Press <code>Ctrl + Shift + X</code> to open the Extensions panel, or</li>
+                                <li>Click the Extensions icon in the left sidebar (looks like four squares)</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Search and Install</strong>
+                            <ul>
+                                <li>Type the extension name in the search box</li>
+                                <li>Click the "Install" button for the extension you want</li>
+                                <li>Wait for installation to complete</li>
+                                <li>Some extensions may require VS Code to reload</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Essential Extensions (Install Now)</h6>
+                    <ol>
+                        <li>
+                            <strong>Live Server</strong> (ritwickdey.LiveServer)
+                            <ul>
+                                <li>Launches a local development server with live reload</li>
+                                <li>Your browser automatically refreshes when you save changes</li>
+                                <li>Essential for testing HTML/CSS/JavaScript</li>
+                                <li>To use: Right-click an HTML file and select "Open with Live Server"</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Prettier - Code formatter</strong> (esbenp.prettier-vscode)
+                            <ul>
+                                <li>Automatically formats your code consistently</li>
+                                <li>Makes your code easier to read</li>
+                                <li>After installing, you can format by pressing <code>Shift + Alt + F</code></li>
+                                <li>Enable "Format On Save" in settings for automatic formatting</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Auto Rename Tag</strong> (formulahendry.auto-rename-tag)
+                            <ul>
+                                <li>Automatically renames paired HTML/XML tags</li>
+                                <li>When you rename an opening tag, the closing tag updates too</li>
+                                <li>Saves time and prevents errors</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>HTML CSS Support</strong> (ecmel.vscode-html-css)
+                            <ul>
+                                <li>Provides better autocomplete for HTML class and ID attributes</li>
+                                <li>Suggests CSS classes from your stylesheets</li>
+                                <li>Makes writing HTML faster and more accurate</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Helpful Extensions</h6>
+                    <ol>
+                        <li>
+                            <strong>Path Intellisense</strong> (christian-kohler.path-intellisense)
+                            <ul>
+                                <li>Autocompletes file paths in your code</li>
+                                <li>Helpful when linking CSS files, images, or other resources</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Indent-Rainbow</strong> (oderwat.indent-rainbow)
+                            <ul>
+                                <li>Colors indentation levels with subtle colors</li>
+                                <li>Makes code structure more visible</li>
+                                <li>Helps you spot indentation errors quickly</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Error Lens</strong> (usernamehw.errorlens)
+                            <ul>
+                                <li>Shows errors and warnings inline in your code</li>
+                                <li>Makes debugging easier by highlighting problems immediately</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>For Later Lessons</h6>
+                    <p>Install these when you reach the relevant lessons:</p>
+                    <ol>
+                        <li>
+                            <strong>PHP Intelephense</strong> (bmewburn.vscode-intelephense-client)
+                            <ul>
+                                <li>PHP language support with autocomplete and error checking</li>
+                                <li>Install when you start learning PHP</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>SQLite Viewer</strong> (qwtel.sqlite-viewer)
+                            <ul>
+                                <li>View and query SQLite databases directly in VS Code</li>
+                                <li>Install when you start working with databases</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Optional Extensions</h6>
+                    <ol>
+                        <li>
+                            <strong>Better Comments</strong> (aaron-bond.better-comments)
+                            <ul>
+                                <li>Color-codes different types of comments (TODO, FIXME, etc.)</li>
+                                <li>Makes comments more organized and noticeable</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>axe Accessibility Linter</strong> (deque-systems.vscode-axe-linter)
+                            <ul>
+                                <li>Checks HTML for accessibility issues</li>
+                                <li>Helps you build websites that everyone can use</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Configure Prettier (Recommended)</h6>
+                    <p>To make Prettier format your code automatically when you save:</p>
+                    <ol>
+                        <li>Press <code>Ctrl + ,</code> to open Settings</li>
+                        <li>Search for "format on save"</li>
+                        <li>Check the box for "Editor: Format On Save"</li>
+                        <li>Search for "default formatter"</li>
+                        <li>Select "Prettier - Code formatter" from the dropdown</li>
+                    </ol>
+                </div>
+            </div>
+            <div id="instructions-macos">
+                <h4>macOS Installation Instructions</h4>
+                <p>
+                    The latest version of Apple's macOS is <strong>macOS Ventura</strong>, but you should be able to use recent versions as well. The lessons have not been tested on earlier versions of macOS, but they may work ok. Here are the instructions for installing the recommended software on your macOS computer:
+                </p>
+                <h5 onclick="toggleSection('vsc-macos', event);" onkeydown="toggleSection('vsc-macos', event);" class="magic-invisible faq-title">Visual Studio Code</h5>
+                <div id="vsc-macos" class="hidden">
+                    <p>Check whether Visual Studio Code is already installed:</p>
+                    <ul>
+                        <li>Open Finder</li>
+                        <li>Go to the Applications folder</li>
+                        <li>If you see Visual Studio Code.app, you have it installed. If not, you need to install it.</li>
+                    </ul>
+                    <p>If you need to install Visual Studio Code, follow these steps:</p>
+                <ol>
+                    <li>
+                        <strong>Download VS Code from the Official Website</strong>
+                        <ul>
+                            <li>Open your browser</li>
+                            <li>Go to <a href="https://code.visualstudio.com" target="_blank" rel="noopener noreferrer">https://code.visualstudio.com</a></li>
+                            <li>Click the large blue "Download for Mac" button</li>
+                            <li>The file <code>VSCode-darwin-universal.zip</code> will download (usually to your Downloads folder)</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Extract the Application</strong>
+                        <ul>
+                            <li>Open Finder and go to your Downloads folder</li>
+                            <li>Double-click the <code>VSCode-darwin-universal.zip</code> file to extract it</li>
+                            <li>You'll see a <code>Visual Studio Code.app</code> file appear</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Move to Applications Folder</strong>
+                        <ul>
+                            <li>Drag <code>Visual Studio Code.app</code> from Downloads to your Applications folder</li>
+                            <li>You can open Applications by pressing <code>Command + Shift + A</code> in Finder</li>
+                            <li>Or drag it to the Applications icon in the Finder sidebar</li>
+                            <li>This installs VS Code permanently on your Mac</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>First Launch</strong>
+                        <ul>
+                            <li>Open your Applications folder</li>
+                            <li>Double-click <code>Visual Studio Code</code></li>
+                            <li>macOS may show a security warning: "Visual Studio Code is an app downloaded from the Internet. Are you sure you want to open it?"</li>
+                            <li>Click <code>Open</code></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Add to Dock (Optional)</strong>
+                        <ul>
+                            <li>While VS Code is running, right-click its icon in the Dock</li>
+                            <li>Select Options → Keep in Dock</li>
+                            <li>Now you can launch it quickly from the Dock</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Install Command Line Tools (Recommended)</strong>
+                        <ul>
+                            <li>In VS Code, press <code>Command + Shift + P</code> to open the Command Palette</li>
+                            <li>Type <code>shell command</code></li>
+                            <li>Select "Shell Command: Install 'code' command in PATH"</li>
+                            <li>Enter your password if prompted</li>
+                            <li>Now you can open VS Code from Terminal by typing <code>code</code></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Verify Installation:</strong>
+                        <ul>
+                            <li>Open Terminal (<code>Command + Space</code>, type "Terminal")</li>
+                            <li>Type <code>code --version</code> and press Enter</li>
+                            <li>You should see the VS Code version number</li>
+                        </ul>
+                    </li>
+                </ol>
+                </div>
+
+                <h5 onclick="toggleSection('firefox-macos', event);" onkeydown="toggleSection('firefox-macos', event);" class="magic-invisible faq-title">Mozilla Firefox</h5>
+                <div id="firefox-macos" class="hidden">
+                    <p>Check whether Firefox is already installed:</p>
+                    <ul>
+                        <li>Open Finder</li>
+                        <li>Go to the Applications folder</li>
+                        <li>If you see Firefox.app, you have it installed. If not, you need to install it.</li>
+                    </ul>
+                    <p>If you need to install Firefox, follow these steps:</p>
+                    <ol>
+                        <li>
+                            <strong>Download Firefox from the Official Website</strong>
+                            <ul>
+                                <li>Open Safari or another browser</li>
+                                <li>Go to <a href="https://www.mozilla.org/firefox/" target="_blank" rel="noopener noreferrer">https://www.mozilla.org/firefox/</a></li>
+                                <li>Click the blue "Download Firefox" button</li>
+                                <li>The file <code>Firefox [version].dmg</code> will download (usually to your Downloads folder)</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Open the Disk Image</strong>
+                            <ul>
+                                <li>Open Finder and go to your Downloads folder</li>
+                                <li>Double-click the <code>Firefox [version].dmg</code> file</li>
+                                <li>A window will open showing the Firefox icon and an Applications folder shortcut</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Install Firefox</strong>
+                            <ul>
+                                <li>Drag the Firefox icon to the Applications folder icon</li>
+                                <li>Wait for the copy to complete (takes a few seconds)</li>
+                                <li>Firefox is now installed</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Eject the Disk Image</strong>
+                            <ul>
+                                <li>In Finder's sidebar, find the Firefox disk image</li>
+                                <li>Click the eject button next to it</li>
+                                <li>You can now delete the <code>.dmg</code> file from Downloads if you wish</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>First Launch</strong>
+                            <ul>
+                                <li>Open your Applications folder</li>
+                                <li>Double-click <code>Firefox</code></li>
+                                <li>macOS may show a security warning: "Firefox is an app downloaded from the Internet. Are you sure you want to open it?"</li>
+                                <li>Click <code>Open</code></li>
+                                <li>Firefox opens with a Welcome screen</li>
+                                <li>You can choose to set Firefox as your default browser (optional)</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Add to Dock (Optional)</strong>
+                            <ul>
+                                <li>While Firefox is running, right-click its icon in the Dock</li>
+                                <li>Select Options → Keep in Dock</li>
+                                <li>Now you can launch it quickly from the Dock</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Verify Installation</strong>
+                            <ul>
+                                <li>In Firefox, click the menu button (three horizontal lines) in the top-right corner</li>
+                                <li>Click "Firefox" → "About Firefox"</li>
+                                <li>You should see the Firefox version number</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <h5 onclick="toggleSection('git-macos', event);" onkeydown="toggleSection('git-macos', event);" class="magic-invisible faq-title">Git</h5>
+                <div id="git-macos" class="hidden">
+                    <p>Check whether Git is already installed:</p>
+                    <ul>
+                        <li>Open Terminal (<code>Command + Space</code>, type "Terminal")</li>
+                        <li>Type <code>git --version</code> and press Enter</li>
+                        <li>If you see a version number, you have it installed. If you get a popup asking to install Command Line Developer Tools, you need to install Git.</li>
+                    </ul>
+                    <p>If you need to install Git, you have two options:</p>
+                    
+                    <h6>Option 1: Install via Xcode Command Line Tools (Recommended)</h6>
+                    <ol>
+                        <li>
+                            <strong>Trigger Installation Prompt</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>Type <code>git --version</code> and press Enter</li>
+                                <li>If Git is not installed, macOS will show a popup: "The 'git' command requires the command line developer tools. Would you like to install the tools now?"</li>
+                                <li>Click "Install"</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Installation Process</strong>
+                            <ul>
+                                <li>Click "Agree" to the license agreement</li>
+                                <li>Wait for the download and installation to complete (this can take 5-15 minutes depending on your internet speed)</li>
+                                <li>When complete, click "Done"</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Option 2: Install via Homebrew</h6>
+                    <p>If you have Homebrew installed (a package manager for macOS), you can use it to install Git:</p>
+                    <ol>
+                        <li>
+                            <strong>Install Git with Homebrew</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>Run this command:
+                                    <pre><code>brew install git</code></pre>
+                                </li>
+                                <li>Wait for installation to complete</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Option 3: Download from Git Website</h6>
+                    <ol>
+                        <li>
+                            <strong>Download Git</strong>
+                            <ul>
+                                <li>Open your browser</li>
+                                <li>Go to <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">https://git-scm.com/</a></li>
+                                <li>Click "Download for Mac"</li>
+                                <li>A <code>.dmg</code> file will download</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Install Git</strong>
+                            <ul>
+                                <li>Open the downloaded <code>.dmg</code> file</li>
+                                <li>Double-click the <code>.pkg</code> file inside</li>
+                                <li>Follow the installation wizard</li>
+                                <li>Click "Continue" and "Install"</li>
+                                <li>Enter your password when prompted</li>
+                                <li>Wait for installation to complete</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <p><strong>Configure Git (Required for All Methods):</strong></p>
+                    <ol>
+                        <li>
+                            <strong>Set Your Name and Email</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>Set your name (replace "Your Name" with your actual name):
+                                    <pre><code>git config --global user.name "Your Name"</code></pre>
+                                </li>
+                                <li>Set your email (replace with your actual email):
+                                    <pre><code>git config --global user.email "your.email@example.com"</code></pre>
+                                </li>
+                                <li>These settings will be used to identify you in your Git commits</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Verify Installation</strong>
+                            <ul>
+                                <li>Type:
+                                    <pre><code>git --version</code></pre>
+                                </li>
+                                <li>You should see the Git version number</li>
+                                <li>Check your configuration:
+                                    <pre><code>git config --global --list</code></pre>
+                                </li>
+                                <li>You should see your name and email listed</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <h5 onclick="toggleSection('php-macos', event);" onkeydown="toggleSection('php-macos', event);" class="magic-invisible faq-title">PHP</h5>
+                <div id="php-macos" class="hidden">
+                    <p>Check whether PHP is already installed:</p>
+                    <ul>
+                        <li>Open Terminal (<code>Command + Space</code>, type "Terminal")</li>
+                        <li>Type <code>php --version</code> and press Enter</li>
+                        <li>If you see a version number, you have PHP installed. Note: macOS may come with an older PHP version pre-installed.</li>
+                    </ul>
+                    <p><strong>Note:</strong> Recent versions of macOS (Monterey and later) no longer include PHP by default, so you'll need to install it.</p>
+                    
+                    <h6>Install PHP via Homebrew (Recommended)</h6>
+                    <p>Homebrew is the easiest way to install and manage PHP on macOS.</p>
+                    <ol>
+                        <li>
+                            <strong>Install Homebrew (if not already installed)</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>Check if Homebrew is installed by typing:
+                                    <pre><code>brew --version</code></pre>
+                                </li>
+                                <li>If you get "command not found", install Homebrew with:
+                                    <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+                                </li>
+                                <li>Follow the on-screen instructions</li>
+                                <li>You may need to add Homebrew to your PATH (the installer will tell you how)</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Install PHP</strong>
+                            <ul>
+                                <li>Once Homebrew is installed, run:
+                                    <pre><code>brew install php</code></pre>
+                                </li>
+                                <li>This will install the latest stable version of PHP</li>
+                                <li>Wait for installation to complete (may take a few minutes)</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Verify Installation</strong>
+                            <ul>
+                                <li>Close and reopen Terminal</li>
+                                <li>Type:
+                                    <pre><code>php --version</code></pre>
+                                </li>
+                                <li>You should see the PHP version number (should be 8.x)</li>
+                                <li>Check where PHP is installed:
+                                    <pre><code>which php</code></pre>
+                                </li>
+                                <li>Should show something like <code>/opt/homebrew/bin/php</code> or <code>/usr/local/bin/php</code></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Test PHP</strong>
+                            <ul>
+                                <li>Run a simple PHP command:
+                                    <pre><code>php -r "echo 'PHP is working!';"</code></pre>
+                                </li>
+                                <li>You should see "PHP is working!" printed</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Test PHP Built-in Server (Optional)</strong>
+                            <ul>
+                                <li>Create a test directory:
+                                    <pre><code>mkdir ~/test-php && cd ~/test-php</code></pre>
+                                </li>
+                                <li>Create a test file:
+                                    <pre><code>echo '&lt;?php phpinfo(); ?&gt;' &gt; index.php</code></pre>
+                                </li>
+                                <li>Start the PHP server:
+                                    <pre><code>php -S localhost:8000</code></pre>
+                                </li>
+                                <li>Open your browser and go to <code>http://localhost:8000</code></li>
+                                <li>You should see the PHP information page</li>
+                                <li>Press <code>Control + C</code> in Terminal to stop the server</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Update PHP Configuration (Optional)</h6>
+                    <ul>
+                        <li>To find your php.ini location:
+                            <pre><code>php --ini</code></pre>
+                        </li>
+                        <li>Edit the configuration file if needed:
+                            <pre><code>code $(php --ini | grep 'Loaded Configuration File' | cut -d ':' -f 2 | xargs)</code></pre>
+                        </li>
+                    </ul>
+                </div>
+
+                <h5 onclick="toggleSection('sqlite-macos', event);" onkeydown="toggleSection('sqlite-macos', event);" class="magic-invisible faq-title">SQLite</h5>
+                <div id="sqlite-macos" class="hidden">
+                    <p>Check whether SQLite is already installed:</p>
+                    <ul>
+                        <li>Open Terminal (<code>Command + Space</code>, type "Terminal")</li>
+                        <li>Type <code>sqlite3 --version</code> and press Enter</li>
+                        <li>If you see a version number, you have it installed.</li>
+                    </ul>
+                    <p><strong>Good News:</strong> macOS comes with SQLite pre-installed! You usually don't need to install it separately.</p>
+                    
+                    <h6>Verify Existing Installation</h6>
+                    <ol>
+                        <li>
+                            <strong>Check SQLite Version</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>Type:
+                                    <pre><code>sqlite3 --version</code></pre>
+                                </li>
+                                <li>You should see the SQLite version (typically 3.x.x)</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Test SQLite</strong>
+                            <ul>
+                                <li>Type:
+                                    <pre><code>sqlite3</code></pre>
+                                </li>
+                                <li>You should see the SQLite prompt: <code>sqlite&gt;</code></li>
+                                <li>Try a simple command:
+                                    <pre><code>SELECT 'SQLite is working!';</code></pre>
+                                </li>
+                                <li>You should see the message printed</li>
+                                <li>Type <code>.quit</code> and press Enter to exit SQLite</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Update SQLite via Homebrew (Optional)</h6>
+                    <p>If you want a newer version than what comes with macOS:</p>
+                    <ol>
+                        <li>
+                            <strong>Install/Update via Homebrew</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>If you have Homebrew installed:
+                                    <pre><code>brew install sqlite3</code></pre>
+                                </li>
+                                <li>Or to update an existing installation:
+                                    <pre><code>brew upgrade sqlite3</code></pre>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Use the Homebrew Version</strong>
+                            <ul>
+                                <li>The Homebrew version will be installed to <code>/opt/homebrew/bin/sqlite3</code> or <code>/usr/local/bin/sqlite3</code></li>
+                                <li>Check which version is being used:
+                                    <pre><code>which sqlite3</code></pre>
+                                </li>
+                                <li>To prefer the Homebrew version, you may need to adjust your PATH in your shell configuration</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Create a Test Database (Optional)</h6>
+                    <ol>
+                        <li>
+                            <strong>Create a Test Directory</strong>
+                            <ul>
+                                <li>In Terminal, run:
+                                    <pre><code>mkdir ~/test-sqlite && cd ~/test-sqlite</code></pre>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Create a Database</strong>
+                            <ul>
+                                <li>Run:
+                                    <pre><code>sqlite3 test.db</code></pre>
+                                </li>
+                                <li>Create a simple table:
+                                    <pre><code>CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT);
+INSERT INTO users (name) VALUES ('Alice');
+SELECT * FROM users;</code></pre>
+                                </li>
+                                <li>You should see the data you inserted</li>
+                                <li>Type <code>.quit</code> to exit</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>View the Database File</strong>
+                            <ul>
+                                <li>List files in the directory:
+                                    <pre><code>ls -lh</code></pre>
+                                </li>
+                                <li>You should see <code>test.db</code></li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <h5 onclick="toggleSection('extensions-macos', event);" onkeydown="toggleSection('extensions-macos', event);" class="magic-invisible faq-title">Visual Studio Code Extensions</h5>
+                <div id="extensions-macos" class="hidden">
+                    <p>VS Code extensions add extra features and functionality to your editor. Here are the recommended extensions for web development:</p>
+                    
+                    <h6>How to Install Extensions</h6>
+                    <ol>
+                        <li>
+                            <strong>Open Extensions Panel</strong>
+                            <ul>
+                                <li>Open VS Code</li>
+                                <li>Press <code>Command + Shift + X</code> to open the Extensions panel, or</li>
+                                <li>Click the Extensions icon in the left sidebar (looks like four squares)</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Search and Install</strong>
+                            <ul>
+                                <li>Type the extension name in the search box</li>
+                                <li>Click the "Install" button for the extension you want</li>
+                                <li>Wait for installation to complete</li>
+                                <li>Some extensions may require VS Code to reload</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Essential Extensions (Install Now)</h6>
+                    <ol>
+                        <li>
+                            <strong>Live Server</strong> (ritwickdey.LiveServer)
+                            <ul>
+                                <li>Launches a local development server with live reload</li>
+                                <li>Your browser automatically refreshes when you save changes</li>
+                                <li>Essential for testing HTML/CSS/JavaScript</li>
+                                <li>To use: Right-click an HTML file and select "Open with Live Server"</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Prettier - Code formatter</strong> (esbenp.prettier-vscode)
+                            <ul>
+                                <li>Automatically formats your code consistently</li>
+                                <li>Makes your code easier to read</li>
+                                <li>After installing, you can format by pressing <code>Shift + Option + F</code></li>
+                                <li>Enable "Format On Save" in settings for automatic formatting</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Auto Rename Tag</strong> (formulahendry.auto-rename-tag)
+                            <ul>
+                                <li>Automatically renames paired HTML/XML tags</li>
+                                <li>When you rename an opening tag, the closing tag updates too</li>
+                                <li>Saves time and prevents errors</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>HTML CSS Support</strong> (ecmel.vscode-html-css)
+                            <ul>
+                                <li>Provides better autocomplete for HTML class and ID attributes</li>
+                                <li>Suggests CSS classes from your stylesheets</li>
+                                <li>Makes writing HTML faster and more accurate</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Helpful Extensions</h6>
+                    <ol>
+                        <li>
+                            <strong>Path Intellisense</strong> (christian-kohler.path-intellisense)
+                            <ul>
+                                <li>Autocompletes file paths in your code</li>
+                                <li>Helpful when linking CSS files, images, or other resources</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Indent-Rainbow</strong> (oderwat.indent-rainbow)
+                            <ul>
+                                <li>Colors indentation levels with subtle colors</li>
+                                <li>Makes code structure more visible</li>
+                                <li>Helps you spot indentation errors quickly</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Error Lens</strong> (usernamehw.errorlens)
+                            <ul>
+                                <li>Shows errors and warnings inline in your code</li>
+                                <li>Makes debugging easier by highlighting problems immediately</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>For Later Lessons</h6>
+                    <p>Install these when you reach the relevant lessons:</p>
+                    <ol>
+                        <li>
+                            <strong>PHP Intelephense</strong> (bmewburn.vscode-intelephense-client)
+                            <ul>
+                                <li>PHP language support with autocomplete and error checking</li>
+                                <li>Install when you start learning PHP</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>SQLite Viewer</strong> (qwtel.sqlite-viewer)
+                            <ul>
+                                <li>View and query SQLite databases directly in VS Code</li>
+                                <li>Install when you start working with databases</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Optional Extensions</h6>
+                    <ol>
+                        <li>
+                            <strong>Better Comments</strong> (aaron-bond.better-comments)
+                            <ul>
+                                <li>Color-codes different types of comments (TODO, FIXME, etc.)</li>
+                                <li>Makes comments more organized and noticeable</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>axe Accessibility Linter</strong> (deque-systems.vscode-axe-linter)
+                            <ul>
+                                <li>Checks HTML for accessibility issues</li>
+                                <li>Helps you build websites that everyone can use</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Configure Prettier (Recommended)</h6>
+                    <p>To make Prettier format your code automatically when you save:</p>
+                    <ol>
+                        <li>Press <code>Command + ,</code> to open Settings</li>
+                        <li>Search for "format on save"</li>
+                        <li>Check the box for "Editor: Format On Save"</li>
+                        <li>Search for "default formatter"</li>
+                        <li>Select "Prettier - Code formatter" from the dropdown</li>
+                    </ol>
+                </div>
+            </div>
+            <div id="instructions-linux">
+                <h4>Linux Installation Instructions</h4>
+                <p>
+                    There are many different versions of Linux available, so these instructions will cover the most common distributions: <strong>Ubuntu</strong> and <strong>Fedora</strong>. If you are using a different distribution, the steps may vary slightly. The lessons have been tested on Linux Mint 22.2 (which is based on Ubuntu 22.04) but should work fine with other flavours and versions. Here are the instructions for installing the recommended software on your Linux computer:
+                </p>
+                
+                <h5 onclick="toggleSection('vsc-linux', event);" onkeydown="toggleSection('vsc-linux', event);" class="magic-invisible faq-title">Visual Studio Code</h5>
+                <div id="vsc-linux" class="hidden">
+                    <p>Check whether Visual Studio Code is already installed:</p>
+                    <ul>
+                        <li>Open Terminal (usually <code>Ctrl + Alt + T</code>)</li>
+                        <li>Type <code>code --version</code> and press Enter</li>
+                        <li>If you see a version number, you have it installed. If you get a "command not found" error, you need to install it.</li>
+                    </ul>
+                
+                <h6>Ubuntu / Debian-based Linux</h6>
+                <p>If you need to install Visual Studio Code on Ubuntu, follow these steps:</p>
+                <ol>
+                    <li>
+                        <strong>Download and Import Microsoft GPG Key</strong>
+                        <ul>
+                            <li>Open Terminal</li>
+                            <li>Run this command to download and install the Microsoft GPG key:
+                                <pre><code>wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor &gt; packages.microsoft.gpg
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg</code></pre>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Add VS Code Repository</strong>
+                        <ul>
+                            <li>Run this command to add the VS Code repository:
+                                <pre><code>sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" &gt; /etc/apt/sources.list.d/vscode.list'</code></pre>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Update Package List and Install</strong>
+                        <ul>
+                            <li>Update your package list:
+                                <pre><code>sudo apt update</code></pre>
+                            </li>
+                            <li>Install VS Code:
+                                <pre><code>sudo apt install code</code></pre>
+                            </li>
+                            <li>Wait for installation to complete</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Launch VS Code</strong>
+                        <ul>
+                            <li>Type <code>code</code> in Terminal and press Enter, or</li>
+                            <li>Find "Visual Studio Code" in your application menu</li>
+                            <li>Click to open VS Code</li>
+                        </ul>
+                    </li>
+                </ol>
+                
+                <h6>Fedora / Red Hat-based Linux</h6>
+                <p>If you need to install Visual Studio Code on Fedora, follow these steps:</p>
+                <ol>
+                    <li>
+                        <strong>Import Microsoft GPG Key</strong>
+                        <ul>
+                            <li>Open Terminal</li>
+                            <li>Run this command:
+                                <pre><code>sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc</code></pre>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Add VS Code Repository</strong>
+                        <ul>
+                            <li>Run this command to create the repository file:
+                                <pre><code>sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" &gt; /etc/yum.repos.d/vscode.repo'</code></pre>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Update Package Cache and Install</strong>
+                        <ul>
+                            <li>For Fedora 22 and later:
+                                <pre><code>sudo dnf check-update
+sudo dnf install code</code></pre>
+                            </li>
+                            <li>For older versions:
+                                <pre><code>sudo yum check-update
+sudo yum install code</code></pre>
+                            </li>
+                            <li>Wait for installation to complete</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Launch VS Code</strong>
+                        <ul>
+                            <li>Type <code>code</code> in Terminal and press Enter, or</li>
+                            <li>Find "Visual Studio Code" in your application menu</li>
+                            <li>Click to open VS Code</li>
+                        </ul>
+                    </li>
+                </ol>
+                
+                <h6>Alternative: Download .deb or .rpm Package</h6>
+                <p>You can also download VS Code directly from the website:</p>
+                <ol>
+                    <li>
+                        <strong>Download from Official Website</strong>
+                        <ul>
+                            <li>Open your web browser</li>
+                            <li>Go to <a href="https://code.visualstudio.com" target="_blank" rel="noopener noreferrer">https://code.visualstudio.com</a></li>
+                            <li>Click "Download" and select:
+                                <ul>
+                                    <li><code>.deb</code> for Ubuntu/Debian</li>
+                                    <li><code>.rpm</code> for Fedora/Red Hat</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Install the Package</strong>
+                        <ul>
+                            <li>Navigate to your Downloads folder</li>
+                            <li>For Ubuntu/Debian: Double-click the <code>.deb</code> file and click "Install", or run:
+                                <pre><code>sudo dpkg -i code_*.deb
+sudo apt-get install -f</code></pre>
+                            </li>
+                            <li>For Fedora: Double-click the <code>.rpm</code> file, or run:
+                                <pre><code>sudo dnf install ./code-*.rpm</code></pre>
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+                </div>
+
+                <h5 onclick="toggleSection('firefox-linux', event);" onkeydown="toggleSection('firefox-linux', event);" class="magic-invisible faq-title">Mozilla Firefox</h5>
+                <div id="firefox-linux" class="hidden">
+                    <p>Check whether Firefox is already installed:</p>
+                    <ul>
+                        <li>Open Terminal (usually <code>Ctrl + Alt + T</code>)</li>
+                        <li>Type <code>firefox --version</code> and press Enter</li>
+                        <li>If you see a version number, you have it installed. If you get a "command not found" error, you need to install it.</li>
+                    </ul>
+                    
+                    <h6>Ubuntu / Debian-based Linux</h6>
+                    <p>If you need to install Firefox on Ubuntu, follow these steps:</p>
+                    <ol>
+                        <li>
+                            <strong>Update Package List</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>Run this command to update your package list:
+                                    <pre><code>sudo apt update</code></pre>
+                                </li>
+                                <li>Enter your password when prompted</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Install Firefox</strong>
+                            <ul>
+                                <li>Run this command:
+                                    <pre><code>sudo apt install firefox</code></pre>
+                                </li>
+                                <li>Type <code>Y</code> when asked to confirm</li>
+                                <li>Wait for installation to complete</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Launch Firefox</strong>
+                            <ul>
+                                <li>Type <code>firefox</code> in Terminal and press Enter, or</li>
+                                <li>Find "Firefox" in your application menu</li>
+                                <li>Click to open Firefox</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Fedora / Red Hat-based Linux</h6>
+                    <p>If you need to install Firefox on Fedora, follow these steps:</p>
+                    <ol>
+                        <li>
+                            <strong>Install Firefox</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>For Fedora 22 and later:
+                                    <pre><code>sudo dnf install firefox</code></pre>
+                                </li>
+                                <li>For older versions:
+                                    <pre><code>sudo yum install firefox</code></pre>
+                                </li>
+                                <li>Type <code>Y</code> when asked to confirm</li>
+                                <li>Wait for installation to complete</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Launch Firefox</strong>
+                            <ul>
+                                <li>Type <code>firefox</code> in Terminal and press Enter, or</li>
+                                <li>Find "Firefox" in your application menu</li>
+                                <li>Click to open Firefox</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Alternative: Download from Mozilla Website</h6>
+                    <p>You can also download Firefox directly from the website:</p>
+                    <ol>
+                        <li>
+                            <strong>Download from Official Website</strong>
+                            <ul>
+                                <li>Open your web browser</li>
+                                <li>Go to <a href="https://www.mozilla.org/firefox/" target="_blank" rel="noopener noreferrer">https://www.mozilla.org/firefox/</a></li>
+                                <li>Click "Download Firefox"</li>
+                                <li>A <code>.tar.bz2</code> file will download</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Extract and Install</strong>
+                            <ul>
+                                <li>Navigate to your Downloads folder</li>
+                                <li>Extract the archive:
+                                    <pre><code>tar xjf firefox-*.tar.bz2</code></pre>
+                                </li>
+                                <li>Move to <code>/opt</code>:
+                                    <pre><code>sudo mv firefox /opt/</code></pre>
+                                </li>
+                                <li>Create a symbolic link:
+                                    <pre><code>sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox</code></pre>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Launch Firefox</strong>
+                            <ul>
+                                <li>Type <code>firefox</code> in Terminal and press Enter</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <p><strong>Verify Installation (All Methods):</strong></p>
+                    <ul>
+                        <li>In Firefox, click the menu button (three horizontal lines) in the top-right corner</li>
+                        <li>Click "Help" → "About Firefox"</li>
+                        <li>You should see the Firefox version number</li>
+                    </ul>
+                </div>
+
+                <h5 onclick="toggleSection('git-linux', event);" onkeydown="toggleSection('git-linux', event);" class="magic-invisible faq-title">Git</h5>
+                <div id="git-linux" class="hidden">
+                    <p>Check whether Git is already installed:</p>
+                    <ul>
+                        <li>Open Terminal (usually <code>Ctrl + Alt + T</code>)</li>
+                        <li>Type <code>git --version</code> and press Enter</li>
+                        <li>If you see a version number, you have it installed. If you get a "command not found" error, you need to install it.</li>
+                    </ul>
+                    
+                    <h6>Ubuntu / Debian-based Linux</h6>
+                    <p>If you need to install Git on Ubuntu, follow these steps:</p>
+                    <ol>
+                        <li>
+                            <strong>Update Package List</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>Run this command to update your package list:
+                                    <pre><code>sudo apt update</code></pre>
+                                </li>
+                                <li>Enter your password when prompted</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Install Git</strong>
+                            <ul>
+                                <li>Run this command:
+                                    <pre><code>sudo apt install git</code></pre>
+                                </li>
+                                <li>Type <code>Y</code> when asked to confirm</li>
+                                <li>Wait for installation to complete</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Fedora / Red Hat-based Linux</h6>
+                    <p>If you need to install Git on Fedora, follow these steps:</p>
+                    <ol>
+                        <li>
+                            <strong>Install Git</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>For Fedora 22 and later:
+                                    <pre><code>sudo dnf install git</code></pre>
+                                </li>
+                                <li>For older versions:
+                                    <pre><code>sudo yum install git</code></pre>
+                                </li>
+                                <li>Type <code>Y</code> when asked to confirm</li>
+                                <li>Wait for installation to complete</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Arch Linux</h6>
+                    <p>If you're using Arch Linux:</p>
+                    <ol>
+                        <li>
+                            <strong>Install Git</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>Run this command:
+                                    <pre><code>sudo pacman -S git</code></pre>
+                                </li>
+                                <li>Type <code>Y</code> when asked to confirm</li>
+                                <li>Wait for installation to complete</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <p><strong>Configure Git (Required for All Distributions):</strong></p>
+                    <ol>
+                        <li>
+                            <strong>Set Your Name and Email</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>Set your name (replace "Your Name" with your actual name):
+                                    <pre><code>git config --global user.name "Your Name"</code></pre>
+                                </li>
+                                <li>Set your email (replace with your actual email):
+                                    <pre><code>git config --global user.email "your.email@example.com"</code></pre>
+                                </li>
+                                <li>These settings will be used to identify you in your Git commits</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Verify Installation</strong>
+                            <ul>
+                                <li>Type:
+                                    <pre><code>git --version</code></pre>
+                                </li>
+                                <li>You should see the Git version number</li>
+                                <li>Check your configuration:
+                                    <pre><code>git config --global --list</code></pre>
+                                </li>
+                                <li>You should see your name and email listed</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Optional: Configure Default Branch Name</h6>
+                    <p>Modern Git practices use "main" instead of "master" as the default branch name. To set this globally:</p>
+                    <pre><code>git config --global init.defaultBranch main</code></pre>
+                </div>
+
+                <h5 onclick="toggleSection('php-linux', event);" onkeydown="toggleSection('php-linux', event);" class="magic-invisible faq-title">PHP</h5>
+                <div id="php-linux" class="hidden">
+                    <p>Check whether PHP is already installed:</p>
+                    <ul>
+                        <li>Open Terminal (usually <code>Ctrl + Alt + T</code>)</li>
+                        <li>Type <code>php --version</code> and press Enter</li>
+                        <li>If you see a version number, you have it installed. If you get a "command not found" error, you need to install it.</li>
+                    </ul>
+                    
+                    <h6>Ubuntu / Debian-based Linux</h6>
+                    <p>If you need to install PHP on Ubuntu, follow these steps:</p>
+                    <ol>
+                        <li>
+                            <strong>Update Package List</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>Run this command to update your package list:
+                                    <pre><code>sudo apt update</code></pre>
+                                </li>
+                                <li>Enter your password when prompted</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Install PHP</strong>
+                            <ul>
+                                <li>Install PHP and common extensions:
+                                    <pre><code>sudo apt install php php-cli php-common php-curl php-mbstring php-mysql php-xml php-zip</code></pre>
+                                </li>
+                                <li>Type <code>Y</code> when asked to confirm</li>
+                                <li>Wait for installation to complete</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Verify Installation</strong>
+                            <ul>
+                                <li>Check the PHP version:
+                                    <pre><code>php --version</code></pre>
+                                </li>
+                                <li>You should see PHP version 8.x or 7.x</li>
+                                <li>Test PHP:
+                                    <pre><code>php -r "echo 'PHP is working!';"</code></pre>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Fedora / Red Hat-based Linux</h6>
+                    <p>If you need to install PHP on Fedora, follow these steps:</p>
+                    <ol>
+                        <li>
+                            <strong>Install PHP</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>For Fedora 22 and later:
+                                    <pre><code>sudo dnf install php php-cli php-common php-json php-mbstring php-mysqlnd php-xml</code></pre>
+                                </li>
+                                <li>For older versions:
+                                    <pre><code>sudo yum install php php-cli php-common php-json php-mbstring php-mysqlnd php-xml</code></pre>
+                                </li>
+                                <li>Type <code>Y</code> when asked to confirm</li>
+                                <li>Wait for installation to complete</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Verify Installation</strong>
+                            <ul>
+                                <li>Check the PHP version:
+                                    <pre><code>php --version</code></pre>
+                                </li>
+                                <li>Test PHP:
+                                    <pre><code>php -r "echo 'PHP is working!';"</code></pre>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Arch Linux</h6>
+                    <p>If you're using Arch Linux:</p>
+                    <ol>
+                        <li>
+                            <strong>Install PHP</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>Run this command:
+                                    <pre><code>sudo pacman -S php</code></pre>
+                                </li>
+                                <li>Type <code>Y</code> when asked to confirm</li>
+                                <li>Wait for installation to complete</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Verify Installation</strong>
+                            <ul>
+                                <li>Check the PHP version:
+                                    <pre><code>php --version</code></pre>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <p><strong>Test PHP Built-in Server (All Distributions):</strong></p>
+                    <ol>
+                        <li>
+                            <strong>Create a Test Directory</strong>
+                            <ul>
+                                <li>In Terminal, run:
+                                    <pre><code>mkdir ~/test-php && cd ~/test-php</code></pre>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Create a Test File</strong>
+                            <ul>
+                                <li>Run this command:
+                                    <pre><code>echo '&lt;?php phpinfo(); ?&gt;' &gt; index.php</code></pre>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Start PHP Server</strong>
+                            <ul>
+                                <li>Run:
+                                    <pre><code>php -S localhost:8000</code></pre>
+                                </li>
+                                <li>You should see: "PHP 8.x.x Development Server started"</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Test in Browser</strong>
+                            <ul>
+                                <li>Open Firefox (or another browser)</li>
+                                <li>Go to <code>http://localhost:8000</code></li>
+                                <li>You should see the PHP information page</li>
+                                <li>Press <code>Ctrl + C</code> in Terminal to stop the server</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Configure PHP (Optional)</h6>
+                    <ul>
+                        <li>To find your php.ini location:
+                            <pre><code>php --ini</code></pre>
+                        </li>
+                        <li>To edit php.ini (may require sudo):
+                            <pre><code>sudo nano /etc/php/8.x/cli/php.ini</code></pre>
+                        </li>
+                        <li>Common settings to adjust: <code>memory_limit</code>, <code>upload_max_filesize</code>, <code>post_max_size</code></li>
+                    </ul>
+                </div>
+
+                <h5 onclick="toggleSection('sqlite-linux', event);" onkeydown="toggleSection('sqlite-linux', event);" class="magic-invisible faq-title">SQLite</h5>
+                <div id="sqlite-linux" class="hidden">
+                    <p>Check whether SQLite is already installed:</p>
+                    <ul>
+                        <li>Open Terminal (usually <code>Ctrl + Alt + T</code>)</li>
+                        <li>Type <code>sqlite3 --version</code> and press Enter</li>
+                        <li>If you see a version number, you have it installed. If you get a "command not found" error, you need to install it.</li>
+                    </ul>
+                    <p><strong>Note:</strong> Many Linux distributions come with SQLite pre-installed, but if not, it's easy to install.</p>
+                    
+                    <h6>Ubuntu / Debian-based Linux</h6>
+                    <p>If you need to install SQLite on Ubuntu, follow these steps:</p>
+                    <ol>
+                        <li>
+                            <strong>Update Package List</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>Run this command:
+                                    <pre><code>sudo apt update</code></pre>
+                                </li>
+                                <li>Enter your password when prompted</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Install SQLite</strong>
+                            <ul>
+                                <li>Run this command:
+                                    <pre><code>sudo apt install sqlite3</code></pre>
+                                </li>
+                                <li>Type <code>Y</code> when asked to confirm</li>
+                                <li>Wait for installation to complete</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Install SQLite Development Files (Optional)</strong>
+                            <ul>
+                                <li>If you plan to develop with SQLite or use it with programming languages:
+                                    <pre><code>sudo apt install libsqlite3-dev</code></pre>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Fedora / Red Hat-based Linux</h6>
+                    <p>If you need to install SQLite on Fedora, follow these steps:</p>
+                    <ol>
+                        <li>
+                            <strong>Install SQLite</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>For Fedora 22 and later:
+                                    <pre><code>sudo dnf install sqlite</code></pre>
+                                </li>
+                                <li>For older versions:
+                                    <pre><code>sudo yum install sqlite</code></pre>
+                                </li>
+                                <li>Type <code>Y</code> when asked to confirm</li>
+                                <li>Wait for installation to complete</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Install Development Files (Optional)</strong>
+                            <ul>
+                                <li>If you plan to develop with SQLite:
+                                    <pre><code>sudo dnf install sqlite-devel</code></pre>
+                                </li>
+                                <li>Or for older versions:
+                                    <pre><code>sudo yum install sqlite-devel</code></pre>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Arch Linux</h6>
+                    <p>If you're using Arch Linux:</p>
+                    <ol>
+                        <li>
+                            <strong>Install SQLite</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>Run this command:
+                                    <pre><code>sudo pacman -S sqlite</code></pre>
+                                </li>
+                                <li>Type <code>Y</code> when asked to confirm</li>
+                                <li>Wait for installation to complete</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <p><strong>Verify Installation (All Distributions):</strong></p>
+                    <ol>
+                        <li>
+                            <strong>Check Version</strong>
+                            <ul>
+                                <li>In Terminal, type:
+                                    <pre><code>sqlite3 --version</code></pre>
+                                </li>
+                                <li>You should see the SQLite version (typically 3.x.x)</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Test SQLite</strong>
+                            <ul>
+                                <li>Type:
+                                    <pre><code>sqlite3</code></pre>
+                                </li>
+                                <li>You should see the SQLite prompt: <code>sqlite&gt;</code></li>
+                                <li>Try a simple command:
+                                    <pre><code>SELECT 'SQLite is working!';</code></pre>
+                                </li>
+                                <li>You should see the message printed</li>
+                                <li>Type <code>.quit</code> and press Enter to exit SQLite</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <p><strong>Create a Test Database (Optional):</strong></p>
+                    <ol>
+                        <li>
+                            <strong>Create a Test Directory</strong>
+                            <ul>
+                                <li>In Terminal, run:
+                                    <pre><code>mkdir ~/test-sqlite && cd ~/test-sqlite</code></pre>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Create a Database</strong>
+                            <ul>
+                                <li>Run:
+                                    <pre><code>sqlite3 test.db</code></pre>
+                                </li>
+                                <li>Create a simple table:
+                                    <pre><code>CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT);
+INSERT INTO users (name) VALUES ('Alice');
+SELECT * FROM users;</code></pre>
+                                </li>
+                                <li>You should see the data you inserted</li>
+                                <li>Type <code>.quit</code> to exit</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>View the Database File</strong>
+                            <ul>
+                                <li>List files in the directory:
+                                    <pre><code>ls -lh</code></pre>
+                                </li>
+                                <li>You should see <code>test.db</code></li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Useful SQLite Commands</h6>
+                    <p>Once you're in the SQLite prompt, here are some helpful commands:</p>
+                    <ul>
+                        <li><code>.help</code> - Show help information</li>
+                        <li><code>.tables</code> - List all tables in the database</li>
+                        <li><code>.schema</code> - Show the database schema</li>
+                        <li><code>.quit</code> or <code>.exit</code> - Exit SQLite</li>
+                        <li><code>.mode column</code> - Display results in column format</li>
+                        <li><code>.headers on</code> - Show column headers</li>
+                    </ul>
+                </div>
+
+                <h5 onclick="toggleSection('extensions-linux', event);" onkeydown="toggleSection('extensions-linux', event);" class="magic-invisible faq-title">Visual Studio Code Extensions</h5>
+                <div id="extensions-linux" class="hidden">
+                    <p>VS Code extensions add extra features and functionality to your editor. Here are the recommended extensions for web development:</p>
+                    
+                    <h6>How to Install Extensions</h6>
+                    <ol>
+                        <li>
+                            <strong>Open Extensions Panel</strong>
+                            <ul>
+                                <li>Open VS Code</li>
+                                <li>Press <code>Ctrl + Shift + X</code> to open the Extensions panel, or</li>
+                                <li>Click the Extensions icon in the left sidebar (looks like four squares)</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Search and Install</strong>
+                            <ul>
+                                <li>Type the extension name in the search box</li>
+                                <li>Click the "Install" button for the extension you want</li>
+                                <li>Wait for installation to complete</li>
+                                <li>Some extensions may require VS Code to reload</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Essential Extensions (Install Now)</h6>
+                    <ol>
+                        <li>
+                            <strong>Live Server</strong> (ritwickdey.LiveServer)
+                            <ul>
+                                <li>Launches a local development server with live reload</li>
+                                <li>Your browser automatically refreshes when you save changes</li>
+                                <li>Essential for testing HTML/CSS/JavaScript</li>
+                                <li>To use: Right-click an HTML file and select "Open with Live Server"</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Prettier - Code formatter</strong> (esbenp.prettier-vscode)
+                            <ul>
+                                <li>Automatically formats your code consistently</li>
+                                <li>Makes your code easier to read</li>
+                                <li>After installing, you can format by pressing <code>Ctrl + Shift + I</code></li>
+                                <li>Enable "Format On Save" in settings for automatic formatting</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Auto Rename Tag</strong> (formulahendry.auto-rename-tag)
+                            <ul>
+                                <li>Automatically renames paired HTML/XML tags</li>
+                                <li>When you rename an opening tag, the closing tag updates too</li>
+                                <li>Saves time and prevents errors</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>HTML CSS Support</strong> (ecmel.vscode-html-css)
+                            <ul>
+                                <li>Provides better autocomplete for HTML class and ID attributes</li>
+                                <li>Suggests CSS classes from your stylesheets</li>
+                                <li>Makes writing HTML faster and more accurate</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Helpful Extensions</h6>
+                    <ol>
+                        <li>
+                            <strong>Path Intellisense</strong> (christian-kohler.path-intellisense)
+                            <ul>
+                                <li>Autocompletes file paths in your code</li>
+                                <li>Helpful when linking CSS files, images, or other resources</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Indent-Rainbow</strong> (oderwat.indent-rainbow)
+                            <ul>
+                                <li>Colors indentation levels with subtle colors</li>
+                                <li>Makes code structure more visible</li>
+                                <li>Helps you spot indentation errors quickly</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Error Lens</strong> (usernamehw.errorlens)
+                            <ul>
+                                <li>Shows errors and warnings inline in your code</li>
+                                <li>Makes debugging easier by highlighting problems immediately</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>For Later Lessons</h6>
+                    <p>Install these when you reach the relevant lessons:</p>
+                    <ol>
+                        <li>
+                            <strong>PHP Intelephense</strong> (bmewburn.vscode-intelephense-client)
+                            <ul>
+                                <li>PHP language support with autocomplete and error checking</li>
+                                <li>Install when you start learning PHP</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>SQLite Viewer</strong> (qwtel.sqlite-viewer)
+                            <ul>
+                                <li>View and query SQLite databases directly in VS Code</li>
+                                <li>Install when you start working with databases</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Optional Extensions</h6>
+                    <ol>
+                        <li>
+                            <strong>Better Comments</strong> (aaron-bond.better-comments)
+                            <ul>
+                                <li>Color-codes different types of comments (TODO, FIXME, etc.)</li>
+                                <li>Makes comments more organized and noticeable</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>axe Accessibility Linter</strong> (deque-systems.vscode-axe-linter)
+                            <ul>
+                                <li>Checks HTML for accessibility issues</li>
+                                <li>Helps you build websites that everyone can use</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h6>Configure Prettier (Recommended)</h6>
+                    <p>To make Prettier format your code automatically when you save:</p>
+                    <ol>
+                        <li>Press <code>Ctrl + ,</code> to open Settings</li>
+                        <li>Search for "format on save"</li>
+                        <li>Check the box for "Editor: Format On Save"</li>
+                        <li>Search for "default formatter"</li>
+                        <li>Select "Prettier - Code formatter" from the dropdown</li>
+                    </ol>
+                </div>
+            </div>
+            <div id="instructions-chromebook">
+                <p>
+                    Chromebooks are inexpensive laptops that run Chrome OS, but they are not great for web development. It is possible to install Linux on some Chromebooks, but Google makes it difficult to do this without opening the computer up and making changes to the hardware. <strong>This will, at the very least, void your warranty and I honestly do not recommend doing this.</strong> I destroyed one Chromebook when I tried. If you want a cheap laptop for web  development, consider a Windows or Linux machine instead.
+                </p>
+            </div>
+            <div id="instructions-android">
+                <p>
+                    Android phones and tablets are not ideal for web development. While there are some code editors available for Android, the experience is limited compared to using a laptop or desktop computer. If possible, use a Windows, or Linux machine for the best experience.
+                </p>
+            </div>
+            <div id="instructions-ios">
+                <p>
+                    Apple iPhones and iPads are not ideal for web development. While there are some code editors available for iOS, the experience is limited compared to using a laptop or desktop computer. If possible, use a macOS machine such as an iMac or MacBook for the best experience.
+                </p>
+            </div>
+
+        <!--
+            <h4>1. Install a Code Editor</h4>
+            <p>We recommend using Visual Studio Code (VS Code) as your code editor. You can download it from the official website: <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">https://code.visualstudio.com/</a></p>
+
+            <h4>2. Install a Web Browser</h4>
+            <p>You will need a modern web browser to test and view your web pages. We recommend using Google Chrome or Mozilla Firefox. You can download them from their respective websites:</p>
+            <ul>
+                <li>Google Chrome: <a href="https://www.google.com/chrome/" target="_blank" rel="noopener">https://www.google.com/chrome/</a></li>
+                <li>Mozilla Firefox: <a href="https://www.mozilla.org/firefox/new/" target="_blank" rel="noopener">https://www.mozilla.org/firefox/new/</a></li>
+            </ul>
+
+            <h4>3. Install Git (Optional)</h4>
+            <p>If you want to learn version control, we recommend installing Git. You can download it from the official website: <a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a></p>
+
+            <p>Once you have installed the required software, please proceed to the next lesson where we will start writing our first HTML page!</p>
+        -->
+        </section>
+    </main>
+
+    <footer class="footer">
+        <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
+    </footer>
+    <div id="not-implemented" popover="auto" class="popover">
+        <!-- Popover content is injected by JavaScript to ensure it is the same across all pages -->
+    </div>
+</body>
+</html>

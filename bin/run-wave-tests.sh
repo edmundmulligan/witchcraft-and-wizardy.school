@@ -136,28 +136,36 @@ echo '{"pages":[]}' > "$RESULT_FILE"
 # Find all HTML pages
 discover_html_pages
 
-# Test each page in both light and dark modes
+# Define viewport widths to test (Note: WAVE tests via API, viewport simulation limited)
+VIEWPORTS=(150 400 900 1300)
+TOTAL_TESTS=$((PAGE_COUNT * 2 * ${#VIEWPORTS[@]}))
+
+# Test each page at different viewport widths, in both light and dark modes
 TESTED=0
-for THEME in light dark; do
+for VIEWPORT in "${VIEWPORTS[@]}"; do
   echo ""
-  echo "🎨 Testing in $THEME mode..."
+  echo "📐 Testing at ${VIEWPORT}px width..."
   echo ""
   
-  for page in $PAGES; do
-    TESTED=$((TESTED + 1))
-    URL_PATH="${page#./}"
+  for THEME in light dark; do
+    echo "  🎨 $THEME mode"
     
-    # Add theme parameter to URL
-    if [[ "$URL_PATH" == *"?"* ]]; then
-      FULL_URL="$TEST_URL/$URL_PATH&theme=$THEME"
-    else
-      FULL_URL="$TEST_URL/$URL_PATH?theme=$THEME"
-    fi
+    for page in $PAGES; do
+      TESTED=$((TESTED + 1))
+      URL_PATH="${page#./}"
+      
+      # Add theme parameter to URL
+      if [[ "$URL_PATH" == *"?"* ]]; then
+        FULL_URL="$TEST_URL/$URL_PATH&theme=$THEME"
+      else
+        FULL_URL="$TEST_URL/$URL_PATH?theme=$THEME"
+      fi
 
-    echo "[$TESTED/$((PAGE_COUNT * 2))] Testing $URL_PATH ($THEME mode)"
+      echo "  [$TESTED/$TOTAL_TESTS] Testing $URL_PATH (${VIEWPORT}px, $THEME mode)"
 
-  # Call WAVE API (reporttype=4 returns detailed JSON)
-  TEMP_RESULT="$RESULTS_DIR/wave-temp-$TESTED.json"
+      # Note: WAVE API doesn't support viewport size directly, but we track it for consistency
+      # Call WAVE API (reporttype=4 returns detailed JSON)
+      TEMP_RESULT="$RESULTS_DIR/wave-temp-$TESTED.json"
   curl -s "https://wave.webaim.org/api/request?key=$WAVE_API_KEY&reporttype=4&url=$(echo $FULL_URL | sed 's/:/%3A/g; s/\//%2F/g')" > "$TEMP_RESULT"
 
   # Merge results
@@ -179,6 +187,7 @@ for THEME in light dark; do
           const pageResult = {
             url: '$URL_PATH',
             theme: '$THEME',
+            viewport: '$VIEWPORT',
             errors: newData.categories.error?.count || 0,
             alerts: newData.categories.alert?.count || 0,
             features: newData.categories.feature?.count || 0,
@@ -196,9 +205,17 @@ for THEME in light dark; do
                 id: item.id,
                 description: item.description,
                 count: item.count,
-                selectors: item.selectors || []
+                selectors: item.selectors || [],
+                downgradedFrom150px: '$VIEWPORT' === '150' // Mark if from 150px viewport
               });
             });
+            
+            // Downgrade errors to alerts for 150px viewport
+            if ('$VIEWPORT' === '150' && pageResult.errors > 0) {
+              pageResult.alerts += pageResult.errors;
+              pageResult.errors = 0;
+              pageResult.downgradedFrom150px = true;
+            }
           }
 
           // Store WAVE report URL for detailed information
@@ -252,6 +269,7 @@ for THEME in light dark; do
       }
     "
   fi
+    done
   done
 done
 
@@ -286,7 +304,7 @@ node -e "
     console.log('  Pages with errors:');
     pagesWithErrors.forEach(page => {
       console.log('');
-      console.log('❌ ' + page.url + ' [' + (page.theme || 'unknown') + ' mode]');
+      console.log('❌ ' + page.url + ' [' + (page.viewport || 'unknown') + 'px, ' + (page.theme || 'unknown') + ' mode]');
       console.log('   Errors: ' + page.errors + ', Alerts: ' + page.alerts + ', Contrast: ' + page.contrast);
 
       // Show error details if available
@@ -309,7 +327,7 @@ node -e "
     console.log('  Pages with alerts:');
     pagesWithAlerts.forEach(page => {
       console.log('');
-      console.log('⚠️  ' + page.url + ' [' + (page.theme || 'unknown') + ' mode]');
+      console.log('⚠️  ' + page.url + ' [' + (page.viewport || 'unknown') + 'px, ' + (page.theme || 'unknown') + ' mode]');
       console.log('   Alerts: ' + page.alerts);
 
       // Show alert details if available

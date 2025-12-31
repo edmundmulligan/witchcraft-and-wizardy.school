@@ -35,43 +35,54 @@ discover_html_pages "."
 # Initialize combined results
 echo '{"pages":[]}' > "$RESULTS_DIR/pa11y-results.json"
 
-# Test each page in both light and dark modes
+# Define viewport widths to test
+VIEWPORTS=(150 400 900 1300)
+TOTAL_TESTS=$((PAGE_COUNT * 2 * ${#VIEWPORTS[@]}))
+
+# Test each page at different viewport widths, in both light and dark modes
 TESTED=0
-for THEME in light dark; do
+for VIEWPORT in "${VIEWPORTS[@]}"; do
   echo ""
-  echo "🎨 Testing in $THEME mode..."
+  echo "📐 Testing at ${VIEWPORT}px width..."
   echo ""
   
-  for page in $PAGES; do
-    TESTED=$((TESTED + 1))
-    # Convert file path to URL path
-    URL_PATH="${page#./}"
-    FULL_URL="$TEST_URL/$URL_PATH"
+  for THEME in light dark; do
+    echo "  🎨 $THEME mode"
+    
+    for page in $PAGES; do
+      TESTED=$((TESTED + 1))
+      # Convert file path to URL path
+      URL_PATH="${page#./}"
+      FULL_URL="$TEST_URL/$URL_PATH"
 
-    echo "[$TESTED/$((PAGE_COUNT * 2))] Testing $URL_PATH ($THEME mode)"
+      echo "  [$TESTED/$TOTAL_TESTS] Testing $URL_PATH (${VIEWPORT}px, $THEME mode)"
 
-    # Run pa11y on this page using inline Node.js
-    TEMP_RESULT="$RESULTS_DIR/pa11y-temp-$TESTED.json"
-    node -e "
-      (async () => {
-        const pa11y = require('pa11y');
-        const fs = require('fs');
+      # Run pa11y on this page using inline Node.js
+      TEMP_RESULT="$RESULTS_DIR/pa11y-temp-$TESTED.json"
+      node -e "
+        (async () => {
+          const pa11y = require('pa11y');
+          const fs = require('fs');
 
-        try {
-          const results = await pa11y('$FULL_URL', {
-            standard: 'WCAG2AA',
-            emulateMediaFeatures: [
-              { name: 'prefers-color-scheme', value: '$THEME' }
-            ],
-            chromeLaunchConfig: {
-              args: [
-                '--no-sandbox',
-                '--disable-setuid-sandbox',
-                '--disable-dev-shm-usage',
-                '--disable-gpu'
-              ]
-            }
-          });
+          try {
+            const results = await pa11y('$FULL_URL', {
+              standard: 'WCAG2AA',
+              viewport: {
+                width: $VIEWPORT,
+                height: 768
+              },
+              emulateMediaFeatures: [
+                { name: 'prefers-color-scheme', value: '$THEME' }
+              ],
+              chromeLaunchConfig: {
+                args: [
+                  '--no-sandbox',
+                  '--disable-setuid-sandbox',
+                  '--disable-dev-shm-usage',
+                  '--disable-gpu'
+                ]
+              }
+            });
 
         fs.writeFileSync('$TEMP_RESULT', JSON.stringify(results, null, 2));
 
@@ -97,9 +108,21 @@ for THEME in light dark; do
           const pageResult = {
             url: '$URL_PATH',
             theme: '$THEME',
+            viewport: '$VIEWPORT',
             documentTitle: newData.documentTitle,
             pageUrl: newData.pageUrl,
-            issues: newData.issues || []
+            issues: (newData.issues || []).map(issue => {
+              // Downgrade errors to warnings for 150px viewport
+              if ('$VIEWPORT' === '150' && issue.type === 'error') {
+                return {
+                  ...issue,
+                  type: 'warning',
+                  originalType: 'error',
+                  downgradedFrom150px: true
+                };
+              }
+              return issue;
+            })
           };
 
           combined.pages.push(pageResult);
@@ -110,6 +133,7 @@ for THEME in light dark; do
         }
       "
     fi
+    done
   done
 done
 
@@ -156,7 +180,7 @@ node -e "
     pagesWithErrors.forEach(page => {
       const errors = page.issues.filter(i => i.type === 'error');
     console.log('');  
-    console.log('❌ ' + page.url + ' [' + (page.theme || 'unknown') + ' mode] (' + errors.length + ' errors)');
+    console.log('❌ ' + page.url + ' [' + (page.viewport || 'unknown') + 'px, ' + (page.theme || 'unknown') + ' mode] (' + errors.length + ' errors)');
 
       errors.slice(0, 5).forEach(issue => {
         console.log('    • ' + issue.message);

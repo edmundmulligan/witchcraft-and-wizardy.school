@@ -35,26 +35,33 @@ discover_html_pages "."
 # Initialize combined results
 echo '{"violations":[],"passes":[],"incomplete":[]}' > "$RESULTS_DIR/axe-results.json"
 
-# Test each page in both light and dark modes
+# Define viewport widths to test
+VIEWPORTS=(150 400 900 1300)
+TOTAL_TESTS=$((PAGE_COUNT * 2 * ${#VIEWPORTS[@]}))
+
+# Test each page at different viewport widths, in both light and dark modes
 TESTED=0
-for THEME in light dark; do
+for VIEWPORT in "${VIEWPORTS[@]}"; do
   echo ""
-  echo "🎨 Testing in $THEME mode..."
+  echo "📐 Testing at ${VIEWPORT}px width..."
   echo ""
   
-  for page in $PAGES; do
-    TESTED=$((TESTED + 1))
-    # Convert file path to URL path
-    URL_PATH="${page#./}"
-    FULL_URL="$TEST_URL/$URL_PATH"
+  for THEME in light dark; do
+    echo "  🎨 $THEME mode"
+    
+    for page in $PAGES; do
+      TESTED=$((TESTED + 1))
+      # Convert file path to URL path
+      URL_PATH="${page#./}"
+      FULL_URL="$TEST_URL/$URL_PATH"
 
-    echo "[$TESTED/$((PAGE_COUNT * 2))] Testing $URL_PATH ($THEME mode)"
+      echo "  [$TESTED/$TOTAL_TESTS] Testing $URL_PATH (${VIEWPORT}px, $THEME mode)"
 
-    # Run axe on this page with color scheme emulation
-    TEMP_RESULT="$RESULTS_DIR/axe-temp-$TESTED.json"
-    axe "$FULL_URL" --disable page-has-heading-one --save "$TEMP_RESULT" \
-      --chromedriver-options="{\"args\":[\"--force-prefers-color-scheme=$THEME\"]}" \
-      2>&1 | grep -E "(violations|Testing|Saved)" || true
+      # Run axe on this page with color scheme emulation and viewport size
+      TEMP_RESULT="$RESULTS_DIR/axe-temp-$TESTED.json"
+      axe "$FULL_URL" --disable page-has-heading-one --save "$TEMP_RESULT" \
+        --chromedriver-options="{\"args\":[\"--force-prefers-color-scheme=$THEME\",\"--window-size=${VIEWPORT},768\"]}" \
+        2>&1 | grep -E "(violations|Testing|Saved)" || true
 
     # Merge violations into combined results if file exists
     if [ -f "$TEMP_RESULT" ]; then
@@ -67,11 +74,20 @@ for THEME in light dark; do
           // Axe saves results as an array [{violations: [...]}]
           const result = Array.isArray(newData) ? newData[0] : newData;
 
-          // Add page URL and theme to each violation
+          // Add page URL, theme, and viewport to each violation
           if (result.violations && result.violations.length > 0) {
             result.violations.forEach(v => {
               v.pageUrl = '$URL_PATH';
               v.theme = '$THEME';
+              v.viewport = '$VIEWPORT';
+              
+              // Downgrade severity for 150px viewport (expected issues at extreme narrow width)
+              if ('$VIEWPORT' === '150' && (v.impact === 'critical' || v.impact === 'serious')) {
+                v.originalImpact = v.impact;
+                v.impact = 'moderate';
+                v.downgradedFrom150px = true;
+              }
+              
               combined.violations.push(v);
             });
           }
@@ -83,6 +99,7 @@ for THEME in light dark; do
         }
       "
     fi
+    done
   done
 done
 

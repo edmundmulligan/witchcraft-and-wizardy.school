@@ -12,12 +12,27 @@
  **********************************************************************
  */
 
-/* global window */
+/* global window, document */
 
 function toggleSection(sectionId, event) {
+    // For keyboard events, only respond to Enter or Space
+    if (event.type === 'keydown' && event.key !== 'Enter' && event.key !== ' ') {
+        return;
+    }
+    
+    // Prevent default for Space key to avoid page scroll
+    if (event.key === ' ') {
+        event.preventDefault();
+    }
+    
     const section = document.getElementById(sectionId);
     if (section) {
+        const isExpanded = !section.classList.contains('hidden');
+        
+        // Toggle visibility
         section.classList.toggle('hidden');
+        
+        // Toggle icon classes
         if (event.currentTarget.classList.contains('magic-visible')) {
             event.currentTarget.classList.remove('magic-visible');
             event.currentTarget.classList.add('magic-invisible');
@@ -25,8 +40,24 @@ function toggleSection(sectionId, event) {
             event.currentTarget.classList.remove('magic-invisible');
             event.currentTarget.classList.add('magic-visible');
         }
+        
+        // Update ARIA attributes for accessibility
+        event.currentTarget.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
     }
 }
 
-// Make function globally available for inline onclick handlers
+// Make function globally available for inline handlers
 window.toggleSection = toggleSection;
+
+// Initialize accessibility attributes on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Find all toggleable headings and add proper attributes
+    const toggleHeadings = document.querySelectorAll('.faq-title');
+    toggleHeadings.forEach(heading => {
+        // Make keyboard focusable
+        heading.setAttribute('tabindex', '0');
+        
+        // Add ARIA expanded attribute (don't override heading role)
+        heading.setAttribute('aria-expanded', 'false');
+    });
+});

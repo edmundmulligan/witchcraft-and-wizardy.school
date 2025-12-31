@@ -1,0 +1,27 @@
+/*
+ **********************************************************************
+ * File       : styles/students/media-queries-students.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Responsive media query styles used by all the lesson pages
+ **********************************************************************
+ */
+
+
+/* Responsive layout for small screens */
+@media (width < 800px) {
+    .intro-container {
+        display: block;
+    }
+
+    .student-image {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .intro-content {
+        width: 100%;
+    }
+}

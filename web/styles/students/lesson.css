@@ -1,0 +1,74 @@
+/*
+ **********************************************************************
+ * File       : styles/students/lesson.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Styles used by all the lesson pages
+ **********************************************************************
+ */
+
+/* Introduction section with student image */
+.intro-container {
+    display: block;
+}
+
+.student-image {
+    float: left;
+    width: 15rem;
+    margin-right: 1.5rem;
+    margin-bottom: 1rem;
+    border: var(--border-weight) var(--border-style) var(--color-page-text);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+}
+
+.intro-content {
+    display: block;
+}
+
+.avatar-image {
+    max-width: 15rem; 
+    width: 100%; 
+    height: auto; 
+    border-radius: var(--border-radius, 0.5rem);
+}
+
+.avatar-caption {
+    margin-top: 0.5rem; 
+    font-size: var(--fontsize-p); 
+    font-weight: bold;
+    font-family: Cinzel, serif;
+}
+
+/* Hide OS-specific instruction divs by default */
+[id^="instructions-"] {
+    display: none;
+}
+
+/* Show instruction divs when they have the 'visible' class */
+[id^="instructions-"].visible {
+    display: block;
+}
+
+.operating-systems {
+    display: flex;
+    max-width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1rem;
+    padding: 1rem;
+    border: var(--border-weight) var(--border-style) var(--color-page-text);
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+
+.installing-required-software legend,
+.installing-required-software label {
+    font-weight: bold;
+    font-size: var(--fontsize-h5h6);
+    font-family: Cinzel, serif;
+    margin-top: 2rem;
+}

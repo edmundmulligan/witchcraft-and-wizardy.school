@@ -35,27 +35,36 @@ discover_html_pages "."
 # Initialize combined results
 echo '{"pages":[]}' > "$RESULTS_DIR/lighthouse-results.json"
 
-# Test each page in both light and dark modes
+# Define viewport widths to test
+VIEWPORTS=(150 400 900 1300)
+TOTAL_TESTS=$((PAGE_COUNT * 2 * ${#VIEWPORTS[@]}))
+
+# Test each page at different viewport widths, in both light and dark modes
 TESTED=0
-for THEME in light dark; do
+for VIEWPORT in "${VIEWPORTS[@]}"; do
   echo ""
-  echo "🎨 Testing in $THEME mode..."
+  echo "📐 Testing at ${VIEWPORT}px width..."
   echo ""
   
-  for page in $PAGES; do
-    TESTED=$((TESTED + 1))
-    # Convert file path to URL path
-    URL_PATH="${page#./}"
-    FULL_URL="$TEST_URL/$URL_PATH"
+  for THEME in light dark; do
+    echo "  🎨 $THEME mode"
+    
+    for page in $PAGES; do
+      TESTED=$((TESTED + 1))
+      # Convert file path to URL path
+      URL_PATH="${page#./}"
+      FULL_URL="$TEST_URL/$URL_PATH"
 
-    echo "[$TESTED/$((PAGE_COUNT * 2))] Testing $URL_PATH ($THEME mode)"
+      echo "  [$TESTED/$TOTAL_TESTS] Testing $URL_PATH (${VIEWPORT}px, $THEME mode)"
 
-    # Run lighthouse on this page with emulated color scheme
-    TEMP_RESULT="$RESULTS_DIR/lighthouse-temp-$TESTED.json"
-    npx lighthouse "$FULL_URL" --output=json --output-path=$TEMP_RESULT \
-      --emulated-form-factor=desktop \
-      --chrome-flags="--headless --no-sandbox --force-prefers-color-scheme=$THEME" \
-      --quiet 2>&1 | grep -E "(Testing|Runtime)" || true
+      # Run lighthouse on this page with emulated color scheme and viewport
+      TEMP_RESULT="$RESULTS_DIR/lighthouse-temp-$TESTED.json"
+      npx lighthouse "$FULL_URL" --output=json --output-path=$TEMP_RESULT \
+        --emulated-form-factor=desktop \
+        --screen-emulation-width=$VIEWPORT \
+        --screen-emulation-height=768 \
+        --chrome-flags="--headless --no-sandbox --force-prefers-color-scheme=$THEME --window-size=${VIEWPORT},768" \
+        --quiet 2>&1 | grep -E "(Testing|Runtime)" || true
 
     # Merge results into combined file if temp file exists
     if [ -f "$TEMP_RESULT" ]; then
@@ -72,6 +81,7 @@ for THEME in light dark; do
           const pageResult = {
             url: '$URL_PATH',
             theme: '$THEME',
+            viewport: '$VIEWPORT',
             score: accessibility?.score || 0,
             failedAudits: []
           };
@@ -100,6 +110,7 @@ for THEME in light dark; do
         }
       "
     fi
+    done
   done
 done
 
@@ -139,7 +150,7 @@ node -e "
       const scorePercent = Math.round(page.score * 100);
       const icon = scorePercent === 100 ? '⚠️' : '❌';
       console.log('');
-      console.log(icon + ' ' + page.url + ' [' + (page.theme || 'unknown') + ' mode] - ' + scorePercent + '%');
+      console.log(icon + ' ' + page.url + ' [' + (page.viewport || 'unknown') + 'px, ' + (page.theme || 'unknown') + ' mode] - ' + scorePercent + '%');
 
       page.failedAudits.forEach(audit => {
         console.log('    • ' + audit.title);
