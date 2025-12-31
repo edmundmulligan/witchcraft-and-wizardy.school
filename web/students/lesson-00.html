@@ -20,6 +20,7 @@
     <meta name="author" content="Edmund Mulligan">
     <meta name="license" content="MIT License">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="check-reading-age" content="false">
     <!-- End of meta tags -->
 
     <!-- Set the document title-->
@@ -95,6 +96,9 @@
                     <p>
                         In this lesson, you will ensure that you have all the necessary tools installed on your computer to start learning web development. By the end of this lesson, you will be ready to create your first web page. If you are at a Code Dojo and are using a club computer, these tools will already be installed for you so you can skip to the next lesson.
                     </p>
+                    <p>
+                        <strong>Warning.</strong> This lesson involves installing software on your computer. If you are using a shared or school computer, please check with a parent, guardian, or teacher before proceeding with the installations. Also, you will need administrative privileges to install the software. This means you will need an administrator password at various stages. If you are not using your own computer, you may need to get the owner to do those steps for you. Finally be aware that the instructions are long and detailed to ensure you get everything set up correctly. Take your time and follow each step carefully. Ask for help from a mentor, if one is available. The rest of the lessons are much shorter and easier once you have the tools installed!
+                    </p>
                 </div>
             </div>
         </section>
@@ -143,6 +147,7 @@
                         iPhone/iPad
                     </label>
                 </fieldset>
+                <button type="submit" class="visually-hidden" aria-hidden="true" tabindex="-1">Submit</button>
             </form>
             <div id="instructions-windows">
                 <h4>Windows Installation Instructions</h4>
@@ -392,7 +397,7 @@
                         <li>Download PHP from the Official Website
                             <ul>
                                 <li>Open your web browser</li>
-                                <li>Go to <a href="https://windows.php.net/download/" target="_blank" rel="noopener noreferrer">https://windows.php.net/download/</a></li>
+                                <li>Go to <a href="https://windows.php.net/downloads/releases/" target="_blank" rel="noopener noreferrer">https://windows.php.net/downloads/releases/</a></li>
                                 <li>Under "Current Stable PHP", find the latest version</li>
                                 <li>Download the <strong>Non-Thread Safe (NTS)</strong> ZIP file for x64 (64-bit)
                                     <ul>
@@ -591,7 +596,7 @@ SELECT * FROM users;</code></pre>
                 <h5 onclick="toggleSection('extensions-windows', event);" onkeydown="toggleSection('extensions-windows', event);" class="magic-invisible faq-title">Visual Studio Code Extensions</h5>
                 <div id="extensions-windows" class="hidden">
                     <p>VS Code extensions add extra features and functionality to your editor. Here are the recommended extensions for web development:</p>
-                    
+
                     <h6>How to Install Extensions</h6>
                     <ol>
                         <li>
@@ -612,7 +617,7 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Essential Extensions (Install Now)</h6>
                     <ol>
                         <li>
@@ -650,7 +655,7 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Helpful Extensions</h6>
                     <ol>
                         <li>
@@ -676,7 +681,7 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>For Later Lessons</h6>
                     <p>Install these when you reach the relevant lessons:</p>
                     <ol>
@@ -695,7 +700,7 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Optional Extensions</h6>
                     <ol>
                         <li>
@@ -713,7 +718,7 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Configure Prettier (Recommended)</h6>
                     <p>To make Prettier format your code automatically when you save:</p>
                     <ol>
@@ -886,7 +891,7 @@ SELECT * FROM users;</code></pre>
                         <li>If you see a version number, you have it installed. If you get a popup asking to install Command Line Developer Tools, you need to install Git.</li>
                     </ul>
                     <p>If you need to install Git, you have two options:</p>
-                    
+
                     <h6>Option 1: Install via Xcode Command Line Tools (Recommended)</h6>
                     <ol>
                         <li>
@@ -907,7 +912,7 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Option 2: Install via Homebrew</h6>
                     <p>If you have Homebrew installed (a package manager for macOS), you can use it to install Git:</p>
                     <ol>
@@ -922,7 +927,7 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Option 3: Download from Git Website</h6>
                     <ol>
                         <li>
@@ -946,7 +951,7 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <p><strong>Configure Git (Required for All Methods):</strong></p>
                     <ol>
                         <li>
@@ -987,7 +992,7 @@ SELECT * FROM users;</code></pre>
                         <li>If you see a version number, you have PHP installed. Note: macOS may come with an older PHP version pre-installed.</li>
                     </ul>
                     <p><strong>Note:</strong> Recent versions of macOS (Monterey and later) no longer include PHP by default, so you'll need to install it.</p>
-                    
+
                     <h6>Install PHP via Homebrew (Recommended)</h6>
                     <p>Homebrew is the easiest way to install and manage PHP on macOS.</p>
                     <ol>
@@ -1042,7 +1047,7 @@ SELECT * FROM users;</code></pre>
                             <strong>Test PHP Built-in Server (Optional)</strong>
                             <ul>
                                 <li>Create a test directory:
-                                    <pre><code>mkdir ~/test-php && cd ~/test-php</code></pre>
+                                    <pre><code>mkdir ~/test-php &amp;&amp; cd ~/test-php</code></pre>
                                 </li>
                                 <li>Create a test file:
                                     <pre><code>echo '&lt;?php phpinfo(); ?&gt;' &gt; index.php</code></pre>
@@ -1056,7 +1061,7 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Update PHP Configuration (Optional)</h6>
                     <ul>
                         <li>To find your php.ini location:
@@ -1077,7 +1082,7 @@ SELECT * FROM users;</code></pre>
                         <li>If you see a version number, you have it installed.</li>
                     </ul>
                     <p><strong>Good News:</strong> macOS comes with SQLite pre-installed! You usually don't need to install it separately.</p>
-                    
+
                     <h6>Verify Existing Installation</h6>
                     <ol>
                         <li>
@@ -1105,7 +1110,7 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Update SQLite via Homebrew (Optional)</h6>
                     <p>If you want a newer version than what comes with macOS:</p>
                     <ol>
@@ -1132,14 +1137,14 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Create a Test Database (Optional)</h6>
                     <ol>
                         <li>
                             <strong>Create a Test Directory</strong>
                             <ul>
                                 <li>In Terminal, run:
-                                    <pre><code>mkdir ~/test-sqlite && cd ~/test-sqlite</code></pre>
+                                    <pre><code>mkdir ~/test-sqlite &amp;&amp; cd ~/test-sqlite</code></pre>
                                 </li>
                             </ul>
                         </li>
@@ -1173,7 +1178,7 @@ SELECT * FROM users;</code></pre>
                 <h5 onclick="toggleSection('extensions-macos', event);" onkeydown="toggleSection('extensions-macos', event);" class="magic-invisible faq-title">Visual Studio Code Extensions</h5>
                 <div id="extensions-macos" class="hidden">
                     <p>VS Code extensions add extra features and functionality to your editor. Here are the recommended extensions for web development:</p>
-                    
+
                     <h6>How to Install Extensions</h6>
                     <ol>
                         <li>
@@ -1194,7 +1199,7 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Essential Extensions (Install Now)</h6>
                     <ol>
                         <li>
@@ -1232,7 +1237,7 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Helpful Extensions</h6>
                     <ol>
                         <li>
@@ -1258,7 +1263,7 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>For Later Lessons</h6>
                     <p>Install these when you reach the relevant lessons:</p>
                     <ol>
@@ -1277,7 +1282,7 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Optional Extensions</h6>
                     <ol>
                         <li>
@@ -1295,7 +1300,7 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Configure Prettier (Recommended)</h6>
                     <p>To make Prettier format your code automatically when you save:</p>
                     <ol>
@@ -1312,7 +1317,7 @@ SELECT * FROM users;</code></pre>
                 <p>
                     There are many different versions of Linux available, so these instructions will cover the most common distributions: <strong>Ubuntu</strong> and <strong>Fedora</strong>. If you are using a different distribution, the steps may vary slightly. The lessons have been tested on Linux Mint 22.2 (which is based on Ubuntu 22.04) but should work fine with other flavours and versions. Here are the instructions for installing the recommended software on your Linux computer:
                 </p>
-                
+
                 <h5 onclick="toggleSection('vsc-linux', event);" onkeydown="toggleSection('vsc-linux', event);" class="magic-invisible faq-title">Visual Studio Code</h5>
                 <div id="vsc-linux" class="hidden">
                     <p>Check whether Visual Studio Code is already installed:</p>
@@ -1321,7 +1326,7 @@ SELECT * FROM users;</code></pre>
                         <li>Type <code>code --version</code> and press Enter</li>
                         <li>If you see a version number, you have it installed. If you get a "command not found" error, you need to install it.</li>
                     </ul>
-                
+
                 <h6>Ubuntu / Debian-based Linux</h6>
                 <p>If you need to install Visual Studio Code on Ubuntu, follow these steps:</p>
                 <ol>
@@ -1364,7 +1369,7 @@ sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/
                         </ul>
                     </li>
                 </ol>
-                
+
                 <h6>Fedora / Red Hat-based Linux</h6>
                 <p>If you need to install Visual Studio Code on Fedora, follow these steps:</p>
                 <ol>
@@ -1408,7 +1413,7 @@ sudo yum install code</code></pre>
                         </ul>
                     </li>
                 </ol>
-                
+
                 <h6>Alternative: Download .deb or .rpm Package</h6>
                 <p>You can also download VS Code directly from the website:</p>
                 <ol>
@@ -1449,7 +1454,7 @@ sudo apt-get install -f</code></pre>
                         <li>Type <code>firefox --version</code> and press Enter</li>
                         <li>If you see a version number, you have it installed. If you get a "command not found" error, you need to install it.</li>
                     </ul>
-                    
+
                     <h6>Ubuntu / Debian-based Linux</h6>
                     <p>If you need to install Firefox on Ubuntu, follow these steps:</p>
                     <ol>
@@ -1482,7 +1487,7 @@ sudo apt-get install -f</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Fedora / Red Hat-based Linux</h6>
                     <p>If you need to install Firefox on Fedora, follow these steps:</p>
                     <ol>
@@ -1509,7 +1514,7 @@ sudo apt-get install -f</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Alternative: Download from Mozilla Website</h6>
                     <p>You can also download Firefox directly from the website:</p>
                     <ol>
@@ -1544,7 +1549,7 @@ sudo apt-get install -f</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <p><strong>Verify Installation (All Methods):</strong></p>
                     <ul>
                         <li>In Firefox, click the menu button (three horizontal lines) in the top-right corner</li>
@@ -1561,7 +1566,7 @@ sudo apt-get install -f</code></pre>
                         <li>Type <code>git --version</code> and press Enter</li>
                         <li>If you see a version number, you have it installed. If you get a "command not found" error, you need to install it.</li>
                     </ul>
-                    
+
                     <h6>Ubuntu / Debian-based Linux</h6>
                     <p>If you need to install Git on Ubuntu, follow these steps:</p>
                     <ol>
@@ -1586,7 +1591,7 @@ sudo apt-get install -f</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Fedora / Red Hat-based Linux</h6>
                     <p>If you need to install Git on Fedora, follow these steps:</p>
                     <ol>
@@ -1605,7 +1610,7 @@ sudo apt-get install -f</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Arch Linux</h6>
                     <p>If you're using Arch Linux:</p>
                     <ol>
@@ -1621,7 +1626,7 @@ sudo apt-get install -f</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <p><strong>Configure Git (Required for All Distributions):</strong></p>
                     <ol>
                         <li>
@@ -1651,7 +1656,7 @@ sudo apt-get install -f</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Optional: Configure Default Branch Name</h6>
                     <p>Modern Git practices use "main" instead of "master" as the default branch name. To set this globally:</p>
                     <pre><code>git config --global init.defaultBranch main</code></pre>
@@ -1665,7 +1670,7 @@ sudo apt-get install -f</code></pre>
                         <li>Type <code>php --version</code> and press Enter</li>
                         <li>If you see a version number, you have it installed. If you get a "command not found" error, you need to install it.</li>
                     </ul>
-                    
+
                     <h6>Ubuntu / Debian-based Linux</h6>
                     <p>If you need to install PHP on Ubuntu, follow these steps:</p>
                     <ol>
@@ -1702,7 +1707,7 @@ sudo apt-get install -f</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Fedora / Red Hat-based Linux</h6>
                     <p>If you need to install PHP on Fedora, follow these steps:</p>
                     <ol>
@@ -1732,7 +1737,7 @@ sudo apt-get install -f</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Arch Linux</h6>
                     <p>If you're using Arch Linux:</p>
                     <ol>
@@ -1756,14 +1761,14 @@ sudo apt-get install -f</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <p><strong>Test PHP Built-in Server (All Distributions):</strong></p>
                     <ol>
                         <li>
                             <strong>Create a Test Directory</strong>
                             <ul>
                                 <li>In Terminal, run:
-                                    <pre><code>mkdir ~/test-php && cd ~/test-php</code></pre>
+                                    <pre><code>mkdir ~/test-php &amp;&amp; cd ~/test-php</code></pre>
                                 </li>
                             </ul>
                         </li>
@@ -1794,7 +1799,7 @@ sudo apt-get install -f</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Configure PHP (Optional)</h6>
                     <ul>
                         <li>To find your php.ini location:
@@ -1816,7 +1821,7 @@ sudo apt-get install -f</code></pre>
                         <li>If you see a version number, you have it installed. If you get a "command not found" error, you need to install it.</li>
                     </ul>
                     <p><strong>Note:</strong> Many Linux distributions come with SQLite pre-installed, but if not, it's easy to install.</p>
-                    
+
                     <h6>Ubuntu / Debian-based Linux</h6>
                     <p>If you need to install SQLite on Ubuntu, follow these steps:</p>
                     <ol>
@@ -1849,7 +1854,7 @@ sudo apt-get install -f</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Fedora / Red Hat-based Linux</h6>
                     <p>If you need to install SQLite on Fedora, follow these steps:</p>
                     <ol>
@@ -1879,7 +1884,7 @@ sudo apt-get install -f</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Arch Linux</h6>
                     <p>If you're using Arch Linux:</p>
                     <ol>
@@ -1895,7 +1900,7 @@ sudo apt-get install -f</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <p><strong>Verify Installation (All Distributions):</strong></p>
                     <ol>
                         <li>
@@ -1922,14 +1927,14 @@ sudo apt-get install -f</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <p><strong>Create a Test Database (Optional):</strong></p>
                     <ol>
                         <li>
                             <strong>Create a Test Directory</strong>
                             <ul>
                                 <li>In Terminal, run:
-                                    <pre><code>mkdir ~/test-sqlite && cd ~/test-sqlite</code></pre>
+                                    <pre><code>mkdir ~/test-sqlite &amp;&amp; cd ~/test-sqlite</code></pre>
                                 </li>
                             </ul>
                         </li>
@@ -1958,7 +1963,7 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Useful SQLite Commands</h6>
                     <p>Once you're in the SQLite prompt, here are some helpful commands:</p>
                     <ul>
@@ -1974,7 +1979,7 @@ SELECT * FROM users;</code></pre>
                 <h5 onclick="toggleSection('extensions-linux', event);" onkeydown="toggleSection('extensions-linux', event);" class="magic-invisible faq-title">Visual Studio Code Extensions</h5>
                 <div id="extensions-linux" class="hidden">
                     <p>VS Code extensions add extra features and functionality to your editor. Here are the recommended extensions for web development:</p>
-                    
+
                     <h6>How to Install Extensions</h6>
                     <ol>
                         <li>
@@ -1995,7 +2000,7 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Essential Extensions (Install Now)</h6>
                     <ol>
                         <li>
@@ -2033,7 +2038,7 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Helpful Extensions</h6>
                     <ol>
                         <li>
@@ -2059,7 +2064,7 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>For Later Lessons</h6>
                     <p>Install these when you reach the relevant lessons:</p>
                     <ol>
@@ -2078,7 +2083,7 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Optional Extensions</h6>
                     <ol>
                         <li>
@@ -2096,7 +2101,7 @@ SELECT * FROM users;</code></pre>
                             </ul>
                         </li>
                     </ol>
-                    
+
                     <h6>Configure Prettier (Recommended)</h6>
                     <p>To make Prettier format your code automatically when you save:</p>
                     <ol>

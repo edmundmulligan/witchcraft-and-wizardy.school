@@ -52,11 +52,19 @@
     display: block;
 }
 
+/* Visually hidden class for accessibility */
+.visually-hidden {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
 .operating-systems {
     display: flex;
     max-width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     justify-content: space-around;
     gap: 1rem;
     padding: 1rem;
