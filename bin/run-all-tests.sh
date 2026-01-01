@@ -3,12 +3,17 @@
 
 # Parse command line arguments
 RUN_WAVE=false
+QUICK_MODE=false
 FOLDER=""
 
 while [[ $# -gt 0 ]]; do
   case $1 in
     -w|--run-wave)
       RUN_WAVE=true
+      shift
+      ;;
+    -q|--quick)
+      QUICK_MODE=true
       shift
       ;;
     *)
@@ -23,7 +28,7 @@ done
 # Validate folder parameter
 if [ -z "$FOLDER" ]; then
   echo "❌ Error: Folder parameter is required"
-  echo "Usage: $0 <folder> [-w|--run-wave]"
+  echo "Usage: $0 <folder> [-w|--run-wave] [-q|--quick]"
   exit 1
 fi
 
@@ -36,6 +41,9 @@ bin/clear-tests.sh "$FOLDER"
 
 # Run all tests and collect exit codes
 echo "Running all tests..."
+if [ "$QUICK_MODE" = true ]; then
+  echo "⚡ Quick mode enabled: Testing only at 900px viewport width"
+fi
 echo ""
 
 FAILED=0
@@ -52,19 +60,31 @@ bin/check-links.sh "$FOLDER" || exit 1
 
 echo ""
 echo "🪓 Running axe accessibility tests..."
-bin/run-axe-tests.sh "$FOLDER" || exit 1
+if [ "$QUICK_MODE" = true ]; then
+  bin/run-axe-tests.sh "$FOLDER" -q || exit 1
+else
+  bin/run-axe-tests.sh "$FOLDER" || exit 1
+fi
 echo ""
 echo "🏮 Running lighthouse accessibility tests..."
 bin/run-lighthouse-tests.sh "$FOLDER" || exit 1
 
 echo ""
 echo "🦜 Running pa11y accessibility tests..."
-bin/run-pa11y-tests.sh "$FOLDER" || exit 1
+if [ "$QUICK_MODE" = true ]; then
+  bin/run-pa11y-tests.sh "$FOLDER" -q || exit 1
+else
+  bin/run-pa11y-tests.sh "$FOLDER" || exit 1
+fi
 
 if [ "$RUN_WAVE" = true ]; then
   echo ""
   echo "🌊 Running Wave accessibility tests..."
-  bin/run-wave-tests.sh "$FOLDER" || exit 1
+  if [ "$QUICK_MODE" = true ]; then
+    bin/run-wave-tests.sh "$FOLDER" -q || exit 1
+  else
+    bin/run-wave-tests.sh "$FOLDER" || exit 1
+  fi
 else
   echo ""
   echo "⏭️  Skipping Wave accessibility tests (use -w or --run-wave to enable)"

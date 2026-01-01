@@ -202,7 +202,7 @@
         event.preventDefault(); // Prevent form submission
 
         try {
-            const form = document.getElementById('student-info-form');
+            const form = document.getElementById('student-info-form') || document.getElementById('mentor-info-form');
             if (!form) {
                 return;
             }
@@ -253,9 +253,9 @@
      */
     function init() {
         // Load saved data when page loads (only if on students page with form)
-        const form = document.getElementById('student-info-form');
+        const form = document.getElementById('student-info-form') || document.getElementById('mentor-info-form');
         if (!form) {
-            return; // Not on the students page
+            return; // Not on the students or mentors page
         }
         
         loadFormData();

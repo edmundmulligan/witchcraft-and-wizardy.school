@@ -90,7 +90,9 @@
         <h2 class="page-title">Lesson 0 - Getting Started</h2>
         <section id="introduction" class="introduction">
             <div class="intro-container">
-                <div class="student-image"></div>
+                <div class="student-image">
+                    <!--Image is injected based on choices made in student.html and saved into local storage. -->
+                </div>
                 <div class="intro-content">
                     <h3>Introduction</h3>
                     <p>
@@ -110,11 +112,11 @@
                 <li>Microsoft Visual Studio Code (or another code editor).</li>
                 <li>Mozilla Firefox (or another modern web browser such as Google Chrome or Apple Safari).</li>
                 <li>Git (optional, for version control, used in later lessons).</li>
-                <li>PHP (optional, for server-side scripting, used in later lessons).</li>
+                <li>Node.js (optional, for server-side JavaScript, used in later lessons).</li>
                 <li>SQLite (optional, for database management, used in later lessons).</li>
             </ul>
             <p>
-                If you don't want to install Git, PHP, or SQLite right now, that's okay; you can install them later when you get to the lessons that need them.
+                If you don't want to install Git, Node.js, or SQLite right now, that's okay; you can install them later when you get to the lessons that need them.
             </p>
             <p>
                 Please select your operating system below to see the specific installation instructions.
@@ -383,110 +385,116 @@
                     </ol>
                 </div>
 
-                <h5 onclick="toggleSection('php-windows', event);" onkeydown="toggleSection('php-windows', event);" class="magic-invisible faq-title">PHP</h5>
-                <div id="php-windows" class="hidden">
-                    <p>Check whether PHP is already installed:</p>
+                <h5 onclick="toggleSection('nodejs-windows', event);" onkeydown="toggleSection('nodejs-windows', event);" class="magic-invisible faq-title">Node.js</h5>
+                <div id="nodejs-windows" class="hidden">
+                    <p>Check whether Node.js is already installed:</p>
                     <ul>
                         <li>Press <code>Windows key + R</code></li>
                         <li>Type <code>cmd</code> and press Enter to open Command Prompt</li>
-                        <li>Type <code>php --version</code> and press Enter</li>
+                        <li>Type <code>node --version</code> and press Enter</li>
                         <li>If you see a version number, you have it installed. If you get an error message, you need to install it.</li>
                     </ul>
-                    <p>If you need to install PHP, follow these steps:</p>
+                    <p>If you need to install Node.js, follow these steps:</p>
                     <ol>
-                        <li>Download PHP from the Official Website
+                        <li>Download Node.js from the Official Website
                             <ul>
                                 <li>Open your web browser</li>
-                                <li>Go to <a href="https://windows.php.net/downloads/releases/" target="_blank" rel="noopener noreferrer">https://windows.php.net/downloads/releases/</a></li>
-                                <li>Under "Current Stable PHP", find the latest version</li>
-                                <li>Download the <strong>Non-Thread Safe (NTS)</strong> ZIP file for x64 (64-bit)
+                                <li>Go to <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer">https://nodejs.org/</a></li>
+                                <li>You'll see two download options:
                                     <ul>
-                                        <li>Look for something like "VS16 x64 Non Thread Safe" ZIP</li>
-                                        <li>Non-Thread Safe is recommended for most users and works with PHP's built-in server</li>
+                                        <li><strong>LTS (Long Term Support)</strong> - Recommended for most users</li>
+                                        <li>Current - Latest features, but may be less stable</li>
                                     </ul>
                                 </li>
-                                <li>The file will be named something like <code>php-8.x.x-nts-Win32-vs16-x64.zip</code></li>
+                                <li>Click the green button for <strong>LTS</strong></li>
+                                <li>The file <code>node-v[version]-x64.msi</code> will download (usually to your Downloads folder)</li>
                             </ul>
                         </li>
-                        <li>Extract PHP
+                        <li>Run the Installer
                             <ul>
-                                <li>Open your Downloads folder</li>
-                                <li>Right-click the PHP ZIP file you downloaded</li>
-                                <li>Select "Extract All..."</li>
-                                <li>Change the destination to <code>C:\php</code> (create this folder if needed)</li>
-                                <li>Click "Extract"</li>
-                                <li>You should now have PHP files in <code>C:\php</code></li>
+                                <li>Open your Downloads folder (press <code>Windows key + E</code>, then click Downloads)</li>
+                                <li>Double-click the Node.js installer file you just downloaded</li>
+                                <li>If Windows asks "Do you want to allow this app to make changes?", click Yes</li>
                             </ul>
                         </li>
-                        <li>Add PHP to System PATH
+                        <li>Setup Wizard - Welcome
                             <ul>
-                                <li>Press <code>Windows key</code> and type "environment variables"</li>
-                                <li>Click "Edit the system environment variables"</li>
-                                <li>Click the "Environment Variables" button at the bottom</li>
-                                <li>In the "System variables" section, find and select "Path"</li>
-                                <li>Click "Edit"</li>
-                                <li>Click "New"</li>
-                                <li>Type <code>C:\php</code> and press Enter</li>
-                                <li>Click "OK" on all windows to save</li>
+                                <li>Click "Next" on the welcome screen</li>
                             </ul>
                         </li>
-                        <li>Configure PHP (Basic Setup)
+                        <li>Setup Wizard - License Agreement
                             <ul>
-                                <li>Open File Explorer and go to <code>C:\php</code></li>
-                                <li>Find the file <code>php.ini-development</code></li>
-                                <li>Right-click it and select "Copy"</li>
-                                <li>Right-click in the same folder and select "Paste"</li>
-                                <li>Rename the copy to <code>php.ini</code> (remove the "-development" part)</li>
-                                <li>This creates your PHP configuration file</li>
+                                <li>Check "I accept the terms in the License Agreement"</li>
+                                <li>Click "Next"</li>
                             </ul>
                         </li>
-                        <li>Enable Common Extensions (Optional)
+                        <li>Setup Wizard - Destination Folder
                             <ul>
-                                <li>Right-click <code>php.ini</code> and open it with Notepad or VS Code</li>
-                                <li>Find these lines (use Ctrl+F to search) and remove the semicolon (;) at the start:
-                                    <pre><code>;extension=curl
-;extension=fileinfo
-;extension=gd
-;extension=mbstring
-;extension=mysqli
-;extension=openssl
-;extension=pdo_mysql
-;extension=pdo_sqlite</code></pre>
+                                <li>Default location is fine (usually <code>C:\Program Files\nodejs\</code>)</li>
+                                <li>Click "Next"</li>
+                            </ul>
+                        </li>
+                        <li>Setup Wizard - Custom Setup
+                            <ul>
+                                <li>Keep all default features selected:
+                                    <ul>
+                                        <li>Node.js runtime</li>
+                                        <li>npm package manager</li>
+                                        <li>Online documentation shortcuts</li>
+                                        <li>Add to PATH</li>
+                                    </ul>
                                 </li>
-                                <li>After removing semicolons, they should look like:
-                                    <pre><code>extension=curl
-extension=fileinfo</code></pre>
-                                    (and so on...)
-                                </li>
-                                <li>Save the file and close it</li>
+                                <li>Click "Next"</li>
                             </ul>
                         </li>
-                        <li>Restart Command Prompt and Verify
+                        <li>Setup Wizard - Tools for Native Modules
+                            <ul>
+                                <li>You can optionally check "Automatically install the necessary tools" (this installs Python and Visual Studio Build Tools)</li>
+                                <li>For basic web development, you can skip this</li>
+                                <li>Click "Next"</li>
+                            </ul>
+                        </li>
+                        <li>Install
+                            <ul>
+                                <li>Click "Install"</li>
+                                <li>Wait for installation to complete (takes about 1-2 minutes)</li>
+                                <li>Click "Finish"</li>
+                            </ul>
+                        </li>
+                        <li>Verify Installation
                             <ul>
                                 <li>Close any open Command Prompt windows</li>
                                 <li>Press <code>Windows key + R</code>, type <code>cmd</code>, press Enter</li>
-                                <li>Type:
-                                    <pre><code>php --version</code></pre>
+                                <li>Check Node.js version:
+                                    <pre><code>node --version</code></pre>
                                 </li>
-                                <li>You should see the PHP version number</li>
-                                <li>Test PHP by running:
-                                    <pre><code>php -r "echo 'PHP is working!';"</code></pre>
+                                <li>You should see the Node.js version number (e.g., v20.x.x)</li>
+                                <li>Check npm (Node Package Manager) version:
+                                    <pre><code>npm --version</code></pre>
                                 </li>
-                                <li>You should see "PHP is working!" printed</li>
+                                <li>You should see the npm version number</li>
                             </ul>
                         </li>
-                        <li>Test PHP Built-in Server (Optional)
+                        <li>Test Node.js (Optional)
                             <ul>
-                                <li>Create a test folder: <code>mkdir C:\test-php</code></li>
-                                <li>Navigate to it: <code>cd C:\test-php</code></li>
-                                <li>Create a test file:
-                                    <pre><code>echo ^&lt;?php phpinfo(); ?^&gt; &gt; index.php</code></pre>
+                                <li>In Command Prompt, type:
+                                    <pre><code>node -e "console.log('Node.js is working!')"</code></pre>
                                 </li>
-                                <li>Start the PHP server:
-                                    <pre><code>php -S localhost:8000</code></pre>
+                                <li>You should see "Node.js is working!" printed</li>
+                            </ul>
+                        </li>
+                        <li>Create a Simple Test Server (Optional)
+                            <ul>
+                                <li>Create a test folder: <code>mkdir C:\test-nodejs</code></li>
+                                <li>Navigate to it: <code>cd C:\test-nodejs</code></li>
+                                <li>Create a test file:
+                                    <pre><code>echo const http = require('http'); http.createServer((req, res) =&gt; { res.writeHead(200, {'Content-Type': 'text/html'}); res.end('&lt;h1&gt;Hello from Node.js!&lt;/h1&gt;'); }).listen(8000, () =&gt; console.log('Server running at http://localhost:8000/')); &gt; server.js</code></pre>
+                                </li>
+                                <li>Start the server:
+                                    <pre><code>node server.js</code></pre>
                                 </li>
                                 <li>Open your browser and go to <code>http://localhost:8000</code></li>
-                                <li>You should see the PHP information page</li>
+                                <li>You should see "Hello from Node.js!"</li>
                                 <li>Press <code>Ctrl + C</code> in Command Prompt to stop the server</li>
                             </ul>
                         </li>
@@ -686,10 +694,10 @@ SELECT * FROM users;</code></pre>
                     <p>Install these when you reach the relevant lessons:</p>
                     <ol>
                         <li>
-                            <strong>PHP Intelephense</strong> (bmewburn.vscode-intelephense-client)
+                            <strong>ESLint</strong> (dbaeumer.vscode-eslint)
                             <ul>
-                                <li>PHP language support with autocomplete and error checking</li>
-                                <li>Install when you start learning PHP</li>
+                                <li>JavaScript and Node.js code quality and style checking</li>
+                                <li>Install when you start learning JavaScript</li>
                             </ul>
                         </li>
                         <li>
@@ -728,6 +736,39 @@ SELECT * FROM users;</code></pre>
                         <li>Search for "default formatter"</li>
                         <li>Select "Prettier - Code formatter" from the dropdown</li>
                     </ol>
+                </div>
+
+                <h5 onclick="toggleSection('projects-folder-windows', event);" onkeydown="toggleSection('projects-folder-windows', event);" class="magic-invisible faq-title">Create a Projects Folder</h5>
+                <div id="projects-folder-windows" class="hidden">
+                    <p>It's helpful to keep all your coding projects organized in one place. Let's create a dedicated Projects folder:</p>
+                    <ol>
+                        <li>
+                            <strong>Open File Explorer</strong>
+                            <ul>
+                                <li>Press <code>Windows key + E</code> to open File Explorer</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Navigate to Your User Folder</strong>
+                            <ul>
+                                <li>Click on "This PC" or "Computer" in the left sidebar</li>
+                                <li>Open the <code>C:</code> drive</li>
+                                <li>Open the <code>Users</code> folder</li>
+                                <li>Open the folder with your username</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Create the Projects Folder</strong>
+                            <ul>
+                                <li>Right-click in an empty space</li>
+                                <li>Select "New" → "Folder"</li>
+                                <li>Name it <code>Projects</code></li>
+                                <li>Press Enter</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <p>Your Projects folder is now at: <code>C:\Users\YourUsername\Projects</code></p>
+                    <p>In future lessons, you'll save your coding projects in this folder.</p>
                 </div>
             </div>
             <div id="instructions-macos">
@@ -983,94 +1024,121 @@ SELECT * FROM users;</code></pre>
                     </ol>
                 </div>
 
-                <h5 onclick="toggleSection('php-macos', event);" onkeydown="toggleSection('php-macos', event);" class="magic-invisible faq-title">PHP</h5>
-                <div id="php-macos" class="hidden">
-                    <p>Check whether PHP is already installed:</p>
+                <h5 onclick="toggleSection('nodejs-macos', event);" onkeydown="toggleSection('nodejs-macos', event);" class="magic-invisible faq-title">Node.js</h5>
+                <div id="nodejs-macos" class="hidden">
+                    <p>Check whether Node.js is already installed:</p>
                     <ul>
                         <li>Open Terminal (<code>Command + Space</code>, type "Terminal")</li>
-                        <li>Type <code>php --version</code> and press Enter</li>
-                        <li>If you see a version number, you have PHP installed. Note: macOS may come with an older PHP version pre-installed.</li>
+                        <li>Type <code>node --version</code> and press Enter</li>
+                        <li>If you see a version number, you have Node.js installed.</li>
                     </ul>
-                    <p><strong>Note:</strong> Recent versions of macOS (Monterey and later) no longer include PHP by default, so you'll need to install it.</p>
+                    <p>If you need to install Node.js, you have two options:</p>
 
-                    <h6>Install PHP via Homebrew (Recommended)</h6>
-                    <p>Homebrew is the easiest way to install and manage PHP on macOS.</p>
+                    <h6>Option 1: Download from Official Website (Recommended for Beginners)</h6>
+                    <ol>
+                        <li>
+                            <strong>Download Node.js</strong>
+                            <ul>
+                                <li>Open your browser</li>
+                                <li>Go to <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer">https://nodejs.org/</a></li>
+                                <li>You'll see two download options:
+                                    <ul>
+                                        <li><strong>LTS (Long Term Support)</strong> - Recommended for most users</li>
+                                        <li>Current - Latest features, but may be less stable</li>
+                                    </ul>
+                                </li>
+                                <li>Click the button for <strong>LTS</strong></li>
+                                <li>A <code>.pkg</code> file will download</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Install Node.js</strong>
+                            <ul>
+                                <li>Open the downloaded <code>.pkg</code> file</li>
+                                <li>Click "Continue" through the installation wizard</li>
+                                <li>Accept the license agreement</li>
+                                <li>Keep the default installation location</li>
+                                <li>Click "Install"</li>
+                                <li>Enter your password when prompted</li>
+                                <li>Wait for installation to complete</li>
+                                <li>Click "Close" when finished</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h6>Option 2: Install via Homebrew</h6>
+                    <p>If you have Homebrew installed (a package manager for macOS):</p>
                     <ol>
                         <li>
                             <strong>Install Homebrew (if not already installed)</strong>
                             <ul>
                                 <li>Open Terminal</li>
-                                <li>Check if Homebrew is installed by typing:
+                                <li>Check if Homebrew is installed:
                                     <pre><code>brew --version</code></pre>
                                 </li>
                                 <li>If you get "command not found", install Homebrew with:
                                     <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
                                 </li>
                                 <li>Follow the on-screen instructions</li>
-                                <li>You may need to add Homebrew to your PATH (the installer will tell you how)</li>
                             </ul>
                         </li>
                         <li>
-                            <strong>Install PHP</strong>
+                            <strong>Install Node.js with Homebrew</strong>
                             <ul>
-                                <li>Once Homebrew is installed, run:
-                                    <pre><code>brew install php</code></pre>
+                                <li>Run this command:
+                                    <pre><code>brew install node</code></pre>
                                 </li>
-                                <li>This will install the latest stable version of PHP</li>
-                                <li>Wait for installation to complete (may take a few minutes)</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <strong>Verify Installation</strong>
-                            <ul>
-                                <li>Close and reopen Terminal</li>
-                                <li>Type:
-                                    <pre><code>php --version</code></pre>
-                                </li>
-                                <li>You should see the PHP version number (should be 8.x)</li>
-                                <li>Check where PHP is installed:
-                                    <pre><code>which php</code></pre>
-                                </li>
-                                <li>Should show something like <code>/opt/homebrew/bin/php</code> or <code>/usr/local/bin/php</code></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <strong>Test PHP</strong>
-                            <ul>
-                                <li>Run a simple PHP command:
-                                    <pre><code>php -r "echo 'PHP is working!';"</code></pre>
-                                </li>
-                                <li>You should see "PHP is working!" printed</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <strong>Test PHP Built-in Server (Optional)</strong>
-                            <ul>
-                                <li>Create a test directory:
-                                    <pre><code>mkdir ~/test-php &amp;&amp; cd ~/test-php</code></pre>
-                                </li>
-                                <li>Create a test file:
-                                    <pre><code>echo '&lt;?php phpinfo(); ?&gt;' &gt; index.php</code></pre>
-                                </li>
-                                <li>Start the PHP server:
-                                    <pre><code>php -S localhost:8000</code></pre>
-                                </li>
-                                <li>Open your browser and go to <code>http://localhost:8000</code></li>
-                                <li>You should see the PHP information page</li>
-                                <li>Press <code>Control + C</code> in Terminal to stop the server</li>
+                                <li>Wait for installation to complete</li>
                             </ul>
                         </li>
                     </ol>
 
-                    <h6>Update PHP Configuration (Optional)</h6>
-                    <ul>
-                        <li>To find your php.ini location:
-                            <pre><code>php --ini</code></pre>
+                    <p><strong>Verify Installation (Required for Both Methods):</strong></p>
+                    <ol>
+                        <li>
+                            <strong>Check Node.js and npm</strong>
+                            <ul>
+                                <li>Close and reopen Terminal</li>
+                                <li>Check Node.js version:
+                                    <pre><code>node --version</code></pre>
+                                </li>
+                                <li>You should see the Node.js version number (e.g., v20.x.x)</li>
+                                <li>Check npm (Node Package Manager) version:
+                                    <pre><code>npm --version</code></pre>
+                                </li>
+                                <li>You should see the npm version number</li>
+                                <li>Check where Node.js is installed:
+                                    <pre><code>which node</code></pre>
+                                </li>
+                            </ul>
                         </li>
-                        <li>Edit the configuration file if needed:
-                            <pre><code>code $(php --ini | grep 'Loaded Configuration File' | cut -d ':' -f 2 | xargs)</code></pre>
+                        <li>
+                            <strong>Test Node.js</strong>
+                            <ul>
+                                <li>Run a simple Node.js command:
+                                    <pre><code>node -e "console.log('Node.js is working!')"</code></pre>
+                                </li>
+                                <li>You should see "Node.js is working!" printed</li>
+                            </ul>
                         </li>
-                    </ul>
+                        <li>
+                            <strong>Create a Simple Test Server (Optional)</strong>
+                            <ul>
+                                <li>Create a test directory:
+                                    <pre><code>mkdir ~/test-nodejs &amp;&amp; cd ~/test-nodejs</code></pre>
+                                </li>
+                                <li>Create a test file:
+                                    <pre><code>echo "const http = require('http'); http.createServer((req, res) =&gt; { res.writeHead(200, {'Content-Type': 'text/html'}); res.end('&lt;h1&gt;Hello from Node.js!&lt;/h1&gt;'); }).listen(8000, () =&gt; console.log('Server running at http://localhost:8000/'));" &gt; server.js</code></pre>
+                                </li>
+                                <li>Start the server:
+                                    <pre><code>node server.js</code></pre>
+                                </li>
+                                <li>Open your browser and go to <code>http://localhost:8000</code></li>
+                                <li>You should see "Hello from Node.js!"</li>
+                                <li>Press <code>Control + C</code> in Terminal to stop the server</li>
+                            </ul>
+                        </li>
+                    </ol>
                 </div>
 
                 <h5 onclick="toggleSection('sqlite-macos', event);" onkeydown="toggleSection('sqlite-macos', event);" class="magic-invisible faq-title">SQLite</h5>
@@ -1268,10 +1336,11 @@ SELECT * FROM users;</code></pre>
                     <p>Install these when you reach the relevant lessons:</p>
                     <ol>
                         <li>
-                            <strong>PHP Intelephense</strong> (bmewburn.vscode-intelephense-client)
+                            <strong>ESLint</strong> (dbaeumer.vscode-eslint)
                             <ul>
-                                <li>PHP language support with autocomplete and error checking</li>
-                                <li>Install when you start learning PHP</li>
+                                <li>JavaScript and Node.js code quality checker</li>
+                                <li>Helps find and fix problems in your JavaScript code</li>
+                                <li>Install when you start learning JavaScript and Node.js</li>
                             </ul>
                         </li>
                         <li>
@@ -1310,6 +1379,37 @@ SELECT * FROM users;</code></pre>
                         <li>Search for "default formatter"</li>
                         <li>Select "Prettier - Code formatter" from the dropdown</li>
                     </ol>
+                </div>
+
+                <h5 onclick="toggleSection('projects-folder-macos', event);" onkeydown="toggleSection('projects-folder-macos', event);" class="magic-invisible faq-title">Create a Projects Folder</h5>
+                <div id="projects-folder-macos" class="hidden">
+                    <p>It's helpful to keep all your coding projects organized in one place. Let's create a dedicated Projects folder:</p>
+                    <ol>
+                        <li>
+                            <strong>Open Finder</strong>
+                            <ul>
+                                <li>Click on the Finder icon in the Dock</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Navigate to Your Home Folder</strong>
+                            <ul>
+                                <li>In the menu bar, click "Go" → "Home"</li>
+                                <li>Or press <code>Shift + Cmd + H</code></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Create the Projects Folder</strong>
+                            <ul>
+                                <li>Right-click (or Control-click) in an empty space</li>
+                                <li>Select "New Folder"</li>
+                                <li>Name it <code>Projects</code></li>
+                                <li>Press Enter</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <p>Your Projects folder is now at: <code>~/Projects</code> (or <code>/Users/YourUsername/Projects</code>)</p>
+                    <p>In future lessons, you'll save your coding projects in this folder.</p>
                 </div>
             </div>
             <div id="instructions-linux">
@@ -1441,6 +1541,10 @@ sudo apt-get install -f</code></pre>
                             <li>For Fedora: Double-click the <code>.rpm</code> file, or run:
                                 <pre><code>sudo dnf install ./code-*.rpm</code></pre>
                             </li>
+                            <li>For Arch Linux: Install using an AUR helper like <code>yay</code> or <code>paru</code>:
+                                <pre><code>yay -S visual-studio-code-bin</code></pre>
+                                Or download from the <a href="https://archlinux.org/packages/" target="_blank" rel="noopener noreferrer">Arch repositories</a>
+                            </li>
                         </ul>
                     </li>
                 </ol>
@@ -1500,6 +1604,30 @@ sudo apt-get install -f</code></pre>
                                 </li>
                                 <li>For older versions:
                                     <pre><code>sudo yum install firefox</code></pre>
+                                </li>
+                                <li>Type <code>Y</code> when asked to confirm</li>
+                                <li>Wait for installation to complete</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Launch Firefox</strong>
+                            <ul>
+                                <li>Type <code>firefox</code> in Terminal and press Enter, or</li>
+                                <li>Find "Firefox" in your application menu</li>
+                                <li>Click to open Firefox</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h6>Arch Linux</h6>
+                    <p>If you need to install Firefox on Arch Linux, follow these steps:</p>
+                    <ol>
+                        <li>
+                            <strong>Install Firefox</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>Run this command:
+                                    <pre><code>sudo pacman -S firefox</code></pre>
                                 </li>
                                 <li>Type <code>Y</code> when asked to confirm</li>
                                 <li>Wait for installation to complete</li>
@@ -1662,33 +1790,31 @@ sudo apt-get install -f</code></pre>
                     <pre><code>git config --global init.defaultBranch main</code></pre>
                 </div>
 
-                <h5 onclick="toggleSection('php-linux', event);" onkeydown="toggleSection('php-linux', event);" class="magic-invisible faq-title">PHP</h5>
-                <div id="php-linux" class="hidden">
-                    <p>Check whether PHP is already installed:</p>
+                <h5 onclick="toggleSection('nodejs-linux', event);" onkeydown="toggleSection('nodejs-linux', event);" class="magic-invisible faq-title">Node.js</h5>
+                <div id="nodejs-linux" class="hidden">
+                    <p>Check whether Node.js is already installed:</p>
                     <ul>
                         <li>Open Terminal (usually <code>Ctrl + Alt + T</code>)</li>
-                        <li>Type <code>php --version</code> and press Enter</li>
+                        <li>Type <code>node --version</code> and press Enter</li>
                         <li>If you see a version number, you have it installed. If you get a "command not found" error, you need to install it.</li>
                     </ul>
 
                     <h6>Ubuntu / Debian-based Linux</h6>
-                    <p>If you need to install PHP on Ubuntu, follow these steps:</p>
+                    <p>If you need to install Node.js on Ubuntu, follow these steps:</p>
                     <ol>
                         <li>
-                            <strong>Update Package List</strong>
+                            <strong>Install Node.js via NodeSource Repository (Recommended)</strong>
                             <ul>
                                 <li>Open Terminal</li>
-                                <li>Run this command to update your package list:
-                                    <pre><code>sudo apt update</code></pre>
+                                <li>First, install curl if you don't have it:
+                                    <pre><code>sudo apt update
+sudo apt install curl</code></pre>
                                 </li>
-                                <li>Enter your password when prompted</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <strong>Install PHP</strong>
-                            <ul>
-                                <li>Install PHP and common extensions:
-                                    <pre><code>sudo apt install php php-cli php-common php-curl php-mbstring php-mysql php-xml php-zip</code></pre>
+                                <li>Download and run the NodeSource setup script for Node.js LTS:
+                                    <pre><code>curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -</code></pre>
+                                </li>
+                                <li>Install Node.js and npm:
+                                    <pre><code>sudo apt install nodejs</code></pre>
                                 </li>
                                 <li>Type <code>Y</code> when asked to confirm</li>
                                 <li>Wait for installation to complete</li>
@@ -1697,29 +1823,35 @@ sudo apt-get install -f</code></pre>
                         <li>
                             <strong>Verify Installation</strong>
                             <ul>
-                                <li>Check the PHP version:
-                                    <pre><code>php --version</code></pre>
+                                <li>Check Node.js version:
+                                    <pre><code>node --version</code></pre>
                                 </li>
-                                <li>You should see PHP version 8.x or 7.x</li>
-                                <li>Test PHP:
-                                    <pre><code>php -r "echo 'PHP is working!';"</code></pre>
+                                <li>You should see Node.js version (e.g., v20.x.x)</li>
+                                <li>Check npm version:
+                                    <pre><code>npm --version</code></pre>
+                                </li>
+                                <li>Test Node.js:
+                                    <pre><code>node -e "console.log('Node.js is working!')"</code></pre>
                                 </li>
                             </ul>
                         </li>
                     </ol>
 
                     <h6>Fedora / Red Hat-based Linux</h6>
-                    <p>If you need to install PHP on Fedora, follow these steps:</p>
+                    <p>If you need to install Node.js on Fedora, follow these steps:</p>
                     <ol>
                         <li>
-                            <strong>Install PHP</strong>
+                            <strong>Install Node.js via NodeSource Repository</strong>
                             <ul>
                                 <li>Open Terminal</li>
+                                <li>Download and run the NodeSource setup script:
+                                    <pre><code>curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo bash -</code></pre>
+                                </li>
                                 <li>For Fedora 22 and later:
-                                    <pre><code>sudo dnf install php php-cli php-common php-json php-mbstring php-mysqlnd php-xml</code></pre>
+                                    <pre><code>sudo dnf install nodejs</code></pre>
                                 </li>
                                 <li>For older versions:
-                                    <pre><code>sudo yum install php php-cli php-common php-json php-mbstring php-mysqlnd php-xml</code></pre>
+                                    <pre><code>sudo yum install nodejs</code></pre>
                                 </li>
                                 <li>Type <code>Y</code> when asked to confirm</li>
                                 <li>Wait for installation to complete</li>
@@ -1728,11 +1860,14 @@ sudo apt-get install -f</code></pre>
                         <li>
                             <strong>Verify Installation</strong>
                             <ul>
-                                <li>Check the PHP version:
-                                    <pre><code>php --version</code></pre>
+                                <li>Check Node.js version:
+                                    <pre><code>node --version</code></pre>
                                 </li>
-                                <li>Test PHP:
-                                    <pre><code>php -r "echo 'PHP is working!';"</code></pre>
+                                <li>Check npm version:
+                                    <pre><code>npm --version</code></pre>
+                                </li>
+                                <li>Test Node.js:
+                                    <pre><code>node -e "console.log('Node.js is working!')"</code></pre>
                                 </li>
                             </ul>
                         </li>
@@ -1742,11 +1877,11 @@ sudo apt-get install -f</code></pre>
                     <p>If you're using Arch Linux:</p>
                     <ol>
                         <li>
-                            <strong>Install PHP</strong>
+                            <strong>Install Node.js</strong>
                             <ul>
                                 <li>Open Terminal</li>
                                 <li>Run this command:
-                                    <pre><code>sudo pacman -S php</code></pre>
+                                    <pre><code>sudo pacman -S nodejs npm</code></pre>
                                 </li>
                                 <li>Type <code>Y</code> when asked to confirm</li>
                                 <li>Wait for installation to complete</li>
@@ -1755,20 +1890,23 @@ sudo apt-get install -f</code></pre>
                         <li>
                             <strong>Verify Installation</strong>
                             <ul>
-                                <li>Check the PHP version:
-                                    <pre><code>php --version</code></pre>
+                                <li>Check Node.js version:
+                                    <pre><code>node --version</code></pre>
+                                </li>
+                                <li>Check npm version:
+                                    <pre><code>npm --version</code></pre>
                                 </li>
                             </ul>
                         </li>
                     </ol>
 
-                    <p><strong>Test PHP Built-in Server (All Distributions):</strong></p>
+                    <p><strong>Create a Simple Test Server (All Distributions):</strong></p>
                     <ol>
                         <li>
                             <strong>Create a Test Directory</strong>
                             <ul>
                                 <li>In Terminal, run:
-                                    <pre><code>mkdir ~/test-php &amp;&amp; cd ~/test-php</code></pre>
+                                    <pre><code>mkdir ~/test-nodejs &amp;&amp; cd ~/test-nodejs</code></pre>
                                 </li>
                             </ul>
                         </li>
@@ -1776,17 +1914,17 @@ sudo apt-get install -f</code></pre>
                             <strong>Create a Test File</strong>
                             <ul>
                                 <li>Run this command:
-                                    <pre><code>echo '&lt;?php phpinfo(); ?&gt;' &gt; index.php</code></pre>
+                                    <pre><code>echo "const http = require('http'); http.createServer((req, res) =&gt; { res.writeHead(200, {'Content-Type': 'text/html'}); res.end('&lt;h1&gt;Hello from Node.js!&lt;/h1&gt;'); }).listen(8000, () =&gt; console.log('Server running at http://localhost:8000/'));" &gt; server.js</code></pre>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <strong>Start PHP Server</strong>
+                            <strong>Start Node.js Server</strong>
                             <ul>
                                 <li>Run:
-                                    <pre><code>php -S localhost:8000</code></pre>
+                                    <pre><code>node server.js</code></pre>
                                 </li>
-                                <li>You should see: "PHP 8.x.x Development Server started"</li>
+                                <li>You should see: "Server running at http://localhost:8000/"</li>
                             </ul>
                         </li>
                         <li>
@@ -1794,21 +1932,19 @@ sudo apt-get install -f</code></pre>
                             <ul>
                                 <li>Open Firefox (or another browser)</li>
                                 <li>Go to <code>http://localhost:8000</code></li>
-                                <li>You should see the PHP information page</li>
+                                <li>You should see "Hello from Node.js!"</li>
                                 <li>Press <code>Ctrl + C</code> in Terminal to stop the server</li>
                             </ul>
                         </li>
                     </ol>
 
-                    <h6>Configure PHP (Optional)</h6>
+                    <h6>Install Additional Tools (Optional)</h6>
                     <ul>
-                        <li>To find your php.ini location:
-                            <pre><code>php --ini</code></pre>
+                        <li>Install build tools for native modules (if needed):
+                            <pre><code>sudo apt install build-essential  # Ubuntu/Debian
+sudo dnf groupinstall "Development Tools"  # Fedora
+sudo pacman -S base-devel  # Arch</code></pre>
                         </li>
-                        <li>To edit php.ini (may require sudo):
-                            <pre><code>sudo nano /etc/php/8.x/cli/php.ini</code></pre>
-                        </li>
-                        <li>Common settings to adjust: <code>memory_limit</code>, <code>upload_max_filesize</code>, <code>post_max_size</code></li>
                     </ul>
                 </div>
 
@@ -2069,10 +2205,11 @@ SELECT * FROM users;</code></pre>
                     <p>Install these when you reach the relevant lessons:</p>
                     <ol>
                         <li>
-                            <strong>PHP Intelephense</strong> (bmewburn.vscode-intelephense-client)
+                            <strong>ESLint</strong> (dbaeumer.vscode-eslint)
                             <ul>
-                                <li>PHP language support with autocomplete and error checking</li>
-                                <li>Install when you start learning PHP</li>
+                                <li>JavaScript and Node.js code quality checker</li>
+                                <li>Helps find and fix problems in your JavaScript code</li>
+                                <li>Install when you start learning JavaScript and Node.js</li>
                             </ul>
                         </li>
                         <li>
@@ -2111,6 +2248,41 @@ SELECT * FROM users;</code></pre>
                         <li>Search for "default formatter"</li>
                         <li>Select "Prettier - Code formatter" from the dropdown</li>
                     </ol>
+                </div>
+
+                <h5 onclick="toggleSection('projects-folder-linux', event);" onkeydown="toggleSection('projects-folder-linux', event);" class="magic-invisible faq-title">Create a Projects Folder</h5>
+                <div id="projects-folder-linux" class="hidden">
+                    <p>It's helpful to keep all your coding projects organized in one place. Let's create a dedicated Projects folder:</p>
+                    <ol>
+                        <li>
+                            <strong>Open Terminal</strong>
+                            <ul>
+                                <li>Press <code>Ctrl + Alt + T</code></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Navigate to Your Home Directory</strong>
+                            <ul>
+                                <li>The terminal usually starts in your home directory</li>
+                                <li>To confirm, type <code>pwd</code> and press Enter</li>
+                                <li>You should see something like <code>/home/yourusername</code></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Create the Projects Folder</strong>
+                            <ul>
+                                <li>Type this command and press Enter:
+                                    <pre><code>mkdir Projects</code></pre>
+                                </li>
+                                <li>Verify it was created:
+                                    <pre><code>ls</code></pre>
+                                </li>
+                                <li>You should see <code>Projects</code> in the list</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <p>Your Projects folder is now at: <code>~/Projects</code> (or <code>/home/yourusername/Projects</code>)</p>
+                    <p>In future lessons, you'll save your coding projects in this folder.</p>
                 </div>
             </div>
             <div id="instructions-chromebook">

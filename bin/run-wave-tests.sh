@@ -29,11 +29,32 @@ fi
 
 # Get any command line options
 TEST_URL=""
-parse_test_options "$@"
+QUICK_MODE=false
+
+# Parse command line arguments
+FOLDER=""
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -q|--quick)
+      QUICK_MODE=true
+      shift
+      ;;
+    *)
+      if [ -z "$FOLDER" ]; then
+        FOLDER="$1"
+      fi
+      shift
+      ;;
+  esac
+done
+
+parse_test_options
 
 
-# Accept optional folder parameter
-FOLDER="${1:-.}"
+# Set default folder if not provided
+if [ -z "$FOLDER" ]; then
+  FOLDER="."
+fi
 if [ ! -d "$FOLDER" ]; then
   echo "❌ Error: '$FOLDER' is not a valid directory"
   exit 1
@@ -137,7 +158,12 @@ echo '{"pages":[]}' > "$RESULT_FILE"
 discover_html_pages
 
 # Define viewport widths to test (Note: WAVE tests via API, viewport simulation limited)
-VIEWPORTS=(150 400 900 1300)
+if [ "$QUICK_MODE" = true ]; then
+  VIEWPORTS=(900)
+  echo "⚡ Quick mode: Testing only at 900px viewport width"
+else
+  VIEWPORTS=(150 400 900 1300)
+fi
 TOTAL_TESTS=$((PAGE_COUNT * 2 * ${#VIEWPORTS[@]}))
 
 # Test each page at different viewport widths, in both light and dark modes

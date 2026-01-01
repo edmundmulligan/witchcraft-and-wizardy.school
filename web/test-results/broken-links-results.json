@@ -1,16 +1,22 @@
 {
   "pages": [
     {
+      "url": "mentors/lesson-00.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 25
+    },
+    {
       "url": "index.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 23
+      "totalCount": 24
     },
     {
       "url": "students/lesson-00.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 34
+      "totalCount": 36
     },
     {
       "url": "pages/mentors.html",
@@ -44,7 +50,7 @@
     }
   ],
   "summary": {
-    "totalLinks": 206,
+    "totalLinks": 234,
     "brokenLinks": 0,
     "excludedLinks": 0
   }

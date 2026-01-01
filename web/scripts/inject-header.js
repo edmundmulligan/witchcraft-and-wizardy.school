@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <ul>
                             <li><a href="${pathPrefix}index.html">Home</a></li>
                             <li><a href="${pathPrefix}pages/students.html">Students</a></li>
-                            <li><button popovertarget="not-implemented">Mentors</button></li>
+                            <li><a href="${pathPrefix}pages/mentors.html">Mentors</a></li>
                             <li><a href="${pathPrefix}pages/about.html">About</a></li>
                             <li><a href="${pathPrefix}pages/glossary-and-faq.html">Glossary and FAQ</a></li>
                             <li><a href="${pathPrefix}pages/license-and-credits.html">License and Credits</a></li>

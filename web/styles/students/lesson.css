@@ -22,6 +22,7 @@
     border: var(--border-weight) var(--border-style) var(--color-page-text);
     border-radius: var(--border-radius);
     padding: 1rem;
+    box-sizing: border-box;
 }
 
 .intro-content {
