@@ -12,7 +12,7 @@
  **********************************************************************
  */
 
-/* global window, document */
+/* global */
 
 function toggleSection(sectionId, event) {
     // For keyboard events, only respond to Enter or Space
