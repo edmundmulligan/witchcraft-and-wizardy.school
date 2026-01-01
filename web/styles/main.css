@@ -14,7 +14,8 @@
  /*
   **********************************************************************
   * Define semantic names for colours to be used on all pages
-  * N.B. Use colour names not hex codes for better code readability
+  * N.B. Prefer named colours over hex values for better readability but
+  * use hex values where necessary (e.g. dark theme colours)
   **********************************************************************
   */
 
@@ -34,12 +35,12 @@
     --color-light-warning-text:        white;
 
     /* dark theme colours */
-    --color-dark-page-background:      darkgreen;
-    --color-dark-page-text:            lightgreen;
-    --color-dark-headings-background:  darkolivegreen;
-    --color-dark-headings-text:        lemonchiffon;
-    --color-dark-link-text:            lightgreen;
-    --color-dark-link-text-hover:      lightblue;
+    --color-dark-page-background:      indigo;
+    --color-dark-page-text:            lightcyan;
+    --color-dark-headings-background:  purple;
+    --color-dark-headings-text:        cyan;
+    --color-dark-link-text:            lightcyan;
+    --color-dark-link-text-hover:      darkblue;
     --color-dark-link-text-visited:    lightblue;
     --color-dark-link-text-focus:      lightblue;
     --color-dark-error-background:     lightcoral;
@@ -96,6 +97,7 @@
     --fontsize-largeprint:    clamp(1rem, 3vw + 1rem, 3rem);
     --fontsize-h1h2:          clamp(0.875rem, 2vw + 1rem, 2.5rem);
     --fontsize-h3h4:          clamp(0.8rem, 2vw + 1rem, 2.5rem);
+    --fontsize-h5h6:          clamp(0.75rem, 1.5vw + 1rem, 2rem);
     --fontsize-button:        clamp(0.75rem, 1vw + 1rem, 4rem);
     --fontsize-button-circle: clamp(0.75rem, 1vw + 0.75rem, 1.5rem);
     --fontsize-nav-site:      clamp(0.875rem, 2vw, 1rem);
@@ -211,10 +213,22 @@ h3, h4{
     font-weight: 700;
 }
 
+/* h5 and h6 smaller again */
+h5, h6{
+    font-size: var(--fontsize-h5h6);
+    font-weight: 700;
+}
+
 /* increas spacing for paragraphs in accordance with WCAG 2.2 */
-p {
+p, li {
     font-size: var(--fontsize-p);
     margin-bottom: 1.5rem;
+}
+
+/* Make inline code elements the same size as paragraph text */
+code {
+    font-family: 'Fira Code', monospace;
+    font-size: var(--fontsize-p);
 }
 
 /*
@@ -238,8 +252,8 @@ a:focus-visible {
 
 /* this may be a bit subtle but it meets WCAG 2.2 guidelines */
 a:focus-visible {
-    outline: 0.1rem dashed var(--color-link-text-focus);
-    outline-offset: 0.1em;
+    outline: var(--border-weight-thin) dashed var(--color-link-text-focus);
+    outline-offset: 0.2rem;
 }
 
 /* Utility class to mirror an image horizontally. Used by the wizard 
@@ -251,4 +265,10 @@ a:focus-visible {
 /* Make SVG images with black strokes/fills lighter in dark mode */
 img[src$=".svg"] {
     filter: var(--svg-filter, none);
+}
+
+/* Utility class to visually hide elements */
+
+.hidden {
+    display: none;
 }

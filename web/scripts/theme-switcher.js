@@ -1,4 +1,4 @@
-/* global window, document, console, localStorage */
+/* global */
 /*
  **********************************************************************
  * File       : theme-switcher.js
@@ -102,6 +102,13 @@
      * @returns {string} - 'light', 'dark', or 'auto'
      */
     function getThemePreference() {
+        // Check URL parameter first (for testing purposes)
+        const urlParams = new URLSearchParams(window.location.search);
+        const themeParam = urlParams.get('theme');
+        if (themeParam === 'light' || themeParam === 'dark' || themeParam === 'auto') {
+            return themeParam;
+        }
+        
         try {
             const saved = localStorage.getItem(THEME_STORAGE_KEY);
             if (saved) {

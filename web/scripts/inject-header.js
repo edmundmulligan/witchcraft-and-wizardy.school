@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('header.header');
     if (header && header.children.length === 0) {
         // Determine path prefix based on current page location
-        const pathPrefix = window.location.pathname.includes('/pages/') ? '../' : '';
+        // Check if we're in a subdirectory (pages, students, or mentors)
+        const pathname = window.location.pathname;
+        const pathPrefix = (pathname.includes('/pages/') || pathname.includes('/students/') || pathname.includes('/mentors/')) ? '../' : '';
         
         header.innerHTML = `
         <div class="header-minimal">
@@ -56,10 +58,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         <ul>
                             <li><a href="${pathPrefix}index.html">Home</a></li>
                             <li><a href="${pathPrefix}pages/students.html">Students</a></li>
-                            <li><button popovertarget="not-implemented">Mentors</button></li>
+                            <li><a href="${pathPrefix}pages/mentors.html">Mentors</a></li>
                             <li><a href="${pathPrefix}pages/about.html">About</a></li>
-                            <li><a href="${pathPrefix}pages/glossary-and-faq.html">Glossary</a></li>
-                            <li><a href="${pathPrefix}pages/license-and-credits.html">License</a></li>
+                            <li><a href="${pathPrefix}pages/glossary-and-faq.html">Glossary and FAQ</a></li>
+                            <li><a href="${pathPrefix}pages/license-and-credits.html">License and Credits</a></li>
                         </ul>
                     </nav>
                 </div>
