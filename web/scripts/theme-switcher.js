@@ -1,4 +1,4 @@
-/* global window, document, console, localStorage */
+/* global */
 /*
  **********************************************************************
  * File       : theme-switcher.js

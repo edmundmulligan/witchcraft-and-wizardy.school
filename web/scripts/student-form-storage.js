@@ -1,4 +1,4 @@
-/* global window, document, console, alert, localStorage, btoa, atob */
+/* global btoa, atob */
 /* jshint esversion: 8 */
 /*
  **********************************************************************
