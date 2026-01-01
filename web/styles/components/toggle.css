@@ -1,0 +1,31 @@
+/*
+ **********************************************************************
+ * File       : components/toggle.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This stylesheet defines styles for toggling visibility of sections.
+ **********************************************************************
+ */
+
+.magic-invisible::before {
+    content: "\f0d0\f054";  /* Font Awesome Magic Wand + Chevron Right */
+    font-family: "Font Awesome 7 Pro";
+    font-weight: 900; /* needed for solid style icons */
+    margin-right: 0.5em;
+    display: inline-block;
+}
+
+.magic-visible::before {
+    content: "\e2ca\f078";  /* Font Awesome Magic Wand with sparkles + Chevron Down */
+    font-family: "Font Awesome 7 Pro";
+    font-weight: 900; /* needed for solid style icons */
+    margin-right: 0.5em;
+    display: inline-block;
+}
+
+.magic-invisible,
+.magic-visible {
+    cursor: pointer;
+}

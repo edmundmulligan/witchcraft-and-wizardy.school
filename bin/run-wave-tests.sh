@@ -29,11 +29,32 @@ fi
 
 # Get any command line options
 TEST_URL=""
-parse_test_options "$@"
+QUICK_MODE=false
+
+# Parse command line arguments
+FOLDER=""
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -q|--quick)
+      QUICK_MODE=true
+      shift
+      ;;
+    *)
+      if [ -z "$FOLDER" ]; then
+        FOLDER="$1"
+      fi
+      shift
+      ;;
+  esac
+done
+
+parse_test_options
 
 
-# Accept optional folder parameter
-FOLDER="${1:-.}"
+# Set default folder if not provided
+if [ -z "$FOLDER" ]; then
+  FOLDER="."
+fi
 if [ ! -d "$FOLDER" ]; then
   echo "❌ Error: '$FOLDER' is not a valid directory"
   exit 1
@@ -136,17 +157,41 @@ echo '{"pages":[]}' > "$RESULT_FILE"
 # Find all HTML pages
 discover_html_pages
 
-# Test each page
+# Define viewport widths to test (Note: WAVE tests via API, viewport simulation limited)
+if [ "$QUICK_MODE" = true ]; then
+  VIEWPORTS=(900)
+  echo "⚡ Quick mode: Testing only at 900px viewport width"
+else
+  VIEWPORTS=(150 400 900 1300)
+fi
+TOTAL_TESTS=$((PAGE_COUNT * 2 * ${#VIEWPORTS[@]}))
+
+# Test each page at different viewport widths, in both light and dark modes
 TESTED=0
-for page in $PAGES; do
-  TESTED=$((TESTED + 1))
-  URL_PATH="${page#./}"
-  FULL_URL="$TEST_URL/$URL_PATH"
+for VIEWPORT in "${VIEWPORTS[@]}"; do
+  echo ""
+  echo "📐 Testing at ${VIEWPORT}px width..."
+  echo ""
+  
+  for THEME in light dark; do
+    echo "  🎨 $THEME mode"
+    
+    for page in $PAGES; do
+      TESTED=$((TESTED + 1))
+      URL_PATH="${page#./}"
+      
+      # Add theme parameter to URL
+      if [[ "$URL_PATH" == *"?"* ]]; then
+        FULL_URL="$TEST_URL/$URL_PATH&theme=$THEME"
+      else
+        FULL_URL="$TEST_URL/$URL_PATH?theme=$THEME"
+      fi
 
-  echo "[$TESTED/$PAGE_COUNT] Testing $URL_PATH"
+      echo "  [$TESTED/$TOTAL_TESTS] Testing $URL_PATH (${VIEWPORT}px, $THEME mode)"
 
-  # Call WAVE API (reporttype=4 returns detailed JSON)
-  TEMP_RESULT="$RESULTS_DIR/wave-temp-$TESTED.json"
+      # Note: WAVE API doesn't support viewport size directly, but we track it for consistency
+      # Call WAVE API (reporttype=4 returns detailed JSON)
+      TEMP_RESULT="$RESULTS_DIR/wave-temp-$TESTED.json"
   curl -s "https://wave.webaim.org/api/request?key=$WAVE_API_KEY&reporttype=4&url=$(echo $FULL_URL | sed 's/:/%3A/g; s/\//%2F/g')" > "$TEMP_RESULT"
 
   # Merge results
@@ -167,6 +212,8 @@ for page in $PAGES; do
         if (newData.categories) {
           const pageResult = {
             url: '$URL_PATH',
+            theme: '$THEME',
+            viewport: '$VIEWPORT',
             errors: newData.categories.error?.count || 0,
             alerts: newData.categories.alert?.count || 0,
             features: newData.categories.feature?.count || 0,
@@ -184,9 +231,17 @@ for page in $PAGES; do
                 id: item.id,
                 description: item.description,
                 count: item.count,
-                selectors: item.selectors || []
+                selectors: item.selectors || [],
+                downgradedFrom150px: '$VIEWPORT' === '150' // Mark if from 150px viewport
               });
             });
+            
+            // Downgrade errors to alerts for 150px viewport
+            if ('$VIEWPORT' === '150' && pageResult.errors > 0) {
+              pageResult.alerts += pageResult.errors;
+              pageResult.errors = 0;
+              pageResult.downgradedFrom150px = true;
+            }
           }
 
           // Store WAVE report URL for detailed information
@@ -240,6 +295,8 @@ for page in $PAGES; do
       }
     "
   fi
+    done
+  done
 done
 
 # Display summary
@@ -273,7 +330,7 @@ node -e "
     console.log('  Pages with errors:');
     pagesWithErrors.forEach(page => {
       console.log('');
-      console.log('❌ ' + page.url);
+      console.log('❌ ' + page.url + ' [' + (page.viewport || 'unknown') + 'px, ' + (page.theme || 'unknown') + ' mode]');
       console.log('   Errors: ' + page.errors + ', Alerts: ' + page.alerts + ', Contrast: ' + page.contrast);
 
       // Show error details if available
@@ -296,7 +353,7 @@ node -e "
     console.log('  Pages with alerts:');
     pagesWithAlerts.forEach(page => {
       console.log('');
-      console.log('⚠️  ' + page.url);
+      console.log('⚠️  ' + page.url + ' [' + (page.viewport || 'unknown') + 'px, ' + (page.theme || 'unknown') + ' mode]');
       console.log('   Alerts: ' + page.alerts);
 
       // Show alert details if available

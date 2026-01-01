@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const footer = document.querySelector('footer.footer');
     if (footer && footer.children.length === 0) {
         // Determine path prefix based on current page location
-        const pathPrefix = window.location.pathname.includes('/pages/') ? '../' : '';
+        // Check if we're in a subdirectory (pages, students, or mentors)
+        const pathname = window.location.pathname;
+        const pathPrefix = (pathname.includes('/pages/') || pathname.includes('/students/') || pathname.includes('/mentors/')) ? '../' : '';
         
         footer.innerHTML = `
         <div class="footer-minimal">

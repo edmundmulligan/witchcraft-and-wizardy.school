@@ -9,14 +9,35 @@ source "$SCRIPT_DIR/test-helpers.sh"
 
 # Get any command line options
 TEST_URL="http://localhost:8080"
-parse_test_options "$@"
+QUICK_MODE=false
+
+# Parse command line arguments
+FOLDER=""
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -q|--quick)
+      QUICK_MODE=true
+      shift
+      ;;
+    *)
+      if [ -z "$FOLDER" ]; then
+        FOLDER="$1"
+      fi
+      shift
+      ;;
+  esac
+done
+
+parse_test_options
 
 # Silently install dependencies if not already installed
 npm install -g @axe-core/cli serve > /dev/null 2>&1
 
 
-# Accept optional folder parameter
-FOLDER="${1:-.}"
+# Set default folder if not provided
+if [ -z "$FOLDER" ]; then
+  FOLDER="."
+fi
 if [ ! -d "$FOLDER" ]; then
   echo "❌ Error: '$FOLDER' is not a valid directory"
   exit 1
@@ -35,46 +56,77 @@ discover_html_pages "."
 # Initialize combined results
 echo '{"violations":[],"passes":[],"incomplete":[]}' > "$RESULTS_DIR/axe-results.json"
 
-# Test each page
+# Define viewport widths to test
+if [ "$QUICK_MODE" = true ]; then
+  VIEWPORTS=(900)
+  echo "⚡ Quick mode: Testing only at 900px viewport width"
+else
+  VIEWPORTS=(150 400 900 1300)
+fi
+TOTAL_TESTS=$((PAGE_COUNT * 2 * ${#VIEWPORTS[@]}))
+
+# Test each page at different viewport widths, in both light and dark modes
 TESTED=0
-for page in $PAGES; do
-  TESTED=$((TESTED + 1))
-  # Convert file path to URL path
-  URL_PATH="${page#./}"
-  FULL_URL="$TEST_URL/$URL_PATH"
+for VIEWPORT in "${VIEWPORTS[@]}"; do
+  echo ""
+  echo "📐 Testing at ${VIEWPORT}px width..."
+  echo ""
+  
+  for THEME in light dark; do
+    echo "  🎨 $THEME mode"
+    
+    for page in $PAGES; do
+      TESTED=$((TESTED + 1))
+      # Convert file path to URL path
+      URL_PATH="${page#./}"
+      FULL_URL="$TEST_URL/$URL_PATH"
 
-  echo "[$TESTED/$PAGE_COUNT] Testing $URL_PATH"
+      echo "  [$TESTED/$TOTAL_TESTS] Testing $URL_PATH (${VIEWPORT}px, $THEME mode)"
 
-  # Run axe on this page
-  TEMP_RESULT="$RESULTS_DIR/axe-temp-$TESTED.json"
-  axe "$FULL_URL" --disable page-has-heading-one --save "$TEMP_RESULT" 2>&1 | grep -E "(violations|Testing|Saved)" || true
+      # Run axe on this page with color scheme emulation and viewport size
+      TEMP_RESULT="$RESULTS_DIR/axe-temp-$TESTED.json"
+      axe "$FULL_URL" --disable page-has-heading-one --save "$TEMP_RESULT" \
+        --chromedriver-options="{\"args\":[\"--force-prefers-color-scheme=$THEME\",\"--window-size=${VIEWPORT},768\"]}" \
+        2>&1 | grep -E "(violations|Testing|Saved)" || true
 
-  # Merge violations into combined results if file exists
-  if [ -f "$TEMP_RESULT" ]; then
-    node -e "
-      try {
-        const fs = require('fs');
-        const combined = JSON.parse(fs.readFileSync('$RESULTS_DIR/axe-results.json'));
-        const newData = JSON.parse(fs.readFileSync('$TEMP_RESULT'));
+    # Merge violations into combined results if file exists
+    if [ -f "$TEMP_RESULT" ]; then
+      node -e "
+        try {
+          const fs = require('fs');
+          const combined = JSON.parse(fs.readFileSync('$RESULTS_DIR/axe-results.json'));
+          const newData = JSON.parse(fs.readFileSync('$TEMP_RESULT'));
 
-        // Axe saves results as an array [{violations: [...]}]
-        const result = Array.isArray(newData) ? newData[0] : newData;
+          // Axe saves results as an array [{violations: [...]}]
+          const result = Array.isArray(newData) ? newData[0] : newData;
 
-        // Add page URL to each violation
-        if (result.violations && result.violations.length > 0) {
-          result.violations.forEach(v => {
-            v.pageUrl = '$URL_PATH';
-            combined.violations.push(v);
-          });
+          // Add page URL, theme, and viewport to each violation
+          if (result.violations && result.violations.length > 0) {
+            result.violations.forEach(v => {
+              v.pageUrl = '$URL_PATH';
+              v.theme = '$THEME';
+              v.viewport = '$VIEWPORT';
+              
+              // Downgrade severity for 150px viewport (expected issues at extreme narrow width)
+              if ('$VIEWPORT' === '150' && (v.impact === 'critical' || v.impact === 'serious')) {
+                v.originalImpact = v.impact;
+                v.impact = 'moderate';
+                v.downgradedFrom150px = true;
+              }
+              
+              combined.violations.push(v);
+            });
+          }
+
+          fs.writeFileSync('$RESULTS_DIR/axe-results.json', JSON.stringify(combined, null, 2));
+          fs.unlinkSync('$TEMP_RESULT');
+        } catch (e) {
+          console.error('Error merging results:', e.message);
         }
-
-        fs.writeFileSync('$RESULTS_DIR/axe-results.json', JSON.stringify(combined, null, 2));
-        fs.unlinkSync('$TEMP_RESULT');
-      } catch (e) {
-        console.error('Error merging results:', e.message);
-      }
-    "
-  fi
+      "
+    fi
+    done
+  done
 done
 
 # Stop server if we started it
@@ -148,7 +200,20 @@ else
       console.log(icon + isContrast + ' ' + id + ' (' + v.impact + ')');
       console.log('  Description: ' + v.description);
       console.log('  Help: ' + v.help);
-      console.log('  Affected pages: ' + v.pages.join(', '));
+      
+      // Group by theme
+      const byTheme = {};
+      data.violations.forEach(violation => {
+        if (violation.id === id) {
+          const theme = violation.theme || 'unknown';
+          if (!byTheme[theme]) byTheme[theme] = [];
+          byTheme[theme].push(violation.pageUrl || 'unknown');
+        }
+      });
+      
+      Object.keys(byTheme).forEach(theme => {
+        console.log('  ' + theme + ' mode: ' + byTheme[theme].join(', '));
+      });
       console.log('');
     });
   "

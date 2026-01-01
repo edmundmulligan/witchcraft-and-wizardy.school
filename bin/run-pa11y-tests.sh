@@ -9,14 +9,35 @@ source "$SCRIPT_DIR/test-helpers.sh"
 
 # Get any command line options
 TEST_URL="http://localhost:8080"
-parse_test_options "$@"
+QUICK_MODE=false
+
+# Parse command line arguments
+FOLDER=""
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -q|--quick)
+      QUICK_MODE=true
+      shift
+      ;;
+    *)
+      if [ -z "$FOLDER" ]; then
+        FOLDER="$1"
+      fi
+      shift
+      ;;
+  esac
+done
+
+parse_test_options
 
 # Install dependencies locally if not already installed
 npm install pa11y > /dev/null 2>&1
 npm install -g serve > /dev/null 2>&1
 
-# Accept optional folder parameter
-FOLDER="${1:-.}"
+# Set default folder if not provided
+if [ -z "$FOLDER" ]; then
+  FOLDER="."
+fi
 if [ ! -d "$FOLDER" ]; then
   echo "❌ Error: '$FOLDER' is not a valid directory"
   exit 1
@@ -35,35 +56,59 @@ discover_html_pages "."
 # Initialize combined results
 echo '{"pages":[]}' > "$RESULTS_DIR/pa11y-results.json"
 
-# Test each page
+# Define viewport widths to test
+if [ "$QUICK_MODE" = true ]; then
+  VIEWPORTS=(900)
+  echo "⚡ Quick mode: Testing only at 900px viewport width"
+else
+  VIEWPORTS=(150 400 900 1300)
+fi
+TOTAL_TESTS=$((PAGE_COUNT * 2 * ${#VIEWPORTS[@]}))
+
+# Test each page at different viewport widths, in both light and dark modes
 TESTED=0
-for page in $PAGES; do
-  TESTED=$((TESTED + 1))
-  # Convert file path to URL path
-  URL_PATH="${page#./}"
-  FULL_URL="$TEST_URL/$URL_PATH"
+for VIEWPORT in "${VIEWPORTS[@]}"; do
+  echo ""
+  echo "📐 Testing at ${VIEWPORT}px width..."
+  echo ""
+  
+  for THEME in light dark; do
+    echo "  🎨 $THEME mode"
+    
+    for page in $PAGES; do
+      TESTED=$((TESTED + 1))
+      # Convert file path to URL path
+      URL_PATH="${page#./}"
+      FULL_URL="$TEST_URL/$URL_PATH"
 
-  echo "[$TESTED/$PAGE_COUNT] Testing $URL_PATH"
+      echo "  [$TESTED/$TOTAL_TESTS] Testing $URL_PATH (${VIEWPORT}px, $THEME mode)"
 
-  # Run pa11y on this page using inline Node.js
-  TEMP_RESULT="$RESULTS_DIR/pa11y-temp-$TESTED.json"
-  node -e "
-    (async () => {
-      const pa11y = require('pa11y');
-      const fs = require('fs');
+      # Run pa11y on this page using inline Node.js
+      TEMP_RESULT="$RESULTS_DIR/pa11y-temp-$TESTED.json"
+      node -e "
+        (async () => {
+          const pa11y = require('pa11y');
+          const fs = require('fs');
 
-      try {
-        const results = await pa11y('$FULL_URL', {
-          standard: 'WCAG2AA',
-          chromeLaunchConfig: {
-            args: [
-              '--no-sandbox',
-              '--disable-setuid-sandbox',
-              '--disable-dev-shm-usage',
-              '--disable-gpu'
-            ]
-          }
-        });
+          try {
+            const results = await pa11y('$FULL_URL', {
+              standard: 'WCAG2AA',
+              viewport: {
+                width: $VIEWPORT,
+                height: 768
+              },
+              emulateMediaFeatures: [
+                { name: 'prefers-color-scheme', value: '$THEME' }
+              ],
+              chromeLaunchConfig: {
+                args: [
+                  '--no-sandbox',
+                  '--disable-setuid-sandbox',
+                  '--disable-dev-shm-usage',
+                  '--disable-gpu'
+                ]
+              }
+            });
 
         fs.writeFileSync('$TEMP_RESULT', JSON.stringify(results, null, 2));
 
@@ -78,29 +123,44 @@ for page in $PAGES; do
     })();
   "
 
-  # Merge results into combined file if temp file exists
-  if [ -f "$TEMP_RESULT" ]; then
-    node -e "
-      try {
-        const fs = require('fs');
-        const combined = JSON.parse(fs.readFileSync('$RESULTS_DIR/pa11y-results.json'));
-        const newData = JSON.parse(fs.readFileSync('$TEMP_RESULT'));
+    # Merge results into combined file if temp file exists
+    if [ -f "$TEMP_RESULT" ]; then
+      node -e "
+        try {
+          const fs = require('fs');
+          const combined = JSON.parse(fs.readFileSync('$RESULTS_DIR/pa11y-results.json'));
+          const newData = JSON.parse(fs.readFileSync('$TEMP_RESULT'));
 
-        const pageResult = {
-          url: '$URL_PATH',
-          documentTitle: newData.documentTitle,
-          pageUrl: newData.pageUrl,
-          issues: newData.issues || []
-        };
+          const pageResult = {
+            url: '$URL_PATH',
+            theme: '$THEME',
+            viewport: '$VIEWPORT',
+            documentTitle: newData.documentTitle,
+            pageUrl: newData.pageUrl,
+            issues: (newData.issues || []).map(issue => {
+              // Downgrade errors to warnings for 150px viewport
+              if ('$VIEWPORT' === '150' && issue.type === 'error') {
+                return {
+                  ...issue,
+                  type: 'warning',
+                  originalType: 'error',
+                  downgradedFrom150px: true
+                };
+              }
+              return issue;
+            })
+          };
 
-        combined.pages.push(pageResult);
-        fs.writeFileSync('$RESULTS_DIR/pa11y-results.json', JSON.stringify(combined, null, 2));
-        fs.unlinkSync('$TEMP_RESULT');
-      } catch (e) {
-        console.error('Error merging results for $URL_PATH:', e.message);
-      }
-    "
-  fi
+          combined.pages.push(pageResult);
+          fs.writeFileSync('$RESULTS_DIR/pa11y-results.json', JSON.stringify(combined, null, 2));
+          fs.unlinkSync('$TEMP_RESULT');
+        } catch (e) {
+          console.error('Error merging results for $URL_PATH:', e.message);
+        }
+      "
+    fi
+    done
+  done
 done
 
 # Stop server if we started it
@@ -145,8 +205,8 @@ node -e "
     console.log('  Pages with errors:');
     pagesWithErrors.forEach(page => {
       const errors = page.issues.filter(i => i.type === 'error');
-      console.log('');
-      console.log('❌ ' + page.url + ' (' + errors.length + ' errors)');
+    console.log('');  
+    console.log('❌ ' + page.url + ' [' + (page.viewport || 'unknown') + 'px, ' + (page.theme || 'unknown') + ' mode] (' + errors.length + ' errors)');
 
       errors.slice(0, 5).forEach(issue => {
         console.log('    • ' + issue.message);

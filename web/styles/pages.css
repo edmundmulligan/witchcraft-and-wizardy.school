@@ -96,7 +96,6 @@
    border-radius: var(--border-radius);
    padding: 1rem;
    margin: 1rem;
-
    box-sizing: border-box;
 }
 
@@ -105,7 +104,12 @@
    display: grid;
    grid-template-columns: 1fr 1fr;
    gap: 0;
-   margin: 1rem 0;
+   margin: 1rem auto;
+   justify-items: center;
+}
+
+.student-info form .student-form-avatar fieldset.full-width {
+   grid-column: 1 / -1;
 }
 
 .student-info form label {

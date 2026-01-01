@@ -1,4 +1,4 @@
-/* global window, document, console, alert, localStorage, btoa, atob, confirm */
+/* global window, document, console, alert, localStorage, btoa, atob */
 /* jshint esversion: 8 */
 /*
  **********************************************************************
@@ -116,7 +116,7 @@
 
         // Only show image if all three required selections are made
         if (data.avatarChoice && data.genderChoice && data.ageChoice) {
-            const imageName = `rachel-mulligan-${data.avatarChoice}-${data.ageChoice}-${data.genderChoice}.jpg`;
+            const imageName = `rachel-mulligan-${data.avatarChoice}-${data.ageChoice}-${data.genderChoice}.png`;
             const imagePath = `../images/${imageName}`;
             
             // Create and set the image
@@ -177,9 +177,14 @@
                     themeRadio.checked = true;
                 }
                 
-                // Apply the theme if theme switcher is available
+                // Only apply the theme if no theme preference is currently set
+                // This prevents overriding the user's active theme choice
                 if (window.ThemeSwitcher) {
-                    window.ThemeSwitcher.set(data.themeChoice);
+                    const currentTheme = window.ThemeSwitcher.get();
+                    // Only apply saved theme if current preference is 'auto' (default)
+                    if (currentTheme === 'auto') {
+                        window.ThemeSwitcher.set(data.themeChoice);
+                    }
                 }
             }
 
@@ -197,7 +202,7 @@
         event.preventDefault(); // Prevent form submission
 
         try {
-            const form = document.getElementById('student-info-form');
+            const form = document.getElementById('student-info-form') || document.getElementById('mentor-info-form');
             if (!form) {
                 return;
             }
@@ -247,56 +252,67 @@
      * Initialize the form storage functionality
      */
     function init() {
-        // Load saved data when page loads
+        // Load saved data when page loads (only if on students page with form)
+        const form = document.getElementById('student-info-form') || document.getElementById('mentor-info-form');
+        if (!form) {
+            return; // Not on the students or mentors page
+        }
+        
         loadFormData();
 
-        // Set up form submission handler
-        const form = document.getElementById('student-info-form');
-        if (form) {
-            form.addEventListener('submit', saveFormData);
+        form.addEventListener('submit', saveFormData);
 
-            // Add event listeners to radio buttons to update preview in real-time
-            const radioButtons = form.querySelectorAll('input[type="radio"]');
-            radioButtons.forEach(radio => {
-                radio.addEventListener('change', () => {
-                    const formData = new FormData(form);
-                    const data = {
-                        avatarChoice: formData.get('avatar-choice') || '',
-                        genderChoice: formData.get('gender-choice') || '',
-                        ageChoice: formData.get('age-choice') || '',
-                        themeChoice: formData.get('theme-choice') || ''
-                    };
-                    updateAvatarPreview(data);
-                    
-                    // Apply theme immediately if theme choice changed
-                    if (radio.name === 'theme-choice' && data.themeChoice && window.ThemeSwitcher) {
-                        window.ThemeSwitcher.set(data.themeChoice);
-                    }
-                });
+        // Add event listeners to radio buttons to update preview in real-time
+        const radioButtons = form.querySelectorAll('input[type="radio"]');
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', () => {
+                const formData = new FormData(form);
+                const data = {
+                    avatarChoice: formData.get('avatar-choice') || '',
+                    genderChoice: formData.get('gender-choice') || '',
+                    ageChoice: formData.get('age-choice') || '',
+                    themeChoice: formData.get('theme-choice') || ''
+                };
+                updateAvatarPreview(data);
+                
+                // Apply theme immediately if theme choice changed
+                if (radio.name === 'theme-choice' && data.themeChoice && window.ThemeSwitcher) {
+                    window.ThemeSwitcher.set(data.themeChoice);
+                }
             });
-        }
+        });
 
         // Set up clear button handler
         const clearButton = document.getElementById('clear-information-btn');
-        if (clearButton) {
-            clearButton.addEventListener('click', () => {
-                if (confirm('Are you sure you want to clear all saved information?')) {
-                    // Clear localStorage
-                    localStorage.removeItem(STORAGE_KEY);
-                    
-                    // Reset the form
-                    const form = document.getElementById('student-info-form');
-                    if (form) {
-                        form.reset();
-                    }
-                    
-                    // Clear avatar preview
-                    const output = document.getElementById('avatar-preview');
-                    if (output) {
-                        output.innerHTML = '';
-                    }
-                    
-                    // Visual feedback
+        const confirmYesButton = document.getElementById('confirm-clear-yes');
+        const confirmPopover = document.getElementById('confirm-clear');
+        
+        if (confirmYesButton && confirmPopover) {
+            confirmYesButton.addEventListener('click', () => {
+                // Clear localStorage
+                localStorage.removeItem(STORAGE_KEY);
+                
+                // Reset the form
+                if (form) {
+                    form.reset();
+                }
+                
+                // Clear avatar preview
+                const output = document.getElementById('avatar-preview');
+                if (output) {
+                    output.innerHTML = '';
+                }
+                
+                // Reset theme to browser default (auto)
+                if (window.ThemeSwitcher) {
+                    window.ThemeSwitcher.set('auto');
+                }
+                
+                // Close the popover
+                confirmPopover.hidePopover();
+                
+                // Visual feedback on the clear button
+                if (clearButton) {
                     clearButton.textContent = 'Information Cleared!';
                     clearButton.style.backgroundColor = 'var(--color-warning-background)';
                     
@@ -314,6 +330,59 @@
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
+    }
+
+    /**
+     * Populate the student-image div with the saved avatar
+     * This is called on lesson pages to display the student's chosen avatar
+     */
+    async function populateStudentImage() {
+        const studentImageDiv = document.querySelector('.student-image');
+        if (!studentImageDiv) {
+            return; // Not on a lesson page
+        }
+
+        try {
+            const savedData = localStorage.getItem(STORAGE_KEY);
+            if (!savedData) {
+                return; // No saved data
+            }
+
+            const decryptedData = await decryptData(savedData);
+            const data = JSON.parse(decryptedData);
+
+            // Only show image if all three required selections are made
+            if (data.avatarChoice && data.genderChoice && data.ageChoice) {
+                const imageName = `rachel-mulligan-${data.avatarChoice}-${data.ageChoice}-${data.genderChoice}.png`;
+                const imagePath = `../images/${imageName}`;
+                const studentName = data.name || 'Student';
+                
+                // Create figure with image and caption
+                studentImageDiv.innerHTML = `
+                    <figure style="margin: 0; text-align: center;">
+                        <img src="${imagePath}" 
+                             alt="Your avatar: ${data.avatarChoice}, ${data.ageChoice}, ${data.genderChoice}" 
+                             class="avatar-image">
+                        <figcaption class="avatar-caption">
+                            Welcome, ${studentName}
+                        </figcaption>
+                    </figure>
+                `;
+            }
+        } catch (error) {
+            console.error('Error loading student image:', error);
+        }
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            init();
+            populateStudentImage();
+        });
+    } else {
+        init();
+        populateStudentImage();
     }
 
     // Export functions for use by other pages
@@ -337,6 +406,7 @@
             } catch (error) {
                 console.error('Error clearing form data:', error);
             }
-        }
+        },
+        populateStudentImage: populateStudentImage
     };
 })();

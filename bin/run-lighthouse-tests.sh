@@ -35,37 +35,56 @@ discover_html_pages "."
 # Initialize combined results
 echo '{"pages":[]}' > "$RESULTS_DIR/lighthouse-results.json"
 
-# Test each page
+# Define viewport widths to test
+VIEWPORTS=(150 400 900 1300)
+TOTAL_TESTS=$((PAGE_COUNT * 2 * ${#VIEWPORTS[@]}))
+
+# Test each page at different viewport widths, in both light and dark modes
 TESTED=0
-for page in $PAGES; do
-  TESTED=$((TESTED + 1))
-  # Convert file path to URL path
-  URL_PATH="${page#./}"
-  FULL_URL="$TEST_URL/$URL_PATH"
+for VIEWPORT in "${VIEWPORTS[@]}"; do
+  echo ""
+  echo "📐 Testing at ${VIEWPORT}px width..."
+  echo ""
+  
+  for THEME in light dark; do
+    echo "  🎨 $THEME mode"
+    
+    for page in $PAGES; do
+      TESTED=$((TESTED + 1))
+      # Convert file path to URL path
+      URL_PATH="${page#./}"
+      FULL_URL="$TEST_URL/$URL_PATH"
 
-  echo "[$TESTED/$PAGE_COUNT] Testing $URL_PATH"
+      echo "  [$TESTED/$TOTAL_TESTS] Testing $URL_PATH (${VIEWPORT}px, $THEME mode)"
 
-  # Run lighthouse on this page
-  TEMP_RESULT="$RESULTS_DIR/lighthouse-temp-$TESTED.json"
-  npx lighthouse "$FULL_URL" --output=json --output-path=$TEMP_RESULT --chrome-flags="--headless --no-sandbox" --quiet 2>&1 | grep -E "(Testing|Runtime)" || true
+      # Run lighthouse on this page with emulated color scheme and viewport
+      TEMP_RESULT="$RESULTS_DIR/lighthouse-temp-$TESTED.json"
+      npx lighthouse "$FULL_URL" --output=json --output-path=$TEMP_RESULT \
+        --emulated-form-factor=desktop \
+        --screen-emulation-width=$VIEWPORT \
+        --screen-emulation-height=768 \
+        --chrome-flags="--headless --no-sandbox --force-prefers-color-scheme=$THEME --window-size=${VIEWPORT},768" \
+        --quiet 2>&1 | grep -E "(Testing|Runtime)" || true
 
-  # Merge results into combined file if temp file exists
-  if [ -f "$TEMP_RESULT" ]; then
-    node -e "
-      try {
-        const fs = require('fs');
-        const combined = JSON.parse(fs.readFileSync('$RESULTS_DIR/lighthouse-results.json'));
-        const newData = JSON.parse(fs.readFileSync('$TEMP_RESULT'));
+    # Merge results into combined file if temp file exists
+    if [ -f "$TEMP_RESULT" ]; then
+      node -e "
+        try {
+          const fs = require('fs');
+          const combined = JSON.parse(fs.readFileSync('$RESULTS_DIR/lighthouse-results.json'));
+          const newData = JSON.parse(fs.readFileSync('$TEMP_RESULT'));
 
-        // Extract accessibility score and failed audits
-        const accessibility = newData.categories?.accessibility;
-        const audits = newData.audits || {};
+          // Extract accessibility score and failed audits
+          const accessibility = newData.categories?.accessibility;
+          const audits = newData.audits || {};
 
-        const pageResult = {
-          url: '$URL_PATH',
-          score: accessibility?.score || 0,
-          failedAudits: []
-        };
+          const pageResult = {
+            url: '$URL_PATH',
+            theme: '$THEME',
+            viewport: '$VIEWPORT',
+            score: accessibility?.score || 0,
+            failedAudits: []
+          };
 
         // Find failed accessibility audits (score < 1 means failed, null means not applicable)
         if (accessibility?.auditRefs) {
@@ -87,10 +106,12 @@ for page in $PAGES; do
         fs.writeFileSync('$RESULTS_DIR/lighthouse-results.json', JSON.stringify(combined, null, 2));
         fs.unlinkSync('$TEMP_RESULT');
       } catch (e) {
-        console.error('Error merging results for $URL_PATH:', e.message);
-      }
-    "
-  fi
+          console.error('Error merging results for $URL_PATH:', e.message);
+        }
+      "
+    fi
+    done
+  done
 done
 
 # Stop server if we started it
@@ -129,7 +150,7 @@ node -e "
       const scorePercent = Math.round(page.score * 100);
       const icon = scorePercent === 100 ? '⚠️' : '❌';
       console.log('');
-      console.log(icon + ' ' + page.url + ' - ' + scorePercent + '%');
+      console.log(icon + ' ' + page.url + ' [' + (page.viewport || 'unknown') + 'px, ' + (page.theme || 'unknown') + ' mode] - ' + scorePercent + '%');
 
       page.failedAudits.forEach(audit => {
         console.log('    • ' + audit.title);

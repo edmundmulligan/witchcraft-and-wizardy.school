@@ -1,15 +1,14 @@
 <!--
  **********************************************************************
- * File       : students.html
+ * File       : mentors.html
  * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
  * Copyright  : (c) 2025 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
  * Description:
- *   This is the students dashboard of the Web Witchcraft and Wizardry
- *   website. It has a form to collect some information about the student
- *   and a tile for each lesson. The data collected in the form are stored
- *   in the browser's local storage so that it persists across sessions
- *   and are available to other pages.
+ *   This is the mentors homepage of the Web Witchcraft and Wizardry
+ *   website.  It contains links to resources for mentors as well as
+ *   information about how to help students get the most out of the
+ *   course.
  **********************************************************************
 -->
 
@@ -26,9 +25,7 @@
     <!-- End of meta tags -->
 
     <!-- Set the document title -->
-    <title>Student Dashboard|Web Witchcraft and Wizardry</title>
-
-    <!-- Link to Favicon -->
+    <title>Mentors Homepage|Web Witchcraft and Wizardry</title>
     <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
 
     <!--Links for Google Fonts -->
@@ -83,100 +80,34 @@
     </header>
 
     <main>
-        <h2 class="page-title">Welcome to Your Dashboard</h2>
+        <h2 class="page-title">Welcome to the Mentors' Homepage</h2>
 
-        <nav class="in-page-navigation" aria-label="Page sections before student information">
-            <!-- Navigation content is injected by JavaScript to ensure it is the same across the page -->
-        </nav>
-
-        <section id="student-info" class="student-info">
-            <h3>Student Information</h3>
+        <section id="mentor-info" class="student-info">
+            <h3>Mentor Information</h3>
+            <p>
+                Welcome to the mentor's section of this site. As a mentor, your role is to help and support students as they learn web development through this course. You do not need to be a web development expert, but you should be willing to assist students with any questions they may have and encourage them to keep going. Feel free to challenge them to think critically about what they are learning and how they can apply it. Remember, your enthusiasm and support can make a big difference in a student's learning journey. Thank you for being a mentor.
+            </p>
             <form
-                id="student-info-form"
+                id="mentor-info-form"
                 method="post"
             >
                 <div class="student-form-item">
-                    <h4>Enter your name</h4>
-                    <label for="student-name">
-                        Your Name:
-                    </label>
-                    <input
-                        type="text"
-                        id="student-name"
-                        name="student-name"
-                        required
-                    >
-                    <p>
-                        To protect your privacy, please only give your first
-                        name or a nickname
-                    </p>
-                    <hr>
-                </div>
+                    <h4>Choose your theme</h4>
+                    <p>You do not need to choose an avatar, but you can choose whether you prefer a light or dark theme for the site.</p>
+                    <div class="student-form-avatar">
+                        <fieldset class="full-width">
+                            <legend>Choose your theme</legend>
+                            <div class="student-form-choice">
+                                <input type="radio" id="theme-choice-light" name="theme-choice" value="light">
+                                <label for="theme-choice-light">I prefer day</label>
+                            </div>
 
-                <h4 class="student-form-item">Choose your avatar</h4>
-
-                <div class="student-form-item avatar-container">
-                    <!-- The output does not render well at all scales, but that will be addressed 
-                         when the form is implemented and an image is added -->
-                <output
-                    for="avatar-choice gender-choice age-choice"
-                    id="avatar-preview"
-                >
-                </output>
-
-                <div class="student-form-avatar">
-                    <fieldset>
-                        <legend>Choose your avatar's class</legend>
-                        <div class="student-form-choice">
-                            <input type="radio" id="avatar-choice-witch" name="avatar-choice" value="witch">
-                            <label for="avatar-choice-witch">My avatar is a witch</label>
-                        </div>
-
-                        <div class="student-form-choice">
-                            <input type="radio" id="avatar-choice-wizard" name="avatar-choice" value="wizard">
-                            <label for="avatar-choice-wizard">My avatar is a wizard</label>
-                        </div>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>Choose your avatar's gender</legend>
-                        <div class="student-form-choice">
-                            <input type="radio" id="gender-choice-female" name="gender-choice" value="female">
-                            <label for="gender-choice-female">My avatar is female</label>
-                        </div>
-
-                        <div class="student-form-choice">
-                            <input type="radio" id="gender-choice-male" name="gender-choice" value="male">
-                            <label for="gender-choice-male">My avatar is male</label>
-                        </div>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>Choose your avatar's age</legend>
-                        <div class="student-form-choice">
-                            <input type="radio" id="age-choice-young" name="age-choice" value="young">
-                            <label for="age-choice-young">My avatar is young</label>
-                        </div>
-
-                        <div class="student-form-choice">
-                            <input type="radio" id="age-choice-old" name="age-choice" value="old">
-                            <label for="age-choice-old">My avatar is old</label>
-                        </div>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>Choose your theme</legend>
-                        <div class="student-form-choice">
-                            <input type="radio" id="theme-choice-light" name="theme-choice" value="light">
-                            <label for="theme-choice-light">I prefer day</label>
-                        </div>
-
-                        <div class="student-form-choice">
-                            <input type="radio" id="theme-choice-dark" name="theme-choice" value="dark">
-                            <label for="theme-choice-dark">I prefer night</label>
-                        </div>
-                    </fieldset>
-                </div>
+                            <div class="student-form-choice">
+                                <input type="radio" id="theme-choice-dark" name="theme-choice" value="dark">
+                                <label for="theme-choice-dark">I prefer night</label>
+                            </div>
+                        </fieldset>
+                    </div>
                 </div>
 
                 <hr class="student-form-item">
@@ -201,15 +132,11 @@
             </form>
         </section>
 
-        <nav class="in-page-navigation" aria-label="Page sections before lessons">
-            <!-- Navigation content is injected by JavaScript to ensure it is the same across the page -->
-        </nav>
-
         <section id="lessons" class="lessons">
-             <h3>Lessons</h3>
+            <h3>Lessons</h3>
             <div class="lessons-container">
                 <a 
-                    href="../students/lesson-00.html" 
+                    href="../mentors/lesson-00.html" 
                     class="button-rectangle lesson-tile" 
                     id="lesson-00-button">
                         <h4 class="lesson-title">Lesson 0: Setting up</h4>
@@ -217,9 +144,6 @@
                             Set up your computer with the tools required to do the lessons.
                         </p>
                 </a>
-                  <!-- Ideally I'd like to store the lessons in a database and generate 
-                    the tiles dynamically. That is out of scope for now so they are 
-                    hardcoded here. But it does make the file longer than I would like.-->
                 <div class="lesson-tile" id="lesson-01">
                     <button type="button" class="lesson-link"
                         popovertarget="not-implemented">
@@ -466,10 +390,6 @@
                 <!-- Additional lesson tiles can be added here -->
             </div>
         </section>
-
-        <nav class="in-page-navigation" aria-label="Page sections after lessons">
-            <!-- Navigation content is injected by JavaScript to ensure it is the same across the page -->
-        </nav>
     </main>
 
     <footer class="footer">

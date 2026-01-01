@@ -1,0 +1,115 @@
+<!--
+ **********************************************************************
+ * File       : mentors/lesson-00.html
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Lesson 0 page for mentors on the Web Witchcraft and Wizardry website.
+ *   This lesson ensures students have the tools installed on their computers.
+ **********************************************************************
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Start of meta tags -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Web Witchcraft and Wizardry">
+    <meta name="keywords" content="HTML, CSS, learning">
+    <meta name="author" content="Edmund Mulligan">
+    <meta name="license" content="MIT License">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="check-reading-age" content="false">
+    <!-- End of meta tags -->
+
+    <!-- Set the document title-->
+    <title>Lesson0|Web Witchcraft and Wizardry</title>
+
+    <!-- Link to Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+
+    <!--Links for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- End Google Fonts links -->
+
+    <!-- Link to Font Awesome Icons (using CSS rather than JS)-->
+    <link rel="stylesheet" href="https://kit.fontawesome.com/3895b3f1a4.css" crossorigin="anonymous">
+    <!-- End Font Awesome Icons -->
+
+    <!-- Start of CSS stylesheets section -->
+
+    <!-- main.css must be the first stylesheet loaded -->
+    <link rel="stylesheet" href="../styles/main.css">
+
+    <!-- These stylesheets are common to all pages -->
+    <link rel="stylesheet" href="../styles/components/buttons.css">
+    <link rel="stylesheet" href="../styles/components/header-and-footer.css">
+    <link rel="stylesheet" href="../styles/components/navigation.css">
+    <link rel="stylesheet" href="../styles/components/popover.css">
+    <link rel="stylesheet" href="../styles/components/titles.css">
+    <link rel="stylesheet" href="../styles/components/toggle.css">
+    <link rel="stylesheet" href="../styles/pages.css">
+
+    <!-- page specific stylesheet -->
+    <link rel="stylesheet" href="../styles/students/lesson.css">
+
+    <!-- media-queries must be the last stylesheets loaded -->
+    <link rel="stylesheet" href="../styles/media-queries.css">
+    <link rel="stylesheet" href="../styles/students/media-queries-students.css">
+    <!-- End of CSS stylesheets section -->
+
+    <!-- Load JavaScript files -->
+    <script src="../scripts/theme-switcher.js"></script>
+    <script src="../scripts/student-form-storage.js" defer></script>
+    <script src="../scripts/toggle-header-footer.js" defer></script>
+    <script src="../scripts/inject-header.js" defer></script>
+    <script src="../scripts/inject-footer.js" defer></script>
+    <script src="../scripts/inject-popover-text.js" defer></script>
+    <script src="../scripts/toggle-section.js" defer></script>
+    <script src="../scripts/show-os-instructions.js" defer></script>
+
+    <!-- End JavaScript file link -->
+
+    <!-- Handle no JavaScript scenario -->
+    <noscript>
+        <link rel="stylesheet" href="../styles/noscript.css">
+    </noscript>
+</head>
+
+<body>
+    <header class="header">
+        <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
+    </header>
+
+    <main>
+        <h2 class="page-title">Lesson 0 - Getting Started</h2>
+        <section id="introduction" class="introduction">
+            <a href="../students/lesson-00.html" class="button-rectangle student-lesson-00">Student Lesson 00</a>
+            <div class="intro-content">
+                <h3>Introduction</h3>
+                <p>
+                    This is probably the longest and most intricate lesson of the whole course, but it is very important to enable the other lessons. Both you and the student may find it challenging and you will probably spend a significant amount of time problem solving and troubleshooting. Depending on the student's ability, you may want to install the required software yourself and have them skip lesson 0 completely. There really aren't any learning outcomes for this one so you won't impact their learning much if you do it for them.
+                </p>
+                <p>
+                    Not all the tools need to be installed at the beginning. As a minimum, the student will need a code editor and a web browser. The other tools (Git, Node.js, and SQLite) are only needed for later lessons so they can be installed later if preferred. You are welcome to encourage the student to use your preferred tools (such as Atom code editor or Google Chrome) if you will find it easier to support them, but be aware the other lessons will assume the tools listed in the instructions, and you may be creating extra work for yourself.
+                </p>
+                <p>
+                    <strong>Warning.</strong> This lesson involves installing software on the student's computer. If they are using a shared or school computer, please check with a parent, guardian, or teacher before proceeding with the installations. (Of course, that may be you, in which case the problem is fairly academic). Some of the installation steps require administrative privileges and you may want to do those steps yourself to avoid giving the student the super user password. Some computers (particularly those that are managed by a school or corporate IT department) are locked to prevent unapproved software installations. If that is the case, you will not be able to complete this lesson on that computer and the student will not be able to do any of the exercises. They can still read the lessons and learn the theory, but they will not be able to practice the skills.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
+    </footer>
+    <div id="not-implemented" popover="auto" class="popover">
+        <!-- Popover content is injected by JavaScript to ensure it is the same across all pages -->
+    </div>
+</body>
+</html>
