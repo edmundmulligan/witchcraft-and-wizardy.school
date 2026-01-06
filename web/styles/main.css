@@ -33,6 +33,8 @@
     --color-light-error-text:          white;
     --color-light-warning-background:  red;
     --color-light-warning-text:        white;
+    --color-light-code-background:     #f4f4f4;
+    --color-light-code-text:           #3700B3;
 
     /* dark theme colours */
     --color-dark-page-background:      indigo;
@@ -47,8 +49,10 @@
     --color-dark-error-text:           black;
     --color-dark-warning-background:   red;
     --color-dark-warning-text:         white;
+    --color-dark-code-background:      #2D1B69;
+    --color-dark-code-text:            #FFF;
 
-    /* Active theme colors - default to light, overridden by theme-switcher.js */
+    /* Active theme colours - default to light, overridden by theme-switcher.js */
     --color-page-background:           var(--color-light-page-background);
     --color-page-text:                 var(--color-light-page-text);
     --color-headings-background:       var(--color-light-headings-background);
@@ -61,6 +65,8 @@
     --color-error-text:                var(--color-light-error-text);
     --color-warning-background:        var(--color-light-warning-background);
     --color-warning-text:              var(--color-light-warning-text);
+    --color-code-background:           var(--color-light-code-background);
+    --color-code-text:                 var(--color-light-code-text);
 
     /* Background images for light and dark themes */
     --bg-landscape-light:              url('../images/background-landscape-light-web.svg');

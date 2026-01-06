@@ -57,11 +57,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     <nav class="site-navigation" aria-label="Site navigation">
                         <ul>
                             <li><a href="${pathPrefix}index.html">Home</a></li>
+                            <li><a href="${pathPrefix}pages/start.html">Start</a></li>
                             <li><a href="${pathPrefix}pages/students.html">Students</a></li>
                             <li><a href="${pathPrefix}pages/mentors.html">Mentors</a></li>
-                            <li><a href="${pathPrefix}pages/about.html">About</a></li>
-                            <li><a href="${pathPrefix}pages/glossary-and-faq.html">Glossary and FAQ</a></li>
-                            <li><a href="${pathPrefix}pages/license-and-credits.html">License and Credits</a></li>
+                            <li><a href="${pathPrefix}pages/gallery.html">Gallery</a></li>
+                            <li><a href="${pathPrefix}pages/accessories.html">Accessories</a></li>
+                            <li><a href="${pathPrefix}pages/facts.html">Facts</a></li>
+                            <li><a href="${pathPrefix}pages/glossary.html">Glossary</a></li>
+                            <li><a href="${pathPrefix}pages/faq.html">FAQ</a></li>
+                            <li><a href="${pathPrefix}pages/license.html">License</a></li>
+                            <li><a href="${pathPrefix}pages/credits.html">Credits</a></li>
                         </ul>
                     </nav>
                 </div>

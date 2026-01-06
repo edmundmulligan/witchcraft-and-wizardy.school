@@ -67,7 +67,11 @@ else
 fi
 echo ""
 echo "🏮 Running lighthouse accessibility tests..."
-bin/run-lighthouse-tests.sh "$FOLDER" || exit 1
+if [ "$QUICK_MODE" = true ]; then
+  bin/run-lighthouse-tests.sh "$FOLDER" -q || exit 1
+else
+  bin/run-lighthouse-tests.sh "$FOLDER" || exit 1
+fi
 
 echo ""
 echo "🦜 Running pa11y accessibility tests..."
