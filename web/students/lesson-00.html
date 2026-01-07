@@ -112,11 +112,11 @@
                 <li>Microsoft Visual Studio Code (or another code editor).</li>
                 <li>Mozilla Firefox (or another modern web browser such as Google Chrome or Apple Safari).</li>
                 <li>Git (optional, for version control, used in later lessons).</li>
-                <li>Node.js (optional, for server-side JavaScript, used in later lessons).</li>
+                <li>Node.js (required for running the development server).</li>
                 <li>SQLite (optional, for database management, used in later lessons).</li>
             </ul>
             <p>
-                If you don't want to install Git, Node.js, or SQLite right now, that's okay; you can install them later when you get to the lessons that need them.
+                Node.js is required from the start to run the development server. If you don't want to install Git or SQLite right now, that's okay; you can install them later when you get to the lessons that need them.
             </p>
             <p>
                 Please select your operating system below to see the specific installation instructions.
@@ -278,113 +278,6 @@
                     </ol>
                 </div>
 
-                <h5 onclick="toggleSection('git-windows', event);" onkeydown="toggleSection('git-windows', event);" class="magic-invisible faq-title">Git</h5>
-                <div id="git-windows" class="hidden">
-                    <p>Check whether Git is already installed:</p>
-                    <ul>
-                        <li>Press <code>Windows key + R</code></li>
-                        <li>Type <code>cmd</code> and press Enter to open Command Prompt</li>
-                        <li>Type <code>git --version</code> and press Enter</li>
-                        <li>If you see a version number, you have it installed. If you get an error message, you need to install it.</li>
-                    </ul>
-                    <p>If you need to install Git, follow these steps:</p>
-                    <ol>
-                        <li>Download Git from the Official Website
-                            <ul>
-                                <li>Open your web browser</li>
-                                <li>Go to <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">https://git-scm.com/</a></li>
-                                <li>Click the "Download for Windows" button</li>
-                                <li>The file <code>Git-[version]-64-bit.exe</code> will download (usually to your Downloads folder)</li>
-                            </ul>
-                        </li>
-                        <li>Run the Installer
-                            <ul>
-                                <li>Open your Downloads folder (press <code>Windows key + E</code>, then click Downloads)</li>
-                                <li>Double-click the Git installer file you just downloaded</li>
-                                <li>If Windows asks "Do you want to allow this app to make changes?", click Yes</li>
-                            </ul>
-                        </li>
-                        <li>Setup Wizard - License
-                            <ul>
-                                <li>Read the GNU General Public License</li>
-                                <li>Click Next</li>
-                            </ul>
-                        </li>
-                        <li>Setup Wizard - Installation Location
-                            <ul>
-                                <li>Default location is fine (<code>C:\Program Files\Git</code>)</li>
-                                <li>Click Next</li>
-                            </ul>
-                        </li>
-                        <li>Setup Wizard - Select Components
-                            <ul>
-                                <li>Keep the default selections (recommended):
-                                    <ul>
-                                        <li>Additional icons (On the Desktop)</li>
-                                        <li>Git Bash Here</li>
-                                        <li>Git GUI Here</li>
-                                        <li>Associate .git* configuration files</li>
-                                        <li>Associate .sh files to be run with Bash</li>
-                                    </ul>
-                                </li>
-                                <li>Click Next</li>
-                            </ul>
-                        </li>
-                        <li>Setup Wizard - Start Menu Folder
-                            <ul>
-                                <li>Default is fine ("Git")</li>
-                                <li>Click Next</li>
-                            </ul>
-                        </li>
-                        <li>Setup Wizard - Default Editor
-                            <ul>
-                                <li>Select "Use Visual Studio Code as Git's default editor" from the dropdown</li>
-                                <li>Click Next</li>
-                            </ul>
-                        </li>
-                        <li>Setup Wizard - Path Environment
-                            <ul>
-                                <li>Select "Git from the command line and also from 3rd-party software" (recommended)</li>
-                                <li>Click Next</li>
-                            </ul>
-                        </li>
-                        <li>Setup Wizard - Remaining Options
-                            <ul>
-                                <li>For all remaining screens, keep the default settings</li>
-                                <li>Click Next through each screen</li>
-                                <li>Finally, click Install</li>
-                                <li>Wait for installation to complete (takes about 1-2 minutes)</li>
-                                <li>Uncheck "View Release Notes" and click Finish</li>
-                            </ul>
-                        </li>
-                        <li>Configure Git
-                            <ul>
-                                <li>Press <code>Windows key + R</code></li>
-                                <li>Type <code>cmd</code> and press Enter</li>
-                                <li>Set your name (replace "Your Name" with your actual name):
-                                    <pre><code>git config --global user.name "Your Name"</code></pre>
-                                </li>
-                                <li>Set your email (replace with your actual email):
-                                    <pre><code>git config --global user.email "your.email@example.com"</code></pre>
-                                </li>
-                                <li>These settings will be used to identify you in your Git commits</li>
-                            </ul>
-                        </li>
-                        <li>Verify Installation
-                            <ul>
-                                <li>In the same Command Prompt, type:
-                                    <pre><code>git --version</code></pre>
-                                </li>
-                                <li>You should see the Git version number</li>
-                                <li>Check your configuration:
-                                    <pre><code>git config --global --list</code></pre>
-                                </li>
-                                <li>You should see your name and email listed</li>
-                            </ul>
-                        </li>
-                    </ol>
-                </div>
-
                 <h5 onclick="toggleSection('nodejs-windows', event);" onkeydown="toggleSection('nodejs-windows', event);" class="magic-invisible faq-title">Node.js</h5>
                 <div id="nodejs-windows" class="hidden">
                     <p>Check whether Node.js is already installed:</p>
@@ -496,6 +389,113 @@
                                 <li>Open your browser and go to <code>http://localhost:8000</code></li>
                                 <li>You should see "Hello from Node.js!"</li>
                                 <li>Press <code>Ctrl + C</code> in Command Prompt to stop the server</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <h5 onclick="toggleSection('git-windows', event);" onkeydown="toggleSection('git-windows', event);" class="magic-invisible faq-title">Git</h5>
+                <div id="git-windows" class="hidden">
+                    <p>Check whether Git is already installed:</p>
+                    <ul>
+                        <li>Press <code>Windows key + R</code></li>
+                        <li>Type <code>cmd</code> and press Enter to open Command Prompt</li>
+                        <li>Type <code>git --version</code> and press Enter</li>
+                        <li>If you see a version number, you have it installed. If you get an error message, you need to install it.</li>
+                    </ul>
+                    <p>If you need to install Git, follow these steps:</p>
+                    <ol>
+                        <li>Download Git from the Official Website
+                            <ul>
+                                <li>Open your web browser</li>
+                                <li>Go to <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">https://git-scm.com/</a></li>
+                                <li>Click the "Download for Windows" button</li>
+                                <li>The file <code>Git-[version]-64-bit.exe</code> will download (usually to your Downloads folder)</li>
+                            </ul>
+                        </li>
+                        <li>Run the Installer
+                            <ul>
+                                <li>Open your Downloads folder (press <code>Windows key + E</code>, then click Downloads)</li>
+                                <li>Double-click the Git installer file you just downloaded</li>
+                                <li>If Windows asks "Do you want to allow this app to make changes?", click Yes</li>
+                            </ul>
+                        </li>
+                        <li>Setup Wizard - License
+                            <ul>
+                                <li>Read the GNU General Public License</li>
+                                <li>Click Next</li>
+                            </ul>
+                        </li>
+                        <li>Setup Wizard - Installation Location
+                            <ul>
+                                <li>Default location is fine (<code>C:\Program Files\Git</code>)</li>
+                                <li>Click Next</li>
+                            </ul>
+                        </li>
+                        <li>Setup Wizard - Select Components
+                            <ul>
+                                <li>Keep the default selections (recommended):
+                                    <ul>
+                                        <li>Additional icons (On the Desktop)</li>
+                                        <li>Git Bash Here</li>
+                                        <li>Git GUI Here</li>
+                                        <li>Associate .git* configuration files</li>
+                                        <li>Associate .sh files to be run with Bash</li>
+                                    </ul>
+                                </li>
+                                <li>Click Next</li>
+                            </ul>
+                        </li>
+                        <li>Setup Wizard - Start Menu Folder
+                            <ul>
+                                <li>Default is fine ("Git")</li>
+                                <li>Click Next</li>
+                            </ul>
+                        </li>
+                        <li>Setup Wizard - Default Editor
+                            <ul>
+                                <li>Select "Use Visual Studio Code as Git's default editor" from the dropdown</li>
+                                <li>Click Next</li>
+                            </ul>
+                        </li>
+                        <li>Setup Wizard - Path Environment
+                            <ul>
+                                <li>Select "Git from the command line and also from 3rd-party software" (recommended)</li>
+                                <li>Click Next</li>
+                            </ul>
+                        </li>
+                        <li>Setup Wizard - Remaining Options
+                            <ul>
+                                <li>For all remaining screens, keep the default settings</li>
+                                <li>Click Next through each screen</li>
+                                <li>Finally, click Install</li>
+                                <li>Wait for installation to complete (takes about 1-2 minutes)</li>
+                                <li>Uncheck "View Release Notes" and click Finish</li>
+                            </ul>
+                        </li>
+                        <li>Configure Git
+                            <ul>
+                                <li>Press <code>Windows key + R</code></li>
+                                <li>Type <code>cmd</code> and press Enter</li>
+                                <li>Set your name (replace "Your Name" with your actual name):
+                                    <pre><code>git config --global user.name "Your Name"</code></pre>
+                                </li>
+                                <li>Set your email (replace with your actual email):
+                                    <pre><code>git config --global user.email "your.email@example.com"</code></pre>
+                                </li>
+                                <li>These settings will be used to identify you in your Git commits</li>
+                            </ul>
+                        </li>
+                        <li>Verify Installation
+                            <ul>
+                                <li>In the same Command Prompt, type:
+                                    <pre><code>git --version</code></pre>
+                                </li>
+                                <li>You should see the Git version number</li>
+                                <li>Check your configuration:
+                                    <pre><code>git config --global --list</code></pre>
+                                </li>
+                                <li>You should see your name and email listed</li>
                             </ul>
                         </li>
                     </ol>
@@ -770,6 +770,58 @@ SELECT * FROM users;</code></pre>
                     <p>Your Projects folder is now at: <code>C:\Users\YourUsername\Projects</code></p>
                     <p>In future lessons, you'll save your coding projects in this folder.</p>
                 </div>
+
+                <h5 onclick="toggleSection('dev-server-windows', event);" onkeydown="toggleSection('dev-server-windows', event);" class="magic-invisible faq-title">Setting Up the Development Server</h5>
+                <div id="dev-server-windows" class="hidden">
+                    <p>To view your web pages as you develop them, you'll need to run a local development server. This is important because some web features don't work when opening HTML files directly in a browser.</p>
+
+                    <h6>Create a package.json File</h6>
+                    <ol>
+                        <li>Open Visual Studio Code</li>
+                        <li>Select <code>File → Open Folder</code></li>
+                        <li>Navigate to and select your <code>Projects</code> folder (<code>C:\Users\YourUsername\Projects</code>)</li>
+                        <li>Create a new file called <code>package.json</code> in the Projects folder</li>
+                        <li>Add the following content to the file:
+                            <pre><code>{
+  "name": "my-web-projects",
+  "version": "1.0.0",
+  "description": "Web development projects",
+  "scripts": {
+    "start": "http-server -p 8000"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}</code></pre>
+                        </li>
+                        <li>Save the file (<code>Ctrl + S</code>)</li>
+                    </ol>
+
+                    <h6>Install http-server</h6>
+                    <ol>
+                        <li>Open the integrated terminal in VS Code by pressing <code>Ctrl + `</code> (backtick key, usually above Tab)</li>
+                        <li>Make sure you're in your Projects folder (the terminal should show the path)</li>
+                        <li>Type <code>npm install</code> and press Enter</li>
+                        <li>Wait for the installation to complete (this installs http-server locally in your Projects folder)</li>
+                    </ol>
+
+                    <h6>Start the Development Server</h6>
+                    <ol>
+                        <li>In the same terminal, type <code>npm start</code> and press Enter</li>
+                        <li>You should see a message saying the server is running on <code>http://localhost:8000</code></li>
+                        <li>Open your web browser and go to <code>http://localhost:8000</code></li>
+                        <li>You should see a directory listing of your Projects folder</li>
+                    </ol>
+
+                    <h6>Using the Development Server</h6>
+                    <ul>
+                        <li>Keep the terminal open while you're working - the server needs to run continuously</li>
+                        <li>When you create HTML files in your Projects folder, you can access them through the browser at <code>http://localhost:8000/filename.html</code></li>
+                        <li>When you make changes to your files and save them, refresh your browser to see the changes</li>
+                        <li>To stop the server, press <code>Ctrl + C</code> in the terminal</li>
+                        <li>To restart the server later, just run <code>npm start</code> again from your Projects folder</li>
+                    </ul>
+                </div>
             </div>
             <div id="instructions-macos">
                 <h4>macOS Installation Instructions</h4>
@@ -923,107 +975,6 @@ SELECT * FROM users;</code></pre>
                     </ol>
                 </div>
 
-                <h5 onclick="toggleSection('git-macos', event);" onkeydown="toggleSection('git-macos', event);" class="magic-invisible faq-title">Git</h5>
-                <div id="git-macos" class="hidden">
-                    <p>Check whether Git is already installed:</p>
-                    <ul>
-                        <li>Open Terminal (<code>Command + Space</code>, type "Terminal")</li>
-                        <li>Type <code>git --version</code> and press Enter</li>
-                        <li>If you see a version number, you have it installed. If you get a popup asking to install Command Line Developer Tools, you need to install Git.</li>
-                    </ul>
-                    <p>If you need to install Git, you have two options:</p>
-
-                    <h6>Option 1: Install via Xcode Command Line Tools (Recommended)</h6>
-                    <ol>
-                        <li>
-                            <strong>Trigger Installation Prompt</strong>
-                            <ul>
-                                <li>Open Terminal</li>
-                                <li>Type <code>git --version</code> and press Enter</li>
-                                <li>If Git is not installed, macOS will show a popup: "The 'git' command requires the command line developer tools. Would you like to install the tools now?"</li>
-                                <li>Click "Install"</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <strong>Installation Process</strong>
-                            <ul>
-                                <li>Click "Agree" to the license agreement</li>
-                                <li>Wait for the download and installation to complete (this can take 5-15 minutes depending on your internet speed)</li>
-                                <li>When complete, click "Done"</li>
-                            </ul>
-                        </li>
-                    </ol>
-
-                    <h6>Option 2: Install via Homebrew</h6>
-                    <p>If you have Homebrew installed (a package manager for macOS), you can use it to install Git:</p>
-                    <ol>
-                        <li>
-                            <strong>Install Git with Homebrew</strong>
-                            <ul>
-                                <li>Open Terminal</li>
-                                <li>Run this command:
-                                    <pre><code>brew install git</code></pre>
-                                </li>
-                                <li>Wait for installation to complete</li>
-                            </ul>
-                        </li>
-                    </ol>
-
-                    <h6>Option 3: Download from Git Website</h6>
-                    <ol>
-                        <li>
-                            <strong>Download Git</strong>
-                            <ul>
-                                <li>Open your browser</li>
-                                <li>Go to <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">https://git-scm.com/</a></li>
-                                <li>Click "Download for Mac"</li>
-                                <li>A <code>.dmg</code> file will download</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <strong>Install Git</strong>
-                            <ul>
-                                <li>Open the downloaded <code>.dmg</code> file</li>
-                                <li>Double-click the <code>.pkg</code> file inside</li>
-                                <li>Follow the installation wizard</li>
-                                <li>Click "Continue" and "Install"</li>
-                                <li>Enter your password when prompted</li>
-                                <li>Wait for installation to complete</li>
-                            </ul>
-                        </li>
-                    </ol>
-
-                    <p><strong>Configure Git (Required for All Methods):</strong></p>
-                    <ol>
-                        <li>
-                            <strong>Set Your Name and Email</strong>
-                            <ul>
-                                <li>Open Terminal</li>
-                                <li>Set your name (replace "Your Name" with your actual name):
-                                    <pre><code>git config --global user.name "Your Name"</code></pre>
-                                </li>
-                                <li>Set your email (replace with your actual email):
-                                    <pre><code>git config --global user.email "your.email@example.com"</code></pre>
-                                </li>
-                                <li>These settings will be used to identify you in your Git commits</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <strong>Verify Installation</strong>
-                            <ul>
-                                <li>Type:
-                                    <pre><code>git --version</code></pre>
-                                </li>
-                                <li>You should see the Git version number</li>
-                                <li>Check your configuration:
-                                    <pre><code>git config --global --list</code></pre>
-                                </li>
-                                <li>You should see your name and email listed</li>
-                            </ul>
-                        </li>
-                    </ol>
-                </div>
-
                 <h5 onclick="toggleSection('nodejs-macos', event);" onkeydown="toggleSection('nodejs-macos', event);" class="magic-invisible faq-title">Node.js</h5>
                 <div id="nodejs-macos" class="hidden">
                     <p>Check whether Node.js is already installed:</p>
@@ -1136,6 +1087,107 @@ SELECT * FROM users;</code></pre>
                                 <li>Open your browser and go to <code>http://localhost:8000</code></li>
                                 <li>You should see "Hello from Node.js!"</li>
                                 <li>Press <code>Control + C</code> in Terminal to stop the server</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <h5 onclick="toggleSection('git-macos', event);" onkeydown="toggleSection('git-macos', event);" class="magic-invisible faq-title">Git</h5>
+                <div id="git-macos" class="hidden">
+                    <p>Check whether Git is already installed:</p>
+                    <ul>
+                        <li>Open Terminal (<code>Command + Space</code>, type "Terminal")</li>
+                        <li>Type <code>git --version</code> and press Enter</li>
+                        <li>If you see a version number, you have it installed. If you get a popup asking to install Command Line Developer Tools, you need to install Git.</li>
+                    </ul>
+                    <p>If you need to install Git, you have two options:</p>
+
+                    <h6>Option 1: Install via Xcode Command Line Tools (Recommended)</h6>
+                    <ol>
+                        <li>
+                            <strong>Trigger Installation Prompt</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>Type <code>git --version</code> and press Enter</li>
+                                <li>If Git is not installed, macOS will show a popup: "The 'git' command requires the command line developer tools. Would you like to install the tools now?"</li>
+                                <li>Click "Install"</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Installation Process</strong>
+                            <ul>
+                                <li>Click "Agree" to the license agreement</li>
+                                <li>Wait for the download and installation to complete (this can take 5-15 minutes depending on your internet speed)</li>
+                                <li>When complete, click "Done"</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h6>Option 2: Install via Homebrew</h6>
+                    <p>If you have Homebrew installed (a package manager for macOS), you can use it to install Git:</p>
+                    <ol>
+                        <li>
+                            <strong>Install Git with Homebrew</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>Run this command:
+                                    <pre><code>brew install git</code></pre>
+                                </li>
+                                <li>Wait for installation to complete</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h6>Option 3: Download from Git Website</h6>
+                    <ol>
+                        <li>
+                            <strong>Download Git</strong>
+                            <ul>
+                                <li>Open your browser</li>
+                                <li>Go to <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">https://git-scm.com/</a></li>
+                                <li>Click "Download for Mac"</li>
+                                <li>A <code>.dmg</code> file will download</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Install Git</strong>
+                            <ul>
+                                <li>Open the downloaded <code>.dmg</code> file</li>
+                                <li>Double-click the <code>.pkg</code> file inside</li>
+                                <li>Follow the installation wizard</li>
+                                <li>Click "Continue" and "Install"</li>
+                                <li>Enter your password when prompted</li>
+                                <li>Wait for installation to complete</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <p><strong>Configure Git (Required for All Methods):</strong></p>
+                    <ol>
+                        <li>
+                            <strong>Set Your Name and Email</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>Set your name (replace "Your Name" with your actual name):
+                                    <pre><code>git config --global user.name "Your Name"</code></pre>
+                                </li>
+                                <li>Set your email (replace with your actual email):
+                                    <pre><code>git config --global user.email "your.email@example.com"</code></pre>
+                                </li>
+                                <li>These settings will be used to identify you in your Git commits</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Verify Installation</strong>
+                            <ul>
+                                <li>Type:
+                                    <pre><code>git --version</code></pre>
+                                </li>
+                                <li>You should see the Git version number</li>
+                                <li>Check your configuration:
+                                    <pre><code>git config --global --list</code></pre>
+                                </li>
+                                <li>You should see your name and email listed</li>
                             </ul>
                         </li>
                     </ol>
@@ -1271,15 +1323,6 @@ SELECT * FROM users;</code></pre>
                     <h6>Essential Extensions (Install Now)</h6>
                     <ol>
                         <li>
-                            <strong>Live Server</strong> (ritwickdey.LiveServer)
-                            <ul>
-                                <li>Launches a local development server with live reload</li>
-                                <li>Your browser automatically refreshes when you save changes</li>
-                                <li>Essential for testing HTML/CSS/JavaScript</li>
-                                <li>To use: Right-click an HTML file and select "Open with Live Server"</li>
-                            </ul>
-                        </li>
-                        <li>
                             <strong>Prettier - Code formatter</strong> (esbenp.prettier-vscode)
                             <ul>
                                 <li>Automatically formats your code consistently</li>
@@ -1410,6 +1453,58 @@ SELECT * FROM users;</code></pre>
                     </ol>
                     <p>Your Projects folder is now at: <code>~/Projects</code> (or <code>/Users/YourUsername/Projects</code>)</p>
                     <p>In future lessons, you'll save your coding projects in this folder.</p>
+                </div>
+
+                <h5 onclick="toggleSection('dev-server-macos', event);" onkeydown="toggleSection('dev-server-macos', event);" class="magic-invisible faq-title">Setting Up the Development Server</h5>
+                <div id="dev-server-macos" class="hidden">
+                    <p>To view your web pages as you develop them, you'll need to run a local development server. This is important because some web features don't work when opening HTML files directly in a browser.</p>
+
+                    <h6>Create a package.json File</h6>
+                    <ol>
+                        <li>Open Visual Studio Code</li>
+                        <li>Select <code>File → Open Folder</code></li>
+                        <li>Navigate to and select your <code>Projects</code> folder (<code>~/Projects</code>)</li>
+                        <li>Create a new file called <code>package.json</code> in the Projects folder</li>
+                        <li>Add the following content to the file:
+                            <pre><code>{
+  "name": "my-web-projects",
+  "version": "1.0.0",
+  "description": "Web development projects",
+  "scripts": {
+    "start": "http-server -p 8000"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}</code></pre>
+                        </li>
+                        <li>Save the file (<code>Cmd + S</code>)</li>
+                    </ol>
+
+                    <h6>Install http-server</h6>
+                    <ol>
+                        <li>Open the integrated terminal in VS Code by pressing <code>Ctrl + `</code> (backtick key, usually above Tab)</li>
+                        <li>Make sure you're in your Projects folder (the terminal should show the path)</li>
+                        <li>Type <code>npm install</code> and press Enter</li>
+                        <li>Wait for the installation to complete (this installs http-server locally in your Projects folder)</li>
+                    </ol>
+
+                    <h6>Start the Development Server</h6>
+                    <ol>
+                        <li>In the same terminal, type <code>npm start</code> and press Enter</li>
+                        <li>You should see a message saying the server is running on <code>http://localhost:8000</code></li>
+                        <li>Open your web browser and go to <code>http://localhost:8000</code></li>
+                        <li>You should see a directory listing of your Projects folder</li>
+                    </ol>
+
+                    <h6>Using the Development Server</h6>
+                    <ul>
+                        <li>Keep the terminal open while you're working - the server needs to run continuously</li>
+                        <li>When you create HTML files in your Projects folder, you can access them through the browser at <code>http://localhost:8000/filename.html</code></li>
+                        <li>When you make changes to your files and save them, refresh your browser to see the changes</li>
+                        <li>To stop the server, press <code>Ctrl + C</code> in the terminal</li>
+                        <li>To restart the server later, just run <code>npm start</code> again from your Projects folder</li>
+                    </ul>
                 </div>
             </div>
             <div id="instructions-linux">
@@ -1686,6 +1781,153 @@ sudo apt-get install -f</code></pre>
                     </ul>
                 </div>
 
+                <h5 onclick="toggleSection('nodejs-linux', event);" onkeydown="toggleSection('nodejs-linux', event);" class="magic-invisible faq-title">Node.js</h5>
+                <div id="nodejs-linux" class="hidden">
+                    <p>Check whether Node.js is already installed:</p>
+                    <ul>
+                        <li>Open Terminal (usually <code>Ctrl + Alt + T</code>)</li>
+                        <li>Type <code>node --version</code> and press Enter</li>
+                        <li>If you see a version number, you have it installed. If you get a "command not found" error, you need to install it.</li>
+                    </ul>
+
+                    <h6>Ubuntu / Debian-based Linux</h6>
+                    <p>If you need to install Node.js on Ubuntu, follow these steps:</p>
+                    <ol>
+                        <li>
+                            <strong>Install Node.js via NodeSource Repository (Recommended)</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>Update your package list:
+                                    <pre><code>sudo apt update</code></pre>
+                                </li>
+                                <li>Install curl if not already installed:
+                                    <pre><code>sudo apt install curl</code></pre>
+                                </li>
+                                <li>Download and run the NodeSource setup script for Node.js LTS (v20.x):
+                                    <pre><code>curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -</code></pre>
+                                </li>
+                                <li>Install Node.js:
+                                    <pre><code>sudo apt install nodejs</code></pre>
+                                </li>
+                                <li>Wait for installation to complete</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Alternative: Install from Ubuntu Repositories</strong>
+                            <ul>
+                                <li>Note: This may install an older version</li>
+                                <li>Open Terminal</li>
+                                <li>Run:
+                                    <pre><code>sudo apt update
+sudo apt install nodejs npm</code></pre>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h6>Fedora / Red Hat-based Linux</h6>
+                    <p>If you need to install Node.js on Fedora:</p>
+                    <ol>
+                        <li>
+                            <strong>Install Node.js</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>For Fedora 22 and later:
+                                    <pre><code>sudo dnf install nodejs npm</code></pre>
+                                </li>
+                                <li>For older versions:
+                                    <pre><code>sudo yum install nodejs npm</code></pre>
+                                </li>
+                                <li>Wait for installation to complete</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h6>Arch Linux</h6>
+                    <p>If you're using Arch Linux:</p>
+                    <ol>
+                        <li>
+                            <strong>Install Node.js</strong>
+                            <ul>
+                                <li>Open Terminal</li>
+                                <li>Run:
+                                    <pre><code>sudo pacman -S nodejs npm</code></pre>
+                                </li>
+                                <li>Wait for installation to complete</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <h6>Using Node Version Manager (nvm) - Advanced Option</h6>
+                    <p>For more control over Node.js versions:</p>
+                    <ol>
+                        <li>
+                            <strong>Install nvm</strong>
+                            <ul>
+                                <li>Run this command:
+                                    <pre><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash</code></pre>
+                                </li>
+                                <li>Close and reopen your terminal</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Install Node.js with nvm</strong>
+                            <ul>
+                                <li>Install the LTS version:
+                                    <pre><code>nvm install --lts</code></pre>
+                                </li>
+                                <li>Set it as default:
+                                    <pre><code>nvm use --lts</code></pre>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <p><strong>Verify Installation (Required for All Methods):</strong></p>
+                    <ol>
+                        <li>
+                            <strong>Check Node.js and npm</strong>
+                            <ul>
+                                <li>Open a new Terminal window</li>
+                                <li>Check Node.js version:
+                                    <pre><code>node --version</code></pre>
+                                </li>
+                                <li>You should see the Node.js version number (e.g., v20.x.x)</li>
+                                <li>Check npm version:
+                                    <pre><code>npm --version</code></pre>
+                                </li>
+                                <li>You should see the npm version number</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Test Node.js</strong>
+                            <ul>
+                                <li>Run a simple command:
+                                    <pre><code>node -e "console.log('Node.js is working!')"</code></pre>
+                                </li>
+                                <li>You should see "Node.js is working!" printed</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Create a Simple Test Server (Optional)</strong>
+                            <ul>
+                                <li>Create a test directory:
+                                    <pre><code>mkdir ~/test-nodejs &amp;&amp; cd ~/test-nodejs</code></pre>
+                                </li>
+                                <li>Create a test file:
+                                    <pre><code>echo "const http = require('http'); http.createServer((req, res) =&gt; { res.writeHead(200, {'Content-Type': 'text/html'}); res.end('&lt;h1&gt;Hello from Node.js!&lt;/h1&gt;'); }).listen(8000, () =&gt; console.log('Server running at http://localhost:8000/'));" &gt; server.js</code></pre>
+                                </li>
+                                <li>Start the server:
+                                    <pre><code>node server.js</code></pre>
+                                </li>
+                                <li>Open your browser and go to <code>http://localhost:8000</code></li>
+                                <li>You should see "Hello from Node.js!"</li>
+                                <li>Press <code>Ctrl + C</code> in Terminal to stop the server</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
                 <h5 onclick="toggleSection('git-linux', event);" onkeydown="toggleSection('git-linux', event);" class="magic-invisible faq-title">Git</h5>
                 <div id="git-linux" class="hidden">
                     <p>Check whether Git is already installed:</p>
@@ -1788,164 +2030,6 @@ sudo apt-get install -f</code></pre>
                     <h6>Optional: Configure Default Branch Name</h6>
                     <p>Modern Git practices use "main" instead of "master" as the default branch name. To set this globally:</p>
                     <pre><code>git config --global init.defaultBranch main</code></pre>
-                </div>
-
-                <h5 onclick="toggleSection('nodejs-linux', event);" onkeydown="toggleSection('nodejs-linux', event);" class="magic-invisible faq-title">Node.js</h5>
-                <div id="nodejs-linux" class="hidden">
-                    <p>Check whether Node.js is already installed:</p>
-                    <ul>
-                        <li>Open Terminal (usually <code>Ctrl + Alt + T</code>)</li>
-                        <li>Type <code>node --version</code> and press Enter</li>
-                        <li>If you see a version number, you have it installed. If you get a "command not found" error, you need to install it.</li>
-                    </ul>
-
-                    <h6>Ubuntu / Debian-based Linux</h6>
-                    <p>If you need to install Node.js on Ubuntu, follow these steps:</p>
-                    <ol>
-                        <li>
-                            <strong>Install Node.js via NodeSource Repository (Recommended)</strong>
-                            <ul>
-                                <li>Open Terminal</li>
-                                <li>First, install curl if you don't have it:
-                                    <pre><code>sudo apt update
-sudo apt install curl</code></pre>
-                                </li>
-                                <li>Download and run the NodeSource setup script for Node.js LTS:
-                                    <pre><code>curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -</code></pre>
-                                </li>
-                                <li>Install Node.js and npm:
-                                    <pre><code>sudo apt install nodejs</code></pre>
-                                </li>
-                                <li>Type <code>Y</code> when asked to confirm</li>
-                                <li>Wait for installation to complete</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <strong>Verify Installation</strong>
-                            <ul>
-                                <li>Check Node.js version:
-                                    <pre><code>node --version</code></pre>
-                                </li>
-                                <li>You should see Node.js version (e.g., v20.x.x)</li>
-                                <li>Check npm version:
-                                    <pre><code>npm --version</code></pre>
-                                </li>
-                                <li>Test Node.js:
-                                    <pre><code>node -e "console.log('Node.js is working!')"</code></pre>
-                                </li>
-                            </ul>
-                        </li>
-                    </ol>
-
-                    <h6>Fedora / Red Hat-based Linux</h6>
-                    <p>If you need to install Node.js on Fedora, follow these steps:</p>
-                    <ol>
-                        <li>
-                            <strong>Install Node.js via NodeSource Repository</strong>
-                            <ul>
-                                <li>Open Terminal</li>
-                                <li>Download and run the NodeSource setup script:
-                                    <pre><code>curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo bash -</code></pre>
-                                </li>
-                                <li>For Fedora 22 and later:
-                                    <pre><code>sudo dnf install nodejs</code></pre>
-                                </li>
-                                <li>For older versions:
-                                    <pre><code>sudo yum install nodejs</code></pre>
-                                </li>
-                                <li>Type <code>Y</code> when asked to confirm</li>
-                                <li>Wait for installation to complete</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <strong>Verify Installation</strong>
-                            <ul>
-                                <li>Check Node.js version:
-                                    <pre><code>node --version</code></pre>
-                                </li>
-                                <li>Check npm version:
-                                    <pre><code>npm --version</code></pre>
-                                </li>
-                                <li>Test Node.js:
-                                    <pre><code>node -e "console.log('Node.js is working!')"</code></pre>
-                                </li>
-                            </ul>
-                        </li>
-                    </ol>
-
-                    <h6>Arch Linux</h6>
-                    <p>If you're using Arch Linux:</p>
-                    <ol>
-                        <li>
-                            <strong>Install Node.js</strong>
-                            <ul>
-                                <li>Open Terminal</li>
-                                <li>Run this command:
-                                    <pre><code>sudo pacman -S nodejs npm</code></pre>
-                                </li>
-                                <li>Type <code>Y</code> when asked to confirm</li>
-                                <li>Wait for installation to complete</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <strong>Verify Installation</strong>
-                            <ul>
-                                <li>Check Node.js version:
-                                    <pre><code>node --version</code></pre>
-                                </li>
-                                <li>Check npm version:
-                                    <pre><code>npm --version</code></pre>
-                                </li>
-                            </ul>
-                        </li>
-                    </ol>
-
-                    <p><strong>Create a Simple Test Server (All Distributions):</strong></p>
-                    <ol>
-                        <li>
-                            <strong>Create a Test Directory</strong>
-                            <ul>
-                                <li>In Terminal, run:
-                                    <pre><code>mkdir ~/test-nodejs &amp;&amp; cd ~/test-nodejs</code></pre>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <strong>Create a Test File</strong>
-                            <ul>
-                                <li>Run this command:
-                                    <pre><code>echo "const http = require('http'); http.createServer((req, res) =&gt; { res.writeHead(200, {'Content-Type': 'text/html'}); res.end('&lt;h1&gt;Hello from Node.js!&lt;/h1&gt;'); }).listen(8000, () =&gt; console.log('Server running at http://localhost:8000/'));" &gt; server.js</code></pre>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <strong>Start Node.js Server</strong>
-                            <ul>
-                                <li>Run:
-                                    <pre><code>node server.js</code></pre>
-                                </li>
-                                <li>You should see: "Server running at http://localhost:8000/"</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <strong>Test in Browser</strong>
-                            <ul>
-                                <li>Open Firefox (or another browser)</li>
-                                <li>Go to <code>http://localhost:8000</code></li>
-                                <li>You should see "Hello from Node.js!"</li>
-                                <li>Press <code>Ctrl + C</code> in Terminal to stop the server</li>
-                            </ul>
-                        </li>
-                    </ol>
-
-                    <h6>Install Additional Tools (Optional)</h6>
-                    <ul>
-                        <li>Install build tools for native modules (if needed):
-                            <pre><code>sudo apt install build-essential  # Ubuntu/Debian
-sudo dnf groupinstall "Development Tools"  # Fedora
-sudo pacman -S base-devel  # Arch</code></pre>
-                        </li>
-                    </ul>
                 </div>
 
                 <h5 onclick="toggleSection('sqlite-linux', event);" onkeydown="toggleSection('sqlite-linux', event);" class="magic-invisible faq-title">SQLite</h5>
@@ -2140,15 +2224,6 @@ SELECT * FROM users;</code></pre>
                     <h6>Essential Extensions (Install Now)</h6>
                     <ol>
                         <li>
-                            <strong>Live Server</strong> (ritwickdey.LiveServer)
-                            <ul>
-                                <li>Launches a local development server with live reload</li>
-                                <li>Your browser automatically refreshes when you save changes</li>
-                                <li>Essential for testing HTML/CSS/JavaScript</li>
-                                <li>To use: Right-click an HTML file and select "Open with Live Server"</li>
-                            </ul>
-                        </li>
-                        <li>
                             <strong>Prettier - Code formatter</strong> (esbenp.prettier-vscode)
                             <ul>
                                 <li>Automatically formats your code consistently</li>
@@ -2283,6 +2358,58 @@ SELECT * FROM users;</code></pre>
                     </ol>
                     <p>Your Projects folder is now at: <code>~/Projects</code> (or <code>/home/yourusername/Projects</code>)</p>
                     <p>In future lessons, you'll save your coding projects in this folder.</p>
+                </div>
+
+                <h5 onclick="toggleSection('dev-server-linux', event);" onkeydown="toggleSection('dev-server-linux', event);" class="magic-invisible faq-title">Setting Up the Development Server</h5>
+                <div id="dev-server-linux" class="hidden">
+                    <p>To view your web pages as you develop them, you'll need to run a local development server. This is important because some web features don't work when opening HTML files directly in a browser.</p>
+
+                    <h6>Create a package.json File</h6>
+                    <ol>
+                        <li>Open Visual Studio Code</li>
+                        <li>Select <code>File → Open Folder</code></li>
+                        <li>Navigate to and select your <code>Projects</code> folder (<code>~/Projects</code>)</li>
+                        <li>Create a new file called <code>package.json</code> in the Projects folder</li>
+                        <li>Add the following content to the file:
+                            <pre><code>{
+  "name": "my-web-projects",
+  "version": "1.0.0",
+  "description": "Web development projects",
+  "scripts": {
+    "start": "http-server -p 8000"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}</code></pre>
+                        </li>
+                        <li>Save the file (<code>Ctrl + S</code>)</li>
+                    </ol>
+
+                    <h6>Install http-server</h6>
+                    <ol>
+                        <li>Open the integrated terminal in VS Code by pressing <code>Ctrl + `</code> (backtick key, usually above Tab)</li>
+                        <li>Make sure you're in your Projects folder (the terminal should show the path)</li>
+                        <li>Type <code>npm install</code> and press Enter</li>
+                        <li>Wait for the installation to complete (this installs http-server locally in your Projects folder)</li>
+                    </ol>
+
+                    <h6>Start the Development Server</h6>
+                    <ol>
+                        <li>In the same terminal, type <code>npm start</code> and press Enter</li>
+                        <li>You should see a message saying the server is running on <code>http://localhost:8000</code></li>
+                        <li>Open your web browser and go to <code>http://localhost:8000</code></li>
+                        <li>You should see a directory listing of your Projects folder</li>
+                    </ol>
+
+                    <h6>Using the Development Server</h6>
+                    <ul>
+                        <li>Keep the terminal open while you're working - the server needs to run continuously</li>
+                        <li>When you create HTML files in your Projects folder, you can access them through the browser at <code>http://localhost:8000/filename.html</code></li>
+                        <li>When you make changes to your files and save them, refresh your browser to see the changes</li>
+                        <li>To stop the server, press <code>Ctrl + C</code> in the terminal</li>
+                        <li>To restart the server later, just run <code>npm start</code> again from your Projects folder</li>
+                    </ul>
                 </div>
             </div>
             <div id="instructions-chromebook">

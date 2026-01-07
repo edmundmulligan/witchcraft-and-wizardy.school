@@ -1,0 +1,228 @@
+{
+  "pages": [
+    {
+      "url": "mentors/lesson-00.html",
+      "theme": "light",
+      "viewport": "900",
+      "documentTitle": "Lesson0|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/mentors/lesson-00",
+      "issues": []
+    },
+    {
+      "url": "index.html",
+      "theme": "light",
+      "viewport": "900",
+      "documentTitle": "Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/",
+      "issues": []
+    },
+    {
+      "url": "students/lesson-01.html",
+      "theme": "light",
+      "viewport": "900",
+      "documentTitle": "Lesson 1 | Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/students/lesson-01",
+      "issues": []
+    },
+    {
+      "url": "students/lesson-00.html",
+      "theme": "light",
+      "viewport": "900",
+      "documentTitle": "Lesson0|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/students/lesson-00",
+      "issues": []
+    },
+    {
+      "url": "pages/glossary.html",
+      "theme": "light",
+      "viewport": "900",
+      "documentTitle": "Glossary|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/glossary",
+      "issues": []
+    },
+    {
+      "url": "pages/facts.html",
+      "theme": "light",
+      "viewport": "900",
+      "documentTitle": "Facts|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/facts",
+      "issues": []
+    },
+    {
+      "url": "pages/mentors.html",
+      "theme": "light",
+      "viewport": "900",
+      "documentTitle": "Mentors Homepage|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/mentors",
+      "issues": []
+    },
+    {
+      "url": "pages/students.html",
+      "theme": "light",
+      "viewport": "900",
+      "documentTitle": "Student Dashboard|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/students",
+      "issues": []
+    },
+    {
+      "url": "pages/gallery.html",
+      "theme": "light",
+      "viewport": "900",
+      "documentTitle": "Gallery|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/gallery",
+      "issues": []
+    },
+    {
+      "url": "pages/accessories.html",
+      "theme": "light",
+      "viewport": "900",
+      "documentTitle": "Accessories|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/accessories",
+      "issues": []
+    },
+    {
+      "url": "pages/faq.html",
+      "theme": "light",
+      "viewport": "900",
+      "documentTitle": "FAQ|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/faq",
+      "issues": []
+    },
+    {
+      "url": "pages/license.html",
+      "theme": "light",
+      "viewport": "900",
+      "documentTitle": "License|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/license",
+      "issues": []
+    },
+    {
+      "url": "pages/credits.html",
+      "theme": "light",
+      "viewport": "900",
+      "documentTitle": "Credits|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/credits",
+      "issues": []
+    },
+    {
+      "url": "pages/start.html",
+      "theme": "light",
+      "viewport": "900",
+      "documentTitle": "About|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/start",
+      "issues": []
+    },
+    {
+      "url": "mentors/lesson-00.html",
+      "theme": "dark",
+      "viewport": "900",
+      "documentTitle": "Lesson0|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/mentors/lesson-00",
+      "issues": []
+    },
+    {
+      "url": "index.html",
+      "theme": "dark",
+      "viewport": "900",
+      "documentTitle": "Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/",
+      "issues": []
+    },
+    {
+      "url": "students/lesson-01.html",
+      "theme": "dark",
+      "viewport": "900",
+      "documentTitle": "Lesson 1 | Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/students/lesson-01",
+      "issues": []
+    },
+    {
+      "url": "students/lesson-00.html",
+      "theme": "dark",
+      "viewport": "900",
+      "documentTitle": "Lesson0|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/students/lesson-00",
+      "issues": []
+    },
+    {
+      "url": "pages/glossary.html",
+      "theme": "dark",
+      "viewport": "900",
+      "documentTitle": "Glossary|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/glossary",
+      "issues": []
+    },
+    {
+      "url": "pages/facts.html",
+      "theme": "dark",
+      "viewport": "900",
+      "documentTitle": "Facts|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/facts",
+      "issues": []
+    },
+    {
+      "url": "pages/mentors.html",
+      "theme": "dark",
+      "viewport": "900",
+      "documentTitle": "Mentors Homepage|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/mentors",
+      "issues": []
+    },
+    {
+      "url": "pages/students.html",
+      "theme": "dark",
+      "viewport": "900",
+      "documentTitle": "Student Dashboard|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/students",
+      "issues": []
+    },
+    {
+      "url": "pages/gallery.html",
+      "theme": "dark",
+      "viewport": "900",
+      "documentTitle": "Gallery|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/gallery",
+      "issues": []
+    },
+    {
+      "url": "pages/accessories.html",
+      "theme": "dark",
+      "viewport": "900",
+      "documentTitle": "Accessories|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/accessories",
+      "issues": []
+    },
+    {
+      "url": "pages/faq.html",
+      "theme": "dark",
+      "viewport": "900",
+      "documentTitle": "FAQ|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/faq",
+      "issues": []
+    },
+    {
+      "url": "pages/license.html",
+      "theme": "dark",
+      "viewport": "900",
+      "documentTitle": "License|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/license",
+      "issues": []
+    },
+    {
+      "url": "pages/credits.html",
+      "theme": "dark",
+      "viewport": "900",
+      "documentTitle": "Credits|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/credits",
+      "issues": []
+    },
+    {
+      "url": "pages/start.html",
+      "theme": "dark",
+      "viewport": "900",
+      "documentTitle": "About|Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/start",
+      "issues": []
+    }
+  ]
+}

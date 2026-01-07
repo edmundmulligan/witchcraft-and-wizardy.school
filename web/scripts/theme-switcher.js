@@ -1,4 +1,4 @@
-/* global */
+/* global console */
 /*
  **********************************************************************
  * File       : theme-switcher.js
@@ -47,6 +47,8 @@
             root.style.setProperty('--color-error-text', 'var(--color-dark-error-text)');
             root.style.setProperty('--color-warning-background', 'var(--color-dark-warning-background)');
             root.style.setProperty('--color-warning-text', 'var(--color-dark-warning-text)');
+            root.style.setProperty('--color-code-background', 'var(--color-dark-code-background)');
+            root.style.setProperty('--color-code-text', 'var(--color-dark-code-text)');
             root.style.setProperty('--bg-landscape', 'var(--bg-landscape-dark)');
             root.style.setProperty('--bg-portrait', 'var(--bg-portrait-dark)');
             root.style.setProperty('--svg-filter', 'var(--svg-filter-dark)');
@@ -68,6 +70,8 @@
             root.style.setProperty('--color-error-text', 'var(--color-light-error-text)');
             root.style.setProperty('--color-warning-background', 'var(--color-light-warning-background)');
             root.style.setProperty('--color-warning-text', 'var(--color-light-warning-text)');
+            root.style.setProperty('--color-code-background', 'var(--color-light-code-background)');
+            root.style.setProperty('--color-code-text', 'var(--color-light-code-text)');
             root.style.setProperty('--bg-landscape', 'var(--bg-landscape-light)');
             root.style.setProperty('--bg-portrait', 'var(--bg-portrait-light)');
             root.style.setProperty('--svg-filter', 'var(--svg-filter-light)');

@@ -8,10 +8,28 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://witches-and-wizards.edmundmulligan.name/pages/about.html</loc>
-    <lastmod>2025-11-30</lastmod>
+    <loc>https://witches-and-wizards.edmundmulligan.name/pages/start.html</loc>
+    <lastmod>2026-01-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://witches-and-wizards.edmundmulligan.name/pages/gallery.html</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://witches-and-wizards.edmundmulligan.name/pages/accessories.html</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://witches-and-wizards.edmundmulligan.name/pages/facts.html</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://witches-and-wizards.edmundmulligan.name/pages/students.html</loc>
@@ -20,14 +38,26 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://witches-and-wizards.edmundmulligan.name/pages/glossary-and-faq.html</loc>
-    <lastmod>2025-11-30</lastmod>
+    <loc>https://witches-and-wizards.edmundmulligan.name/pages/glossary.html</loc>
+    <lastmod>2026-01-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://witches-and-wizards.edmundmulligan.name/pages/license-and-credits.html</loc>
-    <lastmod>2025-11-30</lastmod>
+    <loc>https://witches-and-wizards.edmundmulligan.name/pages/faq.html</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://witches-and-wizards.edmundmulligan.name/pages/license.html</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://witches-and-wizards.edmundmulligan.name/pages/credits.html</loc>
+    <lastmod>2026-01-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>

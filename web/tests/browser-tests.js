@@ -17,10 +17,15 @@
  */
 const pages = [
   { url: '/index.html', name: 'Home' },
-  { url: '/pages/about.html', name: 'About' },
+  { url: '/pages/start.html', name: 'About' },
+  { url: '/pages/gallery.html', name: 'Gallery' },
+  { url: '/pages/accessories.html', name: 'Accessories' },
+  { url: '/pages/facts.html', name: 'Facts' },
   { url: '/pages/students.html', name: 'Students' },
-  { url: '/pages/glossary-and-faq.html', name: 'Glossary & FAQ' },
-  { url: '/pages/license-and-credits.html', name: 'License & Credits' }
+  { url: '/pages/glossary.html', name: 'Glossary' },
+  { url: '/pages/faq.html', name: 'FAQ' },
+  { url: '/pages/license.html', name: 'License' },
+  { url: '/pages/credits.html', name: 'Credits' }
 ];
 
 /**

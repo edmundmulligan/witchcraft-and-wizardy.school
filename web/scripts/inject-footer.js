@@ -35,8 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="footer-text">
                 <h2>Created by Edmund Mulligan, BSc, PgDip, CITP&nbsp;MBCS, GradStat&nbsp;FRSS</h2>
                 <p>
-                    &copy;&nbsp;The Embodied Mind, 2025.
-                    MIT License. <a href="${pathPrefix}pages/license-and-credits.html">See the license page for more details</a>.
+                    &copy;&nbsp;The Embodied Mind, 2025-2026.
+                    MIT License. <a href="${pathPrefix}pages/license.html">See the license page for more details</a>.
                 </p>
             </div>
             <div class="footer-button">

@@ -1,0 +1,108 @@
+<!--
+ **********************************************************************
+ * File       : glossary.html
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This page provides an indicative glossary about web development
+ *   and the Web Witchcraft and Wizardry project.
+ **********************************************************************
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Start of meta tags -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Web Witchcraft and Wizardry">
+    <meta name="keywords" content="HTML, CSS, learning">
+    <meta name="author" content="Edmund Mulligan">
+    <meta name="license" content="MIT License">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- End of meta tags -->
+
+    <!-- Set the document title -->
+    <title>Glossary|Web Witchcraft and Wizardry</title>
+
+    <!-- Link to Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+
+    <!--Links for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- End Google Fonts links -->
+
+    <!-- Link to Font Awesome Icons (using CSS rather than JS)-->
+    <link rel="stylesheet" href="https://kit.fontawesome.com/3895b3f1a4.css" crossorigin="anonymous">
+    <!-- End Font Awesome Icons -->
+
+    <!-- Start of CSS stylesheets section -->
+
+    <!-- main.css must be the first stylesheet loaded -->
+    <link rel="stylesheet" href="../styles/main.css">
+
+    <!-- These stylesheets are common to all pages -->
+    <link rel="stylesheet" href="../styles/components/buttons.css">
+    <link rel="stylesheet" href="../styles/components/header-and-footer.css">
+    <link rel="stylesheet" href="../styles/components/navigation.css">
+    <link rel="stylesheet" href="../styles/components/popover.css">
+    <link rel="stylesheet" href="../styles/components/titles.css">
+    <link rel="stylesheet" href="../styles/components/toggle.css">
+    <link rel="stylesheet" href="../styles/pages.css">
+
+    <!-- media-queries must be the last stylesheets loaded -->
+    <link rel="stylesheet" href="../styles/media-queries.css">
+    <!-- End of CSS stylesheets section -->
+
+    <!-- Load JavaScript files -->
+    <script src="../scripts/theme-switcher.js"></script>
+    <script src="../scripts/toggle-header-footer.js" defer></script>
+    <script src="../scripts/inject-header.js" defer></script>
+    <script src="../scripts/inject-footer.js" defer></script>
+    <script src="../scripts/inject-popover-text.js" defer></script>
+
+    <!-- End JavaScript file links -->
+
+    <noscript>
+        <link rel="stylesheet" href="../styles/noscript.css">
+    </noscript>
+</head>
+
+<body>
+    <header class="header">
+        <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
+    </header>
+
+    <main>
+        <h2 class="page-title">Glossary</h2>
+
+        <section id="glossary" class="glossary">
+            <p>
+                This is a basic glossary. More terms will be added later. Whenever you see a <i class="fa-duotone fa-circle-question" aria-hidden="true"></i> symbol next to a word or phrase in a lesson, you can click on it to see its definition.
+            </p>
+
+            <!-- Use definition list for glossary terms -->
+             <!-- Nou sure yet how to implement the help button, but popovers seem like a good bet -->
+            <dl>
+                <dt id="glossary-css">CSS</dt>
+                <dd>Cascading Style Sheets - code that controls how web pages look and feel.</dd>
+                <dt id="glossary-html">HTML</dt>
+                <dd>HyperText Markup Language - the basic code used to build web pages.</dd>
+                <dt id="glossary-javascript">JavaScript</dt>
+                <dd>A programming language that adds interactive features to websites.</dd>
+            </dl>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
+    </footer>
+    <div id="not-implemented" popover="auto" class="popover">
+        <!-- Popover content is injected by JavaScript to ensure it is the same across all pages -->
+    </div>
+</body>
+</html>

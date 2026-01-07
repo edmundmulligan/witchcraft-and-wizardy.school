@@ -25,7 +25,34 @@
     display: inline-block;
 }
 
+.magic-block-close {
+    display: inline;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    cursor: pointer;
+    font-family: "Font Awesome 7 Pro";
+    font-weight: 900;
+    color: inherit;
+}
+
+.magic-block-close.h4-level {
+    font-size: var(--fontsize-h3h4);
+}
+
+.magic-block-close.h5-level {
+    font-size: var(--fontsize-h5h6);
+}
+
+.magic-block-close::before {
+    content: "\e2ca\f077";  /* Font Awesome Magic Wand with sparkles + Chevron Up */
+    margin-right: 0.5em;
+}
+
 .magic-invisible,
-.magic-visible {
+.magic-visible,
+.magic-block-close {
     cursor: pointer;
 }

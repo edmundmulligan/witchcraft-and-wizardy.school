@@ -1,0 +1,183 @@
+<!--
+ **********************************************************************
+ * File       : gallery.html
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license.html page)
+ * Description:
+ *   This page contains a gallery of portraits of witches and wizards.
+ **********************************************************************
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Start of meta tags -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Web Witchcraft and Wizardry">
+    <meta name="keywords" content="HTML, CSS, learning">
+    <meta name="author" content="Edmund Mulligan">
+    <meta name="license" content="MIT License">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- End of meta tags -->
+
+    <!-- Set the document title -->
+    <title>Gallery|Web Witchcraft and Wizardry</title>
+
+    <!-- Link to Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+
+    <!--Links for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- End Google Fonts links -->
+
+    <!-- Link to Font Awesome Icons (using CSS rather than JS)-->
+    <link rel="stylesheet" href="https://kit.fontawesome.com/3895b3f1a4.css" crossorigin="anonymous">
+    <!-- End Font Awesome Icons -->
+
+    <!-- Start of CSS stylesheets section -->
+
+    <!-- main.css must be the first stylesheet loaded -->
+    <link rel="stylesheet" href="../styles/main.css">
+
+    <!-- These stylesheets are common to all pages -->
+    <link rel="stylesheet" href="../styles/components/buttons.css">
+    <link rel="stylesheet" href="../styles/components/header-and-footer.css">
+    <link rel="stylesheet" href="../styles/components/navigation.css">
+    <link rel="stylesheet" href="../styles/components/popover.css">
+    <link rel="stylesheet" href="../styles/components/titles.css">
+    <link rel="stylesheet" href="../styles/pages.css">
+
+    <!-- media-queries must be the last stylesheets loaded -->
+    <link rel="stylesheet" href="../styles/media-queries.css">
+    <!-- End of CSS stylesheets section -->
+
+    <!-- Load JavaScript files -->
+    <script src="../scripts/theme-switcher.js"></script>
+    <script src="../scripts/toggle-header-footer.js" defer></script>
+    <script src="../scripts/inject-header.js" defer></script>
+    <script src="../scripts/inject-footer.js" defer></script>
+    <script src="../scripts/inject-popover-text.js" defer></script>
+    <!-- End JavaScript file link -->
+
+    <noscript>
+        <link rel="stylesheet" href="../styles/noscript.css">
+    </noscript>
+</head>
+
+<body>
+    <header class="header">
+        <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
+    </header>
+    <main>
+        <h2 class="page-title">Gallery of Witches and Wizards</h2>
+        <section id="gallery" class="gallery">
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img
+                        src="../images/rachel-mulligan-witch-old-female.png"
+                        alt="Portrait of an old female witch"
+                        class="gallery-image"
+                    >
+                    <h3>
+                        An old female witch
+                    </h3>
+                </div>
+
+                <div class="gallery-item">
+                    <img
+                        src="../images/rachel-mulligan-witch-young-female.png"
+                        alt="Portrait of a young female witch"
+                        class="gallery-image"
+                    >
+                    <h3>
+                        A young female witch
+                    </h3>
+                </div>
+
+                <div class="gallery-item">
+                    <img
+                        src="../images/rachel-mulligan-witch-old-male.png"
+                        alt="Portrait of an old male witch"
+                        class="gallery-image"
+                    >
+                    <h3>
+                        An old male witch
+                    </h3>
+                </div>
+
+                <div class="gallery-item">
+                    <img
+                        src="../images/rachel-mulligan-witch-young-male.png"
+                        alt="Portrait of a young male witch"
+                        class="gallery-image"
+                    >
+                    <h3>
+                        A young male witch
+                    </h3>
+                </div>
+
+                <div class="gallery-item">
+                    <img
+                        src="../images/rachel-mulligan-wizard-old-female.png"
+                        alt="Portrait of an old female wizard"
+                        class="gallery-image"
+                    >
+                    <h3>
+                        An old female wizard
+                    </h3>
+                </div>
+
+                <div class="gallery-item">
+                    <img
+                        src="../images/rachel-mulligan-wizard-young-female.png"
+                        alt="Portrait of a young female wizard"
+                        class="gallery-image"
+                    >
+                    <h3>
+                        A young female wizard
+                    </h3>
+                </div>
+
+                <div class="gallery-item">
+                    <img
+                        src="../images/rachel-mulligan-wizard-old-male.png"
+                        alt="Portrait of an old male wizard "
+                        class="gallery-image"
+                    >
+                    <h3>
+                        An old male wizard
+                    </h3>
+                </div>
+
+                <div class="gallery-item">
+                    <img
+                        src="../images/rachel-mulligan-wizard-young-male.png"
+                        alt="Portrait of a young male wizard"
+                        class="gallery-image"
+                    >
+                    <h3>
+                        A young male wizard
+                    </h3>
+                </div>
+            </div>
+        </section>
+
+        <nav class="in-page-navigation" aria-label="Page sections before accessories">
+            <!-- Navigation content is injected by JavaScript to ensure it is the same across the page -->
+        </nav>
+    </main>
+
+    <footer class="footer">
+        <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
+    </footer>
+    <div id="not-implemented" popover="auto" class="popover">
+        <!-- Popover content is injected by JavaScript to ensure it is the same across all pages -->
+    </div>
+
+</body>
+</html>

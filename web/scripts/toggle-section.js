@@ -12,8 +12,6 @@
  **********************************************************************
  */
 
-/* global */
-
 function toggleSection(sectionId, event) {
     // For keyboard events, only respond to Enter or Space
     if (event.type === 'keydown' && event.key !== 'Enter' && event.key !== ' ') {
@@ -46,8 +44,36 @@ function toggleSection(sectionId, event) {
     }
 }
 
-// Make function globally available for inline handlers
+// Function to collapse a section when clicking on magic-block
+function toggleSectionCollapse(sectionId, event) {
+    // For keyboard events, only respond to Enter or Space
+    if (event.type === 'keydown' && event.key !== 'Enter' && event.key !== ' ') {
+        return;
+    }
+    
+    // Prevent default for Space key to avoid page scroll
+    if (event.key === ' ') {
+        event.preventDefault();
+    }
+    
+    const section = document.getElementById(sectionId);
+    if (section) {
+        // Hide the section
+        section.classList.add('hidden');
+        
+        // Find the corresponding toggle heading and change it to magic-invisible
+        const toggleHeading = document.querySelector(`[onclick*="'${sectionId}'"]`);
+        if (toggleHeading) {
+            toggleHeading.classList.remove('magic-visible');
+            toggleHeading.classList.add('magic-invisible');
+            toggleHeading.setAttribute('aria-expanded', 'false');
+        }
+    }
+}
+
+// Make functions globally available for inline handlers
 window.toggleSection = toggleSection;
+window.toggleSectionCollapse = toggleSectionCollapse;
 
 // Initialize accessibility attributes on page load
 document.addEventListener('DOMContentLoaded', function() {
@@ -59,5 +85,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Add ARIA expanded attribute (don't override heading role)
         heading.setAttribute('aria-expanded', 'false');
+    });
+    
+    // Find all magic-block elements and add proper attributes
+    const magicBlocks = document.querySelectorAll('.magic-block');
+    magicBlocks.forEach(block => {
+        // Make keyboard focusable
+        block.setAttribute('tabindex', '0');
+        block.setAttribute('role', 'button');
+        block.setAttribute('aria-label', 'Collapse section');
     });
 });
