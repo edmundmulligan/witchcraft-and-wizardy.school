@@ -1,4 +1,4 @@
-/* global btoa, atob */
+/* global btoa, atob, console, alert */
 /* jshint esversion: 8 */
 /*
  **********************************************************************

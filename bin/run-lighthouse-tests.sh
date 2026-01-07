@@ -7,16 +7,34 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/test-helpers.sh"
 
-# Get any command line options
+# Initialize variables
 TEST_URL="http://localhost:8080"
-parse_test_options "$@"
+QUICK_MODE=false
+
+# Parse command line arguments
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -q|--quick)
+      QUICK_MODE=true
+      shift
+      ;;
+    -u)
+      TEST_URL="$2"
+      shift 2
+      ;;
+    *)
+      FOLDER="$1"
+      shift
+      ;;
+  esac
+done
 
 # Silently install dependencies if not already installed
 npm install -g lighthouse serve > /dev/null 2>&1
 
 
 # Accept optional folder parameter
-FOLDER="${1:-.}"
+FOLDER="${FOLDER:-.}"
 if [ ! -d "$FOLDER" ]; then
   echo "❌ Error: '$FOLDER' is not a valid directory"
   exit 1
@@ -36,7 +54,12 @@ discover_html_pages "."
 echo '{"pages":[]}' > "$RESULTS_DIR/lighthouse-results.json"
 
 # Define viewport widths to test
-VIEWPORTS=(150 400 900 1300)
+if [ "$QUICK_MODE" = true ]; then
+  VIEWPORTS=(900)
+  echo "⚡ Quick mode: Testing only at 900px viewport width"
+else
+  VIEWPORTS=(150 400 900 1300)
+fi
 TOTAL_TESTS=$((PAGE_COUNT * 2 * ${#VIEWPORTS[@]}))
 
 # Test each page at different viewport widths, in both light and dark modes

@@ -1,0 +1,151 @@
+<!--
+ **********************************************************************
+ * File       : students/lesson-01.html
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Lesson 1 page for students on the Web Witchcraft and Wizardry website.
+ *   This lesson creates the first web page and explains some basic HTML concepts.
+ **********************************************************************
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Start of meta tags -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Web Witchcraft and Wizardry">
+    <meta name="keywords" content="HTML, CSS, learning">
+    <meta name="author" content="Edmund Mulligan">
+    <meta name="license" content="MIT License">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="check-reading-age" content="false">
+    <!-- End of meta tags -->
+
+    <!-- Set the document title-->
+    <title>Lesson 1 | Web Witchcraft and Wizardry</title>
+
+    <!-- Link to Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+
+    <!--Links for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- End Google Fonts links -->
+
+    <!-- Link to Font Awesome Icons (using CSS rather than JS)-->
+    <link rel="stylesheet" href="https://kit.fontawesome.com/3895b3f1a4.css" crossorigin="anonymous">
+    <!-- End Font Awesome Icons -->
+
+    <!-- Start of CSS stylesheets section -->
+
+    <!-- main.css must be the first stylesheet loaded -->
+    <link rel="stylesheet" href="../styles/main.css">
+
+    <!-- These stylesheets are common to all pages -->
+    <link rel="stylesheet" href="../styles/components/buttons.css">
+    <link rel="stylesheet" href="../styles/components/header-and-footer.css">
+    <link rel="stylesheet" href="../styles/components/navigation.css">
+    <link rel="stylesheet" href="../styles/components/popover.css">
+    <link rel="stylesheet" href="../styles/components/titles.css">
+    <link rel="stylesheet" href="../styles/components/toggle.css">
+    <link rel="stylesheet" href="../styles/pages.css">
+
+    <!-- page specific stylesheet -->
+    <link rel="stylesheet" href="../styles/students/lesson.css">
+
+    <!-- media-queries must be the last stylesheets loaded -->
+    <link rel="stylesheet" href="../styles/media-queries.css">
+    <link rel="stylesheet" href="../styles/students/media-queries-students.css">
+    <!-- End of CSS stylesheets section -->
+
+    <!-- Load JavaScript files -->
+    <script src="../scripts/theme-switcher.js"></script>
+    <script src="../scripts/student-form-storage.js" defer></script>
+    <script src="../scripts/toggle-header-footer.js" defer></script>
+    <script src="../scripts/inject-header.js" defer></script>
+    <script src="../scripts/inject-footer.js" defer></script>
+    <script src="../scripts/inject-popover-text.js" defer></script>
+    <script src="../scripts/toggle-section.js" defer></script>
+    <script src="../scripts/show-os-instructions.js" defer></script>
+    <script src="../scripts/populate-line-numbers.js" defer></script>
+
+    <!-- End JavaScript file link -->
+
+    <!-- Handle no JavaScript scenario -->
+    <noscript>
+        <link rel="stylesheet" href="../styles/noscript.css">
+    </noscript>
+</head>
+
+<body>
+    <header class="header">
+        <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
+    </header>
+
+    <main>
+        <h2 class="page-title">Lesson 1 - Your first web page</h2>
+        <section id="introduction" class="introduction">
+            <div class="intro-container">
+                <div class="student-image">
+                    <!--Image is injected based on choices made in student.html and saved into local storage. -->
+                </div>
+                <div class="intro-content">
+                    <h3>Introduction</h3>
+                    <p>
+                        In this lesson, you will learn about HTML and create your first web page. By the end of this lesson, you will have a simple web page that you can view in a web browser.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h3>Your First Web Page</h3>
+            <p>
+                HTML (HyperText Markup Language) is the standard language used to create web pages. It consists of a series of elements that define the structure and content of a web page.
+            </p>
+            <p>
+                Let's create a simple HTML file for your first web page. Follow these steps:
+            </p>
+            <ol>
+                <li>Open Visual Studio Code.</li>
+                <li>Select <code>File-&gt;Open Folder</code> and choose the Projects folder you created earlier for your web development work.</li>
+                <li>Create a new file named <code>lesson-1.html</code> in the Projects folder.</li>
+                <li>Type the following code into the file:
+                <div class="code-snippet-container">
+                    <script type="text/plain" class="code-snippet-source"><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Witches and Wizards are Awesome</title>
+</head>
+<body>
+    <h1>Hello, Witches and Wizards!</h1>
+    <p>You are all awesome.</p>
+</body>
+</html></script>
+                    <div class="code-snippet-table"></div>
+                </div>
+                </li>
+                <li>Save the file.</li>
+                <li>Make sure the node.js server is running. You can do this by opening a terminal, navigating to your Projects folder, and running <code>npm start</code>.</li>
+                <li>Open <code>http://localhost:8000/lesson-1.html</code> in your web browser to see your first web page!</li>
+            </ol>
+            <p>
+                Congratulations! You have created your first web page using HTML. In the next lessons, we will explore more HTML elements and how to style your web pages using CSS.
+            </p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
+    </footer>
+    <div id="not-implemented" popover="auto" class="popover">
+        <!-- Popover content is injected by JavaScript to ensure it is the same across all pages -->
+    </div>
+</body>
+</html>

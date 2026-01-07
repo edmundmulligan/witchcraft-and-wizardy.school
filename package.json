@@ -1,0 +1,31 @@
+{
+  "name": "witchcraft-and-wizardy-school",
+  "version": "1.0.0",
+  "description": "Web Witchcraft and Wizardry - Learn HTML, CSS, and JavaScript",
+  "scripts": {
+    "start": "http-server web -p 8000 -c-1",
+    "dev": "http-server web -p 8000 -c-1"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "javascript",
+    "learning"
+  ],
+  "author": "Edmund Mulligan",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "dependencies": {
+    "broken-link-checker": "^0.7.8",
+    "cheerio": "^1.1.2",
+    "eslint": "^9.39.2",
+    "html-validate": "^10.5.0",
+    "pa11y": "^9.0.1",
+    "playwright": "^1.57.0",
+    "stylelint": "^16.26.1",
+    "stylelint-config-standard": "^39.0.1",
+    "text-readability": "^1.1.1"
+  }
+}
