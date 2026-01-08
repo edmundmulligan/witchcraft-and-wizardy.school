@@ -48,6 +48,7 @@
 
     <!-- These stylesheets are common to all pages -->
     <link rel="stylesheet" href="../styles/components/buttons.css">
+    <link rel="stylesheet" href="../styles/components/code.css">
     <link rel="stylesheet" href="../styles/components/header-and-footer.css">
     <link rel="stylesheet" href="../styles/components/navigation.css">
     <link rel="stylesheet" href="../styles/components/popover.css">
@@ -70,6 +71,7 @@
     <script src="../scripts/inject-header.js" defer></script>
     <script src="../scripts/inject-footer.js" defer></script>
     <script src="../scripts/inject-popover-text.js" defer></script>
+    <script src="../scripts/inject-glossary-popovers.js" defer></script>
     <script src="../scripts/toggle-section.js" defer></script>
     <script src="../scripts/show-os-instructions.js" defer></script>
     <script src="../scripts/populate-line-numbers.js" defer></script>
@@ -95,28 +97,64 @@
                     <!--Image is injected based on choices made in student.html and saved into local storage. -->
                 </div>
                 <div class="intro-content">
-                    <h3>Introduction</h3>
-                    <p>
-                        In this lesson, you will learn about HTML and create your first web page. By the end of this lesson, you will have a simple web page that you can view in a web browser.
-                    </p>
+                    <h3 onclick="toggleSection('introduction-block', event);" onkeydown="toggleSection('introduction-block', event);" class="magic-invisible lesson-title">Introduction</h3>
+                    
+                    <div id="introduction-block" class="hidden">
+                        <p>
+                            In this lesson, you will learn about HTML and create your first web page. By the end of this lesson, you will have a simple web page that you can view in a web browser.
+                        </p>
+                        <button type="button" class="magic-block-close h3-level" onclick="toggleSectionCollapse('introduction-block', event);" onkeydown="toggleSectionCollapse('introduction-block', event);" tabindex="0" aria-label="Collapse Introduction section"></button>
+                    </div>
                 </div>
             </div>
         </section>
-        <section>
-            <h3>Your First Web Page</h3>
-            <p>
-                HTML (HyperText Markup Language) is the standard language used to create web pages. It consists of a series of elements that define the structure and content of a web page.
-            </p>
-            <p>
-                Let's create a simple HTML file for your first web page. Follow these steps:
-            </p>
-            <ol>
-                <li>Open Visual Studio Code.</li>
-                <li>Select <code>File-&gt;Open Folder</code> and choose the Projects folder you created earlier for your web development work.</li>
-                <li>Create a new file named <code>lesson-1.html</code> in the Projects folder.</li>
-                <li>Type the following code into the file:
-                <div class="code-snippet-container">
-                    <script type="text/plain" class="code-snippet-source"><!DOCTYPE html>
+
+        <section id="exploring-vsc" class="exploring-vsc">
+            <h3 onclick="toggleSection('exploring-vsc-block', event);" onkeydown="toggleSection('exploring-vsc-block', event);" class="magic-invisible lesson-title">Exploring Visual Studio Code</h3>
+
+            <div id="exploring-vsc-block" class="hidden">
+                <p>
+                    Before you create your first web page, take a moment to explore Visual Studio Code (VS Code), the code editor you will be using throughout this course. VS Code is a powerful and user-friendly code editor that supports many programming languages, including HTML, CSS, and JavaScript.
+                </p>
+                <p>
+                    When you open VS Code, you will see several key areas:
+                </p>
+                <picture>
+                    <source srcset="../images/VSC Screenshot.webp" type="image/webp">
+                    <source srcset="../images/VSC Screenshot.png" type="image/png">
+                    <img src="../images/VSC Screenshot.png" alt="Visual Studio Code interface" class="screenshot">
+                    <caption>Figure 1.1: Visual Studio Code Interface</caption>
+                </picture>
+                <ul>
+                    <li><strong>Activity Bar:</strong> Located on the left side, it allows you to switch between different views like Explorer, Search, Source Control, and Extensions.</li>
+                    <li><strong>Explorer:</strong> This is where you can view and manage your project files and folders.</li>
+                    <li><strong>Editor:</strong> The main area where you write and edit your code.</li>
+                    <li><strong>Status Bar:</strong> Located at the bottom, it provides information about your project and the current file.</li>
+                </ul>
+                <p>
+                    Take some time to familiarise yourself with these areas. You can open and close the Explorer by clicking on the file icon in the Activity Bar. You can also open files by double-clicking them in the Explorer.
+                </p>
+                <button type="button" class="magic-block-close h3-level" onclick="toggleSectionCollapse('exploring-vsc-block', event);" onkeydown="toggleSectionCollapse('exploring-vsc-block', event);" tabindex="0" aria-label="Collapse Introduction section"></button>
+            </div>
+        <section id="your-first-web-page" class="your-first-web-page">
+            <h3 onclick="toggleSection('your-first-web-page-block', event);" onkeydown="toggleSection('your-first-web-page-block', event);" class="magic-invisible lesson-title">Your First Web Page</h3>
+            
+            <div id="your-first-web-page-block" class="hidden">
+                <p>
+                    HTML<button type="button" popovertarget="glossary-html-popover" class="glossary-icon-button" aria-label="Show HTML definition"><i class="fa-duotone fa-circle-question" aria-hidden="true"></i></button> is the standard language used to create web pages. It consists of a series of elements that define the structure and content of a web page. Unlike a word processor, where you format text visually (that is, if you want bold text you simply highlight it and click a button to make it bold), in HTML you use tags to mark up the text and these tags tell the browser how to display the content. This is similar to how wizards and witches use spells to transform objects; in HTML, you use tags to transform plain text into structured web content.
+                </p>
+                <p>
+                    Usually tags come in pairs, with an opening tag and a closing tag. The opening tag is written with angle brackets, like <code>&lt;tagname&gt;</code>, and the closing tag is similar but includes a forward slash before the tag name, like <code>&lt;/tagname&gt;</code>. The content goes between the opening and closing tags. For example, to create a paragraph, you would use the <code>&lt;p&gt;</code> tag. Here is an example: <code>&lt;p&gt;This is a paragraph.&lt;/p&gt;</code>.
+                </p>
+                <p>It&rsquo;s time to create a simple HTML file for your first web page. Follow these steps:
+                </p>
+                <ol>
+                    <li>Open Visual Studio Code.</li>
+                    <li>Select <code>File-&gt;Open Folder</code> and choose the Projects folder you created earlier for your web development work.</li>
+                    <li>Create a new file named <code>lesson-1.html</code> in the Projects folder.</li>
+                    <li>Type the following code into the file:
+                    <div class="code-snippet-container">
+                        <script type="text/plain" class="code-snippet-source"><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -128,16 +166,18 @@
     <p>You are all awesome.</p>
 </body>
 </html></script>
-                    <div class="code-snippet-table"></div>
-                </div>
-                </li>
-                <li>Save the file.</li>
-                <li>Make sure the node.js server is running. You can do this by opening a terminal, navigating to your Projects folder, and running <code>npm start</code>.</li>
-                <li>Open <code>http://localhost:8000/lesson-1.html</code> in your web browser to see your first web page!</li>
-            </ol>
-            <p>
-                Congratulations! You have created your first web page using HTML. In the next lessons, we will explore more HTML elements and how to style your web pages using CSS.
-            </p>
+                        <div class="code-snippet-table"></div>
+                    </div>
+                    </li>
+                    <li>Save the file.</li>
+                    <li>Make sure the node.js server is running. You can do this by opening a terminal, navigating to your Projects folder, and running <code>npm start</code>.</li>
+                    <li>Open <code>http://localhost:8000/lesson-1.html</code> in your web browser to see your first web page!</li>
+                </ol>
+                <p>
+                    Congratulations! You have created your first web page using HTML. In the next lessons, we will explore more HTML elements and how to style your web pages using CSS.
+                </p>
+                <button type="button" class="magic-block-close h3-level" onclick="toggleSectionCollapse('your-first-web-page-block', event);" onkeydown="toggleSectionCollapse('your-first-web-page-block', event);" tabindex="0" aria-label="Collapse Introduction section"></button>
+            </div>
         </section>
     </main>
 
@@ -146,6 +186,9 @@
     </footer>
     <div id="not-implemented" popover="auto" class="popover">
         <!-- Popover content is injected by JavaScript to ensure it is the same across all pages -->
+    </div>
+    <div id="glossary-html-popover" popover="auto" class="popover glossary-popover">
+        <!-- Content is loaded dynamically from glossary.html -->
     </div>
 </body>
 </html>
