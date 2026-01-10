@@ -24,7 +24,7 @@
     max-height: 80vh;
     overflow-y: auto;
     box-sizing: border-box;
-    inset: auto;
+    inset: 0;
     margin: auto;
 }
 
@@ -53,4 +53,40 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* Glossary icon button styling */
+.glossary-icon-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0 0.2rem;
+    cursor: pointer;
+    color: var(--color-p-text);
+    font-size: inherit;
+    vertical-align: baseline;
+}
+
+.glossary-icon-button:hover {
+    color: var(--color-headings-text);
+}
+
+/* Glossary popover styling */
+.glossary-popover {
+    background-color: var(--color-headings-background);
+    color: var(--color-headings-text);
+}
+
+.glossary-popover h2 {
+    color: var(--color-headings-text);
+}
+
+.glossary-popover p {
+    text-align: left;
+    font-weight: normal;
+}
+
+.glossary-popover button {
+    background-color: var(--color-headings-text);
+    color: var(--color-headings-background);
 }

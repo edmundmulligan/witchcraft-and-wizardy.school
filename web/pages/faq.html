@@ -47,6 +47,7 @@
 
     <!-- These stylesheets are common to all pages -->
     <link rel="stylesheet" href="../styles/components/buttons.css">
+    <link rel="stylesheet" href="../styles/components/code.css">
     <link rel="stylesheet" href="../styles/components/header-and-footer.css">
     <link rel="stylesheet" href="../styles/components/navigation.css">
     <link rel="stylesheet" href="../styles/components/popover.css">
@@ -76,6 +77,7 @@
     <script src="../scripts/inject-footer.js" defer></script>
     <script src="../scripts/inject-popover-text.js" defer></script>
     <script src="../scripts/toggle-section.js" defer></script>
+        <script src="../scripts/populate-line-numbers.js" defer></script>
 
     <!-- End JavaScript file links -->
 
@@ -93,7 +95,7 @@
         <h2 class="page-title">Frequently Asked Questions (FAQ)</h2>
 
         <section id="faq" class="faq">
-          <h3 onclick="toggleSection('web-basics', event);" onkeydown="toggleSection('web-basics', event);" class="magic-invisible faq-section-title">Web Basics</h3>
+            <h3 onclick="toggleSection('web-basics', event);" onkeydown="toggleSection('web-basics', event);" class="magic-invisible faq-section-title">Web Basics</h3>
             <div id="web-basics" class="hidden">
                 <p>Here are some basic questions and answers about the web:</p>
                 <h4 onclick="toggleSection('web-basics-01', event);" onkeydown="toggleSection('web-basics-01', event);" class="magic-invisible faq-question-title">What is the difference
@@ -112,9 +114,8 @@
                     <button type="button" class="magic-block-close h5-level" onclick="toggleSectionCollapse('web-basics-01', event);" onkeydown="toggleSectionCollapse('web-basics-01', event);" tabindex="0" aria-label="Collapse section"></button>
                 </div>
 
-                <h4 onclick="toggleSection('web-basics-02', event);" onkeydown="toggleSection('web-basics-02', event);" class="magic-invisible faq-question-title">Who invented the World Wide
-                    Web?</h4>
-               <div id="web-basics-02" class="hidden">
+                <h4 onclick="toggleSection('web-basics-02', event);" onkeydown="toggleSection('web-basics-02', event);" class="magic-invisible faq-question-title">Who invented the World Wide Web?</h4>
+                <div id="web-basics-02" class="hidden">
                     <p>
                         The World Wide Web was invented by Tim Berners-Lee in 1989 while he was working at CERN (the European Organization for Nuclear Research) in Switzerland. He created the first web browser and web server, and he also developed the first version of HTML (Hypertext Markup Language), which is the standard language used to create web pages.
                     </p>
@@ -227,11 +228,11 @@
                 <h4 onclick="toggleSection('web-basics-11', event);" onkeydown="toggleSection('web-basics-11', event);" class="magic-invisible faq-question-title">What is a cookie?</h4>
                 <div id="web-basics-11" class="hidden">
                     <p>
-                        A cookie is a small piece of data that is stored on the user's computer by the web browser while browsing a website. Cookies are used to remember information about the user, such as login credentials, preferences, and shopping cart contents.
+                        A cookie is a small piece of data that is stored on the user&rsquo;s computer by the web browser while browsing a website. Cookies are used to remember information about the user, such as login credentials, preferences, and shopping cart contents.
                     </p>
 
                     <p>
-                        When a user visits a website, the server can send a cookie to the user's browser, which stores it on the user's computer. The browser then sends the cookie back to the server with each subsequent request to the same website. This allows the server to recognize the user and provide a personalized experience.
+                        When a user visits a website, the server can send a cookie to the user&rsquo;s browser, which stores it on the user&rsquo;s computer. The browser then sends the cookie back to the server with each subsequent request to the same website. This allows the server to recognize the user and provide a personalized experience.
                     </p>
 
                     <p>
@@ -239,7 +240,7 @@
                     </p>
 
                     <p>
-                        Cookies can be classified into two types: session cookies and persistent cookies. Session cookies are temporary and are deleted when the user closes the browser, while persistent cookies are stored on the user's computer for a specified period of time.
+                        Cookies can be classified into two types: session cookies and persistent cookies. Session cookies are temporary and are deleted when the user closes the browser, while persistent cookies are stored on the user&rsquo;s computer for a specified period of time.
                     </p>
                     <button type="button" class="magic-block-close h5-level" onclick="toggleSectionCollapse('web-basics-11', event);" onkeydown="toggleSectionCollapse('web-basics-11', event);" tabindex="0" aria-label="Collapse section"></button>
                 </div>
@@ -254,7 +255,7 @@
                         Streaming is a method of transmitting or receiving data over the Internet in real-time, allowing users to access and consume content without having to download it first. This is commonly used for audio and video content, such as music, movies, and live broadcasts.
                     </p>
                     <p>
-                        Streaming works by breaking the content into small chunks and sending them over the Internet in a continuous flow. The user's device then receives these chunks and plays them back in real-time, allowing the user to start watching or listening to the content almost immediately.
+                        Streaming works by breaking the content into small chunks and sending them over the Internet in a continuous flow. The user&rsquo;s device then receives these chunks and plays them back in real-time, allowing the user to start watching or listening to the content almost immediately.
                     </p>
 
                     <p>
@@ -282,7 +283,7 @@
                     </p>
 
                     <p>
-                        Some search engines, like Google, collect data about users' search behavior to improve their algorithms and provide personalized results. This data can include information about the user's location, search history, and preferences. Others focus on privacy and do not track users' search behavior, such as DuckDuckGo.
+                        Some search engines, like Google, collect data about users' search behavior to improve their algorithms and provide personalized results. This data can include information about the user&rsquo;s location, search history, and preferences. Others focus on privacy and do not track users' search behavior, such as DuckDuckGo.
                     </p>
 
                     <p>
@@ -342,7 +343,7 @@
                 <h4 onclick="toggleSection('web-development-basics-03', event);" onkeydown="toggleSection('web-development-basics-03', event);" class="magic-invisible faq-question-title">What is back-end development?</h4>
                 <div id="web-development-basics-03" class="hidden">
                     <p>
-                        Back-end development is the part of web development that deals with the server-side of a website. It involves creating and managing the database, server, and application logic using programming languages like PHP, Python, Ruby, Java pr C#.
+                        Back-end development is the part of web development that deals with the server-side of a website. It involves creating and managing the database, server, and application logic using programming languages like PHP, Python, Ruby, Java or C#.
                     </p>
                     <button type="button" class="magic-block-close h5-level" onclick="toggleSectionCollapse('web-development-basics-03', event);" onkeydown="toggleSectionCollapse('web-development-basics-03', event);" tabindex="0" aria-label="Collapse section"></button>
                 </div>
@@ -458,7 +459,7 @@
                 <h4 onclick="toggleSection('tips-and-tricks-01', event);" onkeydown="toggleSection('tips-and-tricks-01', event);" class="magic-invisible faq-question-title">Make backups of your work.</h4>
                 <div id="tips-and-tricks-01" class="hidden">
                     <p>
-                        Always make backups of your work to avoid losing it in case of a computer crash or other disaster. Use cloud storage or external hard drives to keep your files safe. Even if you don't use the cloud, copy your files to another folder. Back up everything before you make changes to it - you never know when you might make a mistake and get back the original version.
+                        Always make backups of your work to avoid losing it in case of a computer crash or other disaster. Use cloud storage or external hard drives to keep your files safe. Even if you don&rsquo;t use the cloud, copy your files to another folder. Back up everything before you make changes to it - you never know when you might make a mistake and get back the original version.
                     </p>
 
                     <p>
@@ -499,7 +500,7 @@
                     </p>
 
                     <p>
-                        Using consistent names doesn't just apply to files and folders, it also applies to variables, functions, classes and other code elements. For example, if you have a variable that stores a user's name, you might call it <code>user_name</code> or <code>userName</code>. The important thing is to be consistent in your naming conventions so that you can easily understand your code.
+                        Using consistent names doesn't just apply to files and folders, it also applies to variables, functions, classes and other code elements. For example, if you have a variable that stores a user&rsquo;s name, you might call it <code>user_name</code> or <code>userName</code>. The important thing is to be consistent in your naming conventions so that you can easily understand your code.
                     </p>
                     <button type="button" class="magic-block-close h5-level" onclick="toggleSectionCollapse('tips-and-tricks-04', event);" onkeydown="toggleSectionCollapse('tips-and-tricks-04', event);" tabindex="0" aria-label="Collapse section"></button>
                 </div>
@@ -507,16 +508,19 @@
                 <h4 onclick="toggleSection('tips-and-tricks-05', event);" onkeydown="toggleSection('tips-and-tricks-05', event);" class="magic-invisible faq-question-title">Don't repeat yourself.</h4>
                 <div id="tips-and-tricks-05" class="hidden">
                     <p>
-                        Don't repeat yourself (DRY) is a principle of software development that states that you should not write the same code multiple times. If you find you are writing the same or similar code in multiple places, it is a sign that you need to refactor your code to make it more modular and reusable. You can do this by creating functions or classes that encapsulate the reusable code.
+                        Don&rsquo;t repeat yourself (DRY) is a principle of software development that states that you should not write the same code multiple times. If you find you are writing the same or similar code in multiple places, it is a sign that you need to refactor your code to make it more modular and reusable. You can do this by creating functions or classes that encapsulate the reusable code.
                     </p>
                     <p>
                         For example, suppose you have three buttons in your HTML that all need to respond in the same way:
                     </p>
-                    <pre><code>
-&lt;button id="button1"&gt;Button 1&lt;/button&gt;
-&lt;button id="button2"&gt;Button 2&lt;/button&gt;
-&lt;button id="button3"&gt;Button 3&lt;/button&gt;
-                    </code></pre>
+                    <div class="code-snippet-container">
+                        <script type="text/plain" class="code-snippet-source">
+<button id="button1">Button 1</button>
+<button id="button2">Button 2</button>
+<button id="button3">Button 3</button>
+                        </script>
+                        <div class="code-snippet-table"></div>
+                    </div>
 
                     <p>
                         You could write the event handlers for each button like this:

@@ -38,6 +38,10 @@
     color: inherit;
 }
 
+.magic-block-close.h3-level {
+    font-size: var(--fontsize-h3h4);
+}
+
 .magic-block-close.h4-level {
     font-size: var(--fontsize-h3h4);
 }

@@ -278,3 +278,29 @@ img[src$=".svg"] {
 .hidden {
     display: none;
 }
+
+
+.screenshot {
+    border: var(--border-weight-thin) var(--border-style) var(--color-headings-text);
+    max-width: 60%;
+    height: auto;
+    box-sizing: border-box;
+    margin: auto auto;
+    display: block;
+}
+
+picture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 60%;
+    margin: auto;
+}
+
+caption {
+    display: block;
+    text-align: left;
+    width: 100%;
+    font-style: italic;
+    margin-top: 0.5rem;
+}
