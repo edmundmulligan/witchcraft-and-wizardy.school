@@ -70,6 +70,10 @@ jobs:
         WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
         NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
 
+    - name: Install Chrome for Puppeteer
+      run: |
+        npx puppeteer browsers install chrome
+
     - name: Run Pa11y accessibility tests
       continue-on-error: true
       run: |
