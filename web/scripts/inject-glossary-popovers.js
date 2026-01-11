@@ -61,10 +61,17 @@ document.addEventListener('DOMContentLoaded', async function() {
             
             const definition = dd.textContent.trim();
             
-            // Populate the popover
-            popover.textContent = `
-                <h2>${termText}</h2>
-                <p>${definition}</p>
+            // Sanitize text content to prevent XSS attacks
+            const escapeHtml = (text) => {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            };
+            
+            // Populate the popover with sanitized content
+            popover.innerHTML = `
+                <h2>${escapeHtml(termText)}</h2>
+                <p>${escapeHtml(definition)}</p>
                 <button type="button" popovertarget="${popoverId}" popovertargetaction="hide">Close</button>
             `;
         });
