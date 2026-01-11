@@ -136,7 +136,7 @@
                 <p>
                     Take some time to familiarise yourself with these areas. You can open and close the Explorer by clicking on the file icon in the Activity Bar. You can also open files by double-clicking them in the Explorer.
                 </p>
-                <button type="button" class="magic-block-close h3-level" onclick="toggleSectionCollapse('exploring-vsc-block', event);" onkeydown="toggleSectionCollapse('exploring-vsc-block', event);" tabindex="0" aria-label="Collapse Introduction section"></button>
+                <button type="button" class="magic-block-close h3-level" onclick="toggleSectionCollapse('exploring-vsc-block', event);" onkeydown="toggleSectionCollapse('exploring-vsc-block', event);" tabindex="0" aria-label="Collapse Exploring Visual Studio Code section"></button>
             </div>
         </section>
         <section id="your-first-web-page" class="your-first-web-page">
@@ -165,9 +165,7 @@
     <title>Witches and Wizards are Awesome</title>
 </head>
 <body>
-    <! -- The next line is the page title and is formatted with a heading level 1 tag -- >;
     <h1>Hello, Witches and Wizards!</h1>
-    <! -- The next line is a paragraph -- >
     <p>You are all awesome.</p>
 </body>
 </html></script>
@@ -178,7 +176,7 @@
                     <li>Make sure the node.js server is running. You can do this by opening a terminal, navigating to your Projects folder, and running <code>npm start</code>.</li>
                     <li>Open <code>http://localhost:8000/lesson-1.html</code> in your web browser to see your first web page!</li>
                 </ol>
-                <button type="button" class="magic-block-close h3-level" onclick="toggleSectionCollapse('your-first-web-page-block', event);" onkeydown="toggleSectionCollapse('your-first-web-page-block', event);" tabindex="0" aria-label="Collapse Introduction section"></button>
+                <button type="button" class="magic-block-close h3-level" onclick="toggleSectionCollapse('your-first-web-page-block', event);" onkeydown="toggleSectionCollapse('your-first-web-page-block', event);" tabindex="0" aria-label="Collapse First Web Page section"></button>
             </div>
 
             <h3 onclick="toggleSection('what-does-it-mean-block', event);" onkeydown="toggleSection('what-does-it-mean-block', event);" class="magic-invisible lesson-title">What does it mean</h3>
@@ -192,13 +190,11 @@
                     <li>Line 1: <code>&lt;!DOCTYPE html&gt;</code>: This declaration defines the document type and version of HTML. It helps the browser understand how to interpret the content. Every HTML document should start with this declaration.</li>
                     <li>Line 2:<code>&lt;html lang="en"&gt;</code>: This is the root element of the HTML document. The <code>lang</code> attribute specifies the language of the document, which is English in this case. Note that there is a <code>&lt;/html&gt;</code> tag at the end of the document in line 14 to close this element.</li>
                     <li>Lines 3-7: <code>&lt;head&gt;</code> section: This section contains information about the document that is not displayed by the browser but helps the browser process the document correctly. This includes the character encoding, viewport settings for responsive design, and the title of the page that appears in the browser tab. For now you can treat this section as part of the incantation you need to get the page to display correctly. In later lessons you will add more to this section to load style sheets and javascript programs. The <code>&lt;/head&gt;</code> tag closes this section. </li>
-                    <li>Lines 8-13: <code>&lt;body&gt;</code> section: This section contains the actual content of the web page that is displayed in the browser. Everything you want to show on the page goes inside the <code>&lt;body&gt;</code> tags. The <code>&lt;/body&gt;</code> tag closes this section.</li>
-                    <li>Line 10: <code>&lt;h1&gt;Hello, Witches and Wizards!&lt;/h1&gt;</code>: This line creates a heading. The <code>&lt;h1&gt;</code> tag defines a top-level heading, which is usually the largest and most important heading on the page. The text between the opening and closing tags is what will be displayed as the heading.</li>
-                    <li>Line 12: <code>&lt;p&gt;You are all awesome.&lt;/p&gt;</code>: This line creates a paragraph. The <code>&lt;p&gt;</code> tag defines a paragraph of text. Similar to the heading, the text between the opening and closing tags is what will be displayed as the paragraph content.</li>
-
-                    <li>Lines 9 and 11 are comment lines. They will not show up in the browser but are there to help you understand the code. Note that the code snippet shows spaces between the &lt;! and -- and between -- and &gt;. This is to allow them to be displayed to you. Normally you should leave the spaces out, but if I did that here, the browser would treat them as comments and not display them.</li>
+                    <li>Lines 8-11: <code>&lt;body&gt;</code> section: This section contains the actual content of the web page that is displayed in the browser. Everything you want to show on the page goes inside the <code>&lt;body&gt;</code> tags. The <code>&lt;/body&gt;</code> tag closes this section.</li>
+                    <li>Line 9: <code>&lt;h1&gt;Hello, Witches and Wizards!&lt;/h1&gt;</code>: This line creates a heading. The <code>&lt;h1&gt;</code> tag defines a top-level heading, which is usually the largest and most important heading on the page. The text between the opening and closing tags is what will be displayed as the heading.</li>
+                    <li>Line 10: <code>&lt;p&gt;You are all awesome.&lt;/p&gt;</code>: This line creates a paragraph. The <code>&lt;p&gt;</code> tag defines a paragraph of text. Similar to the heading, the text between the opening and closing tags is what will be displayed as the paragraph content.</li>
                 </ul>
-                <button type="button" class="magic-block-close h3-level" onclick="toggleSectionCollapse('what-does-it-mean-block', event);" onkeydown="toggleSectionCollapse('what-does-it-mean-block', event);" tabindex="0" aria-label="Collapse Introduction section"></button>
+                <button type="button" class="magic-block-close h3-level" onclick="toggleSectionCollapse('what-does-it-mean-block', event);" onkeydown="toggleSectionCollapse('what-does-it-mean-block', event);" tabindex="0" aria-label="Collapse What Does It Mean section"></button>
             </div>
             <h3 onclick="toggleSection('be-curious-block', event);" onkeydown="toggleSection('be-curious-block', event);" class="magic-invisible lesson-title">Be Curious</h3>
 
@@ -214,7 +210,7 @@
                     <li>Experiment with adding comments in different places in your code.</li>
                     <li>Try putting in deliberate mistakes in your code and see what happens. Sometimes Visual Studio Code will detect the error and warn you about it. But sometimes the code will still run in the browser despite the mistakes.</li>
                 </ul>
-                <button type="button" class="magic-block-close h3-level" onclick="toggleSectionCollapse('be-curious-block', event);" onkeydown="toggleSectionCollapse('be-curious-block', event);" tabindex="0" aria-label="Collapse Introduction section"></button>
+                <button type="button" class="magic-block-close h3-level" onclick="toggleSectionCollapse('be-curious-block', event);" onkeydown="toggleSectionCollapse('be-curious-block', event);" tabindex="0" aria-label="Collapse Be Curious section"></button>
             </div>
         </section>
         <p>
