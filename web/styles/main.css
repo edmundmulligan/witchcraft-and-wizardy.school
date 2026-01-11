@@ -285,7 +285,7 @@ img[src$=".svg"] {
     max-width: 60%;
     height: auto;
     box-sizing: border-box;
-    margin: auto auto;
+    margin: auto;
     display: block;
 }
 
@@ -297,7 +297,7 @@ picture {
     margin: auto;
 }
 
-caption {
+figcaption {
     display: block;
     text-align: left;
     width: 100%;

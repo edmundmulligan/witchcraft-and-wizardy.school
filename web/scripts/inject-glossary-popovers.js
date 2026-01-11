@@ -1,3 +1,5 @@
+/* jshint esversion: 8 */
+/* global console */
 /*
  **********************************************************************
  * File       : scripts/inject-glossary-popovers.js
@@ -60,7 +62,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             const definition = dd.textContent.trim();
             
             // Populate the popover
-            popover.innerHTML = `
+            popover.textContent = `
                 <h2>${termText}</h2>
                 <p>${definition}</p>
                 <button type="button" popovertarget="${popoverId}" popovertargetaction="hide">Close</button>

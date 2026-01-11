@@ -98,7 +98,7 @@
                 </div>
                 <div class="intro-content">
                     <h3 onclick="toggleSection('introduction-block', event);" onkeydown="toggleSection('introduction-block', event);" class="magic-invisible lesson-title">Introduction</h3>
-                    
+
                     <div id="introduction-block" class="hidden">
                         <p>
                             In this lesson, you will learn about HTML and create your first web page. By the end of this lesson, you will have a simple web page that you can view in a web browser.
@@ -119,12 +119,14 @@
                 <p>
                     When you open VS Code, you will see several key areas:
                 </p>
-                <picture>
-                    <source srcset="../images/VSC Screenshot.webp" type="image/webp">
-                    <source srcset="../images/VSC Screenshot.png" type="image/png">
-                    <img src="../images/VSC Screenshot.png" alt="Visual Studio Code interface" class="screenshot">
-                    <caption>Figure 1.1: Visual Studio Code Interface</caption>
-                </picture>
+                <figure>
+                    <picture>
+                        <source srcset="../images/VSC Screenshot.webp" type="image/webp">
+                        <source srcset="../images/VSC Screenshot.png" type="image/png">
+                        <img src="../images/VSC Screenshot.png" alt="Visual Studio Code interface" class="screenshot">
+                    </picture>
+                    <figcaption>Figure 1.1: Visual Studio Code Interface</figcaption>
+                </figure>
                 <ul>
                     <li><strong>Activity Bar:</strong> Located on the left side, it allows you to switch between different views like Explorer, Search, Source Control, and Extensions.</li>
                     <li><strong>Explorer:</strong> This is where you can view and manage your project files and folders.</li>
@@ -136,9 +138,10 @@
                 </p>
                 <button type="button" class="magic-block-close h3-level" onclick="toggleSectionCollapse('exploring-vsc-block', event);" onkeydown="toggleSectionCollapse('exploring-vsc-block', event);" tabindex="0" aria-label="Collapse Introduction section"></button>
             </div>
+        </section>
         <section id="your-first-web-page" class="your-first-web-page">
             <h3 onclick="toggleSection('your-first-web-page-block', event);" onkeydown="toggleSection('your-first-web-page-block', event);" class="magic-invisible lesson-title">Your First Web Page</h3>
-            
+
             <div id="your-first-web-page-block" class="hidden">
                 <p>
                     HTML<button type="button" popovertarget="glossary-html-popover" class="glossary-icon-button" aria-label="Show HTML definition"><i class="fa-duotone fa-circle-question" aria-hidden="true"></i></button> is the standard language used to create web pages. It consists of a series of elements that define the structure and content of a web page. Unlike a word processor, where you format text visually (that is, if you want bold text you simply highlight it and click a button to make it bold), in HTML you use tags to mark up the text and these tags tell the browser how to display the content. This is similar to how wizards and witches use spells to transform objects; in HTML, you use tags to transform plain text into structured web content.
@@ -179,7 +182,7 @@
             </div>
 
             <h3 onclick="toggleSection('what-does-it-mean-block', event);" onkeydown="toggleSection('what-does-it-mean-block', event);" class="magic-invisible lesson-title">What does it mean</h3>
-            
+
             <div id="what-does-it-mean-block" class="hidden">
 
                 <p>
@@ -198,7 +201,7 @@
                 <button type="button" class="magic-block-close h3-level" onclick="toggleSectionCollapse('what-does-it-mean-block', event);" onkeydown="toggleSectionCollapse('what-does-it-mean-block', event);" tabindex="0" aria-label="Collapse Introduction section"></button>
             </div>
             <h3 onclick="toggleSection('be-curious-block', event);" onkeydown="toggleSection('be-curious-block', event);" class="magic-invisible lesson-title">Be Curious</h3>
-            
+
             <div id="be-curious-block" class="hidden">
 
                 <p>
@@ -210,13 +213,13 @@
                     <li>Try adding other heading levels like <code>&lt;h2&gt;</code> or <code>&lt;h3&gt;</code> and see how they look.</li>
                     <li>Experiment with adding comments in different places in your code.</li>
                     <li>Try putting in deliberate mistakes in your code and see what happens. Sometimes Visual Studio Code will detect the error and warn you about it. But sometimes the code will still run in the browser despite the mistakes.</li>
-                
+                </ul>
                 <button type="button" class="magic-block-close h3-level" onclick="toggleSectionCollapse('be-curious-block', event);" onkeydown="toggleSectionCollapse('be-curious-block', event);" tabindex="0" aria-label="Collapse Introduction section"></button>
             </div>
-            <p>
-                Congratulations! You have created your first web page using HTML. In the next lessons, you will explore more HTML elements and add styling using CSS.
-            </p>
         </section>
+        <p>
+            Congratulations! You have created your first web page using HTML. In the next lessons, you will explore more HTML elements and add styling using CSS.
+        </p>
     </main>
 
     <footer class="footer">
