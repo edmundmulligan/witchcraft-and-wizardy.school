@@ -43,6 +43,8 @@ function populateCodeSnippet(tableElement, codeText) {
         
         const codeContent = document.createElement('span');
         codeContent.className = 'code-content';
+        
+        // Use textContent to properly display all content including HTML entities
         codeContent.textContent = line;
         
         row.appendChild(lineNumber);

@@ -48,6 +48,7 @@
 
     <!-- These stylesheets are common to all pages -->
     <link rel="stylesheet" href="../styles/components/buttons.css">
+    <link rel="stylesheet" href="../styles/components/code.css">
     <link rel="stylesheet" href="../styles/components/header-and-footer.css">
     <link rel="stylesheet" href="../styles/components/navigation.css">
     <link rel="stylesheet" href="../styles/components/popover.css">
@@ -94,33 +95,38 @@
                     <!--Image is injected based on choices made in student.html and saved into local storage. -->
                 </div>
                 <div class="intro-content">
-                    <h3>Introduction</h3>
-                    <p>
-                        In this lesson, you will ensure that you have all the necessary tools installed on your computer to start learning web development. By the end of this lesson, you will be ready to create your first web page. If you are at a Code Dojo and are using a club computer, these tools will already be installed for you so you can skip to the next lesson.
-                    </p>
-                    <p>
-                        <strong>Warning.</strong> This lesson involves installing software on your computer. If you are using a shared or school computer, please check with a parent, guardian, or teacher before proceeding with the installations. Also, you will need administrative privileges to install the software. This means you will need an administrator password at various stages. If you are not using your own computer, you may need to get the owner to do those steps for you. Finally be aware that the instructions are long and detailed to ensure you get everything set up correctly. Take your time and follow each step carefully. Ask for help from a mentor, if one is available. The rest of the lessons are much shorter and easier once you have the tools installed!
-                    </p>
+                    <h3 onclick="toggleSection('introduction-block', event);" onkeydown="toggleSection('introduction-block', event);" class="magic-invisible lesson-title">Introduction</h3>
+                    <div id="introduction-block" class="hidden">
+                        <p>
+                            In this lesson, you will ensure that you have all the necessary tools installed on your computer to start learning web development. By the end of this lesson, you will be ready to create your first web page. If you are at a Code Dojo and are using a club computer, these tools will already be installed for you so you can skip to the next lesson.
+                        </p>
+                        <p>
+                            <strong>Warning.</strong> This lesson involves installing software on your computer. If you are using a shared or school computer, please check with a parent, guardian, or teacher before proceeding with the installations. Also, you will need administrative privileges to install the software. This means you will need an administrator password at various stages. If you are not using your own computer, you may need to get the owner to do those steps for you. Finally be aware that the instructions are long and detailed to ensure you get everything set up correctly. Take your time and follow each step carefully. Ask for help from a mentor, if one is available. The rest of the lessons are much shorter and easier once you have the tools installed!
+                        </p>
+                        <button type="button" class="magic-block-close h3-level" onclick="toggleSectionCollapse('introduction-block', event);" onkeydown="toggleSectionCollapse('introduction-block', event);" tabindex="0" aria-label="Collapse Introduction section"></button>
+
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="installing-required-software" class="installing-required-software">
-            <h3>Installing Required Software</h3>
-            <p>These are the tools you need to install. Some may already be installed on your computer, in which case you can skip those sections. You may use other tools if you prefer, but these are the ones the lessons will assume you have.</p>
-            <ul>
-                <li>Microsoft Visual Studio Code (or another code editor).</li>
-                <li>Mozilla Firefox (or another modern web browser such as Google Chrome or Apple Safari).</li>
-                <li>Git (optional, for version control, used in later lessons).</li>
-                <li>Node.js (required for running the development server).</li>
-                <li>SQLite (optional, for database management, used in later lessons).</li>
-            </ul>
-            <p>
-                Node.js is required from the start to run the development server. If you don't want to install Git or SQLite right now, that's okay; you can install them later when you get to the lessons that need them.
-            </p>
-            <p>
-                Please select your operating system below to see the specific installation instructions.
-            </p>
+            <h3 onclick="toggleSection('installing-required-software-block', event);" onkeydown="toggleSection('installing-required-software-block', event);" class="magic-invisible lesson-title">Installing Required Software</h3>
+            <div id="installing-required-software-block" class="hidden">
+                <p>These are the tools you need to install. Some may already be installed on your computer, in which case you can skip those sections. You may use other tools if you prefer, but these are the ones the lessons will assume you have.</p>
+                <ul>
+                    <li>Microsoft Visual Studio Code (or another code editor).</li>
+                    <li>Mozilla Firefox (or another modern web browser such as Google Chrome or Apple Safari).</li>
+                    <li>Git (optional, for version control, used in later lessons).</li>
+                    <li>Node.js (required for running the development server).</li>
+                    <li>SQLite (optional, for database management, used in later lessons).</li>
+                </ul>
+                <p>
+                    Node.js is required from the start to run the development server. If you don't want to install Git or SQLite right now, that's okay; you can install them later when you get to the lessons that need them.
+                </p>
+                <button type="button" class="magic-block-close h3-level" onclick="toggleSectionCollapse('installing-required-software-block', event);" onkeydown="toggleSectionCollapse('installing-required-software-block', event);" tabindex="0" aria-label="Collapse Installing Required Software section"></button>
+
+            </div>
             <form>
                 <fieldset class="operating-systems">
                     <legend>What computer do you use?</legend>
