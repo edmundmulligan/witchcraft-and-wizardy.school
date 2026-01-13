@@ -85,11 +85,6 @@
 
     <main>
         <h2 class="page-title">Welcome to Your Dashboard</h2>
-
-        <nav class="in-page-navigation" aria-label="Page sections before student information">
-            <!-- Navigation content is injected by JavaScript to ensure it is the same across the page -->
-        </nav>
-
         <section id="student-info" class="student-info">
             <h3>Student Information</h3>
             <form
@@ -192,6 +187,13 @@
                     </button>
                     <button
                         type="button"
+                        id="load-information-btn"
+                        class="button-rectangle"
+                    >
+                        Load Information
+                    </button>
+                    <button
+                        type="button"
                         id="clear-information-btn"
                         class="button-rectangle"
                         popovertarget="confirm-clear"
@@ -202,12 +204,8 @@
             </form>
         </section>
 
-        <nav class="in-page-navigation" aria-label="Page sections before lessons">
-            <!-- Navigation content is injected by JavaScript to ensure it is the same across the page -->
-        </nav>
-
         <section id="lessons" class="lessons">
-             <h3>Lessons</h3>
+            <h3>Lessons</h3>
             <div class="lessons-container">
                 <a href="../students/lesson-00.html" class="button-rectangle lesson-tile" id="lesson-00-button">
                     <h4 class="lesson-title">Lesson 0: Setting up</h4>
@@ -459,10 +457,6 @@
                 <!-- Additional lesson tiles can be added here -->
             </div>
         </section>
-
-        <nav class="in-page-navigation" aria-label="Page sections after lessons">
-            <!-- Navigation content is injected by JavaScript to ensure it is the same across the page -->
-        </nav>
     </main>
 
     <footer class="footer">

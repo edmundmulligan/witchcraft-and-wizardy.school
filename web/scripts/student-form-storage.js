@@ -1,4 +1,4 @@
-/* global btoa, atob, console, alert */
+/* global btoa, atob, console, alert, TextEncoder, TextDecoder, FormData, setTimeout */
 /* jshint esversion: 8 */
 /*
  **********************************************************************
@@ -16,7 +16,8 @@
 (function() {
     'use strict';
 
-    const STORAGE_KEY = 'studentFormData';
+    const STORAGE_KEY_PREFIX = 'studentFormData_';
+    const CURRENT_PROFILE_KEY = 'currentProfile';
     const ENCRYPTION_KEY = 'witchcraft-and-wizardry-school-secure-key-2025';
 
     /**
@@ -81,6 +82,8 @@
      * Decrypt data using AES-GCM
      * @param {string} encryptedData - Base64-encoded encrypted data with IV
      * @returns {Promise<string>} Decrypted data
+     * 
+     * 
      */
     async function decryptData(encryptedData) {
         try {
@@ -128,11 +131,26 @@
     }
 
     /**
-     * Load saved form data from localStorage and populate the form
+     * Get the storage key for the current profile
+     * @returns {string|null} The storage key or null if no profile is set
      */
-    async function loadFormData() {
+    function getCurrentStorageKey() {
+        const currentProfile = localStorage.getItem(CURRENT_PROFILE_KEY);
+        return currentProfile ? STORAGE_KEY_PREFIX + currentProfile : null;
+    }
+
+    /**
+     * Load saved form data from localStorage and populate the form
+     * @param {boolean} forceTheme - If true, apply theme regardless of current theme setting
+     */
+    async function loadFormData(forceTheme = true) {
         try {
-            const savedData = localStorage.getItem(STORAGE_KEY);
+            const storageKey = getCurrentStorageKey();
+            if (!storageKey) {
+                return;
+            }
+
+            const savedData = localStorage.getItem(storageKey);
             if (!savedData) {
                 return;
             }
@@ -176,12 +194,17 @@
                 if (themeRadio) {
                     themeRadio.checked = true;
                 }
-                
-                // Only apply the theme if no theme preference is currently set
-                // This prevents overriding the user's active theme choice
-                if (window.ThemeSwitcher) {
+            }
+
+            // Apply theme - handle separately to ensure it always runs when forceTheme is true
+            if (data.themeChoice && window.ThemeSwitcher) {
+                if (forceTheme) {
+                    // Force apply the theme when explicitly loading
+                    window.ThemeSwitcher.set(data.themeChoice);
+                } else {
+                    // Only apply the theme if no theme preference is currently set
+                    // This prevents overriding the user's active theme choice on page load
                     const currentTheme = window.ThemeSwitcher.get();
-                    // Only apply saved theme if current preference is 'auto' (default)
                     if (currentTheme === 'auto') {
                         window.ThemeSwitcher.set(data.themeChoice);
                     }
@@ -207,10 +230,14 @@
                 return;
             }
 
+            // Determine if this is mentor or student form
+            const isMentorForm = form.id === 'mentor-info-form';
+
             // Get form values
             const formData = new FormData(form);
+            const studentName = formData.get('student-name') || '';
             const data = {
-                name: formData.get('student-name') || '',
+                name: studentName,
                 avatarChoice: formData.get('avatar-choice') || '',
                 genderChoice: formData.get('gender-choice') || '',
                 ageChoice: formData.get('age-choice') || '',
@@ -218,9 +245,25 @@
                 savedAt: new Date().toISOString()
             };
 
+            // Determine the profile identifier for the storage key
+            let profileIdentifier;
+            if (isMentorForm) {
+                profileIdentifier = 'mentor';
+            } else {
+                // Use student name if provided, otherwise use 'Student'
+                // Normalize to lowercase for case-insensitive storage
+                profileIdentifier = (studentName.trim() || 'Student').toLowerCase();
+            }
+
+            // Store the current profile identifier
+            localStorage.setItem(CURRENT_PROFILE_KEY, profileIdentifier);
+
+            // Create the storage key
+            const storageKey = STORAGE_KEY_PREFIX + profileIdentifier;
+
             // Encrypt and save to localStorage
             const encryptedData = await encryptData(JSON.stringify(data));
-            localStorage.setItem(STORAGE_KEY, encryptedData);
+            localStorage.setItem(storageKey, encryptedData);
 
             // Update the avatar preview
             updateAvatarPreview(data);
@@ -282,6 +325,63 @@
             });
         });
 
+        // Set up load button handler
+        const loadButton = document.getElementById('load-information-btn');
+        if (loadButton) {
+            loadButton.addEventListener('click', async () => {
+                const nameInput = document.getElementById('student-name');
+                if (!nameInput) {
+                    return;
+                }
+
+                const enteredName = nameInput.value.trim();
+                if (!enteredName) {
+                    alert('Please enter a name to load information.');
+                    return;
+                }
+
+                // Determine the profile identifier based on form type
+                // Normalize to lowercase for case-insensitive lookup
+                const isMentorForm = form.id === 'mentor-info-form';
+                const profileIdentifier = isMentorForm ? 'mentor' : enteredName.toLowerCase();
+
+                try {
+                    // Try to load the data for this profile
+                    const storageKey = STORAGE_KEY_PREFIX + profileIdentifier;
+                    const savedData = localStorage.getItem(storageKey);
+                    
+                    if (!savedData) {
+                        loadButton.textContent = 'No Data Found!';
+                        loadButton.style.backgroundColor = 'var(--color-warning-background)';
+                        
+                        setTimeout(() => {
+                            loadButton.textContent = 'Load Information';
+                            loadButton.style.backgroundColor = '';
+                        }, 2000);
+                        return;
+                    }
+
+                    // Set this as the current profile
+                    localStorage.setItem(CURRENT_PROFILE_KEY, profileIdentifier);
+
+                    // Load the form data with forced theme application
+                    await loadFormData(true);
+
+                    // Visual feedback
+                    loadButton.textContent = 'Information Loaded!';
+                    loadButton.style.backgroundColor = 'var(--color-light-success-background, #4CAF50)';
+                    
+                    setTimeout(() => {
+                        loadButton.textContent = 'Load Information';
+                        loadButton.style.backgroundColor = '';
+                    }, 2000);
+                } catch (error) {
+                    console.error('Error loading information:', error);
+                    alert('There was an error loading the information. Please try again.');
+                }
+            });
+        }
+
         // Set up clear button handler
         const clearButton = document.getElementById('clear-information-btn');
         const confirmYesButton = document.getElementById('confirm-clear-yes');
@@ -289,8 +389,12 @@
         
         if (confirmYesButton && confirmPopover) {
             confirmYesButton.addEventListener('click', () => {
-                // Clear localStorage
-                localStorage.removeItem(STORAGE_KEY);
+                // Clear localStorage for current profile
+                const storageKey = getCurrentStorageKey();
+                if (storageKey) {
+                    localStorage.removeItem(storageKey);
+                }
+                localStorage.removeItem(CURRENT_PROFILE_KEY);
                 
                 // Reset the form
                 if (form) {
@@ -343,7 +447,12 @@
         }
 
         try {
-            const savedData = localStorage.getItem(STORAGE_KEY);
+            const storageKey = getCurrentStorageKey();
+            if (!storageKey) {
+                return; // No current profile
+            }
+
+            const savedData = localStorage.getItem(storageKey);
             if (!savedData) {
                 return; // No saved data
             }
@@ -361,8 +470,8 @@
                 studentImageDiv.innerHTML = `
                     <figure style="margin: 0; text-align: center;">
                         <img src="${imagePath}" 
-                             alt="Your avatar: ${data.avatarChoice}, ${data.ageChoice}, ${data.genderChoice}" 
-                             class="avatar-image">
+                            alt="Your avatar: ${data.avatarChoice}, ${data.ageChoice}, ${data.genderChoice}" 
+                            class="avatar-image">
                         <figcaption class="avatar-caption">
                             Welcome, ${studentName}
                         </figcaption>
@@ -387,9 +496,18 @@
 
     // Export functions for use by other pages
     window.StudentFormStorage = {
-        get: async function() {
+        get: async function(profileIdentifier) {
             try {
-                const savedData = localStorage.getItem(STORAGE_KEY);
+                // If no profile identifier provided, use current profile
+                const storageKey = profileIdentifier 
+                    ? STORAGE_KEY_PREFIX + profileIdentifier 
+                    : getCurrentStorageKey();
+                
+                if (!storageKey) {
+                    return null;
+                }
+                
+                const savedData = localStorage.getItem(storageKey);
                 if (!savedData) {
                     return null;
                 }
@@ -400,11 +518,30 @@
                 return null;
             }
         },
-        clear: function() {
+        clear: function(profileIdentifier) {
             try {
-                localStorage.removeItem(STORAGE_KEY);
+                // If no profile identifier provided, clear current profile
+                if (profileIdentifier) {
+                    localStorage.removeItem(STORAGE_KEY_PREFIX + profileIdentifier);
+                } else {
+                    const storageKey = getCurrentStorageKey();
+                    if (storageKey) {
+                        localStorage.removeItem(storageKey);
+                    }
+                    localStorage.removeItem(CURRENT_PROFILE_KEY);
+                }
             } catch (error) {
                 console.error('Error clearing form data:', error);
+            }
+        },
+        getCurrentProfile: function() {
+            return localStorage.getItem(CURRENT_PROFILE_KEY);
+        },
+        setCurrentProfile: function(profileIdentifier) {
+            if (profileIdentifier) {
+                localStorage.setItem(CURRENT_PROFILE_KEY, profileIdentifier);
+            } else {
+                localStorage.removeItem(CURRENT_PROFILE_KEY);
             }
         },
         populateStudentImage: populateStudentImage

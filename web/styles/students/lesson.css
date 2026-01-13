@@ -85,3 +85,16 @@
 .lesson-title {
     text-align: left;
 }
+
+/* Clickable image with modal */
+.clickable-image-figure {
+    text-align: center;
+}
+
+.clickable-image-figure figcaption {
+    text-align: center;
+}
+
+.clickable-image-figure picture {
+    cursor: pointer;
+}

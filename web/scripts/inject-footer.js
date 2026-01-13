@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         footer.innerHTML = `
         <div class="footer-minimal">
             <div class="footer-text">
-                <p>&copy;&nbsp;The Embodied Mind, 2025</p>
+                <p>&copy;&nbsp;The Embodied Mind, 2025-2026</p>
             </div>
             <div class="footer-button">
                 <button aria-label="Expand footer">
