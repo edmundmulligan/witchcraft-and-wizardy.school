@@ -1,19 +1,11 @@
 name: Sound - Accessibility Testing and Deployment
 
 on:
-  push:
-    branches: [ development, main]
-    paths:
-      - 'sound/**'
-      - 'bin/**'
-      - '.github/workflows/pre-deploy-sound.yml'
-      - '.github/workflows/test-and-deploy-reusable.yml'
   pull_request:
-    branches: [ development, main ]
+    branches: [ staging, main ]
     paths:
       - 'sound/**'
       - 'bin/**'
-      - '.github/workflows/pre-deploy-sound.yml'
       - '.github/workflows/test-and-deploy-reusable.yml'
 
 jobs:
