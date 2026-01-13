@@ -65,10 +65,28 @@
       "links": [],
       "brokenCount": 0,
       "totalCount": 23
+    },
+    {
+      "url": "pages/license.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 19
+    },
+    {
+      "url": "pages/credits.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 31
+    },
+    {
+      "url": "pages/start.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 25
     }
   ],
   "summary": {
-    "totalLinks": 290,
+    "totalLinks": 365,
     "brokenLinks": 0,
     "excludedLinks": 0
   }
