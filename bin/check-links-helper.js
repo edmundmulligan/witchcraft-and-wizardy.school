@@ -77,8 +77,8 @@ async function main() {
         return;
       }
 
-      // Skip mailto, javascript, and hash-only links for now
-      if (href.startsWith('mailto:') || href.startsWith('javascript:') || href === '#') {
+      // Skip mailto, javascript, data URIs, and hash-only links
+      if (href.startsWith('mailto:') || href.startsWith('javascript:') || href.startsWith('data:') || href === '#') {
         return;
       }
 
