@@ -120,11 +120,13 @@
                     When you open VS Code, you will see several key areas:
                 </p>
                 <figure class="clickable-image-figure">
-                    <picture onclick="openImageModal('../images/VSC Screenshot.png', 'Visual Studio Code interface')" onkeydown="if(event.key === 'Enter' || event.key === ' ') openImageModal('../images/VSC Screenshot.png', 'Visual Studio Code interface')" tabindex="0" role="button" aria-label="Click to view larger image">
-                        <source srcset="../images/VSC Screenshot.webp" type="image/webp">
-                        <source srcset="../images/VSC Screenshot.png" type="image/png">
-                        <img src="../images/VSC Screenshot.png" alt="Visual Studio Code interface" class="screenshot">
-                    </picture>
+                    <button type="button" class="image-button" onclick="openImageModal('../images/VSC Screenshot.png', 'Visual Studio Code interface')" onkeydown="if(event.key === 'Enter' || event.key === ' ') openImageModal('../images/VSC Screenshot.png', 'Visual Studio Code interface')" tabindex="0" aria-label="Click to view larger image">
+                        <picture>
+                            <source srcset="../images/VSC Screenshot.webp" type="image/webp">
+                            <source srcset="../images/VSC Screenshot.png" type="image/png">
+                            <img src="../images/VSC Screenshot.png" alt="Visual Studio Code interface" class="screenshot">
+                        </picture>
+                    </button>
                     <figcaption>Figure 1.1: Visual Studio Code Interface (Click to enlarge)</figcaption>
                 </figure>
                 <ul>
@@ -208,8 +210,7 @@
                     <li>Add more paragraphs using the <code>&lt;p&gt;</code> tag.</li>
                     <li>Try adding other heading levels like <code>&lt;h2&gt;</code> or <code>&lt;h3&gt;</code> and see how they look.</li>
                     <li>Try putting in deliberate mistakes in your code and see what happens. Sometimes Visual Studio Code will detect the error and warn you about it. But sometimes the code will still run in the browser despite the mistakes.</li>
-                    <li>Try adding comments in different places in your code. Comments start with <code><pre>&lt;!--</pre>
-</code> and end with <code><pre>--&gt;</pre></code>. Anything between the start and end tags is ignored by the browser and not displayed on the page. You can use this to leave notes for yourself or others who might read your code later.</li>
+                    <li>Try adding comments in different places in your code. Comments start with <pre><code>&lt;!--</code></pre> and end with <pre><code>--&gt;</code></pre>. Anything between the start and end tags is ignored by the browser and not displayed on the page. You can use this to leave notes for yourself or others who might read your code later.</li>
                 </ul>
                 <button type="button" class="magic-block-close h3-level" onclick="toggleSectionCollapse('be-curious-block', event);" onkeydown="toggleSectionCollapse('be-curious-block', event);" tabindex="0" aria-label="Collapse Be Curious section"></button>
             </div>
@@ -231,80 +232,10 @@
 
     <!-- Image Modal -->
     <div id="imageModal" class="image-modal" onclick="closeImageModal()" style="display: none;">
-        <span class="image-modal-close" onclick="closeImageModal()" onkeydown="if(event.key === 'Enter' || event.key === ' ') closeImageModal()" tabindex="0" role="button" aria-label="Close modal">&times;</span>
-        <img class="image-modal-content" id="modalImage" alt="">
+        <button type="button" class="image-modal-close" onclick="closeImageModal()" onkeydown="if(event.key === 'Enter' || event.key === ' ') closeImageModal()" tabindex="0" aria-label="Close modal">&times;</button>
+        <img class="image-modal-content" id="modalImage" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="">
         <div class="image-modal-caption" id="modalCaption"></div>
     </div>
-
-    <style>
-        /* Image Modal Styles */
-        .image-modal {
-            display: none;
-            position: fixed;
-            z-index: 10000;
-            padding-top: 50px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.9);
-        }
-
-        .image-modal-content {
-            margin: auto;
-            display: block;
-            max-width: 90%;
-            max-height: 80vh;
-            object-fit: contain;
-        }
-
-        .image-modal-caption {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 700px;
-            text-align: center;
-            color: #ccc;
-            padding: 10px 0;
-            height: 50px;
-        }
-
-        .image-modal-content,
-        .image-modal-caption {
-            animation-name: zoom;
-            animation-duration: 0.3s;
-        }
-
-        @keyframes zoom {
-            from {transform: scale(0)}
-            to {transform: scale(1)}
-        }
-
-        .image-modal-close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .image-modal-close:hover,
-        .image-modal-close:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        @media only screen and (max-width: 700px) {
-            .image-modal-content {
-                max-width: 100%;
-            }
-        }
-    </style>
 
     <script>
         // Image Modal Functions

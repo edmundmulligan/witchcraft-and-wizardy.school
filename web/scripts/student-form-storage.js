@@ -499,9 +499,7 @@
         get: async function(profileIdentifier) {
             try {
                 // If no profile identifier provided, use current profile
-                const storageKey = profileIdentifier 
-                    ? STORAGE_KEY_PREFIX + profileIdentifier 
-                    : getCurrentStorageKey();
+                const storageKey = profileIdentifier ? STORAGE_KEY_PREFIX + profileIdentifier : getCurrentStorageKey();
                 
                 if (!storageKey) {
                     return null;
