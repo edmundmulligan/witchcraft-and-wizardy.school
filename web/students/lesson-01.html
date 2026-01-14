@@ -75,7 +75,7 @@
     <script src="../scripts/toggle-section.js" defer></script>
     <script src="../scripts/show-os-instructions.js" defer></script>
     <script src="../scripts/populate-line-numbers.js" defer></script>
-
+    <script src="../scripts/image-modal.js" defer></script>
     <!-- End JavaScript file link -->
 
     <!-- Handle no JavaScript scenario -->
@@ -120,7 +120,7 @@
                     When you open VS Code, you will see several key areas:
                 </p>
                 <figure class="clickable-image-figure">
-                    <button type="button" class="image-button" onclick="openImageModal('../images/VSC Screenshot.png', 'Visual Studio Code interface')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { openImageModal('../images/VSC Screenshot.png', 'Visual Studio Code interface'); event.preventDefault(); }" tabindex="0" aria-label="Click to view larger image">
+                    <button type="button" class="image-button" data-image-src="../images/VSC Screenshot.png" data-image-caption="Visual Studio Code interface" tabindex="0" aria-label="Click to view larger image">
                         <picture>
                             <source srcset="../images/VSC Screenshot.webp" type="image/webp">
                             <source srcset="../images/VSC Screenshot.png" type="image/png">
@@ -237,36 +237,5 @@
         <div class="image-modal-caption" id="modalCaption"></div>
     </div>
 
-    <script>
-        // Image Modal Functions
-        function openImageModal(imageSrc, imageAlt) {
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            const captionText = document.getElementById('modalCaption');
-            
-            modal.style.display = 'block';
-            modalImg.src = imageSrc;
-            modalImg.alt = imageAlt;
-            captionText.textContent = imageAlt;
-            
-            // Prevent body scroll when modal is open
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeImageModal() {
-            const modal = document.getElementById('imageModal');
-            modal.style.display = 'none';
-            
-            // Restore body scroll
-            document.body.style.overflow = 'auto';
-        }
-
-        // Close modal when pressing Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeImageModal();
-            }
-        });
-    </script>
 </body>
 </html>
