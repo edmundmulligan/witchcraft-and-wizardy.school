@@ -22,17 +22,23 @@
     let originalOverflow;
 
     /**
-     * Opens the image modal with the specified image
-     * @param {string} imageSrc - The source URL of the image to display
-     * @param {string} imageAlt - The alt text for the image
+     * Initialize DOM element references
      */
-    function openImageModal(imageSrc, imageAlt) {
-        // Initialize elements if not already cached
+    function initElements() {
         if (!modal) {
             modal = document.getElementById('imageModal');
             modalImg = document.getElementById('modalImage');
             captionText = document.getElementById('modalCaption');
         }
+    }
+
+    /**
+     * Opens the image modal with the specified image
+     * @param {string} imageSrc - The source URL of the image to display
+     * @param {string} imageAlt - The alt text for the image
+     */
+    function openImageModal(imageSrc, imageAlt) {
+        initElements();
 
         modal.style.display = 'block';
         modalImg.src = imageSrc;
@@ -40,7 +46,7 @@
         captionText.textContent = imageAlt;
         
         // Store original overflow and prevent body scroll when modal is open
-        originalOverflow = document.body.style.overflow;
+        originalOverflow = document.body.style.overflow || 'auto';
         document.body.style.overflow = 'hidden';
     }
 
@@ -48,14 +54,12 @@
      * Closes the image modal and restores page scroll
      */
     function closeImageModal() {
-        if (!modal) {
-            modal = document.getElementById('imageModal');
-        }
+        initElements();
 
         modal.style.display = 'none';
         
         // Restore original body scroll
-        document.body.style.overflow = originalOverflow || '';
+        document.body.style.overflow = originalOverflow || 'auto';
     }
 
     // Make functions globally available for inline handlers
