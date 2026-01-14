@@ -7,7 +7,7 @@
  * Description:
  *   Style overrides for media queries.
  * Note:
- *   Cutoffs for media queries are (arbitarily) as follows:
+ *   Cutoffs for media queries are (arbitrarily) as follows:
  *      Very small screen : width < 200px
  *      Small screen      : width < 800px
  *      Large screen      : width < 1200px
@@ -78,7 +78,7 @@
         justify-self: center;
     }
 
-    /* centee header icons */
+    /* center header icons */
     .header-left,
     .header-right {
         justify-content: center;
@@ -345,5 +345,11 @@
 @media (width >= 1200px) {
     .gallery-container {
         grid-template-columns: repeat(4,1fr);
+    }
+}
+
+@media only screen and (width <= 800px) {
+    .image-modal-content {
+        max-width: 100%;
     }
 }

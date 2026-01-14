@@ -56,9 +56,9 @@
 /* Visually hidden class for accessibility */
 .visually-hidden {
     position: absolute;
-    left: -9999px;
-    width: 1px;
-    height: 1px;
+    left: -100rem;
+    width: 0.1rem;
+    height: 0.1rem;
     overflow: hidden;
 }
 
@@ -103,8 +103,8 @@
 .image-modal {
     display: none;
     position: fixed;
-    z-index: 10000;
-    padding-top: 50px;
+    z-index: 1000;
+    padding-top: 3rem;
     left: 0;
     top: 0;
     width: 100%;
@@ -125,11 +125,11 @@
     margin: auto;
     display: block;
     width: 80%;
-    max-width: 700px;
+    max-width: 43rem;
     text-align: center;
     color: #ccc;
-    padding: 10px 0;
-    height: 50px;
+    padding: 0.6rem 0;
+    min-height: 3rem;
 }
 
 .image-modal-content,
@@ -139,14 +139,14 @@
 }
 
 @keyframes zoom {
-    from {transform: scale(0)}
-    to {transform: scale(1)}
+    from {transform: scale(0);}
+    to {transform: scale(1);}
 }
 
 .image-modal-close {
     position: absolute;
-    top: 15px;
-    right: 35px;
+    top: 1rem;
+    right: 2.2rem;
     color: #f1f1f1;
     cursor: pointer;
 }
@@ -156,10 +156,5 @@
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
-    }
-
-@media only screen and (width <= 700px) {
-    .image-modal-content {
-        max-width: 100%;
-    }
 }
+

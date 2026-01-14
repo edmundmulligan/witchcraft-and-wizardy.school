@@ -8,8 +8,8 @@
  * License    : MIT License (see license-and-credits.html page)
  * Description:
  *   Handles saving and loading student form data to/from localStorage.
- *   The data is stored as a JSON object and can be accessed by other
- *   pages in the site.
+ *   The data is stored as an encrypted JSON object and can be accessed by
+ *   other pages in the site.
  **********************************************************************
 */
 
@@ -82,8 +82,6 @@
      * Decrypt data using AES-GCM
      * @param {string} encryptedData - Base64-encoded encrypted data with IV
      * @returns {Promise<string>} Decrypted data
-     * 
-     * 
      */
     async function decryptData(encryptedData) {
         try {
@@ -469,9 +467,7 @@
                 // Create figure with image and caption
                 studentImageDiv.innerHTML = `
                     <figure style="margin: 0; text-align: center;">
-                        <img src="${imagePath}" 
-                            alt="Your avatar: ${data.avatarChoice}, ${data.ageChoice}, ${data.genderChoice}" 
-                            class="avatar-image">
+                        <img src="${imagePath}" alt="Your avatar: ${data.avatarChoice}, ${data.ageChoice}, ${data.genderChoice}" class="avatar-image">
                         <figcaption class="avatar-caption">
                             Welcome, ${studentName}
                         </figcaption>
