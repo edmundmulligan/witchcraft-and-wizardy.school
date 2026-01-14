@@ -12,6 +12,8 @@
  **********************************************************************
  */
 
+'use strict';
+
 function toggleSection(sectionId, event) {
     // For keyboard events, only respond to Enter or Space
     if (event.type === 'keydown' && event.key !== 'Enter' && event.key !== ' ') {
