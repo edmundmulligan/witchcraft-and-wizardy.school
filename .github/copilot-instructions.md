@@ -46,7 +46,7 @@ stats/                 # Statistics application
 - CSS files should start with a header comment similar to HTML files
 - Use `main.css` as the primary stylesheet (loaded first)
 - Organize styles in a logical order
-- Avoid descending specificity issues when necessary (see `.stylelintrc.json`)
+- Descending specificity is allowed (the `no-descending-specificity` rule is disabled in `.stylelintrc.json`)
 
 ### JavaScript
 - Follow ESLint recommended rules (see `.eslintrc.json`)
