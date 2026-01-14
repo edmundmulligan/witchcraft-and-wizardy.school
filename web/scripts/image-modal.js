@@ -5,58 +5,71 @@
  * Copyright  : (c) 2025 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
  * Description:
- *  Functions to handle image modal functionality across the site
+ *   Handles image modal functionality for displaying images in a
+ *   fullscreen overlay. Provides functions to open and close the modal,
+ *   handles keyboard navigation (Escape key to close), and prevents
+ *   body scroll when the modal is open.
  **********************************************************************
  */
 
-// Add event listeners to all clickable images when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    const imageButtons = document.querySelectorAll('.image-button[data-image-src]');
-    
-    imageButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const imageSrc = this.getAttribute('data-image-src');
-            const caption = this.getAttribute('data-image-caption');
-            openImageModal(imageSrc, caption);
-        });
-        
-        button.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter' || event.key === ' ') {
-                const imageSrc = this.getAttribute('data-image-src');
-                const caption = this.getAttribute('data-image-caption');
-                openImageModal(imageSrc, caption);
-                event.preventDefault();
-            }
-        });
-    });
-});
+(function() {
+    'use strict';
 
-// Image Modal Functions
-function openImageModal(imageSrc, imageAlt) {
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImage');
-    const captionText = document.getElementById('modalCaption');
-            
-    modal.style.display = 'block';
-    modalImg.src = imageSrc;
-    modalImg.alt = imageAlt;
-    captionText.textContent = imageAlt;
-            
-    // Prevent body scroll when modal is open
-    document.body.style.overflow = 'hidden';
-}
+    // Cache DOM elements and original overflow value
+    let modal;
+    let modalImg;
+    let captionText;
+    let originalOverflow;
 
-function closeImageModal() {
-    const modal = document.getElementById('imageModal');
-    modal.style.display = 'none';
-            
-    // Restore body scroll
-    document.body.style.overflow = 'auto';
-}
-
-// Close modal when pressing Escape key
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        closeImageModal();
+    /**
+     * Initialize DOM element references
+     */
+    function initElements() {
+        if (!modal) {
+            modal = document.getElementById('imageModal');
+            modalImg = document.getElementById('modalImage');
+            captionText = document.getElementById('modalCaption');
+        }
     }
-});
+
+    /**
+     * Opens the image modal with the specified image
+     * @param {string} imageSrc - The source URL of the image to display
+     * @param {string} imageAlt - The alt text for the image
+     */
+    function openImageModal(imageSrc, imageAlt) {
+        initElements();
+
+        modal.style.display = 'block';
+        modalImg.src = imageSrc;
+        modalImg.alt = imageAlt;
+        captionText.textContent = imageAlt;
+        
+        // Store original overflow and prevent body scroll when modal is open
+        originalOverflow = document.body.style.overflow || 'auto';
+        document.body.style.overflow = 'hidden';
+    }
+
+    /**
+     * Closes the image modal and restores page scroll
+     */
+    function closeImageModal() {
+        initElements();
+
+        modal.style.display = 'none';
+        
+        // Restore original body scroll
+        document.body.style.overflow = originalOverflow || 'auto';
+    }
+
+    // Make functions globally available for inline handlers
+    window.openImageModal = openImageModal;
+    window.closeImageModal = closeImageModal;
+
+    // Close modal when pressing Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeImageModal();
+        }
+    });
+})();
