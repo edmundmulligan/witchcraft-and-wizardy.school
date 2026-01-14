@@ -11,6 +11,8 @@
  **********************************************************************
  */
 
+'use strict';
+
 document.addEventListener('DOMContentLoaded', function() {
     const footer = document.querySelector('footer.footer');
     if (footer && footer.children.length === 0) {

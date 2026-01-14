@@ -9,6 +9,8 @@
  **********************************************************************
  */
 
+'use strict';
+
 // Add event listeners to all clickable images when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     const imageButtons = document.querySelectorAll('.image-button[data-image-src]');

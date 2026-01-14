@@ -11,6 +11,8 @@
  **********************************************************************
  */
 
+'use strict';
+
 document.addEventListener('DOMContentLoaded', function() {
     const popover = document.getElementById('not-implemented');
     if (popover) {

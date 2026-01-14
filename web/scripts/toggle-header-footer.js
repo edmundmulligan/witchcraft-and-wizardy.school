@@ -13,6 +13,8 @@
  **********************************************************************
  */
 
+'use strict';
+
 const HEADER_STATE_KEY = 'headerState';
 const FOOTER_STATE_KEY = 'footerState';
 

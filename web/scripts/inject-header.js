@@ -11,6 +11,8 @@
  **********************************************************************
  */
 
+'use strict';
+
 document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('header.header');
     if (header && header.children.length === 0) {
