@@ -154,7 +154,7 @@ This project places a strong emphasis on web accessibility:
 4. Follow existing page structure
 5. Add page to `web/tests/browser-tests.js` if it needs testing
 6. Validate HTML, CSS, and accessibility
-7. Update sitemap if necessary
+7. Update `web/sitemap.xml` if the page should be indexed by search engines
 
 ### Modifying Styles
 1. Edit appropriate CSS file in `web/styles/`
