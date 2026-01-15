@@ -13,6 +13,8 @@
  **********************************************************************
  */
 
+'use strict';
+
 /**
  * Populate a code snippet with line numbers using table layout
  * @param {HTMLElement} tableElement - The table element to populate

@@ -9,6 +9,8 @@
  **********************************************************************
  */
 
+'use strict';
+
 document.addEventListener('DOMContentLoaded', function() {
     const osRadios = document.querySelectorAll('input[name="os"]');
     

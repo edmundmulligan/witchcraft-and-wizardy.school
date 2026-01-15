@@ -67,7 +67,6 @@
     <script src="../scripts/inject-header.js" defer></script>
     <script src="../scripts/inject-footer.js" defer></script>
     <script src="../scripts/inject-popover-text.js" defer></script>
-    <script src="../scripts/inject-in-page-navigation-students.js" defer></script>
     <script src="../scripts/student-form-storage.js" defer></script>
     <script src="../scripts/toggle-section.js" defer></script>
 
@@ -85,11 +84,6 @@
 
     <main>
         <h2 class="page-title">Welcome to Your Dashboard</h2>
-
-        <nav class="in-page-navigation" aria-label="Page sections before student information">
-            <!-- Navigation content is injected by JavaScript to ensure it is the same across the page -->
-        </nav>
-
         <section id="student-info" class="student-info">
             <h3>Student Information</h3>
             <form
@@ -117,8 +111,7 @@
                 <h4 class="student-form-item">Choose your avatar</h4>
 
                 <div class="student-form-item avatar-container">
-                    <!-- The output does not render well at all scales, but that will be addressed 
-                         when the form is implemented and an image is added -->
+                    <!-- The output does not render well at all scales, but that will be addressed  when the form is implemented and an image is added -->
                 <output
                     for="avatar-choice gender-choice age-choice"
                     id="avatar-preview"
@@ -192,6 +185,13 @@
                     </button>
                     <button
                         type="button"
+                        id="load-information-btn"
+                        class="button-rectangle"
+                    >
+                        Load Information
+                    </button>
+                    <button
+                        type="button"
                         id="clear-information-btn"
                         class="button-rectangle"
                         popovertarget="confirm-clear"
@@ -202,12 +202,8 @@
             </form>
         </section>
 
-        <nav class="in-page-navigation" aria-label="Page sections before lessons">
-            <!-- Navigation content is injected by JavaScript to ensure it is the same across the page -->
-        </nav>
-
         <section id="lessons" class="lessons">
-             <h3>Lessons</h3>
+            <h3>Lessons</h3>
             <div class="lessons-container">
                 <a href="../students/lesson-00.html" class="button-rectangle lesson-tile" id="lesson-00-button">
                     <h4 class="lesson-title">Lesson 0: Setting up</h4>
@@ -459,10 +455,6 @@
                 <!-- Additional lesson tiles can be added here -->
             </div>
         </section>
-
-        <nav class="in-page-navigation" aria-label="Page sections after lessons">
-            <!-- Navigation content is injected by JavaScript to ensure it is the same across the page -->
-        </nav>
     </main>
 
     <footer class="footer">

@@ -13,6 +13,8 @@
  **********************************************************************
  */
 
+'use strict';
+
 const { chromium, firefox, webkit } = require('playwright');
 const fs = require('fs');
 const path = require('path');

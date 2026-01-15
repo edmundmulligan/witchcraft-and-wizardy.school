@@ -12,6 +12,8 @@
  **********************************************************************
  */
 
+'use strict';
+
 document.addEventListener('DOMContentLoaded', async function() {
     // Find all glossary popovers on the page
     const glossaryPopovers = document.querySelectorAll('.glossary-popover');

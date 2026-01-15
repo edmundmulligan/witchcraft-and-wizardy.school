@@ -9,6 +9,8 @@
  **********************************************************************
  */
 
+'use strict';
+
 // ESLint flat config for v9+
 /** @type {import('eslint').FlatConfig[]} */
 module.exports = [

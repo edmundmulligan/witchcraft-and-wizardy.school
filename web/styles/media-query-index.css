@@ -5,10 +5,10 @@
  * Copyright  : (c) 2025 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
  * Description:
- *   Special media query for index page to add a backgound image in
+ *   Special media query for index page to add a background image in
  *   the correct orientation.
  * Note:
- *   Cutoffs for media queries are (arbitarily) as follows:
+ *   Cutoffs for media queries are (arbitrarily) as follows:
  *      Very small screen : width < 200px
  *      Small screen      : width < 800px
  *      Large screen      : width < 1200px
