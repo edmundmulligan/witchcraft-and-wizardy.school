@@ -1,4 +1,4 @@
-name: Push Sound Code to Dev Server
+name: Push Sound Code to Prod Server
 
 on:
     push:

@@ -13,14 +13,15 @@
  **********************************************************************
  */
 
-'use strict';
+(function() {
+    'use strict';
 
-/**
- * Populate a code snippet with line numbers using table layout
- * @param {HTMLElement} tableElement - The table element to populate
- * @param {string} codeText - The code text to display
- */
-function populateCodeSnippet(tableElement, codeText) {
+    /**
+     * Populate a code snippet with line numbers using table layout
+     * @param {HTMLElement} tableElement - The table element to populate
+     * @param {string} codeText - The code text to display
+     */
+    function populateCodeSnippet(tableElement, codeText) {
     // Split code into lines and remove empty first/last lines
     let lines = codeText.split('\n');
     
@@ -74,12 +75,13 @@ function initializeCodeSnippets() {
     });
 }
 
-// Run when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeCodeSnippets);
-} else {
-    // DOM already loaded
-    initializeCodeSnippets();
-}
+    // Run when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeCodeSnippets);
+    } else {
+        // DOM already loaded
+        initializeCodeSnippets();
+    }
+})();
 
 

@@ -11,9 +11,10 @@
  **********************************************************************
  */
 
-'use strict';
+(function() {
+    'use strict';
 
-document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
     const footer = document.querySelector('footer.footer');
     if (footer && footer.children.length === 0) {
         // Determine path prefix based on current page location
@@ -62,5 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Dispatch custom event to signal footer is ready
         document.dispatchEvent(new Event('footerInjected'));
     }
-});
+    });
+})();
 

@@ -11,9 +11,10 @@
  **********************************************************************
  */
 
-'use strict';
+(function() {
+    'use strict';
 
-document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('header.header');
     if (header && header.children.length === 0) {
         // Determine path prefix based on current page location
@@ -104,4 +105,5 @@ document.addEventListener('DOMContentLoaded', function() {
         // Dispatch custom event to signal header is ready
         document.dispatchEvent(new Event('headerInjected'));
     }
-});
+    });
+})();
