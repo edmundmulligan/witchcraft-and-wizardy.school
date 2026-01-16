@@ -12,9 +12,10 @@
  **********************************************************************
  */
 
-'use strict';
+(function() {
+    'use strict';
 
-document.addEventListener('DOMContentLoaded', async function() {
+    document.addEventListener('DOMContentLoaded', async function() {
     // Find all glossary popovers on the page
     const glossaryPopovers = document.querySelectorAll('.glossary-popover');
     
@@ -81,4 +82,5 @@ document.addEventListener('DOMContentLoaded', async function() {
     } catch (error) {
         console.error('Error loading glossary:', error);
     }
-});
+    });
+})();

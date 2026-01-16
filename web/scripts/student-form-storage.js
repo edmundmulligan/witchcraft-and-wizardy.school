@@ -194,6 +194,13 @@
                 }
             }
 
+            if (data.elementChoice) {
+                const elementRadio = document.getElementById(`element-choice-${data.elementChoice}`);
+                if (elementRadio) {
+                    elementRadio.checked = true;
+                }
+            }
+
             // Apply theme - handle separately to ensure it always runs when forceTheme is true
             if (data.themeChoice && window.ThemeSwitcher) {
                 if (forceTheme) {
@@ -240,6 +247,7 @@
                 genderChoice: formData.get('gender-choice') || '',
                 ageChoice: formData.get('age-choice') || '',
                 themeChoice: formData.get('theme-choice') || '',
+                elementChoice: formData.get('element-choice') || '',
                 savedAt: new Date().toISOString()
             };
 

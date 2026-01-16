@@ -13,10 +13,11 @@
  **********************************************************************
  */
 
-'use strict';
+(function() {
+    'use strict';
 
-const HEADER_STATE_KEY = 'headerState';
-const FOOTER_STATE_KEY = 'footerState';
+    const HEADER_STATE_KEY = 'headerState';
+    const FOOTER_STATE_KEY = 'footerState';
 
 // Function to setup header toggle
 function setupHeaderToggle() {
@@ -94,6 +95,7 @@ function setupFooterToggle() {
     }
 }
 
-// Listen for custom events from inject scripts
-document.addEventListener('headerInjected', setupHeaderToggle);
-document.addEventListener('footerInjected', setupFooterToggle);
+    // Listen for custom events from inject scripts
+    document.addEventListener('headerInjected', setupHeaderToggle);
+    document.addEventListener('footerInjected', setupFooterToggle);
+})();

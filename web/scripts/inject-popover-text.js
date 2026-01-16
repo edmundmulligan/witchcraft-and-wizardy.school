@@ -11,20 +11,22 @@
  **********************************************************************
  */
 
-'use strict';
+(function() {
+    'use strict';
 
-document.addEventListener('DOMContentLoaded', function() {
-    const popover = document.getElementById('not-implemented');
-    if (popover) {
-        popover.innerHTML = `
-           <h2>Under Construction</h2>
-            <p>
-                This feature has not been implemented yet&nbsp;&mdash;&nbsp;please
-                check back later!
-            </p>
-            <button popovertarget="not-implemented" popovertargetaction="hide">
-                Close
-            </button>
-        `;
-    }
-});
+    document.addEventListener('DOMContentLoaded', function() {
+        const popover = document.getElementById('not-implemented');
+        if (popover) {
+            popover.innerHTML = `
+                <h2>Under Construction</h2>
+                <p>
+                    This feature has not been implemented yet&nbsp;&mdash;&nbsp;please
+                    check back later!
+                </p>
+                <button popovertarget="not-implemented" popovertargetaction="hide">
+                    Close
+                </button>
+            `;
+        }
+    });
+})();

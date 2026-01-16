@@ -1,4 +1,4 @@
-name: Push Stats Code to Dev Server
+name: Push Stats Code to Prod Server
 
 on:
     push:

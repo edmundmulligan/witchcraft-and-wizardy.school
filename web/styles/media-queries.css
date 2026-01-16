@@ -299,6 +299,17 @@
         order: 2;
         grid-column: unset;
         grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, auto);
+    }
+
+    /* Reset grid positioning for mobile - stack all fieldsets vertically */
+    .student-info form .student-form-avatar fieldset:nth-child(1),
+    .student-info form .student-form-avatar fieldset:nth-child(2),
+    .student-info form .student-form-avatar fieldset:nth-child(3),
+    .student-info form .student-form-avatar fieldset:nth-child(4),
+    .student-info form .student-form-avatar fieldset:nth-child(5) {
+        grid-row: auto;
+        grid-column: 1;
     }
 
     .student-info form fieldset {
