@@ -1,4 +1,4 @@
-/* global console */
+/* global console, URLSearchParams */
 /*
  **********************************************************************
  * File       : theme-switcher.js
@@ -17,12 +17,14 @@
     'use strict';
 
     const THEME_STORAGE_KEY = 'themePreference';
+    const ELEMENT_STORAGE_KEY = 'elementPreference';
 
     /**
      * Apply the theme to the page
      * @param {string} theme - 'light', 'dark', or 'auto'
+     * @param {string} element - 'metal', 'earth', 'fire', 'wood', or 'water'
      */
-    function applyTheme(theme) {
+    function applyTheme(theme, element = 'metal') {
         const root = document.documentElement;
         
         let effectiveTheme = theme;
@@ -49,8 +51,8 @@
             root.style.setProperty('--color-warning-text', 'var(--color-dark-warning-text)');
             root.style.setProperty('--color-code-background', 'var(--color-dark-code-background)');
             root.style.setProperty('--color-code-text', 'var(--color-dark-code-text)');
-            root.style.setProperty('--bg-landscape', 'var(--bg-landscape-dark)');
-            root.style.setProperty('--bg-portrait', 'var(--bg-portrait-dark)');
+            root.style.setProperty('--bg-landscape', `var(--bg-landscape-${element}-dark)`);
+            root.style.setProperty('--bg-portrait', `var(--bg-portrait-${element}-dark)`);
             root.style.setProperty('--svg-filter', 'var(--svg-filter-dark)');
             root.style.setProperty('--header-svg-filter', 'var(--header-svg-filter-dark)');
             root.setAttribute('data-theme', 'dark');
@@ -72,8 +74,8 @@
             root.style.setProperty('--color-warning-text', 'var(--color-light-warning-text)');
             root.style.setProperty('--color-code-background', 'var(--color-light-code-background)');
             root.style.setProperty('--color-code-text', 'var(--color-light-code-text)');
-            root.style.setProperty('--bg-landscape', 'var(--bg-landscape-light)');
-            root.style.setProperty('--bg-portrait', 'var(--bg-portrait-light)');
+            root.style.setProperty('--bg-landscape', `var(--bg-landscape-${element}-light)`);
+            root.style.setProperty('--bg-portrait', `var(--bg-portrait-${element}-light)`);
             root.style.setProperty('--svg-filter', 'var(--svg-filter-light)');
             root.style.setProperty('--header-svg-filter', 'var(--header-svg-filter-light)');
             root.setAttribute('data-theme', 'light');
@@ -125,6 +127,59 @@
     }
 
     /**
+     * Get the current element preference from student form storage
+     * @returns {Promise<string>} - 'metal', 'earth', 'fire', 'wood', or 'water'
+     */
+    async function getElementPreference() {
+        // Check URL parameter first (for testing purposes)
+        const urlParams = new URLSearchParams(window.location.search);
+        const elementParam = urlParams.get('element');
+        if (elementParam === 'metal' || elementParam === 'earth' || 
+            elementParam === 'fire' || elementParam === 'wood' || elementParam === 'water') {
+            return elementParam;
+        }
+        
+        // Check localStorage for immediate element preference
+        try {
+            const saved = localStorage.getItem(ELEMENT_STORAGE_KEY);
+            if (saved && (saved === 'metal' || saved === 'earth' || saved === 'fire' || 
+                         saved === 'wood' || saved === 'water')) {
+                return saved;
+            }
+        } catch (error) {
+            console.error('Error reading element preference from localStorage:', error);
+        }
+        
+        // Try to get from student form storage as fallback
+        if (window.StudentFormStorage) {
+            try {
+                const studentData = await window.StudentFormStorage.get();
+                if (studentData && studentData.elementChoice) {
+                    // Save to localStorage for faster access next time
+                    saveElementPreference(studentData.elementChoice);
+                    return studentData.elementChoice;
+                }
+            } catch (error) {
+                console.error('Error reading element preference from StudentFormStorage:', error);
+            }
+        }
+        
+        return 'metal'; // Default to metal
+    }
+
+    /**
+     * Save element preference to localStorage
+     * @param {string} element - 'metal', 'earth', 'fire', 'wood', or 'water'
+     */
+    function saveElementPreference(element) {
+        try {
+            localStorage.setItem(ELEMENT_STORAGE_KEY, element);
+        } catch (error) {
+            console.error('Error saving element preference:', error);
+        }
+    }
+
+    /**
      * Save theme preference to localStorage
      * @param {string} theme - 'light', 'dark', or 'auto'
      */
@@ -140,9 +195,20 @@
      * Handle theme change from radio button
      * @param {string} theme - 'light' or 'dark'
      */
-    function handleThemeChange(theme) {
+    async function handleThemeChange(theme) {
         saveThemePreference(theme);
-        applyTheme(theme);
+        const element = await getElementPreference();
+        applyTheme(theme, element);
+    }
+
+    /**
+     * Handle element change from radio button
+     * @param {string} element - 'metal', 'earth', 'fire', 'wood', or 'water'
+     */
+    function handleElementChange(element) {
+        saveElementPreference(element);
+        const theme = getThemePreference();
+        applyTheme(theme, element);
     }
 
     /**
@@ -170,30 +236,53 @@
     }
 
     /**
+     * Set up element radio button listeners
+     */
+    function setupElementListeners() {
+        const elements = ['metal', 'earth', 'fire', 'wood', 'water'];
+        
+        elements.forEach(element => {
+            const radio = document.getElementById(`element-choice-${element}`);
+            if (radio) {
+                radio.addEventListener('change', function() {
+                    if (this.checked) {
+                        handleElementChange(element);
+                    }
+                });
+            }
+        });
+    }
+
+    /**
      * Initialize theme on page load
      */
-    function init() {
-        // Get saved preference or use auto
+    async function init() {
+        // Get saved preferences or use defaults
         const theme = getThemePreference();
+        const element = await getElementPreference();
         
         // Apply the theme immediately to prevent flash
-        applyTheme(theme);
+        applyTheme(theme, element);
 
         // Set up listeners for theme radio buttons if they exist
         setupThemeListeners();
+        
+        // Set up listeners for element radio buttons if they exist
+        setupElementListeners();
 
         // Listen for system theme changes if using auto
         if (theme === 'auto') {
             const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-            mediaQuery.addEventListener('change', () => {
+            mediaQuery.addEventListener('change', async () => {
                 if (getThemePreference() === 'auto') {
-                    applyTheme('auto');
+                    const currentElement = await getElementPreference();
+                    applyTheme('auto', currentElement);
                 }
             });
         }
 
         // Listen for footer injection to update logo
-        document.addEventListener('footerInjected', () => {
+        document.addEventListener('footerInjected', async () => {
             const currentTheme = getThemePreference();
             const effectiveTheme = (currentTheme === 'auto') ?
                 (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') :
@@ -209,6 +298,8 @@
     window.ThemeSwitcher = {
         get: getThemePreference,
         set: handleThemeChange,
-        apply: applyTheme
+        apply: applyTheme,
+        getElement: getElementPreference,
+        setElement: handleElementChange
     };
 })();

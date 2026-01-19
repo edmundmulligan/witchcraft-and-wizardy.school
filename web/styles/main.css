@@ -19,27 +19,37 @@
 
 :root {
     /* elemental colours */
-    --color-metal-light:          #fff;       /* white */
-    --color-metal-light-highlight:#f0f0f0;    /* very light grey */
-    --color-earth-light:          #ff0;       /* yellow */
-    --color-earth-light-highlight:#ffffe0;    /* light yellow */
-    --color-fire-light:           #f08080;    /* light coral */
-    --color-fire-light-highlight: #ffe4e1;    /* misty rose */
-    --color-wood-light:           #98fb98;    /* pale green */
-    --color-wood-light-highlight: #f0fff0;    /* honeydew */
-    --color-water-light:          #add8e6;    /* light blue */
-    --color-water-light-highlight:#f0f8ff;    /* alice blue */
-    --color-metal-dark:           #000;       /* black */
-    --color-metal-dark-highlight: #2f2f2f;    /* very dark grey */
     --color-earth-dark:           #650;       /* dark olive */
     --color-earth-dark-highlight: #330;       /* very dark olive */
+    --color-earth-dark-alt:       #4b4000;    /* brown */
+    --color-earth-light:          #ff0;       /* yellow */
+    --color-earth-light-highlight:#ffffe0;    /* light yellow */
+    --color-earth-light-alt:      #ffa500;    /* orange */
     --color-fire-dark:            #8b0000;    /* dark red */
     --color-fire-dark-highlight:  #4b0000;    /* very dark red */
-    --color-wood-dark:            #006400;    /* dark green */
-    --color-wood-dark-highlight:  #003200;    /* very dark green */
+    --color-fire-dark-alt:        #800000;    /* maroon */
+    --color-fire-light:           #f08080;    /* light coral */
+    --color-fire-light-highlight: #ffe4e1;    /* misty rose */
+    --color-fire-light-alt:       #ff4500;    /* orange red */
+    --color-metal-dark:           #000;       /* black */
+    --color-metal-dark-highlight: #2f2f2f;    /* very dark grey */
+    --color-metal-dark-alt:       #808080;    /* grey */
+    --color-metal-light:          #fff;       /* white */
+    --color-metal-light-highlight:#f0f0f0;    /* very light grey */
+    --color-metal-light-alt:      #ffd700;    /* gold */
     --color-water-dark:           #00008b;    /* dark blue */
     --color-water-dark-highlight: #00004b;    /* very dark blue */
-
+    --color-water-dark-alt:       #000080;    /* navy */
+    --color-water-light:          #add8e6;    /* light blue */
+    --color-water-light-highlight:#f0f8ff;    /* alice blue */
+    --color-water-light-alt:      #1e90ff;    /* dodger blue */
+    --color-wood-dark:            #006400;    /* dark green */
+    --color-wood-dark-highlight:  #003200;    /* very dark green */
+    --color-wood-dark-alt:        #013220;    /* forest green */
+    --color-wood-light:           #98fb98;    /* pale green */
+    --color-wood-light-highlight: #f0fff0;    /* honeydew */
+    --color-wood-light-alt:       #32cd32;    /* lime green */
+ 
     /* non-elemental colours */
     --color-warning-background:   darkred;
     --color-warning-text:         white;
@@ -86,21 +96,20 @@
     --color-headings-background:       var(--color-metal-light-highlight);
     --color-headings-text:             var(--color-metal-dark-highlight);
     --color-link-text:                 var(--color-metal-dark-highlight);
-    --color-link-text-hover:           var(--color-metal-dark-highlight);
+    --color-link-text-hover:           var(--color-metal-dark-alt);
     --color-link-text-visited:         var(--color-metal-dark-highlight);
-    --color-link-text-focus:           var(--color-metal-dark-highlight);
+    --color-link-text-focus:           var(--color-metal-dark-alt);
 
 
     /* Background images for light and dark themes */
-    --bg-landscape-light:              url('../images/background-landscape-light-web.svg');
-    --bg-landscape-dark:               url('../images/background-landscape-dark-web.svg');
-    --bg-portrait-light:               url('../images/background-portrait-light-web.svg');
-    --bg-portrait-dark:                url('../images/background-portrait-dark-web.svg');
+    --bg-landscape-metal-light:              url('../images/background-landscape-metal-light-web.svg');
+    --bg-landscape-metal-dark:               url('../images/background-landscape-metal-dark-web.svg');
+    --bg-portrait-metal-light:               url('../images/background-portrait-metal-light-web.svg');
+    --bg-portrait-metal-dark:                url('../images/background-portrait-metal-dark-web.svg');
     
     /* Active background images - default to light, overridden by theme-switcher.js */
-    --bg-landscape:                    var(--bg-landscape-light);
-    --bg-portrait:                     var(--bg-portrait-light);
-
+    --bg-landscape:                    var(--bg-landscape-metal-light);
+    --bg-portrait:                     var(--bg-portrait-metal-light);
     /* SVG filter for theme switching */
     --svg-filter-light:                none;
     --svg-filter-dark:                 none;
