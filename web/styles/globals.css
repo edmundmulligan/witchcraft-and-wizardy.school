@@ -1,0 +1,150 @@
+/*
+ **********************************************************************
+ * File       : globals.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2025 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *    definition of global CSS variables and styles
+ **********************************************************************
+ */
+
+ /*
+  **********************************************************************
+  * Define semantic names for colours to be used on all pages
+  **********************************************************************
+  */
+
+:root {
+    /* elemental colours */
+    --color-earth-dark:           #650;       /* dark olive */
+    --color-earth-dark-highlight: #330;       /* very dark olive */
+    --color-earth-dark-alt:       #4b4000;    /* brown */
+    --color-earth-light:          #ff0;       /* yellow */
+    --color-earth-light-highlight:#ffffe0;    /* light yellow */
+    --color-earth-light-alt:      #ffa500;    /* orange */
+    --color-fire-dark:            #8b0000;    /* dark red */
+    --color-fire-dark-highlight:  #4b0000;    /* very dark red */
+    --color-fire-dark-alt:        #800000;    /* maroon */
+    --color-fire-light:           #f08080;    /* light coral */
+    --color-fire-light-highlight: #ffe4e1;    /* misty rose */
+    --color-fire-light-alt:       #ff4500;    /* orange red */
+    --color-metal-dark:           #000;       /* black */
+    --color-metal-dark-highlight: #2f2f2f;    /* very dark grey */
+    --color-metal-dark-alt:       #808080;    /* grey */
+    --color-metal-light:          #fff;       /* white */
+    --color-metal-light-highlight:#f0f0f0;    /* very light grey */
+    --color-metal-light-alt:      #ffd700;    /* gold */
+    --color-water-dark:           #00008b;    /* dark blue */
+    --color-water-dark-highlight: #00004b;    /* very dark blue */
+    --color-water-dark-alt:       #000080;    /* navy */
+    --color-water-light:          #add8e6;    /* light blue */
+    --color-water-light-highlight:#f0f8ff;    /* alice blue */
+    --color-water-light-alt:      #1e90ff;    /* dodger blue */
+    --color-wood-dark:            #006400;    /* dark green */
+    --color-wood-dark-highlight:  #003200;    /* very dark green */
+    --color-wood-dark-alt:        #013220;    /* forest green */
+    --color-wood-light:           #98fb98;    /* pale green */
+    --color-wood-light-highlight: #f0fff0;    /* honeydew */
+    --color-wood-light-alt:       #32cd32;    /* lime green */
+ 
+    /* non-elemental colours */
+    --color-warning-background:   darkred;
+    --color-warning-text:         white;
+    --color-error-background:     red;
+    --color-error-text:           white;
+    --color-code-background:      cyan;
+    --color-code-text:            purple;
+
+    /* light theme colours */
+    --color-light-page-background:     lightgoldenrodyellow;
+    --color-light-page-text:           darkgreen;
+    --color-light-headings-background: lightcyan;
+    --color-light-headings-text:       purple;
+    --color-light-link-text:           darkgreen;
+    --color-light-link-text-hover:     lightblue;
+    --color-light-link-text-visited:   darkblue;
+    --color-light-link-text-focus:     darkblue;
+    --color-light-error-background:    darkred;
+    --color-light-error-text:          white;
+    --color-light-warning-background:  red;
+    --color-light-warning-text:        white;
+    --color-light-code-background:     #f4f4f4;
+    --color-light-code-text:           #3700B3;
+
+    /* dark theme colours */
+    --color-dark-page-background:      indigo;
+    --color-dark-page-text:            lightcyan;
+    --color-dark-headings-background:  purple;
+    --color-dark-headings-text:        cyan;
+    --color-dark-link-text:            lightcyan;
+    --color-dark-link-text-hover:      darkblue;
+    --color-dark-link-text-visited:    lightblue;
+    --color-dark-link-text-focus:      lightblue;
+    --color-dark-error-background:     lightcoral;
+    --color-dark-error-text:           black;
+    --color-dark-warning-background:   red;
+    --color-dark-warning-text:         white;
+    --color-dark-code-background:      #2D1B69;
+    --color-dark-code-text:            #FFF;
+
+    /* Active theme colours - default to metal-light, overridden by theme-switcher.js */
+    --color-page-background:           var(--color-metal-light);
+    --color-page-text:                 var(--color-metal-dark);
+    --color-headings-background:       var(--color-metal-light-highlight);
+    --color-headings-text:             var(--color-metal-dark-highlight);
+    --color-link-text:                 var(--color-metal-dark-highlight);
+    --color-link-text-hover:           var(--color-metal-dark-alt);
+    --color-link-text-visited:         var(--color-metal-dark-highlight);
+    --color-link-text-focus:           var(--color-metal-dark-alt);
+
+
+    /* Background images for light and dark themes */
+    --bg-landscape-metal-light:              url('../images/background-landscape-metal-light-web.svg');
+    --bg-landscape-metal-dark:               url('../images/background-landscape-metal-dark-web.svg');
+    --bg-portrait-metal-light:               url('../images/background-portrait-metal-light-web.svg');
+    --bg-portrait-metal-dark:                url('../images/background-portrait-metal-dark-web.svg');
+    
+    /* Active background images - default to light, overridden by theme-switcher.js */
+    --bg-landscape:                    var(--bg-landscape-metal-light);
+    --bg-portrait:                     var(--bg-portrait-metal-light);
+    /* SVG filter for theme switching */
+    --svg-filter-light:                none;
+    --svg-filter-dark:                 none;
+    --svg-filter:                      var(--svg-filter-light);
+
+    /* SVG filter for header silhouettes - yellow in dark mode */
+    --header-svg-filter-light:         none;
+    --header-svg-filter-dark:          none;
+    --header-svg-filter:               var(--header-svg-filter-light);
+
+    /* other global variables to ensure sitewide consistency */
+    --border-radius:          2rem;
+    --border-weight:          0.2rem;
+    --border-weight-thin:     0.1rem;
+    --border-style:           solid;
+
+    /* responsive font and button sizes using clamp() */
+    
+    /* see https://modern-fluid-typography.vercel.app for a size calculator */
+
+    --fontsize-p:             clamp(0.5rem, 2vw + 1rem, 2.25rem);
+    --fontsize-smallprint:    clamp(0.5rem, 1.5vw + 0.75rem, 1.75rem);
+    --fontsize-largeprint:    clamp(1rem, 3vw + 1rem, 3rem);
+    --fontsize-h1h2:          clamp(0.875rem, 2vw + 1rem, 2.5rem);
+    --fontsize-h3h4:          clamp(0.8rem, 2vw + 1rem, 2.5rem);
+    --fontsize-h5h6:          clamp(0.75rem, 1.5vw + 1rem, 2rem);
+    --fontsize-button:        clamp(0.75rem, 1vw + 1rem, 4rem);
+    --fontsize-button-circle: clamp(0.75rem, 1vw + 0.75rem, 1.5rem);
+    --fontsize-nav-site:      clamp(0.875rem, 2vw, 1rem);
+    --fontsize-nave-page:     clamp(0.5rem, 2vw + 1rem, 2.25rem);
+    --buttonsize-circle:      clamp(4rem, 8vw + 5rem, 12rem);
+    --margin-vertical:        clamp(0.333rem, 0.5vw + 0.5rem, 1rem);;
+    --margin-horizontal:      clamp(0.333rem, 1vw + 1rem, 2rem);;
+
+    /* 
+        there are probably more things that could be defined here 
+        to ensure sitewide consistency such as margin and padding
+        sizes, but that means more refactoring and this is a good start
+    */
+}

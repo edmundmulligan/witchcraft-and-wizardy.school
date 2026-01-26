@@ -264,12 +264,6 @@
         // Apply the theme immediately to prevent flash
         applyTheme(theme, element);
 
-        // Set up listeners for theme radio buttons if they exist
-        setupThemeListeners();
-        
-        // Set up listeners for element radio buttons if they exist
-        setupElementListeners();
-
         // Listen for system theme changes if using auto
         if (theme === 'auto') {
             const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -291,8 +285,27 @@
         });
     }
 
+    /**
+     * Set up interactive listeners after DOM is ready
+     */
+    function setupInteractiveListeners() {
+        // Set up listeners for theme radio buttons if they exist
+        setupThemeListeners();
+        
+        // Set up listeners for element radio buttons if they exist
+        setupElementListeners();
+    }
+
     // Apply theme as early as possible to prevent flash
     init();
+
+    // Set up interactive listeners when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupInteractiveListeners);
+    } else {
+        // DOM is already ready
+        setupInteractiveListeners();
+    }
 
     // Export functions for use by other scripts
     window.ThemeSwitcher = {

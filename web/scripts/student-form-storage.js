@@ -325,6 +325,7 @@
                 updateAvatarPreview(data);
                 
                 // Apply theme immediately if theme choice changed
+                // Note: Element changes are handled by theme-switcher.js directly
                 if (radio.name === 'theme-choice' && data.themeChoice && window.ThemeSwitcher) {
                     window.ThemeSwitcher.set(data.themeChoice);
                 }
