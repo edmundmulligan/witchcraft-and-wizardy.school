@@ -23,17 +23,15 @@ fi
 APPLICATION=${1}
 ORIENTATIONS=("landscape" "portrait")
 THEMES=("light" "dark")
-ELEMENTS=("metal" "earth" "fire" "wood" "water")
 BASE="source"
 OUTPUT="generated"
 for ORIENTATION in "${ORIENTATIONS[@]}"; do
-    for ELEMENT in "${ELEMENTS[@]}"; do
-        for THEME in "${THEMES[@]}"; do
-            FILENAME="background-${APPLICATION}-${ORIENTATION}-${ELEMENT}-${THEME}"
-            TEX_FILE="${BASE}/${FILENAME}.tex"
-            ARTWORK_DIR="$OUTPUT"/${APPLICATION}
-            # Create artwork directory if it doesn't exist
-            mkdir -p "$ARTWORK_DIR"
+    for THEME in "${THEMES[@]}"; do
+        FILENAME="background-${APPLICATION}-${ORIENTATION}-${THEME}"
+        TEX_FILE="${BASE}/${FILENAME}.tex"
+        ARTWORK_DIR="$OUTPUT"/${APPLICATION}
+        # Create artwork directory if it doesn't exist
+        mkdir -p "$ARTWORK_DIR"
 
             PDF_FILE="$ARTWORK_DIR/$FILENAME.pdf"
             SVG_FILE="$ARTWORK_DIR/$FILENAME.svg"
@@ -67,6 +65,5 @@ for ORIENTATION in "${ORIENTATIONS[@]}"; do
                 exit 1
             fi
             rm -f "$PDF_FILE"
-        done
     done
 done

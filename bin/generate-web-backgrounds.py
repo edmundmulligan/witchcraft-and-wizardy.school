@@ -104,10 +104,10 @@ DARK_OPACITIES = {
     'opacitycorner': '0.7',
 }
 
-def generate_file(orientation, theme, mode, source_dir='artwork/source'):
+def generate_file(orientation, mode, source_dir='artwork/source'):
     """Generate a single background-web file"""
     
-    filename = f"{source_dir}/background-web-{orientation}-{theme}-{mode}.tex"
+    filename = f"{source_dir}/background-web-{orientation}-{mode}.tex"
     
     # Select parameters based on orientation
     package_orientation = orientation
@@ -116,14 +116,14 @@ def generate_file(orientation, theme, mode, source_dir='artwork/source'):
     # Select opacities and colors based on mode
     if mode == 'light':
         opacity_params = LIGHT_OPACITIES
-        bg_color = f"{theme}_light"
-        color_one = f"{theme}_dark_highlight"
-        color_two = f"{theme}_dark_alt"
+        bg_color = "tem_cyan"
+        color_one = "black"
+        color_two = "gray"
     else:
         opacity_params = DARK_OPACITIES
-        bg_color = f"{theme}_dark"
-        color_one = f"{theme}_light_highlight"
-        color_two = f"{theme}_light_alt"
+        bg_color = "tem_purple"
+        color_one = "white"
+        color_two = "lightgray"
     
     # Combine all parameters
     all_params = {**position_params, **opacity_params}
@@ -138,7 +138,7 @@ def generate_file(orientation, theme, mode, source_dir='artwork/source'):
 \\input{{common/packages-background-{package_orientation}.tex}}
 \\input{{common/colours.tex}}
 
-% {orientation.capitalize()} dimensions with {theme} theme ({mode} mode)
+% {orientation.capitalize()} dimensions ({mode} mode)
 \\def\\bgcolorbase{{{bg_color}}}
 \\def\\colorone{{{color_one}}}
 \\def\\colortwo{{{color_two}}}
@@ -159,13 +159,11 @@ def generate_file(orientation, theme, mode, source_dir='artwork/source'):
 def main():
     """Generate all background-web files"""
     orientations = ['portrait', 'landscape']
-    themes = ['earth', 'fire', 'metal', 'water', 'wood']
     modes = ['light', 'dark']
     
     for orientation in orientations:
-        for theme in themes:
-            for mode in modes:
-                generate_file(orientation, theme, mode)
+        for mode in modes:
+            generate_file(orientation, mode)
     
     print("\nAll background-web-*.tex files have been generated!")
 
