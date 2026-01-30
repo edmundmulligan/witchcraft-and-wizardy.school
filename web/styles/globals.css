@@ -26,12 +26,12 @@
     --color-code-text:            purple;
 
     /* light theme colours */
-    --color-light-page-background:     lightgoldenrodyellow;
-    --color-light-page-text:           darkgreen;
-    --color-light-headings-background: lightcyan;
+    --color-light-page-background:     lightcyan;
+    --color-light-page-text:           indigo;
+    --color-light-headings-background: cyan;
     --color-light-headings-text:       purple;
-    --color-light-link-text:           darkgreen;
-    --color-light-link-text-hover:     lightblue;
+    --color-light-link-text:           navy;
+    --color-light-link-text-hover:     navy;
     --color-light-link-text-visited:   darkblue;
     --color-light-link-text-focus:     darkblue;
     --color-light-error-background:    darkred;
@@ -69,10 +69,10 @@
 
 
     /* Background images for light and dark themes */
-    --bg-landscape-light:              url('../images/background-landscape-light-web.svg');
-    --bg-landscape-dark:               url('../images/background-landscape-dark-web.svg');
-    --bg-portrait-light:               url('../images/background-portrait-light-web.svg');
-    --bg-portrait-dark:                url('../images/background-portrait-dark-web.svg');
+    --bg-landscape-light:              url('../images/background-web-landscape-light.svg');
+    --bg-landscape-dark:               url('../images/background-web-landscape-dark.svg');
+    --bg-portrait-light:               url('../images/background-web-portrait-light.svg');
+    --bg-portrait-dark:                url('../images/background-web-portrait-dark.svg');
     
     /* Active background images - default to light, overridden by theme-switcher.js */
     --bg-landscape:                    var(--bg-landscape-light);
@@ -83,9 +83,9 @@
     --svg-filter-dark:                 none;
     --svg-filter:                      var(--svg-filter-light);
 
-    /* SVG filter for header silhouettes - yellow in dark mode */
-    --header-svg-filter-light:         none;
-    --header-svg-filter-dark:          none;
+    /* SVG filter for header silhouettes - match heading text color */
+    --header-svg-filter-light:         brightness(0) saturate(100%) invert(13%) sepia(100%) saturate(7426%) hue-rotate(275deg) brightness(86%) contrast(123%);
+    --header-svg-filter-dark:          brightness(0) saturate(100%) invert(91%) sepia(68%) saturate(3706%) hue-rotate(142deg) brightness(104%) contrast(101%);
     --header-svg-filter:               var(--header-svg-filter-light);
 
     /* other global variables to ensure site-wide consistency */

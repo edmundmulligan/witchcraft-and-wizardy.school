@@ -104,7 +104,7 @@ DARK_OPACITIES = {
     'opacitycorner': '0.7',
 }
 
-def generate_file(orientation, mode, source_dir='artwork/source'):
+def generate_file(orientation, mode, source_dir='source'):
     """Generate a single background-web file"""
     
     filename = f"{source_dir}/background-web-{orientation}-{mode}.tex"
@@ -116,14 +116,14 @@ def generate_file(orientation, mode, source_dir='artwork/source'):
     # Select opacities and colors based on mode
     if mode == 'light':
         opacity_params = LIGHT_OPACITIES
-        bg_color = "tem_cyan"
-        color_one = "black"
-        color_two = "gray"
+        bg_color = "web_background_light"
+        color_one = "web_background_light_highlight"
+        color_two = "web_background_light_alt"
     else:
         opacity_params = DARK_OPACITIES
-        bg_color = "tem_purple"
-        color_one = "white"
-        color_two = "lightgray"
+        bg_color = "web_background_dark"
+        color_one = "web_background_dark_highlight"
+        color_two = "web_background_dark_alt"
     
     # Combine all parameters
     all_params = {**position_params, **opacity_params}

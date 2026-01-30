@@ -53,13 +53,15 @@
 
 @media (width < 800px) or ((hover:none) and (pointer:coarse)) {
     /* switch header to vertical layout */
+    /*
     .header-full {
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: auto auto auto;
         align-items: center;
     }
-
+    */
+    
     .header-left {
         grid-column: 1;
         grid-row: 1;
