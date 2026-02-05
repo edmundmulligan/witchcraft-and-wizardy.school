@@ -9,8 +9,8 @@
  *   which needs significant refactoring before it is ready to be included 
  *   here.
  *
- *   Originally, each page had its own stlesheed and media-query stylesheel,
- *   but there was so much repetion between them that it made sense to
+ *   Originally, each page had its own stylesheet and media-query stylesheet,
+ *   but there was so much repetition between them that it made sense to
  *   put them all in one file to follow the DRY principle.
  *
  *   TODO: Add styles for student.html 
@@ -18,8 +18,8 @@
  */
 
 /* these class names are the same as the section id names in the HTML files 
-   and are unique across the web site. This may become uncalable if there 
-   are a lot of pages *i.e. whenactual lessons are implements, but for now 
+   and are unique across the web site. This may become unscalable if there 
+   are a lot of pages *i.e. when actual lessons are implemented, but for now 
    it works. This is why I refactored from one file per page so a single file.
 */
 .introduction,
@@ -31,10 +31,10 @@
 .credits,
 .student-info,
 .lessons {
-    max-width: 100%;
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+   max-width: 100%;
+   box-sizing: border-box;
+   padding: 0;
+   margin: 0;
 }
 
 .introduction p,
@@ -46,10 +46,10 @@
 .credits p,
 .student-info p,
 .lessons p {
-    max-width: 100%;
-    box-sizing: border-box;
-    overflow-wrap: break-word;
-    margin: var(--margin-vertical) var(--margin-horizontal);
+   max-width: 100%;
+   box-sizing: border-box;
+   overflow-wrap: break-word;
+   margin: var(--margin-vertical) var(--margin-horizontal);
 }
 
 .introduction ul,
@@ -59,16 +59,15 @@
 .glossary ul,
 .license ul,
 .credits ul {
-    margin: var(--margin-vertical) var(--margin-horizontal);
-    padding-left: 2rem;
-    padding-right: 2rem;
-    line-height: 1.5;
-    text-align: left;
-    max-width: 100%;
-    box-sizing: border-box;
-    font-size: var(--fontsize-p);
+   margin: var(--margin-vertical) var(--margin-horizontal);
+   padding-left: 2rem;
+   padding-right: 2rem;
+   line-height: 1.5;
+   text-align: left;
+   max-width: 100%;
+   box-sizing: border-box;
+   font-size: var(--fontsize-p);
 }
-
 
 .student-info form {
    display: flex;
@@ -102,10 +101,38 @@
 .student-info form .student-form-avatar {
    grid-column: 2;
    display: grid;
-   grid-template-columns: 1fr 1fr;
+   grid-template-columns: repeat(6, 1fr);
+   grid-template-rows: auto auto;
    gap: 0;
    margin: 1rem auto;
    justify-items: center;
+}
+
+/* First row: class, gender, age (each spans 2 columns for 3 equal items) */
+.student-info form .student-form-avatar fieldset:nth-child(1) {
+   grid-row: 1;
+   grid-column: 1 / 3;
+}
+
+.student-info form .student-form-avatar fieldset:nth-child(2) {
+   grid-row: 1;
+   grid-column: 3 / 5;
+}
+
+.student-info form .student-form-avatar fieldset:nth-child(3) {
+   grid-row: 1;
+   grid-column: 5 / 7;
+}
+
+/* Second row: theme and element (each spans 3 columns for 2 equal items) */
+.student-info form .student-form-avatar fieldset:nth-child(4) {
+   grid-row: 2;
+   grid-column: 1 / 4;
+}
+
+.student-info form .student-form-avatar fieldset:nth-child(5) {
+   grid-row: 2;
+   grid-column: 4 / 7;
 }
 
 .student-info form .student-form-avatar fieldset.full-width {
@@ -199,30 +226,30 @@
  **********************************************************/
 
  .gallery-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    margin: var(--margin-vertical) var(--margin-horizontal);
-    max-width: 100%;
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   gap: 1rem;
+   margin: var(--margin-vertical) var(--margin-horizontal);
+   max-width: 100%;
 }
 
 .accessories-container {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: stretch;
-    gap: 1rem;
-    margin: var(--margin-vertical) var(--margin-horizontal);
-    max-width: 100%;
+   display: flex;
+   flex-flow: row wrap;
+   justify-content: center;
+   align-items: stretch;
+   gap: 1rem;
+   margin: var(--margin-vertical) var(--margin-horizontal);
+   max-width: 100%;
 }
 
- .facts-container  {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    margin: var(--margin-vertical) var(--margin-horizontal);
-    max-width: 100%;
-    box-sizing: border-box;
+.facts-container  {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   gap: 1rem;
+   margin: var(--margin-vertical) var(--margin-horizontal);
+   max-width: 100%;
+   box-sizing: border-box;
 }
 
 .lessons-container {
@@ -232,14 +259,13 @@
 }
 
 .circular-button-container {
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-top: 3rem;
+   display: flex;
+   flex-direction: row;
+   gap: 2rem;
+   justify-content: space-evenly;
+   align-items: center;
+   margin-top: 3rem;
 }
-
 
 /**********************************************
  * contained classes for contained items.
@@ -247,81 +273,81 @@
  * this is clear enough for now
  **********************************************/
 .gallery-item {
-    text-align: center;
-    padding: 1rem;
-    background-color: var(--color-headings-background);
-    color: var(--color-headings-text);
-    border: var(--border-weight) var(--border-style) var(--color-headings-text);
-    border-radius: var(--border-radius);
-    align-items: center;
+   text-align: center;
+   padding: 1rem;
+   background-color: var(--color-headings-background);
+   color: var(--color-headings-text);
+   border: var(--border-weight) var(--border-style) var(--color-headings-text);
+   border-radius: var(--border-radius);
+   align-items: center;
 }
 
 .gallery-image {
-    display:block;
-    width: 100%;
-    height: 20rem;
-    object-fit: contain;
-    border-radius: 0.5rem;
+   display:block;
+   width: 100%;
+   height: 20rem;
+   object-fit: contain;
+   border-radius: 0.5rem;
 }
 
 .gallery-caption {
-    display: block;
-    margin: var(--margin-vertical) var(--margin-horizontal);
-    font-weight: bold;
+   display: block;
+   margin: var(--margin-vertical) var(--margin-horizontal);
+   font-weight: bold;
 }
 
 .accessory-item {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    background-color: var(--color-headings-background);
-    color: var(--color-headings-text);
-    border: var(--border-weight) var(--border-style) var(--color-headings-text);
-    border-radius: var(--border-radius);
-    text-align: center;
-    width: 21rem;
-    max-width: 100%;
+   display: flex;
+   flex-direction: column;
+   padding: 0;
+   background-color: var(--color-headings-background);
+   color: var(--color-headings-text);
+   border: var(--border-weight) var(--border-style) var(--color-headings-text);
+   border-radius: var(--border-radius);
+   text-align: center;
+   width: 21rem;
+   max-width: 100%;
 }
 
 .accessory-item .accessory-description:first-of-type {
-    flex: 1 0 auto;
+   flex: 1 0 auto;
 }
 
 .accessory-item hr {
-    width: 100%;
+   width: 100%;
 }
 
 .accessory-image {
-    display: block;
-    width: 20rem;
-    max-width: 100%;
-    height: auto;
-    margin: 0;
+   display: block;
+   width: 20rem;
+   max-width: 100%;
+   height: auto;
+   margin: 0;
 }
 
 .accessory-name {
-    display:block;
-    font-family: Cinzel, serif;
-    font-weight: bold;
+   display:block;
+   font-family: Cinzel, serif;
+   font-weight: bold;
 }
 
 .accessory-description {
-    display:block;
-    font-size: var(--fontsize-smallprint);
+   display:block;
+   font-size: var(--fontsize-smallprint);
 }
 
 .facts-item {
-    display: block;
-    background-color: var(--color-headings-background);
-    color: var(--color-headings-text);
-    border: var(--border-weight) var(--border-style) var(--color-headings-text);
-    border-radius: var(--border-radius);
-    font-size: var(--fontsize-p);
-    min-width: 0;
-    padding: 1rem;
-    margin: var(--margin-vertical) var(--margin-horizontal);
-    box-sizing: border-box;
-    text-align: center;
+   display: block;
+   background-color: var(--color-headings-background);
+   color: var(--color-headings-text);
+   border: var(--border-weight) var(--border-style) var(--color-headings-text);
+   border-radius: var(--border-radius);
+   font-size: var(--fontsize-p);
+   min-width: 0;
+   padding: 1rem;
+   margin: var(--margin-vertical) var(--margin-horizontal);
+   box-sizing: border-box;
+   text-align: center;
 }
 
 /* this is only used in the interesting facts section 
@@ -330,88 +356,88 @@
  */
  
 .wide {
-    grid-column: 1 / 3;
-    text-align: left;
+   grid-column: 1 / 3;
+   text-align: left;
 }
 
 .facts dl {
-    display: grid;
-    grid-template-columns: minmax(auto, 33%) 1fr;
-    gap: 0;
-    padding: 0;
-    margin: 0;
-    align-items: stretch;
+   display: grid;
+   grid-template-columns: minmax(auto, 33%) 1fr;
+   gap: 0;
+   padding: 0;
+   margin: 0;
+   align-items: stretch;
 }
 
 .facts dt {
-    font-weight: bold;
-    grid-column: 1;
-    padding: 0.5rem;
-    margin: 0;
-    text-align: center;
-    align-self: stretch;
-    max-width: 100%;
-    border-bottom: var(--border-weight) var(--border-style) var(--color-headings-text);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+   font-weight: bold;
+   grid-column: 1;
+   padding: 0.5rem;
+   margin: 0;
+   text-align: center;
+   align-self: stretch;
+   max-width: 100%;
+   border-bottom: var(--border-weight) var(--border-style) var(--color-headings-text);
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
 .facts dd {
-    grid-column: 2;
-    padding: 0.5rem;
-    margin: 0;
-    text-align: center;
-    align-self: stretch;
-    border-bottom: var(--border-weight) var(--border-style) var(--color-headings-text);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+   grid-column: 2;
+   padding: 0.5rem;
+   margin: 0;
+   text-align: center;
+   align-self: stretch;
+   border-bottom: var(--border-weight) var(--border-style) var(--color-headings-text);
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
 .facts dt:last-of-type {
-    border-bottom: none;
+   border-bottom: none;
 }
 
 .facts dd:last-of-type {
-    border-bottom: none;
+   border-bottom: none;
 }
 
 .glossary dl {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 0;
-    padding: 0 1rem;
-    align-items: stretch;
-    font-size: clamp(0.5rem, 2vw + 1rem, 2.25rem);
+   display: grid;
+   grid-template-columns: auto 1fr;
+   gap: 0;
+   padding: 0 1rem;
+   align-items: stretch;
+   font-size: clamp(0.5rem, 2vw + 1rem, 2.25rem);
 }
 
 .glossary dt {
-    font-weight: bold;
-    grid-column: 1;
-    padding: 0 0.5rem;
-    margin: 0;
-    border: var(--border-weight) var(--border-style) var(--color-page-text);
-    background-color: var(--color-page-background);
-    text-align: left;
-    align-items: center;
-    overflow-wrap: break-word;
-    hyphens: auto;
+   font-weight: bold;
+   grid-column: 1;
+   padding: 0 0.5rem;
+   margin: 0;
+   border: var(--border-weight) var(--border-style) var(--color-page-text);
+   background-color: var(--color-page-background);
+   text-align: left;
+   align-items: center;
+   overflow-wrap: break-word;
+   hyphens: auto;
 }
 
 .glossary dd {
-    grid-column: 2;
-    padding: 0 0.5rem;
-    margin: 0;
-    border-top: var(--border-weight) var(--border-style) var(--color-headings-text);
-    border-right: var(--border-weight) var(--border-style) var(--color-headings-text);
-    border-bottom: var(--border-weight) var(--border-style) var(--color-headings-text);
-    border-left: none;
-    background-color: var(--color-page-background);
-    text-align: left;
-    align-items: center;
-    overflow-wrap: break-word;
-    hyphens: auto;
+   grid-column: 2;
+   padding: 0 0.5rem;
+   margin: 0;
+   border-top: var(--border-weight) var(--border-style) var(--color-headings-text);
+   border-right: var(--border-weight) var(--border-style) var(--color-headings-text);
+   border-bottom: var(--border-weight) var(--border-style) var(--color-headings-text);
+   border-left: none;
+   background-color: var(--color-page-background);
+   text-align: left;
+   align-items: center;
+   overflow-wrap: break-word;
+   hyphens: auto;
 }
 
 .lesson-tile {

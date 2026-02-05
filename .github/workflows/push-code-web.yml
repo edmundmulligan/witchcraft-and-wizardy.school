@@ -1,4 +1,4 @@
-name: Push Code to Dev Server
+name: Push Code to Prod Server
 
 on:
     push:

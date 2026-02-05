@@ -53,13 +53,15 @@
 
 @media (width < 800px) or ((hover:none) and (pointer:coarse)) {
     /* switch header to vertical layout */
+    /*
     .header-full {
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: auto auto auto;
         align-items: center;
     }
-
+    */
+    
     .header-left {
         grid-column: 1;
         grid-row: 1;
@@ -299,6 +301,17 @@
         order: 2;
         grid-column: unset;
         grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, auto);
+    }
+
+    /* Reset grid positioning for mobile - stack all fieldsets vertically */
+    .student-info form .student-form-avatar fieldset:nth-child(1),
+    .student-info form .student-form-avatar fieldset:nth-child(2),
+    .student-info form .student-form-avatar fieldset:nth-child(3),
+    .student-info form .student-form-avatar fieldset:nth-child(4),
+    .student-info form .student-form-avatar fieldset:nth-child(5) {
+        grid-row: auto;
+        grid-column: 1;
     }
 
     .student-info form fieldset {
