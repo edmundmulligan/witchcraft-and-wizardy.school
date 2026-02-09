@@ -1,10 +1,8 @@
-/* global btoa, atob, console, alert, TextEncoder, TextDecoder, FormData, setTimeout */
-/* jshint esversion: 8 */
 /*
  **********************************************************************
  * File       : student-form-storage.js
  * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
- * Copyright  : (c) 2025 The Embodied Mind
+ * Copyright  : (c) 2026 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
  * Description:
  *   Handles saving and loading student form data to/from localStorage.
@@ -12,13 +10,15 @@
  *   other pages in the site.
  **********************************************************************
 */
+/* global btoa, atob, console, alert, TextEncoder, TextDecoder, FormData, setTimeout */
+/* jshint esversion: 8 */
 
 (function() {
     'use strict';
 
     const STORAGE_KEY_PREFIX = 'studentFormData_';
     const CURRENT_PROFILE_KEY = 'currentProfile';
-    const ENCRYPTION_KEY = 'witchcraft-and-wizardry-school-secure-key-2025';
+    const ENCRYPTION_KEY = 'witchcraft-and-wizardry-school-secure-key-2026';
 
     /**
      * Derive a cryptographic key from a password
@@ -58,18 +58,18 @@
             const key = await deriveKey();
             const encoder = new TextEncoder();
             const iv = window.crypto.getRandomValues(new Uint8Array(12));
-            
+
             const encrypted = await window.crypto.subtle.encrypt(
                 { name: 'AES-GCM', iv: iv },
                 key,
                 encoder.encode(data)
             );
-            
+
             // Combine IV and encrypted data
             const combined = new Uint8Array(iv.length + encrypted.byteLength);
             combined.set(iv, 0);
             combined.set(new Uint8Array(encrypted), iv.length);
-            
+
             // Convert to base64
             return btoa(String.fromCharCode(...combined));
         } catch (error) {
@@ -87,17 +87,17 @@
         try {
             const key = await deriveKey();
             const combined = Uint8Array.from(atob(encryptedData), c => c.charCodeAt(0));
-            
+
             // Extract IV and encrypted data
             const iv = combined.slice(0, 12);
             const data = combined.slice(12);
-            
+
             const decrypted = await window.crypto.subtle.decrypt(
                 { name: 'AES-GCM', iv: iv },
                 key,
                 data
             );
-            
+
             const decoder = new TextDecoder();
             return decoder.decode(decrypted);
         } catch (error) {

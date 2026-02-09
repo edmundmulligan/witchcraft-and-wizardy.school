@@ -1,27 +1,29 @@
 /*
  **********************************************************************
- * File       : scripts/header.js
+ * File       : scripts/injectCommonCode.js
  * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
- * Copyright  : (c) 2025 The Embodied Mind
+ * Copyright  : (c) 2026 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
  * Description:
- *   Injects header content into all pages to follow DRY principle
- *   Probably better to do all injections from a single javascript function
- *   but this is simpler for now
+ *   Injects header, footer, and not-implemented content into all pages
+ *   to follow DRY principle
  **********************************************************************
  */
+
+/* global Event */
 
 (function() {
     'use strict';
 
     document.addEventListener('DOMContentLoaded', function() {
+        // Determine path prefix based on current page location
+        // Check if we're in a subdirectory (pages, students, or mentors)
+        const pathname = window.location.pathname;
+        const pathPrefix = (pathname.includes('/pages/') || pathname.includes('/students/') || pathname.includes('/mentors/')) ? '../' : '';
+
+        // Inject Header
         const header = document.querySelector('header.header');
         if (header && header.children.length === 0) {
-            // Determine path prefix based on current page location
-            // Check if we're in a subdirectory (pages, students, or mentors)
-            const pathname = window.location.pathname;
-            const pathPrefix = (pathname.includes('/pages/') || pathname.includes('/students/') || pathname.includes('/mentors/')) ? '../' : '';
-
             header.innerHTML = `
 <div class="header-minimal">
     <div class="header-text">
@@ -103,6 +105,55 @@
         
             // Dispatch custom event to signal header is ready
             document.dispatchEvent(new Event('headerInjected'));
+        }
+
+        // Inject Footer
+        const footer = document.querySelector('footer.footer');
+        if (footer && footer.children.length === 0) {
+            footer.innerHTML = `
+<div class="footer-minimal">
+    <div class="footer-text"><p>&copy;&nbsp;The Embodied Mind, 2025-2026</p></div>
+    <div class="footer-button"><button aria-label="Expand footer"><i class="fa-solid fa-chevron-up" aria-hidden="true"></i></button></div>
+</div>
+
+<div class="footer-full">
+    <div class="footer-text">
+        <h2>Created by Edmund Mulligan, BSc, PgDip, CITP&nbsp;MBCS, GradStat&nbsp;FRSS</h2>
+        <p>
+            &copy;&nbsp;The Embodied Mind, 2025-2026.
+            MIT License. <a href="${pathPrefix}pages/license.html">See the license page for more details</a>.
+        </p>
+    </div>
+    <div class="footer-button"><button aria-label="Collapse footer"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button></div>
+    <div class="footer-logo">
+        <img 
+            id="embodied-mind-logo"
+            src="${pathPrefix}images/logo-embodied-mind-with-name-purple.png" 
+            alt="The Embodied Mind logo. A brain with a moustache winking"
+            data-light-logo="${pathPrefix}images/logo-embodied-mind-with-name-purple.png"
+            data-dark-logo="${pathPrefix}images/logo-embodied-mind-with-name-cyan.png"
+        >
+    </div>
+</div>
+`;
+
+            // Dispatch custom event to signal footer is ready
+            document.dispatchEvent(new Event('footerInjected'));
+        }
+
+        // Inject Popover Content
+        const popover = document.getElementById('not-implemented');
+        if (popover) {
+            popover.innerHTML = `
+                <h2>Under Construction</h2>
+                <p>
+                    This feature has not been implemented yet&nbsp;&mdash;&nbsp;please
+                    check back later!
+                </p>
+                <button popovertarget="not-implemented" popovertargetaction="hide">
+                    Close
+                </button>
+            `;
         }
     });
 })();

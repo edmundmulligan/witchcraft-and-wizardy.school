@@ -31,9 +31,8 @@
 [class*=" button"]:hover,
 [class^="button"]:focus-visible,
 [class*=" button"]:focus-visible {
-    color: var(--color-headings-text);
-    background-color: var(--color-headings-background);
-    border-color: var(--color-headings-text);
+    color: var(--color-link-text);
+    background-color: var(--color-headings-text);
 }
 
 /* not all buttons are links, but those that are use these styles */
@@ -70,7 +69,7 @@
     /* ensure text scales within the circle */
     font-family: Cinzel, serif;
     font-size: var(--fontsize-button-circle);
-    background-color: var(--color-page-background);
+
 }
 
 .button-circle:hover,
