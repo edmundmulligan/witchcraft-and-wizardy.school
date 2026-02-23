@@ -12,28 +12,66 @@
 (function() {
     'use strict';
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const osRadios = document.querySelectorAll('input[name="os"]');
-        
-        if (osRadios.length === 0) {
-            return; // Not on a page with OS selection
+    /**
+     * Class for showing OS-specific instructions based on radio button selection
+     */
+    class OSInstructionSwitcher {
+        constructor() {
+            this.osRadios = null;
         }
-        
-        // Add change event listener to all OS radio buttons
-        osRadios.forEach(radio => {
-            radio.addEventListener('change', function() {
-                // Hide all instruction divs
-                const allInstructions = document.querySelectorAll('[id^="instructions-"]');
-                allInstructions.forEach(div => {
-                    div.classList.remove('visible');
-                });
-                
-                // Show the selected instruction div
-                const selectedInstructions = document.getElementById(`instructions-${this.value}`);
-                if (selectedInstructions) {
-                    selectedInstructions.classList.add('visible');
-                }
+
+        /**
+         * Hide all instruction divs
+         */
+        hideAllInstructions() {
+            const allInstructions = document.querySelectorAll('[id^="instructions-"]');
+            allInstructions.forEach(div => {
+                div.classList.remove('visible');
             });
-        });
+        }
+
+        /**
+         * Show instructions for a specific OS
+         * @param {string} osValue - The OS value (e.g., 'windows', 'macos', 'linux')
+         */
+        showInstructions(osValue) {
+            this.hideAllInstructions();
+            
+            const selectedInstructions = document.getElementById(`instructions-${osValue}`);
+            if (selectedInstructions) {
+                selectedInstructions.classList.add('visible');
+            }
+        }
+
+        /**
+         * Set up event listeners for OS radio buttons
+         */
+        setupListeners() {
+            this.osRadios = document.querySelectorAll('input[name="os"]');
+        
+            if (this.osRadios.length === 0) {
+                return; // Not on a page with OS selection
+            }
+        
+            // Add change event listener to all OS radio buttons
+            this.osRadios.forEach(radio => {
+                radio.addEventListener('change', () => {
+                    this.showInstructions(radio.value);
+                });
+            });
+        }
+
+        /**
+         * Initialize the OS instruction switcher
+         */
+        init() {
+            this.setupListeners();
+        }
+    }
+
+    // Initialize on DOM ready
+    document.addEventListener('DOMContentLoaded', function() {
+        const switcher = new OSInstructionSwitcher();
+        switcher.init();
     });
 })();

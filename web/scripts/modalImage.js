@@ -15,61 +15,79 @@
 (function() {
     'use strict';
 
-    // Cache DOM elements and original overflow value
-    let modal;
-    let modalImg;
-    let captionText;
-    let originalOverflow;
-
     /**
-     * Initialize DOM element references
+     * Class for managing image modal functionality
      */
-    function initElements() {
-        if (!modal) {
-            modal = document.getElementById('imageModal');
-            modalImg = document.getElementById('modalImage');
-            captionText = document.getElementById('modalCaption');
+    class ImageModal {
+        constructor() {
+            this.modal = null;
+            this.modalImg = null;
+            this.captionText = null;
+            this.originalOverflow = null;
+            this.initElements();
+            this.setupEventListeners();
+        }
+
+        /**
+         * Initialize DOM element references
+         */
+        initElements() {
+            this.modal = document.getElementById('imageModal');
+            this.modalImg = document.getElementById('modalImage');
+            this.captionText = document.getElementById('modalCaption');
+        }
+
+        /**
+         * Set up event listeners for modal functionality
+         */
+        setupEventListeners() {
+            // Close modal when pressing Escape key
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    this.close();
+                }
+            });
+        }
+
+        /**
+         * Opens the image modal with the specified image
+         * @param {string} imageSrc - The source URL of the image to display
+         * @param {string} imageAlt - The alt text for the image
+         */
+        open(imageSrc, imageAlt) {
+            if (!this.modal) {
+                this.initElements();
+            }
+
+            this.modal.style.display = 'block';
+            this.modalImg.src = imageSrc;
+            this.modalImg.alt = imageAlt;
+            this.captionText.textContent = imageAlt;
+        
+            // Store original overflow and prevent body scroll when modal is open
+            this.originalOverflow = document.body.style.overflow || 'auto';
+            document.body.style.overflow = 'hidden';
+        }
+
+        /**
+         * Closes the image modal and restores page scroll
+         */
+        close() {
+            if (!this.modal) {
+                this.initElements();
+            }
+
+            this.modal.style.display = 'none';
+        
+            // Restore original body scroll
+            document.body.style.overflow = this.originalOverflow || 'auto';
         }
     }
 
-    /**
-     * Opens the image modal with the specified image
-     * @param {string} imageSrc - The source URL of the image to display
-     * @param {string} imageAlt - The alt text for the image
-     */
-    function openImageModal(imageSrc, imageAlt) {
-        initElements();
+    // Create a global instance
+    const imageModal = new ImageModal();
 
-        modal.style.display = 'block';
-        modalImg.src = imageSrc;
-        modalImg.alt = imageAlt;
-        captionText.textContent = imageAlt;
-        
-        // Store original overflow and prevent body scroll when modal is open
-        originalOverflow = document.body.style.overflow || 'auto';
-        document.body.style.overflow = 'hidden';
-    }
-
-    /**
-     * Closes the image modal and restores page scroll
-     */
-    function closeImageModal() {
-        initElements();
-
-        modal.style.display = 'none';
-        
-        // Restore original body scroll
-        document.body.style.overflow = originalOverflow || 'auto';
-    }
-
-    // Make functions globally available for inline handlers
-    window.openImageModal = openImageModal;
-    window.closeImageModal = closeImageModal;
-
-    // Close modal when pressing Escape key
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-            closeImageModal();
-        }
-    });
+    // Expose functions globally for inline handlers
+    window.openImageModal = (imageSrc, imageAlt) => imageModal.open(imageSrc, imageAlt);
+    window.closeImageModal = () => imageModal.close();
 })();

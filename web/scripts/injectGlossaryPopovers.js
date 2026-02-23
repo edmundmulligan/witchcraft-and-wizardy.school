@@ -11,21 +11,28 @@
  */
 
 /* jshint esversion: 8 */
-/* global console, fetch, DOMParser */
+/* global Debug, fetch, DOMParser */
 
 (function() {
     'use strict';
 
-    document.addEventListener('DOMContentLoaded', async function() {
-    // Find all glossary popovers on the page
-        const glossaryPopovers = document.querySelectorAll('.glossary-popover');
-    
-        if (glossaryPopovers.length === 0) {
-            return;
+    /**
+     * Class for injecting glossary definitions into popovers
+     */
+    class GlossaryPopoverInjector {
+        constructor() {
+            this.glossaryDoc = null;
         }
 
-        try {
-            // Fetch the glossary page
+        /**
+         * Fetch the glossary page and parse it
+         * @returns {Promise<Document>} Parsed glossary document
+         */
+        async fetchGlossary() {
+            if (this.glossaryDoc) {
+                return this.glossaryDoc;
+            }
+
             const response = await fetch('../pages/glossary.html');
             if (!response.ok) {
                 throw new Error('Failed to fetch glossary');
@@ -33,55 +40,93 @@
 
             const html = await response.text();
             const parser = new DOMParser();
-            const glossaryDoc = parser.parseFromString(html, 'text/html');
+            this.glossaryDoc = parser.parseFromString(html, 'text/html');
+            return this.glossaryDoc;
+        }
 
-            // Process each glossary popover
-            glossaryPopovers.forEach(popover => {
-                const popoverId = popover.id;
-                // Extract the term from the popover ID (e.g., "glossary-html-popover" -> "html")
-                const match = popoverId.match(/^glossary-(.+)-popover$/);
-                if (!match) {
-                    return;
-                }
+        /**
+         * Sanitise text content to prevent XSS attacks
+         * @param {string} text - Text to sanitise
+         * @returns {string} Sanitised text
+         */
+        escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
 
-                const term = match[1];
-                const glossaryId = `glossary-${term}`;
+        /**
+         * Extract term ID from popover ID
+         * @param {string} popoverId - The popover element ID
+         * @returns {string|null} The term identifier or null
+         */
+        extractTermFromId(popoverId) {
+            const match = popoverId.match(/^glossary-(.+)-popover$/);
+            return match ? match[1] : null;
+        }
 
-                // Find the term and definition in the glossary
-                const dt = glossaryDoc.getElementById(glossaryId);
-                if (!dt) {
-                    console.warn(`Glossary term not found: ${glossaryId}`);
-                    return;
-                }
+        /**
+         * Populate a single popover with glossary content
+         * @param {HTMLElement} popover - The popover element to populate
+         */
+        populatePopover(popover) {
+            const popoverId = popover.id;
+            const term = this.extractTermFromId(popoverId);
+            
+            if (!term) {
+                return;
+            }
 
-                const termText = dt.textContent.trim();
+            const glossaryId = `glossary-${term}`;
 
-                // Get the next sibling dd element (definition)
-                const dd = dt.nextElementSibling;
-                if (!dd || dd.tagName !== 'DD') {
-                    console.warn(`Definition not found for term: ${glossaryId}`);
-                    return;
-                }
+            // Find the term and definition in the glossary
+            const dt = this.glossaryDoc.getElementById(glossaryId);
+            if (!dt) {
+                console.warn(`Glossary term not found: ${glossaryId}`);
+                return;
+            }
 
-                const definition = dd.textContent.trim();
+            const termText = dt.textContent.trim();
 
-                // Sanitise text content to prevent XSS attacks
-                const escapeHtml = (text) => {
-                    const div = document.createElement('div');
-                    div.textContent = text;
-                    return div.innerHTML;
-                };
+            // Get the next sibling dd element (definition)
+            const dd = dt.nextElementSibling;
+            if (!dd || dd.tagName !== 'DD') {
+                console.warn(`Definition not found for term: ${glossaryId}`);
+                return;
+            }
 
-                // Populate the popover with sanitised content
-                popover.innerHTML = `
-<h2>${escapeHtml(termText)}</h2>
-<p>${escapeHtml(definition)}</p>
+            const definition = dd.textContent.trim();
+
+            // Populate the popover with sanitised content
+            popover.innerHTML = `
+<h2>${this.escapeHtml(termText)}</h2>
+<p>${this.escapeHtml(definition)}</p>
 <button type="button" popovertarget="${popoverId}" popovertargetaction="hide">Close</button>
 `;
-            });
-
-        } catch (error) {
-            console.error('Error loading glossary:', error);
         }
+
+        /**
+         * Find and populate all glossary popovers on the page
+         */
+        async init() {
+            const glossaryPopovers = document.querySelectorAll('.glossary-popover');
+    
+            if (glossaryPopovers.length === 0) {
+                return;
+            }
+
+            try {
+                await this.fetchGlossary();
+                glossaryPopovers.forEach(popover => this.populatePopover(popover));
+            } catch (error) {
+                console.error('Error loading glossary:', error);
+            }
+        }
+    }
+
+    // Initialize on DOM ready
+    document.addEventListener('DOMContentLoaded', async function() {
+        const injector = new GlossaryPopoverInjector();
+        await injector.init();
     });
 })();

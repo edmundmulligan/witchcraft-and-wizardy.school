@@ -66,7 +66,10 @@
     <!-- End of CSS stylesheets section -->
 
     <!-- Load JavaScript files -->
-    <script src="scripts/theme-switcher.js"></script>
+    <!-- debug.js must load first to be available to all other scripts -->
+    <parameter name="script">
+    <script src="scripts/debug.js"></script>
+    <script src="scripts/themeSwitcher.js"></script>
     <script src="scripts/toggle-header-footer.js" defer></script>
     <script src="scripts/injectCommonCode.js" defer></script>
     <script src="scripts/toggle-section.js" defer></script>
@@ -84,12 +87,22 @@
         <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
     </header>
 
-    <main>
-        <h2 class="page-title">Click on your chosen path</h2>
-        <div class="circular-button-container">
-            <a href="pages/start.html" class="button-circle" id="start-button">Start</a>
-            <a href="pages/students.html" class="button-circle" id="students-button">I am a Student</a>
-            <a href="pages/mentors.html" class="button-circle" id="mentors-button">I am a Mentor</a>
+    <main class="main">
+        <div class="index-block">
+            <h2 class="page-title">Choose your theme</h2>
+            <div class="circular-button-container">
+                <a href="#" class="button-circle theme-button" id="light-button">Light</a>
+                <a href="#" class="button-circle theme-button" id="dark-button">Dark</a>
+            </div>
+        </div>
+
+        <div class="index-block">
+            <h2 class="page-title">Click on your chosen path</h2>
+            <div class="circular-button-container">
+                <a href="pages/start.html" class="button-circle" id="start-button">Start</a>
+                <a href="pages/students.html" class="button-circle" id="students-button">I am a Student</a>
+                <a href="pages/mentors.html" class="button-circle" id="mentors-button">I am a Mentor</a>
+            </div>
         </div>
     </main>
 

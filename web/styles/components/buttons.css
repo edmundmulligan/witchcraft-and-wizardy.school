@@ -77,8 +77,50 @@
     transform: scale(1.2);
 }
 
+/* Override for theme buttons - must come after general button-circle styles */
+.button-circle.theme-button:hover,
+.button-circle.theme-button:focus-visible {
+    transform: translateY(2px) scale(1.05);
+}
+
 .button-rectangle:hover,
 .button-rectangle:focus-visible {
     background-color: var(--color-link-text-hover);
     color: var(--color-headings-text);
+}
+
+/* 3D button styles for theme buttons */
+.button-circle.theme-button {
+    box-shadow: 
+        0 5px 0 var(--color-headings-text),
+        0 8px 10px rgba(0, 0, 0, 0.3);
+    transform: translateY(0);
+    transition: all 0.1s ease;
+}
+
+/* Hover moved up before pressed to avoid specificity issues */
+.button-circle.theme-button:active {
+    transform: translateY(5px) scale(1);
+    box-shadow: 
+        0 0px 0 var(--color-headings-text),
+        0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Pressed state for selected theme - higher specificity */
+.button-circle.theme-button.pressed {
+    transform: translateY(5px) scale(1) !important;
+    box-shadow: 
+        0 0px 0 var(--color-headings-text),
+        0 2px 5px rgba(0, 0, 0, 0.2) !important;
+    background-color: var(--color-link-text) !important;
+    color: var(--color-headings-background) !important;
+}
+
+/* Prevent hover effect on pressed button */
+.button-circle.theme-button.pressed:hover,
+.button-circle.theme-button.pressed:focus-visible {
+    transform: translateY(5px) scale(1) !important;
+    box-shadow: 
+        0 0px 0 var(--color-headings-text),
+        0 2px 5px rgba(0, 0, 0, 0.2) !important;
 }

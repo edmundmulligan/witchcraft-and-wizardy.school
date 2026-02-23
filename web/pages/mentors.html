@@ -60,7 +60,8 @@
     <!-- End of CSS stylesheets section -->
 
     <!-- Load JavaScript files -->
-    <script src="../scripts/theme-switcher.js"></script>
+    <script src="../scripts/debug.js"></script>
+    <script src="../scripts/themeSwitcher.js"></script>
     <script src="../scripts/toggle-header-footer.js" defer></script>
     <script src="../scripts/injectCommonCode.js" defer></script>
     <script src="../scripts/student-form-storage.js" defer></script>
@@ -86,56 +87,6 @@
             <p>
                 Welcome to the mentor's section of this site. As a mentor, your role is to help and support students as they learn web development through this course. You do not need to be a web development expert, but you should be willing to assist students with any questions they may have and encourage them to keep going. Feel free to challenge them to think critically about what they are learning and how they can apply it. Remember, your enthusiasm and support can make a big difference in a student's learning journey. Thank you for being a mentor.
             </p>
-            <form
-                id="mentor-info-form"
-                method="post"
-            >
-                <div class="student-form-item">
-                    <h4>Choose your theme</h4>
-                    <p>You do not need to choose an avatar, but you can choose whether you prefer a light or dark theme for the site.</p>
-                    <div class="student-form-avatar">
-                        <fieldset class="full-width">
-                            <legend>Choose your theme</legend>
-                            <div class="student-form-choice">
-                                <input type="radio" id="theme-choice-light" name="theme-choice" value="light">
-                                <label for="theme-choice-light">I prefer day</label>
-                            </div>
-
-                            <div class="student-form-choice">
-                                <input type="radio" id="theme-choice-dark" name="theme-choice" value="dark">
-                                <label for="theme-choice-dark">I prefer night</label>
-                            </div>
-                        </fieldset>
-                    </div>
-                </div>
-
-                <hr class="student-form-item">
-
-                <div class="student-form-item button-group">
-                    <button
-                        type="submit"
-                        id="save-information-btn"
-                        class="button-rectangle"
-                    >
-                        Save Information
-                    </button>
-                    <button
-                        type="button"
-                        id="load-information-btn"
-                        class="button-rectangle"
-                    >
-                        Load Information
-                    </button>
-                    <button
-                        type="button"
-                        id="clear-information-btn"
-                        class="button-rectangle"
-                        popovertarget="confirm-clear"
-                    >
-                        Clear Saved Information
-                    </button>
-                </div>
-            </form>
         </section>
 
         <section id="lessons" class="lessons">
@@ -403,14 +354,6 @@
     </footer>
     <div id="not-implemented" popover="auto" class="popover">
         <!-- Popover content is injected by JavaScript to ensure it is the same across all pages -->
-    </div>
-    <div id="confirm-clear" popover="auto" class="popover">
-        <h3>Clear All Information?</h3>
-        <p>Are you sure you want to clear all saved information? This action cannot be undone.</p>
-        <div class="button-group">
-            <button type="button" id="confirm-clear-yes" class="button-rectangle">Yes, Clear It</button>
-            <button type="button" id="confirm-clear-no" class="button-rectangle" popovertarget="confirm-clear" popovertargetaction="hide">Cancel</button>
-        </div>
     </div>
 </body>
 </html>

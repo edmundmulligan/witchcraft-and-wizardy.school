@@ -16,86 +16,110 @@
 (function() {
     'use strict';
 
-    const HEADER_STATE_KEY = 'headerState';
-    const FOOTER_STATE_KEY = 'footerState';
-
-// Function to setup header toggle
-function setupHeaderToggle() {
-    const header = document.querySelector('header.header');
-    if (header) {
-        const headerMinimal = header.querySelector('.header-minimal');
-        const headerFull = header.querySelector('.header-full');
-        const headerButtons = header.querySelectorAll('.header-button button');
-        
-        // Load saved state
-        const savedState = localStorage.getItem(HEADER_STATE_KEY);
-        if (savedState === 'expanded') {
-            headerMinimal.style.display = 'none';
-            headerFull.style.display = 'grid';
-        } else if (savedState === 'compact') {
-            headerMinimal.style.display = 'grid';
-            headerFull.style.display = 'none';
+    /**
+     * Class for managing collapsible header and footer sections
+     */
+    class HeaderFooterToggler {
+        constructor() {
+            this.HEADER_STATE_KEY = 'headerState';
+            this.FOOTER_STATE_KEY = 'footerState';
         }
-        
-        headerButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const icon = this.querySelector('i');
-                
-                if (icon.classList.contains('fa-chevron-down')) {
-                    // Down arrow clicked - show full header
-                    headerMinimal.style.display = 'none';
-                    headerFull.style.display = 'grid';
-                    localStorage.setItem(HEADER_STATE_KEY, 'expanded');
-                } else {
-                    // Up arrow clicked - show minimal header
-                    headerMinimal.style.display = 'grid';
-                    headerFull.style.display = 'none';
-                    localStorage.setItem(HEADER_STATE_KEY, 'compact');
-                }
-            });
-        });
-    }
-}
 
-// Function to setup footer toggle
-function setupFooterToggle() {
-    const footer = document.querySelector('footer.footer');
-    if (footer) {
-        const footerMinimal = footer.querySelector('.footer-minimal');
-        const footerFull = footer.querySelector('.footer-full');
-        const footerButtons = footer.querySelectorAll('.footer-button button');
+        /**
+         * Set up header toggle functionality
+         */
+        setupHeaderToggle() {
+            const header = document.querySelector('header.header');
+            if (!header) {
+                return;
+            }
+
+            const headerMinimal = header.querySelector('.header-minimal');
+            const headerFull = header.querySelector('.header-full');
+            const headerButtons = header.querySelectorAll('.header-button button');
         
-        // Load saved state
-        const savedState = localStorage.getItem(FOOTER_STATE_KEY);
-        if (savedState === 'expanded') {
-            footerMinimal.style.display = 'none';
-            footerFull.style.display = 'flex';
-        } else if (savedState === 'compact') {
-            footerMinimal.style.display = 'flex';
-            footerFull.style.display = 'none';
+            // Load saved state
+            const savedState = localStorage.getItem(this.HEADER_STATE_KEY);
+            if (savedState === 'expanded') {
+                headerMinimal.style.display = 'none';
+                headerFull.style.display = 'grid';
+            } else if (savedState === 'compact') {
+                headerMinimal.style.display = 'grid';
+                headerFull.style.display = 'none';
+            }
+        
+            headerButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const icon = button.querySelector('i');
+                
+                    if (icon.classList.contains('fa-chevron-down')) {
+                        // Down arrow clicked - show full header
+                        headerMinimal.style.display = 'none';
+                        headerFull.style.display = 'grid';
+                        localStorage.setItem(this.HEADER_STATE_KEY, 'expanded');
+                    } else {
+                        // Up arrow clicked - show minimal header
+                        headerMinimal.style.display = 'grid';
+                        headerFull.style.display = 'none';
+                        localStorage.setItem(this.HEADER_STATE_KEY, 'compact');
+                    }
+                });
+            });
         }
-        
-        footerButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const icon = this.querySelector('i');
-                
-                if (icon.classList.contains('fa-chevron-up')) {
-                    // Up arrow clicked - show full footer
-                    footerMinimal.style.display = 'none';
-                    footerFull.style.display = 'flex';
-                    localStorage.setItem(FOOTER_STATE_KEY, 'expanded');
-                } else {
-                    // Down arrow clicked - show minimal footer
-                    footerMinimal.style.display = 'flex';
-                    footerFull.style.display = 'none';
-                    localStorage.setItem(FOOTER_STATE_KEY, 'compact');
-                }
-            });
-        });
-    }
-}
 
-    // Listen for custom events from inject scripts
-    document.addEventListener('headerInjected', setupHeaderToggle);
-    document.addEventListener('footerInjected', setupFooterToggle);
+        /**
+         * Set up footer toggle functionality
+         */
+        setupFooterToggle() {
+            const footer = document.querySelector('footer.footer');
+            if (!footer) {
+                return;
+            }
+
+            const footerMinimal = footer.querySelector('.footer-minimal');
+            const footerFull = footer.querySelector('.footer-full');
+            const footerButtons = footer.querySelectorAll('.footer-button button');
+        
+            // Load saved state
+            const savedState = localStorage.getItem(this.FOOTER_STATE_KEY);
+            if (savedState === 'expanded') {
+                footerMinimal.style.display = 'none';
+                footerFull.style.display = 'flex';
+            } else if (savedState === 'compact') {
+                footerMinimal.style.display = 'flex';
+                footerFull.style.display = 'none';
+            }
+        
+            footerButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const icon = button.querySelector('i');
+                
+                    if (icon.classList.contains('fa-chevron-up')) {
+                        // Up arrow clicked - show full footer
+                        footerMinimal.style.display = 'none';
+                        footerFull.style.display = 'flex';
+                        localStorage.setItem(this.FOOTER_STATE_KEY, 'expanded');
+                    } else {
+                        // Down arrow clicked - show minimal footer
+                        footerMinimal.style.display = 'flex';
+                        footerFull.style.display = 'none';
+                        localStorage.setItem(this.FOOTER_STATE_KEY, 'compact');
+                    }
+                });
+            });
+        }
+
+        /**
+         * Initialize the toggler
+         */
+        init() {
+            // Listen for custom events from inject scripts
+            document.addEventListener('headerInjected', () => this.setupHeaderToggle());
+            document.addEventListener('footerInjected', () => this.setupFooterToggle());
+        }
+    }
+
+    // Create instance and initialize
+    const toggler = new HeaderFooterToggler();
+    toggler.init();
 })();

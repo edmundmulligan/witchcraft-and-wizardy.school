@@ -17,16 +17,19 @@
  *******************************************************
  */
 
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     /* create positioning context for absolutely positioned child elements */
     position: relative;
 
     /* use flexbox to layout header, main and footer vertically */
-
-    /* probably not neccessary, but it does allow align-items to be used */
     display: flex;
     flex-direction: column;
-    align-items: center;
     min-height: 100vh;
 
     /* prevent horizontal overflow */
@@ -35,6 +38,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    overflow-y: auto;
     box-sizing: border-box;
     overflow-wrap: break-word;
 
@@ -67,28 +71,32 @@ body::before {
     background-repeat: no-repeat;
     background-attachment: fixed;
 
-    /* ensure the background image tranparent so it
+    /* ensure the background image transparent so it
        takes a tint of the site background colour */
     z-index: -1;
 }
 
 header {
-    flex-shrink: 1;  /* Allow header to shrink */
-    flex-grow: 0;  /* Prevent header from growing */
+    flex: 0 0 auto;  /* Don't grow, don't shrink, auto basis */
 }
 
 main {
-    flex-shrink: 1;  /* Allow main to shrink */
-    flex-grow: 1;  /* Allowsmain to grow and fill available space */
+    flex: 1 1 auto;  /* Grow to fill space, shrink if needed, auto basis */
     max-width: 100%;
     box-sizing: border-box;
     overflow-wrap: break-word;
     width: 100%;
+    padding-bottom: 10rem;
+    display: flex;
+    flex-direction: column;
 }
 
 footer {
-    flex-shrink: 1;  /* Allow footer to shrink */
-    flex-grow: 0;  /* Prevent footer from growing */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
 }
 
 /* Center all headings and use Cinzel (an elegant serif Google font) */
@@ -204,4 +212,28 @@ figcaption {
     margin: 0;
     cursor: pointer;
     display: block;
+}
+
+/*
+ **************************************************
+ * Styles displaying large chunks of text
+ **************************************************
+ */
+
+.text-container {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
+}
+
+.text-block {
+    flex: 1 1 17rem;
+    max-width: 35rem;
+    box-sizing: border-box;
+    padding: 1rem;
+    border: 0.1rem solid var(--color-headings-text);
+    border-radius: var(--border-radius);
 }

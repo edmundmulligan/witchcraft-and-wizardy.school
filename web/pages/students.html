@@ -64,7 +64,8 @@
     <!-- End of CSS stylesheets section -->
 
     <!-- Load JavaScript files -->
-    <script src="../scripts/theme-switcher.js"></script>
+    <script src="../scripts/debug.js"></script>
+    <script src="../scripts/themeSwitcher.js"></script>
     <script src="../scripts/toggle-header-footer.js" defer></script>
     <script src="../scripts/injectCommonCode.js" defer></script>
     <script src="../scripts/student-form-storage.js" defer></script>
@@ -85,8 +86,8 @@
     <main>
         <h2 class="page-title">Welcome to Your Dashboard</h2>
         <section id="student-info" class="student-info">
-            <h3 onclick="toggleSection('student-information', event);" onkeydown="toggleSection('student-information', event);" class="magic-invisible faq-section-title">Student Information</h3>
-            <div id="student-information" class="hidden">
+            <h3 >Student Information</h3>
+            <div id="student-information" class="student-information">
                 <form
                     id="student-info-form" method="post">
                     <div class="student-form-item">
@@ -145,47 +146,6 @@
                                     <label for="age-choice-old">Old</label>
                                 </div>
                             </fieldset>
-
-                            <fieldset>
-                                <legend>Choose your theme</legend>
-                                <div class="student-form-choice">
-                                    <input type="radio" id="theme-choice-light" name="theme-choice" value="light">
-                                    <label for="theme-choice-light">Day</label>
-                                </div>
-
-                                <div class="student-form-choice">
-                                    <input type="radio" id="theme-choice-dark" name="theme-choice" value="dark">
-                                    <label for="theme-choice-dark">Night</label>
-                                </div>
-                            </fieldset>
-
-                            <fieldset>
-                                <legend>Choose your element</legend>
-                                <div class="student-form-choice">
-                                    <input type="radio" id="element-choice-fire" name="element-choice" value="fire">
-                                    <label for="element-choice-fire">Fire</label>
-                                </div>
-
-                                <div class="student-form-choice">
-                                    <input type="radio" id="element-choice-earth" name="element-choice" value="earth">
-                                    <label for="element-choice-earth">Earth</label>
-                                </div>
-
-                                <div class="student-form-choice">
-                                    <input type="radio" id="element-choice-metal" name="element-choice" value="metal">
-                                    <label for="element-choice-metal">Metal</label>
-                                </div>
-
-                                <div class="student-form-choice">
-                                    <input type="radio" id="element-choice-water" name="element-choice" value="water">
-                                    <label for="element-choice-water">Water</label>
-                                </div>
-
-                                <div class="student-form-choice">
-                                    <input type="radio" id="element-choice-wood" name="element-choice" value="wood">
-                                    <label for="element-choice-wood">Wood</label>
-                                </div>
-                            </fieldset>
                         </div>
                     </div>
 
@@ -203,13 +163,12 @@
                         </button>
                     </div>
                 </form>
-                <button type="button" class="magic-block-close h3-level" onclick="toggleSectionCollapse('student-information', event);" onkeydown="toggleSectionCollapse('student-information', event);" tabindex="0" aria-label="Collapse section"></button>
             </div>
         </section>
 
         <section id="lessons" class="lessons">
-            <h3 onclick="toggleSection('lessons-container', event);" onkeydown="toggleSection('lessons-container', event);" class="magic-invisible">Lessons</h3>
-            <div id="lessons-container" class="hidden">
+            <h3>Lessons</h3>
+            <div id="lessons-container" class="lessons-container">
                 <div class="lessons-container">
                     <a href="../students/lesson-00.html" class="button-rectangle lesson-tile" id="lesson-00-button">
                         <h4 class="lesson-title">Lesson 0: Setting up</h4>
@@ -437,7 +396,6 @@
 
                     <!-- Additional lesson tiles can be added here -->
                 </div>
-                <button type="button" class="magic-block-close h3-level" onclick="toggleSectionCollapse('lessons-container', event);" onkeydown="toggleSectionCollapse('lessons-container', event);" tabindex="0" aria-label="Collapse section"></button>
             </div>
         </section>
     </main>
