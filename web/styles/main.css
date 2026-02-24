@@ -27,10 +27,9 @@ body {
     /* create positioning context for absolutely positioned child elements */
     position: relative;
 
-    /* use flexbox to layout header, main and footer vertically */
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    /* use grid to layout header, main and footer vertically */
+    display: grid;
+    grid-template-rows: auto;
 
     /* prevent horizontal overflow */
     width: 100%;

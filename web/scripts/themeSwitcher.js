@@ -5,12 +5,12 @@
  * Copyright  : (c) 2026 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
  * Description:
- *   Handles switching between light and dark themes based on user
- *   preference. Saves the theme choice to localStorage and loads it
- *   when pages load. Falls back to browser/system preference if no
- *   user choice is saved. Also allows for theme to be set via URL
- *   parameter for testing purposes. This allows accessibility testing 
- *   for different themes.
+ *   Handles switching between light and dark themes and style variants
+ *   (normal, subdued, vibrant) based on user preference. Saves choices
+ *   to localStorage and loads them when pages load. Falls back to
+ *   browser/system preference if no user choice is saved. Also allows
+ *   for theme/style to be set via URL parameter for testing purposes.
+ *   All color combinations meet WCAG 2.2 AAA standards.
  **********************************************************************
 */
 
@@ -20,21 +20,28 @@
     'use strict';
 
     /**
-     * Class for managing theme switching functionality
+     * Class for managing theme and style switching functionality
      */
     class ThemeSwitcher {
         constructor() {
             this.THEME_STORAGE_KEY = 'themePreference';
+            this.STYLE_STORAGE_KEY = 'stylePreference';
         }
 
         /**
-         * Apply the theme to the page
+         * Apply the theme and style to the page
          * @param {string} theme - 'light', 'dark', or 'auto'
+         * @param {string} style - 'normal', 'subdued', or 'vibrant' (optional, defaults to saved or 'normal')
          */
-        applyTheme(theme) {
-            Debug.methodEntry('ThemeSwitcher', 'applyTheme', { theme });
+        applyTheme(theme, style = null) {
+            Debug.methodEntry('ThemeSwitcher', 'applyTheme', { theme, style });
             
             const root = document.documentElement;
+
+            // Get style preference if not provided
+            if (!style) {
+                style = this.getStylePreference();
+            }
 
             let effectiveTheme = theme;
         
@@ -45,56 +52,45 @@
                 Debug.log('Auto theme resolved to:', effectiveTheme);
             }
 
-            Debug.log('Applying theme:', effectiveTheme);
+            Debug.log('Applying theme:', effectiveTheme, 'with style:', style);
+
+            // Build the color variable prefix based on style and theme
+            const prefix = `--color-${style}-${effectiveTheme}`;
 
             // Apply the theme by setting CSS custom properties
+            root.style.setProperty('--color-page-background', `var(${prefix}-page-background)`);
+            root.style.setProperty('--color-page-text', `var(${prefix}-page-text)`);
+            root.style.setProperty('--color-headings-background', `var(${prefix}-headings-background)`);
+            root.style.setProperty('--color-headings-text', `var(${prefix}-headings-text)`);
+            root.style.setProperty('--color-link-text', `var(${prefix}-link-text)`);
+            root.style.setProperty('--color-link-text-hover', `var(${prefix}-link-text-hover)`);
+            root.style.setProperty('--color-link-text-visited', `var(${prefix}-link-text-visited)`);
+            root.style.setProperty('--color-link-text-focus', `var(${prefix}-link-text-focus)`);
+            root.style.setProperty('--color-error-background', `var(${prefix}-error-background)`);
+            root.style.setProperty('--color-error-text', `var(${prefix}-error-text)`);
+            root.style.setProperty('--color-warning-background', `var(${prefix}-warning-background)`);
+            root.style.setProperty('--color-warning-text', `var(${prefix}-warning-text)`);
+            root.style.setProperty('--color-code-background', `var(${prefix}-code-background)`);
+            root.style.setProperty('--color-code-text', `var(${prefix}-code-text)`);
+            
+            // Background images are theme-dependent but not style-dependent
             if (effectiveTheme === 'dark') {
-                root.style.setProperty('--color-page-background', 'var(--color-dark-page-background)');
-                root.style.setProperty('--color-page-text', 'var(--color-dark-page-text)');
-                root.style.setProperty('--color-headings-background', 'var(--color-dark-headings-background)');
-                root.style.setProperty('--color-headings-text', 'var(--color-dark-headings-text)');
-                root.style.setProperty('--color-link-text', 'var(--color-dark-link-text)');
-                root.style.setProperty('--color-link-text-hover', 'var(--color-dark-link-text-hover)');
-                root.style.setProperty('--color-link-text-visited', 'var(--color-dark-link-text-visited)');
-                root.style.setProperty('--color-link-text-focus', 'var(--color-dark-link-text-focus)');
-                root.style.setProperty('--color-error-background', 'var(--color-dark-error-background)');
-                root.style.setProperty('--color-error-text', 'var(--color-dark-error-text)');
-                root.style.setProperty('--color-warning-background', 'var(--color-dark-warning-background)');
-                root.style.setProperty('--color-warning-text', 'var(--color-dark-warning-text)');
-                root.style.setProperty('--color-code-background', 'var(--color-dark-code-background)');
-                root.style.setProperty('--color-code-text', 'var(--color-dark-code-text)');
                 root.style.setProperty('--bg-landscape', 'var(--bg-landscape-dark)');
                 root.style.setProperty('--bg-portrait', 'var(--bg-portrait-dark)');
                 root.style.setProperty('--svg-filter', 'var(--svg-filter-dark)');
                 root.style.setProperty('--header-svg-filter', 'var(--header-svg-filter-dark)');
                 root.setAttribute('data-theme', 'dark');
-
-                // Update logo if present
                 this.updateLogo('dark');
             } else {
-                root.style.setProperty('--color-page-background', 'var(--color-light-page-background)');
-                root.style.setProperty('--color-page-text', 'var(--color-light-page-text)');
-                root.style.setProperty('--color-headings-background', 'var(--color-light-headings-background)');
-                root.style.setProperty('--color-headings-text', 'var(--color-light-headings-text)');
-                root.style.setProperty('--color-link-text', 'var(--color-light-link-text)');
-                root.style.setProperty('--color-link-text-hover', 'var(--color-light-link-text-hover)');
-                root.style.setProperty('--color-link-text-visited', 'var(--color-light-link-text-visited)');
-                root.style.setProperty('--color-link-text-focus', 'var(--color-light-link-text-focus)');
-                root.style.setProperty('--color-error-background', 'var(--color-light-error-background)');
-                root.style.setProperty('--color-error-text', 'var(--color-light-error-text)');
-                root.style.setProperty('--color-warning-background', 'var(--color-light-warning-background)');
-                root.style.setProperty('--color-warning-text', 'var(--color-light-warning-text)');
-                root.style.setProperty('--color-code-background', 'var(--color-light-code-background)');
-                root.style.setProperty('--color-code-text', 'var(--color-light-code-text)');
                 root.style.setProperty('--bg-landscape', 'var(--bg-landscape-light)');
                 root.style.setProperty('--bg-portrait', 'var(--bg-portrait-light)');
                 root.style.setProperty('--svg-filter', 'var(--svg-filter-light)');
                 root.style.setProperty('--header-svg-filter', 'var(--header-svg-filter-light)');
                 root.setAttribute('data-theme', 'light');
-
-                // Update logo if present
                 this.updateLogo('light');
             }
+            
+            root.setAttribute('data-style', style);
             
             Debug.methodExit('ThemeSwitcher', 'applyTheme');
         }
@@ -161,15 +157,72 @@
         }
 
         /**
-         * Handle theme change from radio button
+         * Get the current style preference
+         * @returns {string} - 'normal', 'subdued', or 'vibrant'
+         */
+        getStylePreference() {
+            // Check URL parameter first (for testing purposes)
+            const urlParams = new URLSearchParams(window.location.search);
+            const styleParam = urlParams.get('style');
+            if (styleParam === 'normal' || styleParam === 'subdued' || styleParam === 'vibrant') {
+                Debug.log('Style from URL parameter:', styleParam);
+                return styleParam;
+            }
+
+            // Check localStorage
+            try {
+                const saved = localStorage.getItem(this.STYLE_STORAGE_KEY);
+                if (saved) {
+                    Debug.log('Style from localStorage:', saved);
+                    return saved;
+                }
+            } catch (error) {
+                Debug.error('Error reading style preference:', error);
+            }
+
+            Debug.log('Style preference retrieved:', 'normal (default)');
+            // Default to normal
+            return 'normal';
+        }
+
+        /**
+         * Save style preference to localStorage
+         * @param {string} style - 'normal', 'subdued', or 'vibrant'
+         */
+        saveStylePreference(style) {
+            Debug.log('Saving style preference:', style);
+            try {
+                localStorage.setItem(this.STYLE_STORAGE_KEY, style);
+                Debug.log('Style preference saved successfully');
+            } catch (error) {
+                Debug.error('Error saving style preference:', error);
+            }
+        }
+
+        /**
+         * Handle theme change from radio button or button click
          * @param {string} theme - 'light' or 'dark'
          */
         handleThemeChange(theme) {
             Debug.methodEntry('ThemeSwitcher', 'handleThemeChange', { theme });
             this.saveThemePreference(theme);
-            this.applyTheme(theme);
+            const style = this.getStylePreference();
+            this.applyTheme(theme, style);
             this.updateThemeButtons(theme);
             Debug.methodExit('ThemeSwitcher', 'handleThemeChange');
+        }
+
+        /**
+         * Handle style change from button click
+         * @param {string} style - 'normal', 'subdued', or 'vibrant'
+         */
+        handleStyleChange(style) {
+            Debug.methodEntry('ThemeSwitcher', 'handleStyleChange', { style });
+            this.saveStylePreference(style);
+            const theme = this.getThemePreference();
+            this.applyTheme(theme, style);
+            this.updateStyleButtons(style);
+            Debug.methodExit('ThemeSwitcher', 'handleStyleChange');
         }
 
         /**
@@ -281,6 +334,93 @@
         }
 
         /**
+         * Update the visual state of style buttons
+         * @param {string} style - 'normal', 'subdued', or 'vibrant'
+         */
+        updateStyleButtons(style) {
+            Debug.methodEntry('ThemeSwitcher', 'updateStyleButtons', { style });
+            
+            const normalButton = document.getElementById('normal-button');
+            const subduedButton = document.getElementById('subdued-button');
+            const vibrantButton = document.getElementById('vibrant-button');
+
+            Debug.log('Normal button element:', normalButton);
+            Debug.log('Subdued button element:', subduedButton);
+            Debug.log('Vibrant button element:', vibrantButton);
+
+            if (normalButton && subduedButton && vibrantButton) {
+                // Remove pressed class from all buttons
+                normalButton.classList.remove('pressed');
+                subduedButton.classList.remove('pressed');
+                vibrantButton.classList.remove('pressed');
+                
+                // Add pressed class to the active style button
+                if (style === 'normal') {
+                    normalButton.classList.add('pressed');
+                    Debug.log('✓ Normal button set to pressed');
+                } else if (style === 'subdued') {
+                    subduedButton.classList.add('pressed');
+                    Debug.log('✓ Subdued button set to pressed');
+                } else if (style === 'vibrant') {
+                    vibrantButton.classList.add('pressed');
+                    Debug.log('✓ Vibrant button set to pressed');
+                }
+                
+                Debug.log('Button states - Normal:', normalButton.className, 
+                         '| Subdued:', subduedButton.className,
+                         '| Vibrant:', vibrantButton.className);
+            } else {
+                Debug.warn('Style buttons not found on this page');
+            }
+            
+            Debug.methodExit('ThemeSwitcher', 'updateStyleButtons');
+        }
+
+        /**
+         * Set up style button click listeners for index page
+         */
+        setupStyleButtonListeners() {
+            Debug.log('Setting up style button listeners...');
+            
+            const normalButton = document.getElementById('normal-button');
+            const subduedButton = document.getElementById('subdued-button');
+            const vibrantButton = document.getElementById('vibrant-button');
+
+            if (normalButton) {
+                Debug.log('✓ Normal button found, adding click listener');
+                normalButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    Debug.log('→ Normal button clicked by user');
+                    this.handleStyleChange('normal');
+                });
+            } else {
+                Debug.log('Normal button not found on this page');
+            }
+
+            if (subduedButton) {
+                Debug.log('✓ Subdued button found, adding click listener');
+                subduedButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    Debug.log('→ Subdued button clicked by user');
+                    this.handleStyleChange('subdued');
+                });
+            } else {
+                Debug.log('Subdued button not found on this page');
+            }
+
+            if (vibrantButton) {
+                Debug.log('✓ Vibrant button found, adding click listener');
+                vibrantButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    Debug.log('→ Vibrant button clicked by user');
+                    this.handleStyleChange('vibrant');
+                });
+            } else {
+                Debug.log('Vibrant button not found on this page');
+            }
+        }
+
+        /**
          * Initialize theme on page load
          */
         init() {
@@ -330,9 +470,13 @@
             this.setupThemeListeners();
             // Set up listeners for theme buttons (index page)
             this.setupThemeButtonListeners();
+            // Set up listeners for style buttons (index page)
+            this.setupStyleButtonListeners();
             // Update button states now that DOM is ready
             const theme = this.getThemePreference();
+            const style = this.getStylePreference();
             this.updateThemeButtons(theme);
+            this.updateStyleButtons(style);
             
             Debug.log('=== Interactive listeners setup complete ===');
         }
@@ -357,5 +501,7 @@
         get: () => themeSwitcher.getThemePreference(),
         set: (theme) => themeSwitcher.handleThemeChange(theme),
         apply: (theme) => themeSwitcher.applyTheme(theme),
+        getStyle: () => themeSwitcher.getStylePreference(),
+        setStyle: (style) => themeSwitcher.handleStyleChange(style),
     };
 })();

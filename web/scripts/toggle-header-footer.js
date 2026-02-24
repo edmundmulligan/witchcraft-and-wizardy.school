@@ -44,7 +44,7 @@
                 headerMinimal.style.display = 'none';
                 headerFull.style.display = 'grid';
             } else if (savedState === 'compact') {
-                headerMinimal.style.display = 'grid';
+                headerMinimal.style.display = 'block';
                 headerFull.style.display = 'none';
             }
         
@@ -59,7 +59,7 @@
                         localStorage.setItem(this.HEADER_STATE_KEY, 'expanded');
                     } else {
                         // Up arrow clicked - show minimal header
-                        headerMinimal.style.display = 'grid';
+                        headerMinimal.style.display = 'block';
                         headerFull.style.display = 'none';
                         localStorage.setItem(this.HEADER_STATE_KEY, 'compact');
                     }

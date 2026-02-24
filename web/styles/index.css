@@ -26,6 +26,15 @@ main {
     padding-bottom: 10rem;
 }
 
+/* Index blocks with border for visual grouping */
+.index-block {
+    border: var(--border-weight) var(--border-style) var(--color-headings-text);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin: 1rem 0;
+    background-color: transparent;
+}
+
 /* insert the landing page background image */
 @media (orientation: landscape) {
     body::before {

@@ -52,6 +52,26 @@
  */
 
 @media (width < 800px) or ((hover:none) and (pointer:coarse)) {
+    /* Stack sidebar above main content on small screens */
+    .page-container {
+        flex-direction: column;
+        gap: 1rem;
+        padding-top: 1rem;
+    }
+
+    .sidebar {
+        flex: 0 0 auto;
+        width: calc(100% - 2rem);
+        max-width: 100%;
+        max-height: 400px;
+        position: static;
+        margin: 0 1rem;
+    }
+
+    .main-content {
+        padding: 0;
+    }
+
     /* switch header to vertical layout */
     /*
     .header-full {

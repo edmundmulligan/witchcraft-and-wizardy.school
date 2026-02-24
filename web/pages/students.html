@@ -83,9 +83,39 @@
         <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
     </header>
 
-    <main>
-        <h2 class="page-title">Welcome to Your Dashboard</h2>
-        <section id="student-info" class="student-info">
+    <div class="page-container">
+        <nav class="sidebar" aria-label="Lesson navigation">
+            <h3>Lessons</h3>
+            <ul class="lesson-nav">
+                <li><a href="../students/lesson-00.html">Lesson 0: Setting up</a></li>
+                <li><a href="../students/lesson-01.html">Lesson 1: Your first web page</a></li>
+                <li><button type="button" popovertarget="not-implemented">Lesson 2: Landmarks</button></li>
+                <li><button type="button" popovertarget="not-implemented">Lesson 3: Lists</button></li>
+                <li><button type="button" popovertarget="not-implemented">Lesson 4: Images</button></li>
+                <li><button type="button" popovertarget="not-implemented">Lesson 5: Tables and hyperlinks</button></li>
+                <li><button type="button" popovertarget="not-implemented">Lesson 6: Introducing CSS</button></li>
+                <li><button type="button" popovertarget="not-implemented">Lesson 7: External CSS</button></li>
+                <li><button type="button" popovertarget="not-implemented">Lesson 8: CSS and lists</button></li>
+                <li><button type="button" popovertarget="not-implemented">Lesson 9: Links and CSS</button></li>
+                <li><button type="button" popovertarget="not-implemented">Lesson 10: Responsive Design</button></li>
+                <li><button type="button" popovertarget="not-implemented">Lesson 11: Javascript</button></li>
+                <li><button type="button" popovertarget="not-implemented">Lesson 12: External Javascript files</button></li>
+                <li><button type="button" popovertarget="not-implemented">Lesson 13: Errors and Exceptions</button></li>
+                <li><button type="button" popovertarget="not-implemented">Lesson 14: Testing and Debugging</button></li>
+                <li><button type="button" popovertarget="not-implemented">Lesson 15: Forms</button></li>
+                <li><button type="button" popovertarget="not-implemented">Lesson 16: Cookies</button></li>
+                <li><button type="button" popovertarget="not-implemented">Lesson 17: Clients and Servers</button></li>
+                <li><button type="button" popovertarget="not-implemented">Lesson 18: A server page</button></li>
+                <li><button type="button" popovertarget="not-implemented">Lesson 19: Processing Forms on the server</button></li>
+                <li><button type="button" popovertarget="not-implemented">Lesson 20: Databases</button></li>
+                <li><button type="button" popovertarget="not-implemented">Lesson 21: Security</button></li>
+                <li><button type="button" popovertarget="not-implemented">Lesson 22: Passwords</button></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <h2 class="page-title">Welcome to Your Dashboard</h2>
+            <section id="student-info" class="student-info">
             <h3 >Student Information</h3>
             <div id="student-information" class="student-information">
                 <form
@@ -165,240 +195,8 @@
                 </form>
             </div>
         </section>
-
-        <section id="lessons" class="lessons">
-            <h3>Lessons</h3>
-            <div id="lessons-container" class="lessons-container">
-                <div class="lessons-container">
-                    <a href="../students/lesson-00.html" class="button-rectangle lesson-tile" id="lesson-00-button">
-                        <h4 class="lesson-title">Lesson 0: Setting up</h4>
-                        <p class="lesson-description">
-                            Set up your computer with the tools required to do the lessons.
-                        </p>
-                    </a>
-
-                    <a href="../students/lesson-01.html" class="button-rectangle lesson-tile" id="lesson-01-button">
-                        <h4 class="lesson-title">Lesson 1: Your first web page</h4>
-                        <p class="lesson-description">
-                            Build a simple web page using  HTML.
-                        </p>
-                    </a>
-
-                    <div class="lesson-tile" id="lesson-02">
-                        <button type="button" class="lesson-link"
-                            popovertarget="not-implemented">
-                            <span class="lesson-title">Lesson 2: Landmarks</span>
-                            <span class="lesson-description">
-                                Add landmarks and other structural elements to your web page.
-                            </span>
-                        </button>
-                    </div>
-
-                    <div class="lesson-tile" id="lesson-03">
-                        <button type="button" class="lesson-link"
-                            popovertarget="not-implemented">
-                            <span class="lesson-title">Lesson 3: Lists</span>
-                            <span class="lesson-description">
-                                Add lists to your web page, both ordered and unordered.
-                            </span>
-                        </button>
-                    </div>
-
-                    <div class="lesson-tile" id="lesson-04">
-                        <button type="button" class="lesson-link"
-                            popovertarget="not-implemented">
-                            <span class="lesson-title">Lesson 4: Images</span>
-                            <span class="lesson-description">
-                                Add some images to your web page.
-                            </span>
-                        </button>
-                    </div>
-
-                    <div class="lesson-tile" id="lesson-05">
-                        <button type="button" class="lesson-link"
-                            popovertarget="not-implemented">
-                            <span class="lesson-title">Lesson 5: Tables and hyperlinks</span>
-                            <span class="lesson-description">
-                                Add tables and hyperlinks to your web page.
-                            </span>
-                        </button>
-                    </div>
-
-                    <div class="lesson-tile" id="lesson-06">
-                        <button type="button" class="lesson-link"
-                            popovertarget="not-implemented">
-                            <span class="lesson-title">Lesson 6: Introducing CSS</span>
-                            <span class="lesson-description">
-                                Learn about Cascading Style Sheets (CSS) and how they can change the look of your web pages.
-                            </span>
-                        </button>
-                    </div>
-
-                    <div class="lesson-tile" id="lesson-07">
-                        <button type="button" class="lesson-link"
-                            popovertarget="not-implemented">
-                            <span class="lesson-title">Lesson 7: External CSS</span>
-                            <span class="lesson-description">
-                                Learn how to use an external CSS stylesheet to change the look of your web pages and separate content from presentation.
-                            </span>
-                        </button>
-                    </div>
-
-                    <div class="lesson-tile" id="lesson-08">
-                        <button type="button" class="lesson-link"
-                            popovertarget="not-implemented">
-                            <span class="lesson-title">Lesson 8: CSS and lists</span>
-                            <span class="lesson-description">
-                                Make your lists more visually appealing using CSS.
-                            </span>
-                        </button>
-                    </div>
-
-                    <div class="lesson-tile" id="lesson-09">
-                        <button type="button" class="lesson-link"
-                            popovertarget="not-implemented">
-                            <span class="lesson-title">Lesson 9: Links and CSS</span>
-                            <span class="lesson-description">
-                                Make your hyperlinks more visually appealing using CSS.
-                            </span>
-                        </button>
-                    </div>
-
-                    <div class="lesson-tile" id="lesson-10">
-                        <button type="button" class="lesson-link"
-                            popovertarget="not-implemented">
-                            <span class="lesson-title">Lesson 10: Responsive Design</span>
-                            <span class="lesson-description">
-                                Learn about media queries and how they can be used to create responsive web pages that work on both desktop and mobile devices.
-                            </span>
-                        </button>
-                    </div>
-
-                    <div class="lesson-tile" id="lesson-11">
-                        <button type="button" class="lesson-link"
-                            popovertarget="not-implemented">
-                            <span class="lesson-title">Lesson 11: Javascript</span>
-                            <span class="lesson-description">
-                                Use JavaScript to add interactivity to your web pages.
-                            </span>
-                        </button>
-                    </div>
-
-                    <div class="lesson-tile" id="lesson-12">
-                        <button type="button" class="lesson-link"
-                            popovertarget="not-implemented">
-                            <span class="lesson-title">Lesson 12: External Javascript files</span>
-                            <span class="lesson-description">
-                                Just as CSS can be put in external files, so can JavaScript. In this lesson you will learn how to use external JavaScript files.
-                            </span>
-                        </button>
-                    </div>
-
-                    <div class="lesson-tile" id="lesson-13">
-                        <button type="button" class="lesson-link"
-                            popovertarget="not-implemented">
-                            <span class="lesson-title">Lesson 13: Errors and Exceptions</span>
-                            <span class="lesson-description">
-                                In this lesson you will learn about errors and exceptions in JavaScript and how to handle them.
-                            </span>
-                        </button>
-                    </div>
-
-                    <div class="lesson-tile" id="lesson-14">
-                        <button type="button" class="lesson-link"
-                            popovertarget="not-implemented">
-                            <span class="lesson-title">Lesson 14: Testing and Debugging</span>
-                            <span class="lesson-description">
-                                Learn how to test and debug your JavaScript code using the browser's developer tools.
-                            </span>
-                        </button>
-                    </div>
-
-                    <div class="lesson-tile" id="lesson-15">
-                        <button type="button" class="lesson-link"
-                            popovertarget="not-implemented">
-                            <span class="lesson-title">Lesson 15: Forms</span>
-                            <span class="lesson-description">
-                                Learn how to create forms to collect information from users.
-                            </span>
-                        </button>
-                    </div>
-
-                    <div class="lesson-tile" id="lesson-16">
-                        <button type="button" class="lesson-link"
-                            popovertarget="not-implemented">
-                            <span class="lesson-title">Lesson 16: Cookies</span>
-                            <span class="lesson-description">
-                                In this lesson you will learn about cookies and how they can be used to store information on the user's computer.
-                            </span>
-                        </button>
-                    </div>
-
-                    <div class="lesson-tile" id="lesson-17">
-                        <button type="button" class="lesson-link"
-                            popovertarget="not-implemented">
-                            <span class="lesson-title">Lesson 17: Clients and Servers</span>
-                            <span class="lesson-description">
-                                In this lesson you will learn about the client- server model of the web.
-                            </span>
-                        </button>
-                    </div>
-
-                    <div class="lesson-tile" id="lesson-18">
-                        <button type="button" class="lesson-link"
-                            popovertarget="not-implemented">
-                            <span class="lesson-title">Lesson 18: A server page</span>
-                            <span class="lesson-description">
-                                In this lesson you will learn how to create a simple server page using a server-side language.
-                            </span>
-                        </button>
-                    </div>
-
-                    <div class="lesson-tile" id="lesson-19">
-                        <button type="button" class="lesson-link"
-                            popovertarget="not-implemented">
-                            <span class="lesson-title">Lesson 19: Processing Forms on the server</span>
-                            <span class="lesson-description">
-                                Learn how to process the data you collect from forms on the server.
-                            </span>
-                        </button>
-                    </div>
-
-                    <div class="lesson-tile" id="lesson-20">
-                        <button type="button" class="lesson-link"
-                            popovertarget="not-implemented">
-                            <span class="lesson-title">Lesson 20: Databases</span>
-                            <span class="lesson-description">
-                                In this lesson you will learn about databases and how to use them to store data for your web applications.
-                            </span>
-                        </button>
-                    </div>
-
-                    <div class="lesson-tile" id="lesson-21">
-                        <button type="button" class="lesson-link"
-                            popovertarget="not-implemented">
-                            <span class="lesson-title">Lesson 21: Security</span>
-                            <span class="lesson-description">
-                                In this lesson you will learn about basic web security concepts,
-                            </span>
-                        </button>
-                    </div>
-
-                    <div class="lesson-tile" id="lesson-22">
-                        <button type="button" class="lesson-link"
-                            popovertarget="not-implemented">
-                            <span class="lesson-title">Lesson 22: Passwords</span>
-                            <span class="lesson-description">
-                                Passwords require special handling to keep them secure. In this lesson you will learn how to handle passwords safely.
-                            </span>
-                        </button>
-                    </div>
-
-                    <!-- Additional lesson tiles can be added here -->
-                </div>
-            </div>
-        </section>
-    </main>
+        </main>
+    </div>
 
     <footer class="footer">
         <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->

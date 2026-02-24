@@ -124,3 +124,50 @@
         0 0px 0 var(--color-headings-text),
         0 2px 5px rgba(0, 0, 0, 0.2) !important;
 }
+
+/* Style buttons - smaller to fit 3 buttons in width of 2 theme buttons */
+.button-circle.style-button {
+    width: calc(var(--buttonsize-circle) * 0.67);
+    height: calc(var(--buttonsize-circle) * 0.67);
+    max-width: 10rem;
+    max-height: 10rem;
+    font-size: calc(var(--fontsize-button-circle) * 0.85);
+    box-shadow: 
+        0 3px 0 var(--color-headings-text),
+        0 5px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(0);
+    transition: all 0.1s ease;
+}
+
+/* Override for style buttons - must come after general button-circle styles */
+.button-circle.style-button:hover,
+.button-circle.style-button:focus-visible {
+    transform: translateY(2px) scale(1.05);
+}
+
+/* Active state for style buttons */
+.button-circle.style-button:active {
+    transform: translateY(3px) scale(1);
+    box-shadow: 
+        0 0px 0 var(--color-headings-text),
+        0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Pressed state for selected style */
+.button-circle.style-button.pressed {
+    transform: translateY(3px) scale(1) !important;
+    box-shadow: 
+        0 0px 0 var(--color-headings-text),
+        0 2px 4px rgba(0, 0, 0, 0.2) !important;
+    background-color: var(--color-link-text) !important;
+    color: var(--color-headings-background) !important;
+}
+
+/* Prevent hover effect on pressed style button */
+.button-circle.style-button.pressed:hover,
+.button-circle.style-button.pressed:focus-visible {
+    transform: translateY(3px) scale(1) !important;
+    box-shadow: 
+        0 0px 0 var(--color-headings-text),
+        0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
