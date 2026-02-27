@@ -14,6 +14,24 @@
  **********************************************************************
  */
 
+/* Use body:before to stop the background image scrolling */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* set background image handling (actual image is selected in media query) */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0.4;
+    z-index: -1;
+}
+
 
 /* Center main content horizontally and vertically on the index page */
 

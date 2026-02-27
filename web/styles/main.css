@@ -54,27 +54,6 @@ body {
     background-color: var(--color-page-background);
 }
 
-/* Use body:before to stop the background image scrolling */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
-    /* set background image handling (actual image is selected in index.css 
-       as that is the only page to use a background image) */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-
-    /* ensure the background image transparent so it
-       takes a tint of the site background colour */
-    z-index: -1;
-}
-
 header {
     flex: 0 0 auto;  /* Don't grow, don't shrink, auto basis */
 }

@@ -33,28 +33,28 @@
 :root {
  
     /* non-theme colours */
-    --color-warning-background:   darkred;
-    --color-warning-text:         white;
-    --color-error-background:     red;
-    --color-error-text:           white;
-    --color-code-background:      cyan;
-    --color-code-text:            purple;
+    --color-warning-background:   hsl(0, 100%, 27%);   /* darkred */
+    --color-warning-text:         hsl(0, 0%, 100%);    /* white */
+    --color-error-background:     hsl(0, 100%, 50%);   /* red */
+    --color-error-text:           hsl(0, 0%, 100%);    /* white */
+    --color-code-background:      hsl(180, 100%, 50%); /* cyan */
+    --color-code-text:            hsl(300, 100%, 25%);  /* purple */
 
     /* light theme colours */
-    --color-light-page-background:     lightcyan;
-    --color-light-page-text:           indigo;
-    --color-light-headings-background: cyan;
-    --color-light-headings-text:       purple;
-    --color-light-link-text:           navy;
-    --color-light-link-text-hover:     navy;
-    --color-light-link-text-visited:   darkblue;
-    --color-light-link-text-focus:     darkblue;
-    --color-light-error-background:    darkred;
-    --color-light-error-text:          white;
-    --color-light-warning-background:  red;
-    --color-light-warning-text:        white;
-    --color-light-code-background:     #f4f4f4;
-    --color-light-code-text:           #3700B3;
+    --color-light-page-background:     hsl(180, 100%, 94%);
+    --color-light-page-text:           hsl(275, 100%, 25%); /* indigo */
+    --color-light-headings-background: hsl(180, 100%, 50%); /* cyan */
+    --color-light-headings-text:       hsl(300, 100%, 25%); /* purple */
+    --color-light-link-text:           hsl(240, 100%, 25%); /* navy */
+    --color-light-link-text-hover:     hsl(240, 100%, 25%); /* navy */
+    --color-light-link-text-visited:   hsl(240, 100%, 27%);
+    --color-light-link-text-focus:     hsl(240, 100%, 27%);
+    --color-light-error-background:    hsl(0, 100%, 27%);   /* darkred */
+    --color-light-error-text:          hsl(0, 0%, 100%);    /* white */
+    --color-light-warning-background:  hsl(0, 100%, 50%);   /* red */
+    --color-light-warning-text:        hsl(0, 0%, 100%);    /* white */
+    --color-light-code-background:     hsl(0, 0%, 96%);
+    --color-light-code-text:           hsl(259, 100%, 35%);
 
     /* normal light theme colours - same as default light theme */
     --color-normal-light-page-background:     var(--color-light-page-background);
@@ -73,20 +73,20 @@
     --color-normal-light-code-text:           var(--color-light-code-text);
 
     /* dark theme colours */
-    --color-dark-page-background:      indigo;
-    --color-dark-page-text:            lightcyan;
-    --color-dark-headings-background:  purple;
-    --color-dark-headings-text:        cyan;
-    --color-dark-link-text:            lightcyan;
-    --color-dark-link-text-hover:      darkblue;
-    --color-dark-link-text-visited:    lightblue;
-    --color-dark-link-text-focus:      lightblue;
-    --color-dark-error-background:     lightcoral;
-    --color-dark-error-text:           black;
-    --color-dark-warning-background:   red;
-    --color-dark-warning-text:         white;
-    --color-dark-code-background:      #2D1B69;
-    --color-dark-code-text:            #FFF;
+    --color-dark-page-background:      hsl(275, 100%, 25%); /* indigo */
+    --color-dark-page-text:            hsl(180, 100%, 94%);
+    --color-dark-headings-background:  hsl(300, 100%, 25%); /* purple */
+    --color-dark-headings-text:        hsl(180, 100%, 50%); /* cyan */
+    --color-dark-link-text:            hsl(180, 100%, 94%);
+    --color-dark-link-text-hover:      hsl(240, 100%, 27%);
+    --color-dark-link-text-visited:    hsl(195, 53%, 79%);
+    --color-dark-link-text-focus:      hsl(195, 53%, 79%);
+    --color-dark-error-background:     hsl(0, 79%, 72%);
+    --color-dark-error-text:           hsl(0, 0%, 0%);      /* black */
+    --color-dark-warning-background:   hsl(0, 100%, 50%);   /* red */
+    --color-dark-warning-text:         hsl(0, 0%, 100%);    /* white */
+    --color-dark-code-background:      hsl(259, 59%, 26%);
+    --color-dark-code-text:            hsl(0, 0%, 100%);    /* white */
 
     /* normal dark theme colours - same as default dark theme */
     --color-normal-dark-page-background:     var(--color-dark-page-background);
@@ -106,71 +106,71 @@
 
     /* subdued light theme colours - desaturated, closer to greyscale */
     /* All combinations meet WCAG 2.2 AAA standards (7:1 contrast) */
-    --color-subdued-light-page-background:     #E8E8E8;
-    --color-subdued-light-page-text:           #1A1A1A;
-    --color-subdued-light-headings-background: #C0C0C0;
-    --color-subdued-light-headings-text:       #1A1A1A;
-    --color-subdued-light-link-text:           #2C2C2C;
-    --color-subdued-light-link-text-hover:     #4A4A4A;
-    --color-subdued-light-link-text-visited:   #505050;
-    --color-subdued-light-link-text-focus:     #404040;
-    --color-subdued-light-error-background:    #B22222;
-    --color-subdued-light-error-text:          #FFFFFF;
-    --color-subdued-light-warning-background:  #D32F2F;
-    --color-subdued-light-warning-text:        #FFFFFF;
-    --color-subdued-light-code-background:     #F0F0F0;
-    --color-subdued-light-code-text:           #2C2C2C;
+    --color-subdued-light-page-background:     hsl(0, 0%, 91%);
+    --color-subdued-light-page-text:           hsl(0, 0%, 10%);
+    --color-subdued-light-headings-background: hsl(0, 0%, 75%);
+    --color-subdued-light-headings-text:       hsl(0, 0%, 10%);
+    --color-subdued-light-link-text:           hsl(0, 0%, 17%);
+    --color-subdued-light-link-text-hover:     hsl(0, 0%, 29%);
+    --color-subdued-light-link-text-visited:   hsl(0, 0%, 31%);
+    --color-subdued-light-link-text-focus:     hsl(0, 0%, 25%);
+    --color-subdued-light-error-background:    hsl(0, 65%, 42%);
+    --color-subdued-light-error-text:          hsl(0, 0%, 100%);    /* white */
+    --color-subdued-light-warning-background:  hsl(0, 73%, 50%);
+    --color-subdued-light-warning-text:        hsl(0, 0%, 100%);    /* white */
+    --color-subdued-light-code-background:     hsl(0, 0%, 94%);
+    --color-subdued-light-code-text:           hsl(0, 0%, 17%);
 
     /* subdued dark theme colours - desaturated, closer to greyscale */
     /* All combinations meet WCAG 2.2 AAA standards (7:1 contrast) */
-    --color-subdued-dark-page-background:      #1A1A1A;
-    --color-subdued-dark-page-text:            #E8E8E8;
-    --color-subdued-dark-headings-background:  #3A3A3A;
-    --color-subdued-dark-headings-text:        #F0F0F0;
-    --color-subdued-dark-link-text:            #D0D0D0;
-    --color-subdued-dark-link-text-hover:      #B0B0B0;
-    --color-subdued-dark-link-text-visited:    #C0C0C0;
-    --color-subdued-dark-link-text-focus:      #C8C8C8;
-    --color-subdued-dark-error-background:     #FF6B6B;
-    --color-subdued-dark-error-text:           #000000;
-    --color-subdued-dark-warning-background:   #FF5252;
-    --color-subdued-dark-warning-text:         #000000;
-    --color-subdued-dark-code-background:      #2C2C2C;
-    --color-subdued-dark-code-text:            #F0F0F0;
+    --color-subdued-dark-page-background:      hsl(0, 0%, 10%);
+    --color-subdued-dark-page-text:            hsl(0, 0%, 91%);
+    --color-subdued-dark-headings-background:  hsl(0, 0%, 23%);
+    --color-subdued-dark-headings-text:        hsl(0, 0%, 94%);
+    --color-subdued-dark-link-text:            hsl(0, 0%, 82%);
+    --color-subdued-dark-link-text-hover:      hsl(0, 0%, 69%);
+    --color-subdued-dark-link-text-visited:    hsl(0, 0%, 75%);
+    --color-subdued-dark-link-text-focus:      hsl(0, 0%, 78%);
+    --color-subdued-dark-error-background:     hsl(0, 100%, 70%);
+    --color-subdued-dark-error-text:           hsl(0, 0%, 0%);      /* black */
+    --color-subdued-dark-warning-background:   hsl(0, 100%, 66%);
+    --color-subdued-dark-warning-text:         hsl(0, 0%, 0%);      /* black */
+    --color-subdued-dark-code-background:      hsl(0, 0%, 17%);
+    --color-subdued-dark-code-text:            hsl(0, 0%, 94%);
 
     /* vibrant light theme colours - op-art inspired with bold colors */
     /* All combinations meet WCAG 2.2 AAA standards (7:1 contrast) */
-    --color-vibrant-light-page-background:     #FFFFFF;
-    --color-vibrant-light-page-text:           #000000;
-    --color-vibrant-light-headings-background: #FF0000;
-    --color-vibrant-light-headings-text:       #FFFFFF;
-    --color-vibrant-light-link-text:           #0000CC;
-    --color-vibrant-light-link-text-hover:     #FF00FF;
-    --color-vibrant-light-link-text-visited:   #6600CC;
-    --color-vibrant-light-link-text-focus:     #FF00FF;
-    --color-vibrant-light-error-background:    #CC0000;
-    --color-vibrant-light-error-text:          #FFFFFF;
-    --color-vibrant-light-warning-background:  #FF6600;
-    --color-vibrant-light-warning-text:        #000000;
-    --color-vibrant-light-code-background:     #FFFF00;
-    --color-vibrant-light-code-text:           #000000;
+    --color-vibrant-light-page-background:     hsl(0, 0%, 100%);    /* white */
+    --color-vibrant-light-page-text:           hsl(0, 0%, 0%);      /* black */
+    --color-vibrant-light-headings-background: hsl(0, 100%, 50%);   /* red */
+    --color-vibrant-light-headings-text:       hsl(0, 0%, 100%);    /* white */
+    --color-vibrant-light-link-text:           hsl(240, 100%, 40%);
+    --color-vibrant-light-link-text-hover:     hsl(300, 100%, 50%); /* magenta */
+    --color-vibrant-light-link-text-visited:   hsl(270, 100%, 40%);
+    --color-vibrant-light-link-text-focus:     hsl(300, 100%, 50%); /* magenta */
+    --color-vibrant-light-error-background:    hsl(0, 100%, 40%);
+    --color-vibrant-light-error-text:          hsl(0, 0%, 100%);    /* white */
+    --color-vibrant-light-warning-background:  hsl(24, 100%, 50%);
+    --color-vibrant-light-warning-text:        hsl(0, 0%, 0%);      /* black */
+    --color-vibrant-light-code-background:     hsl(60, 100%, 50%);  /* yellow */
+    --color-vibrant-light-code-text:           hsl(0, 0%, 0%);      /* black */
 
     /* vibrant dark theme colours - op-art inspired with bold colors */
     /* All combinations meet WCAG 2.2 AAA standards (7:1 contrast) */
-    --color-vibrant-dark-page-background:      #000000;
-    --color-vibrant-dark-page-text:            #FFFFFF;
-    --color-vibrant-dark-headings-background:  #00FF00;
-    --color-vibrant-dark-headings-text:        #000000;
-    --color-vibrant-dark-link-text:            #00FFFF;
-    --color-vibrant-dark-link-text-hover:      #FF00FF;
-    --color-vibrant-dark-link-text-visited:    #FFFF00;
-    --color-vibrant-dark-link-text-focus:      #FF00FF;
-    --color-vibrant-dark-error-background:     #FF3333;
-    --color-vibrant-dark-error-text:           #000000;
-    --color-vibrant-dark-warning-background:   #FFAA00;
-    --color-vibrant-dark-warning-text:         #000000;
-    --color-vibrant-dark-code-background:      #330066;
-    --color-vibrant-dark-code-text:            #FFFFFF;
+    --color-vibrant-dark-page-background:      hsl(0, 0%, 0%);      /* black */
+    --color-vibrant-dark-page-text:            hsl(0, 0%, 100%);    /* white */
+    --color-vibrant-dark-headings-background:  hsl(120, 100%, 50%); /* lime */
+    --color-vibrant-dark-headings-text:        hsl(0, 0%, 0%);      /* black */
+    --color-vibrant-dark-link-text:            hsl(180, 100%, 50%); /* cyan */
+    --color-vibrant-dark-link-text-hover:      hsl(300, 100%, 50%); /* magenta */
+    --color-vibrant-dark-link-text-visited:    hsl(60, 100%, 50%);  /* yellow */
+    --color-vibrant-dark-link-text-focus:      hsl(300, 100%, 50%); /* magenta */
+    --color-vibrant-dark-error-background:     hsl(0, 100%, 60%);
+    --color-vibrant-dark-error-text:           hsl(0, 0%, 0%);      /* black */
+    --color-vibrant-dark-warning-background:   hsl(40, 100%, 50%);
+    --color-vibrant-dark-warning-text:         hsl(0, 0%, 0%);      /* black */
+    --color-vibrant-dark-code-background:      hsl(270, 50%, 20%);
+    --color-vibrant-dark-code-text:            hsl(0, 0%, 100%);    /* white */
 
     /* Active theme colours - default to light, overridden by theme-switcher.js */
     --color-page-background:           var(--color-light-page-background);
@@ -222,7 +222,7 @@
     --fontsize-button:        clamp(0.75rem, 1vw + 1rem, 4rem);
     --fontsize-button-circle: clamp(0.75rem, 1vw + 0.75rem, 1.5rem);
     --fontsize-nav-site:      clamp(0.875rem, 2vw, 1rem);
-    --fontsize-nave-page:     clamp(0.5rem, 2vw + 1rem, 2.25rem);
+    --fontsize-nav-page:     clamp(0.5rem, 2vw + 1rem, 2.25rem);
     --buttonsize-circle:      clamp(4rem, 8vw + 5rem, 12rem);
     --margin-vertical:        clamp(0.333rem, 0.5vw + 0.5rem, 1rem);;
     --margin-horizontal:      clamp(0.333rem, 1vw + 1rem, 2rem);;
