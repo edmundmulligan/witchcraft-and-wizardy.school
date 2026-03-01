@@ -1,0 +1,213 @@
+/**
+ * File: colors.css
+ * Author: Edmund Mulligan <edmund@edmundmulligan.name>
+ * License: MIT
+ * Description: Color definitions in HSL format
+ * 
+ * This is the source of truth for colors used in both web and LaTeX documents.
+ * The LaTeX colours.tex file is auto-generated from this file.
+ */
+
+ /* 
+Colour requirements
+  page background
+  header background
+  menu background
+  code background
+  button background
+  button hover/focus background
+  button selected background
+  image background
+
+  text colour
+  important text colour
+  header text colour
+  menu text colour
+  code text colour
+  button text colour
+  button hover/focus text colour
+  button selected text colour
+  border colour
+
+ */
+
+:root {
+    /* Primary colours */
+    --color-indigo: hsl(275, 100%, 25%);
+    --color-light-cyan: hsl(180, 100%, 94%);
+    --color-medium-cyan: hsl(180, 100%, 70%);
+    --color-dark-cyan: hsl(180, 100%, 40%);
+    --color-light-blue: hsl(195, 53%, 79%);
+    --color-medium-purple: hsl(271, 56%, 65%);
+    --color-navy: hsl(240, 100%, 25%);
+    --color-cyan: hsl(180, 100%, 50%);
+    --color-purple: hsl(300, 100%, 25%);
+    --color-darkred: hsl(0, 100%, 27%);
+    --color-red: hsl(0, 100%, 50%);
+    
+    /* Vibrant theme colours */
+    --color-orange: hsl(30, 100%, 50%);
+    --color-lime: hsl(120, 100%, 50%);
+    --color-magenta: hsl(300, 100%, 50%);
+    --color-yellow: hsl(60, 100%, 50%);
+    --color-hot-pink: hsl(330, 100%, 50%);
+    --color-electric-blue: hsl(210, 100%, 50%);
+    
+    /* Neutral colours */
+    --color-grey: hsl(0, 0%, 96%);
+    --color-light-grey: hsl(0, 0%, 96%);
+    --color-medium-grey: hsl(0, 0%, 75%);
+    --color-dark-grey: hsl(0, 0%, 23%);
+    --color-white: hsl(0, 0%, 100%);
+    --color-black: hsl(0, 0%, 0%);
+    
+    /* Web background colours - Normal theme */
+    --color-web-background-normal-dark: hsl(from var(--color-indigo) h s l);
+    --color-web-background-normal-light: hsl(from var(--color-light-cyan) h s l);
+    
+    /* Web background colours - Subdued theme */
+    --color-web-background-subdued-dark: hsl(from var(--color-indigo) h s l);
+    --color-web-background-subdued-light: hsl(from var(--color-light-cyan) h s l);
+    
+    /* Web background colours - Vibrant theme */
+    --color-web-background-vibrant-dark: hsl(from var(--color-indigo) h s l);
+    --color-web-background-vibrant-light: hsl(from var(--color-light-cyan) h s l);
+    
+     /* non-theme colours */
+     --color-warning-background:   hsl(from var(--color-darkred) h s l);     /* darkred */
+     --color-warning-text:         hsl(0, 0%, 100%);                         /* white */
+     --color-error-background:     hsl(0, 100%, 35%);                        /* darker red for AAA: 7.20:1 with white */
+     --color-error-text:           hsl(0, 0%, 100%);                         /* white */
+
+    /* light theme colours */
+    --color-normal-light-page-background:     hsl(from var(--color-light-cyan) h s l);  /* light cyan */
+    --color-normal-light-page-text:           hsl(from var(--color-indigo) h s l);  /* indigo */
+    --color-normal-light-headings-background: hsl(from var(--color-dark-cyan) h s l);  /* dark cyan */
+    --color-normal-light-headings-text:       hsl(from var(--color-purple) h s l);  /* purple */
+    --color-normal-light-code-background:     hsl(from var(--color-medium-cyan) h s l);
+    --color-normal-light-code-text:           hsl(from var(--color-medium-purple) h s 30%);  /* much darker purple for AAA compliance */
+
+    --color-normal-light-button-background:       hsl(from var(--color-medium-cyan) h s 75%);  /* mid cyan - related to page */
+    --color-normal-light-button-background-hover: hsl(from var(--color-dark-cyan) h s 55%);  /* darker cyan on hover - more distinct */
+    --color-normal-light-button-background-selected: hsl(from var(--color-dark-cyan) h s 18%);  /* very dark cyan for AAA: 7.82:1 with white text */
+    --color-normal-light-button-text:             hsl(from var(--color-indigo) h s l);  /* indigo text - matches page text */
+    --color-normal-light-button-text-hover:       hsl(from var(--color-purple) h s l);  /* purple on hover - related */
+    --color-normal-light-button-text-selected:    hsl(from var(--color-white) h s l);  /* white when selected - high contrast */
+
+    --color-normal-light-link-background:       hsl(from var(--color-dark-cyan) h s 16%);  /* very dark cyan for AAA: 9.02:1 with white */
+    --color-normal-light-link-background-hover: hsl(from var(--color-dark-cyan) h s 10%);  /* even darker on hover: 13.09:1 with light cyan - more distinct */
+    --color-normal-light-link-background-visited: hsl(from var(--color-dark-cyan) h s 16%);  /* same as normal: 7.45:1 with light purple */
+    --color-normal-light-link-text:           hsl(from var(--color-white) h s l);  /* white text for contrast on dark background */
+    --color-normal-light-link-text-hover:     hsl(from var(--color-light-cyan) h s l);  /* light cyan on hover - 94% lightness for AAA */
+    --color-normal-light-link-text-visited:   hsl(from var(--color-purple) h s 94%);  /* light purple for visited - distinct from white normal and cyan hover */
+
+    /* dark theme colours */
+    --color-normal-dark-page-background:      hsl(from var(--color-indigo) h s l);  /* indigo */
+    --color-normal-dark-page-text:            hsl(from var(--color-light-cyan) h s l);  /* light cyan */
+    --color-normal-dark-headings-background:  hsl(from var(--color-purple) h s l);  /* purple */
+    --color-normal-dark-headings-text:        hsl(from var(--color-cyan) h s l);  /* cyan */
+    --color-normal-dark-code-background:      hsl(from var(--color-medium-purple) h s l);
+    --color-normal-dark-code-text:            hsl(from var(--color-white) h s l);     /* white */
+
+    --color-normal-dark-button-background:       hsl(from var(--color-cyan) h s 75%);  /* light cyan */
+    --color-normal-dark-button-background-hover: hsl(from var(--color-cyan) h s 55%);  /* darker cyan on hover */
+    --color-normal-dark-button-background-selected: hsl(from var(--color-cyan) h s 18%);  /* very dark cyan for AAA: 7.82:1 with white */
+    --color-normal-dark-button-text:             hsl(from var(--color-indigo) h s l);  /* indigo text */
+    --color-normal-dark-button-text-hover:       hsl(from var(--color-purple) h s l);  /* purple on hover */
+    --color-normal-dark-button-text-selected:    hsl(from var(--color-white) h s l);  /* white when selected */
+
+    --color-normal-dark-link-background:       hsl(from var(--color-purple) h s 16%);  /* very dark purple for AAA: 9.02:1 with white */
+    --color-normal-dark-link-background-hover: hsl(from var(--color-purple) h s 10%);  /* even darker on hover */
+    --color-normal-dark-link-background-visited: hsl(from var(--color-purple) h s 16%);  /* same as normal */
+    --color-normal-dark-link-text:            hsl(from var(--color-white) h s l);  /* white */
+    --color-normal-dark-link-text-hover:      hsl(from var(--color-cyan) h s 94%);  /* light cyan at 94% */
+    --color-normal-dark-link-text-visited:    hsl(from var(--color-magenta) h s 94%);  /* light magenta at 94% */
+
+    /* subdued light theme colours - desaturated, closer to greyscale */
+    --color-subdued-light-page-background:     hsl(from var(--color-light-grey) h s l);  /* 96% */
+    --color-subdued-light-page-text:           hsl(from var(--color-dark-grey) h s l);  /* 23% */
+    --color-subdued-light-headings-background: hsl(from var(--color-medium-grey) h s l);  /* 75% */
+    --color-subdued-light-headings-text:       hsl(from var(--color-dark-grey) h s l);  /* 23% */
+    --color-subdued-light-code-background:     hsl(from var(--color-light-grey) h s l);  /* 96% */
+    --color-subdued-light-code-text:           hsl(0, 0%, 17%);  /* darker for AAA compliance */
+
+    --color-subdued-light-button-background:       hsl(0, 0%, 54%);  /* medium gray for 3:1 vs page */
+    --color-subdued-light-button-background-hover: hsl(0, 0%, 40%);  /* darker gray on hover for 5.27:1 vs page */
+    --color-subdued-light-button-background-selected: hsl(0, 0%, 18%);  /* very dark gray for AAA: 7.82:1 with white */
+    --color-subdued-light-button-text:             hsl(0, 0%, 10%);  /* very dark text: 5.04:1 */
+    --color-subdued-light-button-text-hover:       hsl(0, 0%, 100%);  /* white text on dark hover: 5.74:1 */
+    --color-subdued-light-button-text-selected:    hsl(0, 0%, 100%);  /* white when selected */
+
+    --color-subdued-light-link-background:       hsl(0, 0%, 16%);  /* very dark gray for AAA: 9.02:1 with white */
+    --color-subdued-light-link-background-hover: hsl(0, 0%, 10%);  /* even darker on hover */
+    --color-subdued-light-link-background-visited: hsl(0, 0%, 16%);  /* same as normal */
+    --color-subdued-light-link-text:           hsl(0, 0%, 100%);  /* white */
+    --color-subdued-light-link-text-hover:     hsl(0, 0%, 94%);  /* very light gray */
+    --color-subdued-light-link-text-visited:   hsl(0, 0%, 90%);  /* slightly darker light gray */
+
+    /* subdued dark theme colours - desaturated, closer to greyscale */
+    --color-subdued-dark-page-background:      hsl(0, 0%, 10%);  /* very dark */
+    --color-subdued-dark-page-text:            hsl(0, 0%, 91%);  /* very light */
+    --color-subdued-dark-headings-background:  hsl(0, 0%, 23%);  /* dark gray */
+    --color-subdued-dark-headings-text:        hsl(0, 0%, 94%);  /* very light */
+    --color-subdued-dark-code-background:      hsl(0, 0%, 17%);  /* very dark */
+    --color-subdued-dark-code-text:            hsl(0, 0%, 94%);  /* very light */
+
+    --color-subdued-dark-button-background:       hsl(0, 0%, 75%);  /* light gray */
+    --color-subdued-dark-button-background-hover: hsl(0, 0%, 55%);  /* medium gray on hover */
+    --color-subdued-dark-button-background-selected: hsl(0, 0%, 94%);  /* very light for AAA on dark background */
+    --color-subdued-dark-button-text:             hsl(0, 0%, 10%);  /* very dark text */
+    --color-subdued-dark-button-text-hover:       hsl(0, 0%, 10%);  /* very dark text */
+    --color-subdued-dark-button-text-selected:    hsl(0, 0%, 0%);  /* black when selected */
+
+    --color-subdued-dark-link-background:       hsl(0, 0%, 30%);  /* medium-dark gray for AAA: 7.59:1 with light gray 91% */
+    --color-subdued-dark-link-background-hover: hsl(0, 0%, 40%);  /* lighter on hover for distinction */
+    --color-subdued-dark-link-background-visited: hsl(0, 0%, 30%);  /* same as normal */
+    --color-subdued-dark-link-text:            hsl(0, 0%, 91%);  /* light gray */
+    --color-subdued-dark-link-text-hover:      hsl(0, 0%, 94%);  /* very light gray */
+    --color-subdued-dark-link-text-visited:    hsl(0, 0%, 85%);  /* slightly darker light gray */
+
+    /* vibrant light theme colours - op-art inspired with bold colors */
+    --color-vibrant-light-page-background:     hsl(0, 0%, 100%);    /* white */
+    --color-vibrant-light-page-text:           hsl(0, 0%, 0%);      /* black */
+    --color-vibrant-light-headings-background: hsl(0, 100%, 45%);   /* darker red for AA: 4.81:1 with white */
+    --color-vibrant-light-headings-text:       hsl(0, 0%, 100%);    /* white */
+    --color-vibrant-light-code-background:     hsl(60, 100%, 50%);  /* yellow */
+    --color-vibrant-light-code-text:           hsl(0, 0%, 0%);      /* black */
+
+    --color-vibrant-light-button-background:       hsl(30, 100%, 75%);  /* light orange */
+    --color-vibrant-light-button-background-hover: hsl(30, 100%, 55%);  /* darker orange on hover */
+    --color-vibrant-light-button-background-selected: hsl(30, 100%, 18%);  /* very dark orange for AAA */
+    --color-vibrant-light-button-text:             hsl(0, 100%, 30%);  /* darker red text for AA: 5.53:1 */
+    --color-vibrant-light-button-text-hover:       hsl(300, 100%, 20%);  /* darker magenta for AA: 5.13:1 */
+    --color-vibrant-light-button-text-selected:    hsl(0, 0%, 100%);  /* white when selected */
+
+    --color-vibrant-light-link-background:       hsl(210, 100%, 16%);  /* very dark blue for AAA */
+    --color-vibrant-light-link-background-hover: hsl(210, 100%, 10%);  /* even darker blue on hover */
+    --color-vibrant-light-link-background-visited: hsl(210, 100%, 16%);  /* same as normal */
+    --color-vibrant-light-link-text:           hsl(0, 0%, 100%);  /* white */
+    --color-vibrant-light-link-text-hover:     hsl(60, 100%, 94%);  /* light yellow */
+    --color-vibrant-light-link-text-visited:   hsl(300, 100%, 94%);  /* light magenta */
+
+    /* vibrant dark theme colours - op-art inspired with bold colors */
+    --color-vibrant-dark-page-background:      hsl(0, 0%, 0%);      /* black */
+    --color-vibrant-dark-page-text:            hsl(0, 0%, 100%);    /* white */
+    --color-vibrant-dark-headings-background:  hsl(120, 100%, 50%); /* lime */
+    --color-vibrant-dark-headings-text:        hsl(0, 0%, 0%);      /* black */
+    --color-vibrant-dark-code-background:      hsl(270, 50%, 20%);  /* dark purple */
+    --color-vibrant-dark-code-text:            hsl(0, 0%, 100%);    /* white */
+
+    --color-vibrant-dark-button-background:       hsl(120, 100%, 75%);  /* light lime */
+    --color-vibrant-dark-button-background-hover: hsl(120, 100%, 55%);  /* darker lime on hover */
+    --color-vibrant-dark-button-background-selected: hsl(120, 100%, 94%);  /* very light lime for AAA on black */
+    --color-vibrant-dark-button-text:             hsl(120, 100%, 15%);  /* very dark green text */
+    --color-vibrant-dark-button-text-hover:       hsl(180, 100%, 15%);  /* very dark cyan on hover */
+    --color-vibrant-dark-button-text-selected:    hsl(0, 0%, 0%);  /* black when selected */
+
+    --color-vibrant-dark-link-background:       hsl(300, 100%, 30%);  /* medium-dark magenta for AAA */
+    --color-vibrant-dark-link-background-hover: hsl(300, 100%, 40%);  /* lighter magenta on hover for distinction */
+    --color-vibrant-dark-link-background-visited: hsl(300, 100%, 30%);  /* same as normal */
+    --color-vibrant-dark-link-text:            hsl(0, 0%, 100%);  /* white */
+    --color-vibrant-dark-link-text-hover:      hsl(60, 100%, 94%);  /* light yellow */
+    --color-vibrant-dark-link-text-visited:    hsl(180, 100%, 94%);  /* light cyan */
+}

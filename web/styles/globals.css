@@ -33,76 +33,44 @@
 :root {
  
     /* non-theme colours */
-    --color-warning-background:   hsl(0, 100%, 27%);   /* darkred */
-    --color-warning-text:         hsl(0, 0%, 100%);    /* white */
-    --color-error-background:     hsl(0, 100%, 50%);   /* red */
-    --color-error-text:           hsl(0, 0%, 100%);    /* white */
-    --color-code-background:      hsl(180, 100%, 50%); /* cyan */
-    --color-code-text:            hsl(300, 100%, 25%);  /* purple */
+    --color-warning-background:   hsl(0, 100%, 27%);                /* darkred */
+    --color-warning-text:         hsl(0, 0%, 100%);                 /* white */
+    --color-error-background:     hsl(0, 100%, 50%);                /* red */
+    --color-error-text:           hsl(0, 0%, 100%);                 /* white */
+    --color-code-background:      hsl(180, 100%, 50%);              /* cyan */
+    --color-code-text:            hsl(300, 100%, 25%);              /* purple */
 
     /* light theme colours */
-    --color-light-page-background:     hsl(180, 100%, 94%);
-    --color-light-page-text:           hsl(275, 100%, 25%); /* indigo */
-    --color-light-headings-background: hsl(180, 100%, 50%); /* cyan */
-    --color-light-headings-text:       hsl(300, 100%, 25%); /* purple */
-    --color-light-link-text:           hsl(240, 100%, 25%); /* navy */
-    --color-light-link-text-hover:     hsl(240, 100%, 25%); /* navy */
-    --color-light-link-text-visited:   hsl(240, 100%, 27%);
-    --color-light-link-text-focus:     hsl(240, 100%, 27%);
-    --color-light-error-background:    hsl(0, 100%, 27%);   /* darkred */
-    --color-light-error-text:          hsl(0, 0%, 100%);    /* white */
-    --color-light-warning-background:  hsl(0, 100%, 50%);   /* red */
-    --color-light-warning-text:        hsl(0, 0%, 100%);    /* white */
-    --color-light-code-background:     hsl(0, 0%, 96%);
-    --color-light-code-text:           hsl(259, 100%, 35%);
-
-    /* normal light theme colours - same as default light theme */
-    --color-normal-light-page-background:     var(--color-light-page-background);
-    --color-normal-light-page-text:           var(--color-light-page-text);
-    --color-normal-light-headings-background: var(--color-light-headings-background);
-    --color-normal-light-headings-text:       var(--color-light-headings-text);
-    --color-normal-light-link-text:           var(--color-light-link-text);
-    --color-normal-light-link-text-hover:     var(--color-light-link-text-hover);
-    --color-normal-light-link-text-visited:   var(--color-light-link-text-visited);
-    --color-normal-light-link-text-focus:     var(--color-light-link-text-focus);
-    --color-normal-light-error-background:    var(--color-light-error-background);
-    --color-normal-light-error-text:          var(--color-light-error-text);
-    --color-normal-light-warning-background:  var(--color-light-warning-background);
-    --color-normal-light-warning-text:        var(--color-light-warning-text);
-    --color-normal-light-code-background:     var(--color-light-code-background);
-    --color-normal-light-code-text:           var(--color-light-code-text);
+    --color-normal-light-page-background:     hsl(180, 100%, 94%);
+    --color-normal-light-page-text:           hsl(275, 100%, 25%); /* indigo */
+    --color-normal-light-headings-background: hsl(180, 100%, 50%); /* cyan */
+    --color-normal-light-headings-text:       hsl(300, 100%, 25%); /* purple */
+    --color-normal-light-link-text:           hsl(240, 100%, 25%); /* navy */
+    --color-normal-light-link-text-hover:     hsl(240, 100%, 25%); /* navy */
+    --color-normal-light-link-text-visited:   hsl(240, 100%, 27%);
+    --color-normal-light-link-text-focus:     hsl(240, 100%, 27%);
+    --color-normal-light-error-background:    hsl(0, 100%, 27%);   /* darkred */
+    --color-normal-light-error-text:          hsl(0, 0%, 100%);    /* white */
+    --color-normal-light-warning-background:  hsl(0, 100%, 50%);   /* red */
+    --color-normal-light-warning-text:        hsl(0, 0%, 100%);    /* white */
+    --color-normal-light-code-background:     hsl(0, 0%, 96%);
+    --color-normal-light-code-text:           hsl(259, 100%, 35%);
 
     /* dark theme colours */
-    --color-dark-page-background:      hsl(275, 100%, 25%); /* indigo */
-    --color-dark-page-text:            hsl(180, 100%, 94%);
-    --color-dark-headings-background:  hsl(300, 100%, 25%); /* purple */
-    --color-dark-headings-text:        hsl(180, 100%, 50%); /* cyan */
-    --color-dark-link-text:            hsl(180, 100%, 94%);
-    --color-dark-link-text-hover:      hsl(240, 100%, 27%);
-    --color-dark-link-text-visited:    hsl(195, 53%, 79%);
-    --color-dark-link-text-focus:      hsl(195, 53%, 79%);
-    --color-dark-error-background:     hsl(0, 79%, 72%);
-    --color-dark-error-text:           hsl(0, 0%, 0%);      /* black */
-    --color-dark-warning-background:   hsl(0, 100%, 50%);   /* red */
-    --color-dark-warning-text:         hsl(0, 0%, 100%);    /* white */
-    --color-dark-code-background:      hsl(259, 59%, 26%);
-    --color-dark-code-text:            hsl(0, 0%, 100%);    /* white */
-
-    /* normal dark theme colours - same as default dark theme */
-    --color-normal-dark-page-background:     var(--color-dark-page-background);
-    --color-normal-dark-page-text:           var(--color-dark-page-text);
-    --color-normal-dark-headings-background: var(--color-dark-headings-background);
-    --color-normal-dark-headings-text:       var(--color-dark-headings-text);
-    --color-normal-dark-link-text:           var(--color-dark-link-text);
-    --color-normal-dark-link-text-hover:     var(--color-dark-link-text-hover);
-    --color-normal-dark-link-text-visited:   var(--color-dark-link-text-visited);
-    --color-normal-dark-link-text-focus:     var(--color-dark-link-text-focus);
-    --color-normal-dark-error-background:    var(--color-dark-error-background);
-    --color-normal-dark-error-text:          var(--color-dark-error-text);
-    --color-normal-dark-warning-background:  var(--color-dark-warning-background);
-    --color-normal-dark-warning-text:        var(--color-dark-warning-text);
-    --color-normal-dark-code-background:     var(--color-dark-code-background);
-    --color-normal-dark-code-text:           var(--color-dark-code-text);
+    --color-normal-dark-page-background:      hsl(275, 100%, 25%); /* indigo */
+    --color-normal-dark-page-text:            hsl(180, 100%, 94%);
+    --color-normal-dark-headings-background:  hsl(300, 100%, 25%); /* purple */
+    --color-normal-dark-headings-text:        hsl(180, 100%, 50%); /* cyan */
+    --color-normal-dark-link-text:            hsl(180, 100%, 94%);
+    --color-normal-dark-link-text-hover:      hsl(240, 100%, 27%);
+    --color-normal-dark-link-text-visited:    hsl(195, 53%, 79%);
+    --color-normal-dark-link-text-focus:      hsl(195, 53%, 79%);
+    --color-normal-dark-error-background:     hsl(0, 79%, 72%);
+    --color-normal-dark-error-text:           hsl(0, 0%, 0%);      /* black */
+    --color-normal-dark-warning-background:   hsl(0, 100%, 50%);   /* red */
+    --color-normal-dark-warning-text:         hsl(0, 0%, 100%);    /* white */
+    --color-normal-dark-code-background:      hsl(259, 59%, 26%);
+    --color-normal-dark-code-text:            hsl(0, 0%, 100%);    /* white */
 
     /* subdued light theme colours - desaturated, closer to greyscale */
     /* All combinations meet WCAG 2.2 AAA standards (7:1 contrast) */
@@ -172,16 +140,47 @@
     --color-vibrant-dark-code-background:      hsl(270, 50%, 20%);
     --color-vibrant-dark-code-text:            hsl(0, 0%, 100%);    /* white */
 
-    /* Active theme colours - default to light, overridden by theme-switcher.js */
-    --color-page-background:           var(--color-light-page-background);
-    --color-page-text:                 var(--color-light-page-text);
-    --color-headings-background:       var(--color-light-headings-background);
-    --color-headings-text:             var(--color-light-headings-text);
-    --color-link-text:                 var(--color-light-link-text);
-    --color-link-text-hover:           var(--color-light-link-text-hover);
-    --color-link-text-visited:         var(--color-light-link-text-visited);
-    --color-link-text-focus:           var(--color-light-link-text-focus);
+        /* normal light theme colours - same as default light theme */
+    --color-light-page-background:     var(--color-normal-light-page-background);
+    --color-light-page-text:           var(--color-normal-light-page-text);
+    --color-light-headings-background: var(--color-normal-light-headings-background);
+    --color-light-headings-text:       var(--color-normal-light-headings-text);
+    --color-light-link-text:           var(--color-normal-light-link-text);
+    --color-light-link-text-hover:     var(--color-normal-light-link-text-hover);
+    --color-light-link-text-visited:   var(--color-normal-light-link-text-visited);
+    --color-light-link-text-focus:     var(--color-normal-light-link-text-focus);
+    --color-light-error-background:    var(--color-normal-light-error-background);
+    --color-light-error-text:          var(--color-normal-light-error-text);
+    --color-light-warning-background:  var(--color-normal-light-warning-background);
+    --color-light-warning-text:        var(--color-normal-light-warning-text);
+    --color-light-code-background:     var(--color-normal-light-code-background);
+    --color-light-code-text:           var(--color-normal-light-code-text);
 
+    /* normal dark theme colours - same as default dark theme */
+    --color-dark-page-background:     var(--color-normal-dark-page-background);
+    --color-dark-page-text:           var(--color-normal-dark-page-text);
+    --color-dark-headings-background: var(--color-normal-dark-headings-background);
+    --color-dark-headings-text:       var(--color-normal-dark-headings-text);
+    --color-dark-link-text:           var(--color-normal-dark-link-text);
+    --color-dark-link-text-hover:     var(--color-normal-dark-link-text-hover);
+    --color-dark-link-text-visited:   var(--color-normal-dark-link-text-visited);
+    --color-dark-link-text-focus:     var(--color-normal-dark-link-text-focus);
+    --color-dark-error-background:    var(--color-normal-dark-error-background);
+    --color-dark-error-text:          var(--color-normal-dark-error-text);
+    --color-dark-warning-background:  var(--color-normal-dark-warning-background);
+    --color-dark-warning-text:        var(--color-normal-dark-warning-text);
+    --color-dark-code-background:     var(--color-normal-dark-code-background);
+    --color-dark-code-text:           var(--color-normal-dark-code-text);
+
+    /* Active theme colours - default to normal, light, overridden by theme-switcher.js */
+    --color-page-background:           var(--color-normal-light-page-background);
+    --color-page-text:                 var(--color-normal-light-page-text);
+    --color-headings-background:       var(--color-normal-light-headings-background);
+    --color-headings-text:             var(--color-normal-light-headings-text);
+    --color-link-text:                 var(--color-normal-light-link-text);
+    --color-link-text-hover:           var(--color-normal-light-link-text-hover);
+    --color-link-text-visited:         var(--color-normal-light-link-text-visited);
+    --color-link-text-focus:           var(--color-normal-light-link-text-focus);
 
     /* Background images for light and dark themes */
     --bg-landscape-light:              url('../images/background-web-landscape-light.svg');
@@ -232,4 +231,13 @@
         to ensure sitewide consistency such as margin and padding
         sizes, but that means more refactoring and this is a good start
     */
+}
+
+/* Progressive enhancement: Use relative color syntax for browsers that support it */
+@supports (color: hsl(from white h s l)) {
+    :root {
+        /* Apply relative color syntax where it provides benefits */
+        /* Note: Currently all colors use direct HSL values for maximum compatibility */
+        /* This block is here for future enhancement when relative colors are beneficial */
+    }
 }
