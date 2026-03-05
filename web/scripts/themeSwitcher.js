@@ -57,7 +57,7 @@
             // Build the color variable prefix based on style and theme
             const prefix = `--color-${style}-${effectiveTheme}`;
 
-            // Apply the theme by setting CSS custom properties
+            // Apply theme-specific colors (from colours.css)
             root.style.setProperty('--color-page-background', `var(${prefix}-page-background)`);
             root.style.setProperty('--color-page-text', `var(${prefix}-page-text)`);
             root.style.setProperty('--color-headings-background', `var(${prefix}-headings-background)`);
@@ -66,24 +66,30 @@
             root.style.setProperty('--color-link-text-hover', `var(${prefix}-link-text-hover)`);
             root.style.setProperty('--color-link-text-visited', `var(${prefix}-link-text-visited)`);
             root.style.setProperty('--color-link-text-focus', `var(${prefix}-link-text-focus)`);
-            root.style.setProperty('--color-error-background', `var(${prefix}-error-background)`);
-            root.style.setProperty('--color-error-text', `var(${prefix}-error-text)`);
-            root.style.setProperty('--color-warning-background', `var(${prefix}-warning-background)`);
-            root.style.setProperty('--color-warning-text', `var(${prefix}-warning-text)`);
             root.style.setProperty('--color-code-background', `var(${prefix}-code-background)`);
             root.style.setProperty('--color-code-text', `var(${prefix}-code-text)`);
             
-            // Background images are theme-dependent but not style-dependent
+            // Apply global non-theme colors (from colours.css)
+            // These are the same across all themes for consistency
+            root.style.setProperty('--color-error-background', 'var(--color-error-background)');
+            root.style.setProperty('--color-error-text', 'var(--color-error-text)');
+            root.style.setProperty('--color-warning-background', 'var(--color-warning-background)');
+            root.style.setProperty('--color-warning-text', 'var(--color-warning-text)');
+            
+            // Background images are both style and theme dependent
+            const bgPrefix = `--bg-landscape-${style}-${effectiveTheme}`;
+            const bgPortraitPrefix = `--bg-portrait-${style}-${effectiveTheme}`;
+            
+            root.style.setProperty('--bg-landscape', `var(${bgPrefix})`);
+            root.style.setProperty('--bg-portrait', `var(${bgPortraitPrefix})`);
+            
+            // SVG filters and other theme-specific settings
             if (effectiveTheme === 'dark') {
-                root.style.setProperty('--bg-landscape', 'var(--bg-landscape-dark)');
-                root.style.setProperty('--bg-portrait', 'var(--bg-portrait-dark)');
                 root.style.setProperty('--svg-filter', 'var(--svg-filter-dark)');
                 root.style.setProperty('--header-svg-filter', 'var(--header-svg-filter-dark)');
                 root.setAttribute('data-theme', 'dark');
                 this.updateLogo('dark');
             } else {
-                root.style.setProperty('--bg-landscape', 'var(--bg-landscape-light)');
-                root.style.setProperty('--bg-portrait', 'var(--bg-portrait-light)');
                 root.style.setProperty('--svg-filter', 'var(--svg-filter-light)');
                 root.style.setProperty('--header-svg-filter', 'var(--header-svg-filter-light)');
                 root.setAttribute('data-theme', 'light');
@@ -367,8 +373,8 @@
                 }
                 
                 Debug.log('Button states - Normal:', normalButton.className, 
-                         '| Subdued:', subduedButton.className,
-                         '| Vibrant:', vibrantButton.className);
+                    '| Subdued:', subduedButton.className,
+                    '| Vibrant:', vibrantButton.className);
             } else {
                 Debug.warn('Style buttons not found on this page');
             }

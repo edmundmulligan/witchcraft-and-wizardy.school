@@ -31,114 +31,117 @@
   */
 
 :root {
- 
     /* non-theme colours */
-    --color-warning-background:   hsl(0, 100%, 27%);                /* darkred */
-    --color-warning-text:         hsl(0, 0%, 100%);                 /* white */
-    --color-error-background:     hsl(0, 100%, 50%);                /* red */
-    --color-error-text:           hsl(0, 0%, 100%);                 /* white */
-    --color-code-background:      hsl(180, 100%, 50%);              /* cyan */
-    --color-code-text:            hsl(300, 100%, 25%);              /* purple */
+    --color-warning-background:   hsl(0deg 100% 27%);                /* darkred */
+    --color-warning-text:         hsl(0deg 0% 100%);                 /* white */
+    --color-error-background:     hsl(0deg 100% 50%);                /* red */
+    --color-error-text:           hsl(0deg 0% 100%);                 /* white */
+    --color-code-background:      hsl(180deg 100% 50%);              /* cyan */
+    --color-code-text:            hsl(300deg 100% 25%);              /* purple */
 
     /* light theme colours */
-    --color-normal-light-page-background:     hsl(180, 100%, 94%);
-    --color-normal-light-page-text:           hsl(275, 100%, 25%); /* indigo */
-    --color-normal-light-headings-background: hsl(180, 100%, 50%); /* cyan */
-    --color-normal-light-headings-text:       hsl(300, 100%, 25%); /* purple */
-    --color-normal-light-link-text:           hsl(240, 100%, 25%); /* navy */
-    --color-normal-light-link-text-hover:     hsl(240, 100%, 25%); /* navy */
-    --color-normal-light-link-text-visited:   hsl(240, 100%, 27%);
-    --color-normal-light-link-text-focus:     hsl(240, 100%, 27%);
-    --color-normal-light-error-background:    hsl(0, 100%, 27%);   /* darkred */
-    --color-normal-light-error-text:          hsl(0, 0%, 100%);    /* white */
-    --color-normal-light-warning-background:  hsl(0, 100%, 50%);   /* red */
-    --color-normal-light-warning-text:        hsl(0, 0%, 100%);    /* white */
-    --color-normal-light-code-background:     hsl(0, 0%, 96%);
-    --color-normal-light-code-text:           hsl(259, 100%, 35%);
+    --color-normal-light-page-background:     hsl(180deg 100% 94%);
+    --color-normal-light-page-text:           hsl(275deg 100% 25%); /* indigo */
+    --color-normal-light-headings-background: hsl(180deg 100% 50%); /* cyan */
+    --color-normal-light-headings-text:       hsl(300deg 100% 25%); /* purple */
+    --color-normal-light-link-text:           hsl(240deg 100% 25%); /* navy */
+    --color-normal-light-link-text-hover:     hsl(240deg 100% 25%); /* navy */
+    --color-normal-light-link-text-visited:   hsl(240deg 100% 27%);
+    --color-normal-light-link-text-focus:     hsl(240deg 100% 27%);
+    --color-normal-light-error-background:    hsl(0deg 100% 27%);   /* darkred */
+    --color-normal-light-error-text:          hsl(0deg 0% 100%);    /* white */
+    --color-normal-light-warning-background:  hsl(0deg 100% 50%);   /* red */
+    --color-normal-light-warning-text:        hsl(0deg 0% 100%);    /* white */
+    --color-normal-light-code-background:     hsl(0deg 0% 96%);
+    --color-normal-light-code-text:           hsl(259deg 100% 35%);
 
     /* dark theme colours */
-    --color-normal-dark-page-background:      hsl(275, 100%, 25%); /* indigo */
-    --color-normal-dark-page-text:            hsl(180, 100%, 94%);
-    --color-normal-dark-headings-background:  hsl(300, 100%, 25%); /* purple */
-    --color-normal-dark-headings-text:        hsl(180, 100%, 50%); /* cyan */
-    --color-normal-dark-link-text:            hsl(180, 100%, 94%);
-    --color-normal-dark-link-text-hover:      hsl(240, 100%, 27%);
-    --color-normal-dark-link-text-visited:    hsl(195, 53%, 79%);
-    --color-normal-dark-link-text-focus:      hsl(195, 53%, 79%);
-    --color-normal-dark-error-background:     hsl(0, 79%, 72%);
-    --color-normal-dark-error-text:           hsl(0, 0%, 0%);      /* black */
-    --color-normal-dark-warning-background:   hsl(0, 100%, 50%);   /* red */
-    --color-normal-dark-warning-text:         hsl(0, 0%, 100%);    /* white */
-    --color-normal-dark-code-background:      hsl(259, 59%, 26%);
-    --color-normal-dark-code-text:            hsl(0, 0%, 100%);    /* white */
+    --color-normal-dark-page-background:      hsl(275deg 100% 25%); /* indigo */
+    --color-normal-dark-page-text:            hsl(180deg 100% 94%);
+    --color-normal-dark-headings-background:  hsl(300deg 100% 25%); /* purple */
+    --color-normal-dark-headings-text:        hsl(180deg 100% 50%); /* cyan */
+    --color-normal-dark-link-text:            hsl(180deg 100% 94%);
+    --color-normal-dark-link-text-hover:      hsl(240deg 100% 27%);
+    --color-normal-dark-link-text-visited:    hsl(195deg 53% 79%);
+    --color-normal-dark-link-text-focus:      hsl(195deg 53% 79%);
+    --color-normal-dark-error-background:     hsl(0deg 79% 72%);
+    --color-normal-dark-error-text:           hsl(0deg 0% 0%);      /* black */
+    --color-normal-dark-warning-background:   hsl(0deg 100% 50%);   /* red */
+    --color-normal-dark-warning-text:         hsl(0deg 0% 100%);    /* white */
+    --color-normal-dark-code-background:      hsl(259deg 59% 26%);
+    --color-normal-dark-code-text:            hsl(0deg 0% 100%);    /* white */
 
     /* subdued light theme colours - desaturated, closer to greyscale */
+
     /* All combinations meet WCAG 2.2 AAA standards (7:1 contrast) */
-    --color-subdued-light-page-background:     hsl(0, 0%, 91%);
-    --color-subdued-light-page-text:           hsl(0, 0%, 10%);
-    --color-subdued-light-headings-background: hsl(0, 0%, 75%);
-    --color-subdued-light-headings-text:       hsl(0, 0%, 10%);
-    --color-subdued-light-link-text:           hsl(0, 0%, 17%);
-    --color-subdued-light-link-text-hover:     hsl(0, 0%, 29%);
-    --color-subdued-light-link-text-visited:   hsl(0, 0%, 31%);
-    --color-subdued-light-link-text-focus:     hsl(0, 0%, 25%);
-    --color-subdued-light-error-background:    hsl(0, 65%, 42%);
-    --color-subdued-light-error-text:          hsl(0, 0%, 100%);    /* white */
-    --color-subdued-light-warning-background:  hsl(0, 73%, 50%);
-    --color-subdued-light-warning-text:        hsl(0, 0%, 100%);    /* white */
-    --color-subdued-light-code-background:     hsl(0, 0%, 94%);
-    --color-subdued-light-code-text:           hsl(0, 0%, 17%);
+    --color-subdued-light-page-background:     hsl(0deg 0% 91%);
+    --color-subdued-light-page-text:           hsl(0deg 0% 10%);
+    --color-subdued-light-headings-background: hsl(0deg 0% 75%);
+    --color-subdued-light-headings-text:       hsl(0deg 0% 10%);
+    --color-subdued-light-link-text:           hsl(0deg 0% 17%);
+    --color-subdued-light-link-text-hover:     hsl(0deg 0% 29%);
+    --color-subdued-light-link-text-visited:   hsl(0deg 0% 31%);
+    --color-subdued-light-link-text-focus:     hsl(0deg 0% 25%);
+    --color-subdued-light-error-background:    hsl(0deg 65% 42%);
+    --color-subdued-light-error-text:          hsl(0deg 0% 100%);    /* white */
+    --color-subdued-light-warning-background:  hsl(0deg 73% 50%);
+    --color-subdued-light-warning-text:        hsl(0deg 0% 100%);    /* white */
+    --color-subdued-light-code-background:     hsl(0deg 0% 94%);
+    --color-subdued-light-code-text:           hsl(0deg 0% 17%);
 
     /* subdued dark theme colours - desaturated, closer to greyscale */
+
     /* All combinations meet WCAG 2.2 AAA standards (7:1 contrast) */
-    --color-subdued-dark-page-background:      hsl(0, 0%, 10%);
-    --color-subdued-dark-page-text:            hsl(0, 0%, 91%);
-    --color-subdued-dark-headings-background:  hsl(0, 0%, 23%);
-    --color-subdued-dark-headings-text:        hsl(0, 0%, 94%);
-    --color-subdued-dark-link-text:            hsl(0, 0%, 82%);
-    --color-subdued-dark-link-text-hover:      hsl(0, 0%, 69%);
-    --color-subdued-dark-link-text-visited:    hsl(0, 0%, 75%);
-    --color-subdued-dark-link-text-focus:      hsl(0, 0%, 78%);
-    --color-subdued-dark-error-background:     hsl(0, 100%, 70%);
-    --color-subdued-dark-error-text:           hsl(0, 0%, 0%);      /* black */
-    --color-subdued-dark-warning-background:   hsl(0, 100%, 66%);
-    --color-subdued-dark-warning-text:         hsl(0, 0%, 0%);      /* black */
-    --color-subdued-dark-code-background:      hsl(0, 0%, 17%);
-    --color-subdued-dark-code-text:            hsl(0, 0%, 94%);
+    --color-subdued-dark-page-background:      hsl(0deg 0% 10%);
+    --color-subdued-dark-page-text:            hsl(0deg 0% 91%);
+    --color-subdued-dark-headings-background:  hsl(0deg 0% 23%);
+    --color-subdued-dark-headings-text:        hsl(0deg 0% 94%);
+    --color-subdued-dark-link-text:            hsl(0deg 0% 82%);
+    --color-subdued-dark-link-text-hover:      hsl(0deg 0% 69%);
+    --color-subdued-dark-link-text-visited:    hsl(0deg 0% 75%);
+    --color-subdued-dark-link-text-focus:      hsl(0deg 0% 78%);
+    --color-subdued-dark-error-background:     hsl(0deg 100% 70%);
+    --color-subdued-dark-error-text:           hsl(0deg 0% 0%);      /* black */
+    --color-subdued-dark-warning-background:   hsl(0deg 100% 66%);
+    --color-subdued-dark-warning-text:         hsl(0deg 0% 0%);      /* black */
+    --color-subdued-dark-code-background:      hsl(0deg 0% 17%);
+    --color-subdued-dark-code-text:            hsl(0deg 0% 94%);
 
     /* vibrant light theme colours - op-art inspired with bold colors */
+
     /* All combinations meet WCAG 2.2 AAA standards (7:1 contrast) */
-    --color-vibrant-light-page-background:     hsl(0, 0%, 100%);    /* white */
-    --color-vibrant-light-page-text:           hsl(0, 0%, 0%);      /* black */
-    --color-vibrant-light-headings-background: hsl(0, 100%, 50%);   /* red */
-    --color-vibrant-light-headings-text:       hsl(0, 0%, 100%);    /* white */
-    --color-vibrant-light-link-text:           hsl(240, 100%, 40%);
-    --color-vibrant-light-link-text-hover:     hsl(300, 100%, 50%); /* magenta */
-    --color-vibrant-light-link-text-visited:   hsl(270, 100%, 40%);
-    --color-vibrant-light-link-text-focus:     hsl(300, 100%, 50%); /* magenta */
-    --color-vibrant-light-error-background:    hsl(0, 100%, 40%);
-    --color-vibrant-light-error-text:          hsl(0, 0%, 100%);    /* white */
-    --color-vibrant-light-warning-background:  hsl(24, 100%, 50%);
-    --color-vibrant-light-warning-text:        hsl(0, 0%, 0%);      /* black */
-    --color-vibrant-light-code-background:     hsl(60, 100%, 50%);  /* yellow */
-    --color-vibrant-light-code-text:           hsl(0, 0%, 0%);      /* black */
+    --color-vibrant-light-page-background:     hsl(0deg 0% 100%);    /* white */
+    --color-vibrant-light-page-text:           hsl(0deg 0% 0%);      /* black */
+    --color-vibrant-light-headings-background: hsl(0deg 100% 50%);   /* red */
+    --color-vibrant-light-headings-text:       hsl(0deg 0% 100%);    /* white */
+    --color-vibrant-light-link-text:           hsl(240deg 100% 40%);
+    --color-vibrant-light-link-text-hover:     hsl(300deg 100% 50%); /* magenta */
+    --color-vibrant-light-link-text-visited:   hsl(270deg 100% 40%);
+    --color-vibrant-light-link-text-focus:     hsl(300deg 100% 50%); /* magenta */
+    --color-vibrant-light-error-background:    hsl(0deg 100% 40%);
+    --color-vibrant-light-error-text:          hsl(0deg 0% 100%);    /* white */
+    --color-vibrant-light-warning-background:  hsl(24deg 100% 50%);
+    --color-vibrant-light-warning-text:        hsl(0deg 0% 0%);      /* black */
+    --color-vibrant-light-code-background:     hsl(60deg 100% 50%);  /* yellow */
+    --color-vibrant-light-code-text:           hsl(0deg 0% 0%);      /* black */
 
     /* vibrant dark theme colours - op-art inspired with bold colors */
+
     /* All combinations meet WCAG 2.2 AAA standards (7:1 contrast) */
-    --color-vibrant-dark-page-background:      hsl(0, 0%, 0%);      /* black */
-    --color-vibrant-dark-page-text:            hsl(0, 0%, 100%);    /* white */
-    --color-vibrant-dark-headings-background:  hsl(120, 100%, 50%); /* lime */
-    --color-vibrant-dark-headings-text:        hsl(0, 0%, 0%);      /* black */
-    --color-vibrant-dark-link-text:            hsl(180, 100%, 50%); /* cyan */
-    --color-vibrant-dark-link-text-hover:      hsl(300, 100%, 50%); /* magenta */
-    --color-vibrant-dark-link-text-visited:    hsl(60, 100%, 50%);  /* yellow */
-    --color-vibrant-dark-link-text-focus:      hsl(300, 100%, 50%); /* magenta */
-    --color-vibrant-dark-error-background:     hsl(0, 100%, 60%);
-    --color-vibrant-dark-error-text:           hsl(0, 0%, 0%);      /* black */
-    --color-vibrant-dark-warning-background:   hsl(40, 100%, 50%);
-    --color-vibrant-dark-warning-text:         hsl(0, 0%, 0%);      /* black */
-    --color-vibrant-dark-code-background:      hsl(270, 50%, 20%);
-    --color-vibrant-dark-code-text:            hsl(0, 0%, 100%);    /* white */
+    --color-vibrant-dark-page-background:      hsl(0deg 0% 0%);      /* black */
+    --color-vibrant-dark-page-text:            hsl(0deg 0% 100%);    /* white */
+    --color-vibrant-dark-headings-background:  hsl(120deg 100% 50%); /* lime */
+    --color-vibrant-dark-headings-text:        hsl(0deg 0% 0%);      /* black */
+    --color-vibrant-dark-link-text:            hsl(180deg 100% 50%); /* cyan */
+    --color-vibrant-dark-link-text-hover:      hsl(300deg 100% 50%); /* magenta */
+    --color-vibrant-dark-link-text-visited:    hsl(60deg 100% 50%);  /* yellow */
+    --color-vibrant-dark-link-text-focus:      hsl(300deg 100% 50%); /* magenta */
+    --color-vibrant-dark-error-background:     hsl(0deg 100% 60%);
+    --color-vibrant-dark-error-text:           hsl(0deg 0% 0%);      /* black */
+    --color-vibrant-dark-warning-background:   hsl(40deg 100% 50%);
+    --color-vibrant-dark-warning-text:         hsl(0deg 0% 0%);      /* black */
+    --color-vibrant-dark-code-background:      hsl(270deg 50% 20%);
+    --color-vibrant-dark-code-text:            hsl(0deg 0% 100%);    /* white */
 
         /* normal light theme colours - same as default light theme */
     --color-light-page-background:     var(--color-normal-light-page-background);
@@ -182,15 +185,35 @@
     --color-link-text-visited:         var(--color-normal-light-link-text-visited);
     --color-link-text-focus:           var(--color-normal-light-link-text-focus);
 
-    /* Background images for light and dark themes */
+    /* Background image sources */
     --bg-landscape-light:              url('../images/background-web-landscape-light.svg');
     --bg-landscape-dark:               url('../images/background-web-landscape-dark.svg');
     --bg-portrait-light:               url('../images/background-web-portrait-light.svg');
     --bg-portrait-dark:                url('../images/background-web-portrait-dark.svg');
     
-    /* Active background images - default to light, overridden by theme-switcher.js */
-    --bg-landscape:                    var(--bg-landscape-light);
-    --bg-portrait:                     var(--bg-portrait-light);
+    /* Background images per style-theme combination */
+
+    /* Normal style backgrounds */
+    --bg-landscape-normal-light:       var(--bg-landscape-light);
+    --bg-landscape-normal-dark:        var(--bg-landscape-dark);
+    --bg-portrait-normal-light:        var(--bg-portrait-light);
+    --bg-portrait-normal-dark:         var(--bg-portrait-dark);
+    
+    /* Subdued style backgrounds */
+    --bg-landscape-subdued-light:      var(--bg-landscape-light);
+    --bg-landscape-subdued-dark:       var(--bg-landscape-dark);
+    --bg-portrait-subdued-light:       var(--bg-portrait-light);
+    --bg-portrait-subdued-dark:        var(--bg-portrait-dark);
+    
+    /* Vibrant style backgrounds */
+    --bg-landscape-vibrant-light:      var(--bg-landscape-light);
+    --bg-landscape-vibrant-dark:       var(--bg-landscape-dark);
+    --bg-portrait-vibrant-light:       var(--bg-portrait-light);
+    --bg-portrait-vibrant-dark:        var(--bg-portrait-dark);
+    
+    /* Active background images - default to normal-light, overridden by theme-switcher.js */
+    --bg-landscape:                    var(--bg-landscape-normal-light);
+    --bg-portrait:                     var(--bg-portrait-normal-light);
 
     /* SVG filter for theme switching */
     --svg-filter-light:                none;
@@ -237,7 +260,9 @@
 @supports (color: hsl(from white h s l)) {
     :root {
         /* Apply relative color syntax where it provides benefits */
+
         /* Note: Currently all colors use direct HSL values for maximum compatibility */
+
         /* This block is here for future enhancement when relative colors are beneficial */
     }
 }

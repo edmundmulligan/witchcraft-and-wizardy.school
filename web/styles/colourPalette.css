@@ -1,0 +1,231 @@
+/**
+ * File: colourPalette.css
+ * Author: Edmund Mulligan <edmund@edmundmulligan.name>
+ * License: MIT
+ * Description: Styles for the colour palette preview page
+ */
+
+.color-preview {
+    padding: 2rem;
+}
+
+.color-section {
+    margin-bottom: 3rem;
+}
+
+.color-section h2 {
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--color-headings-background);
+    color: var(--color-headings-text);
+    border-radius: var(--border-radius);
+}
+
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.color-card {
+    border: var(--border-weight-thin) var(--border-style) var(--color-page-text);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.color-card.wide {
+    grid-column: span 2;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid currentColor;
+    opacity: 0.9;
+}
+
+.color-swatch {
+    min-height: 200px;
+    height: 100%;
+    width: 100%;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-sizing: border-box;
+}
+
+.color-name {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.color-value {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.75rem;
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.lorem-text {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border: 1px solid currentColor;
+    border-radius: 0.5rem;
+    opacity: 0.8;
+}
+
+.contrast-info {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+.contrast-section-title {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.contrast-section-title:first-of-type {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid currentColor;
+}
+
+.wcag-badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    margin-left: 0.5rem;
+    border-radius: 0.25rem;
+    font-weight: bold;
+    font-size: 0.75rem;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Button and nav demo styles */
+.button-states {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.button-state-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.button-state-label {
+    font-size: 0.75rem;
+    opacity: 0.8;
+    font-weight: bold;
+}
+
+.demo-button-round {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid var(--btn-text-color, currentColor);
+    background: transparent;
+    color: var(--btn-text-color, inherit);
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.demo-button-round.hover-state {
+    background: var(--btn-text-color, currentColor);
+    color: var(--btn-bg-color, #fff);
+    border-color: var(--btn-text-color, currentColor);
+}
+
+.demo-button-round.selected-state {
+    background: var(--btn-text-color, currentColor);
+    color: var(--btn-bg-color, #fff);
+    border-color: var(--btn-text-color, currentColor);
+    border-width: 3px;
+    transform: scale(0.95);
+}
+
+.demo-button-rect {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: 2px solid currentColor;
+    background: transparent;
+    color: inherit;
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.demo-button-rect.hover-state {
+    background: currentColor;
+    color: var(--button-hover-text, #fff);
+}
+
+.demo-button-rect.selected-state {
+    background: currentColor;
+    color: var(--button-hover-text, #fff);
+    border-width: 3px;
+    transform: scale(0.95);
+}
+
+.demo-nav {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+    border: 1px solid currentColor;
+}
+
+.demo-nav li {
+    padding: 0 1rem;
+    margin: 0;
+}
+
+.demo-nav a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 0;
+}
+
+.demo-nav a:hover {
+    text-decoration: underline;
+}
+
+.description {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--color-code-background);
+    color: var(--color-code-text);
+    border-radius: var(--border-radius);
+    border: var(--border-weight-thin) var(--border-style) var(--color-page-text);
+}
