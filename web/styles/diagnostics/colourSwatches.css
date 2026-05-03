@@ -1,0 +1,610 @@
+/*
+ **********************************************************************
+ * File       : colourSwatches.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Styles for the colour swatches diagnostic page
+ **********************************************************************
+ */
+
+body {
+    background: var(--colour-page-background);
+    color: var(--colour-page-text);
+    padding: 2rem;
+    font-family: 'Open Sans', sans-serif;
+}
+
+header {
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    background: var(--colour-headings-background);
+    color: var(--colour-headings-text);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+}
+
+nav {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+nav a {
+    color: var(--colour-page-text);
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.description {
+    background: var(--colour-code-background);
+    color: var(--colour-code-text);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 2rem;
+}
+
+.section {
+    margin-bottom: 3rem;
+}
+
+.section h2 {
+    background: var(--colour-headings-background);
+    color: var(--colour-headings-text);
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+
+.section h3 {
+    color: var(--colour-headings-text);
+    margin: 1.5rem 0 0.75rem;
+    font-size: 1.1rem;
+}
+
+.swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.base-colours-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+
+.swatch {
+    border: 2px solid var(--colour-page-text);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
+}
+
+.swatch-colour {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.base-colours-grid .swatch-colour {
+    height: 100px;
+}
+
+.swatch-info {
+    background: var(--colour-code-background);
+    color: var(--colour-code-text);
+    padding: 0.5rem;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.75rem;
+    line-height: 1.4;
+}
+
+.swatch-label {
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+.swatch-value {
+    color: var(--colour-page-text);
+    opacity: 0.8;
+}
+
+.theme-demo {
+    border: 2px solid var(--colour-page-text);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.theme-colours {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.colour-pair {
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    border: 1px solid currentcolor;
+}
+
+.colour-label {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+code {
+    background: var(--colour-code-background);
+    color: var(--colour-code-text);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: 'Source Code Pro', monospace;
+    font-size: inherit;
+}
+
+/* =================================================================
+   Utility Classes for Base Colour Swatches
+   ================================================================= */
+
+.swatch-colour-grey {
+    background: var(--colour-grey);
+    color: white;
+}
+
+.swatch-colour-red {
+    background: var(--colour-red);
+    color: white;
+}
+
+.swatch-colour-orange {
+    background: var(--colour-orange);
+    color: black;
+}
+
+.swatch-colour-yellow {
+    background: var(--colour-yellow);
+    color: black;
+}
+
+.swatch-colour-lime {
+    background: var(--colour-lime);
+    color: black;
+}
+
+.swatch-colour-green {
+    background: var(--colour-green);
+    color: black;
+}
+
+.swatch-colour-turquoise {
+    background: var(--colour-turquoise);
+    color: black;
+}
+
+.swatch-colour-cyan {
+    background: var(--colour-cyan);
+    color: black;
+}
+
+.swatch-colour-blue {
+    background: var(--colour-blue);
+    color: white;
+}
+
+.swatch-colour-navy {
+    background: var(--colour-navy);
+    color: white;
+}
+
+.swatch-colour-purple {
+    background: var(--colour-purple);
+    color: white;
+}
+
+.swatch-colour-magenta {
+    background: var(--colour-magenta);
+    color: white;
+}
+
+.swatch-colour-pink {
+    background: var(--colour-pink);
+    color: black;
+}
+
+.swatch-colour-warning {
+    background: var(--colour-warning-background);
+    color: var(--colour-warning-text);
+}
+
+.swatch-colour-error {
+    background: var(--colour-error-background);
+    color: var(--colour-error-text);
+}
+
+.swatch-colour-success {
+    background: var(--colour-success-background);
+    color: var(--colour-success-text);
+}
+
+/* =================================================================
+   Utility Classes for Theme Demo Containers
+   ================================================================= */
+
+.theme-demo-normal-light {
+    background: var(--colour-normal-light-page-background);
+    color: var(--colour-normal-light-page-text);
+}
+
+.theme-demo-normal-dark {
+    background: var(--colour-normal-dark-page-background);
+    color: var(--colour-normal-dark-page-text);
+}
+
+.theme-demo-subdued-light {
+    background: var(--colour-subdued-light-page-background);
+    color: var(--colour-subdued-light-page-text);
+}
+
+.theme-demo-subdued-dark {
+    background: var(--colour-subdued-dark-page-background);
+    color: var(--colour-subdued-dark-page-text);
+}
+
+.theme-demo-vibrant-light {
+    background: var(--colour-vibrant-light-page-background);
+    color: var(--colour-vibrant-light-page-text);
+}
+
+.theme-demo-vibrant-dark {
+    background: var(--colour-vibrant-dark-page-background);
+    color: var(--colour-vibrant-dark-page-text);
+}
+
+/* =================================================================
+   Utility Classes for Theme Headings
+   ================================================================= */
+
+.theme-heading {
+    padding: 0.75rem;
+    border-radius: 4px;
+}
+
+.theme-heading-with-margin {
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+.theme-heading-normal-light {
+    background: var(--colour-normal-light-headings-background);
+    color: var(--colour-normal-light-headings-text);
+}
+
+.theme-heading-normal-dark {
+    background: var(--colour-normal-dark-headings-background);
+    color: var(--colour-normal-dark-headings-text);
+}
+
+.theme-heading-subdued-light {
+    background: var(--colour-subdued-light-headings-background);
+    color: var(--colour-subdued-light-headings-text);
+}
+
+.theme-heading-subdued-dark {
+    background: var(--colour-subdued-dark-headings-background);
+    color: var(--colour-subdued-dark-headings-text);
+}
+
+.theme-heading-vibrant-light {
+    background: var(--colour-vibrant-light-headings-background);
+    color: var(--colour-vibrant-light-headings-text);
+}
+
+.theme-heading-vibrant-dark {
+    background: var(--colour-vibrant-dark-headings-background);
+    color: var(--colour-vibrant-dark-headings-text);
+}
+
+/* =================================================================
+   Utility Classes for Colour Pairs - Normal Light
+   ================================================================= */
+
+.colour-pair-normal-light-page {
+    background: var(--colour-normal-light-page-background);
+    color: var(--colour-normal-light-page-text);
+}
+
+.colour-pair-normal-light-headings {
+    background: var(--colour-normal-light-headings-background);
+    color: var(--colour-normal-light-headings-text);
+}
+
+.colour-pair-normal-light-code {
+    background: var(--colour-normal-light-code-background);
+    color: var(--colour-normal-light-code-text);
+}
+
+.colour-pair-normal-light-button {
+    background: var(--colour-normal-light-button-background);
+    color: var(--colour-normal-light-button-text);
+}
+
+.colour-pair-normal-light-button-hover {
+    background: var(--colour-normal-light-button-background-hover);
+    color: var(--colour-normal-light-button-text-hover);
+}
+
+.colour-pair-normal-light-button-selected {
+    background: var(--colour-normal-light-button-background-selected);
+    color: var(--colour-normal-light-button-text-selected);
+}
+
+.colour-pair-normal-light-menu {
+    background: var(--colour-normal-light-menu-background);
+    color: var(--colour-normal-light-menu-text);
+}
+
+.colour-pair-normal-light-menu-hover {
+    background: var(--colour-normal-light-menu-background-hover);
+    color: var(--colour-normal-light-menu-text-hover);
+}
+
+.colour-pair-normal-light-menu-visited {
+    background: var(--colour-normal-light-menu-background-visited);
+    color: var(--colour-normal-light-menu-text-visited);
+}
+
+/* =================================================================
+   Utility Classes for Colour Pairs - Normal Dark
+   ================================================================= */
+
+.colour-pair-normal-dark-page {
+    background: var(--colour-normal-dark-page-background);
+    color: var(--colour-normal-dark-page-text);
+}
+
+.colour-pair-normal-dark-headings {
+    background: var(--colour-normal-dark-headings-background);
+    color: var(--colour-normal-dark-headings-text);
+}
+
+.colour-pair-normal-dark-code {
+    background: var(--colour-normal-dark-code-background);
+    color: var(--colour-normal-dark-code-text);
+}
+
+.colour-pair-normal-dark-button {
+    background: var(--colour-normal-dark-button-background);
+    color: var(--colour-normal-dark-button-text);
+}
+
+.colour-pair-normal-dark-button-hover {
+    background: var(--colour-normal-dark-button-background-hover);
+    color: var(--colour-normal-dark-button-text-hover);
+}
+
+.colour-pair-normal-dark-button-selected {
+    background: var(--colour-normal-dark-button-background-selected);
+    color: var(--colour-normal-dark-button-text-selected);
+}
+
+.colour-pair-normal-dark-menu {
+    background: var(--colour-normal-dark-menu-background);
+    color: var(--colour-normal-dark-menu-text);
+}
+
+.colour-pair-normal-dark-menu-hover {
+    background: var(--colour-normal-dark-menu-background-hover);
+    color: var(--colour-normal-dark-menu-text-hover);
+}
+
+.colour-pair-normal-dark-menu-visited {
+    background: var(--colour-normal-dark-menu-background-visited);
+    color: var(--colour-normal-dark-menu-text-visited);
+}
+
+/* =================================================================
+   Utility Classes for Colour Pairs - Subdued Light
+   ================================================================= */
+
+.colour-pair-subdued-light-page {
+    background: var(--colour-subdued-light-page-background);
+    color: var(--colour-subdued-light-page-text);
+}
+
+.colour-pair-subdued-light-headings {
+    background: var(--colour-subdued-light-headings-background);
+    color: var(--colour-subdued-light-headings-text);
+}
+
+.colour-pair-subdued-light-code {
+    background: var(--colour-subdued-light-code-background);
+    color: var(--colour-subdued-light-code-text);
+}
+
+.colour-pair-subdued-light-button {
+    background: var(--colour-subdued-light-button-background);
+    color: var(--colour-subdued-light-button-text);
+}
+
+.colour-pair-subdued-light-button-hover {
+    background: var(--colour-subdued-light-button-background-hover);
+    color: var(--colour-subdued-light-button-text-hover);
+}
+
+.colour-pair-subdued-light-button-selected {
+    background: var(--colour-subdued-light-button-background-selected);
+    color: var(--colour-subdued-light-button-text-selected);
+}
+
+.colour-pair-subdued-light-menu {
+    background: var(--colour-subdued-light-menu-background);
+    color: var(--colour-subdued-light-menu-text);
+}
+
+.colour-pair-subdued-light-menu-hover {
+    background: var(--colour-subdued-light-menu-background-hover);
+    color: var(--colour-subdued-light-menu-text-hover);
+}
+
+.colour-pair-subdued-light-menu-visited {
+    background: var(--colour-subdued-light-menu-background-visited);
+    color: var(--colour-subdued-light-menu-text-visited);
+}
+
+/* =================================================================
+   Utility Classes for Colour Pairs - Subdued Dark
+   ================================================================= */
+
+.colour-pair-subdued-dark-page {
+    background: var(--colour-subdued-dark-page-background);
+    color: var(--colour-subdued-dark-page-text);
+}
+
+.colour-pair-subdued-dark-headings {
+    background: var(--colour-subdued-dark-headings-background);
+    color: var(--colour-subdued-dark-headings-text);
+}
+
+.colour-pair-subdued-dark-code {
+    background: var(--colour-subdued-dark-code-background);
+    color: var(--colour-subdued-dark-code-text);
+}
+
+.colour-pair-subdued-dark-button {
+    background: var(--colour-subdued-dark-button-background);
+    color: var(--colour-subdued-dark-button-text);
+}
+
+.colour-pair-subdued-dark-button-hover {
+    background: var(--colour-subdued-dark-button-background-hover);
+    color: var(--colour-subdued-dark-button-text-hover);
+}
+
+.colour-pair-subdued-dark-button-selected {
+    background: var(--colour-subdued-dark-button-background-selected);
+    color: var(--colour-subdued-dark-button-text-selected);
+}
+
+.colour-pair-subdued-dark-menu {
+    background: var(--colour-subdued-dark-menu-background);
+    color: var(--colour-subdued-dark-menu-text);
+}
+
+.colour-pair-subdued-dark-menu-hover {
+    background: var(--colour-subdued-dark-menu-background-hover);
+    color: var(--colour-subdued-dark-menu-text-hover);
+}
+
+.colour-pair-subdued-dark-menu-visited {
+    background: var(--colour-subdued-dark-menu-background-visited);
+    color: var(--colour-subdued-dark-menu-text-visited);
+}
+
+/* =================================================================
+   Utility Classes for Colour Pairs - Vibrant Light
+   ================================================================= */
+
+.colour-pair-vibrant-light-page {
+    background: var(--colour-vibrant-light-page-background);
+    color: var(--colour-vibrant-light-page-text);
+}
+
+.colour-pair-vibrant-light-headings {
+    background: var(--colour-vibrant-light-headings-background);
+    color: var(--colour-vibrant-light-headings-text);
+}
+
+.colour-pair-vibrant-light-code {
+    background: var(--colour-vibrant-light-code-background);
+    color: var(--colour-vibrant-light-code-text);
+}
+
+.colour-pair-vibrant-light-button {
+    background: var(--colour-vibrant-light-button-background);
+    color: var(--colour-vibrant-light-button-text);
+}
+
+.colour-pair-vibrant-light-button-hover {
+    background: var(--colour-vibrant-light-button-background-hover);
+    color: var(--colour-vibrant-light-button-text-hover);
+}
+
+.colour-pair-vibrant-light-button-selected {
+    background: var(--colour-vibrant-light-button-background-selected);
+    color: var(--colour-vibrant-light-button-text-selected);
+}
+
+.colour-pair-vibrant-light-menu {
+    background: var(--colour-vibrant-light-menu-background);
+    color: var(--colour-vibrant-light-menu-text);
+}
+
+.colour-pair-vibrant-light-menu-hover {
+    background: var(--colour-vibrant-light-menu-background-hover);
+    color: var(--colour-vibrant-light-menu-text-hover);
+}
+
+.colour-pair-vibrant-light-menu-visited {
+    background: var(--colour-vibrant-light-menu-background-visited);
+    color: var(--colour-vibrant-light-menu-text-visited);
+}
+
+/* =================================================================
+   Utility Classes for Colour Pairs - Vibrant Dark
+   ================================================================= */
+
+.colour-pair-vibrant-dark-page {
+    background: var(--colour-vibrant-dark-page-background);
+    color: var(--colour-vibrant-dark-page-text);
+}
+
+.colour-pair-vibrant-dark-headings {
+    background: var(--colour-vibrant-dark-headings-background);
+    color: var(--colour-vibrant-dark-headings-text);
+}
+
+.colour-pair-vibrant-dark-code {
+    background: var(--colour-vibrant-dark-code-background);
+    color: var(--colour-vibrant-dark-code-text);
+}
+
+.colour-pair-vibrant-dark-button {
+    background: var(--colour-vibrant-dark-button-background);
+    color: var(--colour-vibrant-dark-button-text);
+}
+
+.colour-pair-vibrant-dark-button-hover {
+    background: var(--colour-vibrant-dark-button-background-hover);
+    color: var(--colour-vibrant-dark-button-text-hover);
+}
+
+.colour-pair-vibrant-dark-button-selected {
+    background: var(--colour-vibrant-dark-button-background-selected);
+    color: var(--colour-vibrant-dark-button-text-selected);
+}
+
+.colour-pair-vibrant-dark-menu {
+    background: var(--colour-vibrant-dark-menu-background);
+    color: var(--colour-vibrant-dark-menu-text);
+}
+
+.colour-pair-vibrant-dark-menu-hover {
+    background: var(--colour-vibrant-dark-menu-background-hover);
+    color: var(--colour-vibrant-dark-menu-text-hover);
+}
+
+.colour-pair-vibrant-dark-menu-visited {
+    background: var(--colour-vibrant-dark-menu-background-visited);
+    color: var(--colour-vibrant-dark-menu-text-visited);
+}

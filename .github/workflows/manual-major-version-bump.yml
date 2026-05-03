@@ -1,0 +1,46 @@
+name: Manual Major Version Bump
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  bump-major-version:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+
+      - name: Bump major version
+        id: version
+        run: |
+          new_version="$(bin/bump-version.sh major VERSION)"
+          echo "new_version=${new_version}" >> "$GITHUB_OUTPUT"
+          echo "New version: ${new_version}"
+
+      - name: Create release tarball
+        run: bin/create-release-tar.sh "${{ steps.version.outputs.new_version }}" releases
+
+      - name: Commit major version update
+        env:
+          RELEASE_VERSION: ${{ steps.version.outputs.new_version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add VERSION releases
+
+          if git diff --cached --quiet; then
+            echo "No version files changed."
+          else
+            git commit -m "chore(release): major bump to v${RELEASE_VERSION} [skip ci]"
+            git push
+          fi

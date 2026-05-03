@@ -2,7 +2,7 @@
  **********************************************************************
  * File       : students.html
  * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
- * Copyright  : (c) 2025 The Embodied Mind
+ * Copyright  : (c) 2026 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
  * Description:
  *   This is the students dashboard of the Web Witchcraft and Wizardry
@@ -15,7 +15,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <!-- Start of meta tags -->
     <meta charset="UTF-8">
     <meta name="description" content="Web Witchcraft and Wizardry">
@@ -26,15 +26,17 @@
     <!-- End of meta tags -->
 
     <!-- Set the document title -->
-    <title>Student Dashboard|Web Witchcraft and Wizardry</title>
+    <title>Student Dashboard | Web Witchcraft and Wizardry</title>
 
     <!-- Link to Favicon -->
-    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="../images/icons/favicon.svg">
 
     <!--Links for Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Marcellus&family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+      rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <!-- End Google Fonts links -->
@@ -43,174 +45,133 @@
     <link rel="stylesheet" href="https://kit.fontawesome.com/3895b3f1a4.css" crossorigin="anonymous">
     <!-- End Font Awesome Icons -->
 
-    <!-- Start of CSS stylesheets section -->
-
-    <!-- globals.css and main.css must be the first stylesheets loaded -->
+    <!-- stylesheets -->
     <link rel="stylesheet" href="../styles/globals.css">
     <link rel="stylesheet" href="../styles/main.css">
-
-    <!-- These stylesheets are common to all pages -->
-    <link rel="stylesheet" href="../styles/components/buttons.css">
-    <link rel="stylesheet" href="../styles/components/code.css">
-    <link rel="stylesheet" href="../styles/components/header-and-footer.css">
-    <link rel="stylesheet" href="../styles/components/navigation.css">
-    <link rel="stylesheet" href="../styles/components/popover.css">
-    <link rel="stylesheet" href="../styles/components/titles.css">
-    <link rel="stylesheet" href="../styles/components/toggle.css">
-    <link rel="stylesheet" href="../styles/pages.css">
-
-    <!-- media-queries must be the last stylesheets loaded -->
-    <link rel="stylesheet" href="../styles/media-queries.css">
-    <!-- End of CSS stylesheets section -->
+    <link rel="stylesheet" href="../styles/pages/students.css">
 
     <!-- Load JavaScript files -->
-    <script src="../scripts/debug.js"></script>
-    <script src="../scripts/themeSwitcher.js"></script>
-    <script src="../scripts/toggle-header-footer.js" defer></script>
-    <script src="../scripts/injectCommonCode.js" defer></script>
-    <script src="../scripts/student-form-storage.js" defer></script>
-    <script src="../scripts/toggle-section.js" defer></script>
+    <script src="../scripts/utils.js" defer></script>
+    <script src="../scripts/queryParams.js" defer></script>
+    <script src="../scripts/debug.js" defer></script>
+    <script src="../scripts/themeSwitcher.js" defer></script>
+    <script src="../scripts/toggleHeaderAndFooter.js" defer></script>
+    <script src="../scripts/injectCommonCode.js" type="module"></script>
+    <script src="../scripts/embodiedMindPopover.js" defer></script>
+    <script src="../scripts/localStorage.js" defer></script>
+    <script src="../scripts/toggleSection.js" defer></script>
+    <script src="../scripts/populateLessonsMenu.js" defer></script>
 
     <!-- End JavaScript file link -->
 
     <noscript>
-        <link rel="stylesheet" href="../styles/noscript.css">
+      <link rel="stylesheet" href="../styles/utilities/noscript.css">
     </noscript>
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="header">
-        <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
+      <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
     </header>
 
     <div class="page-container">
-        <nav class="sidebar" aria-label="Lesson navigation">
-            <h3>Lessons</h3>
-            <ul class="lesson-nav">
-                <li><a href="../students/lesson-00.html">Lesson 0: Setting up</a></li>
-                <li><a href="../students/lesson-01.html">Lesson 1: Your first web page</a></li>
-                <li><button type="button" popovertarget="not-implemented">Lesson 2: Landmarks</button></li>
-                <li><button type="button" popovertarget="not-implemented">Lesson 3: Lists</button></li>
-                <li><button type="button" popovertarget="not-implemented">Lesson 4: Images</button></li>
-                <li><button type="button" popovertarget="not-implemented">Lesson 5: Tables and hyperlinks</button></li>
-                <li><button type="button" popovertarget="not-implemented">Lesson 6: Introducing CSS</button></li>
-                <li><button type="button" popovertarget="not-implemented">Lesson 7: External CSS</button></li>
-                <li><button type="button" popovertarget="not-implemented">Lesson 8: CSS and lists</button></li>
-                <li><button type="button" popovertarget="not-implemented">Lesson 9: Links and CSS</button></li>
-                <li><button type="button" popovertarget="not-implemented">Lesson 10: Responsive Design</button></li>
-                <li><button type="button" popovertarget="not-implemented">Lesson 11: Javascript</button></li>
-                <li><button type="button" popovertarget="not-implemented">Lesson 12: External Javascript files</button></li>
-                <li><button type="button" popovertarget="not-implemented">Lesson 13: Errors and Exceptions</button></li>
-                <li><button type="button" popovertarget="not-implemented">Lesson 14: Testing and Debugging</button></li>
-                <li><button type="button" popovertarget="not-implemented">Lesson 15: Forms</button></li>
-                <li><button type="button" popovertarget="not-implemented">Lesson 16: Cookies</button></li>
-                <li><button type="button" popovertarget="not-implemented">Lesson 17: Clients and Servers</button></li>
-                <li><button type="button" popovertarget="not-implemented">Lesson 18: A server page</button></li>
-                <li><button type="button" popovertarget="not-implemented">Lesson 19: Processing Forms on the server</button></li>
-                <li><button type="button" popovertarget="not-implemented">Lesson 20: Databases</button></li>
-                <li><button type="button" popovertarget="not-implemented">Lesson 21: Security</button></li>
-                <li><button type="button" popovertarget="not-implemented">Lesson 22: Passwords</button></li>
-            </ul>
-        </nav>
+      <div id="lessons-nav-container">
+        <!-- Lessons navigation is dynamically generated by populateLessonsMenu.js -->
+      </div>
 
-        <main class="main-content">
-            <h2 class="page-title">Welcome to Your Dashboard</h2>
-            <section id="student-info" class="student-info">
-            <h3 >Student Information</h3>
-            <div id="student-information" class="student-information">
-                <form
-                    id="student-info-form" method="post">
-                    <div class="student-form-item">
-                        <h4>Enter your name</h4>
-                        <label for="student-name">
-                            Your Name:
-                        </label>
-                        <input type="text" id="student-name" name="student-name" required>
-                        <p>
-                            To protect your privacy, please only give your first name or a nickname
-                        </p>
-                        <hr>
+      <main class="main-content">
+        <h2 class="page-title">Welcome to Your Dashboard</h2>
+        <p>Click on the hamburger menu button above and to the left to access your lessons.</p>
+        <section id="student-info" class="student-info" aria-label="Student information form">
+          <h3>Student Information</h3>
+          <div id="student-information" >
+            <form id="student-info-form" method="post">
+              <div class="student-form-item">
+                <h4>Enter your name</h4>
+                <label for="student-name"> Your Name: </label>
+                <input type="text" id="student-name" name="student-name" required>
+                <p>To protect your privacy, please only give your first name or a nickname</p>
+                <hr>
+              </div>
+
+              <h4 class="student-form-item">Choose your avatar</h4>
+
+              <div class="student-form-item avatar-container">
+                <output for="avatar-choice gender-choice age-choice" id="avatar-preview"></output>
+
+                <div class="student-form-avatar">
+                  <fieldset class="student-form-choice">
+                    <legend>Choose your avatar's class</legend>
+                    <div>
+                      <input type="radio" id="avatar-choice-witch" name="avatar-choice" value="witch">
+                      <label for="avatar-choice-witch">Witch</label>
                     </div>
 
-                    <h4 class="student-form-item">Choose your avatar</h4>
+                    <div>
+                      <input type="radio" id="avatar-choice-wizard" name="avatar-choice" value="wizard">
+                      <label for="avatar-choice-wizard">Wizard</label>
+                    </div>
+                  </fieldset>
 
-                    <div class="student-form-item avatar-container">
-                        <output for="avatar-choice gender-choice age-choice" id="avatar-preview"></output>
-
-                        <div class="student-form-avatar">
-                            <fieldset>
-                                <legend>Choose your avatar's class</legend>
-                                <div class="student-form-choice">
-                                    <input type="radio" id="avatar-choice-witch" name="avatar-choice" value="witch">
-                                    <label for="avatar-choice-witch">Witch</label>
-                                </div>
-
-                                <div class="student-form-choice">
-                                    <input type="radio" id="avatar-choice-wizard" name="avatar-choice" value="wizard">
-                                    <label for="avatar-choice-wizard">Wizard</label>
-                                </div>
-                            </fieldset>
-
-                            <fieldset>
-                                <legend>Choose your avatar's gender</legend>
-                                <div class="student-form-choice">
-                                    <input type="radio" id="gender-choice-female" name="gender-choice" value="female">
-                                    <label for="gender-choice-female">Female</label>
-                                </div>
-
-                                <div class="student-form-choice">
-                                    <input type="radio" id="gender-choice-male" name="gender-choice" value="male">
-                                    <label for="gender-choice-male">Male</label>
-                                </div>
-                            </fieldset>
-
-                            <fieldset>
-                                <legend>Choose your avatar's age</legend>
-                                <div class="student-form-choice">
-                                    <input type="radio" id="age-choice-young" name="age-choice" value="young">
-                                    <label for="age-choice-young">Young</label>
-                                </div>
-
-                                <div class="student-form-choice">
-                                    <input type="radio" id="age-choice-old" name="age-choice" value="old">
-                                    <label for="age-choice-old">Old</label>
-                                </div>
-                            </fieldset>
-                        </div>
+                  <fieldset class="student-form-choice">
+                    <legend>Choose your avatar's gender</legend>
+                    <div>
+                      <input type="radio" id="gender-choice-female" name="gender-choice" value="female">
+                      <label for="gender-choice-female">Female</label>
                     </div>
 
-                    <hr class="student-form-item">
-
-                    <div class="student-form-item button-group">
-                        <button type="submit" id="save-information-btn" class="button-rectangle">
-                            Save Information
-                        </button>
-                        <button type="button" id="load-information-btn" class="button-rectangle">
-                            Load Information
-                        </button>
-                        <button type="button" id="clear-information-btn" class="button-rectangle" popovertarget="confirm-clear">
-                            Clear Saved Information
-                        </button>
+                    <div>
+                      <input type="radio" id="gender-choice-male" name="gender-choice" value="male">
+                      <label for="gender-choice-male">Male</label>
                     </div>
-                </form>
-            </div>
+                  </fieldset>
+
+                  <fieldset class="student-form-choice">
+                    <legend>Choose your avatar's age</legend>
+                    <div>
+                      <input type="radio" id="age-choice-young" name="age-choice" value="young">
+                      <label for="age-choice-young">Young</label>
+                    </div>
+
+                    <div>
+                      <input type="radio" id="age-choice-old" name="age-choice" value="old">
+                      <label for="age-choice-old">Old</label>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+
+              <hr class="student-form-item">
+
+              <div class="student-form-item button-group">
+                <button type="submit" id="save-information-btn" class="button-rectangle">Save Information</button>
+                <button type="button" id="clear-information-btn" class="button-rectangle" popovertarget="confirm-clear">
+                  Clear Saved Information
+                </button>
+              </div>
+            </form>
+          </div>
         </section>
-        </main>
+      </main>
     </div>
 
     <footer class="footer">
-        <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
+      <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
     </footer>
-    <div id="not-implemented" popover="auto" class="popover">
-        <!-- Popover content is injected by JavaScript to ensure it is the same across all pages -->
-    </div>
     <div id="confirm-clear" popover="auto" class="popover">
-        <h3>Clear All Information?</h3>
-        <p>Are you sure you want to clear all saved information? This action cannot be undone.</p>
-        <div class="button-group">
-            <button type="button" id="confirm-clear-yes" class="button-rectangle">Yes, Clear It</button>
-            <button type="button" id="confirm-clear-no" class="button-rectangle" popovertarget="confirm-clear" popovertargetaction="hide">Cancel</button>
-        </div>
+      <h3>Clear All Information?</h3>
+      <p>Are you sure you want to clear all saved information? This action cannot be undone.</p>
+      <div class="button-group">
+        <button type="button" id="confirm-clear-yes" class="button-rectangle">Yes, Clear It</button>
+        <button
+          type="button"
+          id="confirm-clear-no"
+          class="button-rectangle"
+          popovertarget="confirm-clear"
+          popovertargetaction="hide">
+          Cancel
+        </button>
+      </div>
     </div>
-</body>
+  </body>
 </html>

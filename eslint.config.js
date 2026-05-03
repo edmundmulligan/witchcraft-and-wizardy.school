@@ -2,7 +2,7 @@
  **********************************************************************
  * File       : eslint.config.js
  * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
- * Copyright  : (c) 2025 The Embodied Mind
+ * Copyright  : (c) 2026 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
  * Description:
  *   ESLint configuration for JavaScript files
@@ -16,57 +16,105 @@
 module.exports = [
   // Node.js scripts configuration (bin directory)
   {
-    files: ["bin/**/*.js"],
+    files: ['bin/**/*.js'],
     languageOptions: {
       ecmaVersion: 2021,
-      sourceType: "commonjs",
+      sourceType: 'commonjs',
       globals: {
-        console: "readonly",
-        process: "readonly",
-        require: "readonly",
-        module: "readonly",
-        exports: "readonly",
-        __dirname: "readonly",
-        __filename: "readonly",
-        Buffer: "readonly",
-        setTimeout: "readonly",
-        setInterval: "readonly",
-        clearTimeout: "readonly",
-        clearInterval: "readonly"
-      }
+        console: 'readonly',
+        process: 'readonly',
+        require: 'readonly',
+        module: 'readonly',
+        exports: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        Buffer: 'readonly',
+        setTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearTimeout: 'readonly',
+        clearInterval: 'readonly',
+      },
     },
     rules: {
-      "indent": ["error", 4],
-      "linebreak-style": ["error", "unix"],
-      "quotes": ["error", "single"],
-      "semi": ["error", "always"],
-      "no-undef": "error",
-      "no-unused-expressions": "error"
-    }
+      indent: ['error', 2],
+      'linebreak-style': ['error', 'unix'],
+      quotes: ['error', 'single'],
+      semi: ['error', 'always'],
+      'no-undef': 'error',
+      'no-unused-expressions': 'error',
+      'no-unexpected-multiline': 'off',
+    },
   },
-  // Browser JavaScript configuration (web directory)
+  // CommonJS data modules used by the lesson build pipeline
   {
-    files: ["web/**/*.js", "sound/**/*.js", "stats/**/*.js"],
+    files: ['data/**/*.js'],
     languageOptions: {
       ecmaVersion: 2021,
-      sourceType: "module",
+      sourceType: 'commonjs',
       globals: {
-        window: "readonly",
-        document: "readonly",
-        console: "readonly",
-        alert: "readonly",
-        localStorage: "readonly",
-        btoa: "readonly",
-        atob: "readonly"
-      }
+        console: 'readonly',
+        process: 'readonly',
+        require: 'readonly',
+        module: 'readonly',
+        exports: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        Buffer: 'readonly',
+        setTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearTimeout: 'readonly',
+        clearInterval: 'readonly',
+      },
     },
     rules: {
-      "indent": ["error", 4],
-      "linebreak-style": ["error", "unix"],
-      "quotes": ["error", "single"],
-      "semi": ["error", "always"],
-      "no-undef": "error",
-      "no-unused-expressions": "error"
-    }
-  }
+      indent: ['error', 2],
+      'linebreak-style': ['error', 'unix'],
+      quotes: ['error', 'single'],
+      semi: ['error', 'always'],
+      'no-undef': 'error',
+      'no-unused-expressions': 'error',
+      'no-unexpected-multiline': 'off',
+    },
+  },
+  // Browser JavaScript configuration
+  {
+    files: ['scripts/**/*.js', 'pages/**/*.js', 'students/**/*.js', 'mentors/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 2021,
+      sourceType: 'script',
+      globals: {
+        window: 'readonly',
+        document: 'readonly',
+        console: 'readonly',
+        alert: 'readonly',
+        localStorage: 'readonly',
+        btoa: 'readonly',
+        atob: 'readonly',
+        Debug: 'readonly',
+        fetch: 'readonly',
+        DOMParser: 'readonly',
+        FormData: 'readonly',
+        LocalStorage: 'readonly',
+        TextEncoder: 'readonly',
+        TextDecoder: 'readonly',
+        URLSearchParams: 'readonly',
+        Event: 'readonly',
+        HTMLElement: 'readonly',
+        Utils: 'readonly',
+        setTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearTimeout: 'readonly',
+        clearInterval: 'readonly',
+      },
+    },
+    rules: {
+      indent: ['error', 2],
+      'linebreak-style': ['error', 'unix'],
+      quotes: ['error', 'single'],
+      semi: ['error', 'always'],
+      'no-undef': 'error',
+      'no-unused-expressions': 'error',
+      'no-unexpected-multiline': 'off',
+    },
+  },
 ];

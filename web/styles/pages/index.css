@@ -1,0 +1,215 @@
+/*
+ **********************************************************************
+ * File       : index.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This is the page specific stylesheet for the Web Witchcraft and
+ *   Wizardry index page. It defines styles that apply only to the
+ *   landing page.
+ *   Styles here are not in pages.css as the landing page is 
+ *   sufficiently different from other pages to warrant its own
+ *   stylesheet.
+ **********************************************************************
+ */
+
+@layer pages {
+  /* Use body:before to stop the background image scrolling */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* set background image handling (actual image is selected in media query) */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0.4;
+    z-index: -1;
+  }
+
+  /* Center main content horizontally and vertically on the index page */
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    padding-bottom: 10rem;
+  }
+
+  /* Index blocks with border for visual grouping */
+  .index-block {
+    border: var(--border-weight) var(--border-style) var(--colour-effective-headings-text);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin: 1rem 0;
+    max-width: 100%;
+    background-color: transparent;
+    box-sizing: border-box;
+  }
+
+  .circular-button-container {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* For path buttons: make Start button take full row when wrapping while keeping it circular */
+  .path-buttons #start-button {
+    flex: 0 0 auto;
+  }
+
+  /* Portrait blocks - animated character portraits */
+  .portrait-block {
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    width: calc(var(--buttonsize-circle) * 1.25);
+    height: calc(var(--buttonsize-circle) * 1.25);
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  /* Portrait image styling - circular frame */
+  .portrait-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    opacity: 0;
+    transform-origin: center;
+    scale: 1.4;
+    border-radius: 50%;
+    border: var(--border-weight) var(--border-style) var(--colour-effective-headings-text);
+    box-shadow: var(--box-shadow);
+  }
+
+  /* CSS Animation: fade in over 2s, display for 5s, fade out over 2s */
+  .portrait-block.animating .portrait-image {
+    animation: portrait-cycle 9s ease-in-out infinite;
+  }
+
+  /* Static portraits: show immediately without animation (used when animation=off or prefers-reduced-motion) */
+  .portrait-block.static .portrait-image {
+    animation: none;
+    opacity: 1;
+  }
+
+  .portrait-block.static {
+    transform: none;
+  }
+
+  /* Disable animations and show static portraits when reduced motion is preferred */
+  @media (prefers-reduced-motion: reduce) {
+    .portrait-block.animating .portrait-image {
+      animation: none;
+      opacity: 1;
+    }
+
+    #portrait-block-1,
+    #portrait-block-2 {
+      transform: none;
+    }
+  }
+
+  /* Responsive: Show single portrait between blocks at up to 800px */
+  @media (200px < width < 800px) {
+    .portrait-block#portrait-block-1 {
+      display: flex;
+      margin: 2rem auto;
+    }
+
+    .portrait-block#portrait-block-2 {
+      display: none;
+    }
+
+    /* Position portrait-block-1 between index blocks using flexbox order */
+    #index-block-1 {
+      order: 1;
+    }
+
+    #portrait-block-1 {
+      order: 2;
+    }
+
+    #index-block-2 {
+      order: 3;
+    }
+  }
+
+  /* Responsive: Show portraits on left and right at at least 800px */
+  @media (width >= 800px) {
+    main {
+      display: grid;
+      grid-template-columns: calc(var(--buttonsize-circle) * 1.25) 1fr calc(
+          var(--buttonsize-circle) * 1.25
+        );
+      grid-template-rows: auto auto;
+      gap: 2rem;
+      align-items: start;
+      max-width: 1600px;
+      margin: 0 auto;
+      justify-self: center;
+    }
+
+    .index-block {
+      grid-column: 2;
+      justify-self: center;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    #index-block-1 {
+      grid-row: 1;
+    }
+
+    #index-block-2 {
+      grid-row: 2;
+    }
+
+    #portrait-block-1 {
+      display: flex;
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      margin: 0;
+      place-self: center;
+      transform: translateY(var(--portrait-offset, 0));
+    }
+
+    #portrait-block-2 {
+      display: flex;
+      grid-column: 3;
+      grid-row: 1 / span 2;
+      margin: 0;
+      place-self: center;
+      transform: translateY(var(--portrait-offset, 0));
+    }
+  }
+
+  /* insert the landing page background image */
+  @media (orientation: landscape) {
+    body::before {
+      background-image: var(--bg-landscape);
+    }
+  }
+
+  @media (orientation: portrait) {
+    body::before {
+      background-image: var(--bg-portrait);
+    }
+  }
+}

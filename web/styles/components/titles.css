@@ -2,7 +2,7 @@
  **********************************************************************
  * File       : components/titles.css
  * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
- * Copyright  : (c) 2025 The Embodied Mind
+ * Copyright  : (c) 2026 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
  * Description:
  *   This stylesheet defines styles for site titles, subtitles and page
@@ -10,33 +10,38 @@
  **********************************************************************
  */
 
-.site-title {
-    font-family: 'Cinzel Decorative', serif;
-    font-weight: 700;
+@layer components {
+  .site-title {
+    font-family: var(--font-family-title);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    margin: var(--page-margin) auto;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
 
-}
+  .site-subtitle {
+    font-family: var(--font-family-subtitle);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    margin: var(--page-margin) auto;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
 
-.site-subtitle {
-    font-family: Cinzel, serif;
-    font-weight: 400;
-}
-
-.page-title {
-    font-family: 'Cinzel Decorative', serif;
-    font-weight: 700;
-    margin: 0.5rem auto;
-    padding: 0.5rem 1rem;
+  .page-title {
+    font-family: var(--font-family-title);
+    font-weight: var(--font-weight-bold);
+    margin: var(--margin-vertical) auto;
+    padding: var(--padding-title);
     width: fit-content;
     max-width: 100%;
     display: block;
     white-space: normal;
-
-    /* specify these so that page title is legiible on pages with background images */
-    color: var(--color-page-text);
-    background-color: var(--color-page-background);
+    overflow-wrap: break-word;
+    hyphens: auto;
+    color: var(--colour-effective-page-text);
+    background-color: var(--colour-effective-page-background);
     border-radius: var(--border-radius);
-}
-
-.faq-title {
-    text-align: left;
+  }
 }

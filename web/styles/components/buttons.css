@@ -2,172 +2,121 @@
  **********************************************************************
  * File       : components/buttons.css
  * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
- * Copyright  : (c) 2025 The Embodied Mind
+ * Copyright  : (c) 2026 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
  * Description:
- *   This stylesheet defines styles for buttons used across the site.
+ *   Simplified button styles - all buttons behave consistently
+ *   regardless of shape or size.
  **********************************************************************
  */
 
-/* Styles common to all buttons. Class name must start with "button-" */
- [class^="button-"],
- [class*=" button-"] {
-    padding: 1rem;
-    font-size: var(--fontsize-button);
-    font-weight: bold;
-    background-color: var(--color-headings-background);
-    color: var(--color-headings-text);
-    border: var(--border-style) var(--border-weight) var(--color-headings-text);
+@layer components {
+  /* Base styles for all buttons */
+  .button-circle,
+  .button-rectangle,
+  .button-circle-small {
+    padding: var(--button-padding);
+    color: var(--colour-effective-button-text);
+    background-color: var(--colour-effective-button-background);
+    border: var(--border-style) var(--border-weight) var(--colour-effective-button-text);
     cursor: pointer;
     text-align: center;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-    
-    /* Reset button-specific browser defaults */
-    font-family: inherit;
-    line-height: inherit;
-}
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    font-family: var(--font-family-button);
+    font-size: var(--fontsize-button);
+    font-weight: var(--font-weight-bold);
 
-[class^="button"]:hover,
-[class*=" button"]:hover,
-[class^="button"]:focus-visible,
-[class*=" button"]:focus-visible {
-    color: var(--color-link-text);
-    background-color: var(--color-headings-text);
-}
+    /* Disabled state */
+    &:disabled,
+    &[disabled] {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background-color: var(--colour-effective-button-background);
+      color: var(--colour-effective-button-text);
+      transform: none;
 
-/* not all buttons are links, but those that are use these styles */
-[class^="button"]:link,
-[class*=" button"]:link,
-[class^="button"]:visited,
-[class*=" button"]:visited {
-    color: var(--color-link-text);
-    text-decoration: none;
-}
+      /* Remove hover and focus effects for disabled buttons */
+      &:hover,
+      &:focus-visible {
+        background-color: var(--colour-effective-button-background);
+        color: var(--colour-effective-button-text);
+        transform: none;
+      }
 
-/* Style override for rectangular buttons */
-.button-rectangle {
+      &:active {
+        transform: none;
+      }
+    }
+
+    /* Hover and focus states - all buttons behave the same */
+    &:hover,
+    &:focus-visible {
+      color: var(--colour-effective-button-text-hover);
+      background-color: var(--colour-effective-button-background-hover);
+      transform: scale(1.1);
+    }
+
+    /* Active (pressed) state - all buttons behave the same */
+    &:active {
+      transform: scale(0.98);
+    }
+
+    /* Selected/pressed state - all buttons behave the same */
+    &.pressed {
+      background-color: var(--colour-effective-button-background-selected);
+      color: var(--colour-effective-button-text-selected);
+      transform: scale(0.98);
+    }
+
+    /* Links styled as buttons */
+    &:link,
+    &:visited {
+      text-decoration: none;
+    }
+  }
+
+  /* Shape modifier: rectangular buttons */
+  .button-rectangle {
     display: block;
     border-radius: var(--border-radius);
-    margin: 1rem auto;
-}
+    margin: var(--margin-vertical) auto;
+  }
 
-/* Style override for circular buttons */
-.button-circle {
+  /* Shape modifier: circular buttons */
+  .button-circle,
+  .button-circle-small {
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
     border-radius: 50%;
     aspect-ratio: 1 / 1;
     width: var(--buttonsize-circle);
     height: var(--buttonsize-circle);
     max-width: 15rem;
     max-height: 15rem;
-    padding: 1rem;
-    box-sizing: border-box;
+  }
 
-    /* ensure text scales within the circle */
-    font-family: Cinzel, serif;
-    font-size: var(--fontsize-button-circle);
-
-}
-
-.button-circle:hover,
-.button-circle:focus-visible {
-    transform: scale(1.2);
-}
-
-/* Override for theme buttons - must come after general button-circle styles */
-.button-circle.theme-button:hover,
-.button-circle.theme-button:focus-visible {
-    transform: translateY(2px) scale(1.05);
-}
-
-.button-rectangle:hover,
-.button-rectangle:focus-visible {
-    background-color: var(--color-link-text-hover);
-    color: var(--color-headings-text);
-}
-
-/* 3D button styles for theme buttons */
-.button-circle.theme-button {
-    box-shadow: 
-        0 5px 0 var(--color-headings-text),
-        0 8px 10px rgba(0, 0, 0, 0.3);
-    transform: translateY(0);
-    transition: all 0.1s ease;
-}
-
-/* Hover moved up before pressed to avoid specificity issues */
-.button-circle.theme-button:active {
-    transform: translateY(5px) scale(1);
-    box-shadow: 
-        0 0px 0 var(--color-headings-text),
-        0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Pressed state for selected theme - higher specificity */
-.button-circle.theme-button.pressed {
-    transform: translateY(5px) scale(1) !important;
-    box-shadow: 
-        0 0px 0 var(--color-headings-text),
-        0 2px 5px rgba(0, 0, 0, 0.2) !important;
-    background-color: var(--color-link-text) !important;
-    color: var(--color-headings-background) !important;
-}
-
-/* Prevent hover effect on pressed button */
-.button-circle.theme-button.pressed:hover,
-.button-circle.theme-button.pressed:focus-visible {
-    transform: translateY(5px) scale(1) !important;
-    box-shadow: 
-        0 0px 0 var(--color-headings-text),
-        0 2px 5px rgba(0, 0, 0, 0.2) !important;
-}
-
-/* Style buttons - smaller to fit 3 buttons in width of 2 theme buttons */
-.button-circle.style-button {
+  /* override for small circular buttons */
+  .button-circle-small {
     width: calc(var(--buttonsize-circle) * 0.67);
     height: calc(var(--buttonsize-circle) * 0.67);
     max-width: 10rem;
     max-height: 10rem;
-    font-size: calc(var(--fontsize-button-circle) * 0.85);
-    box-shadow: 
-        0 3px 0 var(--color-headings-text),
-        0 5px 8px rgba(0, 0, 0, 0.3);
-    transform: translateY(0);
-    transition: all 0.1s ease;
-}
+  }
 
-/* Override for style buttons - must come after general button-circle styles */
-.button-circle.style-button:hover,
-.button-circle.style-button:focus-visible {
-    transform: translateY(2px) scale(1.05);
-}
+  /* Glossary icon button styling */
+  .glossary-icon-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0 0.2rem;
+    cursor: pointer;
+    color: var(--colour-effective-page-text);
+    vertical-align: baseline;
 
-/* Active state for style buttons */
-.button-circle.style-button:active {
-    transform: translateY(3px) scale(1);
-    box-shadow: 
-        0 0px 0 var(--color-headings-text),
-        0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* Pressed state for selected style */
-.button-circle.style-button.pressed {
-    transform: translateY(3px) scale(1) !important;
-    box-shadow: 
-        0 0px 0 var(--color-headings-text),
-        0 2px 4px rgba(0, 0, 0, 0.2) !important;
-    background-color: var(--color-link-text) !important;
-    color: var(--color-headings-background) !important;
-}
-
-/* Prevent hover effect on pressed style button */
-.button-circle.style-button.pressed:hover,
-.button-circle.style-button.pressed:focus-visible {
-    transform: translateY(3px) scale(1) !important;
-    box-shadow: 
-        0 0px 0 var(--color-headings-text),
-        0 2px 4px rgba(0, 0, 0, 0.2) !important;
+    &:hover {
+      color: var(--colour-effective-headings-text);
+    }
+  }
 }

@@ -1,0 +1,23 @@
+# Exclude lessons folder (contains example/template files)
+lessons/
+
+# Exclude diagnostics folder (contains test results and diagnostic pages)
+diagnostics/
+
+# Exclude node_modules
+node_modules/
+
+# Exclude generated files
+generated/
+artwork/generated/
+
+# Exclude build artifacts and minified files
+*.min.html
+*.min.css
+*.min.js
+
+# Exclude vendor/library files
+**/vendor/**
+**/vendors/**
+**/lib/**
+**/libs/**

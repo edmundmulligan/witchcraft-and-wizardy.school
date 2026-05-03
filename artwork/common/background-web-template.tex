@@ -2,9 +2,9 @@
 % Parameters:
 %   \bgwidth - Card width
 %   \bgheight - Card height
-%   \bgcolorbase - Base color for background (e.g._light,_dark)
-%   \colorone - First accent color
-%   \colortwo - Second accent color
+%   \bgcolourbase - Base colour for background (e.g._light,_dark)
+%   \colourone - First accent colour
+%   \colourtwo - Second accent colour
 %   \opacityset - Opacity multiplier (e.g., 0.5 for light, 0.8 for dark)
 %   \browserx - X position for browser window
 %   \browsery - Y position for browser window
@@ -12,8 +12,8 @@
 %   \iconsy - Y position for responsive icons
 %   \codex - X position for code snippet
 %   \codey - Y position for code snippet
-%   \palettex - X position for color palette
-%   \palettey - Y position for color palette
+%   \palettex - X position for colour palette
+%   \palettey - Y position for colour palette
 %   \gridx - X position for grid
 %   \gridy - Y position for grid
 %   \labelonex - X position for first label
@@ -35,72 +35,72 @@
 
 \begin{tikzpicture}
   % Define the card background
-  \fill[\bgcolorbase] (0,0) rectangle (\bgwidth,\bgheight);
+  \fill[\bgcolourbase] (0,0) rectangle (\bgwidth,\bgheight);
   
   % Browser window mockup
   \begin{scope}[shift={(\browserx,\browsery)}]
     % Browser chrome
-    \draw[\colorone, opacity=\opacityone, rounded corners=2pt] (0,0) rectangle (3.0,1.5);
-    \fill[\colorone, opacity=\opacitychrome, rounded corners=2pt] (0,1.3) rectangle (3.0,1.5);
+    \draw[\colourone, opacity=\opacityone, rounded corners=2pt] (0,0) rectangle (3.0,1.5);
+    \fill[\colourone, opacity=\opacitychrome, rounded corners=2pt] (0,1.3) rectangle (3.0,1.5);
     % Browser dots
-    \fill[\colortwo, opacity=\opacityone] (0.15,1.37) circle (0.04);
-    \fill[\colortwo, opacity=\opacityone] (0.30,1.37) circle (0.04);
-    \fill[\colortwo, opacity=\opacityone] (0.45,1.37) circle (0.04);
+    \fill[\colourtwo, opacity=\opacityone] (0.15,1.37) circle (0.04);
+    \fill[\colourtwo, opacity=\opacityone] (0.30,1.37) circle (0.04);
+    \fill[\colourtwo, opacity=\opacityone] (0.45,1.37) circle (0.04);
     % Content area with simple layout
-    \fill[\colortwo, opacity=\opacitycontent] (0.2,0.9) rectangle (2.8,1.2);
-    \fill[\colorone, opacity=\opacitycontent] (0.2,0.2) rectangle (1.3,0.8);
-    \fill[\colortwo, opacity=\opacitycontent] (1.5,0.2) rectangle (2.8,0.8);
+    \fill[\colourtwo, opacity=\opacitycontent] (0.2,0.9) rectangle (2.8,1.2);
+    \fill[\colourone, opacity=\opacitycontent] (0.2,0.2) rectangle (1.3,0.8);
+    \fill[\colourtwo, opacity=\opacitycontent] (1.5,0.2) rectangle (2.8,0.8);
   \end{scope}
   
   % Responsive design icons (mobile, tablet, desktop)
   \begin{scope}[shift={(\iconsx,\iconsy)}, scale=0.7]
     % Mobile
-    \draw[\colortwo, thick, opacity=\opacityicons, rounded corners=1pt] (0,0) rectangle (0.4,0.8);
-    \fill[\colortwo, opacity=\opacityiconfill] (0.05,0.15) rectangle (0.35,0.65);
+    \draw[\colourtwo, thick, opacity=\opacityicons, rounded corners=1pt] (0,0) rectangle (0.4,0.8);
+    \fill[\colourtwo, opacity=\opacityiconfill] (0.05,0.15) rectangle (0.35,0.65);
     % Tablet
-    \draw[\colorone, thick, opacity=\opacityicons, rounded corners=1pt] (0.7,0.1) rectangle (1.3,0.7);
-    \fill[\colorone, opacity=\opacityiconfill] (0.8,0.2) rectangle (1.2,0.6);
+    \draw[\colourone, thick, opacity=\opacityicons, rounded corners=1pt] (0.7,0.1) rectangle (1.3,0.7);
+    \fill[\colourone, opacity=\opacityiconfill] (0.8,0.2) rectangle (1.2,0.6);
     % Desktop
-    \draw[\colortwo, thick, opacity=\opacityicons] (1.7,0.2) rectangle (2.6,0.7);
-    \draw[\colortwo, thick, opacity=\opacityicons] (2.0,0.2) -- (2.3,0.05) -- (2.3,0.05);
-    \fill[\colortwo, opacity=\opacityiconfill] (1.75,0.25) rectangle (2.55,0.65);
+    \draw[\colourtwo, thick, opacity=\opacityicons] (1.7,0.2) rectangle (2.6,0.7);
+    \draw[\colourtwo, thick, opacity=\opacityicons] (2.0,0.2) -- (2.3,0.05) -- (2.3,0.05);
+    \fill[\colourtwo, opacity=\opacityiconfill] (1.75,0.25) rectangle (2.55,0.65);
   \end{scope}
   
   % Code snippet element
   \begin{scope}[shift={(\codex,\codey)}]
-    \draw[\colorone, opacity=\opacitycodebg, rounded corners=2pt] (0,0) rectangle (3.5,1.2);
-    \node[\colorone, font=\tiny\ttfamily, opacity=\opacitycode, align=left, anchor=west] at (0.15,0.85) 
+    \draw[\colourone, opacity=\opacitycodebg, rounded corners=2pt] (0,0) rectangle (3.5,1.2);
+    \node[\colourone, font=\tiny\ttfamily, opacity=\opacitycode, align=left, anchor=west] at (0.15,0.85) 
       {\textless div class="content"\textgreater};
-    \node[\colortwo, font=\tiny\ttfamily, opacity=\opacitycode, align=left, anchor=west] at (0.3,0.55) 
+    \node[\colourtwo, font=\tiny\ttfamily, opacity=\opacitycode, align=left, anchor=west] at (0.3,0.55) 
       {\textless h1\textgreater Hello World\textless/h1\textgreater};
-    \node[\colorone, font=\tiny\ttfamily, opacity=\opacitycode, align=left, anchor=west] at (0.15,0.25) 
+    \node[\colourone, font=\tiny\ttfamily, opacity=\opacitycode, align=left, anchor=west] at (0.15,0.25) 
       {\textless/div\textgreater};
   \end{scope}
   
-  % Color palette squares
+  % Colour palette squares
   \begin{scope}[shift={(\palettex,\palettey)}]
-    \fill[\colortwo, opacity=\opacitypaletteone] (0,0) rectangle (0.4,0.4);
-    \fill[\colorone, opacity=\opacitypaletteone] (0.5,0) rectangle (0.9,0.4);
-    \fill[\colortwo, opacity=\opacitypalettetwo] (1.0,0) rectangle (1.4,0.4);
-    \fill[\colorone, opacity=\opacitypalettetwo] (1.5,0) rectangle (1.9,0.4);
+    \fill[\colourtwo, opacity=\opacitypaletteone] (0,0) rectangle (0.4,0.4);
+    \fill[\colourone, opacity=\opacitypaletteone] (0.5,0) rectangle (0.9,0.4);
+    \fill[\colourtwo, opacity=\opacitypalettetwo] (1.0,0) rectangle (1.4,0.4);
+    \fill[\colourone, opacity=\opacitypalettetwo] (1.5,0) rectangle (1.9,0.4);
   \end{scope}
   
   % Grid layout representation
   \begin{scope}[shift={(\gridx,\gridy)}, opacity=\opacitygrid]
-    \draw[\gridcolor, thick] (0,0) grid[step=0.4] (1.6,1.2);
+    \draw[\gridcolour, thick] (0,0) grid[step=0.4] (1.6,1.2);
   \end{scope}
   
   % Friendly labels
-  \node[\colorone, font=\small\sffamily, opacity=\opacitylabels] at (\labelonex, \labeloney) {Design};
-  \node[\colortwo, font=\small\sffamily, opacity=\opacitylabels] at (\labeltwox, \labeltwoy) {Responsive};
-  \node[\colorone, font=\small\sffamily, opacity=\opacitylabels] at (\labelthreex, \labelthreey) {Creative};
+  \node[\colourone, font=\small\sffamily, opacity=\opacitylabels] at (\labelonex, \labeloney) {Design};
+  \node[\colourtwo, font=\small\sffamily, opacity=\opacitylabels] at (\labeltwox, \labeltwoy) {Responsive};
+  \node[\colourone, font=\small\sffamily, opacity=\opacitylabels] at (\labelthreex, \labelthreey) {Creative};
   
   % Subtle decorative elements
-  \draw[\colortwo, thick, opacity=\opacitylines] (\lineoneax,\lineoneay) -- (\lineonebx,\lineoneay);
-  \draw[\colorone, thick, opacity=\opacitylines] (\linetwoax,\linetwoay) -- (\linetwobx,\linetwoay);
+  \draw[\colourtwo, thick, opacity=\opacitylines] (\lineoneax,\lineoneay) -- (\lineonebx,\lineoneay);
+  \draw[\colourone, thick, opacity=\opacitylines] (\linetwoax,\linetwoay) -- (\linetwobx,\linetwoay);
   
   % Small corner accent
-  \draw[\colortwo, line width=2pt, opacity=\opacitycorner] (\cornerx,\cornery) -- (\cornerx,\corneryb);
-  \draw[\colortwo, line width=2pt, opacity=\opacitycorner] (\cornerx,\cornery) -- (\cornerxb,\cornery);
+  \draw[\colourtwo, line width=2pt, opacity=\opacitycorner] (\cornerx,\cornery) -- (\cornerx,\corneryb);
+  \draw[\colourtwo, line width=2pt, opacity=\opacitycorner] (\cornerx,\cornery) -- (\cornerxb,\cornery);
   
 \end{tikzpicture}

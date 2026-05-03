@@ -1,0 +1,46 @@
+# Dependabot configuration for automatic dependency updates
+# Documentation: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  # Enable version updates for npm dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"  # Options: daily, weekly, monthly
+      day: "monday"       # Day of week for weekly updates
+      time: "06:00"       # Time in UTC (06:00 = 6 AM UTC)
+    target-branch: "development"  # Create PRs against development branch
+    open-pull-requests-limit: 10  # Max number of open PRs
+    reviewers:
+      - "edmundmulligan"  # Optional: auto-assign reviewers
+    labels:
+      - "dependencies"
+      - "dependabot"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    # Group minor and patch updates together
+    groups:
+      minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Enable security updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      day: "monday"
+      time: "06:00"
+    target-branch: "development"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "github-actions"
+      - "dependabot"
+    commit-message:
+      prefix: "ci"

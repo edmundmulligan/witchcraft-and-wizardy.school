@@ -1,0 +1,130 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - assessment-candidate
+    paths-ignore:
+      - 'essays/**'
+      - 'documentation/**'
+      - 'artwork/**'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-and-release:
+    if: github.actor != 'github-actions[bot]' && !contains(github.event.head_commit.message, '[skip ci]')
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
+      - name: Select automatic version bump type
+        if: github.ref_name != 'assessment-candidate'
+        id: bump_type
+        run: |
+          if [[ "${GITHUB_REF_NAME}" == "assessment-candidate" ]]; then
+            echo "value=minor" >> "$GITHUB_OUTPUT"
+          else
+            echo "Unsupported branch '${GITHUB_REF_NAME}' for automatic version bump." >&2
+            exit 1
+          fi
+
+      - name: Bump semantic version
+        if: github.ref_name != 'assessment-candidate'
+        id: version
+        run: |
+          new_version="$(bin/bump-version.sh "${{ steps.bump_type.outputs.value }}" VERSION)"
+          echo "new_version=${new_version}" >> "$GITHUB_OUTPUT"
+          echo "New version: ${new_version}"
+
+      - name: Create release tarball
+        if: github.ref_name != 'assessment-candidate'
+        run: bin/create-release-tar.sh "${{ steps.version.outputs.new_version }}" releases
+
+      - name: Commit version update to development branch
+        if: github.ref_name != 'assessment-candidate'
+        env:
+          RELEASE_VERSION: ${{ steps.version.outputs.new_version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Stash local changes (VERSION file) before switching branches
+          git stash push -m "Stash VERSION for development branch commit"
+
+          # Fetch and checkout development branch
+          git fetch origin development
+          git checkout development
+          git pull origin development
+
+          # Write the new version to VERSION file
+          echo "${RELEASE_VERSION}" > VERSION
+          git add VERSION
+
+          if git diff --cached --quiet; then
+            echo "No version change."
+          else
+            git commit -m "chore(release): v${RELEASE_VERSION} [skip ci]"
+            git push origin development
+          fi
+
+          # Return to the original branch and restore stashed changes
+          git checkout -
+          git stash pop
+
+      - name: Create GitHub Release
+        if: github.ref_name != 'assessment-candidate'
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: v${{ steps.version.outputs.new_version }}
+          name: Release v${{ steps.version.outputs.new_version }}
+          draft: false
+          prerelease: false
+          files: releases/puffin-web-project-edmundmulligan-v${{ steps.version.outputs.new_version }}.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Prepare Pages artifact directory
+        run: |
+          rm -rf _site
+          mkdir -p _site
+          cp -a index.html VERSION bin data diagnostics images lessons mentors pages scripts students styles _site/
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  deploy:
+    needs: build-and-release
+    if: needs.build-and-release.result == 'success' && github.ref_name == 'assessment-candidate'
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

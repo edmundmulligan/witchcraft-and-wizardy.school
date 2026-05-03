@@ -1,0 +1,302 @@
+<!--
+**********************************************************************
+ * File       : typography.html
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see ../license-and-credits.html page)
+ * Description:
+ *    Typography diagnostics page showing all fonts and sizes
+ **********************************************************************
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Typography Diagnostics - Web Witchcraft and Wizardry">
+    <meta name="keywords" content="typography, fonts, font sizes, design system">
+    <meta name="author" content="Edmund Mulligan">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Typography - Web Witchcraft and Wizardry</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../images/icons/favicon.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Fira+Code:wght@400;500;700&family=Marcellus&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles/globals.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/diagnostics/typography.css">
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-font"></i> Web Witchcraft and Wizardry Typography</h1>
+        <nav aria-label="breadcrumb">
+            <a href="../index.html">Home</a> &gt;
+            <a href="index.html">Diagnostics</a> &gt;
+            <a href="typography.html" aria-current="page">Typography</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="description">
+            <p>This page demonstrates all typography used in the Web Witchcraft and Wizardry project. The typography system uses responsive font sizes with <code>clamp()</code> for fluid scaling across viewports. All font definitions are stored in <code>styles/definitions/typography.css</code>.</p>
+        </div>
+
+        <!-- Font Families -->
+        <section class="section">
+            <h2>Font Families</h2>
+            <div class="font-demo-grid">
+                <div class="font-demo">
+                    <h3>Body Text</h3>
+                    <div class="font-name">--font-family-text: 'Open Sans', sans-serif</div>
+                    <div class="sample-text sample-font-text">
+                        <p class="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 !@#$%^&amp;*()</p>
+                        <p>The quick brown fox jumps over the lazy dog. This font is used for body text, paragraphs, and general content throughout the website. It provides excellent readability at various sizes.</p>
+                    </div>
+                </div>
+
+                <div class="font-demo">
+                    <h3>Titles</h3>
+                    <div class="font-name">--font-family-title: 'Cinzel Decorative', serif</div>
+                    <div class="sample-text sample-font-title">
+                        <p class="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789</p>
+                        <p>The quick brown fox jumps over the lazy dog. This decorative serif font is used for main page titles and headings to create an elegant, magical aesthetic.</p>
+                    </div>
+                </div>
+
+                <div class="font-demo">
+                    <h3>Subtitles</h3>
+                    <div class="font-name">--font-family-subtitle: 'Cinzel', serif</div>
+                    <div class="sample-text sample-font-subtitle">
+                        <p class="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789</p>
+                        <p>The quick brown fox jumps over the lazy dog. This serif font is used for section headings, subtitles, and secondary headings to complement the title font.</p>
+                    </div>
+                </div>
+
+                <div class="font-demo">
+                    <h3>Menu Navigation</h3>
+                    <div class="font-name">--font-family-menu: 'Marcellus', serif</div>
+                    <div class="sample-text sample-font-menu">
+                        <p class="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789</p>
+                        <p>The quick brown fox jumps over the lazy dog. This classical serif font is used for navigation menus and links, providing a traditional scholarly appearance.</p>
+                    </div>
+                </div>
+
+                <div class="font-demo">
+                    <h3>Buttons</h3>
+                    <div class="font-name">--font-family-button: 'Cormorant Garamond', serif</div>
+                    <div class="sample-text sample-font-button">
+                        <p class="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789</p>
+                        <p>The quick brown fox jumps over the lazy dog. This elegant serif font is used for buttons and interactive elements to maintain the magical theme.</p>
+                    </div>
+                </div>
+
+                <div class="font-demo">
+                    <h3>Monospace</h3>
+                    <div class="font-name">--font-family-mono: 'Fira Code', monospace</div>
+                    <div class="sample-text sample-font-mono">
+                        <p class="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 !@#$%^&amp;*()</p>
+                        <p>The quick brown fox jumps over the lazy dog. This monospace font is used for code blocks, variable names, and technical content with programming ligatures.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Font Sizes -->
+        <section class="section">
+            <h2>Responsive Font Sizes</h2>
+            <p>All font sizes use <code>clamp(min, preferred, max)</code> for fluid responsive scaling.</p>
+
+            <div class="size-demo-grid">
+                <div class="responsive-demo">
+                    <div class="size-label">--fontsize-large</div>
+                    <div class="size-value">clamp(1rem, 3vw + 1rem, 3rem)</div>
+                    <div class="demo-fontsize-large">Large Text Display</div>
+                    <div class="info">Used for prominent headings and hero text. Scales from 1rem (16px) to 3rem (48px).</div>
+                </div>
+
+                <div class="responsive-demo">
+                    <div class="size-label">--fontsize-normal</div>
+                    <div class="size-value">clamp(0.5rem, 2vw + 1rem, 2.25rem)</div>
+                    <div class="demo-fontsize-normal">Normal Body Text</div>
+                    <div class="info">Standard body text size. Scales from 0.5rem (8px) to 2.25rem (36px).</div>
+                </div>
+
+                <div class="responsive-demo">
+                    <div class="size-label">--fontsize-small</div>
+                    <div class="size-value">clamp(0.5rem, 1.5vw + 0.75rem, 1.75rem)</div>
+                    <div class="demo-fontsize-small">Small Text Display</div>
+                    <div class="info">Used for captions and fine print. Scales from 0.5rem (8px) to 1.75rem (28px).</div>
+                </div>
+
+                <div class="responsive-demo">
+                    <div class="size-label">--fontsize-header-large</div>
+                    <div class="size-value">clamp(0.625rem, 1.5vw + 0.75rem, 2.5rem)</div>
+                    <div class="demo-fontsize-header-large">Large Header</div>
+                    <div class="info">Large section headers. Scales from 0.625rem (10px) to 2.5rem (40px).</div>
+                </div>
+
+                <div class="responsive-demo">
+                    <div class="size-label">--fontsize-header-medium</div>
+                    <div class="size-value">clamp(0.625rem, 1.5vw + 0.75rem, 2.5rem)</div>
+                    <div class="demo-fontsize-header-medium">Medium Header</div>
+                    <div class="info">Medium section headers. Scales from 0.625rem (10px) to 2.5rem (40px).</div>
+                </div>
+
+                <div class="responsive-demo">
+                    <div class="size-label">--fontsize-header-small</div>
+                    <div class="size-value">clamp(0.5rem, 1.25vw + 0.625rem, 2rem)</div>
+                    <div class="demo-fontsize-header-small">Small Header</div>
+                    <div class="info">Small section headers. Scales from 0.5rem (8px) to 2rem (32px).</div>
+                </div>
+
+                <div class="responsive-demo">
+                    <div class="size-label">--fontsize-button</div>
+                    <div class="size-value">clamp(0.4rem, 1.75vw + 0.75rem, 2rem)</div>
+                    <div class="demo-fontsize-button">Button Text</div>
+                    <div class="info">Text inside buttons. Scales from 0.4rem (6.4px) to 2rem (32px).</div>
+                </div>
+
+                <div class="responsive-demo">
+                    <div class="size-label">--fontsize-nav</div>
+                    <div class="size-value">clamp(0.5rem, 1.5vw + 0.5rem, 1rem)</div>
+                    <div class="demo-fontsize-nav">Navigation Links</div>
+                    <div class="info">Navigation menu text. Scales from 0.5rem (8px) to 1rem (16px).</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Heading Hierarchy -->
+        <section class="section">
+            <h2>Heading Hierarchy</h2>
+            <div class="heading-levels">
+                <div class="heading-demo">
+                    <div class="label">&lt;h1&gt; Page Title</div>
+                    <h1 class="heading-no-margin">Main Page Title (H1)</h1>
+                </div>
+                <div class="heading-demo">
+                    <div class="label">&lt;h2&gt; Section Heading</div>
+                    <h2 class="heading-no-margin">Section Heading (H2)</h2>
+                </div>
+                <div class="heading-demo">
+                    <div class="label">&lt;h3&gt; Subsection Heading</div>
+                    <h3 class="heading-no-margin">Subsection Heading (H3)</h3>
+                </div>
+                <div class="heading-demo">
+                    <div class="label">&lt;h4&gt; Minor Heading</div>
+                    <h4 class="heading-no-margin">Minor Heading (H4)</h4>
+                </div>
+                <div class="heading-demo">
+                    <div class="label">&lt;h5&gt; Sub-minor Heading</div>
+                    <h5 class="heading-no-margin">Sub-minor Heading (H5)</h5>
+                </div>
+                <div class="heading-demo">
+                    <div class="label">&lt;h6&gt; Smallest Heading</div>
+                    <h6 class="heading-no-margin">Smallest Heading (H6)</h6>
+                </div>
+            </div>
+        </section>
+
+        <!-- Font Weights -->
+        <section class="section">
+            <h2>Font Weights</h2>
+            <div class="weight-demos">
+                <div class="weight-demo">
+                    <div class="label">--font-weight-light: 300</div>
+                    <div class="sample demo-weight-light">Light</div>
+                </div>
+                <div class="weight-demo">
+                    <div class="label">--font-weight-normal: 400</div>
+                    <div class="sample demo-weight-normal">Normal</div>
+                </div>
+                <div class="weight-demo">
+                    <div class="label">font-weight: 600</div>
+                    <div class="sample demo-weight-semibold">Semi-Bold</div>
+                </div>
+                <div class="weight-demo">
+                    <div class="label">--font-weight-bold: 700</div>
+                    <div class="sample demo-weight-bold">Bold</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Line Heights -->
+        <section class="section">
+            <h2>Line Heights &amp; Spacing</h2>
+            <div class="size-demo-grid">
+                <div class="size-demo">
+                    <div class="size-label">--line-height-normal: 1.6</div>
+                    <div class="demo-line-height">
+                        <p>This paragraph demonstrates the standard line height of 1.6. The quick brown fox jumps over the lazy dog. This line height provides comfortable reading with adequate spacing between lines of text for optimal readability.</p>
+                    </div>
+                </div>
+
+                <div class="size-demo">
+                    <div class="size-label">Vertical Margins</div>
+                    <div class="size-value">--margin-vertical: clamp(0.333rem, 0.5vw + 0.5rem, 1rem)</div>
+                    <div class="demo-spacing-container">
+                        <p class="demo-margins-vertical">Paragraph with responsive vertical margins.</p>
+                    </div>
+                </div>
+
+                <div class="size-demo">
+                    <div class="size-label">Horizontal Margins</div>
+                    <div class="size-value">--margin-horizontal: clamp(0.333rem, 1vw + 1rem, 2rem)</div>
+                    <div class="demo-spacing-container">
+                        <div class="demo-margins-horizontal">Content with responsive horizontal margins</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Text Samples -->
+        <section class="section">
+            <h2>Text Samples</h2>
+            <div class="size-demo-grid">
+                <div class="size-demo">
+                    <h3>Paragraph Text</h3>
+                    <p class="sample-paragraph">
+                        This is a sample paragraph using the standard body text font (Open Sans) at normal size with standard line height. The quick brown fox jumps over the lazy dog. Web Witchcraft and Wizardry teaches modern web development with a focus on accessibility, semantic HTML, and progressive enhancement.
+                    </p>
+                </div>
+
+                <div class="size-demo">
+                    <h3>Code Sample</h3>
+                    <pre class="sample-code-block"><code>const theme = 'normal-light';
+document.documentElement.style
+    .setProperty('--colour-effective-page-background',
+    `var(--colour-${theme}-page-background)`);</code></pre>
+                </div>
+
+                <div class="size-demo">
+                    <h3>Button Samples</h3>
+                    <div class="sample-button-container">
+                        <button type="button" class="button-rectangle">Primary Button</button>
+                        <button type="button" class="button-rectangle">Secondary Button</button>
+                    </div>
+                </div>
+
+                <div class="size-demo">
+                    <h3>Navigation Menu Sample</h3>
+                    <nav class="sample-nav" aria-label="Sample navigation menu">
+                        <a href="#" class="sample-nav-link">Home</a>
+                        <a href="#" class="sample-nav-link">Students</a>
+                        <a href="#" class="sample-nav-link">Mentors</a>
+                        <a href="#">Pages</a>
+                    </nav>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

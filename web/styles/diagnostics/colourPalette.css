@@ -1,0 +1,686 @@
+/*
+ **********************************************************************
+ * File       : colourPalette.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Styles for the colour palette diagnostic page
+ **********************************************************************
+ */
+
+.colour-preview {
+    padding: 2rem;
+}
+
+.colour-section {
+    margin-bottom: 3rem;
+}
+
+.colour-section h2 {
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--colour-headings-background);
+    color: var(--colour-headings-text);
+    border-radius: var(--border-radius);
+}
+
+.colour-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+@media (width >= 1200px) {
+    .colour-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+.colour-card {
+    border: var(--border-weight-thin) var(--border-style) var(--colour-page-text);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+}
+
+@media (width >= 1200px) {
+    .colour-card {
+        grid-column: span 2;
+    }
+}
+
+.colour-card.wide {
+    grid-column: span 2;
+}
+
+@media (width >= 1200px) {
+    .colour-card.wide {
+        grid-column: span 3;
+    }
+}
+
+/* Theme-specific 3-column layout */
+#tab-normal-light .colour-grid,
+#tab-normal-dark .colour-grid,
+#tab-subdued-light .colour-grid,
+#tab-subdued-dark .colour-grid,
+#tab-vibrant-light .colour-grid,
+#tab-vibrant-dark .colour-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (width >= 1200px) {
+    #tab-normal-light .colour-grid,
+    #tab-normal-dark .colour-grid,
+    #tab-subdued-light .colour-grid,
+    #tab-subdued-dark .colour-grid,
+    #tab-vibrant-light .colour-grid,
+    #tab-vibrant-dark .colour-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+#tab-normal-light .colour-card,
+#tab-normal-dark .colour-card,
+#tab-subdued-light .colour-card,
+#tab-subdued-dark .colour-card,
+#tab-vibrant-light .colour-card,
+#tab-vibrant-dark .colour-card {
+    grid-column: span 1 !important;
+}
+
+#tab-normal-light .colour-card.wide,
+#tab-normal-dark .colour-card.wide,
+#tab-subdued-light .colour-card.wide,
+#tab-subdued-dark .colour-card.wide,
+#tab-vibrant-light .colour-card.wide,
+#tab-vibrant-dark .colour-card.wide {
+    grid-column: span 1 !important;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid currentcolor;
+    opacity: 0.9;
+}
+
+.colour-swatch {
+    min-height: 200px;
+    height: 100%;
+    width: 100%;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-sizing: border-box;
+}
+
+.colour-name {
+    font-family: var(--font-family-mono);
+    font-size: 1.15rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    overflow-wrap: break-word;
+}
+
+.colour-value {
+    font-family: var(--font-family-mono);
+    font-size: 1.05rem;
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+    overflow-wrap: break-word;
+}
+
+.lorem-text {
+    font-family: var(--font-family-text);
+    font-size: 1.2rem;
+    line-height: 1.4;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border: 1px solid currentcolor;
+    border-radius: 0.5rem;
+    opacity: 0.8;
+}
+
+.contrast-info {
+    font-family: var(--font-family-mono);
+    font-size: 1.15rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+/* Tab navigation styles */
+.tab-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--colour-page-text);
+    padding-bottom: 0.5rem;
+}
+
+.tab-button {
+    padding: 0.75rem 1.5rem;
+    background: var(--colour-headings-background);
+    color: var(--colour-headings-text);
+    border: 2px solid var(--colour-page-text);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.tab-button:hover {
+    background: var(--colour-button-background-hover);
+    color: var(--colour-button-text-hover);
+}
+
+.tab-button.active {
+    background: var(--colour-button-background-selected);
+    color: var(--colour-button-text-selected);
+    border-bottom: 2px solid var(--colour-button-background-selected);
+    transform: translateY(2px);
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+.contrast-section-title {
+    font-family: var(--font-family-mono);
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    overflow-wrap: break-word;
+}
+
+.contrast-section-title:first-of-type {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid currentcolor;
+}
+
+.wcag-badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    margin-left: 0.5rem;
+    border-radius: 0.25rem;
+    font-weight: bold;
+    font-size: 0.75rem;
+    background: rgb(0 0 0 / 80%);
+    color: var(--colour-white);
+    border: 1px solid rgb(255 255 255 / 30%);
+}
+
+/* Button and nav demo styles */
+.button-states {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.button-state-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.button-state-label {
+    font-size: 0.75rem;
+    opacity: 0.8;
+    font-weight: bold;
+}
+
+.demo-button-round {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid currentcolor;
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.demo-button-round:disabled {
+    opacity: 1;
+    cursor: not-allowed;
+}
+
+/* Unused selector retained for reference:
+.demo-button-rect:disabled {
+    opacity: 1;
+    cursor: not-allowed;
+}
+*/
+
+.demo-button-round.selected-state {
+    /* Selected state colours come from data-scheme attribute */
+    border-width: 3px;
+    transform: scale(0.95);
+}
+
+/* Unused selector retained for reference:
+.demo-button-rect {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: 2px solid currentcolor;
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+*/
+
+/* Unused selector retained for reference:
+.demo-button-rect.selected-state {
+    border-width: 3px;
+    transform: scale(0.95);
+}
+*/
+
+.demo-nav {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+    border: 1px solid currentcolor;
+}
+
+.demo-nav li {
+    padding: 0 1rem;
+    margin: 0;
+}
+
+.demo-nav a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 0;
+    font-family: var(--font-family-menu);
+    font-size: var(--fontsize-nav);
+}
+
+.demo-nav a:hover {
+    text-decoration: underline;
+}
+
+.content-link-examples {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0.75rem 0 1rem;
+}
+
+.content-link-example {
+    display: inline-block;
+    width: fit-content;
+    font-weight: bold;
+    text-decoration: underline;
+    padding: 0;
+}
+
+.description {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--colour-code-background);
+    color: var(--colour-code-text);
+    border-radius: var(--border-radius);
+    border: var(--border-weight-thin) var(--border-style) var(--colour-page-text);
+}
+
+/* Colour scheme data attributes - systematic approach to apply inline styles via CSS */
+
+/* Non-theme colours */
+[data-scheme="warning"] {
+    background: var(--colour-warning-background);
+    color: var(--colour-warning-text);
+}
+
+[data-scheme="error"] {
+    background: var(--colour-error-background);
+    color: var(--colour-error-text);
+}
+
+/* Normal Light theme */
+[data-scheme="normal-light-page"] {
+    background: var(--colour-normal-light-page-background);
+    color: var(--colour-normal-light-page-text);
+}
+
+[data-scheme="normal-light-headings"] {
+    background: var(--colour-normal-light-headings-background);
+    color: var(--colour-normal-light-headings-text);
+}
+
+[data-scheme="normal-light-code"] {
+    background: var(--colour-normal-light-code-background);
+    color: var(--colour-normal-light-code-text);
+}
+
+[data-scheme="normal-light-button"] {
+    background: var(--colour-normal-light-button-background);
+    color: var(--colour-normal-light-button-text);
+    border-color: var(--colour-normal-light-button-text);
+}
+
+[data-scheme="normal-light-button-hover"] {
+    background: var(--colour-normal-light-button-background-hover);
+    color: var(--colour-normal-light-button-text-hover);
+    border-color: var(--colour-normal-light-button-text-hover);
+}
+
+[data-scheme="normal-light-button-selected"] {
+    background: var(--colour-normal-light-button-background-selected);
+    color: var(--colour-normal-light-button-text-selected);
+    border-color: var(--colour-normal-light-button-text-selected);
+}
+
+[data-scheme="normal-light-button-disabled"] {
+    background: var(--colour-normal-light-button-background-disabled);
+    color: var(--colour-normal-light-button-text-disabled);
+    border-color: var(--colour-normal-light-button-text-disabled);
+}
+
+a[data-scheme="normal-light-menu"] {
+    background: var(--colour-normal-light-menu-background);
+    color: var(--colour-normal-light-menu-text);
+}
+
+a[data-scheme="normal-light-menu-hover"] {
+    background: var(--colour-normal-light-menu-background-hover);
+    color: var(--colour-normal-light-menu-text-hover);
+}
+
+a[data-scheme="normal-light-menu-visited"] {
+    background: var(--colour-normal-light-menu-background-visited);
+    color: var(--colour-normal-light-menu-text-visited);
+}
+
+/* Normal Dark theme */
+[data-scheme="normal-dark-page"] {
+    background: var(--colour-normal-dark-page-background);
+    color: var(--colour-normal-dark-page-text);
+}
+
+[data-scheme="normal-dark-headings"] {
+    background: var(--colour-normal-dark-headings-background);
+    color: var(--colour-normal-dark-headings-text);
+}
+
+[data-scheme="normal-dark-code"] {
+    background: var(--colour-normal-dark-code-background);
+    color: var(--colour-normal-dark-code-text);
+}
+
+[data-scheme="normal-dark-button"] {
+    background: var(--colour-normal-dark-button-background);
+    color: var(--colour-normal-dark-button-text);
+    border-color: var(--colour-normal-dark-button-text);
+}
+
+[data-scheme="normal-dark-button-hover"] {
+    background: var(--colour-normal-dark-button-background-hover);
+    color: var(--colour-normal-dark-button-text-hover);
+    border-color: var(--colour-normal-dark-button-text-hover);
+}
+
+[data-scheme="normal-dark-button-selected"] {
+    background: var(--colour-normal-dark-button-background-selected);
+    color: var(--colour-normal-dark-button-text-selected);
+    border-color: var(--colour-normal-dark-button-text-selected);
+}
+
+[data-scheme="normal-dark-button-disabled"] {
+    background: var(--colour-normal-dark-button-background-disabled);
+    color: var(--colour-normal-dark-button-text-disabled);
+    border-color: var(--colour-normal-dark-button-text-disabled);
+}
+
+a[data-scheme="normal-dark-menu"] {
+    background: var(--colour-normal-dark-menu-background);
+    color: var(--colour-normal-dark-menu-text);
+}
+
+a[data-scheme="normal-dark-menu-hover"] {
+    background: var(--colour-normal-dark-menu-background-hover);
+    color: var(--colour-normal-dark-menu-text-hover);
+}
+
+a[data-scheme="normal-dark-menu-visited"] {
+    background: var(--colour-normal-dark-menu-background-visited);
+    color: var(--colour-normal-dark-menu-text-visited);
+}
+
+/* Subdued Light theme */
+[data-scheme="subdued-light-page"] {
+    background: var(--colour-subdued-light-page-background);
+    color: var(--colour-subdued-light-page-text);
+}
+
+[data-scheme="subdued-light-headings"] {
+    background: var(--colour-subdued-light-headings-background);
+    color: var(--colour-subdued-light-headings-text);
+}
+
+[data-scheme="subdued-light-code"] {
+    background: var(--colour-subdued-light-code-background);
+    color: var(--colour-subdued-light-code-text);
+}
+
+[data-scheme="subdued-light-button"] {
+    background: var(--colour-subdued-light-button-background);
+    color: var(--colour-subdued-light-button-text);
+    border-color: var(--colour-subdued-light-button-text);
+}
+
+[data-scheme="subdued-light-button-hover"] {
+    background: var(--colour-subdued-light-button-background-hover);
+    color: var(--colour-subdued-light-button-text-hover);
+    border-color: var(--colour-subdued-light-button-text-hover);
+}
+
+[data-scheme="subdued-light-button-selected"] {
+    background: var(--colour-subdued-light-button-background-selected);
+    color: var(--colour-subdued-light-button-text-selected);
+    border-color: var(--colour-subdued-light-button-text-selected);
+}
+
+[data-scheme="subdued-light-button-disabled"] {
+    background: var(--colour-subdued-light-button-background-disabled);
+    color: var(--colour-subdued-light-button-text-disabled);
+    border-color: var(--colour-subdued-light-button-text-disabled);
+}
+
+a[data-scheme="subdued-light-menu"] {
+    background: var(--colour-subdued-light-menu-background);
+    color: var(--colour-subdued-light-menu-text);
+}
+
+a[data-scheme="subdued-light-menu-hover"] {
+    background: var(--colour-subdued-light-menu-background-hover);
+    color: var(--colour-subdued-light-menu-text-hover);
+}
+
+a[data-scheme="subdued-light-menu-visited"] {
+    background: var(--colour-subdued-light-menu-background-visited);
+    color: var(--colour-subdued-light-menu-text-visited);
+}
+
+/* Subdued Dark theme */
+[data-scheme="subdued-dark-page"] {
+    background: var(--colour-subdued-dark-page-background);
+    color: var(--colour-subdued-dark-page-text);
+}
+
+[data-scheme="subdued-dark-headings"] {
+    background: var(--colour-subdued-dark-headings-background);
+    color: var(--colour-subdued-dark-headings-text);
+}
+
+[data-scheme="subdued-dark-code"] {
+    background: var(--colour-subdued-dark-code-background);
+    color: var(--colour-subdued-dark-code-text);
+}
+
+[data-scheme="subdued-dark-button"] {
+    background: var(--colour-subdued-dark-button-background);
+    color: var(--colour-subdued-dark-button-text);
+    border-color: var(--colour-subdued-dark-button-text);
+}
+
+[data-scheme="subdued-dark-button-hover"] {
+    background: var(--colour-subdued-dark-button-background-hover);
+    color: var(--colour-subdued-dark-button-text-hover);
+    border-color: var(--colour-subdued-dark-button-text-hover);
+}
+
+[data-scheme="subdued-dark-button-selected"] {
+    background: var(--colour-subdued-dark-button-background-selected);
+    color: var(--colour-subdued-dark-button-text-selected);
+    border-color: var(--colour-subdued-dark-button-text-selected);
+}
+
+[data-scheme="subdued-dark-button-disabled"] {
+    background: var(--colour-subdued-dark-button-background-disabled);
+    color: var(--colour-subdued-dark-button-text-disabled);
+    border-color: var(--colour-subdued-dark-button-text-disabled);
+}
+
+a[data-scheme="subdued-dark-menu"] {
+    background: var(--colour-subdued-dark-menu-background);
+    color: var(--colour-subdued-dark-menu-text);
+}
+
+a[data-scheme="subdued-dark-menu-hover"] {
+    background: var(--colour-subdued-dark-menu-background-hover);
+    color: var(--colour-subdued-dark-menu-text-hover);
+}
+
+a[data-scheme="subdued-dark-menu-visited"] {
+    background: var(--colour-subdued-dark-menu-background-visited);
+    color: var(--colour-subdued-dark-menu-text-visited);
+}
+
+/* Vibrant Light theme */
+[data-scheme="vibrant-light-page"] {
+    background: var(--colour-vibrant-light-page-background);
+    color: var(--colour-vibrant-light-page-text);
+}
+
+[data-scheme="vibrant-light-headings"] {
+    background: var(--colour-vibrant-light-headings-background);
+    color: var(--colour-vibrant-light-headings-text);
+}
+
+[data-scheme="vibrant-light-code"] {
+    background: var(--colour-vibrant-light-code-background);
+    color: var(--colour-vibrant-light-code-text);
+}
+
+[data-scheme="vibrant-light-button"] {
+    background: var(--colour-vibrant-light-button-background);
+    color: var(--colour-vibrant-light-button-text);
+    border-color: var(--colour-vibrant-light-button-text);
+}
+
+[data-scheme="vibrant-light-button-hover"] {
+    background: var(--colour-vibrant-light-button-background-hover);
+    color: var(--colour-vibrant-light-button-text-hover);
+    border-color: var(--colour-vibrant-light-button-text-hover);
+}
+
+[data-scheme="vibrant-light-button-selected"] {
+    background: var(--colour-vibrant-light-button-background-selected);
+    color: var(--colour-vibrant-light-button-text-selected);
+    border-color: var(--colour-vibrant-light-button-text-selected);
+}
+
+[data-scheme="vibrant-light-button-disabled"] {
+    background: var(--colour-vibrant-light-button-background-disabled);
+    color: var(--colour-vibrant-light-button-text-disabled);
+    border-color: var(--colour-vibrant-light-button-text-disabled);
+}
+
+a[data-scheme="vibrant-light-menu"] {
+    background: var(--colour-vibrant-light-menu-background);
+    color: var(--colour-vibrant-light-menu-text);
+}
+
+a[data-scheme="vibrant-light-menu-hover"] {
+    background: var(--colour-vibrant-light-menu-background-hover);
+    color: var(--colour-vibrant-light-menu-text-hover);
+}
+
+a[data-scheme="vibrant-light-menu-visited"] {
+    background: var(--colour-vibrant-light-menu-background-visited);
+    color: var(--colour-vibrant-light-menu-text-visited);
+}
+
+/* Vibrant Dark theme */
+[data-scheme="vibrant-dark-page"] {
+    background: var(--colour-vibrant-dark-page-background);
+    color: var(--colour-vibrant-dark-page-text);
+}
+
+[data-scheme="vibrant-dark-headings"] {
+    background: var(--colour-vibrant-dark-headings-background);
+    color: var(--colour-vibrant-dark-headings-text);
+}
+
+[data-scheme="vibrant-dark-code"] {
+    background: var(--colour-vibrant-dark-code-background);
+    color: var(--colour-vibrant-dark-code-text);
+}
+
+[data-scheme="vibrant-dark-button"] {
+    background: var(--colour-vibrant-dark-button-background);
+    color: var(--colour-vibrant-dark-button-text);
+    border-color: var(--colour-vibrant-dark-button-text);
+}
+
+[data-scheme="vibrant-dark-button-hover"] {
+    background: var(--colour-vibrant-dark-button-background-hover);
+    color: var(--colour-vibrant-dark-button-text-hover);
+    border-color: var(--colour-vibrant-dark-button-text-hover);
+}
+
+[data-scheme="vibrant-dark-button-selected"] {
+    background: var(--colour-vibrant-dark-button-background-selected);
+    color: var(--colour-vibrant-dark-button-text-selected);
+    border-color: var(--colour-vibrant-dark-button-text-selected);
+}
+
+[data-scheme="vibrant-dark-button-disabled"] {
+    background: var(--colour-vibrant-dark-button-background-disabled);
+    color: var(--colour-vibrant-dark-button-text-disabled);
+    border-color: var(--colour-vibrant-dark-button-text-disabled);
+}
+
+a[data-scheme="vibrant-dark-menu"] {
+    background: var(--colour-vibrant-dark-menu-background);
+    color: var(--colour-vibrant-dark-menu-text);
+}
+
+a[data-scheme="vibrant-dark-menu-hover"] {
+    background: var(--colour-vibrant-dark-menu-background-hover);
+    color: var(--colour-vibrant-dark-menu-text-hover);
+}
+
+a[data-scheme="vibrant-dark-menu-visited"] {
+    background: var(--colour-vibrant-dark-menu-background-visited);
+    color: var(--colour-vibrant-dark-menu-text-visited);
+}

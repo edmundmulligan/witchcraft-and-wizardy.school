@@ -1,0 +1,167 @@
+/*
+ **********************************************************************
+ * File       : pages/students.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Styles for the student information form component.
+ **********************************************************************
+ */
+
+@layer pages {
+  .student-info {
+    & form {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.5rem;
+      row-gap: 0.1rem;
+      width: min(100%, 56rem);
+      max-width: 100%;
+      min-width: 0;
+      margin: 0 auto;
+      padding: 1rem;
+      border: var(--border-weight) var(--border-style) var(--colour-effective-page-text);
+      border-radius: var(--border-radius);
+      box-sizing: border-box;
+
+      & output {
+        grid-column: 1;
+        grid-row: 1;
+        background-color: var(--colour-effective-headings-background);
+        border: var(--border-weight) var(--border-style) var(--colour-effective-page-text);
+        border-radius: var(--border-radius);
+        padding: 1rem;
+        margin: 1rem auto;
+        box-sizing: border-box;
+        width: min(100%, 25rem);
+        max-width: 100%;
+        min-width: 0;
+      }
+
+      & .student-form-avatar {
+        grid-column: 1;
+        grid-row: 2;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
+        gap: 0.75rem;
+        margin: 1rem auto;
+        justify-items: stretch;
+        width: 100%;
+        min-width: 0;
+
+        /* Allow avatar controls to auto-flow across available width. */
+        & fieldset:nth-child(1),
+        & fieldset:nth-child(2),
+        & fieldset:nth-child(3),
+        & fieldset:nth-child(4),
+        & fieldset:nth-child(5),
+        & fieldset.full-width {
+          grid-row: auto;
+          grid-column: auto;
+        }
+      }
+
+      & label {
+        text-align: left;
+        font-size: var(--fontsize-small);
+      }
+
+      & legend {
+        font-size: var(--fontsize-small);
+      }
+
+      & fieldset {
+        border: var(--border-weight) var(--border-style) var(--colour-effective-page-text);
+        border-radius: var(--border-radius);
+        padding: 1rem;
+        margin: 0;
+        min-width: 0;
+        text-align: center;
+
+        & legend {
+          float: left;
+          width: 100%;
+          padding: 0;
+          margin-bottom: 0.5rem;
+          overflow-wrap: anywhere;
+          text-align: center;
+        }
+      }
+
+      & input[type="radio"] {
+        width: 1rem;
+        height: 1rem;
+        font-size: var(--fontsize-normal);
+      }
+
+      & input[type="text"] {
+        max-width: 60%;
+        font-size: var(--fontsize-normal);
+      }
+
+      & hr {
+        border: none;
+        border-top: var(--border-weight) var(--border-style) var(--colour-effective-page-text);
+        margin: 0.5rem 0 0;
+      }
+
+      & h4 {
+        border-top: var(--border-weight) var(--border-style) var(--colour-effective-page-text);
+        padding-top: 0.5rem;
+        margin-top: 0.5rem;
+
+        &:first-of-type {
+          border-top: none;
+          padding-top: 0;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  .avatar-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .student-form-item {
+    margin: 0.2rem 0;
+    text-align: left;
+    width: 100%;
+    min-width: 0;
+
+    &:first-of-type {
+      text-align: center;
+    }
+
+    &.button-group {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      background-color: var(--colour-effective-page-background);
+      border: none;
+    }
+  }
+
+  .student-form-choice {
+    & fieldset {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    & div {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem;
+    }
+  }
+}

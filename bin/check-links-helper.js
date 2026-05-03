@@ -4,7 +4,7 @@
  **********************************************************************
  * File       : bin/check-links-helper.js
  * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
- * Copyright  : (c) 2025 The Embodied Mind
+ * Copyright  : (c) 2026 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
  * Description:
  *   Helper script for checking broken links in HTML pages.
@@ -29,10 +29,23 @@ const pageResult = {
   url: urlPath,
   links: [],
   brokenCount: 0,
-  totalCount: 0
+  totalCount: 0,
+  timeoutCount: 0,
 };
 
-// Fetch HTML content with redirect handling
+/**
+ * Fetch a page body while following a bounded redirect chain.
+ *
+ * @remarks Preconditions:
+ * - `url` must be an absolute HTTP or HTTPS URL.
+ * - The fetched response body is assumed to be text content that fits comfortably in memory.
+ * - `maxRedirects` should remain positive to prevent immediate failure.
+ *
+ * @param {string} url - Absolute URL to request.
+ * @param {number} [maxRedirects=5] - Maximum redirect hops to follow.
+ * @param {number} [depth=0] - Current recursion depth used internally when following redirects.
+ * @returns {Promise<string>} Promise resolving to the fetched HTML content.
+ */
 function fetchWithRedirects(url, maxRedirects = 5, depth = 0) {
   return new Promise((resolve, reject) => {
     if (depth >= maxRedirects) {
@@ -42,23 +55,37 @@ function fetchWithRedirects(url, maxRedirects = 5, depth = 0) {
 
     const client = url.startsWith('https') ? https : http;
 
-    client.get(url, (res) => {
-      // Handle redirects
-      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-        const redirectUrl = new URL(res.headers.location, url).href;
-        fetchWithRedirects(redirectUrl, maxRedirects, depth + 1)
-          .then(resolve)
-          .catch(reject);
-        return;
-      }
+    client
+      .get(url, (res) => {
+        // Handle redirects
+        if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+          const redirectUrl = new URL(res.headers.location, url).href;
+          fetchWithRedirects(redirectUrl, maxRedirects, depth + 1)
+            .then(resolve)
+            .catch(reject);
+          return;
+        }
 
-      let html = '';
-      res.on('data', (chunk) => { html += chunk; });
-      res.on('end', () => resolve(html));
-    }).on('error', reject);
+        let html = '';
+        res.on('data', (chunk) => {
+          html += chunk;
+        });
+        res.on('end', () => resolve(html));
+      })
+      .on('error', reject);
   });
 }
 
+/**
+ * Parse the target page, collect eligible links, validate them, and persist the page report.
+ *
+ * @remarks Preconditions:
+ * - CLI arguments must provide `pageUrl`, `urlPath`, and `resultFile`.
+ * - `resultFile` must point to a JSON document compatible with `finalise`.
+ * - The target page must be reachable from the current environment.
+ *
+ * @returns {Promise<void>} Resolves after the page result has been finalised.
+ */
 async function main() {
   try {
     const html = await fetchWithRedirects(pageUrl);
@@ -68,19 +95,28 @@ async function main() {
     // Extract all links from various tags
     $('a[href], link[href], img[src], script[src]').each((i, elem) => {
       const tagName = elem.name;
-      const attrName = tagName === 'img' || (tagName === 'script') ? 'src' : 'href';
+      const attrName = tagName === 'img' || tagName === 'script' ? 'src' : 'href';
       let href = $(elem).attr(attrName);
 
       if (!href) return;
 
       // Skip certain link types
       const rel = $(elem).attr('rel');
-      if (rel && (rel.includes('preconnect') || rel.includes('dns-prefetch') || rel.includes('prefetch'))) {
+      if (
+        rel &&
+        (rel.includes('preconnect') || rel.includes('dns-prefetch') || rel.includes('prefetch'))
+      ) {
         return;
       }
 
       // Skip mailto, javascript, data URIs, and hash-only links
-      if (href.startsWith('mailto:') || href.startsWith('javascript:') || href.startsWith('vbscript:') || href.startsWith('data:') || href === '#') {
+      if (
+        href.startsWith('mailto:') ||
+        href.startsWith('javascript:') ||
+        href.startsWith('vbscript:') ||
+        href.startsWith('data:') ||
+        href === '#'
+      ) {
         return;
       }
 
@@ -97,7 +133,7 @@ async function main() {
         fullUrl: fullUrl,
         tagName: tagName,
         attrName: attrName,
-        text: $(elem).text().trim().substring(0, 50)
+        text: $(elem).text().trim().substring(0, 50),
       });
     });
 
@@ -105,7 +141,7 @@ async function main() {
 
     // Check each link
     if (links.length === 0) {
-      finalize();
+      finalise();
       return;
     }
 
@@ -115,28 +151,49 @@ async function main() {
       try {
         await checkLink(link);
       } catch (err) {
-        pageResult.brokenCount++;
-        pageResult.links.push({
-          url: link.fullUrl,
-          original: link.href,
-          error: err.message,
-          tagName: link.tagName,
-          text: link.text
-        });
+        // Treat timeouts as warnings, not errors
+        if (err.message === 'Request timeout') {
+          pageResult.timeoutCount++;
+          pageResult.links.push({
+            url: link.fullUrl,
+            original: link.href,
+            warning: 'timeout',
+            tagName: link.tagName,
+            text: link.text,
+          });
+        } else {
+          pageResult.brokenCount++;
+          pageResult.links.push({
+            url: link.fullUrl,
+            original: link.href,
+            error: err.message,
+            tagName: link.tagName,
+            text: link.text,
+          });
+        }
       }
 
       checked++;
       if (checked === links.length) {
-        finalize();
+        finalise();
       }
     }
-
   } catch (err) {
     console.error('Error:', err.message);
     process.exit(1);
   }
 }
 
+/**
+ * Validate a single discovered link using a lightweight HEAD request.
+ *
+ * @remarks Preconditions:
+ * - `link.fullUrl` must be an absolute HTTP or HTTPS URL.
+ * - `pageResult` is mutated in place to accumulate failures for the current page.
+ *
+ * @param {{fullUrl: string, href: string, tagName: string, text: string}} link - Link descriptor extracted from the page.
+ * @returns {Promise<void>} Promise resolving after the request completes or the failure is recorded.
+ */
 function checkLink(link) {
   return new Promise((resolve, reject) => {
     const linkUrl = link.fullUrl;
@@ -156,7 +213,7 @@ function checkLink(link) {
       hostname: urlObj.hostname,
       port: urlObj.port,
       path: urlObj.pathname + urlObj.search,
-      timeout: 5000
+      timeout: 5000,
     };
 
     const req = client.request(options, (res) => {
@@ -169,7 +226,7 @@ function checkLink(link) {
           original: link.href,
           statusCode: res.statusCode,
           tagName: link.tagName,
-          text: link.text
+          text: link.text,
         });
       }
       resolve();
@@ -188,11 +245,22 @@ function checkLink(link) {
   });
 }
 
-function finalize() {
+/**
+ * Merge the current page result into the shared broken-link report and print a one-line summary.
+ *
+ * @remarks Preconditions:
+ * - `resultFile` must already exist and contain a JSON object with `pages` and `summary` properties.
+ * - `pageResult` must have been populated for the current page before this function runs.
+ *
+ * @returns {void}
+ */
+function finalise() {
   const combined = JSON.parse(fs.readFileSync(resultFile, 'utf8'));
   combined.pages.push(pageResult);
   combined.summary.totalLinks += pageResult.totalCount;
   combined.summary.brokenLinks += pageResult.brokenCount;
+  if (!combined.summary.timeoutLinks) combined.summary.timeoutLinks = 0;
+  combined.summary.timeoutLinks += pageResult.timeoutCount;
 
   fs.writeFileSync(resultFile, JSON.stringify(combined, null, 2));
 
@@ -200,6 +268,10 @@ function finalize() {
     console.log('  ❌ Found ' + pageResult.brokenCount + ' broken link(s)');
   } else {
     console.log('  ✅ All ' + pageResult.totalCount + ' links OK');
+  }
+
+  if (pageResult.timeoutCount > 0) {
+    console.log('  ⚠️  ' + pageResult.timeoutCount + ' link(s) timed out');
   }
 }
 

@@ -1,0 +1,126 @@
+/*
+ **********************************************************************
+ * File       : layouts/text.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Global styles for inline text elements: paragraphs, lists,
+ *   inline code, and hyperlinks.
+ **********************************************************************
+ */
+
+@layer layouts {
+  /* increase spacing for paragraphs in accordance with WCAG 2.2 */
+  p,
+  li {
+    font-size: var(--fontsize-normal);
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    margin: var(--margin-vertical) var(--margin-horizontal);
+  }
+
+  /* Make inline code elements the same size as paragraph text */
+  code {
+    font-family: var(--font-family-mono);
+    font-size: var(--fontsize-normal);
+  }
+
+  ul,
+  ol {
+    margin: var(--margin-vertical) var(--margin-horizontal);
+    padding-left: 0;
+    padding-right: 0;
+    line-height: 1.5;
+    text-align: left;
+    max-width: 100%;
+    box-sizing: border-box;
+    font-size: var(--fontsize-normal);
+  }
+
+  /*
+     **************************************************
+     * Styles for general link pseudo elements
+     **************************************************
+    */
+
+  a {
+    &:link {
+      color: var(--colour-effective-link-text);
+      background-color: var(--colour-effective-link-background);
+      text-decoration: underline;
+      font-weight: var(--font-weight-bold);
+    }
+
+    &:visited {
+      color: var(--colour-effective-link-text-visited);
+      background-color: var(--colour-effective-link-background-visited);
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: var(--colour-effective-link-text-focus);
+      background-color: var(--colour-effective-link-background-focus);
+    }
+
+    /* this may be a bit subtle but it meets WCAG 2.2 guidelines */
+    &:focus-visible {
+      outline: var(--border-weight-thin) dashed var(--colour-effective-link-text-focus);
+      outline-offset: 0.2rem;
+    }
+  }
+
+  /*
+     **************************************************
+     * Styles for form elements
+     **************************************************
+     */
+
+  label {
+    font-family: var(--font-family-menu);
+    font-size: var(--fontsize-normal);
+  }
+
+  fieldset {
+    font-family: var(--font-family-menu);
+    font-size: var(--fontsize-normal);
+  }
+
+  /*
+     **************************************************
+     * Heading element sizes and alignment
+     **************************************************
+     */
+
+  /* Center all headings and use the subtitle font token */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    /* Use the shared heading font token */
+    font-family: var(--font-family-subtitle);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+  }
+
+  /* make h1 and h2 larger and bolder */
+  h1,
+  h2 {
+    font-size: var(--fontsize-header-large);
+  }
+
+  /* h3 and h4 not quite as big */
+  h3,
+  h4 {
+    font-size: var(--fontsize-header-medium);
+  }
+
+  /* h5 and h6 smaller again */
+  h5,
+  h6 {
+    font-size: var(--fontsize-header-small);
+  }
+}

@@ -2,7 +2,7 @@
  **********************************************************************
  * File       : license.html
  * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
- * Copyright  : (c) 2025 The Embodied Mind
+ * Copyright  : (c) 2026 The Embodied Mind
  * License    : MIT License (see license.html page)
  * Description:
  *   This is the license page of the Web Witchcraft and
@@ -12,7 +12,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <!-- Start of meta tags -->
     <meta charset="UTF-8">
     <meta name="description" content="Web Witchcraft and Wizardry">
@@ -24,15 +24,17 @@
     <!-- End of meta tags -->
 
     <!-- Set the document title -->
-    <title>License|Web Witchcraft and Wizardry</title>
+    <title>License | Web Witchcraft and Wizardry</title>
 
     <!-- Link to Favicon -->
-    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="../images/icons/favicon.svg">
 
     <!--Links for Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Marcellus&family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+      rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <!-- End Google Fonts links -->
@@ -41,72 +43,66 @@
     <link rel="stylesheet" href="https://kit.fontawesome.com/3895b3f1a4.css" crossorigin="anonymous">
     <!-- End Font Awesome Icons -->
 
-    <!-- Start of CSS stylesheets section -->
-
-    <!-- globals.css and main.css must be the first stylesheets loaded -->
+    <!-- stylesheets -->
     <link rel="stylesheet" href="../styles/globals.css">
     <link rel="stylesheet" href="../styles/main.css">
 
-    <!-- These stylesheets are common to all pages -->
-    <link rel="stylesheet" href="../styles/components/buttons.css">
-    <link rel="stylesheet" href="../styles/components/code.css">
-    <link rel="stylesheet" href="../styles/components/header-and-footer.css">
-    <link rel="stylesheet" href="../styles/components/navigation.css">
-    <link rel="stylesheet" href="../styles/components/popover.css">
-    <link rel="stylesheet" href="../styles/components/titles.css">
-    <link rel="stylesheet" href="../styles/pages.css">
-
-    <!-- media-queries must be the last stylesheets loaded -->
-    <link rel="stylesheet" href="../styles/media-queries.css">
-    <!-- End of CSS stylesheets section -->
-
     <!-- Load JavaScript files -->
-    <script src="../scripts/debug.js"></script>
-    <script src="../scripts/themeSwitcher.js"></script>
-    <script src="../scripts/toggle-header-footer.js" defer></script>
-    <script src="../scripts/injectCommonCode.js" defer></script>
+    <script src="../scripts/utils.js" defer></script>
+    <script src="../scripts/queryParams.js" defer></script>
+    <script src="../scripts/debug.js" defer></script>
+    <script src="../scripts/themeSwitcher.js" defer></script>
+    <script src="../scripts/toggleHeaderAndFooter.js" defer></script>
+    <script src="../scripts/injectCommonCode.js" type="module"></script>
+    <script src="../scripts/embodiedMindPopover.js" defer></script>
     <!-- End JavaScript file link -->
 
     <noscript>
-        <link rel="stylesheet" href="../styles/noscript.css">
+      <link rel="stylesheet" href="../styles/utilities/noscript.css">
     </noscript>
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="header">
-        <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
+      <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
     </header>
 
     <main>
-        <h2 class="page-title">MIT License</h2>
+      <h2 class="page-title">MIT License</h2>
 
-        <!--
-            This is the text of the MIT license and must be included verbatim. 
-            This causes the page to fail the readability check as it has a 
-            college level (18-21 years) rating, so it is excluded from the 
+      <!--
+            This is the text of the MIT license and must be included verbatim.
+            This causes the page to fail the readability check as it has a
+            college level (18-21 years) rating, so it is excluded from the
             automated readability check
         -->
-        <section id="license" class="license">
-            <h3>&copy; The Embodied Mind, 2025-2026</h3>
-            <p>
-                Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &ldquo;Software&rdquo;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-            </p>
+      <section id="license" >
+        <h3>&copy; The Embodied Mind, 2025-2026</h3>
+        <p>
+          Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+          documentation files (the &ldquo;Software&rdquo;), to deal in the Software without restriction, including
+          without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+          of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following
+          conditions:
+        </p>
 
-            <p>
-                The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-            </p>
+        <p>
+          The above copyright notice and this permission notice shall be included in all copies or substantial portions
+          of the Software.
+        </p>
 
-            <p>
-                THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-            </p>
-        </section>
+        <p>
+          THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+          NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO
+          EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+          AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+          OR OTHER DEALINGS IN THE SOFTWARE.
+        </p>
+      </section>
     </main>
 
     <footer class="footer">
-        <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
+      <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
     </footer>
-    <div id="not-implemented" popover="auto" class="popover">
-        <!-- Popover content is injected by JavaScript to ensure it is the same across all pages -->
-    </div>
-</body>
+  </body>
 </html>

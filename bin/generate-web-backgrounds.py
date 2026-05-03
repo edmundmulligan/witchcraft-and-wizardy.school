@@ -4,8 +4,6 @@ Generate all background-web-*.tex files from template
 This script implements DRY principle by generating files from parameters
 """
 
-import os
-
 # Define portrait parameters (common for all portrait variants)
 PORTRAIT_PARAMS = {
     'bgwidth': '5.5',
@@ -104,49 +102,47 @@ DARK_OPACITIES = {
     'opacitycorner': '0.7',
 }
 
-def generate_file(orientation, mode, source_dir='source'):
+def generate_file(orientation, mode, style, source_dir='artwork/source/web/image-2'):
     """Generate a single background-web file"""
     
-    filename = f"{source_dir}/background-web-{orientation}-{mode}.tex"
+    filename = f"{source_dir}/background-web-{orientation}-{style}-{mode}.tex"
     
     # Select parameters based on orientation
     package_orientation = orientation
     position_params = PORTRAIT_PARAMS if orientation == 'portrait' else LANDSCAPE_PARAMS
     
-    # Select opacities and colors based on mode
+    # Select opacities and colours based on mode
+    bg_colour = f"colour_{style}_{mode}_page_background"
+    colour_one = f"colour_{style}_{mode}_page_text"
+    colour_two = f"colour_{style}_{mode}_button_background_hover"
     if mode == 'light':
         opacity_params = LIGHT_OPACITIES
-        bg_color = "web_background_light"
-        color_one = "web_background_light_highlight"
-        color_two = "web_background_light_alt"
     else:
         opacity_params = DARK_OPACITIES
-        bg_color = "web_background_dark"
-        color_one = "web_background_dark_highlight"
-        color_two = "web_background_dark_alt"
     
-    # Combine all parameters
+    # Combine all parameters including colours
     all_params = {**position_params, **opacity_params}
+    # Add colour parameters as expandable definitions
+    all_params['bgcolourbase'] = bg_colour
+    all_params['colourone'] = colour_one
+    all_params['colourtwo'] = colour_two
+    all_params['gridcolour'] = colour_two
     
-    # Generate parameter definitions
-    param_defs = '\n'.join([f'\\def\\{key}{{{value}}}' for key, value in all_params.items()])
+    # Generate parameter definitions using edef for full expansion
+    param_defs = '\n'.join([f'\\edef\\{key}{{{value}}}' for key, value in all_params.items()])
     
     # Generate the file content
     content = f"""\\documentclass[border=0mm]{{standalone}}
 
-\\input{{common/packages-background.tex}}
-\\input{{common/packages-background-{package_orientation}.tex}}
-\\input{{common/colours.tex}}
+\\input{{../../common/packages-background.tex}}
+\\input{{../../common/packages-background-{package_orientation}.tex}}
+\\input{{../../common/colours.tex}}
 
 % {orientation.capitalize()} dimensions ({mode} mode)
-\\def\\bgcolorbase{{{bg_color}}}
-\\def\\colorone{{{color_one}}}
-\\def\\colortwo{{{color_two}}}
-\\def\\gridcolor{{{color_two}}}
 {param_defs}
 
 \\begin{{document}}
-  \\input{{common/background-web-template.tex}}
+  \\input{{../../common/background-web-template.tex}}
 \\end{{document}}
 """
     
@@ -160,10 +156,12 @@ def main():
     """Generate all background-web files"""
     orientations = ['portrait', 'landscape']
     modes = ['light', 'dark']
+    themes = ['normal', 'subdued', 'vibrant']
     
     for orientation in orientations:
         for mode in modes:
-            generate_file(orientation, mode)
+            for style in themes:
+                generate_file(orientation, mode, style)
     
     print("\nAll background-web-*.tex files have been generated!")
 

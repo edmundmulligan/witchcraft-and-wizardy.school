@@ -1,0 +1,22 @@
+/*
+ **********************************************************************
+ * File       : components/theme-switcher.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Styles for theme and style switcher buttons including animations.
+ *   Animation variables and keyframes are defined in animation.css.
+ **********************************************************************
+ */
+
+@layer components {
+  /* Theme switcher animation classes */
+  .theme-switch-fade-out {
+    animation: themeSwitchFadeOut var(--theme-switch-duration) var(--theme-switch-timing-function);
+  }
+
+  .theme-switch-fade-in {
+    animation: themeSwitchFadeIn var(--theme-switch-duration) var(--theme-switch-timing-function);
+  }
+}

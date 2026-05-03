@@ -1,0 +1,224 @@
+/*
+ **********************************************************************
+ * File       : gallery.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license.html page)
+ * Description:
+ *   Styles used only by pages/gallery.html.
+ **********************************************************************
+ */
+@layer pages {
+  /* Carousel wrapper with navigation buttons */
+  .carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+
+    /* Responsive adjustments for small screens */
+    @media (width < 800px) {
+      gap: 0.5rem;
+    }
+  }
+
+  /* Navigation buttons */
+  .carousel-nav-button {
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    min-width: 3rem;
+    min-height: 3rem;
+    border-radius: 50%;
+    background-color: var(--colour-effective-button-background);
+    color: var(--colour-effective-button-text);
+    border: var(--border-style) var(--border-weight) var(--colour-effective-button-text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    z-index: 10;
+
+    &:hover:not(:disabled) {
+      background-color: var(--colour-effective-button-background-hover);
+      color: var(--colour-effective-button-text-hover);
+      transform: scale(1.1);
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(0.95);
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      background-color: var(--colour-effective-button-background-disabled);
+      color: var(--colour-effective-button-text-disabled);
+      pointer-events: none;
+    }
+
+    @media (width < 800px) {
+      width: 2.5rem;
+      height: 2.5rem;
+      min-width: 2.5rem;
+      min-height: 2.5rem;
+      font-size: 1.25rem;
+    }
+
+    @media (width < 400px) {
+      width: 2rem;
+      height: 2rem;
+      min-width: 2rem;
+      min-height: 2rem;
+      font-size: 1rem;
+    }
+  }
+
+  .carousel {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    gap: var(--grid-gap);
+    padding: var(--grid-padding);
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+
+    &::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+
+    &:focus-visible {
+      outline: var(--border-weight-thin) dashed var(--colour-effective-link-text-focus);
+      outline-offset: 0.2rem;
+    }
+  }
+
+  .portrait-item {
+    flex: 0 0 var(--carousel-portrait-width);
+    display: grid;
+    justify-items: center;
+    align-content: start;
+    scroll-snap-align: start;
+    border: var(--border-weight) solid var(--colour-effective-headings-text);
+    border-radius: var(--border-radius);
+    padding: var(--grid-padding);
+    background-color: var(--colour-effective-headings-background);
+    color: var(--colour-effective-headings-text);
+    width: var(--carousel-portrait-width);
+
+    @media (width < 800px) {
+      flex: 0 0 100%;
+    }
+  }
+
+  .portrait-image {
+    display: block;
+    width: var(--carousel-portrait-width);
+    max-width: 100%;
+    height: var(--carousel-portrait-height);
+    object-fit: contain;
+    object-position: center;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+  }
+
+  .portrait-caption {
+    display: block;
+    margin: var(--margin-vertical) var(--margin-horizontal);
+    font-weight: bold;
+  }
+
+  .accessory-item {
+    flex: 0 0 var(--carousel-accessory-width);
+    display: grid;
+    align-items: start;
+    scroll-snap-align: start;
+    gap: var(--grid-gap);
+    border: var(--border-weight) var(--border-style) var(--colour-effective-headings-text);
+    border-radius: var(--border-radius);
+    padding: var(--grid-padding);
+    background-color: var(--colour-effective-headings-background);
+    color: var(--colour-effective-headings-text);
+    grid-template-rows: var(--carousel-accessory-height) auto auto auto auto;
+    text-align: center;
+    width: var(--carousel-accessory-width);
+    max-width: 100%;
+
+    & hr {
+      width: 100%;
+    }
+
+    @media (width < 800px) {
+      flex: 0 0 100%;
+    }
+  }
+
+  .accessory-image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: var(--image-padding);
+    height: var(--accessory-image-slot-height);
+    object-fit: contain;
+    object-position: center;
+    margin: 0 auto;
+  }
+
+  .accessory-name {
+    display: block;
+    font-family: var(--font-family-subtitle);
+    font-weight: bold;
+    margin: 0.25rem 1rem 0;
+  }
+
+  .accessory-description {
+    display: block;
+    font-size: var(--fontsize-small);
+    margin: 0.25rem 1rem 0;
+  }
+
+  .catalogue-number {
+    font-style: italic;
+    font-size: var(--fontsize-small);
+    opacity: 0.8;
+    margin: 0.25rem 1rem 1rem;
+  }
+
+  .familiar-item {
+    flex: 0 0 var(--carousel-familiar-width);
+    display: grid;
+    align-items: start;
+    scroll-snap-align: start;
+    gap: var(--grid-gap);
+    border: var(--border-weight) var(--border-style) var(--colour-effective-headings-text);
+    border-radius: var(--border-radius);
+    padding: var(--grid-padding);
+    background-color: var(--colour-effective-headings-background);
+    color: var(--colour-effective-headings-text);
+    grid-template-rows: var(--familiar-image-slot-height) auto auto;
+    text-align: center;
+    width: var(--carousel-familiar-width);
+    max-width: 100%;
+
+    & hr {
+      width: 100%;
+    }
+  }
+
+  .familiar-image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: var(--image-padding);
+    height: var(--familiar-image-slot-height);
+    object-fit: contain;
+    object-position: center;
+    margin: 0 auto;
+  }
+}

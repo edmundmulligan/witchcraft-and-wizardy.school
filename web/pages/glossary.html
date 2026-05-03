@@ -2,7 +2,7 @@
  **********************************************************************
  * File       : glossary.html
  * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
- * Copyright  : (c) 2025 The Embodied Mind
+ * Copyright  : (c) 2026 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
  * Description:
  *   This page provides an indicative glossary about web development
@@ -12,7 +12,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <!-- Start of meta tags -->
     <meta charset="UTF-8">
     <meta name="description" content="Web Witchcraft and Wizardry">
@@ -23,15 +23,17 @@
     <!-- End of meta tags -->
 
     <!-- Set the document title -->
-    <title>Glossary|Web Witchcraft and Wizardry</title>
+    <title>Glossary | Web Witchcraft and Wizardry</title>
 
     <!-- Link to Favicon -->
-    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="../images/icons/favicon.svg">
 
     <!--Links for Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Marcellus&family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+      rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <!-- End Google Fonts links -->
@@ -40,70 +42,216 @@
     <link rel="stylesheet" href="https://kit.fontawesome.com/3895b3f1a4.css" crossorigin="anonymous">
     <!-- End Font Awesome Icons -->
 
-    <!-- Start of CSS stylesheets section -->
-
-    <!-- globals.css and main.css must be the first stylesheets loaded -->
+    <!-- stylesheets -->
     <link rel="stylesheet" href="../styles/globals.css">
     <link rel="stylesheet" href="../styles/main.css">
-
-    <!-- These stylesheets are common to all pages -->
-    <link rel="stylesheet" href="../styles/components/buttons.css">
-    <link rel="stylesheet" href="../styles/components/code.css">
-    <link rel="stylesheet" href="../styles/components/header-and-footer.css">
-    <link rel="stylesheet" href="../styles/components/navigation.css">
-    <link rel="stylesheet" href="../styles/components/popover.css">
-    <link rel="stylesheet" href="../styles/components/titles.css">
-    <link rel="stylesheet" href="../styles/components/toggle.css">
-    <link rel="stylesheet" href="../styles/pages.css">
-
-    <!-- media-queries must be the last stylesheets loaded -->
-    <link rel="stylesheet" href="../styles/media-queries.css">
-    <!-- End of CSS stylesheets section -->
+    <link rel="stylesheet" href="../styles/pages/glossary.css">
 
     <!-- Load JavaScript files -->
-    <script src="../scripts/debug.js"></script>
-    <script src="../scripts/themeSwitcher.js"></script>
-    <script src="../scripts/toggle-header-footer.js" defer></script>
-    <script src="../scripts/injectCommonCode.js" defer></script>
+    <script src="../scripts/utils.js" defer></script>
+    <script src="../scripts/queryParams.js" defer></script>
+    <script src="../scripts/debug.js" defer></script>
+    <script src="../scripts/themeSwitcher.js" defer></script>
+    <script src="../scripts/toggleHeaderAndFooter.js" defer></script>
+    <script src="../scripts/injectCommonCode.js" type="module"></script>
+    <script src="../scripts/embodiedMindPopover.js" defer></script>
 
     <!-- End JavaScript file links -->
 
     <noscript>
-        <link rel="stylesheet" href="../styles/noscript.css">
+      <link rel="stylesheet" href="../styles/utilities/noscript.css">
     </noscript>
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="header">
-        <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
+      <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
     </header>
 
     <main>
-        <h2 class="page-title">Glossary</h2>
+      <h2 class="page-title">Glossary</h2>
 
-        <section id="glossary" class="glossary">
-            <p>
-                This is a basic glossary. More terms will be added later. Whenever you see a <i class="fa-duotone fa-circle-question" aria-hidden="true"></i> symbol next to a word or phrase in a lesson, you can click on it to see its definition.
-            </p>
+      <section id="glossary" class="glossary">
+        <p>
+          This is a glossary of terms used in the lessons. Whenever you see a
+          <i class="fa-duotone fa-circle-question" aria-hidden="true"></i>
+          symbol next to a word or phrase in a lesson, you can click on it to see its definition.
+        </p>
 
-            <!-- Use definition list for glossary terms -->
-             <!-- Nou sure yet how to implement the help button, but popovers seem like a good bet -->
-            <dl>
-                <dt id="glossary-css">CSS</dt>
-                <dd>Cascading Style Sheets - code that controls how web pages look and feel.</dd>
-                <dt id="glossary-html">HTML</dt>
-                <dd>HyperText Markup Language - the basic code used to build web pages. Hypertext means the text can contain links to other texts, and Markup refers to the way tags are used to define elements within the page.</dd>
-                <dt id="glossary-javascript">JavaScript</dt>
-                <dd>A programming language that adds interactive features to websites.</dd>
-            </dl>
-        </section>
+        <!-- Use definition list for glossary terms -->
+        <dl>
+          <dt id="glossary-accessibility">Accessibility</dt>
+          <dd>
+            Accessibility refers to the design of products, devices, services, or environments for people with
+            disabilities. In web development, it means creating websites that can be used by everyone, including people
+            with visual, auditory, motor, or cognitive disabilities.
+          </dd>
+
+          <dt id="glossary-anchor-element">Anchor Element</dt>
+          <dd>
+            The anchor element is an HTML element represented by the
+            <code>&lt;a&gt;</code> tag. It is used to create hyperlinks that connect one web page to another or to other
+            resources such as images, videos, or documents. The anchor element typically includes the
+            <code>href</code> attribute, which specifies the URL of the page or resource being linked to.
+          </dd>
+
+          <dt id="glossary-assistive-technology">Assistive Technology</dt>
+          <dd>
+            Assistive technology refers to devices or software that help people with disabilities use computers and
+            access the web. Examples include screen readers, magnifiers, and alternative input devices.
+          </dd>
+
+          <dt id="glossary-attribute">Attribute</dt>
+          <dd>
+            An attribute provides additional information about an HTML element. It is included in the start tag. For
+            example, in
+            <code>&lt;a href="https://example.com"&gt;</code>, The <code>href="https://example.com"</code> attribute
+            specifies the URL the link points to.
+          </dd>
+
+          <dt id="glossary-css">CSS</dt>
+          <dd>Cascading Style Sheets - code that controls how web pages look and feel.</dd>
+
+          <dt id="glossary-element">Element</dt>
+          <dd>
+            An element is a part of the HTML document defined by a start tag, content, and an end tag. For example,
+            <code>&lt;h1&gt;Hello&lt;/h1&gt;</code> is an element that represents a heading with the text "Hello".
+          </dd>
+
+          <dt id="glossary-gif">GIF</dt>
+          <dd>
+            GIF (Graphics Interchange Format) is an image format that supports both static and animated images. It uses
+            lossless compression but is limited to 256 colours, making it suitable for simple graphics and animations.
+          </dd>
+
+          <dt id="glossary-html">HTML</dt>
+          <dd>
+            HyperText Markup Language - the basic code used to build web pages. Hypertext means the text can contain
+            links to other texts, and Markup refers to the way tags are used to define elements within the page.
+          </dd>
+
+          <dt id="glossary-html-entity">HTML Entity</dt>
+          <dd>
+            An HTML entity is a special code that represents a character that cannot be easily typed or that has a
+            special meaning in HTML. For example, <code>&amp;amp;</code> is an HTML entity that represents the ampersand
+            (&amp;) character, and <code>&amp;copy;</code> represents the copyright symbol (&copy;).
+          </dd>
+
+          <dt id="glossary-hyperlink">Hyperlink</dt>
+          <dd>
+            A hyperlink is a link from one web page to another, typically using the <code>&lt;a&gt;</code> element in
+            HTML.
+          </dd>
+
+          <dt id="glossary-image">Image</dt>
+          <dd>
+            An image is a visual representation, such as a photo or graphic, that can be displayed on a web page. In
+            HTML, images are added using the <code>&lt;img&gt;</code> element.
+          </dd>
+
+          <dt id="glossary-image-format">Image Format</dt>
+          <dd>
+            An image format is a file format for storing digital images. Common image formats include JPEG, PNG, GIF,
+            SVG, and WebP. Each format has its own advantages and disadvantages, such as compression, transparency, and
+            scalability.
+          </dd>
+
+          <dt id="glossary-javascript">JavaScript</dt>
+          <dd>A programming language that adds interactive features to websites.</dd>
+
+          <dt id="glossary-jpeg">JPEG</dt>
+          <dd>
+            JPEG (Joint Photographic Experts Group) is a commonly used image format that uses lossy compression to
+            reduce file size while maintaining acceptable image quality.
+          </dd>
+
+          <dt id="glossary-landmark-element">Landmark Element</dt>
+          <dd>
+            A landmark element is an HTML element that defines a region of a web page, such as a header, main content
+            area, or footer. These elements help users navigate the page, especially those using assistive technologies.
+          </dd>
+
+          <dt id="glossary-list">List</dt>
+          <dd>
+            A list is an HTML element that groups related items together. There are different types of lists, including
+            ordered lists (<code>&lt;ol&gt;</code>), unordered lists (<code>&lt;ul&gt;</code>), and description lists
+            (<code>&lt;dl&gt;</code>).
+          </dd>
+
+          <dt id="glossary-lossless-compression">Lossless Compression</dt>
+          <dd>
+            Lossless compression is a method of reducing file size without losing any data or quality. PNG is an example
+            of a format that uses lossless compression.
+          </dd>
+
+          <dt id="glossary-lossy-compression">Lossy Compression</dt>
+          <dd>
+            Lossy compression is a method of reducing file size by permanently removing some data, which may result in a
+            loss of quality. JPEG is an example of a format that uses lossy compression.
+          </dd>
+
+          <dt id="glossary-metadata">Metadata</dt>
+          <dd>
+            Metadata is data that provides information about other data. In the context of images, metadata can include
+            details such as the date the photo was taken, camera settings, and location information.
+          </dd>
+
+          <dt id="glossary-pixel">Pixel</dt>
+          <dd>
+            A pixel is the smallest unit of a digital image or display. Pixels are the tiny dots that make up the images
+            on screens, and each pixel can display a specific colour.
+          </dd>
+
+          <dt id="glossary-pixelation">Pixelation</dt>
+          <dd>
+            Pixelation occurs when an image is displayed at a size larger than its resolution, causing individual pixels
+            to become visible and the image to appear blocky or blurry.
+          </dd>
+
+          <dt id="glossary-png">PNG</dt>
+          <dd>
+            PNG (Portable Network Graphics) is an image format that uses lossless compression, which means it retains
+            all image data and quality. PNG supports transparency and is often used for graphics with sharp edges, such
+            as logos and icons.
+          </dd>
+
+          <dt id="glossary-resolution">Resolution</dt>
+          <dd>
+            Resolution refers to the amount of detail an image holds. Higher resolution means more image detail, which
+            is important for printing and high-quality displays, but also results in larger file sizes.
+          </dd>
+
+          <dt id="glossary-svg">SVG</dt>
+          <dd>
+            SVG (Scalable Vector Graphics) is an image format that uses vector graphics, which means it is made up of
+            paths defined by mathematical equations. SVG images can be scaled to any size without losing quality, making
+            them ideal for logos and icons.
+          </dd>
+
+          <dt id="glossary-table">Table</dt>
+          <dd>
+            In HTML, a table is used to organise data into rows and columns. Tables are defined using the
+            <code>&lt;table&gt;</code> element, with rows defined by <code>&lt;tr&gt;</code> and cells defined by
+            <code>&lt;td&gt;</code> or <code>&lt;th&gt;</code> for header cells.
+          </dd>
+
+          <dt id="glossary-tag">Tag</dt>
+          <dd>
+            In HTML, a tag is a keyword enclosed in angle brackets that defines an element on the page. For example,
+            <code>&lt;h1&gt;</code> is a tag that defines a top-level heading.
+          </dd>
+
+          <dt id="glossary-webp">WebP</dt>
+          <dd>
+            WebP is an image format developed by Google that provides both lossy and lossless compression. It is
+            designed to create smaller file sizes while maintaining high quality, making it ideal for web use.
+          </dd>
+        </dl>
+      </section>
     </main>
 
     <footer class="footer">
-        <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
+      <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
     </footer>
-    <div id="not-implemented" popover="auto" class="popover">
-        <!-- Popover content is injected by JavaScript to ensure it is the same across all pages -->
-    </div>
-</body>
+  </body>
 </html>

@@ -2,7 +2,7 @@
  **********************************************************************
  * File       : about.html
  * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
- * Copyright  : (c) 2025 The Embodied Mind
+ * Copyright  : (c) 2026 The Embodied Mind
  * License    : MIT License (see license.html page)
  * Description:
  *   This page is part of the Web Witchcraft and Wizardry website.
@@ -12,7 +12,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <!-- Start of meta tags -->
     <meta charset="UTF-8">
     <meta name="description" content="Web Witchcraft and Wizardry">
@@ -23,15 +23,17 @@
     <!-- End of meta tags -->
 
     <!-- Set the document title -->
-    <title>About|Web Witchcraft and Wizardry</title>
+    <title>About | Web Witchcraft and Wizardry</title>
 
     <!-- Link to Favicon -->
-    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="../images/icons/favicon.svg">
 
     <!--Links for Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Marcellus&family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+      rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <!-- End Google Fonts links -->
@@ -40,104 +42,118 @@
     <link rel="stylesheet" href="https://kit.fontawesome.com/3895b3f1a4.css" crossorigin="anonymous">
     <!-- End Font Awesome Icons -->
 
-    <!-- Start of CSS stylesheets section -->
-
-    <!-- globals.css and main.css must be the first stylesheets loaded -->
+    <!-- stylesheets -->
     <link rel="stylesheet" href="../styles/globals.css">
     <link rel="stylesheet" href="../styles/main.css">
 
-    <!-- These stylesheets are common to all pages -->
-    <link rel="stylesheet" href="../styles/components/buttons.css">
-    <link rel="stylesheet" href="../styles/components/code.css">
-    <link rel="stylesheet" href="../styles/components/header-and-footer.css">
-    <link rel="stylesheet" href="../styles/components/navigation.css">
-    <link rel="stylesheet" href="../styles/components/popover.css">
-    <link rel="stylesheet" href="../styles/components/titles.css">
-    <link rel="stylesheet" href="../styles/pages.css">
-
-    <!-- media-queries must be the last stylesheets loaded -->
-    <link rel="stylesheet" href="../styles/media-queries.css">
-    <!-- End of CSS stylesheets section -->
-
     <!-- Load JavaScript files -->
-    <script src="../scripts/debug.js"></script>
-    <script src="../scripts/themeSwitcher.js"></script>
-    <script src="../scripts/toggle-header-footer.js" defer></script>
-    <script src="../scripts/injectCommonCode.js" defer></script>
+    <script src="../scripts/utils.js" defer></script>
+    <script src="../scripts/queryParams.js" defer></script>
+    <script src="../scripts/debug.js" defer></script>
+    <script src="../scripts/themeSwitcher.js" defer></script>
+    <script src="../scripts/toggleHeaderAndFooter.js" defer></script>
+    <script src="../scripts/injectCommonCode.js" type="module"></script>
+    <script src="../scripts/embodiedMindPopover.js" defer></script>
     <!-- End JavaScript file link -->
 
     <noscript>
-        <link rel="stylesheet" href="../styles/noscript.css">
+      <link rel="stylesheet" href="../styles/utilities/noscript.css">
     </noscript>
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="header">
-        <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
+      <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
     </header>
     <main>
-        <h2 class="page-title">About Web Witchcraft and Wizardry</h2>
+      <h2 class="page-title">About Web Witchcraft and Wizardry</h2>
 
-        <div class="text-container">
-            <section id="introduction" class="text-block">
-                <h2>Introduction</h2>
+      <div class="text-container">
+        <section id="introduction" class="text-block">
+          <h2>Introduction</h2>
 
-                <p>Welcome <strong>Web Witch or Wizard</strong> to the world of web development! Here, you will learn the art of creating stunning websites and applications. For a certain value of stunning, especially if you are easily stunned. What I'm saying is this will get you started but there is a lot more to the World Wide Web than you will cover in this introduction. But I'll give you enough to start exploring on your own, if you are curious. And witches and wizards are always curious. So you are in the right place.</p>
+          <p>
+            Welcome <strong>Web Witch or Wizard</strong> to the world of web development! Here, you will learn the art
+            of creating stunning websites and applications. For a certain value of stunning, especially if you are
+            easily stunned. What I'm saying is this will get you started but there is a lot more to the World Wide Web
+            than you will cover in this introduction. But I'll give you enough to start exploring on your own, if you
+            are curious. And witches and wizards are always curious. So you are in the right place.
+          </p>
+        </section>
+        <section id="prior-knowledge" class="text-block">
+          <h3>Prior Knowledge</h3>
 
-            </section>
-            <section id="prior-knowledge" class="text-block">
-                <h3>Prior Knowledge</h3>
+          <p>
+            This course teaches you how to write good web pages. By good, I mean well built and secure. The content is
+            up to you. Some coding experience helps. You could have used Scratch or Python, but you do not need to know
+            JavaScript. You should know how to browse the web and click on links.
+          </p>
+        </section>
 
-                <p>This course teaches you how to write good web pages. By good, I mean well built and secure. The content is up to you. Some coding experience helps. You could have used Scratch or Python, but you do not need to know JavaScript. You should know how to browse the web and click on links.</p>
-            </section>
+        <section id="what-you-need" class="text-block">
+          <h3>What You Need</h3>
+          <ul>
+            <li>
+              <strong>A computer (desktop or laptop)</strong> capable of running a modern web browser. If you don't have
+              a computer, you can still follow the lessons using a tablet or smartphone, but you will not be able to do
+              any of the exercises.
+            </li>
+            <li><strong>An internet connection</strong>. As you are viewing this page online, you already have one.</li>
 
-            <section id="what-you-need" class="text-block">
-                <h3>What You Need</h3>
-                <ul>
-                    <li>
-                        <strong>A computer (desktop or laptop)</strong> capable of running a modern web browser. If you don't have a computer, you can still follow the lessons using a tablet or smartphone, but you will not be able to do any of the exercises.
-                    </li>
-                    <li><strong>An internet connection</strong>. As you are viewing this page online, you already have one.</li>
+            <li>
+              <strong>A modern web browser</strong> (some lessons will contain instructions for using Firefox, but
+              Chrome, Edge and Safari will all work just as well).
+            </li>
+            <li>
+              <strong>Visual Studio Code</strong> (you can use another code editor if you prefer, such as Sublime Text
+              or Atom but the lessons will assume you are using Visual Studio Code and you may need to improvise a bit
+              if you use another editor).
+            </li>
+            <li>
+              <strong>Git</strong>. This is a version control system that will help you manage your code and collaborate
+              with others.
+            </li>
+            <li>
+              <strong>Node.js</strong>. This is a JavaScript runtime for server-side development and will be used in
+              later lessons.
+            </li>
+            <li><strong>SQLite</strong>. This is a lightweight database engine that will be used in later lessons.</li>
+          </ul>
+        </section>
 
-                    <li>
-                        <strong>A modern web browser</strong> (some lessons will contain instructions for using Firefox, but Chrome, Edge and Safari will all work just as well).
-                    </li>
-                    <li>
-                        <strong>Visual Studio Code</strong> (you can use another code editor if you prefer, such as Sublime Text or Atom but the lessons will assume you are using Visual Studio Code and you may need to improvise a bit if you use another editor).
-                    </li>
-                    <li>
-                        <strong>Git</strong>. This is a version control system that will help you manage your code and collaborate with others.
-                    </li>
-                    <li>
-                        <strong>Node.js</strong>. This is a JavaScript runtime for server-side development and will be used in later lessons.
-                    </li>
-                    <li>
-                        <strong>SQLite</strong>. This is a lightweight database engine that will be used in later lessons.
-                    </li>
-                </ul>
-            </section>
+        <section id="off-you-go" class="text-block">
+          <h3>Off you go</h3>
+          <p>Lesson 0 will help you install these tools if you need them.</p>
 
-            <section id="off-you-go" class="text-block">
-                <h3>Off you go</h3>
-                <p>Lesson 0 will help you install these tools if you need them.</p>
+          <p>
+            If you are not sure about something, check the
+            <a href="glossary.html">Glossary</a> or <a href="faq.html">FAQ page</a>. If you are at a Code Dojo or coding
+            club, ask a mentor for help.
+          </p>
 
-                <p>If you are not sure about something, check the <a href="glossary.html">Glossary</a> or <a href="faq.html">FAQ page</a>. If you are at a Code Dojo or coding club, ask a mentor for help.</p>
+          <p>
+            On the Student Dashboard you can pick an avatar to represent you. Before you start, look at the avatars in
+            the
+            <a href="gallery.html">Galleries</a> page, check out the accessories you will use in the lessons, and read
+            some interesting facts about witches and wizards in the <a href="facts.html">Facts</a> page.
+          </p>
 
-                <p>On the Student Dashboard you can pick an avatar to represent you. Before you start, look at the avatars in the <a href="gallery.html">Gallery</a> check out the <a href="accessories.html">Accessories</a> you will use in the lessons, and read some interesting facts about witches and wizards in the <a href="facts.html">Facts</a> page.</p>
+          <p>
+            When you are ready, say the magic words and fly to the Student Dashboard to start your Web Witchcraft and
+            Wizardry journey!
+          </p>
 
-                <p>When you are ready, say the magic words and fly to the Student Dashboard to start your Web Witchcraft and Wizardry journey!</p>
-
-                <p>Oh, yes. The magic words you need are: <!-- This is a catchphrase from Children's television show "Sooty and Sweep" --> <a href="students.html"><strong>Izzy, wizzy, let's get busy!</strong></a></p>
-            </section>
-        </div>
+          <p>
+            Oh, yes. The magic words you need are:
+            <!-- This is a catchphrase from Children's television show "Sooty and Sweep" -->
+            <a href="students.html"><strong>Izzy, wizzy, let's get busy!</strong></a>
+          </p>
+        </section>
+      </div>
     </main>
 
     <footer class="footer">
-        <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
+      <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
     </footer>
-    <div id="not-implemented" popover="auto" class="popover">
-        <!-- Popover content is injected by JavaScript to ensure it is the same across all pages -->
-    </div>
-
-</body>
+  </body>
 </html>
