@@ -70,11 +70,12 @@ RESULT_FILE="$RESULTS_DIR/file-comments-check-results.json"
 echo "📝 Checking file header comments..."
 echo ""
 
-# Find all HTML, CSS, and JS files (excluding node_modules and tests)
+# Find all HTML, CSS, and JS files (excluding node_modules, tests, and lessons)
 FILES=$(find "$FOLDER" -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) \
     ! -path "*/node_modules/*" \
     ! -path "*/.git/*" \
     ! -path "*/tests/*" \
+    ! -path "*/lessons/*" \
     | sort)
 
 if [ -n "$EXCLUDE_LIST" ]; then

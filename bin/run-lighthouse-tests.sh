@@ -122,8 +122,6 @@ for VIEWPORT in "${VIEWPORTS[@]}"; do
         TESTED=$((TESTED + 1))
         # Convert file path to URL path
         URL_PATH="${page#./}"
-        # Remove .html extension for clean URLs (serve package auto-redirects .html)
-        URL_PATH="${URL_PATH%.html}"
         
         # Add theme and style parameters to URL
         if [[ "$URL_PATH" == *"?"* ]]; then

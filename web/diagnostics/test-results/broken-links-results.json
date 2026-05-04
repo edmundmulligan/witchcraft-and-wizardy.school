@@ -4,14 +4,14 @@
       "url": "mentors/lesson-03.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 29,
+      "totalCount": 59,
       "timeoutCount": 0
     },
     {
       "url": "mentors/lesson-02.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 31,
+      "totalCount": 61,
       "timeoutCount": 0
     },
     {
@@ -26,159 +26,173 @@
         }
       ],
       "brokenCount": 0,
-      "totalCount": 29,
+      "totalCount": 59,
       "timeoutCount": 1
     },
     {
       "url": "mentors/lesson-05.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 28,
+      "totalCount": 58,
       "timeoutCount": 0
     },
     {
       "url": "mentors/lesson-01.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 34,
+      "totalCount": 64,
       "timeoutCount": 0
     },
     {
       "url": "mentors/lesson-00.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 26,
+      "totalCount": 55,
       "timeoutCount": 0
     },
     {
       "url": "mentors/lesson-06.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 28,
+      "totalCount": 59,
       "timeoutCount": 0
     },
     {
       "url": "index.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 21,
+      "totalCount": 48,
       "timeoutCount": 0
     },
     {
       "url": "students/lesson-03.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 26,
+      "totalCount": 63,
       "timeoutCount": 0
     },
     {
       "url": "students/lesson-02.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 26,
+      "totalCount": 60,
       "timeoutCount": 0
     },
     {
       "url": "students/lesson-04.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 30,
+      "totalCount": 65,
       "timeoutCount": 0
     },
     {
       "url": "students/lesson-05.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 26,
+      "totalCount": 60,
       "timeoutCount": 0
     },
     {
       "url": "students/lesson-01.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 27,
+      "totalCount": 60,
       "timeoutCount": 0
     },
     {
       "url": "students/lesson-00.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 36,
+      "totalCount": 63,
       "timeoutCount": 0
     },
     {
       "url": "students/lesson-06.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 26,
+      "totalCount": 59,
       "timeoutCount": 0
     },
     {
       "url": "pages/glossary.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 15,
+      "totalCount": 41,
       "timeoutCount": 0
     },
     {
       "url": "pages/facts.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 15,
+      "totalCount": 41,
       "timeoutCount": 0
     },
     {
       "url": "pages/mentors.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 17,
+      "totalCount": 43,
       "timeoutCount": 0
     },
     {
       "url": "pages/students.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 18,
+      "totalCount": 44,
       "timeoutCount": 0
     },
     {
       "url": "pages/gallery.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 53,
+      "totalCount": 79,
+      "timeoutCount": 0
+    },
+    {
+      "url": "pages/feedback.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 46,
+      "timeoutCount": 0
+    },
+    {
+      "url": "pages/privacy-policy.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 43,
       "timeoutCount": 0
     },
     {
       "url": "pages/faq.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 18,
+      "totalCount": 44,
       "timeoutCount": 0
     },
     {
       "url": "pages/license.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 14,
+      "totalCount": 40,
       "timeoutCount": 0
     },
     {
       "url": "pages/credits.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 47,
+      "totalCount": 73,
       "timeoutCount": 0
     },
     {
       "url": "pages/start.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 19,
+      "totalCount": 45,
       "timeoutCount": 0
     }
   ],
   "summary": {
-    "totalLinks": 639,
+    "totalLinks": 1432,
     "brokenLinks": 0,
     "timeoutLinks": 1,
     "excludedLinks": 0

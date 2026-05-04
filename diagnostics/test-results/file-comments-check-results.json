@@ -1,0 +1,76 @@
+{
+  "files": [
+    {
+      "file": "./api/test-smtp.js",
+      "issues": [
+        {
+          "type": "missing-fields",
+          "message": "Missing required fields: File, Author, Copyright, License, Description",
+          "missingFields": [
+            "File",
+            "Author",
+            "Copyright",
+            "License",
+            "Description"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "./bin/check-undefined-classes.js",
+      "issues": [
+        {
+          "type": "missing-fields",
+          "message": "Missing required fields: File, Author, Copyright, License, Description",
+          "missingFields": [
+            "File",
+            "Author",
+            "Copyright",
+            "License",
+            "Description"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "./bin/remove-undefined-classes.js",
+      "issues": [
+        {
+          "type": "missing-fields",
+          "message": "Missing required fields: File, Author, Copyright, License, Description",
+          "missingFields": [
+            "File",
+            "Author",
+            "Copyright",
+            "License",
+            "Description"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "./check-all-contrasts.js",
+      "issues": [
+        {
+          "type": "missing-header",
+          "message": "Missing header comment block"
+        }
+      ]
+    },
+    {
+      "file": "./find-fixes.js",
+      "issues": [
+        {
+          "type": "missing-header",
+          "message": "Missing header comment block"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "totalFiles": 24,
+    "filesWithIssues": 5,
+    "missingHeaderBlocks": 2,
+    "missingRequiredFields": 3
+  }
+}

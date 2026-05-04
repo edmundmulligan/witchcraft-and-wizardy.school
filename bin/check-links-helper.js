@@ -8,17 +8,16 @@
  * License    : MIT License (see license-and-credits.html page)
  * Description:
  *   Helper script for checking broken links in HTML pages.
- *   Uses cheerio to parse HTML and validates internal and external links.
+ *   Uses Playwright to load pages with JavaScript execution and validates 
+ *   internal and external links from the fully-rendered DOM.
  **********************************************************************
  */
 
-'use strict';
-
-const cheerio = require('cheerio');
-const fs = require('fs');
-const https = require('https');
-const http = require('http');
-const { URL } = require('url');
+import { chromium } from 'playwright';
+import fs from 'fs';
+import https from 'https';
+import http from 'http';
+import { URL } from 'url';
 
 // Get arguments
 const pageUrl = process.argv[2];
@@ -34,108 +33,93 @@ const pageResult = {
 };
 
 /**
- * Fetch a page body while following a bounded redirect chain.
- *
- * @remarks Preconditions:
- * - `url` must be an absolute HTTP or HTTPS URL.
- * - The fetched response body is assumed to be text content that fits comfortably in memory.
- * - `maxRedirects` should remain positive to prevent immediate failure.
- *
- * @param {string} url - Absolute URL to request.
- * @param {number} [maxRedirects=5] - Maximum redirect hops to follow.
- * @param {number} [depth=0] - Current recursion depth used internally when following redirects.
- * @returns {Promise<string>} Promise resolving to the fetched HTML content.
- */
-function fetchWithRedirects(url, maxRedirects = 5, depth = 0) {
-  return new Promise((resolve, reject) => {
-    if (depth >= maxRedirects) {
-      reject(new Error('Too many redirects'));
-      return;
-    }
-
-    const client = url.startsWith('https') ? https : http;
-
-    client
-      .get(url, (res) => {
-        // Handle redirects
-        if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-          const redirectUrl = new URL(res.headers.location, url).href;
-          fetchWithRedirects(redirectUrl, maxRedirects, depth + 1)
-            .then(resolve)
-            .catch(reject);
-          return;
-        }
-
-        let html = '';
-        res.on('data', (chunk) => {
-          html += chunk;
-        });
-        res.on('end', () => resolve(html));
-      })
-      .on('error', reject);
-  });
-}
-
-/**
- * Parse the target page, collect eligible links, validate them, and persist the page report.
+ * Parse the target page using Playwright, collect eligible links from the rendered DOM,
+ * validate them, and persist the page report.
  *
  * @remarks Preconditions:
  * - CLI arguments must provide `pageUrl`, `urlPath`, and `resultFile`.
  * - `resultFile` must point to a JSON document compatible with `finalise`.
  * - The target page must be reachable from the current environment.
+ * - Playwright chromium browser must be installed.
  *
  * @returns {Promise<void>} Resolves after the page result has been finalised.
  */
 async function main() {
+  let browser;
   try {
-    const html = await fetchWithRedirects(pageUrl);
-    const $ = cheerio.load(html);
-    const links = [];
+    // Launch browser
+    browser = await chromium.launch({ headless: true });
+    const context = await browser.newContext();
+    const page = await context.newPage();
 
-    // Extract all links from various tags
-    $('a[href], link[href], img[src], script[src]').each((i, elem) => {
-      const tagName = elem.name;
-      const attrName = tagName === 'img' || tagName === 'script' ? 'src' : 'href';
-      let href = $(elem).attr(attrName);
+    // Suppress console errors to avoid cluttering output
+    page.on('console', () => {});
+    page.on('pageerror', () => {});
 
-      if (!href) return;
+    // Load page and wait for JavaScript to execute
+    await page.goto(pageUrl, { waitUntil: 'domcontentloaded', timeout: 15000 });
+    
+    // Wait for header navigation to be injected (indicates JavaScript has completed)
+    // Use a shorter timeout since some pages might not have navigation
+    try {
+      await page.waitForSelector('header nav.site-navigation a', { timeout: 5000 });
+    } catch (e) {
+      // Navigation not found - page might not have it or JS failed
+      // Wait a shorter time and proceed anyway
+      await page.waitForTimeout(1000);
+    }
 
-      // Skip certain link types
-      const rel = $(elem).attr('rel');
-      if (
-        rel &&
-        (rel.includes('preconnect') || rel.includes('dns-prefetch') || rel.includes('prefetch'))
-      ) {
-        return;
-      }
+    // Extract all links from the rendered page
+    const links = await page.evaluate(() => {
+      const results = [];
+      
+      // Find all elements with href or src attributes
+      const elements = document.querySelectorAll('a[href], link[href], img[src], script[src]');
+      
+      elements.forEach((elem) => {
+        const tagName = elem.tagName.toLowerCase();
+        const attrName = tagName === 'img' || tagName === 'script' ? 'src' : 'href';
+        let href = elem.getAttribute(attrName);
 
-      // Skip mailto, javascript, data URIs, and hash-only links
-      if (
-        href.startsWith('mailto:') ||
-        href.startsWith('javascript:') ||
-        href.startsWith('vbscript:') ||
-        href.startsWith('data:') ||
-        href === '#'
-      ) {
-        return;
-      }
+        if (!href) return;
 
-      // Resolve relative URLs
-      let fullUrl;
-      try {
-        fullUrl = new URL(href, pageUrl).href;
-      } catch (e) {
-        fullUrl = href;
-      }
+        // Skip certain link types
+        const rel = elem.getAttribute('rel');
+        if (
+          rel &&
+          (rel.includes('preconnect') || rel.includes('dns-prefetch') || rel.includes('prefetch'))
+        ) {
+          return;
+        }
 
-      links.push({
-        href: href,
-        fullUrl: fullUrl,
-        tagName: tagName,
-        attrName: attrName,
-        text: $(elem).text().trim().substring(0, 50),
+        // Skip mailto, javascript, data URIs, and hash-only links
+        if (
+          href.startsWith('mailto:') ||
+          href.startsWith('javascript:') ||
+          href.startsWith('vbscript:') ||
+          href.startsWith('data:') ||
+          href === '#'
+        ) {
+          return;
+        }
+
+        // Get resolved absolute URL
+        const fullUrl = elem.href || elem.src || href;
+
+        results.push({
+          href: href,
+          fullUrl: fullUrl,
+          tagName: tagName,
+          attrName: attrName,
+          text: elem.textContent ? elem.textContent.trim().substring(0, 50) : '',
+        });
       });
+
+      return results;
     });
+
+    await browser.close();
+    browser = null;
 
     pageResult.totalCount = links.length;
 
@@ -179,6 +163,9 @@ async function main() {
       }
     }
   } catch (err) {
+    if (browser) {
+      await browser.close();
+    }
     console.error('Error:', err.message);
     process.exit(1);
   }

@@ -1,7 +1,7 @@
 {
   "pages": [
     {
-      "file": "./students/lesson-03.html",
+      "file": "web/students/lesson-03.html",
       "wordCount": 1094,
       "fleschReadingEase": 72.8,
       "fleschKincaidGrade": 6.9,
@@ -18,7 +18,7 @@
       "readingAge": "15-16 years"
     },
     {
-      "file": "./students/lesson-02.html",
+      "file": "web/students/lesson-02.html",
       "wordCount": 1044,
       "fleschReadingEase": 60.8,
       "fleschKincaidGrade": 9.5,
@@ -35,7 +35,7 @@
       "readingAge": "17-18 years"
     },
     {
-      "file": "./students/lesson-04.html",
+      "file": "web/students/lesson-04.html",
       "wordCount": 1130,
       "fleschReadingEase": 68.8,
       "fleschKincaidGrade": 8.5,
@@ -52,7 +52,7 @@
       "readingAge": "15-16 years"
     },
     {
-      "file": "./students/lesson-05.html",
+      "file": "web/students/lesson-05.html",
       "wordCount": 1069,
       "fleschReadingEase": 58.7,
       "fleschKincaidGrade": 10.3,
@@ -69,7 +69,7 @@
       "readingAge": "17-18 years"
     },
     {
-      "file": "./students/lesson-01.html",
+      "file": "web/students/lesson-01.html",
       "wordCount": 1067,
       "fleschReadingEase": 72.1,
       "fleschKincaidGrade": 7.2,
@@ -86,7 +86,7 @@
       "readingAge": "15-16 years"
     },
     {
-      "file": "./students/lesson-06.html",
+      "file": "web/students/lesson-06.html",
       "wordCount": 1606,
       "fleschReadingEase": 70.1,
       "fleschKincaidGrade": 8,
@@ -103,7 +103,7 @@
       "readingAge": "15-16 years"
     },
     {
-      "file": "./pages/glossary.html",
+      "file": "web/pages/glossary.html",
       "wordCount": 915,
       "fleschReadingEase": 45.9,
       "fleschKincaidGrade": 11.1,
@@ -120,7 +120,7 @@
       "readingAge": "17-18 years"
     },
     {
-      "file": "./pages/facts.html",
+      "file": "web/pages/facts.html",
       "wordCount": 885,
       "fleschReadingEase": 65,
       "fleschKincaidGrade": 7.8,
@@ -137,7 +137,7 @@
       "readingAge": "15-16 years"
     },
     {
-      "file": "./pages/mentors.html",
+      "file": "web/pages/mentors.html",
       "wordCount": 104,
       "fleschReadingEase": 62.4,
       "fleschKincaidGrade": 8.9,
@@ -154,7 +154,7 @@
       "readingAge": "15-16 years"
     },
     {
-      "file": "./pages/students.html",
+      "file": "web/pages/students.html",
       "wordCount": 87,
       "fleschReadingEase": 62.3,
       "fleschKincaidGrade": 8.9,
@@ -171,7 +171,7 @@
       "readingAge": "17-18 years"
     },
     {
-      "file": "./pages/gallery.html",
+      "file": "web/pages/gallery.html",
       "wordCount": 879,
       "fleschReadingEase": 41.7,
       "fleschKincaidGrade": 10.6,
@@ -188,7 +188,24 @@
       "readingAge": "17-18 years"
     },
     {
-      "file": "./pages/faq.html",
+      "file": "web/pages/feedback.html",
+      "wordCount": 485,
+      "fleschReadingEase": 70.2,
+      "fleschKincaidGrade": 7.9,
+      "smogIndex": 11,
+      "colemanLiauIndex": 9.3,
+      "automatedReadabilityIndex": 10,
+      "gunningFogIndex": 9.7,
+      "daleChallScore": 6.5,
+      "averageGradeLevel": 9.6,
+      "textStandard": "9th and 10th grade",
+      "difficultWords": 60,
+      "averageSentenceLength": 17.9,
+      "readingLevel": "Plain English (High School)",
+      "readingAge": "15-16 years"
+    },
+    {
+      "file": "web/pages/faq.html",
       "wordCount": 3605,
       "fleschReadingEase": 54.4,
       "fleschKincaidGrade": 9.8,
@@ -205,7 +222,7 @@
       "readingAge": "17-18 years"
     },
     {
-      "file": "./pages/start.html",
+      "file": "web/pages/start.html",
       "wordCount": 449,
       "fleschReadingEase": 72.7,
       "fleschKincaidGrade": 7,
@@ -220,6 +237,74 @@
       "averageSentenceLength": 15.5,
       "readingLevel": "Plain English (High School)",
       "readingAge": "15-16 years"
+    },
+    {
+      "file": "web/lessons/lesson-5.html",
+      "wordCount": 107,
+      "fleschReadingEase": 53.4,
+      "fleschKincaidGrade": 10.2,
+      "smogIndex": 10.1,
+      "colemanLiauIndex": 9.9,
+      "automatedReadabilityIndex": 10.6,
+      "gunningFogIndex": 10.5,
+      "daleChallScore": 7.5,
+      "averageGradeLevel": 10.3,
+      "textStandard": "10th and 11th grade",
+      "difficultWords": 20,
+      "averageSentenceLength": 17.8,
+      "readingLevel": "Fairly Difficult (High School)",
+      "readingAge": "17-18 years"
+    },
+    {
+      "file": "web/lessons/lesson-3.html",
+      "wordCount": 194,
+      "fleschReadingEase": 43.3,
+      "fleschKincaidGrade": 12,
+      "smogIndex": 14.6,
+      "colemanLiauIndex": 12,
+      "automatedReadabilityIndex": 12.5,
+      "gunningFogIndex": 14.2,
+      "daleChallScore": 8.2,
+      "averageGradeLevel": 13.1,
+      "textStandard": "14th and 15th grade",
+      "difficultWords": 44,
+      "averageSentenceLength": 19.4,
+      "readingLevel": "Difficult (College)",
+      "readingAge": "18-22 years"
+    },
+    {
+      "file": "web/lessons/lesson-6.html",
+      "wordCount": 69,
+      "fleschReadingEase": 44.9,
+      "fleschKincaidGrade": 15.6,
+      "smogIndex": 0,
+      "colemanLiauIndex": 12.1,
+      "automatedReadabilityIndex": 19.4,
+      "gunningFogIndex": 16.1,
+      "daleChallScore": 8.3,
+      "averageGradeLevel": 12.7,
+      "textStandard": "19th and 20th grade",
+      "difficultWords": 13,
+      "averageSentenceLength": 34.5,
+      "readingLevel": "Difficult (College)",
+      "readingAge": "18-22 years"
+    },
+    {
+      "file": "web/lessons/lesson-2.html",
+      "wordCount": 75,
+      "fleschReadingEase": 60.9,
+      "fleschKincaidGrade": 9.4,
+      "smogIndex": 11.7,
+      "colemanLiauIndex": 8.9,
+      "automatedReadabilityIndex": 9.6,
+      "gunningFogIndex": 10.7,
+      "daleChallScore": 7.3,
+      "averageGradeLevel": 10.1,
+      "textStandard": "8th and 9th grade",
+      "difficultWords": 13,
+      "averageSentenceLength": 18.8,
+      "readingLevel": "Fairly Difficult (High School)",
+      "readingAge": "17-18 years"
     }
   ]
 }

@@ -181,6 +181,24 @@
       "issues": []
     },
     {
+      "url": "pages/feedback.html",
+      "theme": "light",
+      "style": "normal",
+      "viewport": "900",
+      "documentTitle": "Feedback | Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/feedback",
+      "issues": []
+    },
+    {
+      "url": "pages/privacy-policy.html",
+      "theme": "light",
+      "style": "normal",
+      "viewport": "900",
+      "documentTitle": "Privacy Policy | Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/privacy-policy",
+      "issues": []
+    },
+    {
       "url": "pages/faq.html",
       "theme": "light",
       "style": "normal",
@@ -397,6 +415,24 @@
       "issues": []
     },
     {
+      "url": "pages/feedback.html",
+      "theme": "dark",
+      "style": "normal",
+      "viewport": "900",
+      "documentTitle": "Feedback | Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/feedback",
+      "issues": []
+    },
+    {
+      "url": "pages/privacy-policy.html",
+      "theme": "dark",
+      "style": "normal",
+      "viewport": "900",
+      "documentTitle": "Privacy Policy | Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/privacy-policy",
+      "issues": []
+    },
+    {
       "url": "pages/faq.html",
       "theme": "dark",
       "style": "normal",
@@ -613,6 +649,24 @@
       "issues": []
     },
     {
+      "url": "pages/feedback.html",
+      "theme": "light",
+      "style": "subdued",
+      "viewport": "900",
+      "documentTitle": "Feedback | Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/feedback",
+      "issues": []
+    },
+    {
+      "url": "pages/privacy-policy.html",
+      "theme": "light",
+      "style": "subdued",
+      "viewport": "900",
+      "documentTitle": "Privacy Policy | Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/privacy-policy",
+      "issues": []
+    },
+    {
       "url": "pages/faq.html",
       "theme": "light",
       "style": "subdued",
@@ -829,6 +883,24 @@
       "issues": []
     },
     {
+      "url": "pages/feedback.html",
+      "theme": "dark",
+      "style": "subdued",
+      "viewport": "900",
+      "documentTitle": "Feedback | Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/feedback",
+      "issues": []
+    },
+    {
+      "url": "pages/privacy-policy.html",
+      "theme": "dark",
+      "style": "subdued",
+      "viewport": "900",
+      "documentTitle": "Privacy Policy | Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/privacy-policy",
+      "issues": []
+    },
+    {
       "url": "pages/faq.html",
       "theme": "dark",
       "style": "subdued",
@@ -1045,6 +1117,24 @@
       "issues": []
     },
     {
+      "url": "pages/feedback.html",
+      "theme": "light",
+      "style": "vibrant",
+      "viewport": "900",
+      "documentTitle": "Feedback | Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/feedback",
+      "issues": []
+    },
+    {
+      "url": "pages/privacy-policy.html",
+      "theme": "light",
+      "style": "vibrant",
+      "viewport": "900",
+      "documentTitle": "Privacy Policy | Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/privacy-policy",
+      "issues": []
+    },
+    {
       "url": "pages/faq.html",
       "theme": "light",
       "style": "vibrant",
@@ -1258,6 +1348,24 @@
       "viewport": "900",
       "documentTitle": "Gallery | Web Witchcraft and Wizardry",
       "pageUrl": "http://localhost:8080/pages/gallery",
+      "issues": []
+    },
+    {
+      "url": "pages/feedback.html",
+      "theme": "dark",
+      "style": "vibrant",
+      "viewport": "900",
+      "documentTitle": "Feedback | Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/feedback",
+      "issues": []
+    },
+    {
+      "url": "pages/privacy-policy.html",
+      "theme": "dark",
+      "style": "vibrant",
+      "viewport": "900",
+      "documentTitle": "Privacy Policy | Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/privacy-policy",
       "issues": []
     },
     {

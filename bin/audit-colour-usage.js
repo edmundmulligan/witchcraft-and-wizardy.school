@@ -12,8 +12,8 @@
  **********************************************************************
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 // Direct use of theme-specific variables is allowed in:
 const THEME_SPECIFIC_ALLOWED_FILES = [

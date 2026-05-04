@@ -142,6 +142,20 @@
       "count": 40
     },
     {
+      "pageUrl": "pages/feedback.html",
+      "theme": "light",
+      "style": "normal",
+      "viewport": "900",
+      "count": 42
+    },
+    {
+      "pageUrl": "pages/privacy-policy.html",
+      "theme": "light",
+      "style": "normal",
+      "viewport": "900",
+      "count": 37
+    },
+    {
       "pageUrl": "pages/faq.html",
       "theme": "light",
       "style": "normal",
@@ -310,6 +324,20 @@
       "count": 40
     },
     {
+      "pageUrl": "pages/feedback.html",
+      "theme": "dark",
+      "style": "normal",
+      "viewport": "900",
+      "count": 42
+    },
+    {
+      "pageUrl": "pages/privacy-policy.html",
+      "theme": "dark",
+      "style": "normal",
+      "viewport": "900",
+      "count": 37
+    },
+    {
       "pageUrl": "pages/faq.html",
       "theme": "dark",
       "style": "normal",
@@ -478,6 +506,20 @@
       "count": 40
     },
     {
+      "pageUrl": "pages/feedback.html",
+      "theme": "light",
+      "style": "subdued",
+      "viewport": "900",
+      "count": 42
+    },
+    {
+      "pageUrl": "pages/privacy-policy.html",
+      "theme": "light",
+      "style": "subdued",
+      "viewport": "900",
+      "count": 37
+    },
+    {
       "pageUrl": "pages/faq.html",
       "theme": "light",
       "style": "subdued",
@@ -646,6 +688,20 @@
       "count": 40
     },
     {
+      "pageUrl": "pages/feedback.html",
+      "theme": "dark",
+      "style": "subdued",
+      "viewport": "900",
+      "count": 42
+    },
+    {
+      "pageUrl": "pages/privacy-policy.html",
+      "theme": "dark",
+      "style": "subdued",
+      "viewport": "900",
+      "count": 37
+    },
+    {
       "pageUrl": "pages/faq.html",
       "theme": "dark",
       "style": "subdued",
@@ -814,6 +870,20 @@
       "count": 40
     },
     {
+      "pageUrl": "pages/feedback.html",
+      "theme": "light",
+      "style": "vibrant",
+      "viewport": "900",
+      "count": 42
+    },
+    {
+      "pageUrl": "pages/privacy-policy.html",
+      "theme": "light",
+      "style": "vibrant",
+      "viewport": "900",
+      "count": 37
+    },
+    {
       "pageUrl": "pages/faq.html",
       "theme": "light",
       "style": "vibrant",
@@ -980,6 +1050,20 @@
       "style": "vibrant",
       "viewport": "900",
       "count": 40
+    },
+    {
+      "pageUrl": "pages/feedback.html",
+      "theme": "dark",
+      "style": "vibrant",
+      "viewport": "900",
+      "count": 42
+    },
+    {
+      "pageUrl": "pages/privacy-policy.html",
+      "theme": "dark",
+      "style": "vibrant",
+      "viewport": "900",
+      "count": 37
     },
     {
       "pageUrl": "pages/faq.html",
@@ -14225,8 +14309,8 @@
     }
   ],
   "metadata": {
-    "pagesTestedCount": 24,
-    "totalTestRuns": 144,
+    "pagesTestedCount": 26,
+    "totalTestRuns": 156,
     "viewports": [
       "900"
     ],

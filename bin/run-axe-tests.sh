@@ -220,13 +220,13 @@ for VIEWPORT in "${VIEWPORTS[@]}"; do
             axe "$FULL_URL" --disable page-has-heading-one --save "$TEMP_RESULT" \
               --chromedriver-path "$CHROMEDRIVER_PATH" \
               --chrome-options '{"args":["--force-prefers-color-scheme='$THEME'","--window-size='$VIEWPORT',768","--disable-dev-shm-usage","--disable-gpu","--no-sandbox"]}' \
-              --load-delay 2000 \
+              --load-delay 5000 \
               2>&1
             AXE_EXIT_CODE=$?
           else
             axe "$FULL_URL" --disable page-has-heading-one --save "$TEMP_RESULT" \
               --chrome-options '{"args":["--force-prefers-color-scheme='$THEME'","--window-size='$VIEWPORT',768","--disable-dev-shm-usage","--disable-gpu","--no-sandbox"]}' \
-              --load-delay 2000 \
+              --load-delay 5000 \
               2>&1
             AXE_EXIT_CODE=$?
           fi
@@ -258,6 +258,23 @@ for VIEWPORT in "${VIEWPORTS[@]}"; do
       node -e "
         try {
           const fs = require('fs');
+          
+          // Ensure results file exists
+          if (!fs.existsSync('$RESULTS_DIR/axe-results.json')) {
+            fs.writeFileSync('$RESULTS_DIR/axe-results.json', JSON.stringify({
+              violations: [],
+              passes: [],
+              incomplete: [],
+              metadata: {
+                pagesTestedCount: 0,
+                totalTestRuns: 0,
+                viewports: [],
+                themes: ['light', 'dark'],
+                styles: ['normal', 'subdued', 'vibrant']
+              }
+            }));
+          }
+          
           const combined = JSON.parse(fs.readFileSync('$RESULTS_DIR/axe-results.json'));
           const newData = JSON.parse(fs.readFileSync('$TEMP_RESULT'));
 

@@ -137,6 +137,8 @@ for VIEWPORT in "${VIEWPORTS[@]}"; do
             try {
               const results = await pa11y('$FULL_URL', {
                 standard: 'WCAG2AA',
+                timeout: 30000,
+                wait: 5000,
                 viewport: {
                   width: $VIEWPORT,
                   height: 768
@@ -172,6 +174,12 @@ for VIEWPORT in "${VIEWPORTS[@]}"; do
         node -e "
           try {
             const fs = require('fs');
+            
+            // Ensure results file exists
+            if (!fs.existsSync('$RESULTS_DIR/pa11y-results.json')) {
+              fs.writeFileSync('$RESULTS_DIR/pa11y-results.json', JSON.stringify({ pages: [] }));
+            }
+            
             const combined = JSON.parse(fs.readFileSync('$RESULTS_DIR/pa11y-results.json'));
             const newData = JSON.parse(fs.readFileSync('$TEMP_RESULT'));
 

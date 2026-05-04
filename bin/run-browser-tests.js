@@ -13,11 +13,14 @@
  **********************************************************************
  */
 
-'use strict';
+import { chromium, firefox, webkit } from 'playwright';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const { chromium, firefox, webkit } = require('playwright');
-const fs = require('fs');
-const path = require('path');
+// ESM equivalent of __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Get the folder being tested from environment variable set by shell script
 const testFolderPath = process.env.BROWSER_TEST_FOLDER || process.cwd();
@@ -30,8 +33,9 @@ if (!fs.existsSync(browserTestsPath)) {
   process.exit(0);
 }
 
-// Load application-specific tests
-const browserTests = require(browserTestsPath);
+// Load application-specific tests (using dynamic import for ESM)
+const browserTestsModule = await import(`file://${browserTestsPath}`);
+const browserTests = browserTestsModule.default || browserTestsModule;
 
 // Base URL for tests (can be overridden by TEST_URL environment variable)
 const BASE_URL = process.env.TEST_URL || 'http://localhost:8080';
