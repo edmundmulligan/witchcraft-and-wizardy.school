@@ -70,9 +70,12 @@ jobs:
         WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
         NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
 
-    - name: Install Chrome for Puppeteer
+    - name: Setup Chrome for browser-based tests
+      uses: browser-actions/setup-chrome@v1
+
+    - name: Check Chrome installation
       run: |
-        npx puppeteer browsers install chrome
+        chrome --version
 
     - name: Run Pa11y accessibility tests
       continue-on-error: true

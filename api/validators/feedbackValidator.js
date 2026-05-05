@@ -14,6 +14,35 @@
  * @param {Object} data - Feedback data to validate
  * @returns {Object} - Validation result
  */
+function isValidEmailAddress(value) {
+  if (typeof value !== 'string') {
+    return false;
+  }
+
+  const email = value.trim();
+  if (!email || email.includes(' ')) {
+    return false;
+  }
+
+  const atIndex = email.indexOf('@');
+  if (atIndex <= 0 || atIndex !== email.lastIndexOf('@') || atIndex === email.length - 1) {
+    return false;
+  }
+
+  const localPart = email.slice(0, atIndex);
+  const domainPart = email.slice(atIndex + 1);
+  if (!localPart || !domainPart || domainPart.startsWith('.') || domainPart.endsWith('.')) {
+    return false;
+  }
+
+  const dotIndex = domainPart.indexOf('.');
+  if (dotIndex <= 0 || dotIndex === domainPart.length - 1) {
+    return false;
+  }
+
+  return true;
+}
+
 export function validateFeedbackData(data) {
   const warnings = [];
 
@@ -29,8 +58,7 @@ export function validateFeedbackData(data) {
 
   // Validate email format if provided
   if (data.personal && data.personal.email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.personal.email)) {
+    if (!isValidEmailAddress(data.personal.email)) {
       warnings.push('Invalid email format in personal information');
     }
   }

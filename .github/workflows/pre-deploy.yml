@@ -62,9 +62,12 @@ jobs:
       run: |
         bin/check-links.sh . -x lessons
 
-    - name: Install Chrome for browser-based tests
+    - name: Setup Chrome for browser-based tests
+      uses: browser-actions/setup-chrome@v1
+
+    - name: Check Chrome installation
       run: |
-        npx puppeteer browsers install chrome
+        chrome --version
 
     - name: Run axe accessibility tests
       continue-on-error: true

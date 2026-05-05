@@ -16,6 +16,35 @@ import { validateFeedbackData } from '../validators/feedbackValidator.js';
 
 const router = express.Router();
 
+function isValidEmailAddress(value) {
+  if (typeof value !== 'string') {
+    return false;
+  }
+
+  const email = value.trim();
+  if (!email || email.includes(' ')) {
+    return false;
+  }
+
+  const atIndex = email.indexOf('@');
+  if (atIndex <= 0 || atIndex !== email.lastIndexOf('@') || atIndex === email.length - 1) {
+    return false;
+  }
+
+  const localPart = email.slice(0, atIndex);
+  const domainPart = email.slice(atIndex + 1);
+  if (!localPart || !domainPart || domainPart.startsWith('.') || domainPart.endsWith('.')) {
+    return false;
+  }
+
+  const dotIndex = domainPart.indexOf('.');
+  if (dotIndex <= 0 || dotIndex === domainPart.length - 1) {
+    return false;
+  }
+
+  return true;
+}
+
 /**
  * POST /api/send-feedback
  * Send feedback form data via email
@@ -32,16 +61,15 @@ router.post('/send-feedback', async (req, res, next) => {
       });
     }
 
-    // Validate email addresses
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(to)) {
+    // Validate email addresses with deterministic string checks to avoid regex backtracking on untrusted input
+    if (!isValidEmailAddress(to)) {
       return res.status(400).json({
         success: false,
         error: 'Invalid recipient email address',
       });
     }
 
-    if (cc && !emailRegex.test(cc)) {
+    if (cc && !isValidEmailAddress(cc)) {
       return res.status(400).json({
         success: false,
         error: 'Invalid CC email address',
