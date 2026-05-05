@@ -6,7 +6,7 @@ on:
       application:
         required: true
         type: string
-        description: 'Application folder name (web, stats, sound)'
+        description: 'Application folder name (web, stats, sound, api)'
       deploy-path:
         required: true
         type: string

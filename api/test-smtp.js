@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * SMTP Connection Test Script
- * 
+ *
  * This script tests your SMTP configuration without sending an actual email.
  * Usage: node api/test-smtp.js
  */
@@ -20,14 +20,19 @@ async function testSMTP() {
   console.log('  Port:', process.env.SMTP_PORT);
   console.log('  Secure:', process.env.SMTP_SECURE);
   console.log('  User:', process.env.SMTP_USER);
-  console.log('  Pass:', process.env.SMTP_PASS ? '***' + process.env.SMTP_PASS.slice(-4) : 'NOT SET');
+  console.log(
+    '  Pass:',
+    process.env.SMTP_PASS ? '***' + process.env.SMTP_PASS.slice(-4) : 'NOT SET'
+  );
   console.log('');
 
   // Check for placeholder password
-  if (process.env.SMTP_PASS === 'your-Rand0m.Admin' || 
-      process.env.SMTP_PASS.includes('your-') ||
-      process.env.SMTP_PASS.includes('password') ||
-      process.env.SMTP_PASS.includes('example')) {
+  if (
+    process.env.SMTP_PASS === 'your-Rand0m.Admin' ||
+    process.env.SMTP_PASS.includes('your-') ||
+    process.env.SMTP_PASS.includes('password') ||
+    process.env.SMTP_PASS.includes('example')
+  ) {
     console.log('⚠️  WARNING: Your password looks like a placeholder!');
     console.log('   Please update SMTP_PASS in your .env file with your actual OVH password.\n');
   }
@@ -40,10 +45,10 @@ async function testSMTP() {
     secure: process.env.SMTP_SECURE === 'true',
     auth: {
       user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS
+      pass: process.env.SMTP_PASS,
     },
     connectionTimeout: 10000,
-    greetingTimeout: 10000
+    greetingTimeout: 10000,
   };
 
   try {
@@ -64,10 +69,10 @@ async function testSMTP() {
     secure: false,
     auth: {
       user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS
+      pass: process.env.SMTP_PASS,
     },
     connectionTimeout: 10000,
-    greetingTimeout: 10000
+    greetingTimeout: 10000,
   };
 
   try {
@@ -107,7 +112,7 @@ async function testSMTP() {
   process.exit(1);
 }
 
-testSMTP().catch(error => {
+testSMTP().catch((error) => {
   console.error('💥 Test script error:', error);
   process.exit(1);
 });

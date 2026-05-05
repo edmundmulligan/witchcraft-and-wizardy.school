@@ -76,13 +76,6 @@ ORIGINAL_DIR=$(pwd)
 RESULTS_DIR="$ORIGINAL_DIR/$FOLDER/diagnostics/test-results"
 mkdir -p "$RESULTS_DIR"
 
-# Normalise folder path for URL construction
-if [ "$FOLDER" = "." ]; then
-  URL_PREFIX=""
-else
-  URL_PREFIX="${FOLDER%/}/"
-fi
-
 cd "$FOLDER" || exit 1
 
 # Start server and setup
@@ -125,9 +118,9 @@ for VIEWPORT in "${VIEWPORTS[@]}"; do
         
         # Add theme and style parameters to URL
         if [[ "$URL_PATH" == *"?"* ]]; then
-          FULL_URL="$TEST_URL/${URL_PREFIX}${URL_PATH}&theme=$THEME&style=$STYLE"
+          FULL_URL="$TEST_URL/${URL_PATH}&theme=$THEME&style=$STYLE"
         else
-          FULL_URL="$TEST_URL/${URL_PREFIX}${URL_PATH}?theme=$THEME&style=$STYLE"
+          FULL_URL="$TEST_URL/${URL_PATH}?theme=$THEME&style=$STYLE"
         fi
 
         echo "    [$TESTED/$TOTAL_TESTS] Testing $URL_PATH (${VIEWPORT}px, $STYLE-$THEME)"

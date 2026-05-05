@@ -15,10 +15,8 @@
  **********************************************************************
  */
 
-'use strict';
-
-const fs = require('fs');
-const { glob } = require('glob');
+import fs from 'fs';
+import { glob } from 'glob';
 
 /**
  * Fix HTML5 compliance issues in a file
@@ -82,11 +80,16 @@ function fixHtmlFile(filePath) {
  * Main function to process all HTML files
  */
 async function main() {
-  console.log('🔧 Fixing HTML5 compliance issues...');
+  // Parse command line arguments
+  const args = process.argv.slice(2);
+  const folder = args[0] || '.';
 
-  // Find all HTML files, excluding lessons and diagnostics
-  const htmlFiles = await glob('**/*.html', {
-    ignore: ['node_modules/**', 'lessons/**', 'diagnostics/**'],
+  console.log(`🔧 Fixing HTML5 compliance issues in: ${folder}/`);
+
+  // Find all HTML files in the specified folder, excluding lessons and diagnostics
+  const pattern = folder === '.' ? '**/*.html' : `${folder}/**/*.html`;
+  const htmlFiles = await glob(pattern, {
+    ignore: ['node_modules/**', 'lessons/**', 'diagnostics/**', '**/lessons/**', '**/diagnostics/**'],
     nodir: true,
   });
 

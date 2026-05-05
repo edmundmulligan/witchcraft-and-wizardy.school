@@ -33,7 +33,7 @@
 
 [Lighthouse] Lighthouse Accessibility Results:
   Pages tested: 156
-  Average score: 0%
+  Average score: 100%
   Pages with issues: 0
   Total failed audits: 0
 

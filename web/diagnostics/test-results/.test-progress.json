@@ -13,7 +13,6 @@
   ],
   "failed": [
     "audit-colour",
-    "lighthouse-tests",
     "reading-age"
   ],
   "quickMode": false,

@@ -1,15 +1,18 @@
-name: Accessibility Testing and Deployment
+name: Accessibility Testing and Deployment (Shared Infrastructure)
 
 on:
     pull_request:
         branches: [ staging, main ]
         paths:
-        - '**'
-        - '!.github/**'
+        - 'bin/**'
+        - 'package.json'
+        - 'package-lock.json'
+        - 'eslint.config.js'
+        - 'cspell.json'
+        - '.prettierrc'
+        - '.prettierignore'
         - '.github/workflows/pre-deploy.yml'
-        - '!essays/**'
-        - '!documentation/**'
-        - '!artwork/**'
+        - '.github/workflows/test-and-deploy-reusable.yml'
 
 env:
   testurl: 'http://localhost:8080'

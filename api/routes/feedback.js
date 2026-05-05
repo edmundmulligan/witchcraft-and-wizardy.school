@@ -23,31 +23,31 @@ const router = express.Router();
 router.post('/send-feedback', async (req, res, next) => {
   try {
     const { to, cc, subject, text, attachment } = req.body;
-    
+
     // Validate required fields
     if (!to || !subject || !text) {
       return res.status(400).json({
         success: false,
-        error: 'Missing required fields: to, subject, text'
+        error: 'Missing required fields: to, subject, text',
       });
     }
-    
+
     // Validate email addresses
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(to)) {
       return res.status(400).json({
         success: false,
-        error: 'Invalid recipient email address'
+        error: 'Invalid recipient email address',
       });
     }
-    
+
     if (cc && !emailRegex.test(cc)) {
       return res.status(400).json({
         success: false,
-        error: 'Invalid CC email address'
+        error: 'Invalid CC email address',
       });
     }
-    
+
     // Validate feedback data if included
     if (attachment && attachment.content) {
       try {
@@ -60,25 +60,24 @@ router.post('/send-feedback', async (req, res, next) => {
         console.error('Failed to parse feedback JSON:', e);
       }
     }
-    
+
     // Send email
     const result = await sendFeedbackEmail({
       to,
       cc: cc || null,
       subject,
       text,
-      attachment: attachment || null
+      attachment: attachment || null,
     });
-    
+
     // Log success
     console.log(`✅ Feedback email sent successfully to ${to}${cc ? ` (CC: ${cc})` : ''}`);
-    
+
     res.json({
       success: true,
       message: 'Feedback sent successfully',
-      messageId: result.messageId
+      messageId: result.messageId,
     });
-    
   } catch (error) {
     console.error('Error sending feedback email:', error);
     next(error);

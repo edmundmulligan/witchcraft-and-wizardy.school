@@ -28,15 +28,17 @@ const PORT = process.env.PORT || 3000;
 const STATIC_PORT = process.env.STATIC_PORT || 8000;
 
 // Middleware
-app.use(cors({
-  origin: [
-    `http://localhost:${STATIC_PORT}`,
-    'http://127.0.0.1:${STATIC_PORT}',
-    'https://web.witchcraft-and-wizardry.school',
-    'https://www.witchcraft-and-wizardry.school'
-  ],
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: [
+      `http://localhost:${STATIC_PORT}`,
+      'http://127.0.0.1:${STATIC_PORT}',
+      'https://web.witchcraft-and-wizardry.school',
+      'https://www.witchcraft-and-wizardry.school',
+    ],
+    credentials: true,
+  })
+);
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
@@ -53,7 +55,7 @@ app.get('/api/health', (req, res) => {
   res.json({
     status: 'ok',
     timestamp: new Date().toISOString(),
-    uptime: process.uptime()
+    uptime: process.uptime(),
   });
 });
 
@@ -63,14 +65,14 @@ app.use('/api', feedbackRouter);
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error('Error:', err);
-  
+
   const statusCode = err.statusCode || 500;
   const message = err.message || 'Internal server error';
-  
+
   res.status(statusCode).json({
     success: false,
     error: message,
-    ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+    ...(process.env.NODE_ENV === 'development' && { stack: err.stack }),
   });
 });
 
@@ -78,7 +80,7 @@ app.use((err, req, res, next) => {
 app.use((req, res) => {
   res.status(404).json({
     success: false,
-    error: 'Endpoint not found'
+    error: 'Endpoint not found',
   });
 });
 

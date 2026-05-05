@@ -24,10 +24,10 @@ function createTransporter() {
     return nodemailer.createTransport({
       streamTransport: true,
       newline: 'unix',
-      buffer: true
+      buffer: true,
     });
   }
-  
+
   // Production email configuration
   const config = {
     host: process.env.SMTP_HOST,
@@ -35,33 +35,33 @@ function createTransporter() {
     secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
     auth: {
       user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS
+      pass: process.env.SMTP_PASS,
     },
     connectionTimeout: 10000, // 10 seconds
     greetingTimeout: 10000, // 10 seconds
     socketTimeout: 10000, // 10 seconds
     tls: {
       // Don't fail on invalid certs (some providers need this)
-      rejectUnauthorized: false
+      rejectUnauthorized: false,
     },
     debug: true, // Enable debug output
-    logger: true // Log to console
+    logger: true, // Log to console
   };
-  
+
   // Log connection attempt (without showing password)
   console.log('📧 Attempting SMTP connection:', {
     host: config.host,
     port: config.port,
     secure: config.secure,
-    user: config.auth.user
+    user: config.auth.user,
   });
-  
+
   // Validate configuration
   if (!config.host || !config.auth.user || !config.auth.pass) {
     console.error('❌ Missing email configuration. Check your .env file.');
     throw new Error('Email service not configured properly');
   }
-  
+
   return nodemailer.createTransport(config);
 }
 
@@ -77,37 +77,37 @@ function createTransporter() {
  */
 export async function sendFeedbackEmail(options) {
   const { to, cc, subject, text, attachment } = options;
-  
+
   const transporter = createTransporter();
-  
+
   // Prepare mail options
   const mailOptions = {
     from: process.env.EMAIL_FROM || 'noreply@embodied-mind.org',
     to: to,
     subject: subject,
-    text: text
+    text: text,
   };
-  
+
   // Add CC if provided
   if (cc) {
     mailOptions.cc = cc;
   }
-  
+
   // Add attachment if provided
   if (attachment && attachment.content) {
     mailOptions.attachments = [
       {
         filename: attachment.filename || 'feedback.json',
         content: attachment.content,
-        contentType: 'application/json'
-      }
+        contentType: 'application/json',
+      },
     ];
   }
-  
+
   // Send email
   try {
     const info = await transporter.sendMail(mailOptions);
-    
+
     // In development mode with console transport, log the email
     if (process.env.NODE_ENV === 'development' && process.env.EMAIL_PROVIDER === 'console') {
       console.log('\n📧 === EMAIL PREVIEW ===');
@@ -119,11 +119,11 @@ export async function sendFeedbackEmail(options) {
       console.log(info.message.toString());
       console.log('==================\n');
     }
-    
+
     return {
       messageId: info.messageId,
       accepted: info.accepted,
-      rejected: info.rejected
+      rejected: info.rejected,
     };
   } catch (error) {
     console.error('Failed to send email:', error);

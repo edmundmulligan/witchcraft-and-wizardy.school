@@ -1,12 +1,14 @@
-name: Push Code to Prod Server
+name: Push Code to Prod Server (Version & Release Management)
 
 on:
   push:
     branches: [ main ]
-    paths-ignore:
-      - 'essays/**'
-      - 'documentation/**'
-      - 'artwork/**'
+    paths:
+      - 'VERSION'
+      - 'package.json'
+      - 'bin/bump-version.sh'
+      - 'bin/create-release-tar.sh'
+      - '.github/workflows/push-code.yml'
 
 jobs:
   deploy-to-server:

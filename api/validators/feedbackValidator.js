@@ -16,17 +16,17 @@
  */
 export function validateFeedbackData(data) {
   const warnings = [];
-  
+
   // Check for required sections
   if (!data.personal) warnings.push('Missing personal information section');
   if (!data.technical) warnings.push('Missing technical information section');
   if (!data.course) warnings.push('Missing course feedback section');
-  
+
   // Check consent
   if (data.consent !== 'yes') {
     warnings.push('Consent not given or invalid');
   }
-  
+
   // Validate email format if provided
   if (data.personal && data.personal.email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -34,7 +34,7 @@ export function validateFeedbackData(data) {
       warnings.push('Invalid email format in personal information');
     }
   }
-  
+
   // Validate timestamp
   if (!data.timestamp) {
     warnings.push('Missing timestamp');
@@ -44,10 +44,10 @@ export function validateFeedbackData(data) {
       warnings.push('Invalid timestamp format');
     }
   }
-  
+
   return {
     valid: warnings.length === 0,
-    warnings: warnings
+    warnings: warnings,
   };
 }
 
@@ -67,10 +67,10 @@ export function sanitizeFeedbackData(data) {
       .replace(/'/g, '&#x27;')
       .replace(/\//g, '&#x2F;');
   };
-  
+
   const sanitizeObject = (obj) => {
     if (typeof obj !== 'object' || obj === null) return obj;
-    
+
     const sanitized = Array.isArray(obj) ? [] : {};
     for (const key in obj) {
       if (obj.hasOwnProperty(key)) {
@@ -86,6 +86,6 @@ export function sanitizeFeedbackData(data) {
     }
     return sanitized;
   };
-  
+
   return sanitizeObject(data);
 }

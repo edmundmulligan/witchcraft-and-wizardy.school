@@ -20,52 +20,52 @@ function initFeedbackForm() {
       triggerName: 'sender-role',
       targetDivId: 'sender-other-role-div',
       showValue: 'other',
-      isRadioGroup: true
+      isRadioGroup: true,
     },
     {
       triggerName: 'sender-languages',
       targetDivId: 'sender-other-languages-div',
       showValue: 'other',
-      isCheckboxGroup: true
+      isCheckboxGroup: true,
     },
     {
       triggerName: 'sender-computer',
       targetDivId: 'sender-other-computer-div',
       showValue: 'other',
-      isRadioGroup: true
+      isRadioGroup: true,
     },
     {
       triggerName: 'sender-browser',
       targetDivId: 'sender-other-browser-div',
       showValue: 'other',
-      isRadioGroup: true
+      isRadioGroup: true,
     },
     {
       triggerName: 'sender-location',
       targetDivId: 'sender-other-location-div',
       showValue: 'other',
-      isCheckboxGroup: true
+      isCheckboxGroup: true,
     },
     {
       triggerName: 'course-enjoyment',
       targetDivId: 'course-likes-div',
       hideValue: '1',
       hideWhenEmpty: true,
-      isRadioGroup: true
+      isRadioGroup: true,
     },
     {
       triggerName: 'course-enjoyment',
       targetDivId: 'course-dislikes-div',
       hideValue: '7',
       hideWhenEmpty: true,
-      isRadioGroup: true
+      isRadioGroup: true,
     },
     {
       triggerName: 'course-enjoyment',
       targetDivId: 'course-suggestions-div',
       hideWhenEmpty: true,
-      isRadioGroup: true
-    }
+      isRadioGroup: true,
+    },
   ];
 
   /**
@@ -79,7 +79,16 @@ function initFeedbackForm() {
    * @param {string} hideValue - The value that triggers hiding the field
    * @param {boolean} hideWhenEmpty - Whether to hide when nothing is selected
    */
-  function toggleConditionalField(trigger, targetDiv, showValue, isMultiple = false, isCheckboxGroup = false, isRadioGroup = false, hideValue = null, hideWhenEmpty = false) {
+  function toggleConditionalField(
+    trigger,
+    targetDiv,
+    showValue,
+    isMultiple = false,
+    isCheckboxGroup = false,
+    isRadioGroup = false,
+    hideValue = null,
+    hideWhenEmpty = false
+  ) {
     if (!trigger || !targetDiv) {
       return;
     }
@@ -87,25 +96,26 @@ function initFeedbackForm() {
     if (isRadioGroup) {
       // For radio button groups
       const radios = Array.isArray(trigger) ? trigger : Array.from(trigger);
-      const checkedRadio = radios.find(radio => radio.checked);
-      
+      const checkedRadio = radios.find((radio) => radio.checked);
+
       if (hideValue !== null || hideWhenEmpty) {
         // Hide logic: hide if hideValue matches OR nothing selected (when hideWhenEmpty is true)
-        const shouldHide = !checkedRadio && hideWhenEmpty || (checkedRadio && checkedRadio.value === hideValue);
+        const shouldHide =
+          (!checkedRadio && hideWhenEmpty) || (checkedRadio && checkedRadio.value === hideValue);
         targetDiv.style.display = shouldHide ? 'none' : '';
       } else {
         // Show logic: show if showValue matches
-        const isChecked = radios.some(radio => radio.value === showValue && radio.checked);
+        const isChecked = radios.some((radio) => radio.value === showValue && radio.checked);
         targetDiv.style.display = isChecked ? '' : 'none';
       }
     } else if (isCheckboxGroup) {
       // For checkbox groups, check if any checkbox with the showValue is checked
       const checkboxes = Array.isArray(trigger) ? trigger : Array.from(trigger);
-      const isChecked = checkboxes.some(cb => cb.value === showValue && cb.checked);
+      const isChecked = checkboxes.some((cb) => cb.value === showValue && cb.checked);
       targetDiv.style.display = isChecked ? '' : 'none';
     } else if (isMultiple) {
       // For multiple selects, check if "other" is among selected values
-      const selectedValues = Array.from(trigger.selectedOptions).map(opt => opt.value);
+      const selectedValues = Array.from(trigger.selectedOptions).map((opt) => opt.value);
       if (selectedValues.includes(showValue)) {
         targetDiv.style.display = '';
       } else {
@@ -137,7 +147,7 @@ function initFeedbackForm() {
     if (config.isRadioGroup) {
       // For radio button groups, get all radio buttons with the given name
       trigger = document.querySelectorAll(`input[name="${config.triggerName}"]`);
-      
+
       if (!trigger || trigger.length === 0) {
         return;
       }
@@ -146,18 +156,36 @@ function initFeedbackForm() {
       targetDiv.style.display = 'none';
 
       // Add change listener to each radio button
-      trigger.forEach(radio => {
+      trigger.forEach((radio) => {
         radio.addEventListener('change', () => {
-          toggleConditionalField(trigger, targetDiv, config.showValue, false, false, true, config.hideValue, config.hideWhenEmpty);
+          toggleConditionalField(
+            trigger,
+            targetDiv,
+            config.showValue,
+            false,
+            false,
+            true,
+            config.hideValue,
+            config.hideWhenEmpty
+          );
         });
       });
 
       // Check initial state (in case form is pre-filled)
-      toggleConditionalField(trigger, targetDiv, config.showValue, false, false, true, config.hideValue, config.hideWhenEmpty);
+      toggleConditionalField(
+        trigger,
+        targetDiv,
+        config.showValue,
+        false,
+        false,
+        true,
+        config.hideValue,
+        config.hideWhenEmpty
+      );
     } else if (config.isCheckboxGroup) {
       // For checkbox groups, get all checkboxes with the given name
       trigger = document.querySelectorAll(`input[name="${config.triggerName}"]`);
-      
+
       if (!trigger || trigger.length === 0) {
         return;
       }
@@ -166,7 +194,7 @@ function initFeedbackForm() {
       targetDiv.style.display = 'none';
 
       // Add change listener to each checkbox
-      trigger.forEach(checkbox => {
+      trigger.forEach((checkbox) => {
         checkbox.addEventListener('change', () => {
           toggleConditionalField(trigger, targetDiv, config.showValue, false, true, false);
         });
@@ -177,7 +205,7 @@ function initFeedbackForm() {
     } else {
       // For select elements
       trigger = document.getElementById(config.triggerId);
-      
+
       if (!trigger) {
         return;
       }
@@ -201,9 +229,9 @@ function initFeedbackForm() {
   // Handle consent radio buttons and submit button
   const consentRadios = document.querySelectorAll('input[name="consent"]');
   const submitButton = document.getElementById('send-information-btn');
-  
+
   if (consentRadios.length > 0 && submitButton) {
-    consentRadios.forEach(radio => {
+    consentRadios.forEach((radio) => {
       radio.addEventListener('change', () => {
         const consentYes = document.getElementById('consent-yes');
         submitButton.disabled = !consentYes || !consentYes.checked;
@@ -227,24 +255,24 @@ async function handleFormSubmit(event) {
 
   const form = event.target;
   const formData = new FormData(form);
-  
+
   // Collect form data
   const data = collectFormData(formData);
-  
+
   // Create human-readable and JSON versions
   const humanReadable = formatHumanReadable(data);
   const jsonData = JSON.stringify(data, null, 2);
-  
+
   // Get email addresses
   const recipientEmail = 'feedback@embodied-mind.org';
   const senderEmail = formData.get('sender-email') || '';
   const sendCopy = formData.get('send-copy') === 'yes';
-  
+
   try {
     // Send email (this requires a backend API endpoint)
     // For now, we'll use mailto as a fallback or log to console
     await sendFeedbackEmail(recipientEmail, senderEmail, sendCopy, humanReadable, jsonData);
-    
+
     // Show confirmation modal
     showConfirmationModal();
   } catch (error) {
@@ -266,7 +294,7 @@ function collectFormData(formData) {
       role: formData.get('sender-role') || '',
       otherRole: formData.get('sender-other-role') || '',
       age: formData.get('sender-age') || '',
-      gender: formData.get('sender-gender') || ''
+      gender: formData.get('sender-gender') || '',
     },
     technical: {
       languages: formData.getAll('sender-languages'),
@@ -276,7 +304,7 @@ function collectFormData(formData) {
       browser: formData.get('sender-browser') || '',
       otherBrowser: formData.get('sender-other-browser') || '',
       location: formData.getAll('sender-location'),
-      otherLocation: formData.get('sender-other-location') || ''
+      otherLocation: formData.get('sender-other-location') || '',
     },
     course: {
       helpful: formData.get('course-helpful') || '',
@@ -285,16 +313,16 @@ function collectFormData(formData) {
       enjoyment: formData.get('course-enjoyment') || '',
       likes: formData.get('course-likes') || '',
       dislikes: formData.get('course-dislikes') || '',
-      suggestions: formData.get('course-suggestions') || ''
+      suggestions: formData.get('course-suggestions') || '',
     },
     feedback: {
-      message: formData.get('sender-message') || ''
+      message: formData.get('sender-message') || '',
     },
     consent: formData.get('consent') || '',
     sendCopy: formData.get('send-copy') === 'yes',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   };
-  
+
   return data;
 }
 
@@ -307,7 +335,7 @@ function formatHumanReadable(data) {
   let text = 'FEEDBACK FORM SUBMISSION\n';
   text += '========================\n\n';
   text += `Submitted: ${new Date(data.timestamp).toLocaleString()}\n\n`;
-  
+
   text += 'PERSONAL INFORMATION\n';
   text += '--------------------\n';
   text += `Name: ${data.personal.name || 'Not provided'}\n`;
@@ -315,41 +343,41 @@ function formatHumanReadable(data) {
   text += `Role: ${data.personal.role}${data.personal.otherRole ? ' (' + data.personal.otherRole + ')' : ''}\n`;
   text += `Age Range: ${data.personal.age || 'Not provided'}\n`;
   text += `Gender: ${data.personal.gender || 'Not provided'}\n\n`;
-  
+
   text += 'TECHNICAL INFORMATION\n';
   text += '---------------------\n';
   text += `Programming Languages: ${data.technical.languages.join(', ')}${data.technical.otherLanguages ? ' (' + data.technical.otherLanguages + ')' : ''}\n`;
   text += `Computer: ${data.technical.computer}${data.technical.otherComputer ? ' (' + data.technical.otherComputer + ')' : ''}\n`;
   text += `Browser: ${data.technical.browser}${data.technical.otherBrowser ? ' (' + data.technical.otherBrowser + ')' : ''}\n`;
   text += `Location: ${data.technical.location.join(', ')}${data.technical.otherLocation ? ' (' + data.technical.otherLocation + ')' : ''}\n\n`;
-  
+
   text += 'COURSE FEEDBACK\n';
   text += '---------------\n';
   text += `Was the course helpful? ${data.course.helpful}\n`;
   text += `Completed lessons: ${data.course.completedLessons.join(', ')}\n`;
   text += `Lesson duration: ${data.course.lessonDuration}\n`;
   text += `Enjoyment level: ${data.course.enjoyment}/7\n\n`;
-  
+
   if (data.course.likes) {
     text += `What did you like?\n${data.course.likes}\n\n`;
   }
-  
+
   if (data.course.dislikes) {
     text += `What did you dislike?\n${data.course.dislikes}\n\n`;
   }
-  
+
   if (data.course.suggestions) {
     text += `Suggestions for improvement:\n${data.course.suggestions}\n\n`;
   }
-  
+
   if (data.feedback.message) {
     text += 'ADDITIONAL FEEDBACK\n';
     text += '-------------------\n';
     text += `${data.feedback.message}\n\n`;
   }
-  
+
   text += `Consent given: ${data.consent}\n`;
-  
+
   return text;
 }
 
@@ -363,15 +391,16 @@ function formatHumanReadable(data) {
  */
 async function sendFeedbackEmail(recipientEmail, senderEmail, sendCopy, humanReadable, jsonData) {
   // Determine API endpoint based on environment
-  const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? 'http://localhost:3000/api/send-feedback'
-    : 'https://web.witchcraft-and-wizardry.school/api/send-feedback';
-  
+  const apiUrl =
+    window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      ? 'http://localhost:3000/api/send-feedback'
+      : 'https://web.witchcraft-and-wizardry.school/api/send-feedback';
+
   try {
     const response = await fetch(apiUrl, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         to: recipientEmail,
@@ -380,24 +409,26 @@ async function sendFeedbackEmail(recipientEmail, senderEmail, sendCopy, humanRea
         text: humanReadable,
         attachment: {
           filename: 'feedback.json',
-          content: jsonData
-        }
-      })
+          content: jsonData,
+        },
+      }),
     });
-    
+
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
       throw new Error(errorData.error || `Server error: ${response.status}`);
     }
-    
+
     return response.json();
   } catch (error) {
     // Log for debugging
     console.error('Failed to send feedback:', error);
-    
+
     // Re-throw with user-friendly message
     if (error.message.includes('Failed to fetch')) {
-      throw new Error('Could not connect to server. Please check your internet connection and try again.');
+      throw new Error(
+        'Could not connect to server. Please check your internet connection and try again.'
+      );
     }
     throw error;
   }
@@ -441,18 +472,18 @@ function createModal(title, message, type = 'success') {
   modal.setAttribute('role', 'dialog');
   modal.setAttribute('aria-labelledby', 'modal-title');
   modal.setAttribute('aria-describedby', 'modal-message');
-  
+
   const modalContent = document.createElement('div');
   modalContent.className = `feedback-modal-content ${type}`;
-  
+
   const modalTitle = document.createElement('h3');
   modalTitle.id = 'modal-title';
   modalTitle.textContent = title;
-  
+
   const modalMessage = document.createElement('p');
   modalMessage.id = 'modal-message';
   modalMessage.textContent = message;
-  
+
   const modalButton = document.createElement('button');
   modalButton.textContent = 'Close';
   modalButton.className = 'button-rectangle';
@@ -471,12 +502,12 @@ function createModal(title, message, type = 'success') {
       }
     }
   });
-  
+
   modalContent.appendChild(modalTitle);
   modalContent.appendChild(modalMessage);
   modalContent.appendChild(modalButton);
   modal.appendChild(modalContent);
-  
+
   return modal;
 }
 

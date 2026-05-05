@@ -16,32 +16,68 @@ import { execSync } from 'child_process';
 import path from 'path';
 import fs from 'fs';
 
-// Get folder argument
+// Parse command line arguments
 const args = process.argv.slice(2);
-const folder = args[0];
+let folder = null;
+let excludeList = ['lessons', 'diagnostics']; // Default exclusions
+let quickMode = false;
+let runWave = false;
+let continueMode = false;
 
 // Valid folders that can be tested
 const validFolders = ['web', 'stats', 'sound'];
 
-// Show help if no folder provided or invalid folder
-if (!folder || folder === '-h' || folder === '--help') {
+for (let i = 0; i < args.length; i++) {
+  const arg = args[i];
+  
+  if (arg === '-h' || arg === '--help') {
+    console.log('Usage: npm run tests <folder> [options]');
+    console.log('');
+    console.log('Folders:');
+    console.log('  web      Run tests for web application');
+    console.log('  stats    Run tests for stats module');
+    console.log('  sound    Run tests for sound module');
+    console.log('');
+    console.log('Options:');
+    console.log('  -c, --continue   Continue from last interrupted test run');
+    console.log('  -q, --quick      Quick mode: skip Lighthouse and Wave tests');
+    console.log('  -w, --run-wave   Include Wave accessibility tests');
+    console.log('  -x, --exclude    Exclude specific files/folders (default: lessons diagnostics)');
+    console.log('');
+    console.log('Examples:');
+    console.log('  npm run tests web');
+    console.log('  npm run tests web -- -q');
+    console.log('  npm run tests stats -- -c');
+    console.log('  npm run tests web -- -x lessons diagnostics node_modules');
+    process.exit(0);
+  } else if (arg === '-c' || arg === '--continue') {
+    continueMode = true;
+  } else if (arg === '-q' || arg === '--quick') {
+    quickMode = true;
+  } else if (arg === '-w' || arg === '--run-wave') {
+    runWave = true;
+  } else if (arg === '-x' || arg === '--exclude') {
+    i++;
+    excludeList = [];
+    while (i < args.length && !args[i].startsWith('-')) {
+      excludeList.push(args[i]);
+      i++;
+    }
+    i--; // Back up one since the loop will increment
+  } else if (!arg.startsWith('-') && !folder) {
+    folder = arg;
+  }
+}
+
+// Show help if no folder provided
+if (!folder) {
+  console.error('❌ Error: No folder specified');
+  console.error('');
   console.log('Usage: npm run tests <folder> [options]');
   console.log('');
-  console.log('Folders:');
-  console.log('  web      Run tests for web application');
-  console.log('  stats    Run tests for stats module');
-  console.log('  sound    Run tests for sound module');
-  console.log('');
-  console.log('Options (passed through to run-all-tests.js):');
-  console.log('  -c, --continue   Continue from last interrupted test run');
-  console.log('  -q, --quick      Quick mode: skip Lighthouse and Wave tests');
-  console.log('  -w, --run-wave   Include Wave accessibility tests');
-  console.log('');
-  console.log('Examples:');
-  console.log('  npm run tests web');
-  console.log('  npm run tests web -- -q');
-  console.log('  npm run tests stats -- -c');
-  process.exit(folder === '-h' || folder === '--help' ? 0 : 1);
+  console.log('Folders: web, stats, sound');
+  console.log('Run with --help for more information');
+  process.exit(1);
 }
 
 // Validate folder
@@ -65,13 +101,29 @@ if (!fs.existsSync(diagnosticsPath)) {
   fs.mkdirSync(diagnosticsPath, { recursive: true });
 }
 
-// Build command with remaining arguments passed through
-const remainingArgs = args.slice(1).join(' ');
-const excludeArgs = '-x lessons diagnostics';
-const command = `node bin/run-all-tests.js ${folder} ${excludeArgs} ${remainingArgs}`;
+// Build command with all flags
+const commandParts = ['node', 'bin/run-all-tests.js', folder];
+
+// Add exclude flag
+if (excludeList.length > 0) {
+  commandParts.push('-x', ...excludeList);
+}
+
+// Add other flags
+if (continueMode) commandParts.push('-c');
+if (quickMode) commandParts.push('-q');
+if (runWave) commandParts.push('-w');
+
+const command = commandParts.join(' ');
 
 console.log(`🧪 Running tests for: ${folder}/`);
 console.log(`📊 Results will be saved to: ${folder}/diagnostics/`);
+if (excludeList.length > 0) {
+  console.log(`🚫 Excluding: ${excludeList.join(', ')}`);
+}
+if (quickMode) console.log('⚡ Quick mode enabled');
+if (continueMode) console.log('🔄 Continue mode enabled');
+if (runWave) console.log('🌊 Wave tests included');
 console.log('');
 
 try {
