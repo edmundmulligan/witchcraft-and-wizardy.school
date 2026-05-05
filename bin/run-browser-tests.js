@@ -22,13 +22,15 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Get the folder being tested from environment variable set by shell script
+// Resolve application-specific test module path. Prefer the requested folder,
+// then fall back to this repository's shared bin/browser-tests.js.
 const testFolderPath = process.env.BROWSER_TEST_FOLDER || process.cwd();
-const browserTestsPath = path.join(testFolderPath, 'bin', 'browser-tests.js');
+const requestedTestsPath = path.join(testFolderPath, 'bin', 'browser-tests.js');
+const sharedTestsPath = path.join(__dirname, 'browser-tests.js');
+const browserTestsPath = fs.existsSync(requestedTestsPath) ? requestedTestsPath : sharedTestsPath;
 
-// Check if application-specific tests exist
 if (!fs.existsSync(browserTestsPath)) {
-  console.log(`ℹ️  No browser tests found at ${path.relative(process.cwd(), browserTestsPath)}`);
+  console.log(`ℹ️  No browser tests found at ${path.relative(process.cwd(), requestedTestsPath)}`);
   console.log('✅ Skipping browser tests (no tests defined for this application)');
   process.exit(0);
 }

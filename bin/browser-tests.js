@@ -12,10 +12,12 @@
  **********************************************************************
  */
 
-'use strict';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const fs = require('fs');
-const path = require('path');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /**
  * Discover all HTML files in a directory
@@ -25,7 +27,9 @@ const path = require('path');
  */
 function discoverPages(dir, label) {
   const pages = [];
-  const fullPath = path.join(__dirname, '..', dir);
+  const rootPath = path.join(__dirname, '..', dir);
+  const webPath = path.join(__dirname, '..', 'web', dir);
+  const fullPath = fs.existsSync(rootPath) ? rootPath : webPath;
 
   if (!fs.existsSync(fullPath)) {
     return pages;
@@ -192,7 +196,7 @@ async function runPageTests(page, pageInfo) {
   return tests;
 }
 
-module.exports = {
+export default {
   pages,
   runPageTests,
 };

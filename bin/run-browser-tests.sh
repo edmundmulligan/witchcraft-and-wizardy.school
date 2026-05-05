@@ -105,9 +105,9 @@ cd "$FOLDER" || exit 1
 # Start server and setup
 start_server_if_needed "$TEST_URL"
 
-# Run the browser tests - pass the original folder path as an environment variable
+# Run the browser tests - resolve tests from repo root and serve the selected folder.
 echo "Running browser compatibility tests..."
-TEST_URL="$TEST_URL" BROWSER_TEST_FOLDER="$ORIGINAL_DIR/$FOLDER" BROWSER_TEST_EXCLUDES="$EXCLUDE_LIST" node "$SCRIPT_DIR/run-browser-tests.js"
+TEST_URL="$TEST_URL" BROWSER_TEST_FOLDER="$ORIGINAL_DIR" BROWSER_TEST_EXCLUDES="$EXCLUDE_LIST" node "$SCRIPT_DIR/run-browser-tests.js"
 EXIT_CODE=$?
 
 # Stop server if we started it
