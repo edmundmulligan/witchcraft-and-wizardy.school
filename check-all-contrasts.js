@@ -1,4 +1,17 @@
 #!/usr/bin/env node
+
+/*
+ **********************************************************************
+ * File       : check-all-contrasts.js
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license.html page)
+ * Description:
+ *   Calculates and reports contrast ratios for configured theme pairs
+ *   across project colour schemes.
+ **********************************************************************
+ */
+
 'use strict';
 
 function hslToRgb(h, s, l) {

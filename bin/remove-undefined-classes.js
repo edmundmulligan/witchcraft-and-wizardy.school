@@ -1,8 +1,15 @@
 #!/usr/bin/env node
 
 /**
- * Remove CSS classes that are not defined in any stylesheet
- * Keeps FontAwesome classes and JavaScript-dependent classes
+ * **********************************************************************
+ * File       : bin/remove-undefined-classes.js
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license.html page)
+ * Description:
+ *   Removes CSS classes that are not defined in any stylesheet,
+ *   while preserving external-library and JavaScript-dependent classes.
+ * **********************************************************************
  */
 
 import { readFileSync, writeFileSync, readdirSync } from 'fs';

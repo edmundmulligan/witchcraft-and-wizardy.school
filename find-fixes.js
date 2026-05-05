@@ -1,4 +1,17 @@
 #!/usr/bin/env node
+
+/*
+ **********************************************************************
+ * File       : find-fixes.js
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license.html page)
+ * Description:
+ *   Computes contrast values for targeted theme combinations to help
+ *   identify AA-compliant colour adjustments.
+ **********************************************************************
+ */
+
 'use strict';
 
 function hslToRgb(h, s, l) {

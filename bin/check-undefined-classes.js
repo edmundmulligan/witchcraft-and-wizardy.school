@@ -1,7 +1,15 @@
 #!/usr/bin/env node
 
 /**
- * Check for CSS classes used in HTML files that are not defined in any stylesheet
+ * **********************************************************************
+ * File       : bin/check-undefined-classes.js
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license.html page)
+ * Description:
+ *   Checks for CSS classes used in HTML files that are not defined
+ *   in any stylesheet.
+ * **********************************************************************
  */
 
 import { readFileSync, readdirSync } from 'fs';
