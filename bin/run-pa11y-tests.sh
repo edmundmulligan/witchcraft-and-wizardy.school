@@ -61,9 +61,12 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-# Install dependencies locally if not already installed
-npm install pa11y > /dev/null 2>&1
-npm install -g serve > /dev/null 2>&1
+# Verify pa11y dependency is available from the existing install.
+if ! node -e "require('pa11y')" > /dev/null 2>&1; then
+  echo "❌ Error: pa11y dependency is unavailable."
+  echo "Run 'npm ci' before executing pa11y tests."
+  exit 1
+fi
 
 # Set default folder if not provided
 if [ -z "$FOLDER" ]; then

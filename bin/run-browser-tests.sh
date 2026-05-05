@@ -62,6 +62,15 @@ if [ ! -d "$FOLDER" ]; then
         exit 1
 fi
 
+# Verify Playwright installation integrity before running tests.
+if ! node -e "require.resolve('playwright'); require.resolve('playwright-core/lib/utils/isomorphic/imageUtils')" >/dev/null 2>&1; then
+    echo "⚠️  Playwright installation appears incomplete. Repairing with npm ci..."
+    if ! npm ci --no-audit --no-fund >/dev/null 2>&1; then
+        echo "❌ Error: Failed to repair Playwright dependencies via npm ci"
+        exit 1
+    fi
+fi
+
 # Install all browsers
 echo "Installing browsers (Chromium, Firefox, WebKit)..."
 npx playwright install > /dev/null 2>&1

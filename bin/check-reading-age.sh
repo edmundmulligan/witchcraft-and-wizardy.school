@@ -55,9 +55,13 @@ if [ ! -d "$FOLDER" ]; then
   exit 1
 fi
 
-# Install dependencies
-echo "Installing dependencies..."
-npm install text-readability cheerio > /dev/null 2>&1
+# Verify required dependencies are available.
+echo "Checking dependencies..."
+if ! node -e "require('text-readability'); require('cheerio')" > /dev/null 2>&1; then
+  echo "❌ Error: Required readability dependencies are unavailable."
+  echo "Run 'npm ci' before executing reading-age checks."
+  exit 1
+fi
 
 # Setup results directory in application folder
 ORIGINAL_DIR=$(pwd)

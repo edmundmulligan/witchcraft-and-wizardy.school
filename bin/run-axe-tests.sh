@@ -61,8 +61,12 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-# Silently install dependencies if not already installed
-npm install -g @axe-core/cli serve > /dev/null 2>&1
+# Resolve axe command without mutating workspace dependencies.
+if command -v axe > /dev/null 2>&1; then
+  AXE_CMD=(axe)
+else
+  AXE_CMD=(npx --yes @axe-core/cli)
+fi
 
 # Ensure ChromeDriver is installed and matches Chrome version
 # Try to detect Chrome version and install matching ChromeDriver
@@ -217,14 +221,14 @@ for VIEWPORT in "${VIEWPORTS[@]}"; do
           # Run axe and capture exit code
           set +e  # Don't exit on error
           if [ -n "$CHROMEDRIVER_PATH" ]; then
-            axe "$FULL_URL" --disable page-has-heading-one --save "$TEMP_RESULT" \
+            "${AXE_CMD[@]}" "$FULL_URL" --disable page-has-heading-one --save "$TEMP_RESULT" \
               --chromedriver-path "$CHROMEDRIVER_PATH" \
               --chrome-options '{"args":["--force-prefers-color-scheme='$THEME'","--window-size='$VIEWPORT',768","--disable-dev-shm-usage","--disable-gpu","--no-sandbox"]}' \
               --load-delay 5000 \
               2>&1
             AXE_EXIT_CODE=$?
           else
-            axe "$FULL_URL" --disable page-has-heading-one --save "$TEMP_RESULT" \
+            "${AXE_CMD[@]}" "$FULL_URL" --disable page-has-heading-one --save "$TEMP_RESULT" \
               --chrome-options '{"args":["--force-prefers-color-scheme='$THEME'","--window-size='$VIEWPORT',768","--disable-dev-shm-usage","--disable-gpu","--no-sandbox"]}' \
               --load-delay 5000 \
               2>&1

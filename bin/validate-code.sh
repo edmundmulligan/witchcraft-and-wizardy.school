@@ -59,9 +59,8 @@ done
 
 [ -z "$FOLDER" ] && FOLDER="."
 
-# Silently install dependencies if not already installed
-echo "Installing dependencies..."
-npm install html-validate stylelint stylelint-config-standard eslint > /dev/null 2>&1
+# Validate tool availability without mutating dependencies at runtime.
+echo "Checking dependencies..."
 
 # Resolve validator executables from local node_modules first, then global PATH.
 resolve_tool() {
@@ -87,27 +86,15 @@ fi
 NODE_VERSION=$(node --version | sed 's/v//' | cut -d. -f1)
 echo "Detected Node.js version: $NODE_VERSION"
 
-# Install compatible version of html-validate based on Node.js version
-if [ "$NODE_VERSION" -lt 20 ]; then
-  echo "Installing html-validate compatible with Node.js $NODE_VERSION..."
-  npm install html-validate@7.18.1 stylelint stylelint-config-standard eslint > /dev/null 2>&1
-else
-  npm install html-validate stylelint stylelint-config-standard eslint > /dev/null 2>&1
-fi
-
-if ! npx html-validate --version &> /dev/null; then
-  echo "❌ Error: html-validate is not available after npm install"
-  echo "Trying global install..."
-  if [ "$NODE_VERSION" -lt 20 ]; then
-    npm install -g html-validate@7.18.1 stylelint stylelint-config-standard eslint 2>&1
-  else
-    npm install -g html-validate stylelint stylelint-config-standard eslint 2>&1
-  fi
-fi
-
 HTML_VALIDATE_CMD="$(resolve_tool html-validate || true)"
 STYLELINT_CMD="$(resolve_tool stylelint || true)"
 JSHINT_CMD="$(resolve_tool jshint || true)"
+
+if [ -z "$HTML_VALIDATE_CMD" ] || [ -z "$STYLELINT_CMD" ]; then
+  echo "❌ Error: Required validators are not installed."
+  echo "Run 'npm ci' before executing code validation."
+  exit 1
+fi
 
 echo ""
 echo "📄 Validating HTML, CSS, and JavaScript files..."

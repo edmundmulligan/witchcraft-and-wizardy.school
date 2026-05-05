@@ -61,9 +61,13 @@ if [ ! -d "$FOLDER" ]; then
   exit 1
 fi
 
-# Install dependencies
-echo "Installing dependencies..."
-npm install broken-link-checker > /dev/null 2>&1
+# Verify required runtime dependencies are available (installed via npm ci in CI)
+echo "Checking dependencies..."
+if ! node -e "require('playwright')" > /dev/null 2>&1; then
+  echo "❌ Error: Playwright runtime is unavailable or inconsistent."
+  echo "Run 'npm ci' before executing link checks."
+  exit 1
+fi
 
 # Setup results directory in application folder
 RESULTS_DIR="$ORIGINAL_DIR/$FOLDER/diagnostics/test-results"

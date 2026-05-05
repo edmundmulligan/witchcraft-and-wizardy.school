@@ -60,8 +60,12 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-# Silently install dependencies if not already installed
-npm install -g lighthouse serve > /dev/null 2>&1
+# Resolve lighthouse command without mutating workspace dependencies.
+if command -v lighthouse > /dev/null 2>&1; then
+  LIGHTHOUSE_CMD=(lighthouse)
+else
+  LIGHTHOUSE_CMD=(npx --yes lighthouse)
+fi
 
 
 # Accept optional folder parameter
@@ -127,7 +131,7 @@ for VIEWPORT in "${VIEWPORTS[@]}"; do
 
         # Run lighthouse on this page with emulated colour scheme and viewport
         TEMP_RESULT="$RESULTS_DIR/lighthouse-temp-$TESTED.json"
-        npx lighthouse "$FULL_URL" --output=json --output-path=$TEMP_RESULT \
+        "${LIGHTHOUSE_CMD[@]}" "$FULL_URL" --output=json --output-path=$TEMP_RESULT \
           --emulated-form-factor=desktop \
           --screen-emulation-width=$VIEWPORT \
           --screen-emulation-height=768 \
