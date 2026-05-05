@@ -14,6 +14,33 @@
 // ESLint flat config for v9+
 /** @type {import('eslint').FlatConfig[]} */
 module.exports = [
+  // API server configuration (Node.js ESM)
+  {
+    files: ['api/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 2021,
+      sourceType: 'module',
+      globals: {
+        console: 'readonly',
+        process: 'readonly',
+        Buffer: 'readonly',
+        setTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearTimeout: 'readonly',
+        clearInterval: 'readonly',
+      },
+    },
+    rules: {
+      indent: ['error', 2],
+      'linebreak-style': ['error', 'unix'],
+      quotes: ['error', 'single'],
+      semi: ['error', 'always'],
+      'no-undef': 'error',
+      'no-unused-expressions': 'error',
+      'no-unexpected-multiline': 'off',
+    },
+  },
+
   // Node.js scripts configuration (bin directory)
   {
     files: ['bin/**/*.js'],

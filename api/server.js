@@ -64,6 +64,8 @@ app.use('/api', feedbackRouter);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
+  // Preserve Express error-handler signature while keeping lint clean.
+  void next;
   console.error('Error:', err);
 
   const statusCode = err.statusCode || 500;
