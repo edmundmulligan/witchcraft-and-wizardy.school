@@ -62,10 +62,6 @@ if [ ! -d "$FOLDER" ]; then
         exit 1
 fi
 
-# Install Playwright for browser testing
-echo "Installing Playwright..."
-npm install playwright > /dev/null 2>&1
-
 # Install all browsers
 echo "Installing browsers (Chromium, Firefox, WebKit)..."
 npx playwright install > /dev/null 2>&1
