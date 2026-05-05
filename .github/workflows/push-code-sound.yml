@@ -2,12 +2,7 @@ name: Push Sound Code to Prod Server
 
 on:
     push:
-      branches: [ main]
-      paths:
-        - 'sound/**'
-    pull_request:
-      branches: [ main ]
-      paths:
+
         - 'sound/**'
 
 jobs:

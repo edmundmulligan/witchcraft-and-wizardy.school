@@ -2,12 +2,7 @@ name: Push Stats Code to Prod Server
 
 on:
     push:
-      branches: [ main]
-      paths:
-        - 'stats/**'
-    pull_request:
-      branches: [ main ]
-      paths:
+
         - 'stats/**'
 
 jobs:
