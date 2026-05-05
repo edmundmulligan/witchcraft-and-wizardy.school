@@ -1,9 +1,14 @@
 #!/usr/bin/env node
 /**
- * SMTP Connection Test Script
- *
- * This script tests your SMTP configuration without sending an actual email.
- * Usage: node api/test-smtp.js
+ * **********************************************************************
+ * File       : api/test-smtp.js
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license.html page)
+ * Description:
+ *   Tests the SMTP configuration without sending an actual email.
+ *   Usage: node api/test-smtp.js
+ * **********************************************************************
  */
 
 import nodemailer from 'nodemailer';
