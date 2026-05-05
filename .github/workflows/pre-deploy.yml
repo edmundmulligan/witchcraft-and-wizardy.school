@@ -38,6 +38,10 @@ jobs:
       run: |
         npm ci
 
+    - name: Install Playwright Chromium
+      run: |
+        npx playwright install chromium
+
     - name: Clear previous accessibility results
       run: |
         bin/clear-tests.sh .

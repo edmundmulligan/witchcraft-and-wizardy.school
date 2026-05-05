@@ -38,6 +38,20 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: '24'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: |
+        npm ci
+
+    - name: Install Playwright Chromium
+      run: |
+        npx playwright install chromium
+
     - name: Clear previous accessibility results
       run: |
         bin/clear-tests.sh ${{ inputs.application }}
