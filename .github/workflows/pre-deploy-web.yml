@@ -14,7 +14,7 @@ jobs:
     with:
       application: 'web'
       deploy-path: '/var/www/web.witchcraft-and-wizardry.school'
-      ignores: 'lessons'
+      ignores: 'web/lessons'
     secrets:
       WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
       NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
