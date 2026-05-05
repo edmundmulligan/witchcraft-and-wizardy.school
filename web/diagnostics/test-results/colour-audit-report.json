@@ -1,36 +1,7 @@
 {
-  "hardcodedColours": [
-    {
-      "file": "web/styles/pages/feedback.css",
-      "line": 331,
-      "type": "Hex Colour",
-      "value": "#d32f2f",
-      "context": "color: #d32f2f;"
-    },
-    {
-      "file": "web/styles/pages/feedback.css",
-      "line": 291,
-      "type": "RGBA",
-      "value": "rgba(0, 0, 0, 0.7)",
-      "context": "background-color: rgba(0, 0, 0, 0.7);"
-    }
-  ],
+  "hardcodedColours": [],
   "themeSpecificVars": [],
   "missingThemeSystem": [
-    {
-      "file": "sound/index.html",
-      "missing": {
-        "globals": true,
-        "themeSwitcher": true
-      }
-    },
-    {
-      "file": "stats/index.html",
-      "missing": {
-        "globals": true,
-        "themeSwitcher": true
-      }
-    },
     {
       "file": "web/lessons/lesson-1.html",
       "missing": {

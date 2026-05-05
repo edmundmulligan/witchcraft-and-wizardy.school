@@ -11,6 +11,11 @@ on:
         required: true
         type: string
         description: 'Server deployment path'
+      ignores:
+        required: false
+        type: string
+        default: ''
+        description: 'Comma-separated list of test categories to ignore (validation, links, browser, axe, pa11y, lighthouse, wave, readability) - e.g. "validation,links"'
       server:
         required: false
         type: string
@@ -52,6 +57,13 @@ jobs:
       run: |
         npx playwright install chromium
 
+    - name: Setup Chrome for browser-based tests
+      uses: browser-actions/setup-chrome@v1
+
+    - name: Check Chrome installation
+      run: |
+        chrome --version
+
     - name: Clear previous accessibility results
       run: |
         bin/clear-tests.sh ${{ inputs.application }}
@@ -61,50 +73,46 @@ jobs:
       run: |
         bin/validate-code.sh ${{ inputs.application }}
 
+    - name: Audit colour usage
+      continue-on-error: true
+      run: |
+        node bin/audit-colour-usage.js ${{ inputs.application }} -x ${{ inputs.ignores }}
+
     - name: Check for file comments
       continue-on-error: true
       run: |
-        bin/check-file-comments.sh ${{ inputs.application }}
+        bin/check-file-comments.sh ${{ inputs.application }} -x ${{ inputs.ignores }}
 
     - name: Check for broken links
       continue-on-error: true
       run: |
-        bin/check-links.sh ${{ inputs.application }}
+        bin/check-links.sh ${{ inputs.application }} -x ${{ inputs.ignores }}
 
     - name: Check site works in different browsers
       continue-on-error: true
       run: |
-        bin/run-browser-tests.sh ${{ inputs.application }}
+        bin/run-browser-tests.sh ${{ inputs.application }} -x ${{ inputs.ignores }}
 
     - name: Run axe accessibility tests
       continue-on-error: true
       run: |
-        bin/run-axe-tests.sh ${{ inputs.application }}
-      env:
-        WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
-        NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
-
-    - name: Setup Chrome for browser-based tests
-      uses: browser-actions/setup-chrome@v1
-
-    - name: Check Chrome installation
-      run: |
-        chrome --version
+        bin/run-axe-tests.sh -q ${{ inputs.application }} -x ${{ inputs.ignores }}
 
     - name: Run Pa11y accessibility tests
       continue-on-error: true
       run: |
-        bin/run-pa11y-tests.sh ${{ inputs.application }}
+        bin/run-pa11y-tests.sh -q ${{ inputs.application }} -x ${{ inputs.ignores }}
 
     - name: Run Lighthouse accessibility tests
       continue-on-error: true
       run: |
-        bin/run-lighthouse-tests.sh ${{ inputs.application }}
+        bin/run-lighthouse-tests.sh -q ${{ inputs.application }} -x ${{ inputs.ignores }}
 
     - name: Run WAVE accessibility tests
+      if: github.base_ref == 'main'
       continue-on-error: true
       run: |
-        bin/run-wave-tests.sh ${{ inputs.application }}
+        bin/run-wave-tests.sh -q ${{ inputs.application }} -x ${{ inputs.ignores }}
       env:
         WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
         NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
@@ -112,7 +120,7 @@ jobs:
     - name: Check reading levels
       continue-on-error: true
       run: |
-        bin/check-reading-age.sh ${{ inputs.application }}
+        bin/check-reading-age.sh ${{ inputs.application }} -x ${{ inputs.ignores }}
 
     - name: Summarise test results
       continue-on-error: false
@@ -125,17 +133,19 @@ jobs:
       with:
         name: ${{ inputs.application }}-test-reports
         path: |
-          ${{ inputs.application }}/test-results/validation-results.json
-          ${{ inputs.application }}/test-results/broken-links-results.json
-          ${{ inputs.application }}/test-results/axe-results.json
-          ${{ inputs.application }}/test-results/pa11y-results.json
-          ${{ inputs.application }}/test-results/lighthouse-results.json
-          ${{ inputs.application }}/test-results/wave-results.json
-          ${{ inputs.application }}/test-results/readability-results.json
-
+          ${{ inputs.application }}/diagnostics/test-results/axe-results.json
+          ${{ inputs.application }}/diagnostics/test-results/broken-links-results.json
+          ${{ inputs.application }}/diagnostics/test-results/browser-results.json
+          ${{ inputs.application }}/diagnostics/test-results/colour-audit-report.json
+          ${{ inputs.application }}/diagnostics/test-results/file-comments-check-results.json
+          ${{ inputs.application }}/diagnostics/test-results/lighthouse-results.json
+          ${{ inputs.application }}/diagnostics/test-results/pa11y-results.json
+          ${{ inputs.application }}/diagnostics/test-results/readability-results.json
+          ${{ inputs.application }}/diagnostics/test-results/validation-results.json
+          ${{ inputs.application }}/diagnostics/test-results/wave-results.json
   deploy:
     needs: run-pre-deployment-test
-    if: github.ref == 'refs/heads/main'
+    if: github.base_ref == 'main'
     uses: ./.github/workflows/push-code-reusable.yml
     with:
       application: ${{ inputs.application }}

@@ -1,21 +1,21 @@
 name: Push API Code to Prod Server
 
 on:
-    push:
-      branches: [ main]
-      paths:
-        - 'api/**'
-    pull_request:
-      branches: [ main ]
-      paths:
-        - 'api/**'
+  push:
+    branches: [ main]
+    paths:
+      - 'api/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'api/**'
 
 jobs:
-    deploy-to-server:
-        uses: ./.github/workflows/push-code-reusable.yml
-        with:
-          application: api
-          deploy-path: /var/www/api.witchcraft-and-wizardry.school
-        secrets:
-          SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
-          SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+  deploy-to-server:
+    uses: ./.github/workflows/push-code-reusable.yml
+    with:
+      application: api
+      deploy-path: /var/www/api.witchcraft-and-wizardry.school
+    secrets:
+      SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
+      SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}

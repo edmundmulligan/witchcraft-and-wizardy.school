@@ -288,7 +288,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: var(--colour-success-background);
+    color: var(--colour-success-text);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -324,14 +325,15 @@
     }
 
     &.success h3 {
-      color: var(--colour-effective-headings-text);
+      color: var(--colour-success-text);
     }
 
     &.error h3 {
-      color: #d32f2f;
+      color: var(--colour-error-text);
     }
   }
 
+/*
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -351,4 +353,5 @@
       opacity: 1;
     }
   }
+*/
 }

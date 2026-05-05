@@ -43,12 +43,17 @@ const EXEMPT_FROM_COLOUR_CHECKS = [
 function parseArgs() {
   const args = process.argv.slice(2);
   const excludeItems = [];
+  let folder = null;
 
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
 
     if (arg === '-h' || arg === '--help') {
-      console.log('Usage: node bin/audit-colour-usage.js [options]');
+      console.log('Usage: node bin/audit-colour-usage.js [folder] [options]');
+      console.log('');
+      console.log('Arguments:');
+      console.log('  folder               Subfolder to audit (e.g. web, api). Defaults to entire repo.');
+      console.log('');
       console.log('Options:');
       console.log('  -h, --help           Show this help message and exit');
       console.log('  -x, --exclude VALUE  Exclude one or more files/folders from the audit');
@@ -74,6 +79,15 @@ function parseArgs() {
       continue;
     }
 
+    if (!arg.startsWith('-')) {
+      if (folder !== null) {
+        console.error(`❌ Error: Unexpected argument '${arg}'`);
+        process.exit(1);
+      }
+      folder = arg.replace(/\/+$/, '');
+      continue;
+    }
+
     console.error(`❌ Error: Unexpected argument '${arg}'`);
     process.exit(1);
   }
@@ -82,7 +96,7 @@ function parseArgs() {
     .map((item) => item.replace(/^\.\//, '').replace(/\/+$/, ''))
     .filter(Boolean);
 
-  return { excludeList };
+  return { folder, excludeList };
 }
 
 /**
@@ -415,18 +429,24 @@ function getAllFiles(dir, extensions, excludeList, rootDir, stats) {
  * @returns {void}
  */
 function main() {
-  const { excludeList } = parseArgs();
+  const { folder, excludeList } = parseArgs();
 
   console.log('\n' + '='.repeat(100));
   console.log('colour usage AUDIT - Theme Compliance Check');
   console.log('='.repeat(100) + '\n');
 
   const rootDir = path.join(__dirname, '..');
+  const scanDir = folder ? path.join(rootDir, folder) : rootDir;
+
+  if (folder && !fs.existsSync(scanDir)) {
+    console.error(`❌ Error: Folder '${folder}' does not exist.`);
+    process.exit(1);
+  }
 
   // Find all CSS and HTML files
   const stats = { excluded: 0 };
-  const cssFiles = getAllFiles(rootDir, ['.css'], excludeList, rootDir, stats);
-  const htmlFiles = getAllFiles(rootDir, ['.html'], excludeList, rootDir, stats);
+  const cssFiles = getAllFiles(scanDir, ['.css'], excludeList, rootDir, stats);
+  const htmlFiles = getAllFiles(scanDir, ['.html'], excludeList, rootDir, stats);
 
   if (excludeList.length > 0) {
     console.log(`Excluding files/folders matching: ${excludeList.join(', ')}`);
@@ -530,7 +550,12 @@ function main() {
   console.log('='.repeat(100) + '\n');
 
   // Write detailed report to file
-  const reportPath = path.join(rootDir, 'diagnostics/test-results/colour-audit-report.json');
+  const reportBase = folder ? path.join(rootDir, folder) : rootDir;
+  const reportDir = path.join(reportBase, 'diagnostics/test-results');
+  if (!fs.existsSync(reportDir)) {
+    fs.mkdirSync(reportDir, { recursive: true });
+  }
+  const reportPath = path.join(reportDir, 'colour-audit-report.json');
   fs.writeFileSync(reportPath, JSON.stringify(allIssues, null, 2));
   console.log(`Detailed report written to: ${reportPath}\n`);
 

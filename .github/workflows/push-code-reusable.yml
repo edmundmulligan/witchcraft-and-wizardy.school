@@ -21,6 +21,8 @@ on:
         required: true
       SERVER_SSH_KEY:
         required: true
+      SERVER_FINGERPRINT:
+        required: false
 
 jobs:
   deploy-to-server:
@@ -30,12 +32,53 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Copy files to server
+    - name: Determine version bump type
+      id: bump_type
+      run: |
+        echo "Event: ${{ github.event_name }}"
+        echo "Ref: ${{ github.ref }}"
+        echo "Branch: ${{ github.ref_name }}"
+        echo "value=patch" >> "$GITHUB_OUTPUT"
+
+    - name: Bump semantic version
+      id: version
+      run: |
+        new_version="$(bin/bump-version.sh "${{ steps.bump_type.outputs.value }}" VERSION)"
+        echo "new_version=${new_version}" >> "$GITHUB_OUTPUT"
+        echo "New version: ${new_version}"
+
+    - name: Create release tarball
+      id: package
+      shell: bash
+      run: |
+        set -euo pipefail
+
+        archive_path="$(bash bin/create-release-tar.sh "${{ steps.version.outputs.new_version }}" "${{ inputs.application }}" releases)"
+        archive_name="$(basename "$archive_path")"
+
+        echo "archive_path=$archive_path" >> "$GITHUB_OUTPUT"
+        echo "archive_name=$archive_name" >> "$GITHUB_OUTPUT"
+
+    - name: Copy release tarball to server
       uses: appleboy/scp-action@v0.1.7
       with:
         host: ${{ inputs.server }}
         username: ${{ secrets.SERVER_USERNAME }}
         key: ${{ secrets.SERVER_SSH_KEY }}
-        source: "${{ inputs.application }}/*"
-        target: ${{ inputs.deploy-path }}
+        fingerprint: ${{ secrets.SERVER_FINGERPRINT }}
+        source: ${{ steps.package.outputs.archive_path }}
+        target: /tmp
         strip_components: 1
+
+    - name: Extract release tarball on server
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ inputs.server }}
+        username: ${{ secrets.SERVER_USERNAME }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        fingerprint: ${{ secrets.SERVER_FINGERPRINT }}
+        script: |
+          set -e
+          mkdir -p "${{ inputs.deploy-path }}"
+          tar -xzf "/tmp/${{ steps.package.outputs.archive_name }}" -C "${{ inputs.deploy-path }}" --strip-components=1
+          rm -f "/tmp/${{ steps.package.outputs.archive_name }}"
