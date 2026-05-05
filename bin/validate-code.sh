@@ -63,6 +63,20 @@ done
 echo "Installing dependencies..."
 npm install html-validate stylelint stylelint-config-standard eslint > /dev/null 2>&1
 
+# Resolve validator executables from local node_modules first, then global PATH.
+resolve_tool() {
+  local tool_name="$1"
+  if [ -x "./node_modules/.bin/$tool_name" ]; then
+    echo "./node_modules/.bin/$tool_name"
+    return 0
+  fi
+  if command -v "$tool_name" > /dev/null 2>&1; then
+    command -v "$tool_name"
+    return 0
+  fi
+  return 1
+}
+
 # Check if critical tools are available
 if ! command -v node &> /dev/null; then
   echo "❌ Error: Node.js is not installed or not in PATH"
@@ -90,6 +104,10 @@ if ! npx html-validate --version &> /dev/null; then
     npm install -g html-validate stylelint stylelint-config-standard eslint 2>&1
   fi
 fi
+
+HTML_VALIDATE_CMD="$(resolve_tool html-validate || true)"
+STYLELINT_CMD="$(resolve_tool stylelint || true)"
+JSHINT_CMD="$(resolve_tool jshint || true)"
 
 echo ""
 echo "📄 Validating HTML, CSS, and JavaScript files..."
@@ -157,14 +175,14 @@ for file in $FILES; do
   if [ "$extension" = "html" ]
   then
     validator='html-validate'
-    if ! npx html-validate --version &>/dev/null; then
+    if [ -z "$HTML_VALIDATE_CMD" ]; then
       echo "  ⚠️  Skipped - html-validate not available"
       continue
     fi
   elif [ "$extension" = "css" ]
   then
     validator='stylelint'
-    if ! npx stylelint --version &>/dev/null; then
+    if [ -z "$STYLELINT_CMD" ]; then
       echo "  ⚠️  Skipped - stylelint not available"
       continue
     fi
@@ -190,7 +208,7 @@ for file in $FILES; do
   TEMP_ERROR="$RESULTS_DIR/validation-error-$TESTED.txt"
 
   if [ "$extension" = "html" ]; then
-    timeout 30 npx html-validate --formatter json "${file}" > "$TEMP_RESULT" 2>"$TEMP_ERROR"
+    timeout 30 "$HTML_VALIDATE_CMD" --formatter json "${file}" > "$TEMP_RESULT" 2>"$TEMP_ERROR"
     HTML_VALIDATE_EXIT=$?
     
     if [ $HTML_VALIDATE_EXIT -eq 124 ]; then
@@ -208,7 +226,7 @@ for file in $FILES; do
       echo "[]" > "$TEMP_RESULT"
     fi
   elif [ "$extension" = "css" ]; then
-    timeout 30 npx stylelint --formatter json "${file}" > "$TEMP_RESULT" 2>"$TEMP_ERROR"
+    timeout 30 "$STYLELINT_CMD" --formatter json "${file}" > "$TEMP_RESULT" 2>"$TEMP_ERROR"
     STYLELINT_EXIT=$?
     
     if [ $STYLELINT_EXIT -eq 124 ]; then
@@ -237,7 +255,10 @@ for file in $FILES; do
       fi
     else
       # Run JSHint for stricter static analysis (plain text output) with timeout
-      JSHINT_OUTPUT=$(timeout 15 npx jshint "$file" 2>&1)
+      if [ -z "$JSHINT_CMD" ]; then
+        JSHINT_CMD="npx --yes jshint"
+      fi
+      JSHINT_OUTPUT=$(timeout 15 $JSHINT_CMD "$file" 2>&1)
       JSHINT_EXIT=$?
       
       # Check if jshint timed out
