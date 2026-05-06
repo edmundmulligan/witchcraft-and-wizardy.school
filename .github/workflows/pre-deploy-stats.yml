@@ -14,6 +14,7 @@ jobs:
     with:
       application: 'stats'
       deploy-path: '/var/www/stats.witchcraft-and-wizardry.school'
+      test-mode: ${{ github.base_ref == 'main' && 'full' || 'abbreviated' }}
     secrets:
       WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
       NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}

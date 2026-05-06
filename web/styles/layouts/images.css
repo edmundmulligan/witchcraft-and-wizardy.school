@@ -1,0 +1,27 @@
+/*
+ **********************************************************************
+ * File       : layouts/images.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Global styles for images, figures, and image-based interactive elements.
+ **********************************************************************
+ */
+
+@layer layouts {
+  picture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 60%;
+    margin: auto;
+  }
+
+  figcaption {
+    text-align: center;
+    width: 100%;
+    font-style: italic;
+    margin-top: 0.5rem;
+  }
+}

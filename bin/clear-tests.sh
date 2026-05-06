@@ -10,7 +10,7 @@ if [ ! -d "$APP_FOLDER" ]; then
   exit 1
 fi
 
-RESULTS_DIR="$APP_FOLDER/test-results"
+RESULTS_DIR="$APP_FOLDER/diagnostics/test-results"
 
 # Remove the directory if it exists
 if [ -d "$RESULTS_DIR" ]; then

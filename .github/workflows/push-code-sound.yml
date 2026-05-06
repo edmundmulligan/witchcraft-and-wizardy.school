@@ -1,14 +1,10 @@
-name: Push Sound Code to Dev Server
+name: Push Sound Code to Prod Server
 
 on:
-    push:
-      branches: [ main]
-      paths:
-        - 'sound/**'
-    pull_request:
-      branches: [ main ]
-      paths:
-        - 'sound/**'
+  push:
+    branches: [ main ]
+    paths:
+      - 'sound/**'
 
 jobs:
     deploy-to-server:

@@ -1,0 +1,115 @@
+/*
+ **********************************************************************
+ * File       : facts.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license.html page)
+ * Description:
+ *   Styles used only by pages/facts.html.
+ **********************************************************************
+ */
+
+@layer pages {
+  .facts-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: var(--margin-vertical) var(--margin-horizontal);
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .facts-item {
+    background-color: var(--colour-effective-headings-background);
+    color: var(--colour-effective-headings-text);
+    border: var(--border-weight) var(--border-style) var(--colour-effective-headings-text);
+    border-radius: var(--border-radius);
+    font-size: var(--fontsize-normal);
+    min-width: 0;
+    padding: 1rem;
+    margin: var(--margin-vertical) var(--margin-horizontal);
+    box-sizing: border-box;
+    text-align: center;
+
+    &.wide {
+      grid-column: 1 / 3;
+      text-align: left;
+    }
+  }
+
+  .facts {
+    & dl {
+      display: grid;
+      grid-template-columns: minmax(auto, 33%) 1fr;
+      gap: 0;
+      padding: 0;
+      margin: 0;
+      align-items: stretch;
+    }
+
+    & dt {
+      font-weight: bold;
+      grid-column: 1;
+      padding: 0.5rem;
+      margin: 0;
+      text-align: center;
+      align-self: stretch;
+      max-width: 100%;
+      border-bottom: var(--border-weight) var(--border-style) var(--colour-effective-headings-text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+    }
+
+    & dd {
+      grid-column: 2;
+      padding: 0.5rem;
+      margin: 0;
+      text-align: center;
+      align-self: stretch;
+      border-bottom: var(--border-weight) var(--border-style) var(--colour-effective-headings-text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+    }
+  }
+
+  /* Responsive layout for small screens */
+  @media (width < 800px) {
+    .facts-container {
+      grid-template-columns: 1fr;
+    }
+
+    .facts-item.wide {
+      grid-column: 1;
+
+      & dl {
+        grid-template-columns: 1fr;
+      }
+
+      & dt {
+        grid-column: 1;
+        border-bottom: var(--border-weight) var(--border-style)
+          var(--colour-effective-headings-text);
+      }
+
+      & dd {
+        grid-column: 1;
+        border-bottom: var(--border-weight) var(--border-style)
+          var(--colour-effective-headings-text);
+
+        &:last-of-type {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,358 @@
+/*
+ **********************************************************************
+ * File       : typography.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License
+ * Description:
+ *   Styles for the typography diagnostics page
+ **********************************************************************
+ */
+
+body {
+    background: var(--colour-page-background);
+    color: var(--colour-page-text);
+    padding: 2rem;
+    font-family: var(--font-family-text);
+}
+
+header {
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    background: var(--colour-headings-background);
+    color: var(--colour-headings-text);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+}
+
+nav {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+nav a {
+    color: var(--colour-page-text);
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.description {
+    background: var(--colour-code-background);
+    color: var(--colour-code-text);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 2rem;
+    line-height: var(--line-height-normal);
+}
+
+.section {
+    margin-bottom: 3rem;
+}
+
+.font-demo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60ch, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.font-demo {
+    border: 2px solid var(--colour-page-text);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    background: var(--colour-code-background);
+}
+
+.font-demo h3 {
+    color: var(--colour-headings-text);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.font-name {
+    font-family: var(--font-family-mono);
+    font-size: 0.85rem;
+    color: var(--colour-code-text);
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background: rgb(0 0 0 / 10%);
+    border-radius: 4px;
+}
+
+.sample-text {
+    margin: 1rem 0;
+    line-height: var(--line-height-normal);
+}
+
+.alphabet {
+    margin: 0.5rem 0;
+    letter-spacing: 0.05em;
+}
+
+.size-demo-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.size-demo {
+    border: 2px solid var(--colour-page-text);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    background: var(--colour-code-background);
+}
+
+.size-label {
+    font-family: var(--font-family-mono);
+    font-size: 0.85rem;
+    color: var(--colour-code-text);
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.size-value {
+    font-family: var(--font-family-mono);
+    font-size: 0.75rem;
+    color: var(--colour-code-text);
+    opacity: 0.8;
+    margin-bottom: 1rem;
+}
+
+.heading-levels {
+    display: grid;
+    gap: 1rem;
+}
+
+.heading-demo {
+    border: 1px solid var(--colour-page-text);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    background: rgb(255 255 255 / 5%);
+}
+
+.heading-demo .label {
+    font-family: var(--font-family-mono);
+    font-size: 0.75rem;
+    color: var(--colour-code-text);
+    opacity: 0.7;
+    margin-bottom: 0.5rem;
+}
+
+.weight-demos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.weight-demo {
+    border: 2px solid var(--colour-page-text);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    background: var(--colour-code-background);
+    text-align: center;
+}
+
+.weight-demo .label {
+    font-family: var(--font-family-mono);
+    font-size: 0.85rem;
+    color: var(--colour-code-text);
+    margin-bottom: 1rem;
+}
+
+.weight-demo .sample {
+    font-size: 2rem;
+    line-height: 1.4;
+}
+
+.responsive-demo {
+    border: 2px solid var(--colour-page-text);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    background: var(--colour-code-background);
+    margin-bottom: 1rem;
+}
+
+.responsive-demo .info {
+    font-family: var(--font-family-mono);
+    font-size: 0.75rem;
+    color: var(--colour-code-text);
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background: rgb(0 0 0 / 10%);
+    border-radius: 4px;
+}
+
+code {
+    background: var(--colour-code-background);
+    color: var(--colour-code-text);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: var(--font-family-mono);
+    font-size: inherit;
+}
+
+/* =================================================================
+   Utility Classes for Font Family Samples
+   ================================================================= */
+
+.sample-font-text {
+    font-family: var(--font-family-text);
+}
+
+.sample-font-title {
+    font-family: var(--font-family-title);
+}
+
+.sample-font-subtitle {
+    font-family: var(--font-family-subtitle);
+}
+
+.sample-font-menu {
+    font-family: var(--font-family-menu);
+}
+
+.sample-font-button {
+    font-family: var(--font-family-button);
+}
+
+.sample-font-mono {
+    font-family: var(--font-family-mono);
+}
+
+/* =================================================================
+   Utility Classes for Font Size Demos
+   ================================================================= */
+
+.demo-fontsize-large {
+    font-size: var(--fontsize-large);
+}
+
+.demo-fontsize-normal {
+    font-size: var(--fontsize-normal);
+}
+
+.demo-fontsize-small {
+    font-size: var(--fontsize-small);
+}
+
+.demo-fontsize-header-large {
+    font-size: var(--fontsize-header-large);
+}
+
+.demo-fontsize-header-medium {
+    font-size: var(--fontsize-header-medium);
+}
+
+.demo-fontsize-header-small {
+    font-size: var(--fontsize-header-small);
+}
+
+.demo-fontsize-button {
+    font-size: var(--fontsize-button);
+}
+
+.demo-fontsize-nav {
+    font-size: var(--fontsize-nav);
+}
+
+/* =================================================================
+   Utility Classes for Heading Demos
+   ================================================================= */
+
+.heading-no-margin {
+    margin: 0;
+}
+
+/* =================================================================
+   Utility Classes for Font Weight Demos
+   ================================================================= */
+
+.demo-weight-light {
+    font-weight: var(--font-weight-light);
+}
+
+.demo-weight-normal {
+    font-weight: var(--font-weight-normal);
+}
+
+.demo-weight-semibold {
+    font-weight: 600;
+}
+
+.demo-weight-bold {
+    font-weight: var(--font-weight-bold);
+}
+
+/* =================================================================
+   Utility Classes for Line Height & Spacing Demos
+   ================================================================= */
+
+.demo-line-height {
+    line-height: var(--line-height-normal);
+    border: 1px solid rgb(255 255 255 / 10%);
+    padding: 1rem;
+    background: rgb(0 0 0 / 10%);
+}
+
+.demo-margins-vertical {
+    margin-top: var(--margin-vertical);
+    margin-bottom: var(--margin-vertical);
+}
+
+.demo-margins-horizontal {
+    margin-left: var(--margin-horizontal);
+    margin-right: var(--margin-horizontal);
+    border: 1px dashed;
+}
+
+.demo-spacing-container {
+    border: 1px solid rgb(255 255 255 / 10%);
+    padding: 1rem;
+    background: rgb(0 0 0 / 10%);
+}
+
+/* =================================================================
+   Utility Classes for Text Samples
+   ================================================================= */
+
+.sample-paragraph {
+    font-family: var(--font-family-text);
+    font-size: var(--fontsize-normal);
+    line-height: var(--line-height-normal);
+}
+
+.sample-code-block {
+    font-family: var(--font-family-mono);
+    background: rgb(0 0 0 / 20%);
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+.sample-button-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.sample-button {
+    font-family: var(--font-family-button);
+    font-size: var(--fontsize-button);
+    padding: 0.5rem 1rem;
+}
+
+.sample-nav {
+    font-family: var(--font-family-menu);
+    font-size: var(--fontsize-nav);
+}
+
+.sample-nav-link {
+    margin-right: 1rem;
+}

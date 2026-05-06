@@ -2,7 +2,7 @@
  **********************************************************************
  * File       : gallery.html
  * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
- * Copyright  : (c) 2025 The Embodied Mind
+ * Copyright  : (c) 2026 The Embodied Mind
  * License    : MIT License (see license.html page)
  * Description:
  *   This page contains a gallery of portraits of witches and wizards.
@@ -11,7 +11,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <!-- Start of meta tags -->
     <meta charset="UTF-8">
     <meta name="description" content="Web Witchcraft and Wizardry">
@@ -22,15 +22,17 @@
     <!-- End of meta tags -->
 
     <!-- Set the document title -->
-    <title>Gallery|Web Witchcraft and Wizardry</title>
+    <title>Gallery | Web Witchcraft and Wizardry</title>
 
     <!-- Link to Favicon -->
-    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="../images/icons/favicon.svg">
 
     <!--Links for Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Marcellus&family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+      rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <!-- End Google Fonts links -->
@@ -39,142 +41,544 @@
     <link rel="stylesheet" href="https://kit.fontawesome.com/3895b3f1a4.css" crossorigin="anonymous">
     <!-- End Font Awesome Icons -->
 
-    <!-- Start of CSS stylesheets section -->
-
-    <!-- main.css must be the first stylesheet loaded -->
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="../styles/globals.css">
     <link rel="stylesheet" href="../styles/main.css">
-
-    <!-- These stylesheets are common to all pages -->
-    <link rel="stylesheet" href="../styles/components/buttons.css">
-    <link rel="stylesheet" href="../styles/components/code.css">
-    <link rel="stylesheet" href="../styles/components/header-and-footer.css">
-    <link rel="stylesheet" href="../styles/components/navigation.css">
-    <link rel="stylesheet" href="../styles/components/popover.css">
-    <link rel="stylesheet" href="../styles/components/titles.css">
-    <link rel="stylesheet" href="../styles/pages.css">
-
-    <!-- media-queries must be the last stylesheets loaded -->
-    <link rel="stylesheet" href="../styles/media-queries.css">
-    <!-- End of CSS stylesheets section -->
+    <link rel="stylesheet" href="../styles/pages/gallery.css">
 
     <!-- Load JavaScript files -->
-    <script src="../scripts/theme-switcher.js"></script>
-    <script src="../scripts/toggle-header-footer.js" defer></script>
-    <script src="../scripts/inject-header.js" defer></script>
-    <script src="../scripts/inject-footer.js" defer></script>
-    <script src="../scripts/inject-popover-text.js" defer></script>
+    <script src="../scripts/utils.js" defer></script>
+    <script src="../scripts/queryParams.js" defer></script>
+    <script src="../scripts/debug.js" defer></script>
+    <script src="../scripts/themeSwitcher.js" defer></script>
+    <script src="../scripts/toggleHeaderAndFooter.js" defer></script>
+    <script src="../scripts/injectCommonCode.js" type="module"></script>
+    <script src="../scripts/embodiedMindPopover.js" defer></script>
+    <script src="../scripts/carouselNavigation.js" defer></script>
     <!-- End JavaScript file link -->
 
     <noscript>
-        <link rel="stylesheet" href="../styles/noscript.css">
+      <link rel="stylesheet" href="../styles/utilities/noscript.css">
     </noscript>
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="header">
-        <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
+      <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
     </header>
     <main>
-        <h2 class="page-title">Gallery of Witches and Wizards</h2>
-        <section id="gallery" class="gallery">
-            <div class="gallery-container">
-                <div class="gallery-item">
-                    <img
-                        src="../images/rachel-mulligan-witch-old-female.png"
-                        alt="Portrait of an old female witch"
-                        class="gallery-image"
-                    >
-                    <h3>
-                        An old female witch
-                    </h3>
-                </div>
+      <h2 class="page-title">Galleries</h2>
+      <h3>Portraits of Witches and Wizards</h3>
+      <p>Here are the portraits of witches and wizards you can choose for your avatar.</p>
+      <div class="carousel-wrapper">
+        <button type="button" class="carousel-nav-button prev" aria-label="Scroll to previous portraits">
+          <i class="fa-duotone fa-backward-step" aria-hidden="true"></i>
+        </button>
+        <section id="portrait-gallery" class="carousel" tabindex="0" aria-label="Portrait gallery carousel">
+          <div class="portrait-item">
+            <img
+              src="../images/portraits/rachel-mulligan-witch-old-female.png"
+              alt="Portrait of an old female witch"
+              class="portrait-image">
+            <h3 class="portrait-caption">An old female witch</h3>
+          </div>
 
-                <div class="gallery-item">
-                    <img
-                        src="../images/rachel-mulligan-witch-young-female.png"
-                        alt="Portrait of a young female witch"
-                        class="gallery-image"
-                    >
-                    <h3>
-                        A young female witch
-                    </h3>
-                </div>
+          <div class="portrait-item">
+            <img
+              src="../images/portraits/rachel-mulligan-witch-young-female.png"
+              alt="Portrait of a young female witch"
+              class="portrait-image">
+            <h3 class="portrait-caption">A young female witch</h3>
+          </div>
 
-                <div class="gallery-item">
-                    <img
-                        src="../images/rachel-mulligan-witch-old-male.png"
-                        alt="Portrait of an old male witch"
-                        class="gallery-image"
-                    >
-                    <h3>
-                        An old male witch
-                    </h3>
-                </div>
+          <div class="portrait-item">
+            <img
+              src="../images/portraits/rachel-mulligan-witch-old-male.png"
+              alt="Portrait of an old male witch"
+              class="portrait-image">
+            <h3 class="portrait-caption">An old male witch</h3>
+          </div>
 
-                <div class="gallery-item">
-                    <img
-                        src="../images/rachel-mulligan-witch-young-male.png"
-                        alt="Portrait of a young male witch"
-                        class="gallery-image"
-                    >
-                    <h3>
-                        A young male witch
-                    </h3>
-                </div>
+          <div class="portrait-item">
+            <img
+              src="../images/portraits/rachel-mulligan-witch-young-male.png"
+              alt="Portrait of a young male witch"
+              class="portrait-image">
+            <h3 class="portrait-caption">A young male witch</h3>
+          </div>
 
-                <div class="gallery-item">
-                    <img
-                        src="../images/rachel-mulligan-wizard-old-female.png"
-                        alt="Portrait of an old female wizard"
-                        class="gallery-image"
-                    >
-                    <h3>
-                        An old female wizard
-                    </h3>
-                </div>
+          <div class="portrait-item">
+            <img
+              src="../images/portraits/rachel-mulligan-wizard-old-female.png"
+              alt="Portrait of an old female wizard"
+              class="portrait-image">
+            <h3 class="portrait-caption">An old female wizard</h3>
+          </div>
 
-                <div class="gallery-item">
-                    <img
-                        src="../images/rachel-mulligan-wizard-young-female.png"
-                        alt="Portrait of a young female wizard"
-                        class="gallery-image"
-                    >
-                    <h3>
-                        A young female wizard
-                    </h3>
-                </div>
+          <div class="portrait-item">
+            <img
+              src="../images/portraits/rachel-mulligan-wizard-young-female.png"
+              alt="Portrait of a young female wizard"
+              class="portrait-image">
+            <h3 class="portrait-caption">A young female wizard</h3>
+          </div>
 
-                <div class="gallery-item">
-                    <img
-                        src="../images/rachel-mulligan-wizard-old-male.png"
-                        alt="Portrait of an old male wizard "
-                        class="gallery-image"
-                    >
-                    <h3>
-                        An old male wizard
-                    </h3>
-                </div>
+          <div class="portrait-item">
+            <img
+              src="../images/portraits/rachel-mulligan-wizard-old-male.png"
+              alt="Portrait of an old male wizard "
+              class="portrait-image">
+            <h3 class="portrait-caption">An old male wizard</h3>
+          </div>
 
-                <div class="gallery-item">
-                    <img
-                        src="../images/rachel-mulligan-wizard-young-male.png"
-                        alt="Portrait of a young male wizard"
-                        class="gallery-image"
-                    >
-                    <h3>
-                        A young male wizard
-                    </h3>
-                </div>
-            </div>
+          <div class="portrait-item">
+            <img
+              src="../images/portraits/rachel-mulligan-wizard-young-male.png"
+              alt="Portrait of a young male wizard"
+              class="portrait-image">
+            <h3 class="portrait-caption">A young male wizard</h3>
+          </div>
         </section>
+        <button type="button" class="carousel-nav-button next" aria-label="Scroll to next portraits">
+          <i class="fa-duotone fa-forward-step" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <!-- Accessories Gallery -->
+      <section >
+        <h2>Accessories</h2>
+        <p>
+          All witches and wizards need their magical accessories to help them do their magic. In Terry Pratchett&rsquo;s
+          Discworld series, witches and wizards can buy what they need from Boffo&rsquo;s Novelty and Joke Shop in
+          Ankh-Morpork. Beware, though. The magic items may look great, but they often don&rsquo;t work as expected, if
+          they work at all.
+        </p>
+        <p>
+          <strong>But</strong>, if you really want to accessorise your witch or wizard, then here are some items for the
+          magical shopper to consider.
+        </p>
+        <p>
+          When you are using these accessories in your web pages, the catalogue number is the file name you use to
+          reference the image.
+        </p>
+
+        <div class="carousel-wrapper">
+          <button type="button" class="carousel-nav-button prev" aria-label="Scroll to previous accessories">
+            <i class="fa-duotone fa-backward-step" aria-hidden="true"></i>
+          </button>
+          <section id="accessories-gallery" class="carousel" tabindex="0" aria-label="Accessories gallery carousel">
+            <div class="accessory-item">
+              <img
+                src="../images/fontawesome/wand-magic-duotone-regular-full.svg"
+                alt="An icon of a magic wand"
+                class="accessory-image">
+              <h3 class="accessory-name">Magic Wand</h3>
+              <p class="accessory-description">A basic wand to cast your spells with.</p>
+              <hr>
+              <p class="catalogue-number">
+                Catalogue number:
+                <strong>wand-magic-duotone-regular-full.svg</strong>
+              </p>
+            </div>
+            <div class="accessory-item">
+              <img
+                src="../images/fontawesome/wand-magic-sparkles-sharp-duotone-regular-full.svg"
+                alt="An icon of a magic wand with sparkles"
+                class="accessory-image">
+              <h3 class="accessory-name">Faulty Magic Wand</h3>
+              <p class="accessory-description">
+                Special Offer. This wand constantly leaks magic and may not cast spells exactly as intended.
+              </p>
+              <hr>
+              <p class="catalogue-number">
+                Catalogue number:
+                <strong>wand-magic-sparkles-sharp-duotone-regular-full.svg</strong>
+              </p>
+            </div>
+            <div class="accessory-item">
+              <img
+                src="../images/fontawesome/hat-witch-solid-full.svg"
+                alt="An icon of a black witch&rsquo;s hat"
+                class="accessory-image">
+              <h3 class="accessory-name">Witch&rsquo;s Hat</h3>
+              <p class="accessory-description">A classic black hat for any witch.</p>
+              <hr>
+              <p class="catalogue-number">Catalogue number: <strong>hat-witch-solid-full.svg</strong></p>
+            </div>
+            <div class="accessory-item">
+              <img
+                src="../images/fontawesome/hat-wizard-duotone-solid-full.svg"
+                alt="An icon of a pointy wizard&rsquo;s hat"
+                class="accessory-image">
+              <h3 class="accessory-name">Wizard&rsquo;s Hat</h3>
+              <p class="accessory-description">A pointy hat with stars for any wizard.</p>
+              <hr>
+              <p class="catalogue-number">
+                Catalogue number:
+                <strong>hat-wizard-duotone-solid-full.svg</strong>
+              </p>
+            </div>
+            <div class="accessory-item">
+              <img
+                src="../images/fontawesome/hat-witch-sharp-duotone-regular-full.svg"
+                alt="An icon of a superior witch&rsquo;s hat"
+                class="accessory-image">
+              <h3 class="accessory-name">Superior Witch&rsquo;s Hat</h3>
+              <p class="accessory-description">When the plain black hat just won&rsquo;t do.</p>
+              <hr>
+              <p class="catalogue-number">
+                Catalogue number:
+                <strong>hat-witch-sharp-duotone-regular-full.svg</strong>
+              </p>
+            </div>
+            <div class="accessory-item">
+              <img
+                src="../images/fontawesome/broom-duotone-light-full.svg"
+                alt="An icon of a broomstick"
+                class="accessory-image">
+              <h3 class="accessory-name">Broomstick</h3>
+              <p class="accessory-description">
+                A light broomstick for any witch or wizard who needs to get around quickly. Can also be used for
+                sweeping dusty floors.
+              </p>
+              <hr>
+              <p class="catalogue-number">Catalogue number: <strong>broom-duotone-light-full.svg</strong></p>
+            </div>
+            <div class="accessory-item">
+              <img
+                src="../images/fontawesome/broom-wide-duotone-regular-full.svg"
+                alt="An icon of a heavy duty broomstick"
+                class="accessory-image">
+              <h3 class="accessory-name">Heavy Duty Broomstick</h3>
+              <p class="accessory-description">
+                A sturdy broomstick for those tough cleaning jobs or long-distance flying. Can carry 2 people (or 1
+                large wizard) and a small animal familiar, not including ravens as they can fly alongside.
+              </p>
+              <hr>
+              <p class="catalogue-number">
+                Catalogue number:
+                <strong>broom-wide-duotone-regular-full.svg</strong>
+              </p>
+            </div>
+            <div class="accessory-item">
+              <img
+                src="../images/fontawesome/cauldron-duotone-light-full.svg"
+                alt="An icon of a cauldron"
+                class="accessory-image">
+              <h3 class="accessory-name">Cauldron</h3>
+              <p class="accessory-description">
+                Perfect for making potions and magical drinks. Can be used as a washing up bowl in an emergency. Please
+                wash well after use.
+              </p>
+              <hr>
+              <p class="catalogue-number">
+                Catalogue number:
+                <strong>cauldron-duotone-light-full.svg</strong>
+              </p>
+            </div>
+            <div class="accessory-item">
+              <img
+                src="../images/fontawesome/flask-round-potion-duotone-light-full.svg"
+                alt="An icon of a potion flask"
+                class="accessory-image">
+              <h3 class="accessory-name">Potion Flask</h3>
+              <p class="accessory-description">
+                A handy flask for holding potions and magical drinks. Comes with a secure stopper to stop spills.
+              </p>
+              <hr>
+              <p class="catalogue-number">
+                Catalogue number:
+                <strong>flask-round-potion-duotone-light-full.svg</strong>
+              </p>
+            </div>
+            <div class="accessory-item">
+              <img
+                src="../images/fontawesome/book-spine-duotone-regular-full.svg"
+                alt="An icon of a spell book"
+                class="accessory-image">
+              <h3 class="accessory-name">Spell Book</h3>
+              <p class="accessory-description">
+                A well-used book with spells for all occasions. Filled with many enchantments and charms for all skill
+                levels. This edition also includes magical curses for advanced witches and wizards who need to curse at
+                someone.
+              </p>
+              <hr>
+              <p class="catalogue-number">
+                Catalogue number:
+                <strong>book-spine-duotone-regular-full.svg</strong>
+              </p>
+            </div>
+            <div class="accessory-item">
+              <img
+                src="../images/fontawesome/book-open-lines-duotone-regular-full.svg"
+                alt="An icon of an open spell book"
+                class="accessory-image">
+              <h3 class="accessory-name">Ever Open Spell Book</h3>
+              <p class="accessory-description">
+                Does your spell book ever close just when you get to the important part? This magic book stays open for
+                easy reading. Note: Cannot be stored on a book shelf as it will not close properly.
+              </p>
+              <hr>
+              <p class="catalogue-number">
+                Catalogue number:
+                <strong>book-open-lines-duotone-regular-full.svg</strong>
+              </p>
+            </div>
+            <div class="accessory-item">
+              <img
+                src="../images/fontawesome/candle-holder-duotone-light-full.svg"
+                alt="An icon of a candle holder"
+                class="accessory-image">
+              <h3 class="accessory-name">Mystic Candle Holder</h3>
+              <p class="accessory-description">
+                A candle holder for casting spells at night and creating a special mood. Comes with a variety of
+                assorted magical candles. Black dribbly candles for evil rites sold separately.
+              </p>
+              <hr>
+              <p class="catalogue-number">
+                Catalogue number:
+                <strong>candle-holder-duotone-light-full.svg</strong>
+              </p>
+            </div>
+            <div class="accessory-item">
+              <img
+                src="../images/fontawesome/cloud-bolt-sharp-duotone-light-full.svg"
+                alt="An icon of a lightning cloud"
+                class="accessory-image">
+              <h3 class="accessory-name">Portable Thunderbolt</h3>
+              <p class="accessory-description">
+                Useful for calling thunderstorms on dry days or smiting your enemies. Batteries not included.
+              </p>
+              <hr>
+              <p class="catalogue-number">
+                Catalogue number:
+                <strong>cloud-bolt-sharp-duotone-light-full.svg</strong>
+              </p>
+            </div>
+            <div class="accessory-item">
+              <img
+                src="../images/fontawesome/cat-duotone-light-full.svg"
+                alt="An icon of a cat"
+                class="accessory-image">
+              <h3 class="accessory-name">Cat Familiar</h3>
+              <p class="accessory-description">
+                <strong>Part of our Fun Familiars range.</strong> A friendly cat for any witch or wizard. Comes in any
+                colour you like as long as it&rsquo;s black.
+              </p>
+              <hr>
+              <p class="catalogue-number">Catalogue number: <strong>cat-duotone-light-full.svg</strong></p>
+            </div>
+            <div class="accessory-item">
+              <img
+                src="../images/fontawesome/bat-duotone-light-full.svg"
+                alt="An icon of a bat"
+                class="accessory-image">
+              <h3 class="accessory-name">Bat Familiar</h3>
+              <p class="accessory-description">
+                <strong>Part of our Fun Familiars range.</strong> A spooky bat for any wizard or witch. The manual says
+                that it drinks blood, but in fact any red liquid will do. Squeaks at night.
+              </p>
+              <hr>
+              <p class="catalogue-number">Catalogue number: <strong>bat-duotone-light-full.svg</strong></p>
+            </div>
+            <div class="accessory-item">
+              <img
+                src="../images/fontawesome/crow-duotone-solid-full.svg"
+                alt="An icon of a raven"
+                class="accessory-image">
+              <h3 class="accessory-name">Raven Familiar</h3>
+              <p class="accessory-description">
+                <strong>Part of our Fun Familiars range.</strong> A wise old bird for any wizard or witch. Known for
+                being smart and funny. Only one previous owner who taught it to say &ldquo;Nevermore&rdquo; and now it
+                won&rsquo;t stop.
+              </p>
+              <hr>
+              <p class="catalogue-number">Catalogue number: <strong>crow-duotone-solid-full.svg</strong></p>
+            </div>
+            <div class="accessory-item">
+              <img
+                src="../images/fontawesome/dragon-solid-full.svg"
+                alt="An icon of a small black dragon"
+                class="accessory-image">
+              <h3 class="accessory-name">Black Dragon Familiar</h3>
+              <p class="accessory-description">
+                <strong>Part of our Fun Familiars range.</strong> A small black dragon. Breathes fire when angry or
+                upset. Needs regular feeding with coal. Handle with care as it may explode when scared.
+              </p>
+              <hr>
+              <p class="catalogue-number">Catalogue number: <strong>dragon-solid-full.svg</strong></p>
+            </div>
+            <div class="accessory-item">
+              <img
+                src="../images/fontawesome/dragon-duotone-thin-full.svg"
+                alt="An icon of a small green dragon"
+                class="accessory-image">
+              <h3 class="accessory-name">Green Dragon Familiar</h3>
+              <p class="accessory-description">
+                <strong>Part of our Fun Familiars range.</strong> A small green dragon. This is a newer green version of
+                the black dragon familiar. Instead of coal, it runs on recycled solar and wind energy. Good for the
+                planet.
+              </p>
+              <hr>
+              <p class="catalogue-number">Catalogue number: <strong>dragon-duotone-thin-full.svg</strong></p>
+            </div>
+            <div class="accessory-item">
+              <img
+                src="../images/fontawesome/frog-duotone-regular-full.svg"
+                alt="An icon of a toad"
+                class="accessory-image">
+              <h3 class="accessory-name">Toad Familiar</h3>
+              <p class="accessory-description">
+                <strong>Part of our Fun Familiars range.</strong>
+                A slimy toad. Poisonous skin makes it unsafe to touch. Missing a toe, due to use by witches in creating
+                double, double toil and trouble.
+              </p>
+              <hr>
+              <p class="catalogue-number">Catalogue number: <strong>frog-duotone-regular-full.svg</strong></p>
+            </div>
+            <div class="accessory-item">
+              <img
+                src="../images/fontawesome/spider-duotone-light-full.svg"
+                alt="An icon of a spider"
+                class="accessory-image">
+              <h3 class="accessory-name">Spider Familiar</h3>
+              <p class="accessory-description">
+                <strong>Part of our Fun Familiars range.</strong> A large spider. Can creep into very small spaces. With
+                its many eyes and legs this familiar is perfect for spying on your enemies and running away afterwards.
+              </p>
+              <hr>
+              <p class="catalogue-number">Catalogue number: <strong>spider-duotone-light-full.svg</strong></p>
+            </div>
+            <div class="accessory-item">
+              <img
+                src="../images/fontawesome/octopus-duotone-regular-full.svg"
+                alt="An icon of an octopus"
+                class="accessory-image">
+              <h3 class="accessory-name">Octopus Familiar</h3>
+              <p class="accessory-description">
+                <strong>Part of our Fun Familiars range.</strong> A very smart octopus. Can solve puzzles and open jam
+                jars with its tentacles. Note: Do not leave alone with jam jars or unfinished sudoku puzzles.
+              </p>
+              <hr>
+              <p class="catalogue-number">
+                Catalogue number:
+                <strong>octopus-duotone-regular-full.svg</strong>
+              </p>
+            </div>
+          </section>
+          <button type="button" class="carousel-nav-button next" aria-label="Scroll to next accessories">
+            <i class="fa-duotone fa-forward-step" aria-hidden="true"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- Familiars Gallery -->
+      <section >
+        <h2>Familiars</h2>
+        <p>
+          To help you get to know your <em>Fun Familiar</em> our brave team of magical researchers have been out taking
+          photos of the familiars in the wild. Here are some of the photos they took of the familiars in action.
+        </p>
+        <p>
+          When you are using these familiars in your web pages, the catalogue number is the file name you use to
+          reference the image.
+        </p>
+
+        <div class="carousel-wrapper">
+          <button type="button" class="carousel-nav-button prev" aria-label="Scroll to previous familiars">
+            <i class="fa-duotone fa-backward-step" aria-hidden="true"></i>
+          </button>
+
+          <section id="familiars-gallery" class="carousel" tabindex="0" aria-label="Familiars gallery carousel">
+            <div class="familiar-item">
+              <img
+                src="../images/photos/bat-familiar.jpg"
+                alt="A photograph of a bat familiar"
+                class="familiar-image">
+              <h3 >Bat Familiar</h3>
+              <hr>
+              <p class="catalogue-number">Catalogue number: <strong>bat-familiar.jpg</strong></p>
+            </div>
+
+            <div class="familiar-item">
+              <img
+                src="../images/photos/cat-familiar.jpg"
+                alt="A photograph of a cat familiar"
+                class="familiar-image">
+              <h3 >Cat Familiar</h3>
+              <hr>
+              <p class="catalogue-number">Catalogue number: <strong>cat-familiar.jpg</strong></p>
+            </div>
+
+            <div class="familiar-item">
+              <img
+                src="../images/photos/black-dragon-familiar.jpg"
+                alt="A photograph of a black dragon familiar"
+                class="familiar-image">
+              <h3 >Black Dragon Familiar</h3>
+              <hr>
+              <p class="catalogue-number">Catalogue number: <strong>black-dragon-familiar.jpg</strong></p>
+            </div>
+
+            <div class="familiar-item">
+              <img
+                src="../images/photos/green-dragon-familiar.jpg"
+                alt="A photograph of a green dragon familiar"
+                class="familiar-image">
+              <h3 >Green Dragon Familiar</h3>
+              <hr>
+              <p class="catalogue-number">Catalogue number: <strong>green-dragon-familiar.jpg</strong></p>
+            </div>
+
+            <div class="familiar-item">
+              <img
+                src="../images/photos/octopus-familiar.jpg"
+                alt="A photograph of an octopus familiar"
+                class="familiar-image">
+              <h3 >Octopus Familiar</h3>
+              <hr>
+              <p class="catalogue-number">Catalogue number: <strong>octopus-familiar.jpg</strong></p>
+            </div>
+
+            <div class="familiar-item">
+              <img
+                src="../images/photos/raven-familiar.jpg"
+                alt="A photograph of a raven familiar"
+                class="familiar-image">
+              <h3 >Raven Familiar</h3>
+              <hr>
+              <p class="catalogue-number">Catalogue number: <strong>raven-familiar.jpg</strong></p>
+            </div>
+
+            <div class="familiar-item">
+              <img
+                src="../images/photos/spider-familiar.jpg"
+                alt="A photograph of a spider familiar"
+                class="familiar-image">
+              <h3 >Spider Familiar</h3>
+              <hr>
+              <p class="catalogue-number">Catalogue number: <strong>spider-familiar.jpg</strong></p>
+            </div>
+
+            <div class="familiar-item">
+              <img
+                src="../images/photos/toad-familiar.jpg"
+                alt="A photograph of a toad familiar"
+                class="familiar-image">
+              <h3 >Toad Familiar</h3>
+              <hr>
+              <p class="catalogue-number">Catalogue number: <strong>toad-familiar.jpg</strong></p>
+            </div>
+          </section>
+          <button type="button" class="carousel-nav-button next" aria-label="Scroll to next familiars">
+            <i class="fa-duotone fa-forward-step" aria-hidden="true"></i>
+          </button>
+        </div>
+      </section>
     </main>
 
     <footer class="footer">
-        <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
+      <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
     </footer>
-    <div id="not-implemented" popover="auto" class="popover">
-        <!-- Popover content is injected by JavaScript to ensure it is the same across all pages -->
-    </div>
-
-</body>
+  </body>
 </html>

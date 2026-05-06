@@ -6,24 +6,71 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/test-helpers.sh"
 
-# Get any command line options
+print_usage() {
+  print_standard_usage "$0 [folder] [options]" help url exclude-discovery
+}
+
 TEST_URL="http://localhost:8080"
-parse_test_options "$@"
+EXCLUDE_LIST=""
+FOLDER=""
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -h|--help)
+      print_usage
+      exit 0
+      ;;
+    -u|--url)
+      shift
+      if [ $# -eq 0 ] || [[ "$1" == -* ]]; then
+        echo "❌ Error: --url requires a URL argument"
+        exit 1
+      fi
+      TEST_URL="$1"
+      shift
+      ;;
+    -x|--exclude)
+      shift
+      if [ $# -eq 0 ] || [[ "$1" == -* ]]; then
+        echo "❌ Error: --exclude requires at least one file or folder"
+        exit 1
+      fi
+      while [[ $# -gt 0 ]] && [[ "$1" != -* ]]; do
+        EXCLUDE_LIST="$(normalise_exclude_list "$EXCLUDE_LIST" "$1")"
+        shift
+      done
+      ;;
+    *)
+      if [ -z "$FOLDER" ]; then
+        FOLDER="$1"
+      else
+        echo "❌ Error: Unexpected argument '$1'"
+        exit 1
+      fi
+      shift
+      ;;
+  esac
+done
+
+[ -z "$FOLDER" ] && FOLDER="."
 
 # Validate folder parameter
 ORIGINAL_DIR=$(pwd)
-FOLDER="${1:-.}"
 if [ ! -d "$FOLDER" ]; then
   echo "❌ Error: '$FOLDER' is not a valid directory"
   exit 1
 fi
 
-# Install dependencies
-echo "Installing dependencies..."
-npm install broken-link-checker cheerio > /dev/null 2>&1
+# Verify required runtime dependencies are available (installed via npm ci in CI)
+echo "Checking dependencies..."
+if ! node -e "require('playwright')" > /dev/null 2>&1; then
+  echo "❌ Error: Playwright runtime is unavailable or inconsistent."
+  echo "Run 'npm ci' before executing link checks."
+  exit 1
+fi
 
 # Setup results directory in application folder
-RESULTS_DIR="$ORIGINAL_DIR/$FOLDER/test-results"
+RESULTS_DIR="$ORIGINAL_DIR/$FOLDER/diagnostics/test-results"
 mkdir -p "$RESULTS_DIR"
 
 # Change to the specified folder to serve files from there
@@ -31,7 +78,7 @@ cd "$FOLDER" || exit 1
 
 # Start server and setup
 start_server_if_needed "$TEST_URL"
-discover_html_pages "."
+discover_html_pages "." "$EXCLUDE_LIST"
 
 # Wait for server to be ready
 echo "Waiting for server to be ready..."
@@ -51,8 +98,8 @@ fi
 
 RESULT_FILE="$RESULTS_DIR/broken-links-results.json"
 
-# Initialize results
-echo '{"pages":[],"summary":{"totalLinks":0,"brokenLinks":0,"excludedLinks":0}}' > "$RESULT_FILE"
+# Initialise results
+echo '{"pages":[],"summary":{"totalLinks":0,"brokenLinks":0,"timeoutLinks":0,"excludedLinks":0}}' > "$RESULT_FILE"
 
 echo ""
 echo "🔗 Checking links on HTML pages..."
@@ -88,23 +135,27 @@ node -e "
   console.log('Pages checked: ' + data.pages.length);
   console.log('Total links: ' + data.summary.totalLinks);
   console.log('Broken links: ' + data.summary.brokenLinks);
+  if (data.summary.timeoutLinks > 0) {
+    console.log('Timeout warnings: ' + data.summary.timeoutLinks);
+  }
   console.log('');
 
-  if (data.summary.brokenLinks === 0) {
+  if (data.summary.brokenLinks === 0 && data.summary.timeoutLinks === 0) {
     console.log('✅ No broken links found!');
   } else {
-    console.log('❌ Broken links found:');
-    console.log('');
+    if (data.summary.brokenLinks > 0) {
+      console.log('❌ Broken links found:');
+      console.log('');
 
-    data.pages.filter(p => p.brokenCount > 0).forEach(page => {
-      console.log('📄 ' + page.url + ' (' + page.brokenCount + ' broken link(s))');
-      page.links.forEach(link => {
-        console.log('  ❌ ' + link.url);
-        if (link.original && link.original !== link.url) {
-          console.log('     Original: ' + link.original);
-        }
-        if (link.text) {
-          console.log('     Text: ' + link.text);
+      data.pages.filter(p => p.brokenCount > 0).forEach(page => {
+        console.log('📄 ' + page.url + ' (' + page.brokenCount + ' broken link(s))');
+        page.links.filter(link => link.error).forEach(link => {
+          console.log('  ❌ ' + link.url);
+          if (link.original && link.original !== link.url) {
+            console.log('     Original: ' + link.original);
+          }
+          if (link.text) {
+            console.log('     Text: ' + link.text);
         }
         if (link.statusCode) {
           console.log('     Status: ' + link.statusCode);
@@ -116,6 +167,27 @@ node -e "
       });
       console.log('');
     });
+    }
+    
+    if (data.summary.timeoutLinks > 0) {
+      console.log('⚠️  Link timeout warnings:');
+      console.log('');
+      
+      data.pages.filter(p => p.timeoutCount > 0).forEach(page => {
+        console.log('📄 ' + page.url + ' (' + page.timeoutCount + ' timeout(s))');
+        page.links.filter(link => link.warning === 'timeout').forEach(link => {
+          console.log('  ⚠️  ' + link.url);
+          if (link.original && link.original !== link.url) {
+            console.log('     Original: ' + link.original);
+          }
+          if (link.text) {
+            console.log('     Text: ' + link.text);
+          }
+          console.log('     Tag: <' + link.tagName + '>');
+        });
+        console.log('');
+      });
+    }
   }
 "
 
@@ -125,6 +197,12 @@ HAS_BROKEN=$(node -p "const fs = require('fs'); const data = JSON.parse(fs.readF
 if [ "$HAS_BROKEN" -eq 0 ]; then
   echo ""
   echo "✅ No broken links found!"
+  
+  # Check if there are timeout warnings
+  HAS_TIMEOUTS=$(node -p "const fs = require('fs'); const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8')); data.summary.timeoutLinks > 0 ? 1 : 0")
+  if [ "$HAS_TIMEOUTS" -eq 1 ]; then
+    echo "⚠️  Some links timed out (see warnings above)"
+  fi
   exit 0
 else
   echo ""

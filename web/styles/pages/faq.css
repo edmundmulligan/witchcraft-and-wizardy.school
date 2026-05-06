@@ -1,0 +1,43 @@
+/*
+ **********************************************************************
+ * File       : styles/pages/faq.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   FAQ page-specific styles.
+ **********************************************************************
+ */
+
+@layer pages {
+  .faq {
+    & h3,
+    & h4 {
+      text-align: left;
+    }
+
+    & h4 {
+      font-size: var(--fontsize-header-small);
+    }
+
+    /* Apply multi-column layout to answer text blocks only (h4 + div). */
+    & h4 + div {
+      column-width: var(--faq-column-width);
+      column-gap: 2rem;
+      column-fill: balance;
+
+      & p {
+        break-inside: avoid;
+      }
+
+      /* Keep snippet-heavy answers in one column so code does not overlap. */
+      &.has-code-snippet {
+        columns: 1;
+      }
+    }
+  }
+
+  .faq-title {
+    text-align: left;
+  }
+}

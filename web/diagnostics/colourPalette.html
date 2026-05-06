@@ -1,0 +1,774 @@
+<!--
+**********************************************************************
+ * File       : colours.html
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see ../license-and-credits.html page)
+ * Description:
+ *    Colour palette preview page showing all colours defined in globals.css
+ *    Uses CSS Grid layout to display colour swatches with their variable names
+**********************************************************************
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Colour Palette Preview - Web Witchcraft and Wizardry">
+    <meta name="keywords" content="colour palette, design system, CSS variables, HSL colours">
+    <meta name="author" content="Edmund Mulligan">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Colour Palette - Web Witchcraft and Wizardry</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../images/icons/favicon.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Roboto+Slab:wght@400;700&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles/globals.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/diagnostics/colourPalette.css">
+
+    <script src="../scripts/diagnostics/colourPalette.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-palette"></i> Web Witchcraft and Wizardry Colour Palette</h1>
+        <nav aria-label="breadcrumb">
+            <a href="../index.html">Home</a> &gt;
+                <a href="index.html">Diagnostics</a> &gt;
+                <a href="colourPalette.html" aria-current="page">Colour Palette</a>
+        </nav>
+    </header>
+
+    <main class="colour-preview">
+        <div class="description">
+            <p>This page displays all colour variables defined in <code>colours.css</code>. The colour system includes three style variants (normal, subdued, and vibrant) with both light and dark themes. All colour combinations meet at least WCAG 2.2 AA contrast standards (4.5:1 ratio). Normal theme and popovers meet AAA standards (7:1 ratio). Each card shows the background colour with its corresponding text colour applied, along with both CSS variable names and sample text to preview readability.</p>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-navigation" role="tablist">
+            <button type="button" class="tab-button active" data-tab="non-theme" role="tab" aria-selected="true" aria-controls="tab-non-theme">Non-theme</button>
+            <button type="button" class="tab-button" data-tab="normal-light" role="tab" aria-selected="false" aria-controls="tab-normal-light">Normal Light</button>
+            <button type="button" class="tab-button" data-tab="normal-dark" role="tab" aria-selected="false" aria-controls="tab-normal-dark">Normal Dark</button>
+            <button type="button" class="tab-button" data-tab="subdued-light" role="tab" aria-selected="false" aria-controls="tab-subdued-light">Subdued Light</button>
+            <button type="button" class="tab-button" data-tab="subdued-dark" role="tab" aria-selected="false" aria-controls="tab-subdued-dark">Subdued Dark</button>
+            <button type="button" class="tab-button" data-tab="vibrant-light" role="tab" aria-selected="false" aria-controls="tab-vibrant-light">Vibrant Light</button>
+            <button type="button" class="tab-button" data-tab="vibrant-dark" role="tab" aria-selected="false" aria-controls="tab-vibrant-dark">Vibrant Dark</button>
+        </div>
+
+        <!-- Tab Panel: Non-theme Colours -->
+        <div class="tab-panel active" id="tab-non-theme" role="tabpanel">
+        <section class="colour-section">
+            <h2>Non-theme Colours</h2>
+            <div class="colour-grid">
+                <div class="colour-card">
+                    <div class="colour-swatch" data-scheme="warning">
+                        <div class="card-title">Warning Popovers</div>
+                        <div class="lorem-text"><strong>Lorem Ipsum</strong> dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</div>
+                        <div class="colour-name">Background: --colour-warning-background</div>
+                        <div class="colour-value" data-var="--colour-warning-background"></div>
+                        <div class="colour-name">Text: --colour-warning-text</div>
+                        <div class="colour-value" data-var="--colour-warning-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-warning-background" data-fg-var="--colour-warning-text"></div>
+                    </div>
+                </div>
+                <div class="colour-card">
+                    <div class="colour-swatch" data-scheme="error">
+                        <div class="card-title">Error Popovers</div>
+                        <div class="lorem-text"><strong>Lorem Ipsum</strong> dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</div>
+                        <div class="colour-name">Background: --colour-error-background</div>
+                        <div class="colour-value" data-var="--colour-error-background"></div>
+                        <div class="colour-name">Text: --colour-error-text</div>
+                        <div class="colour-value" data-var="--colour-error-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-error-background" data-fg-var="--colour-error-text"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+
+        <!-- Tab Panel: Normal Light Theme -->
+        <div class="tab-panel" id="tab-normal-light" role="tabpanel">
+        <section class="colour-section">
+            <h2>Normal - Light Theme</h2>
+            <div class="colour-grid">
+                <div class="colour-card">
+                    <div class="colour-swatch" data-scheme="normal-light-page">
+                        <div class="card-title">Page</div>
+                        <div class="lorem-text"><strong>Lorem Ipsum</strong> dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                        <div class="colour-name">Background: --colour-normal-light-page-background</div>
+                        <div class="colour-value" data-var="--colour-normal-light-page-background"></div>
+                        <div class="colour-name">Text: --colour-normal-light-page-text</div>
+                        <div class="colour-value" data-var="--colour-normal-light-page-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-normal-light-page-background" data-fg-var="--colour-normal-light-page-text"></div>
+                    </div>
+                </div>
+                <div class="colour-card">
+                    <div class="colour-swatch" data-scheme="normal-light-headings">
+                        <div class="card-title">Header/Footer</div>
+                        <div class="lorem-text"><strong>Lorem Ipsum</strong> dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                        <div class="colour-name">Background: --colour-normal-light-headings-background</div>
+                        <div class="colour-value" data-var="--colour-normal-light-headings-background"></div>
+                        <div class="colour-name">Text: --colour-normal-light-headings-text</div>
+                        <div class="colour-value" data-var="--colour-normal-light-headings-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-normal-light-headings-background" data-fg-var="--colour-normal-light-headings-text"></div>
+                    </div>
+                </div>
+                <div class="colour-card">
+                    <div class="colour-swatch" data-scheme="normal-light-code">
+                        <div class="card-title">Code</div>
+                        <div class="lorem-text"><strong>Lorem Ipsum</strong> dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                        <div class="colour-name">Background: --colour-normal-light-code-background</div>
+                        <div class="colour-value" data-var="--colour-normal-light-code-background"></div>
+                        <div class="colour-name">Text: --colour-normal-light-code-text</div>
+                        <div class="colour-value" data-var="--colour-normal-light-code-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-normal-light-code-background" data-fg-var="--colour-normal-light-code-text"></div>
+                    </div>
+                </div>
+                <div class="colour-card wide">
+                    <div class="colour-swatch" data-scheme="normal-light-page">
+                        <div class="card-title">Buttons</div>
+                        <div class="button-states">
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round" data-scheme="normal-light-button">Click</button>
+                                <div class="button-state-label">Normal</div>
+                            </div>
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round" data-scheme="normal-light-button-hover">Click</button>
+                                <div class="button-state-label">Hover</div>
+                            </div>
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round selected-state" data-scheme="normal-light-button-selected">Click</button>
+                                <div class="button-state-label">Selected</div>
+                            </div>
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round" data-scheme="normal-light-button-disabled" disabled>Click</button>
+                                <div class="button-state-label">Disabled</div>
+                            </div>
+                        </div>
+                        <div class="colour-name">Button Background: --colour-normal-light-button-background</div>
+                        <div class="colour-value" data-var="--colour-normal-light-button-background">hsl(from var(--colour-medium-cyan) h s 75%)</div>
+                        <div class="colour-name">Button Text: --colour-normal-light-button-text</div>
+                        <div class="colour-value" data-var="--colour-normal-light-button-text">hsl(from var(--colour-indigo) h s l)</div>
+                        <div class="contrast-info" data-bg-var="--colour-normal-light-button-background" data-fg-var="--colour-normal-light-button-text"></div>
+                        <div class="colour-name">Button Background Hover: --colour-normal-light-button-background-hover</div>
+                        <div class="colour-value" data-var="--colour-normal-light-button-background-hover">hsl(from var(--colour-dark-cyan) h s 55%)</div>
+                        <div class="colour-name">Button Text Hover: --colour-normal-light-button-text-hover</div>
+                        <div class="colour-value" data-var="--colour-normal-light-button-text-hover">hsl(from var(--colour-purple) h s l)</div>
+                        <div class="contrast-info" data-bg-var="--colour-normal-light-button-background-hover" data-fg-var="--colour-normal-light-button-text-hover"></div>
+                        <div class="colour-name">Button Background Selected: --colour-normal-light-button-background-selected</div>
+                        <div class="colour-value" data-var="--colour-normal-light-button-background-selected">hsl(from var(--colour-dark-cyan) h s 18%)</div>
+                        <div class="colour-name">Button Text Selected: --colour-normal-light-button-text-selected</div>
+                        <div class="colour-value" data-var="--colour-normal-light-button-text-selected">hsl(from var(--colour-white) h s l)</div>
+                        <div class="contrast-info" data-bg-var="--colour-normal-light-button-background-selected" data-fg-var="--colour-normal-light-button-text-selected"></div>
+                        <div class="colour-name">Button Background Disabled: --colour-normal-light-button-background-disabled</div>
+                        <div class="colour-value" data-var="--colour-normal-light-button-background-disabled">hsl(from var(--colour-blue) h s 15%)</div>
+                        <div class="colour-name">Button Text Disabled: --colour-normal-light-button-text-disabled</div>
+                        <div class="colour-value" data-var="--colour-normal-light-button-text-disabled">hsl(from var(--colour-blue) h s 75%)</div>
+                        <div class="contrast-info" data-bg-var="--colour-normal-light-button-background-disabled" data-fg-var="--colour-normal-light-button-text-disabled"></div>
+                    </div>
+                </div>
+                <div class="colour-card wide">
+                    <div class="colour-swatch" data-scheme="normal-light-page">
+                        <div class="card-title">Lesson Navigation Normal Light Theme</div>
+                        <nav aria-label="Lesson Navigation Normal Light Theme">
+                            <ul class="demo-nav">
+                                <li><a href="#" data-scheme="normal-light-menu">Lesson 0 (normal)</a></li>
+                                <li><a href="#" data-scheme="normal-light-menu-hover">Lesson 1 (hover)</a></li>
+                                <li><a href="#" data-scheme="normal-light-menu-visited">Lesson 2 (visited)</a></li>
+                            </ul>
+                        </nav>
+                        <div class="colour-name">Menu Background: --colour-normal-light-menu-background</div>
+                        <div class="colour-value" data-var="--colour-normal-light-menu-background">hsl(from var(--colour-dark-cyan) h s 16%)</div>
+                        <div class="colour-name">Menu Text: --colour-normal-light-menu-text</div>
+                        <div class="colour-value" data-var="--colour-normal-light-menu-text">hsl(from var(--colour-white) h s l)</div>
+                        <div class="contrast-info" data-bg-var="--colour-normal-light-menu-background" data-fg-var="--colour-normal-light-menu-text"></div>
+                        <div class="colour-name">Menu Background Hover: --colour-normal-light-menu-background-hover</div>
+                        <div class="colour-value" data-var="--colour-normal-light-menu-background-hover">hsl(from var(--colour-dark-cyan) h s 10%)</div>
+                        <div class="colour-name">Menu Text Hover: --colour-normal-light-menu-text-hover</div>
+                        <div class="colour-value" data-var="--colour-normal-light-menu-text-hover">hsl(from var(--colour-light-cyan) h s l)</div>
+                        <div class="contrast-info" data-bg-var="--colour-normal-light-menu-background-hover" data-fg-var="--colour-normal-light-menu-text-hover"></div>
+                        <div class="colour-name">Menu Background Visited: --colour-normal-light-menu-background-visited</div>
+                        <div class="colour-value" data-var="--colour-normal-light-menu-background-visited">hsl(from var(--colour-dark-cyan) h s 16%)</div>
+                        <div class="colour-name">Menu Text Visited: --colour-normal-light-menu-text-visited</div>
+                        <div class="colour-value" data-var="--colour-normal-light-menu-text-visited">hsl(from var(--colour-purple) h s 94%)</div>
+                        <div class="contrast-info" data-bg-var="--colour-normal-light-menu-background-visited" data-fg-var="--colour-normal-light-menu-text-visited"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+
+        <!-- Tab Panel: Normal Dark Theme -->
+        <div class="tab-panel" id="tab-normal-dark" role="tabpanel">
+        <section class="colour-section">
+            <h2>Normal - Dark Theme</h2>
+            <div class="colour-grid">
+                <div class="colour-card">
+                    <div class="colour-swatch" data-scheme="normal-dark-page">
+                        <div class="card-title">Page</div>
+                        <div class="lorem-text"><strong>Lorem Ipsum</strong> dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                        <div class="colour-name">Background: --colour-normal-dark-page-background</div>
+                        <div class="colour-value" data-var="--colour-normal-dark-page-background"></div>
+                        <div class="colour-name">Text: --colour-normal-dark-page-text</div>
+                        <div class="colour-value" data-var="--colour-normal-dark-page-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-normal-dark-page-background" data-fg-var="--colour-normal-dark-page-text"></div>
+                    </div>
+                </div>
+                <div class="colour-card">
+                    <div class="colour-swatch" data-scheme="normal-dark-headings">
+                        <div class="card-title">Header/Footer</div>
+                        <div class="lorem-text"><strong>Lorem Ipsum</strong> dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                        <div class="colour-name">Background: --colour-normal-dark-headings-background</div>
+                        <div class="colour-value" data-var="--colour-normal-dark-headings-background"></div>
+                        <div class="colour-name">Text: --colour-normal-dark-headings-text</div>
+                        <div class="colour-value" data-var="--colour-normal-dark-headings-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-normal-dark-headings-background" data-fg-var="--colour-normal-dark-headings-text"></div>
+                    </div>
+                </div>
+                <div class="colour-card">
+                    <div class="colour-swatch" data-scheme="normal-dark-code">
+                        <div class="card-title">Code</div>
+                        <div class="lorem-text"><strong>Lorem Ipsum</strong> dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                        <div class="colour-name">Background: --colour-normal-dark-code-background</div>
+                        <div class="colour-value" data-var="--colour-normal-dark-code-background"></div>
+                        <div class="colour-name">Text: --colour-normal-dark-code-text</div>
+                        <div class="colour-value" data-var="--colour-normal-dark-code-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-normal-dark-code-background" data-fg-var="--colour-normal-dark-code-text"></div>
+                    </div>
+                </div>
+                <div class="colour-card wide">
+                    <div class="colour-swatch" data-scheme="normal-dark-page">
+                        <div class="card-title">Buttons</div>
+                        <div class="button-states">
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round" data-scheme="normal-dark-button">Click</button>
+                                <div class="button-state-label">Normal</div>
+                            </div>
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round" data-scheme="normal-dark-button-hover">Click</button>
+                                <div class="button-state-label">Hover</div>
+                            </div>
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round selected-state" data-scheme="normal-dark-button-selected">Click</button>
+                                <div class="button-state-label">Selected</div>
+                            </div>
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round" data-scheme="normal-dark-button-disabled" disabled>Click</button>
+                                <div class="button-state-label">Disabled</div>
+                            </div>
+                        </div>
+                        <div class="colour-name">Button Background: --colour-normal-dark-button-background</div>
+                        <div class="colour-value" data-var="--colour-normal-dark-button-background">hsl(from var(--colour-cyan) h s 75%)</div>
+                        <div class="colour-name">Button Text: --colour-normal-dark-button-text</div>
+                        <div class="colour-value" data-var="--colour-normal-dark-button-text">hsl(from var(--colour-indigo) h s l)</div>
+                        <div class="contrast-info" data-bg-var="--colour-normal-dark-button-background" data-fg-var="--colour-normal-dark-button-text"></div>
+                        <div class="colour-name">Button Background Hover: --colour-normal-dark-button-background-hover</div>
+                        <div class="colour-value" data-var="--colour-normal-dark-button-background-hover">hsl(from var(--colour-cyan) h s 55%)</div>
+                        <div class="colour-name">Button Text Hover: --colour-normal-dark-button-text-hover</div>
+                        <div class="colour-value" data-var="--colour-normal-dark-button-text-hover">hsl(from var(--colour-purple) h s l)</div>
+                        <div class="contrast-info" data-bg-var="--colour-normal-dark-button-background-hover" data-fg-var="--colour-normal-dark-button-text-hover"></div>
+                        <div class="colour-name">Button Background Selected: --colour-normal-dark-button-background-selected</div>
+                        <div class="colour-value" data-var="--colour-normal-dark-button-background-selected">hsl(from var(--colour-cyan) h s 18%)</div>
+                        <div class="colour-name">Button Text Selected: --colour-normal-dark-button-text-selected</div>
+                        <div class="colour-value" data-var="--colour-normal-dark-button-text-selected">hsl(from var(--colour-white) h s l)</div>
+                        <div class="contrast-info" data-bg-var="--colour-normal-dark-button-background-selected" data-fg-var="--colour-normal-dark-button-text-selected"></div>
+                        <div class="colour-name">Button Background Disabled: --colour-normal-dark-button-background-disabled</div>
+                        <div class="colour-value" data-var="--colour-normal-dark-button-background-disabled"></div>
+                        <div class="colour-name">Button Text Disabled: --colour-normal-dark-button-text-disabled</div>
+                        <div class="colour-value" data-var="--colour-normal-dark-button-text-disabled"></div>
+                        <div class="contrast-info" data-bg-var="--colour-normal-dark-button-background-disabled" data-fg-var="--colour-normal-dark-button-text-disabled"></div>
+                    </div>
+                </div>
+                <div class="colour-card wide">
+                    <div class="colour-swatch" data-scheme="normal-dark-page">
+                        <div class="card-title">Lesson Navigation Normal Dark Theme</div>
+                        <nav aria-label="Lesson Navigation Normal Dark Theme">
+                            <ul class="demo-nav">
+                                <li><a href="#" data-scheme="normal-dark-menu">Lesson 0 (normal)</a></li>
+                                <li><a href="#" data-scheme="normal-dark-menu-hover">Lesson 1 (hover)</a></li>
+                                <li><a href="#" data-scheme="normal-dark-menu-visited">Lesson 2 (visited)</a></li>
+                            </ul>
+                        </nav>
+                        <div class="colour-name">Menu Background: --colour-normal-dark-menu-background</div>
+                        <div class="colour-value" data-var="--colour-normal-dark-menu-background">hsl(from var(--colour-purple) h s 16%)</div>
+                        <div class="colour-name">Menu Text: --colour-normal-dark-menu-text</div>
+                        <div class="colour-value" data-var="--colour-normal-dark-menu-text">hsl(from var(--colour-white) h s l)</div>
+                        <div class="contrast-info" data-bg-var="--colour-normal-dark-menu-background" data-fg-var="--colour-normal-dark-menu-text"></div>
+                        <div class="colour-name">Menu Background Hover: --colour-normal-dark-menu-background-hover</div>
+                        <div class="colour-value" data-var="--colour-normal-dark-menu-background-hover">hsl(from var(--colour-purple) h s 10%)</div>
+                        <div class="colour-name">Menu Text Hover: --colour-normal-dark-menu-text-hover</div>
+                        <div class="colour-value" data-var="--colour-normal-dark-menu-text-hover">hsl(from var(--colour-cyan) h s 94%)</div>
+                        <div class="contrast-info" data-bg-var="--colour-normal-dark-menu-background-hover" data-fg-var="--colour-normal-dark-menu-text-hover"></div>
+                        <div class="colour-name">Menu Background Visited: --colour-normal-dark-menu-background-visited</div>
+                        <div class="colour-value" data-var="--colour-normal-dark-menu-background-visited">hsl(from var(--colour-purple) h s 16%)</div>
+                        <div class="colour-name">Menu Text Visited: --colour-normal-dark-menu-text-visited</div>
+                        <div class="colour-value" data-var="--colour-normal-dark-menu-text-visited">hsl(from var(--colour-magenta) h s 94%)</div>
+                        <div class="contrast-info" data-bg-var="--colour-normal-dark-menu-background-visited" data-fg-var="--colour-normal-dark-menu-text-visited"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+
+        <!-- Tab Panel: Subdued Light Theme -->
+        <div class="tab-panel" id="tab-subdued-light" role="tabpanel">
+        <section class="colour-section">
+            <h2>Subdued - Light Theme</h2>
+            <div class="colour-grid">
+                <div class="colour-card">
+                    <div class="colour-swatch" data-scheme="subdued-light-page">
+                        <div class="card-title">Page</div>
+                        <div class="lorem-text"><strong>Lorem Ipsum</strong> dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                        <div class="colour-name">Background: --colour-subdued-light-page-background</div>
+                        <div class="colour-value" data-var="--colour-subdued-light-page-background"></div>
+                        <div class="colour-name">Text: --colour-subdued-light-page-text</div>
+                        <div class="colour-value" data-var="--colour-subdued-light-page-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-subdued-light-page-background" data-fg-var="--colour-subdued-light-page-text"></div>
+                    </div>
+                </div>
+                <div class="colour-card">
+                    <div class="colour-swatch" data-scheme="subdued-light-headings">
+                        <div class="card-title">Header/Footer</div>
+                        <div class="lorem-text"><strong>Lorem Ipsum</strong> dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                        <div class="colour-name">Background: --colour-subdued-light-headings-background</div>
+                        <div class="colour-value" data-var="--colour-subdued-light-headings-background"></div>
+                        <div class="colour-name">Text: --colour-subdued-light-headings-text</div>
+                        <div class="colour-value" data-var="--colour-subdued-light-headings-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-subdued-light-headings-background" data-fg-var="--colour-subdued-light-headings-text"></div>
+                    </div>
+                </div>
+                <div class="colour-card">
+                    <div class="colour-swatch" data-scheme="subdued-light-code">
+                        <div class="card-title">Code</div>
+                        <div class="lorem-text"><strong>Lorem Ipsum</strong> dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                        <div class="colour-name">Background: --colour-subdued-light-code-background</div>
+                        <div class="colour-value" data-var="--colour-subdued-light-code-background"></div>
+                        <div class="colour-name">Text: --colour-subdued-light-code-text</div>
+                        <div class="colour-value" data-var="--colour-subdued-light-code-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-subdued-light-code-background" data-fg-var="--colour-subdued-light-code-text"></div>
+                    </div>
+                </div>
+                <div class="colour-card wide">
+                    <div class="colour-swatch" data-scheme="subdued-light-page">
+                        <div class="card-title">Buttons</div>
+                        <div class="button-states">
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round" data-scheme="subdued-light-button">Click</button>
+                                <div class="button-state-label">Normal</div>
+                            </div>
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round" data-scheme="subdued-light-button-hover">Click</button>
+                                <div class="button-state-label">Hover</div>
+                            </div>
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round selected-state" data-scheme="subdued-light-button-selected">Click</button>
+                                <div class="button-state-label">Selected</div>
+                            </div>
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round" data-scheme="subdued-light-button-disabled" disabled>Click</button>
+                                <div class="button-state-label">Disabled</div>
+                            </div>
+                        </div>
+                        <div class="colour-name">Button Background: --colour-subdued-light-button-background</div>
+                        <div class="colour-value" data-var="--colour-subdued-light-button-background"></div>
+                        <div class="colour-name">Button Text: --colour-subdued-light-button-text</div>
+                        <div class="colour-value" data-var="--colour-subdued-light-button-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-subdued-light-button-background" data-fg-var="--colour-subdued-light-button-text"></div>
+                        <div class="colour-name">Button Background Hover: --colour-subdued-light-button-background-hover</div>
+                        <div class="colour-value" data-var="--colour-subdued-light-button-background-hover"></div>
+                        <div class="colour-name">Button Text Hover: --colour-subdued-light-button-text-hover</div>
+                        <div class="colour-value" data-var="--colour-subdued-light-button-text-hover"></div>
+                        <div class="contrast-info" data-bg-var="--colour-subdued-light-button-background-hover" data-fg-var="--colour-subdued-light-button-text-hover"></div>
+                        <div class="colour-name">Button Background Selected: --colour-subdued-light-button-background-selected</div>
+                        <div class="colour-value" data-var="--colour-subdued-light-button-background-selected"></div>
+                        <div class="colour-name">Button Text Selected: --colour-subdued-light-button-text-selected</div>
+                        <div class="colour-value" data-var="--colour-subdued-light-button-text-selected"></div>
+                        <div class="contrast-info" data-bg-var="--colour-subdued-light-button-background-selected" data-fg-var="--colour-subdued-light-button-text-selected"></div>
+                        <div class="colour-name">Button Background Disabled: --colour-subdued-light-button-background-disabled</div>
+                        <div class="colour-value" data-var="--colour-subdued-light-button-background-disabled"></div>
+                        <div class="colour-name">Button Text Disabled: --colour-subdued-light-button-text-disabled</div>
+                        <div class="colour-value" data-var="--colour-subdued-light-button-text-disabled"></div>
+                        <div class="contrast-info" data-bg-var="--colour-subdued-light-button-background-disabled" data-fg-var="--colour-subdued-light-button-text-disabled"></div>
+                    </div>
+                </div>
+                <div class="colour-card wide">
+                    <div class="colour-swatch" data-scheme="subdued-light-page">
+                        <div class="card-title">Lesson Navigation Subdued Light Theme</div>
+                        <nav aria-label="Lesson Navigation Subdued Light Theme">
+                            <ul class="demo-nav">
+                                <li><a href="#" data-scheme="subdued-light-menu">Lesson 0 (normal)</a></li>
+                                <li><a href="#" data-scheme="subdued-light-menu-hover">Lesson 1 (hover)</a></li>
+                                <li><a href="#" data-scheme="subdued-light-menu-visited">Lesson 2 (visited)</a></li>
+                            </ul>
+                        </nav>
+                        <div class="colour-name">Menu Background: --colour-subdued-light-menu-background</div>
+                        <div class="colour-value" data-var="--colour-subdued-light-menu-background"></div>
+                        <div class="colour-name">Menu Text: --colour-subdued-light-menu-text</div>
+                        <div class="colour-value" data-var="--colour-subdued-light-menu-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-subdued-light-menu-background" data-fg-var="--colour-subdued-light-menu-text"></div>
+                        <div class="colour-name">Menu Background Hover: --colour-subdued-light-menu-background-hover</div>
+                        <div class="colour-value" data-var="--colour-subdued-light-menu-background-hover"></div>
+                        <div class="colour-name">Menu Text Hover: --colour-subdued-light-menu-text-hover</div>
+                        <div class="colour-value" data-var="--colour-subdued-light-menu-text-hover"></div>
+                        <div class="contrast-info" data-bg-var="--colour-subdued-light-menu-background-hover" data-fg-var="--colour-subdued-light-menu-text-hover"></div>
+                        <div class="colour-name">Menu Background Visited: --colour-subdued-light-menu-background-visited</div>
+                        <div class="colour-value" data-var="--colour-subdued-light-menu-background-visited"></div>
+                        <div class="colour-name">Menu Text Visited: --colour-subdued-light-menu-text-visited</div>
+                        <div class="colour-value" data-var="--colour-subdued-light-menu-text-visited"></div>
+                        <div class="contrast-info" data-bg-var="--colour-subdued-light-menu-background-visited" data-fg-var="--colour-subdued-light-menu-text-visited"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+
+        <!-- Tab Panel: Subdued Dark Theme -->
+        <div class="tab-panel" id="tab-subdued-dark" role="tabpanel">
+        <section class="colour-section">
+            <h2>Subdued - Dark Theme</h2>
+            <div class="colour-grid">
+                <div class="colour-card">
+                    <div class="colour-swatch" data-scheme="subdued-dark-page">
+                        <div class="card-title">Page</div>
+                        <div class="lorem-text"><strong>Lorem Ipsum</strong> dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                        <div class="colour-name">Background: --colour-subdued-dark-page-background</div>
+                        <div class="colour-value" data-var="--colour-subdued-dark-page-background"></div>
+                        <div class="colour-name">Text: --colour-subdued-dark-page-text</div>
+                        <div class="colour-value" data-var="--colour-subdued-dark-page-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-subdued-dark-page-background" data-fg-var="--colour-subdued-dark-page-text"></div>
+                    </div>
+                </div>
+                <div class="colour-card">
+                    <div class="colour-swatch" data-scheme="subdued-dark-headings">
+                        <div class="card-title">Header/Footer</div>
+                        <div class="lorem-text"><strong>Lorem Ipsum</strong> dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                        <div class="colour-name">Background: --colour-subdued-dark-headings-background</div>
+                        <div class="colour-value" data-var="--colour-subdued-dark-headings-background"></div>
+                        <div class="colour-name">Text: --colour-subdued-dark-headings-text</div>
+                        <div class="colour-value" data-var="--colour-subdued-dark-headings-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-subdued-dark-headings-background" data-fg-var="--colour-subdued-dark-headings-text"></div>
+                    </div>
+                </div>
+                <div class="colour-card">
+                    <div class="colour-swatch" data-scheme="subdued-dark-code">
+                        <div class="card-title">Code</div>
+                        <div class="lorem-text"><strong>Lorem Ipsum</strong> dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                        <div class="colour-name">Background: --colour-subdued-dark-code-background</div>
+                        <div class="colour-value" data-var="--colour-subdued-dark-code-background"></div>
+                        <div class="colour-name">Text: --colour-subdued-dark-code-text</div>
+                        <div class="colour-value" data-var="--colour-subdued-dark-code-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-subdued-dark-code-background" data-fg-var="--colour-subdued-dark-code-text"></div>
+                    </div>
+                </div>
+                <div class="colour-card wide">
+                    <div class="colour-swatch" data-scheme="subdued-dark-page">
+                        <div class="card-title">Buttons</div>
+                        <div class="button-states">
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round" data-scheme="subdued-dark-button">Click</button>
+                                <div class="button-state-label">Normal</div>
+                            </div>
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round" data-scheme="subdued-dark-button-hover">Click</button>
+                                <div class="button-state-label">Hover</div>
+                            </div>
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round selected-state" data-scheme="subdued-dark-button-selected">Click</button>
+                                <div class="button-state-label">Selected</div>
+                            </div>
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round" data-scheme="subdued-dark-button-disabled" disabled>Click</button>
+                                <div class="button-state-label">Disabled</div>
+                            </div>
+                        </div>
+                        <div class="colour-name">Button Background: --colour-subdued-dark-button-background</div>
+                        <div class="colour-value" data-var="--colour-subdued-dark-button-background"></div>
+                        <div class="colour-name">Button Text: --colour-subdued-dark-button-text</div>
+                        <div class="colour-value" data-var="--colour-subdued-dark-button-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-subdued-dark-button-background" data-fg-var="--colour-subdued-dark-button-text"></div>
+                        <div class="colour-name">Button Background Hover: --colour-subdued-dark-button-background-hover</div>
+                        <div class="colour-value" data-var="--colour-subdued-dark-button-background-hover"></div>
+                        <div class="colour-name">Button Text Hover: --colour-subdued-dark-button-text-hover</div>
+                        <div class="colour-value" data-var="--colour-subdued-dark-button-text-hover"></div>
+                        <div class="contrast-info" data-bg-var="--colour-subdued-dark-button-background-hover" data-fg-var="--colour-subdued-dark-button-text-hover"></div>
+                        <div class="colour-name">Button Background Selected: --colour-subdued-dark-button-background-selected</div>
+                        <div class="colour-value" data-var="--colour-subdued-dark-button-background-selected"></div>
+                        <div class="colour-name">Button Text Selected: --colour-subdued-dark-button-text-selected</div>
+                        <div class="colour-value" data-var="--colour-subdued-dark-button-text-selected"></div>
+                        <div class="contrast-info" data-bg-var="--colour-subdued-dark-button-background-selected" data-fg-var="--colour-subdued-dark-button-text-selected"></div>
+                        <div class="colour-name">Button Background Disabled: --colour-subdued-dark-button-background-disabled</div>
+                        <div class="colour-value" data-var="--colour-subdued-dark-button-background-disabled"></div>
+                        <div class="colour-name">Button Text Disabled: --colour-subdued-dark-button-text-disabled</div>
+                        <div class="colour-value" data-var="--colour-subdued-dark-button-text-disabled"></div>
+                        <div class="contrast-info" data-bg-var="--colour-subdued-dark-button-background-disabled" data-fg-var="--colour-subdued-dark-button-text-disabled"></div>
+                    </div>
+                </div>
+                <div class="colour-card wide">
+                    <div class="colour-swatch" data-scheme="subdued-dark-page">
+                        <div class="card-title">Lesson Navigation Subdued Dark Theme</div>
+                        <nav aria-label="Lesson Navigation Subdued Dark Theme">
+                            <ul class="demo-nav">
+                                <li><a href="#" data-scheme="subdued-dark-menu">Lesson 0 (normal)</a></li>
+                                <li><a href="#" data-scheme="subdued-dark-menu-hover">Lesson 1 (hover)</a></li>
+                                <li><a href="#" data-scheme="subdued-dark-menu-visited">Lesson 2 (visited)</a></li>
+                            </ul>
+                        </nav>
+                        <div class="colour-name">Menu Background: --colour-subdued-dark-menu-background</div>
+                        <div class="colour-value" data-var="--colour-subdued-dark-menu-background"></div>
+                        <div class="colour-name">Menu Text: --colour-subdued-dark-menu-text</div>
+                        <div class="colour-value" data-var="--colour-subdued-dark-menu-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-subdued-dark-menu-background" data-fg-var="--colour-subdued-dark-menu-text"></div>
+                        <div class="colour-name">Menu Background Hover: --colour-subdued-dark-menu-background-hover</div>
+                        <div class="colour-value" data-var="--colour-subdued-dark-menu-background-hover"></div>
+                        <div class="colour-name">Menu Text Hover: --colour-subdued-dark-menu-text-hover</div>
+                        <div class="colour-value" data-var="--colour-subdued-dark-menu-text-hover"></div>
+                        <div class="contrast-info" data-bg-var="--colour-subdued-dark-menu-background-hover" data-fg-var="--colour-subdued-dark-menu-text-hover"></div>
+                        <div class="colour-name">Menu Background Visited: --colour-subdued-dark-menu-background-visited</div>
+                        <div class="colour-value" data-var="--colour-subdued-dark-menu-background-visited"></div>
+                        <div class="colour-name">Menu Text Visited: --colour-subdued-dark-menu-text-visited</div>
+                        <div class="colour-value" data-var="--colour-subdued-dark-menu-text-visited"></div>
+                        <div class="contrast-section-title">Normal State Contrast:</div>
+                        <div class="contrast-info" data-bg-var="--colour-subdued-dark-menu-background-visited" data-fg-var="--colour-subdued-dark-menu-text-visited"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+
+        <!-- Tab Panel: Vibrant Light Theme -->
+        <div class="tab-panel" id="tab-vibrant-light" role="tabpanel">
+        <section class="colour-section">
+            <h2>Vibrant - Light Theme</h2>
+            <div class="colour-grid">
+                <div class="colour-card">
+                    <div class="colour-swatch" data-scheme="vibrant-light-page">
+                        <div class="card-title">Page</div>
+                        <div class="lorem-text"><strong>Lorem Ipsum</strong> dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                        <div class="colour-name">Background: --colour-vibrant-light-page-background</div>
+                        <div class="colour-value" data-var="--colour-vibrant-light-page-background"></div>
+                        <div class="colour-name">Text: --colour-vibrant-light-page-text</div>
+                        <div class="colour-value" data-var="--colour-vibrant-light-page-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-vibrant-light-page-background" data-fg-var="--colour-vibrant-light-page-text"></div>
+                    </div>
+                </div>
+                <div class="colour-card">
+                    <div class="colour-swatch" data-scheme="vibrant-light-headings">
+                        <div class="card-title">Header/Footer</div>
+                        <div class="lorem-text"><strong>Lorem Ipsum</strong> dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                        <div class="colour-name">Background: --colour-vibrant-light-headings-background</div>
+                        <div class="colour-value" data-var="--colour-vibrant-light-headings-background"></div>
+                        <div class="colour-name">Text: --colour-vibrant-light-headings-text</div>
+                        <div class="colour-value" data-var="--colour-vibrant-light-headings-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-vibrant-light-headings-background" data-fg-var="--colour-vibrant-light-headings-text"></div>
+                    </div>
+                </div>
+                <div class="colour-card">
+                    <div class="colour-swatch" data-scheme="vibrant-light-code">
+                        <div class="card-title">Code</div>
+                        <div class="lorem-text"><strong>Lorem Ipsum</strong> dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                        <div class="colour-name">Background: --colour-vibrant-light-code-background</div>
+                        <div class="colour-value" data-var="--colour-vibrant-light-code-background"></div>
+                        <div class="colour-name">Text: --colour-vibrant-light-code-text</div>
+                        <div class="colour-value" data-var="--colour-vibrant-light-code-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-vibrant-light-code-background" data-fg-var="--colour-vibrant-light-code-text"></div>
+                    </div>
+                </div>
+                <div class="colour-card wide">
+                    <div class="colour-swatch" data-scheme="vibrant-light-page">
+                        <div class="card-title">Buttons</div>
+                        <div class="button-states">
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round" data-scheme="vibrant-light-button">Click</button>
+                                <div class="button-state-label">Normal</div>
+                            </div>
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round" data-scheme="vibrant-light-button-hover">Click</button>
+                                <div class="button-state-label">Hover</div>
+                            </div>
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round selected-state" data-scheme="vibrant-light-button-selected">Click</button>
+                                <div class="button-state-label">Selected</div>
+                            </div>
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round" data-scheme="vibrant-light-button-disabled" disabled>Click</button>
+                                <div class="button-state-label">Disabled</div>
+                            </div>
+                        </div>
+                        <div class="colour-name">Button Background: --colour-vibrant-light-button-background</div>
+                        <div class="colour-value" data-var="--colour-vibrant-light-button-background"></div>
+                        <div class="colour-name">Button Text: --colour-vibrant-light-button-text</div>
+                        <div class="colour-value" data-var="--colour-vibrant-light-button-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-vibrant-light-button-background" data-fg-var="--colour-vibrant-light-button-text"></div>
+                        <div class="colour-name">Button Background Hover: --colour-vibrant-light-button-background-hover</div>
+                        <div class="colour-value" data-var="--colour-vibrant-light-button-background-hover"></div>
+                        <div class="colour-name">Button Text Hover: --colour-vibrant-light-button-text-hover</div>
+                        <div class="colour-value" data-var="--colour-vibrant-light-button-text-hover"></div>
+                        <div class="contrast-info" data-bg-var="--colour-vibrant-light-button-background-hover" data-fg-var="--colour-vibrant-light-button-text-hover"></div>
+                        <div class="colour-name">Button Background Selected: --colour-vibrant-light-button-background-selected</div>
+                        <div class="colour-value" data-var="--colour-vibrant-light-button-background-selected"></div>
+                        <div class="colour-name">Button Text Selected: --colour-vibrant-light-button-text-selected</div>
+                        <div class="colour-value" data-var="--colour-vibrant-light-button-text-selected"></div>
+                        <div class="contrast-info" data-bg-var="--colour-vibrant-light-button-background-selected" data-fg-var="--colour-vibrant-light-button-text-selected"></div>
+                        <div class="colour-name">Button Background Disabled: --colour-vibrant-light-button-background-disabled</div>
+                        <div class="colour-value" data-var="--colour-vibrant-light-button-background-disabled"></div>
+                        <div class="colour-name">Button Text Disabled: --colour-vibrant-light-button-text-disabled</div>
+                        <div class="colour-value" data-var="--colour-vibrant-light-button-text-disabled"></div>
+                        <div class="contrast-info" data-bg-var="--colour-vibrant-light-button-background-disabled" data-fg-var="--colour-vibrant-light-button-text-disabled"></div>
+                    </div>
+                </div>
+                <div class="colour-card wide">
+                    <div class="colour-swatch" data-scheme="vibrant-light-page">
+                        <div class="card-title">Lesson Navigation Vibrant Light Theme</div>
+                        <nav aria-label="Lesson Navigation Vibrant Light Theme">
+                            <ul class="demo-nav">
+                                <li><a href="#" data-scheme="vibrant-light-menu">Lesson 0 (normal)</a></li>
+                                <li><a href="#" data-scheme="vibrant-light-menu-hover">Lesson 1 (hover)</a></li>
+                                <li><a href="#" data-scheme="vibrant-light-menu-visited">Lesson 2 (visited)</a></li>
+                            </ul>
+                        </nav>
+                        <div class="colour-name">Menu Background: --colour-vibrant-light-menu-background</div>
+                        <div class="colour-value" data-var="--colour-vibrant-light-menu-background"></div>
+                        <div class="colour-name">Menu Text: --colour-vibrant-light-menu-text</div>
+                        <div class="colour-value" data-var="--colour-vibrant-light-menu-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-vibrant-light-menu-background" data-fg-var="--colour-vibrant-light-menu-text"></div>
+                        <div class="colour-name">Menu Background Hover: --colour-vibrant-light-menu-background-hover</div>
+                        <div class="colour-value" data-var="--colour-vibrant-light-menu-background-hover"></div>
+                        <div class="colour-name">Menu Text Hover: --colour-vibrant-light-menu-text-hover</div>
+                        <div class="colour-value" data-var="--colour-vibrant-light-menu-text-hover"></div>
+                        <div class="contrast-info" data-bg-var="--colour-vibrant-light-menu-background-hover" data-fg-var="--colour-vibrant-light-menu-text-hover"></div>
+                        <div class="colour-name">Menu Background Visited: --colour-vibrant-light-menu-background-visited</div>
+                        <div class="colour-value" data-var="--colour-vibrant-light-menu-background-visited"></div>
+                        <div class="colour-name">Menu Text Visited: --colour-vibrant-light-menu-text-visited</div>
+                        <div class="colour-value" data-var="--colour-vibrant-light-menu-text-visited"></div>
+                        <div class="contrast-info" data-bg-var="--colour-vibrant-light-menu-background-visited" data-fg-var="--colour-vibrant-light-menu-text-visited"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+
+        <!-- Tab Panel: Vibrant Dark Theme -->
+        <div class="tab-panel" id="tab-vibrant-dark" role="tabpanel">
+        <section class="colour-section">
+            <h2>Vibrant - Dark Theme</h2>
+            <div class="colour-grid">
+                <div class="colour-card">
+                    <div class="colour-swatch" data-scheme="vibrant-dark-page">
+                        <div class="card-title">Page</div>
+                        <div class="lorem-text"><strong>Lorem Ipsum</strong> dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                        <div class="colour-name">Background: --colour-vibrant-dark-page-background</div>
+                        <div class="colour-value" data-var="--colour-vibrant-dark-page-background"></div>
+                        <div class="colour-name">Text: --colour-vibrant-dark-page-text</div>
+                        <div class="colour-value" data-var="--colour-vibrant-dark-page-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-vibrant-dark-page-background" data-fg-var="--colour-vibrant-dark-page-text"></div>
+                    </div>
+                </div>
+                <div class="colour-card">
+                    <div class="colour-swatch" data-scheme="vibrant-dark-headings">
+                        <div class="card-title">Header/Footer</div>
+                        <div class="lorem-text"><strong>Lorem Ipsum</strong> dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                        <div class="colour-name">Background: --colour-vibrant-dark-headings-background</div>
+                        <div class="colour-value" data-var="--colour-vibrant-dark-headings-background"></div>
+                        <div class="colour-name">Text: --colour-vibrant-dark-headings-text</div>
+                        <div class="colour-value" data-var="--colour-vibrant-dark-headings-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-vibrant-dark-headings-background" data-fg-var="--colour-vibrant-dark-headings-text"></div>
+                    </div>
+                </div>
+                <div class="colour-card">
+                    <div class="colour-swatch" data-scheme="vibrant-dark-code">
+                        <div class="card-title">Code</div>
+                        <div class="lorem-text"><strong>Lorem Ipsum</strong> dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                        <div class="colour-name">Background: --colour-vibrant-dark-code-background</div>
+                        <div class="colour-value" data-var="--colour-vibrant-dark-code-background"></div>
+                        <div class="colour-name">Text: --colour-vibrant-dark-code-text</div>
+                        <div class="colour-value" data-var="--colour-vibrant-dark-code-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-vibrant-dark-code-background" data-fg-var="--colour-vibrant-dark-code-text"></div>
+                    </div>
+                </div>
+                <div class="colour-card wide">
+                    <div class="colour-swatch" data-scheme="vibrant-dark-page">
+                        <div class="card-title">Buttons</div>
+                        <div class="button-states">
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round" data-scheme="vibrant-dark-button">Click</button>
+                                <div class="button-state-label">Normal</div>
+                            </div>
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round" data-scheme="vibrant-dark-button-hover">Click</button>
+                                <div class="button-state-label">Hover</div>
+                            </div>
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round selected-state" data-scheme="vibrant-dark-button-selected">Click</button>
+                                <div class="button-state-label">Selected</div>
+                            </div>
+                            <div class="button-state-item">
+                                <button type="button" class="demo-button-round" data-scheme="vibrant-dark-button-disabled" disabled>Click</button>
+                                <div class="button-state-label">Disabled</div>
+                            </div>
+                        </div>
+                        <div class="colour-name">Button Background: --colour-vibrant-dark-button-background</div>
+                        <div class="colour-value" data-var="--colour-vibrant-dark-button-background"></div>
+                        <div class="colour-name">Button Text: --colour-vibrant-dark-button-text</div>
+                        <div class="colour-value" data-var="--colour-vibrant-dark-button-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-vibrant-dark-button-background" data-fg-var="--colour-vibrant-dark-button-text"></div>
+                        <div class="colour-name">Button Background Hover: --colour-vibrant-dark-button-background-hover</div>
+                        <div class="colour-value" data-var="--colour-vibrant-dark-button-background-hover"></div>
+                        <div class="colour-name">Button Text Hover: --colour-vibrant-dark-button-text-hover</div>
+                        <div class="colour-value" data-var="--colour-vibrant-dark-button-text-hover"></div>
+                        <div class="contrast-info" data-bg-var="--colour-vibrant-dark-button-background-hover" data-fg-var="--colour-vibrant-dark-button-text-hover"></div>
+                        <div class="colour-name">Button Background Selected: --colour-vibrant-dark-button-background-selected</div>
+                        <div class="colour-value" data-var="--colour-vibrant-dark-button-background-selected"></div>
+                        <div class="colour-name">Button Text Selected: --colour-vibrant-dark-button-text-selected</div>
+                        <div class="colour-value" data-var="--colour-vibrant-dark-button-text-selected"></div>
+                        <div class="contrast-info" data-bg-var="--colour-vibrant-dark-button-background-selected" data-fg-var="--colour-vibrant-dark-button-text-selected"></div>
+                        <div class="colour-name">Button Background Disabled: --colour-vibrant-dark-button-background-disabled</div>
+                        <div class="colour-value" data-var="--colour-vibrant-dark-button-background-disabled"></div>
+                        <div class="colour-name">Button Text Disabled: --colour-vibrant-dark-button-text-disabled</div>
+                        <div class="colour-value" data-var="--colour-vibrant-dark-button-text-disabled"></div>
+                        <div class="contrast-info" data-bg-var="--colour-vibrant-dark-button-background-disabled" data-fg-var="--colour-vibrant-dark-button-text-disabled"></div>
+                    </div>
+                </div>
+                <div class="colour-card wide">
+                    <div class="colour-swatch" data-scheme="vibrant-dark-page">
+                        <div class="card-title">Lesson Navigation Vibrant Dark Theme</div>
+                        <nav aria-label="Lesson Navigation Vibrant Dark Theme">
+                            <ul class="demo-nav">
+                                <li><a href="#" data-scheme="vibrant-dark-menu">Lesson 0 (normal)</a></li>
+                                <li><a href="#" data-scheme="vibrant-dark-menu-hover">Lesson 1 (hover)</a></li>
+                                <li><a href="#" data-scheme="vibrant-dark-menu-visited">Lesson 2 (visited)</a></li>
+                            </ul>
+                        </nav>
+                        <div class="colour-name">Menu Background: --colour-vibrant-dark-menu-background</div>
+                        <div class="colour-value" data-var="--colour-vibrant-dark-menu-background"></div>
+                        <div class="colour-name">Menu Text: --colour-vibrant-dark-menu-text</div>
+                        <div class="colour-value" data-var="--colour-vibrant-dark-menu-text"></div>
+                        <div class="contrast-info" data-bg-var="--colour-vibrant-dark-menu-background" data-fg-var="--colour-vibrant-dark-menu-text"></div>
+                        <div class="colour-name">Menu Background Hover: --colour-vibrant-dark-menu-background-hover</div>
+                        <div class="colour-value" data-var="--colour-vibrant-dark-menu-background-hover"></div>
+                        <div class="colour-name">Menu Text Hover: --colour-vibrant-dark-menu-text-hover</div>
+                        <div class="colour-value" data-var="--colour-vibrant-dark-menu-text-hover"></div>
+                        <div class="contrast-info" data-bg-var="--colour-vibrant-dark-menu-background-hover" data-fg-var="--colour-vibrant-dark-menu-text-hover"></div>
+                        <div class="colour-name">Menu Background Visited: --colour-vibrant-dark-menu-background-visited</div>
+                        <div class="colour-value" data-var="--colour-vibrant-dark-menu-background-visited"></div>
+                        <div class="colour-name">Menu Text Visited: --colour-vibrant-dark-menu-text-visited</div>
+                        <div class="colour-value" data-var="--colour-vibrant-dark-menu-text-visited"></div>
+                        <div class="contrast-info" data-bg-var="--colour-vibrant-dark-menu-background-visited" data-fg-var="--colour-vibrant-dark-menu-text-visited"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+    </main>
+</body>
+</html>

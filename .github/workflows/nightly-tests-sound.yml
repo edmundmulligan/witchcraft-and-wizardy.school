@@ -1,0 +1,46 @@
+name: Nightly Full Tests - Sound
+
+on:
+  schedule:
+    # Run at 02:00 UTC daily
+    - cron: '0 2 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  check-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      has-changes: ${{ steps.check.outputs.has-changes }}
+    steps:
+      - name: Checkout staging branch
+        uses: actions/checkout@v4
+        with:
+          ref: staging
+          fetch-depth: 0
+
+      - name: Check for changes in last 24 hours
+        id: check
+        run: |
+          # Check if there are any commits in the last 24 hours on staging
+          CHANGES=$(git log --since='24 hours ago' --oneline -- sound/ bin/ .github/workflows/ | wc -l)
+          if [ "$CHANGES" -gt 0 ]; then
+            echo "has-changes=true" >> "$GITHUB_OUTPUT"
+            echo "Found $CHANGES commit(s) in the last 24 hours"
+          else
+            echo "has-changes=false" >> "$GITHUB_OUTPUT"
+            echo "No changes in the last 24 hours"
+          fi
+
+  run-full-tests:
+    needs: check-changes
+    if: needs.check-changes.outputs.has-changes == 'true'
+    uses: ./.github/workflows/test-and-deploy-reusable.yml
+    with:
+      application: 'sound'
+      deploy-path: '/var/www/sound.witchcraft-and-wizardry.school'
+      test-mode: 'full'
+    secrets:
+      WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
+      NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
+      SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
+      SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}

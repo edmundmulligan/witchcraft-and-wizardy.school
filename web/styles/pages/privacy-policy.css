@@ -1,0 +1,39 @@
+/*
+ **********************************************************************
+ * File       : styles/pages/privacy-policy.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Privacy policy page-specific styles.
+ **********************************************************************
+ */
+
+@layer pages {
+  #privacy-policy {
+    max-width: 150ch;
+    margin: 0 auto;
+    
+    & > section {
+      margin-bottom: 1.5rem;
+    }
+
+    & h3,
+    & h4 {
+      text-align: left;
+      margin-top: 0;
+    }
+
+    & p {
+      text-align: left;
+    }
+
+    & ul {
+      text-align: left;
+    }
+
+    & li {
+      text-align: left;
+    }
+  }
+}

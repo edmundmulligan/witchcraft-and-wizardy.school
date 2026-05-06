@@ -8,6 +8,10 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/test-helpers.sh"
 
+print_usage() {
+  print_standard_usage "$0 [folder] [options]" help quick url exclude-discovery
+}
+
 # Change to project root directory
 cd "$SCRIPT_DIR/.."
 
@@ -30,25 +34,52 @@ fi
 # Get any command line options
 TEST_URL=""
 QUICK_MODE=false
+EXCLUDE_LIST=""
 
 # Parse command line arguments
 FOLDER=""
 while [[ $# -gt 0 ]]; do
   case $1 in
+    -h|--help)
+      print_usage
+      exit 0
+      ;;
     -q|--quick)
       QUICK_MODE=true
       shift
       ;;
+    -u|--url)
+      shift
+      if [ $# -eq 0 ] || [[ "$1" == -* ]]; then
+        echo "❌ Error: --url requires a URL argument"
+        exit 1
+      fi
+      TEST_URL="$1"
+      shift
+      ;;
+    -x|--exclude)
+      shift
+      if [ $# -eq 0 ] || [[ "$1" == -* ]]; then
+        echo "❌ Error: --exclude requires at least one file or folder"
+        exit 1
+      fi
+      while [[ $# -gt 0 ]] && [[ "$1" != -* ]]; do
+        EXCLUDE_LIST="$(normalise_exclude_list "$EXCLUDE_LIST" "$1")"
+        shift
+      done
+      ;;
     *)
       if [ -z "$FOLDER" ]; then
         FOLDER="$1"
+      else
+        echo "❌ Error: Unexpected argument '$1'"
+        print_usage
+        exit 1
       fi
       shift
       ;;
   esac
 done
-
-parse_test_options
 
 
 # Set default folder if not provided
@@ -62,14 +93,14 @@ fi
 
 # Change to the specified folder to serve files from there
 ORIGINAL_DIR=$(pwd)
-RESULTS_DIR="$ORIGINAL_DIR/$FOLDER/test-results"
+RESULTS_DIR="$ORIGINAL_DIR/$FOLDER/diagnostics/test-results"
 mkdir -p "$RESULTS_DIR"
 cd "$FOLDER" || exit 1
 
 # Start server
 start_server_if_needed "$TEST_URL"
 
-discover_html_pages "."
+discover_html_pages "." "$EXCLUDE_LIST"
 # Install and run ngrok
 # this is needed to run WAVE as it exposes localhost to the internet
 if ! command -v ngrok &> /dev/null; then
@@ -147,15 +178,14 @@ cleanup_ngrok() {
 }
 trap cleanup_ngrok EXIT
 
-# Setup results directory
-setup_results_dir
+# Results directory already set up above with correct path
 RESULT_FILE="$RESULTS_DIR/wave-results.json"
 
-# Initialize combined results
+# Initialise combined results
 echo '{"pages":[]}' > "$RESULT_FILE"
 
 # Find all HTML pages
-discover_html_pages
+discover_html_pages "." "$EXCLUDE_LIST"
 
 # Define viewport widths to test (Note: WAVE tests via API, viewport simulation limited)
 if [ "$QUICK_MODE" = true ]; then
@@ -164,30 +194,37 @@ if [ "$QUICK_MODE" = true ]; then
 else
   VIEWPORTS=(150 400 900 1300)
 fi
-TOTAL_TESTS=$((PAGE_COUNT * 2 * ${#VIEWPORTS[@]}))
 
-# Test each page at different viewport widths, in both light and dark modes
+# Define styles to test
+STYLES=(normal subdued vibrant)
+
+TOTAL_TESTS=$((PAGE_COUNT * 6 * ${#VIEWPORTS[@]}))
+
+# Test each page at different viewport widths, in all theme/style combinations
 TESTED=0
 for VIEWPORT in "${VIEWPORTS[@]}"; do
   echo ""
   echo "📐 Testing at ${VIEWPORT}px width..."
   echo ""
   
-  for THEME in light dark; do
-    echo "  🎨 $THEME mode"
+  for STYLE in "${STYLES[@]}"; do
+    echo "  🎨 $STYLE style"
     
-    for page in $PAGES; do
-      TESTED=$((TESTED + 1))
-      URL_PATH="${page#./}"
+    for THEME in light dark; do
+      echo "    💡 $THEME mode"
       
-      # Add theme parameter to URL
-      if [[ "$URL_PATH" == *"?"* ]]; then
-        FULL_URL="$TEST_URL/$URL_PATH&theme=$THEME"
-      else
-        FULL_URL="$TEST_URL/$URL_PATH?theme=$THEME"
-      fi
+      for page in $PAGES; do
+        TESTED=$((TESTED + 1))
+        URL_PATH="${page#./}"
+        
+        # Add theme and style parameters to URL
+        if [[ "$URL_PATH" == *"?"* ]]; then
+          FULL_URL="$TEST_URL/$URL_PATH&theme=$THEME&style=$STYLE"
+        else
+          FULL_URL="$TEST_URL/$URL_PATH?theme=$THEME&style=$STYLE"
+        fi
 
-      echo "  [$TESTED/$TOTAL_TESTS] Testing $URL_PATH (${VIEWPORT}px, $THEME mode)"
+        echo "    [$TESTED/$TOTAL_TESTS] Testing $URL_PATH (${VIEWPORT}px, $STYLE-$THEME)"
 
       # Note: WAVE API doesn't support viewport size directly, but we track it for consistency
       # Call WAVE API (reporttype=4 returns detailed JSON)
@@ -213,6 +250,7 @@ for VIEWPORT in "${VIEWPORTS[@]}"; do
           const pageResult = {
             url: '$URL_PATH',
             theme: '$THEME',
+            style: '$STYLE',
             viewport: '$VIEWPORT',
             errors: newData.categories.error?.count || 0,
             alerts: newData.categories.alert?.count || 0,
@@ -295,6 +333,7 @@ for VIEWPORT in "${VIEWPORTS[@]}"; do
       }
     "
   fi
+      done
     done
   done
 done
@@ -330,7 +369,7 @@ node -e "
     console.log('  Pages with errors:');
     pagesWithErrors.forEach(page => {
       console.log('');
-      console.log('❌ ' + page.url + ' [' + (page.viewport || 'unknown') + 'px, ' + (page.theme || 'unknown') + ' mode]');
+      console.log('❌ ' + page.url + ' [' + (page.viewport || 'unknown') + 'px, ' + (page.style || 'unknown') + '-' + (page.theme || 'unknown') + ']');
       console.log('   Errors: ' + page.errors + ', Alerts: ' + page.alerts + ', Contrast: ' + page.contrast);
 
       // Show error details if available
@@ -353,7 +392,7 @@ node -e "
     console.log('  Pages with alerts:');
     pagesWithAlerts.forEach(page => {
       console.log('');
-      console.log('⚠️  ' + page.url + ' [' + (page.viewport || 'unknown') + 'px, ' + (page.theme || 'unknown') + ' mode]');
+      console.log('⚠️  ' + page.url + ' [' + (page.viewport || 'unknown') + 'px, ' + (page.style || 'unknown') + '-' + (page.theme || 'unknown') + ']');
       console.log('   Alerts: ' + page.alerts);
 
       // Show alert details if available

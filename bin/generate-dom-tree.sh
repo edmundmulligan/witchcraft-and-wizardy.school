@@ -49,7 +49,7 @@ if ! node -e "require('cheerio')" 2>/dev/null; then
 fi
 
 # Create output directory
-OUTPUT_DIR="$PROJECT_ROOT/tests/results/dom-trees"
+OUTPUT_DIR="$PROJECT_ROOT/diagnostics/dom-trees"
 mkdir -p "$OUTPUT_DIR"
 
 # Function to generate DOM tree for a file

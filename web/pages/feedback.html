@@ -1,0 +1,600 @@
+<!--
+ **********************************************************************
+ * File       : feedback.html
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This is the feedback page of the Web Witchcraft and Wizardry
+ *   website. It has a form to collect feedback from students about the website
+ *   and their learning experience. The data collected in the form are stored
+ *   in the browser's local storage and emailed to the website administrator 
+ *   (Edmund Mulligan) when the form is submitted.
+ **********************************************************************
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Start of meta tags -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Web Witchcraft and Wizardry">
+    <meta name="keywords" content="HTML, CSS, learning">
+    <meta name="author" content="Edmund Mulligan">
+    <meta name="license" content="MIT License">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- End of meta tags -->
+
+    <!-- Set the document title -->
+    <title>Feedback | Web Witchcraft and Wizardry</title>
+
+    <!-- Link to Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../images/icons/favicon.svg">
+
+    <!--Links for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Marcellus&family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- End Google Fonts links -->
+
+    <!-- Link to Font Awesome Icons (using CSS rather than JS)-->
+    <link rel="stylesheet" href="https://kit.fontawesome.com/3895b3f1a4.css" crossorigin="anonymous">
+    <!-- End Font Awesome Icons -->
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="../styles/globals.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/pages/feedback.css">
+
+    <!-- Load JavaScript files -->
+    <script src="../scripts/utils.js" defer></script>
+    <script src="../scripts/queryParams.js" defer></script>
+    <script src="../scripts/debug.js" defer></script>
+    <script src="../scripts/themeSwitcher.js" defer></script>
+    <script src="../scripts/toggleHeaderAndFooter.js" defer></script>
+    <script src="../scripts/injectCommonCode.js" type="module"></script>
+    <script src="../scripts/embodiedMindPopover.js" defer></script>
+    <script src="../scripts/localStorage.js" defer></script>
+    <script src="../scripts/toggleSection.js" defer></script>
+    <script src="../scripts/populateLessonsMenu.js" defer></script>
+    <script src="../scripts/feedbackForm.js" defer></script>
+
+    <!-- End JavaScript file link -->
+
+    <noscript>
+      <link rel="stylesheet" href="../styles/utilities/noscript.css">
+    </noscript>
+  </head>
+
+  <body>
+    <header class="header">
+      <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
+    </header>
+
+    <div class="page-container">
+      <main class="main-content">
+        <h2 class="page-title">Send Feedback to the Embodied Mind</h2>
+        <p>We value your feedback. Please fill out the form below to share your thoughts about the website and your learning experience.</p>
+        <section id="feedback-form" class="feedback-form" aria-label="Feedback form">
+          <h3>Feedback Form</h3>
+          <form id="feedback-form-element" method="post">
+            <section id="about-sender">
+              <div class="feedback-form-item">
+                <label for="sender-name"> Your Name: </label>
+                <input type="text" id="sender-name" name="sender-name" required>
+              </div>
+
+              <div class="feedback-form-item">
+                <label for="sender-email"> Your Email: </label>
+                <input type="email" id="sender-email" name="sender-email" required>
+              </div>
+
+              <p>
+                To protect your privacy, if you are under 14 years old, please give the email address of your parent or guardian.
+                If you are 14 or older you can give either your own or your parent/guardian's email address. If you are over 18,
+                you should probably use your own email address. Just saying.
+              </p>
+              </section>
+
+              <section id="about-sender-demographics">
+              <fieldset class="feedback-form-item">
+                <legend>What was your role?</legend>
+                <div class="radio-group">
+                  <div>
+                    <input type="radio" id="role-student" name="sender-role" value="student" required>
+                    <label for="role-student">Student</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="role-mentor" name="sender-role" value="mentor" required>
+                    <label for="role-mentor">Mentor</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="role-parent" name="sender-role" value="parent" required>
+                    <label for="role-parent">Parent</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="role-teacher" name="sender-role" value="teacher" required>
+                    <label for="role-teacher">Teacher</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="role-other" name="sender-role" value="other" required>
+                    <label for="role-other">Other</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div id="sender-other-role-div" class="feedback-form-item">
+                <label for="sender-other-role"> Other Role: </label>
+                <input type="text" id="sender-other-role" name="sender-other-role">
+              </div>
+
+              <fieldset class="feedback-form-item">
+                <legend>Your age</legend>
+                <div class="radio-group">
+                  <div>
+                    <input type="radio" id="age-0-7" name="sender-age" value="0-7" required>
+                    <label for="age-0-7">0-7 years old</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="age-8-9" name="sender-age" value="8-9" required>
+                    <label for="age-8-9">8-9 years old</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="age-10-11" name="sender-age" value="10-11" required>
+                    <label for="age-10-11">10-11 years old</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="age-12-13" name="sender-age" value="12-13" required>
+                    <label for="age-12-13">12-13 years old</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="age-14-15" name="sender-age" value="14-15" required>
+                    <label for="age-14-15">14-15 years old</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="age-16-17" name="sender-age" value="16-17" required>
+                    <label for="age-16-17">16-17 years old</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="age-18-24" name="sender-age" value="18-24" required>
+                    <label for="age-18-24">18-24 years old</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="age-25-60" name="sender-age" value="25-60" required>
+                    <label for="age-25-60">25-60 years old</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="age-61-plus" name="sender-age" value="61+" required>
+                    <label for="age-61-plus">61 years or older</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="feedback-form-item">
+                <legend>Your gender</legend>
+                <div class="radio-group">
+                  <div>
+                    <input type="radio" id="gender-witch" name="sender-gender" value="witch" required>
+                    <label for="gender-witch">Witch</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="gender-wizard" name="sender-gender" value="wizard" required>
+                    <label for="gender-wizard">Wizard</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="gender-neither" name="sender-gender" value="neither" required>
+                    <label for="gender-neither">Neither</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="gender-secret" name="sender-gender" value="secret" required>
+                    <label for="gender-secret">Prefer not to say</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="feedback-form-item">
+                <legend>What programming languages have you used before?</legend>
+                <div class="checkbox-group">
+                  <div>
+                    <input type="checkbox" id="lang-none" name="sender-languages" value="none">
+                    <label for="lang-none">None</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="lang-scratch" name="sender-languages" value="scratch">
+                    <label for="lang-scratch">Scratch</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="lang-python" name="sender-languages" value="python">
+                    <label for="lang-python">Python</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="lang-html" name="sender-languages" value="html">
+                    <label for="lang-html">HTML</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="lang-css" name="sender-languages" value="css">
+                    <label for="lang-css">CSS</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="lang-javascript" name="sender-languages" value="javascript">
+                    <label for="lang-javascript">JavaScript</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="lang-other" name="sender-languages" value="other">
+                    <label for="lang-other">Other</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div id="sender-other-languages-div" class="feedback-form-item">
+                <label for="sender-other-languages"> Other Programming Languages: </label>
+                <input type="text" id="sender-other-languages" name="sender-other-languages">
+              </div>
+
+              <fieldset class="feedback-form-item">
+                <legend>What sort of computer did you use for this course?</legend>
+                <div class="radio-group">
+                  <div>
+                    <input type="radio" id="computer-coder-dojo" name="sender-computer" value="coder-dojo" required>
+                    <label for="computer-coder-dojo">Coder Dojo Club Laptop</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="computer-windows" name="sender-computer" value="windows" required>
+                    <label for="computer-windows">Windows Computer</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="computer-mac" name="sender-computer" value="mac" required>
+                    <label for="computer-mac">Mac Computer</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="computer-linux" name="sender-computer" value="linux" required>
+                    <label for="computer-linux">Linux Computer</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="computer-tablet" name="sender-computer" value="tablet" required>
+                    <label for="computer-tablet">Tablet</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="computer-mobile" name="sender-computer" value="mobile" required>
+                    <label for="computer-mobile">Mobile Phone</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="computer-chromebook" name="sender-computer" value="chromebook" required>
+                    <label for="computer-chromebook">Chromebook</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="computer-other" name="sender-computer" value="other" required>
+                    <label for="computer-other">Other</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div id="sender-other-computer-div" class="feedback-form-item">
+                <label for="sender-other-computer"> Other Computer Type: </label>
+                <input type="text" id="sender-other-computer" name="sender-other-computer">
+              </div>
+
+              <fieldset class="feedback-form-item">
+                <legend>What browser did you use?</legend>
+                <div class="radio-group">
+                  <div>
+                    <input type="radio" id="browser-firefox" name="sender-browser" value="firefox" required>
+                    <label for="browser-firefox">Mozilla Firefox</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="browser-chrome" name="sender-browser" value="chrome" required>
+                    <label for="browser-chrome">Google Chrome</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="browser-edge" name="sender-browser" value="edge" required>
+                    <label for="browser-edge">Microsoft Edge</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="browser-safari" name="sender-browser" value="safari" required>
+                    <label for="browser-safari">Apple Safari</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="browser-opera" name="sender-browser" value="opera" required>
+                    <label for="browser-opera">Opera</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="browser-other" name="sender-browser" value="other" required>
+                    <label for="browser-other">Other</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div id="sender-other-browser-div" class="feedback-form-item">
+                <label for="sender-other-browser"> Other Browser: </label>
+                <input type="text" id="sender-other-browser" name="sender-other-browser">
+              </div>
+
+              <fieldset class="feedback-form-item">
+                <legend>Where did you do this course?</legend>
+                <div class="checkbox-group">
+                  <div>
+                    <input type="checkbox" id="loc-coder-dojo" name="sender-location" value="coder-dojo">
+                    <label for="loc-coder-dojo">At a Coder Dojo or coding club</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="loc-school" name="sender-location" value="school">
+                    <label for="loc-school">At school</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="loc-home" name="sender-location" value="home">
+                    <label for="loc-home">At home</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="loc-library" name="sender-location" value="library">
+                    <label for="loc-library">At a library</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="loc-other" name="sender-location" value="other">
+                    <label for="loc-other">Other</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div id="sender-other-location-div" class="feedback-form-item">
+                <label for="sender-other-location"> Other Location: </label>
+                <input type="text" id="sender-other-location" name="sender-other-location">
+              </div>
+            </section>
+
+            <section id="about-course">
+              <fieldset class="feedback-form-item">
+                <legend>Was this course helpful?</legend>
+                <div class="radio-group">
+                  <div>
+                    <input type="radio" id="course-helpful-yes" name="course-helpful" value="yes" required>
+                    <label for="course-helpful-yes">Yes</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="course-helpful-no" name="course-helpful" value="no" required>
+                    <label for="course-helpful-no">No</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="feedback-form-item">
+                <legend>Which lessons did you complete?</legend>
+                <div class="checkbox-group">
+                  <div>
+                    <input type="checkbox" id="completed-lessons-none" name="completed-lessons" value="0">
+                    <label for="completed-lessons-none">None</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="completed-lessons-html" name="completed-lessons" value="html">
+                    <label for="completed-lessons-html">The HTML lessons</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="completed-lessons-css" name="completed-lessons" value="css">
+                    <label for="completed-lessons-css">The CSS lessons</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="completed-lessons-javascript" name="completed-lessons" value="javascript">
+                    <label for="completed-lessons-javascript">The JavaScript lessons</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="completed-lessons-projects" name="completed-lessons" value="projects">
+                    <label for="completed-lessons-projects">The projects</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="completed-lessons-all" name="completed-lessons" value="all">
+                    <label for="completed-lessons-all">All lessons</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="feedback-form-item">
+                <legend>On average, how long did you spend on each lesson?</legend>
+                <div class="radio-group">
+                  <div>
+                    <input type="radio" id="lesson-duration-less-than-hour" name="lesson-duration" value="less-than-hour" required>
+                    <label for="lesson-duration-less-than-hour">Less than an hour</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="lesson-duration-1-2-hours" name="lesson-duration" value="1-2-hours" required>
+                    <label for="lesson-duration-1-2-hours">1-2 hours</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="lesson-duration-3-4-hours" name="lesson-duration" value="3-4-hours" required>
+                    <label for="lesson-duration-3-4-hours">3-4 hours</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="lesson-duration-5-6-hours" name="lesson-duration" value="5-6-hours" required>
+                    <label for="lesson-duration-5-6-hours">5-6 hours</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="lesson-duration-7-8-hours" name="lesson-duration" value="7-8-hours" required>
+                    <label for="lesson-duration-7-8-hours">7-8 hours</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="lesson-duration-more-than-8-hours" name="lesson-duration" value="more-than-8-hours" required>
+                    <label for="lesson-duration-more-than-8-hours">More than 8 hours</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset id="course-enjoyment-div" class="feedback-form-item">
+                <legend>How much did you enjoy doing this course?</legend>
+                <div class="radio-group">
+                  <div>
+                    <input type="radio" id="course-enjoyment-1" name="course-enjoyment" value="1" required>
+                    <label for="course-enjoyment-1">Not at all - course was terrible</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="course-enjoyment-2" name="course-enjoyment" value="2" required>
+                    <label for="course-enjoyment-2">Mostly hated it</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="course-enjoyment-3" name="course-enjoyment" value="3" required>
+                    <label for="course-enjoyment-3">Hated bits of it</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="course-enjoyment-4" name="course-enjoyment" value="4" required>
+                    <label for="course-enjoyment-4">So so</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="course-enjoyment-5" name="course-enjoyment" value="5" required>
+                    <label for="course-enjoyment-5">Enjoyed bits of it</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="course-enjoyment-6" name="course-enjoyment" value="6" required>
+                    <label for="course-enjoyment-6">Enjoyed most of it</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="course-enjoyment-7" name="course-enjoyment" value="7" required>
+                    <label for="course-enjoyment-7">Enjoyed it all - course was brilliant</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset id="course-difficulty-div" class="feedback-form-item">
+                <legend>How difficult did you find this course?</legend>
+                <div class="radio-group">
+                  <div>
+                    <input type="radio" id="course-difficulty-1" name="course-difficulty" value="1" required>
+                    <label for="course-difficulty-1">Very easy</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="course-difficulty-2" name="course-difficulty" value="2" required>
+                    <label for="course-difficulty-2">Quite easy</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="course-difficulty-3" name="course-difficulty" value="3" required>
+                    <label for="course-difficulty-3">Somewhat easy</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="course-difficulty-4" name="course-difficulty" value="4" required>
+                    <label for="course-difficulty-4">Just right</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="course-difficulty-5" name="course-difficulty" value="5" required>
+                    <label for="course-difficulty-5">Somewhat difficult</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="course-difficulty-6" name="course-difficulty" value="6" required>
+                    <label for="course-difficulty-6">Quite difficult</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="course-difficulty-7" name="course-difficulty" value="7" required>
+                    <label for="course-difficulty-7">Very difficult</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="course-difficulty-8" name="course-difficulty" value="other" required>
+                    <label for="course-difficulty-8">Impossible</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset id="course-desired-difficulty-div" class="feedback-form-item">
+                <legend>How difficult did you want this course to be?</legend>
+                <div class="radio-group">
+                  <div>
+                    <input type="radio" id="course-desired-difficulty-1" name="course-desired-difficulty" value="1" required>
+                    <label for="course-desired-difficulty-1">Very easy</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="course-desired-difficulty-2" name="course-desired-difficulty" value="2" required>
+                    <label for="course-desired-difficulty-2">Quite easy</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="course-desired-difficulty-3" name="course-desired-difficulty" value="3" required>
+                    <label for="course-desired-difficulty-3">Somewhat easy</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="course-desired-difficulty-4" name="course-desired-difficulty" value="4" required>
+                    <label for="course-desired-difficulty-4">Just right</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="course-desired-difficulty-5" name="course-desired-difficulty" value="5" required>
+                    <label for="course-desired-difficulty-5">Somewhat difficult</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="course-desired-difficulty-6" name="course-desired-difficulty" value="6" required>
+                    <label for="course-desired-difficulty-6">Quite difficult</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="course-desired-difficulty-7" name="course-desired-difficulty" value="7" required>
+                    <label for="course-desired-difficulty-7">Very difficult</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="course-desired-difficulty-8" name="course-desired-difficulty" value="other" required>
+                    <label for="course-desired-difficulty-8">Impossible</label>
+                  </div>
+                </div>
+              </fieldset>
+            </section>
+
+            <section id="course-feedback-section">
+              <div id="course-likes-div" class="feedback-form-item">
+                <label for="course-likes"> What did you like about the course? </label>
+                <textarea id="course-likes" name="course-likes"></textarea>
+              </div>
+
+              <div id="course-dislikes-div" class="feedback-form-item">
+                <label for="course-dislikes"> What did you dislike about the course? </label>
+                <textarea id="course-dislikes" name="course-dislikes"></textarea>
+              </div>
+
+              <div id="course-learned-div" class="feedback-form-item">
+                <label for="course-learned"> What did you learn through doing the course? </label>
+                <textarea id="course-learned" name="course-learned"></textarea>
+              </div>
+
+              <div id="course-suggestions-div" class="feedback-form-item">
+                <label for="course-suggestions"> Is there anything else you wanted this course to cover? </label>
+                <textarea id="course-suggestions" name="course-suggestions"></textarea>
+              </div>
+
+              <div id="course-additional-feedback-div" class="feedback-form-item">
+                <label for="course-additional-feedback"> Is there anything else you want to share about the course? </label>
+                <textarea id="course-additional-feedback" name="course-additional-feedback"></textarea>
+              </div>
+            </section>
+
+            <section id="submit-feedback-section">
+              <p>
+                By submitting this form, you consent to the collection and use of your feedback and the information you have provided in
+                accordance with our <a href="privacy-policy.html" target="_blank">Privacy Policy</a>. Your feedback will be used to improve our courses
+                and website. We will not share your personal information with third parties without your consent, except as required by law.
+                You can withdraw your consent at any time by contacting us at <a href="mailto:admin@embodied-mind.org">admin@embodied-mind.org</a>.
+              </p>
+              <fieldset class="feedback-form-item">
+                <legend>Do you consent?</legend>
+                <div class="radio-group">
+                  <div>
+                    <input type="radio" id="consent-no" name="consent" value="no" required>
+                    <label for="consent-no">No</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="consent-yes" name="consent" value="yes" required>
+                    <label for="consent-yes">Yes</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div class="feedback-form-item">
+                <input type="checkbox" id="send-copy" name="send-copy" value="yes">
+                <label for="send-copy">Send a copy of my feedback to my email address</label>
+              </div>
+
+              <div class="feedback-form-item button-group">
+                <button type="submit" id="send-information-btn" class="button-rectangle" disabled>Send Feedback</button>
+              </div>
+            </section>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
+    </footer>
+  </body>
+</html>

@@ -14,7 +14,7 @@ const {
 } = require('./pool-base')
 const Pool = require('./pool')
 const { kUrl } = require('../core/symbols')
-const { parseOrigin } = require('../core/util')
+const util = require('../core/util')
 const kFactory = Symbol('factory')
 
 const kOptions = Symbol('options')
@@ -56,7 +56,7 @@ class BalancedPool extends PoolBase {
 
     super()
 
-    this[kOptions] = opts
+    this[kOptions] = { ...util.deepClone(opts) }
     this[kIndex] = -1
     this[kCurrentWeight] = 0
 
@@ -76,7 +76,7 @@ class BalancedPool extends PoolBase {
   }
 
   addUpstream (upstream) {
-    const upstreamOrigin = parseOrigin(upstream).origin
+    const upstreamOrigin = util.parseOrigin(upstream).origin
 
     if (this[kClients].find((pool) => (
       pool[kUrl].origin === upstreamOrigin &&
@@ -85,7 +85,7 @@ class BalancedPool extends PoolBase {
     ))) {
       return this
     }
-    const pool = this[kFactory](upstreamOrigin, Object.assign({}, this[kOptions]))
+    const pool = this[kFactory](upstreamOrigin, this[kOptions])
 
     this[kAddClient](pool)
     pool.on('connect', () => {
@@ -125,7 +125,7 @@ class BalancedPool extends PoolBase {
   }
 
   removeUpstream (upstream) {
-    const upstreamOrigin = parseOrigin(upstream).origin
+    const upstreamOrigin = util.parseOrigin(upstream).origin
 
     const pool = this[kClients].find((pool) => (
       pool[kUrl].origin === upstreamOrigin &&
@@ -138,6 +138,16 @@ class BalancedPool extends PoolBase {
     }
 
     return this
+  }
+
+  getUpstream (upstream) {
+    const upstreamOrigin = util.parseOrigin(upstream).origin
+
+    return this[kClients].find((pool) => (
+      pool[kUrl].origin === upstreamOrigin &&
+      pool.closed !== true &&
+      pool.destroyed !== true
+    ))
   }
 
   get upstreams () {
@@ -154,34 +164,13 @@ class BalancedPool extends PoolBase {
       throw new BalancedPoolMissingUpstreamError()
     }
 
-    const dispatcher = this[kClients].find(dispatcher => (
-      !dispatcher[kNeedDrain] &&
-      dispatcher.closed !== true &&
-      dispatcher.destroyed !== true
-    ))
-
-    if (!dispatcher) {
-      return
-    }
-
-    const allClientsBusy = this[kClients].map(pool => pool[kNeedDrain]).reduce((a, b) => a && b, true)
-
-    if (allClientsBusy) {
-      return
-    }
-
     let counter = 0
 
-    let maxWeightIndex = this[kClients].findIndex(pool => !pool[kNeedDrain])
+    let maxWeightIndex = -1
 
     while (counter++ < this[kClients].length) {
       this[kIndex] = (this[kIndex] + 1) % this[kClients].length
       const pool = this[kClients][this[kIndex]]
-
-      // find pool index with the largest weight
-      if (pool[kWeight] > this[kClients][maxWeightIndex][kWeight] && !pool[kNeedDrain]) {
-        maxWeightIndex = this[kIndex]
-      }
 
       // decrease the current weight every `this[kClients].length`.
       if (this[kIndex] === 0) {
@@ -192,9 +181,28 @@ class BalancedPool extends PoolBase {
           this[kCurrentWeight] = this[kMaxWeightPerServer]
         }
       }
-      if (pool[kWeight] >= this[kCurrentWeight] && (!pool[kNeedDrain])) {
+
+      // Skip unavailable pools after updating the current weight for this cycle.
+      if (
+        pool[kNeedDrain] ||
+        pool.closed === true ||
+        pool.destroyed === true
+      ) {
+        continue
+      }
+
+      // Track the best fallback if no pool matches the current weight.
+      if (maxWeightIndex === -1 || pool[kWeight] > this[kClients][maxWeightIndex][kWeight]) {
+        maxWeightIndex = this[kIndex]
+      }
+
+      if (pool[kWeight] >= this[kCurrentWeight]) {
         return pool
       }
+    }
+
+    if (maxWeightIndex === -1) {
+      return
     }
 
     this[kCurrentWeight] = this[kClients][maxWeightIndex][kWeight]
