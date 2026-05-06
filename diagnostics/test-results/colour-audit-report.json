@@ -1,0 +1,133 @@
+{
+  "hardcodedColours": [
+    {
+      "file": "index.html",
+      "line": 17,
+      "type": "Hex Colour",
+      "value": "#667eea",
+      "context": "background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"
+    },
+    {
+      "file": "index.html",
+      "line": 17,
+      "type": "Hex Colour",
+      "value": "#764ba2",
+      "context": "background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"
+    },
+    {
+      "file": "index.html",
+      "line": 36,
+      "type": "Hex Colour",
+      "value": "#333",
+      "context": "color: #333;"
+    },
+    {
+      "file": "index.html",
+      "line": 43,
+      "type": "Hex Colour",
+      "value": "#666",
+      "context": "color: #666;"
+    },
+    {
+      "file": "index.html",
+      "line": 56,
+      "type": "Hex Colour",
+      "value": "#667eea",
+      "context": "background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"
+    },
+    {
+      "file": "index.html",
+      "line": 56,
+      "type": "Hex Colour",
+      "value": "#764ba2",
+      "context": "background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"
+    },
+    {
+      "file": "index.html",
+      "line": 82,
+      "type": "Hex Colour",
+      "value": "#999",
+      "context": "color: #999;"
+    },
+    {
+      "file": "index.html",
+      "line": 26,
+      "type": "Named Colour",
+      "value": ": white;",
+      "context": "background: white;"
+    },
+    {
+      "file": "index.html",
+      "line": 57,
+      "type": "Named Colour",
+      "value": ": white;",
+      "context": "color: white;"
+    }
+  ],
+  "themeSpecificVars": [],
+  "missingThemeSystem": [
+    {
+      "file": "index.html",
+      "missing": {
+        "globals": true,
+        "themeSwitcher": true
+      }
+    },
+    {
+      "file": "sound/index.html",
+      "missing": {
+        "globals": true,
+        "themeSwitcher": true
+      }
+    },
+    {
+      "file": "stats/index.html",
+      "missing": {
+        "globals": true,
+        "themeSwitcher": true
+      }
+    },
+    {
+      "file": "web/lessons/lesson-1.html",
+      "missing": {
+        "globals": true,
+        "themeSwitcher": true
+      }
+    },
+    {
+      "file": "web/lessons/lesson-2.html",
+      "missing": {
+        "globals": true,
+        "themeSwitcher": true
+      }
+    },
+    {
+      "file": "web/lessons/lesson-3.html",
+      "missing": {
+        "globals": true,
+        "themeSwitcher": true
+      }
+    },
+    {
+      "file": "web/lessons/lesson-4.html",
+      "missing": {
+        "globals": true,
+        "themeSwitcher": true
+      }
+    },
+    {
+      "file": "web/lessons/lesson-5.html",
+      "missing": {
+        "globals": true,
+        "themeSwitcher": true
+      }
+    },
+    {
+      "file": "web/lessons/lesson-6.html",
+      "missing": {
+        "globals": true,
+        "themeSwitcher": true
+      }
+    }
+  ]
+}

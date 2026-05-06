@@ -12,7 +12,6 @@
     "browser-tests"
   ],
   "failed": [
-    "audit-colour",
     "reading-age"
   ],
   "quickMode": false,
