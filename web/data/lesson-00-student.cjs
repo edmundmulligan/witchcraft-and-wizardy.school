@@ -430,7 +430,8 @@ npm --version
   <h4 onclick="toggleSection('dev-server-windows-list-1', event);" onkeydown="toggleSection('dev-server-windows-list-1', event);" class="lesson-title magic-invisible">Download   package.json File</h4>
   <ol id="dev-server-windows-list-1" class="hidden">
      <li>Open <strong>Firefox</strong> (or your web browser)</li>
-      <li>Visit this page: <a href="https:data/package.json" target="_blank" rel="noopener noreferrer">https:data/package.json</a></li>
+      <li>Right click on this link: <a href="../data/package.json" target="_blank" rel="noopener noreferrer">package.json</a> and select <strong>Save Link As...</strong></li>
+      <li>Save the file to your <strong>Downloads</strong> folder as <strong>package.json</strong></li>
       <li>The file will download to your <strong>Downloads</strong> folder</li>
       <li>Open <strong>File Explorer</strong> (click the folder icon on your taskbar)</li>
       <li>Go to your <strong>Downloads</strong> folder</li>
@@ -444,11 +445,11 @@ npm --version
     <ol id="dev-server-windows-list-2" class="hidden">
       <li>
         In Command Prompt, type:
-        <code><pre>
+        <pre><code>
 npm run start
-        </pre></code>
+        </code></pre>
       </li>
-      <li>You should see:<code>Server running at http://localhost:8000</code></li>
+      <li>You should see: <code>Server running at http://localhost:8000</code></li>
       <li>Open your web browser and visit: <code>http://localhost:8000</code></li>
       <li>You should see: <strong>"Hello! Your server is working!"</strong></li>
     </ol>
