@@ -1,0 +1,5 @@
+# Automatically resolve package-lock.json conflicts
+# Uses custom merge driver that accepts the incoming version (staging when merging staging→main)
+package-lock.json merge=npm-merge-driver
+
+
