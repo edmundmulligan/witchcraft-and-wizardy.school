@@ -120,12 +120,10 @@ module.exports = {
   <ul>
     <li>Microsoft Visual Studio Code (or another code editor).</li>
     <li>Mozilla Firefox (or another modern web browser such as Google Chrome or Apple Safari).</li>
-    <li>Git (optional, for version control, used in later lessons).</li>
     <li>Node.js (required for running the development server).</li>
-    <li>SQLite (optional, for database management, used in later lessons).</li>
   </ul>
   <p>
-    Node.js is required from the start to run the development server. If you don't want to install Git or SQLite right now, that's okay; you can install them later when you get to the lessons that need them.
+    Other tools will be introduced in later lessons, but these are the basics you need to get started. Follow the instructions for your operating system to install these tools.
   </p>
 </div>`,
     },
