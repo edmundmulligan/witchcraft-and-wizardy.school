@@ -61,7 +61,7 @@ This script:
 - Fetches latest changes from both branches
 - Merges staging into main
 - Automatically resolves `package-lock.json` conflicts by accepting the staging version
-- Prompts you to push if successful
+- Instructs you to push if successful
 
 **Manual resolution** (if needed):
 
