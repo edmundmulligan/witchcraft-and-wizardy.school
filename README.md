@@ -49,6 +49,36 @@ npm run tests sound
 npm run tests web -- -x lessons
 ```
 
+### Merging Staging to Main
+
+When promoting code from staging to main, use the automated merge script to handle `package-lock.json` conflicts:
+
+```bash
+bash bin/merge-staging-to-main.sh
+```
+
+This script:
+- Fetches latest changes from both branches
+- Merges staging into main
+- Automatically resolves `package-lock.json` conflicts by accepting the staging version
+- Prompts you to push if successful
+
+**Manual resolution** (if needed):
+
+```bash
+git checkout main
+git pull origin main
+git merge origin/staging
+
+# If package-lock.json conflict occurs:
+git checkout --theirs package-lock.json
+git add package-lock.json
+git commit --no-edit
+
+# Push the merge
+git push origin main
+```
+
 ## Deployment
 
 ### Applications
