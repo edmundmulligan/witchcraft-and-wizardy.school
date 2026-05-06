@@ -1,0 +1,7 @@
+{
+  "name": "my-server",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node -e \"const http = require('http'); const server = http.createServer((req, res) => { res.writeHead(200, { 'Content-Type': 'text/html' }); res.end('<h1>Hello! Your server is working!</h1>'); }); server.listen(8000, 'localhost', () => { console.log('Server running at http://localhost:8000'); });\""
+  }
+}

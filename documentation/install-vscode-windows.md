@@ -35,7 +35,7 @@ Before downloading, let's see if you already have VS Code on your computer!
 
 ### Step 1: Download VS Code
 
-1. Open your web browser (like Chrome or Edge)
+1. Open your web browser (like Firefox)
 2. Go to: **https://code.visualstudio.com**
 3. Click the big blue **"Download for Windows"** button
 4. Wait for the file to download (it's called something like `VSCodeUserSetup-x64-1.xx.x.exe`)

@@ -68,7 +68,7 @@ LANDSCAPE_PARAMS = {
     'cornerxb': '0.7',
 }
 
-# Define light theme opacities
+# DefG faiine light theme opacities
 LIGHT_OPACITIES = {
     'opacityone': '0.4',
     'opacitychrome': '0.15',
@@ -102,7 +102,7 @@ DARK_OPACITIES = {
     'opacitycorner': '0.7',
 }
 
-def generate_file(orientation, mode, style, source_dir='artwork/source/web/image-2'):
+def generate_file(orientation, mode, style, source_dir='artwork/source/backgrounds/web'):
     """Generate a single background-web file"""
     
     filename = f"{source_dir}/background-web-{orientation}-{style}-{mode}.tex"
@@ -134,15 +134,14 @@ def generate_file(orientation, mode, style, source_dir='artwork/source/web/image
     # Generate the file content
     content = f"""\\documentclass[border=0mm]{{standalone}}
 
-\\input{{../../common/packages-background.tex}}
-\\input{{../../common/packages-background-{package_orientation}.tex}}
-\\input{{../../common/colours.tex}}
+\\input{{artwork/common/packages-background.tex}}
+\\input{{artwork/common/colours.tex}}
 
 % {orientation.capitalize()} dimensions ({mode} mode)
 {param_defs}
 
 \\begin{{document}}
-  \\input{{../../common/background-web-template.tex}}
+  \\input{{artwork/common/background-web-template.tex}}
 \\end{{document}}
 """
     

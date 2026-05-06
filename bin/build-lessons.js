@@ -8,12 +8,12 @@
  * Description:
  *     Build script for generating lesson HTML files from Mustache templates
  *
- *     Usage: npm run build
+ *     Usage: node bin/build-lessons.js <folder>
  *
  *     This script:
- *       1. Reads template files from templates/
- *       2. Reads data files from data/
- *       3. Generates HTML output files in students/ and mentors/
+ *       1. Reads template files from <folder>/templates/
+ *       2. Reads data files from <folder>/data/
+ *       3. Generates HTML output files in <folder>/students/ and <folder>/mentors/
  *       4. Uses Mustache for templating
  **********************************************************************
  */
@@ -28,6 +28,36 @@ import { createRequire } from 'module';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const require = createRequire(import.meta.url);
+
+// Parse command line arguments
+const args = process.argv.slice(2);
+let folder = args[0];
+
+// Valid folders that can be built
+const validFolders = ['web', 'stats', 'sound'];
+
+// Validate folder
+if (!folder) {
+  console.error('❌ Error: No folder specified');
+  console.error('');
+  console.log('Usage: node bin/build-lessons.js <folder>');
+  console.log('');
+  console.log('Folders: web, stats, sound');
+  process.exit(1);
+}
+
+if (!validFolders.includes(folder)) {
+  console.error(`❌ Error: Invalid folder "${folder}"`);
+  console.error(`   Valid folders are: ${validFolders.join(', ')}`);
+  process.exit(1);
+}
+
+// Check if folder exists
+const folderPath = path.join(process.cwd(), folder);
+if (!fs.existsSync(folderPath)) {
+  console.error(`❌ Error: Folder "${folder}" does not exist`);
+  process.exit(1);
+}
 
 async function loadData(dataPath) {
   const ext = path.extname(dataPath).toLowerCase();
@@ -53,9 +83,9 @@ async function loadData(dataPath) {
 const buildTasks = [
   {
     lesson: 0,
-    studentTemplate: 'templates/lesson-00-student.mustache',
-    studentData: 'data/lesson-00-student.cjs',
-    studentOutput: 'students/lesson-00.html',
+    studentTemplate: path.join(folder, 'templates/lesson-00-student.mustache'),
+    studentData: path.join(folder, 'data/lesson-00-student.cjs'),
+    studentOutput: path.join(folder, 'students/lesson-00.html'),
   },
   // Add more lessons as needed
 ];
@@ -119,7 +149,7 @@ async function buildLesson(task) {
  * Main build function
  */
 async function build() {
-  console.log('🔨 Building lessons from templates...\n');
+  console.log(`🔨 Building lessons for ${folder}...\n`);
 
   for (const task of buildTasks) {
     await buildLesson(task);
