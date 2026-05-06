@@ -161,6 +161,12 @@ console.log('');
 
 const excludeArgs = excludeList ? `-x ${excludeList}` : '';
 
+// For audit-colour-usage, prefix excludes with folder path
+const auditExcludes = excludeList 
+  ? excludeList.split(' ').map(item => `${folder}/${item}`).join(' ')
+  : '';
+const auditExcludeArgs = auditExcludes ? `-x ${auditExcludes}` : '';
+
 // Run all tests in sequence
 if (
   !runTest('clear', '📄 Clearing previous test results...', `bin/clear-tests.sh ${folder}`, {
@@ -184,7 +190,7 @@ if (
   !runTest(
     'audit-colour',
     '🎨 Running colour usage audit...',
-    `node bin/audit-colour-usage.js ${excludeArgs}`
+    `node bin/audit-colour-usage.js ${folder} ${auditExcludeArgs}`
   )
 ) {
   failedTests++;

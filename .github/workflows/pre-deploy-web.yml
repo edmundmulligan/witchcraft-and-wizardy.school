@@ -14,6 +14,7 @@ jobs:
     with:
       application: 'web'
       deploy-path: '/var/www/web.witchcraft-and-wizardry.school'
+      test-mode: ${{ github.base_ref == 'main' && 'full' || 'abbreviated' }}
       ignores: 'web/lessons'
     secrets:
       WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}

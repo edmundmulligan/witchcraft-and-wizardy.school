@@ -11,6 +11,11 @@ on:
         required: true
         type: string
         description: 'Server deployment path'
+      test-mode:
+        required: false
+        type: string
+        default: 'full'
+        description: 'Test mode: "abbreviated" (quick checks) or "full" (all tests including browser/accessibility)'
       ignores:
         required: false
         type: string
@@ -76,51 +81,64 @@ jobs:
     - name: Audit colour usage
       continue-on-error: true
       run: |
-        node bin/audit-colour-usage.js ${{ inputs.application }} -x ${{ inputs.ignores }}
+        IGNORES="${{ inputs.ignores }}"
+        node bin/audit-colour-usage.js ${{ inputs.application }} ${IGNORES:+-x $IGNORES}
 
     - name: Check for file comments
       continue-on-error: true
       run: |
-        bin/check-file-comments.sh ${{ inputs.application }} -x ${{ inputs.ignores }}
+        IGNORES="${{ inputs.ignores }}"
+        bin/check-file-comments.sh ${{ inputs.application }} ${IGNORES:+-x $IGNORES}
 
     - name: Check for broken links
       continue-on-error: true
       run: |
-        bin/check-links.sh ${{ inputs.application }} -x ${{ inputs.ignores }}
-
-    - name: Check site works in different browsers
-      continue-on-error: true
-      run: |
-        bin/run-browser-tests.sh ${{ inputs.application }} -x ${{ inputs.ignores }}
-
-    - name: Run axe accessibility tests
-      continue-on-error: true
-      run: |
-        bin/run-axe-tests.sh -q ${{ inputs.application }} -x ${{ inputs.ignores }}
-
-    - name: Run Pa11y accessibility tests
-      continue-on-error: true
-      run: |
-        bin/run-pa11y-tests.sh -q ${{ inputs.application }} -x ${{ inputs.ignores }}
-
-    - name: Run Lighthouse accessibility tests
-      continue-on-error: true
-      run: |
-        bin/run-lighthouse-tests.sh -q ${{ inputs.application }} -x ${{ inputs.ignores }}
-
-    - name: Run WAVE accessibility tests
-      if: github.base_ref == 'main'
-      continue-on-error: true
-      run: |
-        bin/run-wave-tests.sh -q ${{ inputs.application }} -x ${{ inputs.ignores }}
-      env:
-        WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
-        NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
+        IGNORES="${{ inputs.ignores }}"
+        bin/check-links.sh ${{ inputs.application }} ${IGNORES:+-x $IGNORES}
 
     - name: Check reading levels
       continue-on-error: true
       run: |
-        bin/check-reading-age.sh ${{ inputs.application }} -x ${{ inputs.ignores }}
+        IGNORES="${{ inputs.ignores }}"
+        bin/check-reading-age.sh ${{ inputs.application }} ${IGNORES:+-x $IGNORES}
+  
+    - name: Check site works in different browsers
+      if: inputs.test-mode == 'full'
+      continue-on-error: true
+      run: |
+        IGNORES="${{ inputs.ignores }}"
+        bin/run-browser-tests.sh ${{ inputs.application }} ${IGNORES:+-x $IGNORES}
+
+    - name: Run axe accessibility tests
+      if: inputs.test-mode == 'full'
+      continue-on-error: true
+      run: |
+        IGNORES="${{ inputs.ignores }}"
+        bin/run-axe-tests.sh -q ${{ inputs.application }} ${IGNORES:+-x $IGNORES}
+
+    - name: Run Pa11y accessibility tests
+      if: inputs.test-mode == 'full'
+      continue-on-error: true
+      run: |
+        IGNORES="${{ inputs.ignores }}"
+        bin/run-pa11y-tests.sh -q ${{ inputs.application }} ${IGNORES:+-x $IGNORES}
+
+    - name: Run Lighthouse accessibility tests
+      if: inputs.test-mode == 'full'
+      continue-on-error: true
+      run: |
+        IGNORES="${{ inputs.ignores }}"
+        bin/run-lighthouse-tests.sh -q ${{ inputs.application }} ${IGNORES:+-x $IGNORES}
+
+    - name: Run WAVE accessibility tests
+      if: inputs.test-mode == 'full' && github.base_ref == 'main'
+      continue-on-error: true
+      run: |
+        IGNORES="${{ inputs.ignores }}"
+        bin/run-wave-tests.sh -q ${{ inputs.application }} ${IGNORES:+-x $IGNORES}
+      env:
+        WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
+        NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
 
     - name: Summarise test results
       continue-on-error: false

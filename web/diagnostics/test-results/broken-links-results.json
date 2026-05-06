@@ -197,62 +197,12 @@
       "brokenCount": 0,
       "totalCount": 45,
       "timeoutCount": 0
-    },
-    {
-      "url": "lessons/lesson-4.html",
-      "links": [],
-      "brokenCount": 0,
-      "totalCount": 6,
-      "timeoutCount": 0
-    },
-    {
-      "url": "lessons/lesson-5.html",
-      "links": [],
-      "brokenCount": 0,
-      "totalCount": 4,
-      "timeoutCount": 0
-    },
-    {
-      "url": "lessons/lesson-1.html",
-      "links": [],
-      "brokenCount": 0,
-      "totalCount": 0,
-      "timeoutCount": 0
-    },
-    {
-      "url": "lessons/lesson-3.html",
-      "links": [],
-      "brokenCount": 0,
-      "totalCount": 0,
-      "timeoutCount": 0
-    },
-    {
-      "url": "lessons/lesson-6.html",
-      "links": [
-        {
-          "url": "https://wiki.lspace.org/Magic",
-          "original": "https://wiki.lspace.org/Magic",
-          "warning": "timeout",
-          "tagName": "a",
-          "text": "And here to find out more about magic in Terry Pra"
-        }
-      ],
-      "brokenCount": 0,
-      "totalCount": 4,
-      "timeoutCount": 1
-    },
-    {
-      "url": "lessons/lesson-2.html",
-      "links": [],
-      "brokenCount": 0,
-      "totalCount": 0,
-      "timeoutCount": 0
     }
   ],
   "summary": {
-    "totalLinks": 1446,
+    "totalLinks": 1432,
     "brokenLinks": 0,
-    "timeoutLinks": 3,
+    "timeoutLinks": 2,
     "excludedLinks": 0
   }
 }

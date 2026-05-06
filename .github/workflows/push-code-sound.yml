@@ -1,9 +1,10 @@
 name: Push Sound Code to Prod Server
 
 on:
-    push:
-
-        - 'sound/**'
+  push:
+    branches: [ main ]
+    paths:
+      - 'sound/**'
 
 jobs:
     deploy-to-server:
