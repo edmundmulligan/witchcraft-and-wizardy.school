@@ -1,9 +1,10 @@
 name: Push Stats Code to Prod Server
 
 on:
-    push:
-
-        - 'stats/**'
+  push:
+    branches: [ main ]
+    paths:
+      - 'stats/**'
 
 jobs:
     deploy-to-server:
