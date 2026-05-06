@@ -1,0 +1,23 @@
+/*
+ **********************************************************************
+ * File       : globals.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *    definition of global CSS variables and keyframes.
+ *
+ *    The imported files should only contain global CSS variables except 
+ *    for the keyframes.css file, which contains global keyframe definitions.
+ *
+ *    This file should by the first stylesheet linked from all HTML files, 
+ *    before main.css and any page-specific stylesheets.
+ **********************************************************************
+ */
+
+/* Import colour, typography and layout definitions from respective CSS files */
+@import url("./definitions/colours.css");
+@import url("./definitions/typography.css");
+@import url("./definitions/layout.css");
+@import url("./definitions/animation.css");
+@import url("./definitions/keyframes.css");

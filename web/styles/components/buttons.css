@@ -2,84 +2,121 @@
  **********************************************************************
  * File       : components/buttons.css
  * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
- * Copyright  : (c) 2025 The Embodied Mind
+ * Copyright  : (c) 2026 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
  * Description:
- *   This stylesheet defines styles for buttons used across the site.
+ *   Simplified button styles - all buttons behave consistently
+ *   regardless of shape or size.
  **********************************************************************
  */
 
-/* Styles common to all buttons. Class name must start with "button-" */
- [class^="button-"],
- [class*=" button-"] {
-    padding: 1rem;
-    font-size: var(--fontsize-button);
-    font-weight: bold;
-    background-color: var(--color-headings-background);
-    color: var(--color-headings-text);
-    border: var(--border-style) var(--border-weight) var(--color-headings-text);
+@layer components {
+  /* Base styles for all buttons */
+  .button-circle,
+  .button-rectangle,
+  .button-circle-small {
+    padding: var(--button-padding);
+    color: var(--colour-effective-button-text);
+    background-color: var(--colour-effective-button-background);
+    border: var(--border-style) var(--border-weight) var(--colour-effective-button-text);
     cursor: pointer;
     text-align: center;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-    
-    /* Reset button-specific browser defaults */
-    font-family: inherit;
-    line-height: inherit;
-}
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    font-family: var(--font-family-button);
+    font-size: var(--fontsize-button);
+    font-weight: var(--font-weight-bold);
 
-[class^="button"]:hover,
-[class*=" button"]:hover,
-[class^="button"]:focus-visible,
-[class*=" button"]:focus-visible {
-    color: var(--color-headings-text);
-    background-color: var(--color-headings-background);
-    border-color: var(--color-headings-text);
-}
+    /* Disabled state */
+    &:disabled,
+    &[disabled] {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background-color: var(--colour-effective-button-background);
+      color: var(--colour-effective-button-text);
+      transform: none;
 
-/* not all buttons are links, but those that are use these styles */
-[class^="button"]:link,
-[class*=" button"]:link,
-[class^="button"]:visited,
-[class*=" button"]:visited {
-    color: var(--color-link-text);
-    text-decoration: none;
-}
+      /* Remove hover and focus effects for disabled buttons */
+      &:hover,
+      &:focus-visible {
+        background-color: var(--colour-effective-button-background);
+        color: var(--colour-effective-button-text);
+        transform: none;
+      }
 
-/* Style override for rectangular buttons */
-.button-rectangle {
+      &:active {
+        transform: none;
+      }
+    }
+
+    /* Hover and focus states - all buttons behave the same */
+    &:hover,
+    &:focus-visible {
+      color: var(--colour-effective-button-text-hover);
+      background-color: var(--colour-effective-button-background-hover);
+      transform: scale(1.1);
+    }
+
+    /* Active (pressed) state - all buttons behave the same */
+    &:active {
+      transform: scale(0.98);
+    }
+
+    /* Selected/pressed state - all buttons behave the same */
+    &.pressed {
+      background-color: var(--colour-effective-button-background-selected);
+      color: var(--colour-effective-button-text-selected);
+      transform: scale(0.98);
+    }
+
+    /* Links styled as buttons */
+    &:link,
+    &:visited {
+      text-decoration: none;
+    }
+  }
+
+  /* Shape modifier: rectangular buttons */
+  .button-rectangle {
     display: block;
     border-radius: var(--border-radius);
-    margin: 1rem auto;
-}
+    margin: var(--margin-vertical) auto;
+  }
 
-/* Style override for circular buttons */
-.button-circle {
+  /* Shape modifier: circular buttons */
+  .button-circle,
+  .button-circle-small {
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
     border-radius: 50%;
     aspect-ratio: 1 / 1;
     width: var(--buttonsize-circle);
     height: var(--buttonsize-circle);
     max-width: 15rem;
     max-height: 15rem;
-    padding: 1rem;
-    box-sizing: border-box;
+  }
 
-    /* ensure text scales within the circle */
-    font-family: Cinzel, serif;
-    font-size: var(--fontsize-button-circle);
-    background-color: var(--color-page-background);
-}
+  /* override for small circular buttons */
+  .button-circle-small {
+    width: calc(var(--buttonsize-circle) * 0.67);
+    height: calc(var(--buttonsize-circle) * 0.67);
+    max-width: 10rem;
+    max-height: 10rem;
+  }
 
-.button-circle:hover,
-.button-circle:focus-visible {
-    transform: scale(1.2);
-}
+  /* Glossary icon button styling */
+  .glossary-icon-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0 0.2rem;
+    cursor: pointer;
+    color: var(--colour-effective-page-text);
+    vertical-align: baseline;
 
-.button-rectangle:hover,
-.button-rectangle:focus-visible {
-    background-color: var(--color-link-text-hover);
-    color: var(--color-headings-text);
+    &:hover {
+      color: var(--colour-effective-headings-text);
+    }
+  }
 }

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Witchcraft and Wizardry School - Application Portal">
+  <title>Witchcraft and Wizardry School</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .container {
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      padding: 3rem;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #333;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    .apps {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .app-link {
+      display: block;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 0.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .app-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .app-link h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .app-link p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      color: #999;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🧙‍♂️ Witchcraft and Wizardry School</h1>
+    <p class="subtitle">Choose an application to explore</p>
+    
+    <div class="apps">
+      <a href="/web/" class="app-link">
+        <h2>🌐 Web Application</h2>
+        <p>Main web interface and learning portal</p>
+      </a>
+
+      <a href="/api/" class="app-link">
+        <h2>⚙️ API Server</h2>
+        <p>Backend services and data endpoints</p>
+      </a>
+
+      <a href="/stats/" class="app-link">
+        <h2>📊 Statistics</h2>
+        <p>Analytics and performance metrics</p>
+      </a>
+
+      <a href="/sound/" class="app-link">
+        <h2>🔊 Sound Library</h2>
+        <p>Audio assets and sound effects</p>
+      </a>
+    </div>
+
+    <footer>
+      &copy; 2026 The Embodied Mind. All rights reserved.
+    </footer>
+  </div>
+</body>
+</html>

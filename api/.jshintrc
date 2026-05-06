@@ -1,0 +1,10 @@
+{
+  "esversion": 11,
+  "module": true,
+  "node": true,
+  "browser": false,
+  "undef": true,
+  "unused": true,
+  "strict": false,
+  "laxbreak": true
+}

@@ -2,7 +2,7 @@
  **********************************************************************
  * File       : components/navigation.css
  * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
- * Copyright  : (c) 2025 The Embodied Mind
+ * Copyright  : (c) 2026 The Embodied Mind
  * License    : MIT License (see license-and-credits.html page)
  * Description:
  *   This stylesheet defines styles for sitewide and in-page navigation
@@ -11,128 +11,122 @@
  **********************************************************************
  */
 
-/********************************************************
- * Styles for sitewide navigation elements
- ********************************************************/
+@layer components {
+  /********************************************************
+     * Styles for sitewide navigation elements
+     ********************************************************/
 
-nav.site-navigation {
-    color: var(--color-headings-text);
-    background-color: var(--color-headings-background);
-    border-radius: var(--border-radius);
-    margin: 0;
-    padding: 0.25rem 0.5rem;
-    grid-column: 1 / -1;
-    grid-row: 2;
-}
+  nav.site-navigation {
+    & ul {
+      display: flex;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      max-width: 100%;
+      gap: 0.5rem clamp(0.15rem, 0.5vw, 0.25rem);
+      place-content: center center;
+      flex-wrap: wrap;
+      align-items: stretch;
+      box-sizing: border-box;
+      line-height: 1;
+    }
 
-nav.site-navigation ul {
-    display: flex;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    gap: 0.25rem;
-    justify-content: center;
-    flex-wrap: wrap;
-}
+    & li {
+      flex: 0 1 auto;
+      max-width: calc(100% - 0.5rem);
+      margin: 0;
+      background-color: var(--colour-effective-menu-background);
+      color: var(--colour-effective-menu-text);
+      border-radius: var(--border-radius);
+      border: var(--border-weight-thin) var(--border-style) var(--colour-effective-menu-text);
+      font-family: var(--font-family-menu);
+      font-size: var(--fontsize-nav-site);
+      box-sizing: border-box;
+      line-height: 1;
+    }
 
-nav.site-navigation li {
-    display: inline-block;
-    flex: 0 1 auto;
-    background-color: var(--color-headings-background);
-    border-radius: var(--border-radius);
-    border: var(--border-weight-thin) var(--border-style) var(--color-headings-text);
-    font-size: var(--fontsize-nav-site);
-    overflow: hidden;
-}
+    & button {
+      display: block;
+      color: var(--colour-effective-menu-text);
+      text-decoration: none;
+      padding: var(--padding-nav);
+      border-radius: var(--border-radius);
+      background: var(--colour-effective-menu-background);
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      white-space: nowrap;
+      box-sizing: border-box;
+    }
 
-nav.site-navigation a,
-nav.site-navigation button {
-    display: block;
-    color: var(--color-headings-text);
-    text-decoration: none;
-    padding: 0.5rem;
-    border-radius: 0;
-    background: none;
-    border: none;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    cursor: pointer;
-    width: 100%;
-    text-align: left;
-}
+    & a {
+      display: block;
+      color: var(--colour-effective-menu-text);
+      text-decoration: none;
+      padding: var(--padding-nav);
+      border-radius: var(--border-radius);
+      background: var(--colour-effective-menu-background);
+      text-align: left;
+      white-space: nowrap;
+      box-sizing: border-box;
+    }
 
-/* Pseudo classes and elements for nav links This makes the 
-   wand sparkle when it is hovered over or gets focus */
-nav.site-navigation a::before,
-nav.site-navigation button::before {
-    content: "\f0d0";  /* Font Awesome Magic Wand */
-    font-family: "Font Awesome 7 Pro";
-    font-weight: 900; /* needed for solid style icons */
-}
+    & a::before,
+    & button::before {
+      content: "\f0d0"; /* Font Awesome Magic Wand */
+      font-family: var(--font-family-icons);
+      font-weight: 900; /* needed for solid style icons */
+      margin-right: clamp(0.15rem, 1vw, 0.35rem);
+    }
 
-nav.site-navigation a:hover,
-nav.site-navigation a:focus-visible,
-nav.site-navigation button:hover,
-nav.site-navigation button:focus-visible {
-    background-color: var(--color-link-text-hover);
-    color: var(--color-headings-text);
-}
+    & a:visited {
+      background-color: var(--colour-effective-menu-background-visited);
+      color: var(--colour-effective-menu-text-visited);
+    }
 
-nav.site-navigation a:hover::before,
-nav.site-navigation a:focus-visible::before,
-nav.site-navigation button:hover::before,
-nav.site-navigation button:focus-visible::before {
-    content: "\e2ca";  /* Font Awesome Magic Wand with sparkles */
-    font-family: "Font Awesome 7 Pro";
-    font-weight: 900; /* needed for solid style icons */
-}
+    & a:hover,
+    & button:hover {
+      background-color: var(--colour-effective-menu-background-hover);
+      color: var(--colour-effective-menu-text-hover);
+    }
 
-/********************************************************
- * Styles for in page navigation elements
- ********************************************************/
+    & a:focus-visible,
+    & button:focus-visible {
+      background-color: var(--colour-effective-menu-background-focus);
+      color: var(--colour-effective-menu-text-focus);
+    }
 
-nav.in-page-navigation {
-    display: flex;
-    flex-flow: row nowrap;
-    flex-shrink: 1;
-    margin: 1rem auto;
-    padding: 0.25rem;
-    gap: 0.5rem;
-    justify-content: center;
-    align-items: center;
-    width: fit-content;
-    border-radius: var(--border-radius);
-    border: var(--border-weight-thin) var(--border-style) var(--color-headings-text);
+    & a:hover::before,
+    & a:focus-visible::before,
+    & button:hover::before,
+    & button:focus-visible::before {
+      content: "\e2ca"; /* Font Awesome Magic Wand with sparkles */
+    }
+  }
 
-}
+  /* handle very small screens (e.g. very narrow browser windows) */
+  @media (width < 200px) {
+    /* Hide navigation icons at extreme narrow widths to improve wrapping */
+    nav.site-navigation a::before,
+    nav.site-navigation button::before,
+    nav.site-navigation a:hover::before,
+    nav.site-navigation a:focus-visible::before,
+    nav.site-navigation button:hover::before,
+    nav.site-navigation button:focus-visible::before {
+      display: none;
+    }
 
-nav.in-page-navigation ul {
-    display: flex;
-    flex-flow: row wrap;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    max-width: 100%;
-    gap: 0.25rem;
-    justify-content: center;
-    align-items: center;
-    font-size: var(--fontsize-nave-page);
-}
+    /* Allow text to wrap within navigation items at extreme narrow widths */
+    nav.site-navigation li {
+      max-width: 100%;
+    }
 
-nav.in-page-navigation li {
-    display: flex;
-    flex: 0 1 auto;
-    align-items: center;
-    text-align: center;
-}
-
-nav.in-page-navigation a {
-    display: block;
-    color: var(--color-headings-text);
-    text-decoration: underline;
-    padding: 0.25rem 0.5rem;
-    white-space: nowrap;
-    text-align: center;
+    nav.site-navigation a,
+    nav.site-navigation button {
+      white-space: normal;
+      overflow-wrap: break-word;
+      padding: clamp(0.2rem, 1vw, 0.4rem);
+    }
+  }
 }

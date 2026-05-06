@@ -1,0 +1,31 @@
+\documentclass[border=5mm]{standalone}
+
+\usepackage{contour}
+\usepackage{ifthen}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{xcolor}
+
+% load the tikz libraries we need
+% \usetikzlibrary{arrows, arrows.meta, calc, chains, decorations.markings, decorations.text, positioning, shapes}
+\usetikzlibrary{decorations.markings, decorations.text}
+
+\input{../../common/colours.tex}
+
+\begin{document}
+\begin{tikzpicture}
+  % Draw the image (Using the converted PDF version)
+  \node[anchor=center] at (3cm,-1cm) {\includegraphics[width=0.25\textwidth]{embodied-mind-logo_svg-tex.pdf}};
+  \path[
+    decoration={
+      raise = -3ex, % Adjust this value to move the text up or down
+      text along path,
+      text = {| \sffamily \huge \color{colour_purple} | The Embodied Mind},
+      text align = center,
+    },
+    decorate
+  ] (0,0) arc [start angle=-180, end angle=0, radius=3cm];
+
+\end{tikzpicture}
+\end{document}

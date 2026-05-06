@@ -1,0 +1,522 @@
+<!--
+**********************************************************************
+ * File       : colourSwatches.html
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see ../license-and-credits.html page)
+ * Description:
+ *    Colour swatches page showing all theme and style colours
+ *    Displays base colours and all theme variations
+**********************************************************************
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Colour Swatches - Web Witchcraft and Wizardry">
+    <meta name="keywords" content="colour swatches, design system, CSS variables, themes">
+    <meta name="author" content="Edmund Mulligan">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Colour Swatches - Web Witchcraft and Wizardry</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../images/icons/favicon.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Roboto+Slab:wght@400;700&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles/globals.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/diagnostics/colourSwatches.css">
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-swatchbook"></i> Web Witchcraft and Wizardry Colour Swatches</h1>
+        <nav aria-label="breadcrumb">
+            <a href="../index.html">Home</a> &gt;
+            <a href="index.html">Diagnostics</a> &gt;
+            <a href="colourSwatches.html" aria-current="page">Colour Swatches</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="description">
+            <p>This page displays all theme and style colours used in the Web Witchcraft and Wizardry project. The colour system includes three style variants (<strong>normal</strong>, <strong>subdued</strong>, and <strong>vibrant</strong>) with both <strong>light</strong> and <strong>dark</strong> themes. All colours are defined using HSL format and stored as CSS custom properties in <code>styles/definitions/colours.css</code>.</p>
+        </div>
+
+        <!-- Base Colours -->
+        <section class="section">
+            <h2>Base Colours</h2>
+            <p>Base colours are not used directly in the themes but serve as the foundation for generating other colours. Colours at 90 and 150 degrees are not defined as they are too close in perceived appearance to green at 120 degrees to provide useful variation.</p>
+            <div class="swatch-grid base-colours-grid">
+                <div class="swatch">
+                    <div class="swatch-colour swatch-colour-grey">
+                        Grey
+                    </div>
+                    <div class="swatch-info">
+                        <div class="swatch-label">--colour-grey</div>
+                        <div class="swatch-value">hsl(0deg 0% 50%)</div>
+                    </div>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-colour swatch-colour-red">
+                        Red
+                    </div>
+                    <div class="swatch-info">
+                        <div class="swatch-label">--colour-red</div>
+                        <div class="swatch-value">hsl(0deg 100% 50%)</div>
+                    </div>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-colour swatch-colour-orange">
+                        Orange
+                    </div>
+                    <div class="swatch-info">
+                        <div class="swatch-label">--colour-orange</div>
+                        <div class="swatch-value">hsl(30deg 100% 50%)</div>
+                    </div>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-colour swatch-colour-yellow">
+                        Yellow
+                    </div>
+                    <div class="swatch-info">
+                        <div class="swatch-label">--colour-yellow</div>
+                        <div class="swatch-value">hsl(60deg 100% 50%)</div>
+                    </div>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-colour swatch-colour-green">
+                        Green
+                    </div>
+                    <div class="swatch-info">
+                        <div class="swatch-label">--colour-green</div>
+                        <div class="swatch-value">hsl(120deg 100% 50%)</div>
+                    </div>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-colour swatch-colour-cyan">
+                        Cyan
+                    </div>
+                    <div class="swatch-info">
+                        <div class="swatch-label">--colour-cyan</div>
+                        <div class="swatch-value">hsl(180deg 100% 50%)</div>
+                    </div>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-colour swatch-colour-blue">
+                        Blue
+                    </div>
+                    <div class="swatch-info">
+                        <div class="swatch-label">--colour-blue</div>
+                        <div class="swatch-value">hsl(210deg 100% 50%)</div>
+                    </div>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-colour swatch-colour-navy">
+                        Navy
+                    </div>
+                    <div class="swatch-info">
+                        <div class="swatch-label">--colour-navy</div>
+                        <div class="swatch-value">hsl(240deg 100% 50%)</div>
+                    </div>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-colour swatch-colour-purple">
+                        Purple
+                    </div>
+                    <div class="swatch-info">
+                        <div class="swatch-label">--colour-purple</div>
+                        <div class="swatch-value">hsl(270deg 100% 50%)</div>
+                    </div>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-colour swatch-colour-magenta">
+                        Magenta
+                    </div>
+                    <div class="swatch-info">
+                        <div class="swatch-label">--colour-magenta</div>
+                        <div class="swatch-value">hsl(300deg 100% 50%)</div>
+                    </div>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-colour swatch-colour-pink">
+                        Pink
+                    </div>
+                    <div class="swatch-info">
+                        <div class="swatch-label">--colour-pink</div>
+                        <div class="swatch-value">hsl(330deg 100% 50%)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Normal Light Theme -->
+        <section class="section">
+            <h2>Normal Light Theme</h2>
+            <div class="theme-demo theme-demo-normal-light">
+                <h3 class="theme-heading theme-heading-normal-light">Page Elements</h3>
+                <div class="theme-colours">
+                    <div class="colour-pair colour-pair-normal-light-page">
+                        <strong>Page</strong>
+                        <div class="colour-label">Background &amp; Text</div>
+                    </div>
+                    <div class="colour-pair colour-pair-normal-light-headings">
+                        <strong>Headings</strong>
+                        <div class="colour-label">Background &amp; Text</div>
+                    </div>
+                    <div class="colour-pair colour-pair-normal-light-code">
+                        <strong>Code</strong>
+                        <div class="colour-label">Background &amp; Text</div>
+                    </div>
+                </div>
+
+                <h3 class="theme-heading theme-heading-normal-light theme-heading-with-margin">Button States</h3>
+                <div class="theme-colours">
+                    <div class="colour-pair colour-pair-normal-light-button">
+                        <strong>Default</strong>
+                        <div class="colour-label">Button</div>
+                    </div>
+                    <div class="colour-pair colour-pair-normal-light-button-hover">
+                        <strong>Hover</strong>
+                        <div class="colour-label">Button Hover</div>
+                    </div>
+                    <div class="colour-pair colour-pair-normal-light-button-selected">
+                        <strong>Selected</strong>
+                        <div class="colour-label">Button Selected</div>
+                    </div>
+                </div>
+
+                <h3 class="theme-heading theme-heading-normal-light theme-heading-with-margin">Menu States</h3>
+                <div class="theme-colours">
+                    <div class="colour-pair colour-pair-normal-light-menu">
+                        <strong>Default</strong>
+                        <div class="colour-label">Menu Link</div>
+                    </div>
+                    <div class="colour-pair colour-pair-normal-light-menu-hover">
+                        <strong>Hover</strong>
+                        <div class="colour-label">Menu Hover</div>
+                    </div>
+                    <div class="colour-pair colour-pair-normal-light-menu-visited">
+                        <strong>Visited</strong>
+                        <div class="colour-label">Menu Visited</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Normal Dark Theme -->
+        <section class="section">
+            <h2>Normal Dark Theme</h2>
+            <div class="theme-demo theme-demo-normal-dark">
+                <h3 class="theme-heading theme-heading-normal-dark">Page Elements</h3>
+                <div class="theme-colours">
+                    <div class="colour-pair colour-pair-normal-dark-page">
+                        <strong>Page</strong>
+                        <div class="colour-label">Background &amp; Text</div>
+                    </div>
+                    <div class="colour-pair colour-pair-normal-dark-headings">
+                        <strong>Headings</strong>
+                        <div class="colour-label">Background &amp; Text</div>
+                    </div>
+                    <div class="colour-pair colour-pair-normal-dark-code">
+                        <strong>Code</strong>
+                        <div class="colour-label">Background &amp; Text</div>
+                    </div>
+                </div>
+
+                <h3 class="theme-heading theme-heading-normal-dark theme-heading-with-margin">Button States</h3>
+                <div class="theme-colours">
+                    <div class="colour-pair colour-pair-normal-dark-button">
+                        <strong>Default</strong>
+                        <div class="colour-label">Button</div>
+                    </div>
+                    <div class="colour-pair colour-pair-normal-dark-button-hover">
+                        <strong>Hover</strong>
+                        <div class="colour-label">Button Hover</div>
+                    </div>
+                    <div class="colour-pair colour-pair-normal-dark-button-selected">
+                        <strong>Selected</strong>
+                        <div class="colour-label">Button Selected</div>
+                    </div>
+                </div>
+
+                <h3 class="theme-heading theme-heading-normal-dark theme-heading-with-margin">Menu States</h3>
+                <div class="theme-colours">
+                    <div class="colour-pair colour-pair-normal-dark-menu">
+                        <strong>Default</strong>
+                        <div class="colour-label">Menu Link</div>
+                    </div>
+                    <div class="colour-pair colour-pair-normal-dark-menu-hover">
+                        <strong>Hover</strong>
+                        <div class="colour-label">Menu Hover</div>
+                    </div>
+                    <div class="colour-pair colour-pair-normal-dark-menu-visited">
+                        <strong>Visited</strong>
+                        <div class="colour-label">Menu Visited</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subdued Light Theme -->
+        <section class="section">
+            <h2>Subdued Light Theme</h2>
+            <div class="theme-demo theme-demo-subdued-light">
+                <h3 class="theme-heading theme-heading-subdued-light">Page Elements</h3>
+                <div class="theme-colours">
+                    <div class="colour-pair colour-pair-subdued-light-page">
+                        <strong>Page</strong>
+                        <div class="colour-label">Background &amp; Text</div>
+                    </div>
+                    <div class="colour-pair colour-pair-subdued-light-headings">
+                        <strong>Headings</strong>
+                        <div class="colour-label">Background &amp; Text</div>
+                    </div>
+                    <div class="colour-pair colour-pair-subdued-light-code">
+                        <strong>Code</strong>
+                        <div class="colour-label">Background &amp; Text</div>
+                    </div>
+                </div>
+
+                <h3 class="theme-heading theme-heading-subdued-light theme-heading-with-margin">Button States</h3>
+                <div class="theme-colours">
+                    <div class="colour-pair colour-pair-subdued-light-button">
+                        <strong>Default</strong>
+                        <div class="colour-label">Button</div>
+                    </div>
+                    <div class="colour-pair colour-pair-subdued-light-button-hover">
+                        <strong>Hover</strong>
+                        <div class="colour-label">Button Hover</div>
+                    </div>
+                    <div class="colour-pair colour-pair-subdued-light-button-selected">
+                        <strong>Selected</strong>
+                        <div class="colour-label">Button Selected</div>
+                    </div>
+                </div>
+
+                <h3 class="theme-heading theme-heading-subdued-light theme-heading-with-margin">Menu States</h3>
+                <div class="theme-colours">
+                    <div class="colour-pair colour-pair-subdued-light-menu">
+                        <strong>Default</strong>
+                        <div class="colour-label">Menu Link</div>
+                    </div>
+                    <div class="colour-pair colour-pair-subdued-light-menu-hover">
+                        <strong>Hover</strong>
+                        <div class="colour-label">Menu Hover</div>
+                    </div>
+                    <div class="colour-pair colour-pair-subdued-light-menu-visited">
+                        <strong>Visited</strong>
+                        <div class="colour-label">Menu Visited</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subdued Dark Theme -->
+        <section class="section">
+            <h2>Subdued Dark Theme</h2>
+            <div class="theme-demo theme-demo-subdued-dark">
+                <h3 class="theme-heading theme-heading-subdued-dark">Page Elements</h3>
+                <div class="theme-colours">
+                    <div class="colour-pair colour-pair-subdued-dark-page">
+                        <strong>Page</strong>
+                        <div class="colour-label">Background &amp; Text</div>
+                    </div>
+                    <div class="colour-pair colour-pair-subdued-dark-headings">
+                        <strong>Headings</strong>
+                        <div class="colour-label">Background &amp; Text</div>
+                    </div>
+                    <div class="colour-pair colour-pair-subdued-dark-code">
+                        <strong>Code</strong>
+                        <div class="colour-label">Background &amp; Text</div>
+                    </div>
+                </div>
+
+                <h3 class="theme-heading theme-heading-subdued-dark theme-heading-with-margin">Button States</h3>
+                <div class="theme-colours">
+                    <div class="colour-pair colour-pair-subdued-dark-button">
+                        <strong>Default</strong>
+                        <div class="colour-label">Button</div>
+                    </div>
+                    <div class="colour-pair colour-pair-subdued-dark-button-hover">
+                        <strong>Hover</strong>
+                        <div class="colour-label">Button Hover</div>
+                    </div>
+                    <div class="colour-pair colour-pair-subdued-dark-button-selected">
+                        <strong>Selected</strong>
+                        <div class="colour-label">Button Selected</div>
+                    </div>
+                </div>
+
+                <h3 class="theme-heading theme-heading-subdued-dark theme-heading-with-margin">Menu States</h3>
+                <div class="theme-colours">
+                    <div class="colour-pair colour-pair-subdued-dark-menu">
+                        <strong>Default</strong>
+                        <div class="colour-label">Menu Link</div>
+                    </div>
+                    <div class="colour-pair colour-pair-subdued-dark-menu-hover">
+                        <strong>Hover</strong>
+                        <div class="colour-label">Menu Hover</div>
+                    </div>
+                    <div class="colour-pair colour-pair-subdued-dark-menu-visited">
+                        <strong>Visited</strong>
+                        <div class="colour-label">Menu Visited</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vibrant Light Theme -->
+        <section class="section">
+            <h2>Vibrant Light Theme</h2>
+            <div class="theme-demo theme-demo-vibrant-light">
+                <h3 class="theme-heading theme-heading-vibrant-light">Page Elements</h3>
+                <div class="theme-colours">
+                    <div class="colour-pair colour-pair-vibrant-light-page">
+                        <strong>Page</strong>
+                        <div class="colour-label">Background &amp; Text</div>
+                    </div>
+                    <div class="colour-pair colour-pair-vibrant-light-headings">
+                        <strong>Headings</strong>
+                        <div class="colour-label">Background &amp; Text</div>
+                    </div>
+                    <div class="colour-pair colour-pair-vibrant-light-code">
+                        <strong>Code</strong>
+                        <div class="colour-label">Background &amp; Text</div>
+                    </div>
+                </div>
+
+                <h3 class="theme-heading theme-heading-vibrant-light theme-heading-with-margin">Button States</h3>
+                <div class="theme-colours">
+                    <div class="colour-pair colour-pair-vibrant-light-button">
+                        <strong>Default</strong>
+                        <div class="colour-label">Button</div>
+                    </div>
+                    <div class="colour-pair colour-pair-vibrant-light-button-hover">
+                        <strong>Hover</strong>
+                        <div class="colour-label">Button Hover</div>
+                    </div>
+                    <div class="colour-pair colour-pair-vibrant-light-button-selected">
+                        <strong>Selected</strong>
+                        <div class="colour-label">Button Selected</div>
+                    </div>
+                </div>
+
+                <h3 class="theme-heading theme-heading-vibrant-light theme-heading-with-margin">Menu States</h3>
+                <div class="theme-colours">
+                    <div class="colour-pair colour-pair-vibrant-light-menu">
+                        <strong>Default</strong>
+                        <div class="colour-label">Menu Link</div>
+                    </div>
+                    <div class="colour-pair colour-pair-vibrant-light-menu-hover">
+                        <strong>Hover</strong>
+                        <div class="colour-label">Menu Hover</div>
+                    </div>
+                    <div class="colour-pair colour-pair-vibrant-light-menu-visited">
+                        <strong>Visited</strong>
+                        <div class="colour-label">Menu Visited</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vibrant Dark Theme -->
+        <section class="section">
+            <h2>Vibrant Dark Theme</h2>
+            <div class="theme-demo theme-demo-vibrant-dark">
+                <h3 class="theme-heading theme-heading-vibrant-dark">Page Elements</h3>
+                <div class="theme-colours">
+                    <div class="colour-pair colour-pair-vibrant-dark-page">
+                        <strong>Page</strong>
+                        <div class="colour-label">Background &amp; Text</div>
+                    </div>
+                    <div class="colour-pair colour-pair-vibrant-dark-headings">
+                        <strong>Headings</strong>
+                        <div class="colour-label">Background &amp; Text</div>
+                    </div>
+                    <div class="colour-pair colour-pair-vibrant-dark-code">
+                        <strong>Code</strong>
+                        <div class="colour-label">Background &amp; Text</div>
+                    </div>
+                </div>
+
+                <h3 class="theme-heading theme-heading-vibrant-dark theme-heading-with-margin">Button States</h3>
+                <div class="theme-colours">
+                    <div class="colour-pair colour-pair-vibrant-dark-button">
+                        <strong>Default</strong>
+                        <div class="colour-label">Button</div>
+                    </div>
+                    <div class="colour-pair colour-pair-vibrant-dark-button-hover">
+                        <strong>Hover</strong>
+                        <div class="colour-label">Button Hover</div>
+                    </div>
+                    <div class="colour-pair colour-pair-vibrant-dark-button-selected">
+                        <strong>Selected</strong>
+                        <div class="colour-label">Button Selected</div>
+                    </div>
+                </div>
+
+                <h3 class="theme-heading theme-heading-vibrant-dark theme-heading-with-margin">Menu States</h3>
+                <div class="theme-colours">
+                    <div class="colour-pair colour-pair-vibrant-dark-menu">
+                        <strong>Default</strong>
+                        <div class="colour-label">Menu Link</div>
+                    </div>
+                    <div class="colour-pair colour-pair-vibrant-dark-menu-hover">
+                        <strong>Hover</strong>
+                        <div class="colour-label">Menu Hover</div>
+                    </div>
+                    <div class="colour-pair colour-pair-vibrant-dark-menu-visited">
+                        <strong>Visited</strong>
+                        <div class="colour-label">Menu Visited</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Utility Colours -->
+        <section class="section">
+            <h2>Utility Colours</h2>
+            <div class="swatch-grid">
+                <div class="swatch">
+                    <div class="swatch-colour swatch-colour-warning">
+                        Warning
+                    </div>
+                    <div class="swatch-info">
+                        <div class="swatch-label">Warning</div>
+                        <div class="swatch-value">Background &amp; Text</div>
+                    </div>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-colour swatch-colour-error">
+                        Error
+                    </div>
+                    <div class="swatch-info">
+                        <div class="swatch-label">Error</div>
+                        <div class="swatch-value">Background &amp; Text</div>
+                    </div>
+                </div>
+                <div class="swatch">
+                    <div class="swatch-colour swatch-colour-success">
+                        Success
+                    </div>
+                    <div class="swatch-info">
+                        <div class="swatch-label">Success</div>
+                        <div class="swatch-value">Background &amp; Text</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

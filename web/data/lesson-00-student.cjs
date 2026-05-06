@@ -1,0 +1,2684 @@
+/*
+ **********************************************************************
+ * File       : data/lesson-00-student.js
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This module defines the data for Lesson 0 - Getting Started
+ **********************************************************************
+ */
+
+module.exports = {
+  lesson: {
+    number: 0,
+    title: 'Getting Started',
+    page_title: 'Lesson 0 - Getting Started',
+  },
+  platforms: [
+    {
+      id: 'chromebook',
+      name: 'Chromebook',
+      cap_name: 'Chromebook',
+      non_developer: true,
+      description: `
+<div id="instructions-chromebook">
+  <p>
+    Chromebooks are inexpensive laptops that run Chrome OS, but they are not great for web development. It is possible to install Linux on some Chromebooks, but Google makes it difficult to do
+    this without opening the computer up and making changes to the hardware. <strong>This will, at the very least, void your warranty and I honestly do not recommend doing this.</strong> I
+    destroyed one Chromebook when I tried. If you want a cheap laptop for web  development, consider a Windows or Linux machine instead.
+  </p>
+</div>`,
+    },
+    {
+      id: 'android',
+      name: 'Android',
+      cap_name: 'Android',
+      non_developer: true,
+      description: `
+<div id="instructions-android">
+  <p>
+    Android phones and tablets are not ideal for web development. While there are some code editors available for Android, the experience is limited compared to using a laptop or desktop computer.
+    If possible, use a Windows, or Linux machine for the best experience.
+  </p>
+</div>`,
+    },
+    {
+      id: 'ios',
+      name: 'Ios',
+      cap_name: 'iOS (iPhone/iPad)',
+      non_developer: true,
+      description: `
+<div id="instructions-ios">
+  <p>
+    Apple iPhones and iPads are not ideal for web development. While there are some code editors available for iOS, the experience is limited compared to using a laptop or desktop computer.
+    If possible, use a macOS machine such as an iMac or MacBook for the best experience.
+  </p>
+</div>`,
+    },
+  ],
+  common_sections: [
+    {
+      section: true,
+      section_id: 'introduction',
+      title: 'Introduction',
+      aria_label: 'Introduction',
+      container_class: 'intro-container',
+      content_class: 'intro-content',
+      title_class: 'lesson-title',
+      class_list: 'lesson-install-windows lesson-install-macos lesson-install-linux',
+      content: `
+<div class="intro-container">
+  <div class="intro-content">
+    <div id="introduction-block">
+      <p>
+        In this lesson, you will ensure that you have all the necessary tools installed on your computer to start learning web development.
+        By the end of this lesson, you will be ready to create your first web page. If you are at a Code Dojo and are using a club computer, these tools
+        will already be installed for you so you can skip to the next lesson.
+      </p>
+    </div>
+  </div>
+</div>`,
+    },
+    {
+      section: true,
+      section_id: 'warning',
+      title: 'Warning',
+      aria_label: 'Warning',
+      container_class: 'warning-container',
+      content_class: 'warning-content',
+      title_class: 'lesson-title',
+      class_list: 'lesson-install-windows lesson-install-macos lesson-install-linux',
+      content: `
+<div class="warning-container">
+  <div class="warning-content">
+    <p>
+      This lesson involves installing software on your computer. If you are using a shared or school computer, please check with a parent, guardian, or teacher
+      before proceeding with the installations. Also, you will need administrative privileges to install the software. This means you will need an administrator
+      password at various stages. If you are not using your own computer, you may need to get the owner to do those steps for you. Finally be aware that the
+      instructions are long and detailed to ensure you get everything set up correctly. Take your time and follow each step carefully. Ask for help from a mentor,
+      if one is available. The rest of the lessons are much shorter and easier once you have the tools installed!
+    </p>
+  </div>
+</div>`,
+    },
+    {
+      section: true,
+      section_id: 'installing-required-software',
+      title: 'Installing Required Software',
+      aria_label: 'Installing Required Software',
+      container_class: '',
+      content_class: '',
+      title_class: 'lesson-title',
+      class_list: 'lesson-install-windows lesson-install-macos lesson-install-linux',
+      content: `
+<div id="installing-required-software-block">
+  <p>
+    These are the tools you need to install. Some may already be installed on your computer, in which case you can skip those sections.
+    You may use other tools if you prefer, but these are the ones the lessons will assume you have.
+  </p>
+  <ul>
+    <li>Microsoft Visual Studio Code (or another code editor).</li>
+    <li>Mozilla Firefox (or another modern web browser such as Google Chrome or Apple Safari).</li>
+    <li>Git (optional, for version control, used in later lessons).</li>
+    <li>Node.js (required for running the development server).</li>
+    <li>SQLite (optional, for database management, used in later lessons).</li>
+  </ul>
+  <p>
+    Node.js is required from the start to run the development server. If you don't want to install Git or SQLite right now, that's okay; you can install them later when you get to the lessons that need them.
+  </p>
+</div>`,
+    },
+  ],
+  developer_platforms: [
+    {
+      os_id: 'windows',
+      os_name: 'Windows',
+      os_intro: `
+<p>
+  The latest version of Windows is <strong>Windows 11</strong>, but you should be able to use <strong>Windows 10</strong> as well. The lessons have not been tested on earlier
+  versions of Windows, but they may work ok. It's possible that the browser on older versions of windows won't run all the features used in the lessons. In particular,
+  beware of using Internet Explorer - it is not supported any more and Microsoft Edge is recommended instead. On the next screens are the instructions for installing
+  the recommended software on your Windows computer.
+</p>`,
+      tools: [
+        {
+          tool_id: 'vsc',
+          tool_name: 'Visual Studio Code',
+          tool_content: `
+<div id="vsc-windows">
+  <h4 class="lesson-title">Check whether Visual Studio Code is already installed</h4>
+  <ul>
+    <li>Press <code>Windows key + R</code></li>
+    <li>Type <code>code</code> and press Enter</li>
+    <li>If VS Code opens, you have it installed. If you get an error message, you need to install it.</li>
+  </ul>
+  <h4 onclick="toggleSection('vsc-windows-list-1', event);" onkeydown="toggleSection('vsc-windows-list-1', event);" class="lesson-title magic-invisible">If you need to install Visual Studio Code, follow these steps</h4>
+  <ol id="vsc-windows-list-1" class="hidden">
+    <li>
+      <span onclick="toggleSection('vsc-windows-list-1-1', event);" onkeydown="toggleSection('vsc-windows-list-1-1', event);" class="lesson-title magic-invisible">Download VS Code from the Official Website</span>
+      <ul id="vsc-windows-list-1-1" class="hidden">
+        <li>Open your web browser</li>
+        <li>Go to <a href="https://code.visualstudio.com" target="_blank" rel="noopener noreferrer">https://code.visualstudio.com</a></li>
+        <li>Click the large blue "Download for Windows" button</li>
+        <li>The file <code>VSCodeUserSetup-x64-[version].exe</code> will download (usually to your Downloads folder)</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('vsc-windows-list-1-2', event);" onkeydown="toggleSection('vsc-windows-list-1-2', event);" class="lesson-title magic-invisible">Run the Installer</span>
+      <ul id="vsc-windows-list-1-2" class="hidden">
+        <li>Open your Downloads folder (press <code>Windows key + E</code>, then click Downloads)</li>
+        <li>Double-click the VSCodeUserSetup file you just downloaded</li>
+        <li>If Windows asks "Do you want to allow this app to make changes?", click Yes</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('vsc-windows-list-1-3', event);" onkeydown="toggleSection('vsc-windows-list-1-3', event);" class="lesson-title magic-invisible">Setup Wizard</span>
+      <ul id="vsc-windows-list-1-3" class="hidden">
+        <li>Accept the license agreement, then click Next</li>
+        <li>Choose installation location (default is fine), click Next</li>
+        <li>Choose Start Menu folder (default is fine), click Next</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('vsc-windows-list-1-4', event);" onkeydown="toggleSection('vsc-windows-list-1-4', event);" class="lesson-title magic-invisible">Select Additional Tasks</span>
+      <ul id="vsc-windows-list-1-4" class="hidden">
+        <li>Check these recommended options
+          <ul>
+            <li>Create a desktop icon</li>
+            <li>Add "Open with Code" action to Windows Explorer file context menu</li>
+            <li>Add "Open with Code" action to Windows Explorer directory context menu</li>
+            <li>Register Code as an editor for supported file types</li>
+            <li>Add to PATH</li>
+          </ul>
+        </li>
+        <li>Click Next</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('vsc-windows-list-1-5', event);" onkeydown="toggleSection('vsc-windows-list-1-5', event);" class="lesson-title magic-invisible">Install</span>
+        <ul id="vsc-windows-list-1-5" class="hidden">
+          <li>Review your choices, then click Install</li>
+          <li>Wait for installation to complete (takes about 1-2 minutes)</li>
+          <li>Check "Launch Visual Studio Code", then click Finish</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('vsc-windows-list-1-6', event);" onkeydown="toggleSection('vsc-windows-list-1-6', event);" class="lesson-title magic-invisible">First Launch</span>
+        <ul id="vsc-windows-list-1-6" class="hidden"    >
+        <li>VS Code opens with a Welcome screen</li>
+        <li>You can choose your colour theme (light or dark)</li>
+        <li>You're ready to start coding!</li>
+      </ul>
+    </li>
+  </ol>
+</div>`,
+        },
+        {
+          tool_id: 'firefox',
+          tool_name: 'Mozilla Firefox',
+          tool_content: `
+<div id="firefox-windows">
+  <h4 class="lesson-title">Check whether Firefox is already installed</h4>
+  <ul>
+    <li>Press <code>Windows key</code></li>
+    <li>Type <code>Firefox</code></li>
+    <li>If Firefox appears in the search results, you have it installed. If not, you need to install it.</li>
+  </ul>
+  <h4 onclick="toggleSection('firefox-windows-list-1', event);" onkeydown="toggleSection('firefox-windows-list-1', event);" class="lesson-title magic-invisible">If you need to install Firefox, follow these steps</h4>
+  <ol id="firefox-windows-list-1" class="hidden">
+    <li>
+      <span onclick="toggleSection('firefox-windows-list-1-1', event);" onkeydown="toggleSection('firefox-windows-list-1-1', event);" class="lesson-title magic-invisible">Download Firefox from the Official Website</span>
+      <ul id="firefox-windows-list-1-1" class="hidden">
+        <li>Open your web browser (Microsoft Edge or another browser)</li>
+        <li>Go to <a href="https://www.mozilla.org/firefox/" target="_blank" rel="noopener noreferrer">https://www.mozilla.org/firefox/</a></li>
+        <li>Click the blue "Download Firefox" button</li>
+        <li>The file <code>Firefox Installer.exe</code> will download (usually to your Downloads folder)</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('firefox-windows-list-1-2', event);" onkeydown="toggleSection('firefox-windows-list-1-2', event);" class="lesson-title magic-invisible">Run the Installer</span>
+      <ul id="firefox-windows-list-1-2" class="hidden">
+        <li>Open your Downloads folder (press <code>Windows key + E</code>, then click Downloads)</li>
+        <li>Double-click the <code>Firefox Installer.exe</code> file you just downloaded</li>
+        <li>If Windows asks "Do you want to allow this app to make changes?", click Yes</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('firefox-windows-list-1-3', event);" onkeydown="toggleSection('firefox-windows-list-1-3', event);" class="lesson-title magic-invisible">Installation Process</span>
+      <ul id="firefox-windows-list-1-3" class="hidden">
+        <li>The installer will start automatically</li>
+        <li>Firefox will install to the default location (usually <code>C:\\Program Files\\Mozilla Firefox</code>)</li>
+        <li>Wait for installation to complete (takes about 30 seconds to 1 minute)</li>
+        <li>Firefox will automatically launch when installation is complete</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('firefox-windows-list-1-4', event);" onkeydown="toggleSection('firefox-windows-list-1-4', event);" class="lesson-title magic-invisible">First Launch</span>
+      <ul id="firefox-windows-list-1-4" class="hidden">
+        <li>Firefox opens with a Welcome screen</li>
+        <li>You can choose to set Firefox as your default browser (optional)</li>
+        <li>You can import bookmarks and settings from other browsers (optional)</li>
+        <li>You're ready to browse!</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('firefox-windows-list-1-5', event);" onkeydown="toggleSection('firefox-windows-list-1-5', event);" class="lesson-title magic-invisible">Pin to Taskbar (Optional)</span>
+      <ul id="firefox-windows-list-1-5" class="hidden">
+        <li>With Firefox running, right-click the Firefox icon in the taskbar</li>
+        <li>Select "Pin to taskbar"</li>
+        <li>Now you can launch Firefox quickly from the taskbar</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('firefox-windows-list-1-6', event);" onkeydown="toggleSection('firefox-windows-list-1-6', event);" class="lesson-title magic-invisible">Verify Installation</span>
+      <ul id="firefox-windows-list-1-6" class="hidden">
+        <li>In Firefox, click the menu button (three horizontal lines) in the top-right corner</li>
+        <li>Click "Help" → "About Firefox"</li>
+        <li>You should see the Firefox version number</li>
+      </ul>
+    </li>
+  </ol>
+</div>`,
+        },
+        {
+          tool_id: 'nodejs',
+          tool_name: 'Node.js',
+          tool_content: `
+<div id="nodejs-windows">
+  <h4 class="lesson-title">Check whether Node.js is already installed</h4>
+  <ul>
+    <li>Press <code>Windows key + R</code></li>
+    <li>Type <code>cmd</code> and press Enter to open Command Prompt</li>
+    <li>Type <code>node --version</code> and press Enter</li>
+    <li>If you see a version number, you have it installed. If you get an error message, you need to install it.</li>
+  </ul>
+  <h4 onclick="toggleSection('nodejs-windows-list-1', event);" onkeydown="toggleSection('nodejs-windows-list-1', event);" class="lesson-title magic-invisible">If you need to install Node.js, follow these steps</h4>
+  <ol id="nodejs-windows-list-1" class="hidden">
+    <li>
+      <span onclick="toggleSection('nodejs-windows-list-1-1', event);" onkeydown="toggleSection('nodejs-windows-list-1-1', event);" class="lesson-title magic-invisible">Download Node.js from the Official Website</span>
+      <ul id="nodejs-windows-list-1-1" class="hidden">
+        <li>Open your web browser</li>
+        <li>Go to <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer">https://nodejs.org/</a></li>
+        <li>You'll see two download options
+          <ul>
+            <li><strong>LTS (Long Term Support)</strong> - Recommended for most users</li>
+            <li>Current - Latest features, but may be less stable</li>
+          </ul>
+        </li>
+        <li>Click the green button for <strong>LTS</strong></li>
+        <li>The file <code>node-v[version]-x64.msi</code> will download (usually to your Downloads folder)</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('nodejs-windows-list-1-2', event);" onkeydown="toggleSection('nodejs-windows-list-1-2', event);" class="lesson-title magic-invisible">Run the Installer</span>
+      <ul id="nodejs-windows-list-1-2" class="hidden">
+        <li>Open your Downloads folder (press <code>Windows key + E</code>, then click Downloads)</li>
+        <li>Double-click the Node.js installer file you just downloaded</li>
+        <li>If Windows asks "Do you want to allow this app to make changes?", click Yes</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('nodejs-windows-list-1-3', event);" onkeydown="toggleSection('nodejs-windows-list-1-3', event);" class="lesson-title magic-invisible">Setup Wizard</span>
+      <ul id="nodejs-windows-list-1-3" class="hidden">
+        <li>Click "Next" on the welcome screen</li>
+        <li>Check "I accept the terms in the License Agreement"</li>
+        <li>Click "Next"</li>
+        <li>Default location is fine (usually <code>C:\\Program Files\\nodejs\\</code>)</li>
+        <li>Click "Next"</li>
+        <li>Keep all default features selected
+          <ul>
+            <li>Node.js runtime</li>
+            <li>npm package manager</li>
+            <li>Online documentation shortcuts</li>
+            <li>Add to PATH</li>
+          </ul>
+        </li>
+        <li>Click "Next"</li>
+        <li>You can optionally check "Automatically install the necessary tools" (this installs Python and Visual Studio Build Tools)</li>
+        <li>For basic web development, you can skip this</li>
+        <li>Click "Next"</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('nodejs-windows-list-1-8', event);" onkeydown="toggleSection('nodejs-windows-list-1-8', event);" class="lesson-title magic-invisible">Install</span>
+      <ul id="nodejs-windows-list-1-8" class="hidden">
+        <li>Click "Install"</li>
+        <li>Wait for installation to complete (takes about 1-2 minutes)</li>
+        <li>Click "Finish"</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('nodejs-windows-list-1-9', event);" onkeydown="toggleSection('nodejs-windows-list-1-9', event);" class="lesson-title magic-invisible">Verify Installation</span>
+      <ul id="nodejs-windows-list-1-9" class="hidden">
+        <li>Close any open Command Prompt windows</li>
+        <li>Press <code>Windows key + R</code>, type <code>cmd</code>, press Enter</li>
+        <li>Check Node.js version:
+          <pre><code>
+node --version
+          </code></pre>
+        </li>
+        <li>You should see the Node.js version number (e.g., v20.x.x)</li>
+        <li>Check npm (Node Package Manager) version
+          <pre><code>
+npm --version
+          </code></pre>
+        </li>
+        <li>You should see the npm version number</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('nodejs-windows-list-1-10', event);" onkeydown="toggleSection('nodejs-windows-list-1-10', event);" class="lesson-title magic-invisible">Test Node.js (Optional)</span>
+      <ul id="nodejs-windows-list-1-10" class="hidden">
+        <li>In Command Prompt, type
+          <pre><code>
+node -e "console.log('Node.js is working!')"
+          </code></pre>
+        </li>
+        <li>You should see "Node.js is working!" printed</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('nodejs-windows-list-1-11', event);" onkeydown="toggleSection('nodejs-windows-list-1-11', event);" class="lesson-title magic-invisible">Create a Simple Test Server (Optional)</span>
+      <ul id="nodejs-windows-list-1-11" class="hidden">
+        <li>Create a test file and start a server
+          <pre><code>
+mkdir C:\\test-nodejs
+cd C:\\test-nodejs
+echo const http = require('http'); http.createServer((req, res) =&gt; {res.writeHead(200, {'Content-Type': 'text/html'});res.end('&lt;h1&gt;Hello from Node.js!&lt;/h1&gt;'); }).listen(8000, () =&gt; console.log('Server running at http://localhost:8000/')); &gt; server.js
+node server.js
+          </code></pre>
+        </li>
+        <li>Open your browser and go to <code>http://localhost:8000</code></li>
+        <li>You should see "Hello from Node.js!"</li>
+        <li>Press <code>Ctrl + C</code> in Command Prompt to stop the server</li>
+      </ul>
+    </li>
+  </ol>
+</div>`,
+        },
+        {
+          tool_id: 'git',
+          tool_name: 'Git',
+          tool_content: `
+<div id="git-windows">
+  <h4 class="lesson-title">Check whether Git is already installed</h4>
+  <ul>
+    <li>Press <code>Windows key + R</code></li>
+    <li>Type <code>cmd</code> and press Enter to open Command Prompt</li>
+    <li>Type <code>git --version</code> and press Enter</li>
+    <li>If you see a version number, you have it installed. If you get an error message, you need to install it.</li>
+  </ul>
+  <h4 onclick="toggleSection('git-windows-list-1', event);" onkeydown="toggleSection('git-windows-list-1', event);" class="lesson-title magic-invisible">If you need to install Git, follow these steps:</h4>
+  <ol id="git-windows-list-1" class="hidden">
+    <li>
+      <span onclick="toggleSection('git-windows-list-1-1', event);" onkeydown="toggleSection('git-windows-list-1-1', event);" class="lesson-title magic-invisible">Download Git from the Official Website</span>
+      <ul id="git-windows-list-1-1" class="hidden">
+        <li>Open your web browser</li>
+        <li>Go to <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">https://git-scm.com/</a></li>
+        <li>Click the "Download for Windows" button</li>
+        <li>The file <code>Git-[version]-64-bit.exe</code> will download (usually to your Downloads folder)</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('git-windows-list-1-2', event);" onkeydown="toggleSection('git-windows-list-1-2', event);" class="lesson-title magic-invisible">Run the Installer</span>
+      <ul id="git-windows-list-1-2" class="hidden">
+        <li>Open your Downloads folder (press <code>Windows key + E</code>, then click Downloads)</li>
+        <li>Double-click the Git installer file you just downloaded</li>
+        <li>If Windows asks "Do you want to allow this app to make changes?", click Yes</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('git-windows-list-1-3', event);" onkeydown="toggleSection('git-windows-list-1-3', event);" class="lesson-title magic-invisible">Setup Wizard</span>
+      <ul id="git-windows-list-1-3" class="hidden">
+        <li>Read the GNU General Public License</li>
+        <li>Click Next</li>
+        <li>Set install location. Default is fine (<code>C:\\Program Files\\Git</code>)</li>
+        <li>Click Next</li>
+        <li>Keep the default selections (recommended)
+          <ul>
+            <li>Additional icons (On the Desktop)</li>
+            <li>Git Bash Here</li>
+            <li>Git GUI Here</li>
+            <li>Associate .git* configuration files</li>
+            <li>Associate .sh files to be run with Bash</li>
+          </ul>
+        </li>
+        <li>Click Next</li>
+        <li>Set Start Menu Folder. Default is fine ("Git")</li>
+        <li>Click Next</li>
+        <li>Select "Use Visual Studio Code as Git's default editor" from the dropdown</li>
+        <li>Click Next</li>
+        <li>Select "Git from the command line and also from 3rd-party software" (recommended)</li>
+        <li>Click Next</li>
+        <li>For all remaining screens, keep the default settings</li>
+        <li>Click Next through each screen</li>
+        <li>Finally, click Install</li>
+        <li>Wait for installation to complete (takes about 1-2 minutes)</li>
+        <li>Uncheck "View Release Notes" and click Finish</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('git-windows-list-1-10', event);" onkeydown="toggleSection('git-windows-list-1-10', event);" class="lesson-title magic-invisible">Configure Git</span>
+      <ul id="git-windows-list-1-10" class="hidden">
+        <li>Press <code>Windows key + R</code></li>
+        <li>Type <code>cmd</code> and press Enter</li>
+        <li>Set your name and email address (replace "Your Name" and "your.email@example.com" with your actual name and email):
+          <pre><code>
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+          </code></pre>
+        </li>
+        <li>These settings will be used to identify you in your Git commits</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('git-windows-list-1-11', event);" onkeydown="toggleSection('git-windows-list-1-11', event);" class="lesson-title magic-invisible">Verify Installation</span>
+      <ul id="git-windows-list-1-11" class="hidden">
+        <li>In the same Command Prompt, type:
+          <pre><code>
+git --version
+          </code></pre>
+        </li>
+        <li>You should see the Git version number</li>
+        <li>Check your configuration
+          <pre><code>
+git config --global --list
+          </code></pre>
+        </li>
+        <li>You should see your name and email listed</li>
+      </ul>
+    </li>
+  </ol>
+</div>`,
+        },
+        {
+          tool_id: 'sqlite',
+          tool_name: 'SQLite',
+          tool_content: `
+<div id="sqlite-windows">
+  <h4 class="lesson-title">Check whether SQLite is already installed</h4>
+  <ul>
+    <li>Press <code>Windows key + R</code></li>
+    <li>Type <code>cmd</code> and press Enter to open Command Prompt</li>
+    <li>Type <code>sqlite3 --version</code> and press Enter</li>
+    <li>If you see a version number, you have it installed. If you get an error message, you need to install it.</li>
+  </ul>
+  <h4 onclick="toggleSection('sqlite-windows-list', event);" onkeydown="toggleSection('sqlite-windows-list', event);" class="lesson-title magic-invisible">If you need to install SQLite, follow these steps</h4>
+  <ol id="sqlite-windows-list" class="hidden">
+    <li>
+      <span onclick="toggleSection('sqlite-windows-list-1', event);" onkeydown="toggleSection('sqlite-windows-list-1', event);" class="lesson-title magic-invisible">Download SQLite from the Official Website</span>
+      <ul id="sqlite-windows-list-1" class="hidden">
+        <li>Open your web browser</li>
+        <li>Go to <a href="https://www.sqlite.org/download.html" target="_blank" rel="noopener noreferrer">https://www.sqlite.org/download.html</a></li>
+        <li>Scroll down to the "Precompiled Binaries for Windows" section</li>
+        <li>Download two files
+          <ul>
+            <li><strong>sqlite-tools-win32-x86-*.zip</strong> (contains sqlite3.exe command-line tool)</li>
+            <li><strong>sqlite-dll-win64-x64-*.zip</strong> (contains the DLL library)</li>
+          </ul>
+        </li>
+        <li>Both files will download to your Downloads folder</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('sqlite-windows-list-2', event);" onkeydown="toggleSection('sqlite-windows-list-2', event);" class="lesson-title magic-invisible">Create SQLite Directory</span>
+      <ul id="sqlite-windows-list-2" class="hidden">
+        <li>Press <code>Windows key + E</code> to open File Explorer</li>
+        <li>Navigate to your C: drive</li>
+        <li>Create a new folder called <code>sqlite</code> (full path: <code>C:\\sqlite</code>)</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('sqlite-windows-list-3', event);" onkeydown="toggleSection('sqlite-windows-list-3', event);" class="lesson-title magic-invisible">Extract SQLite Files</span>
+      <ul id="sqlite-windows-list-3" class="hidden">
+        <li>Go to your Downloads folder</li>
+        <li>Right-click <code>sqlite-tools-win32-x86-*.zip</code></li>
+        <li>Select "Extract All..."</li>
+        <li>Change destination to <code>C:\\sqlite</code> and click Extract</li>
+        <li>Right-click <code>sqlite-dll-win64-x64-*.zip</code></li>
+        <li>Select "Extract All..."</li>
+        <li>Change destination to <code>C:\\sqlite</code> and click Extract</li>
+        <li>Move all .exe and .dll files from the subfolders directly into <code>C:\\sqlite</code></li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('sqlite-windows-list-4', event);" onkeydown="toggleSection('sqlite-windows-list-4', event);" class="lesson-title magic-invisible">Add SQLite to System PATH</span>
+      <ul id="sqlite-windows-list-4" class="hidden">
+        <li>Press <code>Windows key</code> and type "environment variables"</li>
+        <li>Click "Edit the system environment variables"</li>
+        <li>Click the "Environment Variables" button at the bottom</li>
+        <li>In the "System variables" section, find and select "Path"</li>
+        <li>Click "Edit"</li>
+        <li>Click "New"</li>
+        <li>Type <code>C:\\sqlite</code> and press Enter</li>
+        <li>Click "OK" on all windows to save</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('sqlite-windows-list-5', event);" onkeydown="toggleSection('sqlite-windows-list-5', event);" class="lesson-title magic-invisible">Verify Installation</span>
+      <ul id="sqlite-windows-list-5" class="hidden">
+        <li>Close any open Command Prompt windows</li>
+        <li>Press <code>Windows key + R</code>, type <code>cmd</code>, press Enter</li>
+        <li>Type:
+          <pre><code>
+sqlite3 --version
+          </code></pre>
+        </li>
+        <li>You should see the SQLite version number</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('sqlite-windows-list-6', event);" onkeydown="toggleSection('sqlite-windows-list-6', event);" class="lesson-title magic-invisible">Test SQLite (Optional)</span>
+      <ul id="sqlite-windows-list-6" class="hidden">
+        <li>In Command Prompt, type:
+          <pre><code>
+sqlite3
+          </code></pre>
+        </li>
+        <li>You should see the SQLite prompt: <code>sqlite&gt;</code></li>
+        <li>Try a simple command:
+          <pre><code>
+SELECT 'SQLite is working!';
+          </code></pre>
+        </li>
+        <li>You should see the message printed</li>
+        <li>Type <code>.quit</code> and press Enter to exit SQLite</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('sqlite-windows-list-7', event);" onkeydown="toggleSection('sqlite-windows-list-7', event);" class="lesson-title magic-invisible">Create a Test Database (Optional)</span>
+      <ul id="sqlite-windows-list-7" class="hidden">
+        <li>In Command Prompt, navigate to a test folder and create a database:
+          <pre><code>
+mkdir C:\\test-sqlite
+cd C:\\test-sqlite
+sqlite3 test.db
+          </code></pre>
+        </li>
+        <li>Create a simple table:
+          <pre><code>
+CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT);
+INSERT INTO users (name) VALUES ('Alice');
+SELECT * FROM users;
+.quit;
+          </code></pre>
+        </li>
+        <li>You should see the data you inserted</li>
+      </ul>
+    </li>
+  </ol>
+</div>`,
+        },
+        {
+          tool_id: 'projects-folder',
+          tool_name: 'Create a Projects Folder',
+          aria_label: 'Create a Projects Folder on Windows',
+          tool_content: `
+<div id="projects-folder-windows">
+  <p>It's helpful to keep all your coding projects organised in one place. Let's create a dedicated Projects folder:</p>
+  <ol>
+    <li>
+      <span onclick="toggleSection('create-folder-windows-list-1', event);" onkeydown="toggleSection('create-folder-windows-list-1', event);" class="lesson-title magic-invisible">Open File Explorer</span>
+      <ul id="create-folder-windows-list-1" class="hidden">
+        <li>Press <code>Windows key + E</code> to open File Explorer</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('create-folder-windows-list-2', event);" onkeydown="toggleSection('create-folder-windows-list-2', event);" class="lesson-title magic-invisible">Navigate to Your User Folder</span>
+      <ul id="create-folder-windows-list-2" class="hidden">
+        <li>Click on "This PC" or "Computer" in the left sidebar</li>
+        <li>Open the <code>C:</code> drive</li>
+        <li>Open the <code>Users</code> folder</li>
+        <li>Open the folder with your username</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('create-folder-windows-list-3', event);" onkeydown="toggleSection('create-folder-windows-list-3', event);" class="lesson-title magic-invisible">Create the Projects Folder</span>
+      <ul id="create-folder-windows-list-3" class="hidden">
+        <li>Right-click in an empty space</li>
+        <li>Select "New" → "Folder"</li>
+        <li>Name it <code>Projects</code></li>
+        <li>Press Enter</li>
+      </ul>
+    </li>
+  </ol>
+  <p>Your Projects folder is now at: <code>C:\\Users\\YourUsername\\Projects</code></p>
+  <p>In future lessons, you'll save your coding projects in this folder.</p>
+</div>`,
+        },
+        {
+          tool_id: 'dev-server',
+          tool_name: 'Setting Up the Development Server',
+          aria_label: 'Setting Up the Development Server on Windows',
+          tool_content: `
+<div id="dev-server-windows">
+  <p>
+    To view your web pages as you develop them, you'll need to run a local development server. This is important because some web features don't work when opening HTML
+    files directly in a browser. If you installed the Live Server extension in Visual Studio Code, you can skip this step as that will do the same thing. Using this method
+    lets you run and test your web pages even if you are not using Visual Studio Code.
+  </p>
+  <h4 onclick="toggleSection('dev-server-windows-list-1', event);" onkeydown="toggleSection('dev-server-windows-list-1', event);" class="lesson-title magic-invisible">Create a package.json File</h4>
+  <ol id="dev-server-windows-list-1" class="hidden">
+    <li>Open Visual Studio Code</li>
+    <li>Select <code>File → Open Folder</code></li>
+    <li>Navigate to and select your <code>Projects</code> folder (<code>C:\\Users\\YourUsername\\Projects</code>)</li>
+    <li>Create a new file called <code>package.json</code> in the Projects folder</li>
+    <li>Add the following content to the file:
+        <div class="code-snippet-container">
+          <script type="text/plain" class="code-snippet-source">
+{
+  "name": "my-web-projects",
+  "version": "1.0.0",
+  "description": "Web development projects",
+  "scripts": {
+    "start": "http-server -p 8000"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
+          </script>
+          <div class="code-snippet-table"></div>
+        </div>
+      </li>
+      <li>Save the file (<code>Ctrl + S</code>)</li>
+    </ol>
+
+    <h4 onclick="toggleSection('dev-server-windows-list-2', event);" onkeydown="toggleSection('dev-server-windows-list-2', event);" class="lesson-title magic-invisible">Install http-server</h4>
+    <ol id="dev-server-windows-list-2" class="hidden">
+      <li>Open the integrated terminal in VS Code by pressing <code>Ctrl + \`</code> (backtick key, usually above Tab)</li>
+      <li>Make sure you're in your Projects folder (the terminal should show the path)</li>
+      <li>
+        Type
+        <pre><code>
+npm install
+        </code></pre>
+        and press Enter
+      </li>
+      <li>Wait for the installation to complete (this installs http-server locally in your Projects folder)</li>
+    </ol>
+
+    <h4 onclick="toggleSection('dev-server-windows-list-3', event);" onkeydown="toggleSection('dev-server-windows-list-3', event);" class="lesson-title magic-invisible">Start the Development Server</h4>
+    <ol id="dev-server-windows-list-3" class="hidden">
+      <li>In the same terminal, type <code>npm start</code> and press Enter</li>
+      <li>You should see a message saying the server is running on <code>http://localhost:8000</code></li>
+      <li>Open your web browser and go to <code>http://localhost:8000</code></li>
+      <li>You should see a directory listing of your Projects folder</li>
+    </ol>
+
+    <h4 onclick="toggleSection('dev-server-windows-list-4', event);" onkeydown="toggleSection('dev-server-windows-list-4', event);" class="lesson-title magic-invisible">Using the Development Server</h4>
+    <ul id="dev-server-windows-list-4" class="hidden">
+      <li>Keep the terminal open while you're working - the server needs to run continuously</li>
+      <li>When you create HTML files in your Projects folder, you can access them through the browser at <code>http://localhost:8000/filename.html</code></li>
+      <li>When you make changes to your files and save them, refresh your browser to see the changes</li>
+      <li>To stop the server, press <code>Ctrl + C</code> in the terminal</li>
+      <li>To restart the server later, just run <code>npm start</code> again from your Projects folder</li>
+    </ul>
+  </div>`,
+        },
+      ],
+    },
+    {
+      os_id: 'macos',
+      os_name: 'macOS',
+      os_intro: `
+<p>
+  The latest version of Apple's macOS is <strong>macOS Ventura</strong>, but you should be able to use recent versions as well. The lessons have not been tested on earlier versions of macOS,
+  but they may work ok. On the next screens are the instructions for installing the recommended software on your macOS computer.
+</p>`,
+      tools: [
+        {
+          tool_id: 'vsc',
+          tool_name: 'Visual Studio Code',
+          tool_content: `
+<div id="vsc-macos">
+  <h4 class="lesson-title">Check whether Visual Studio Code is already installed:</h4>
+  <ul>
+    <li>Open Finder</li>
+    <li>Go to the Applications folder</li>
+    <li>If you see Visual Studio Code.app, you have it installed. If not, you need to install it.</li>
+  </ul>
+  <h4 onclick="toggleSection('vsc-macos-list-1', event);" onkeydown="toggleSection('vsc-macos-list-1', event);" class="lesson-title magic-invisible">If you need to install Visual Studio Code, follow these steps:</h4>
+  <ol id="vsc-macos-list-1" class="hidden">
+    <li>
+      <span onclick="toggleSection('vsc-macos-list-1-1', event);" onkeydown="toggleSection('vsc-macos-list-1-1', event);" class="lesson-title magic-invisible">Download VS Code from the Official Website</span>
+      <ul id="vsc-macos-list-1-1" class="hidden">
+        <li>Open your web browser</li>
+        <li>Go to <a href="https://code.visualstudio.com" target="_blank" rel="noopener noreferrer">https://code.visualstudio.com</a></li>
+        <li>Click the large blue "Download for Mac" button</li>
+        <li>The file <code>VSCode-darwin-universal.zip</code> will download (usually to your Downloads folder)</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('vsc-macos-list-1-2', event);" onkeydown="toggleSection('vsc-macos-list-1-2', event);" class="lesson-title magic-invisible">Extract the Application</span>
+      <ul id="vsc-macos-list-1-2" class="hidden">
+        <li>Open Finder and go to your Downloads folder</li>
+        <li>Double-click the <code>VSCode-darwin-universal.zip</code> file to extract it</li>
+        <li>You'll see a <code>Visual Studio Code.app</code> file appear</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('vsc-macos-list-1-3', event);" onkeydown="toggleSection('vsc-macos-list-1-3', event);" class="lesson-title magic-invisible">Move to Applications Folder</span>
+      <ul id="vsc-macos-list-1-3" class="hidden">
+        <li>Drag <code>Visual Studio Code.app</code> from Downloads to your Applications folder</li>
+        <li>You can open Applications by pressing <code>Command + Shift + A</code> in Finder</li>
+        <li>Or drag it to the Applications icon in the Finder sidebar</li>
+        <li>This installs VS Code permanently on your Mac</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('vsc-macos-list-1-4', event);" onkeydown="toggleSection('vsc-macos-list-1-4', event);" class="lesson-title magic-invisible">First Launch</span>
+      <ul id="vsc-macos-list-1-4" class="hidden">
+      <li>Open your Applications folder</li>
+      <li>Double-click <code>Visual Studio Code</code></li>
+      <li>macOS may show a security warning: "Visual Studio Code is an app downloaded from the Internet. Are you sure you want to open it?"</li>
+      <li>Click <code>Open</code></li>
+    </ul>
+  </li>
+  <li>
+    <span onclick="toggleSection('vsc-macos-list-1-5', event);" onkeydown="toggleSection('vsc-macos-list-1-5', event);" class="lesson-title magic-invisible">Add to Dock (Optional)</span>
+    <ul id="vsc-macos-list-1-5" class="hidden">
+      <li>While VS Code is running, right-click its icon in the Dock</li>
+      <li>Select Options → Keep in Dock</li>
+      <li>Now you can launch it quickly from the Dock</li>
+    </ul>
+  </li>
+  <li>
+    <span onclick="toggleSection('vsc-macos-list-1-6', event);" onkeydown="toggleSection('vsc-macos-list-1-6', event);" class="lesson-title magic-invisible">Install Command Line Tools (Recommended)</span>
+    <ul id="vsc-macos-list-1-6" class="hidden">
+      <li>In VS Code, press <code>Command + Shift + P</code> to open the Command Palette</li>
+      <li>Type <code>shell command</code></li>
+      <li>Select "Shell Command: Install 'code' command in PATH"</li>
+      <li>Enter your password if prompted</li>
+      <li>Now you can open VS Code from Terminal by typing <code>code</code></li>
+    </ul>
+  </li>
+  <li>
+    <span onclick="toggleSection('vsc-macos-list-1-7', event);" onkeydown="toggleSection('vsc-macos-list-1-7', event);" class="lesson-title magic-invisible">Verify Installation</span>
+    <ul id="vsc-macos-list-1-7" class="hidden">
+      <li>Open Terminal (<code>Command + Space</code>, type "Terminal")</li>
+      <li>Type <code>code --version</code> and press Enter</li>
+      <li>You should see the VS Code version number</li>
+      </ul>
+    </li>
+  </ol>
+</div>`,
+        },
+        {
+          tool_id: 'firefox',
+          tool_name: 'Mozilla Firefox',
+          tool_content: `
+<div id="firefox-macos">
+  <h4 class="lesson-title">Check whether Firefox is already installed:</h4>
+  <ul>
+    <li>Open Finder</li>
+    <li>Go to the Applications folder</li>
+    <li>If you see Firefox.app, you have it installed. If not, you need to install it.</li>
+  </ul>
+  <h4 onclick="toggleSection('firefox-macos-list-1', event);" onkeydown="toggleSection('firefox-macos-list-1', event);" class="lesson-title magic-invisible">If you need to install Firefox, follow these steps:</h4>
+  <ol id="firefox-macos-list-1" class="hidden">
+    <li>
+      <span onclick="toggleSection('firefox-macos-list-1-1', event);" onkeydown="toggleSection('firefox-macos-list-1-1', event);" class="lesson-title magic-invisible">Download Firefox from the Official Website</span>
+      <ul id="firefox-macos-list-1-1" class="hidden">
+        <li>Open Safari or another browser</li>
+        <li>Go to <a href="https://www.mozilla.org/firefox/" target="_blank" rel="noopener noreferrer">https://www.mozilla.org/firefox/</a></li>
+        <li>Click the blue "Download Firefox" button</li>
+        <li>The file <code>Firefox [version].dmg</code> will download (usually to your Downloads folder)</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('firefox-macos-list-1-2', event);" onkeydown="toggleSection('firefox-macos-list-1-2', event);" class="lesson-title magic-invisible">Open the Disk Image</span>
+      <ul id="firefox-macos-list-1-2" class="hidden">
+        <li>Open Finder and go to your Downloads folder</li>
+        <li>Double-click the <code>Firefox [version].dmg</code> file</li>
+        <li>A window will open showing the Firefox icon and an Applications folder shortcut</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('firefox-macos-list-1-3', event);" onkeydown="toggleSection('firefox-macos-list-1-3', event);" class="lesson-title magic-invisible">Install Firefox</span>
+      <ul id="firefox-macos-list-1-3" class="hidden">
+        <li>Drag the Firefox icon to the Applications folder icon</li>
+        <li>Wait for the copy to complete (takes a few seconds)</li>
+        <li>Firefox is now installed</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('firefox-macos-list-1-4', event);" onkeydown="toggleSection('firefox-macos-list-1-4', event);" class="lesson-title magic-invisible">Eject the Disk Image</span>
+      <ul id="firefox-macos-list-1-4" class="hidden">
+        <li>In Finder's sidebar, find the Firefox disk image</li>
+        <li>Click the eject button next to it</li>
+        <li>You can now delete the <code>.dmg</code> file from Downloads if you wish</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('firefox-macos-list-1-5', event);" onkeydown="toggleSection('firefox-macos-list-1-5', event);" class="lesson-title magic-invisible">First Launch</span>
+      <ul id="firefox-macos-list-1-5" class="hidden">
+        <li>Open your Applications folder</li>
+        <li>Double-click <code>Firefox</code></li>
+        <li>macOS may show a security warning: "Firefox is an app downloaded from the Internet. Are you sure you want to open it?"</li>
+        <li>Click <code>Open</code></li>
+        <li>Firefox opens with a Welcome screen</li>
+        <li>You can choose to set Firefox as your default browser (optional)</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('firefox-macos-list-1-6', event);" onkeydown="toggleSection('firefox-macos-list-1-6', event);" class="lesson-title magic-invisible">Add to Dock (Optional)</span>
+      <ul id="firefox-macos-list-1-6" class="hidden">
+        <li>While Firefox is running, right-click its icon in the Dock</li>
+        <li>Select Options → Keep in Dock</li>
+        <li>Now you can launch it quickly from the Dock</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('firefox-macos-list-1-7', event);" onkeydown="toggleSection('firefox-macos-list-1-7', event);" class="lesson-title magic-invisible">Verify Installation</span>
+      <ul id="firefox-macos-list-1-7" class="hidden">
+        <li>In Firefox, click the menu button (three horizontal lines) in the top-right corner</li>
+        <li>Click "Firefox" → "About Firefox"</li>
+        <li>You should see the Firefox version number</li>
+      </ul>
+    </li>
+  </ol>
+</div>`,
+        },
+        {
+          tool_id: 'nodejs',
+          tool_name: 'Node.js',
+          tool_content: `
+<div id="nodejs-macos">
+  <h4 class="lesson-title">Check whether Node.js is already installed:</h4>
+  <ul>
+    <li>Open Terminal (<code>Command + Space</code>, type "Terminal")</li>
+    <li>Type <code>node --version</code> and press Enter</li>
+    <li>If you see a version number, you have Node.js installed.</li>
+  </ul>
+  <h4 onclick="toggleSection('nodejs-macos-list-1', event);" onkeydown="toggleSection('nodejs-macos-list-1', event);" class="lesson-title magic-invisible">If you need to install Node.js, you have two options:</h4>
+  <div id="nodejs-macos-list-1" class="hidden">
+    <h5 onclick="toggleSection('nodejs-macos-list-1-1', event);" onkeydown="toggleSection('nodejs-macos-list-1-1', event);" class="lesson-title magic-invisible">Option 1: Download from Official Website (Recommended for Beginners)</h5>
+    <ol id="nodejs-macos-list-1-1" class="hidden">
+      <li>
+        <span onclick="toggleSection('nodejs-macos-list-1-1-1', event);" onkeydown="toggleSection('nodejs-macos-list-1-1-1', event);" class="lesson-title magic-invisible">Download Node.js</span>
+        <ul id="nodejs-macos-list-1-1-1" class="hidden">
+          <li>Open your browser</li>
+          <li>Go to <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer">https://nodejs.org/</a></li>
+          <li>You'll see two download options:
+            <ul>
+              <li><strong>LTS (Long Term Support)</strong> - Recommended for most users</li>
+              <li>Current - Latest features, but may be less stable</li>
+            </ul>
+          </li>
+          <li>Click the button for <strong>LTS</strong></li>
+          <li>A <code>.pkg</code> file will download</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('nodejs-macos-list-1-1-2', event);" onkeydown="toggleSection('nodejs-macos-list-1-1-2', event);" class="lesson-title magic-invisible">Install Node.js</span>
+        <ul id="nodejs-macos-list-1-1-2" class="hidden">
+          <li>Open the downloaded <code>.pkg</code> file</li>
+          <li>Click "Continue" through the installation wizard</li>
+          <li>Accept the license agreement</li>
+          <li>Keep the default installation location</li>
+          <li>Click "Install"</li>
+          <li>Enter your password when prompted</li>
+          <li>Wait for installation to complete</li>
+          <li>Click "Close" when finished</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h5 onclick="toggleSection('nodejs-macos-list-1-2', event);" onkeydown="toggleSection('nodejs-macos-list-1-2', event);" class="lesson-title magic-invisible">Option 2: Install via Homebrew</h5>
+    <ol id="nodejs-macos-list-1-2" class="hidden">
+      <li>
+        <span onclick="toggleSection('nodejs-macos-list-1-2-1', event);" onkeydown="toggleSection('nodejs-macos-list-1-2-1', event);" class="lesson-title magic-invisible">Install Homebrew (if not already installed)</span>
+        <ul id="nodejs-macos-list-1-2-1" class="hidden">
+          <li>Open Terminal</li>
+          <li>Check if Homebrew is installed:
+            <pre><code>
+brew --version
+            </code></pre>
+          </li>
+          <li>If you get "command not found", install Homebrew with:
+            <pre><code>
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            </code></pre>
+          </li>
+          <li>Follow the on-screen instructions</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('nodejs-macos-list-1-2-2', event);" onkeydown="toggleSection('nodejs-macos-list-1-2-2', event);" class="lesson-title magic-invisible">Install Node.js with Homebrew</span>
+        <ul id="nodejs-macos-list-1-2-2" class="hidden">
+          <li>Run this command:
+            <pre><code>
+brew install node
+            </code></pre>
+          </li>
+          <li>Wait for installation to complete</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('nodejs-macos-list-1-2-3', event);" onkeydown="toggleSection('nodejs-macos-list-1-2-3', event);" class="lesson-title magic-invisible">Verify Installation</span>
+        <ol id="nodejs-macos-list-1-2-3" class="hidden">
+          <li>
+            <span onclick="toggleSection('nodejs-macos-list-1-2-3-1', event);" onkeydown="toggleSection('nodejs-macos-list-1-2-3-1', event);" class="lesson-title magic-invisible">Check Node.js and npm</span>
+            <ul id="nodejs-macos-list-1-2-3-1" class="hidden">
+              <li>Close and reopen Terminal</li>
+              <li>Check Node.js version:
+                <pre><code>
+node --version
+                </code></pre>
+              </li>
+              <li>You should see the Node.js version number (e.g., v20.x.x)</li>
+              <li>Check npm (Node Package Manager) version:
+                <pre><code>
+npm --version
+                </code></pre>
+              </li>
+              <li>You should see the npm version number</li>
+              <li>Check where Node.js is installed:
+                <pre><code>
+which node
+                </code></pre>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <span onclick="toggleSection('nodejs-macos-list-1-2-3-2', event);" onkeydown="toggleSection('nodejs-macos-list-1-2-3-2', event);" class="lesson-title magic-invisible">Test Node.js</span>
+            <ul id="nodejs-macos-list-1-2-3-2" class="hidden">
+              <li>Run a simple Node.js command:
+                <pre><code>
+node -e "console.log('Node.js is working!')"
+                </code></pre>
+              </li>
+              <li>You should see "Node.js is working!" printed</li>
+            </ul>
+          </li>
+          <li>
+            <span onclick="toggleSection('nodejs-macos-list-1-2-3-3', event);" onkeydown="toggleSection('nodejs-macos-list-1-2-3-3', event);" class="lesson-title magic-invisible">Create a Simple Test Server (Optional)</span>
+            <ul id="nodejs-macos-list-1-2-3-3" class="hidden">
+              <li>Create a test file and start a simple server to see Node.js in action:
+                <pre><code>
+mkdir ~/test-nodejs &amp;&amp; cd ~/test-nodejs
+echo "const http = require('http'); http.createServer((req, res) =&gt; { res.writeHead(200, {'Content-Type': 'text/html'}); res.end('&lt;h1&gt;Hello from Node.js!&lt;/h1&gt;'); }).listen(8000, () =&gt; console.log('Server running at http://localhost:8000/'));" &gt; server.js
+node server.js
+                </code></pre>
+              </li>
+              <li>Open your browser and go to <code>http://localhost:8000</code></li>
+              <li>You should see "Hello from Node.js!"</li>
+              <li>Press <code>Control + C</code> in Terminal to stop the server</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ol>
+    <h5 onclick="toggleSection('nodejs-macos-list-1-3', event);" onkeydown="toggleSection('nodejs-macos-list-1-3', event);" class="lesson-title magic-invisible">After installing Node.js</h5>
+    <ol id="nodejs-macos-list-1-3" class="hidden">
+      <li>
+        <span onclick="toggleSection('nodejs-macos-list-1-1-3', event);" onkeydown="toggleSection('nodejs-macos-list-1-1-3', event);" class="lesson-title magic-invisible">Verify Installation</span>
+        <ol id="nodejs-macos-list-1-1-3" class="hidden">
+          <li>
+            <span onclick="toggleSection('nodejs-macos-list-1-1-3-1', event);" onkeydown="toggleSection('nodejs-macos-list-1-1-3-1', event);" class="lesson-title magic-invisible">Check Node.js and npm</span>
+            <ul id="nodejs-macos-list-1-1-3-1" class="hidden">
+              <li>Close and reopen Terminal</li>
+              <li>Check Node.js version:
+                <pre><code>
+node --version
+                </code></pre>
+              </li>
+              <li>You should see the Node.js version number (e.g., v20.x.x)</li>
+              <li>Check npm (Node Package Manager) version:
+                <pre><code>
+npm --version
+                </code></pre>
+              </li>
+              <li>You should see the npm version number</li>
+              <li>Check where Node.js is installed:
+                <pre><code>
+which node
+                </code></pre>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <span onclick="toggleSection('nodejs-macos-list-1-1-3-2', event);" onkeydown="toggleSection('nodejs-macos-list-1-1-3-2', event);" class="lesson-title magic-invisible">Test Node.js</span>
+            <ul id="nodejs-macos-list-1-1-3-2" class="hidden">
+              <li>Run a simple Node.js command:
+                <pre><code>
+node -e "console.log('Node.js is working!')"
+                </code></pre>
+              </li>
+              <li>You should see "Node.js is working!" printed</li>
+            </ul>
+          </li>
+          <li>
+            <span onclick="toggleSection('nodejs-macos-list-1-1-3-3', event);" onkeydown="toggleSection('nodejs-macos-list-1-1-3-3', event);" class="lesson-title magic-invisible">Create a Simple Test Server (Optional)</span>
+            <ul id="nodejs-macos-list-1-1-3-3" class="hidden">
+              <li>Create a test file and start a simple server to see Node.js in action:
+                <pre><code>
+mkdir ~/test-nodejs &amp;&amp; cd ~/test-nodejs
+echo "const http = require('http'); http.createServer((req, res) =&gt; { res.writeHead(200, {'Content-Type': 'text/html'}); res.end('&lt;h1&gt;Hello from Node.js!&lt;/h1&gt;'); }).listen(8000, () =&gt; console.log('Server running at http://localhost:8000/'));" &gt; server.js
+node server.js
+                </code></pre>
+              </li>
+              <li>Open your browser and go to <code>http://localhost:8000</code></li>
+              <li>You should see "Hello from Node.js!"</li>
+              <li>Press <code>Control + C</code> in Terminal to stop the server</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+</div>`,
+        },
+        {
+          tool_id: 'git',
+          tool_name: 'Git',
+          tool_content: `
+<div id="git-macos">
+  <h4 class="lesson-title">Check whether Git is already installed:</h4>
+  <ul>
+    <li>Open Terminal (<code>Command + Space</code>, type "Terminal")</li>
+    <li>Type <code>git --version</code> and press Enter</li>
+    <li>If you see a version number, you have it installed. If you get a popup asking to install Command Line Developer Tools, you need to install Git.</li>
+  </ul>
+  <h4 onclick="toggleSection('git-macos-list-1', event);" onkeydown="toggleSection('git-macos-list-1', event);" class="lesson-title magic-invisible">If you need to install Git, you have three options</h4>
+  <div id="git-macos-list-1" class="hidden">
+    <h5 onclick="toggleSection('git-macos-list-1-1', event);" onkeydown="toggleSection('git-macos-list-1-1', event);" class="lesson-title magic-invisible">Option 1: Install via Xcode Command Line Tools (Recommended)</h5>
+    <ol id="git-macos-list-1-1" class="hidden">
+      <li>
+        <span onclick="toggleSection('git-macos-list-1-1-1', event);" onkeydown="toggleSection('git-macos-list-1-1-1', event);" class="lesson-title magic-invisible">Trigger Installation Prompt</span>
+        <ul id="git-macos-list-1-1-1" class="hidden">
+          <li>Open Terminal</li>
+          <li>Type
+            <pre><code>
+git --version
+            </code></pre>
+            and press Enter
+          </li>
+          <li>If Git is not installed, macOS will show a popup: "The 'git' command requires the command line developer tools. Would you like to install the tools now?"</li>
+          <li>Click "Install"</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('git-macos-list-1-1-2', event);" onkeydown="toggleSection('git-macos-list-1-1-2', event);" class="lesson-title magic-invisible">Installation Process</span>
+        <ul id="git-macos-list-1-1-2" class="hidden">
+          <li>Click "Agree" to the license agreement</li>
+          <li>Wait for the download and installation to complete (this can take 5-15 minutes depending on your internet speed)</li>
+          <li>When complete, click "Done"</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('git-macos-list-1-1-3', event);" onkeydown="toggleSection('git-macos-list-1-1-3', event);" class="lesson-title magic-invisible">Configure Git</span>
+        <ul id="git-macos-list-1-1-3" class="hidden">
+          <li>
+            <strong>Set Your Name and Email</strong>
+            <ul>
+              <li>Open Terminal</li>
+              <li>Set your name and email (replace "Your Name" and "your.email@example.com" with your actual name and email):
+                <pre><code>
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+                </code></pre>
+              </li>
+              <li>These settings will be used to identify you in your Git commits</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('git-macos-list-1-1-4', event);" onkeydown="toggleSection('git-macos-list-1-1-4', event);" class="lesson-title magic-invisible">Verify Installation</span>
+        <ul id="git-macos-list-1-1-4" class="hidden">
+          <li>Type:
+            <pre><code>
+git --version
+            </code></pre>
+          </li>
+          <li>You should see the Git version number</li>
+          <li>Check your configuration:
+            <pre><code>
+git config --global --list
+            </code></pre>
+          </li>
+          <li>You should see your name and email listed</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h5 onclick="toggleSection('git-macos-list-2', event);" onkeydown="toggleSection('git-macos-list-2', event);" class="lesson-title magic-invisible">Option 2: Install via Homebrew</h5>
+    <ol id="git-macos-list-2" class="hidden">
+      <li>
+        <span onclick="toggleSection('git-macos-list-2-1', event);" onkeydown="toggleSection('git-macos-list-2-1', event);" class="lesson-title magic-invisible">Install Git with Homebrew</span>
+        <ul id="git-macos-list-2-1" class="hidden">
+          <li>Open Terminal</li>
+          <li>Run this command:
+            <pre><code>
+brew install git
+            </code></pre>
+          </li>
+          <li>Wait for installation to complete</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('git-macos-list-2-1-1', event);" onkeydown="toggleSection('git-macos-list-2-1-1', event);" class="lesson-title magic-invisible">Configure Git</span>
+        <ul id="git-macos-list-2-1-1" class="hidden">
+          <li>
+            <span class="lesson-title">Set Your Name and Email</span>
+            <ul>
+              <li>Open Terminal</li>
+              <li>
+                Set your name and email (replace "Your Name" with your actual name and "your.email@example.com" with your actual email):
+                <pre><code>
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+                </code></pre>
+              </li>
+              <li>These settings will be used to identify you in your Git commits</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('git-macos-list-2-1-2', event);" onkeydown="toggleSection('git-macos-list-2-1-2', event);" class="lesson-title magic-invisible">Verify Installation</span>
+        <ul id="git-macos-list-2-1-2" class="hidden">
+          <li>Type:
+            <pre><code>
+git --version
+            </code></pre>
+          </li>
+          <li>You should see the Git version number</li>
+          <li>Check your configuration:
+            <pre><code>
+git config --global --list
+            </code></pre>
+          </li>
+          <li>You should see your name and email listed</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h5 onclick="toggleSection('git-macos-list-3', event);" onkeydown="toggleSection('git-macos-list-3', event);" class="lesson-title magic-invisible">Option 3: Download from Git Website</h5>
+    <ol id="git-macos-list-3" class="hidden">
+      <li>
+        <span onclick="toggleSection('git-macos-list-3-1', event);" onkeydown="toggleSection('git-macos-list-3-1', event);" class="lesson-title magic-invisible">Download Git</span>
+        <ul id="git-macos-list-3-1" class="hidden">
+          <li>Open your browser</li>
+          <li>Go to <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">https://git-scm.com/</a></li>
+          <li>Click "Download for Mac"</li>
+          <li>A <code>.dmg</code> file will download</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('git-macos-list-3-2', event);" onkeydown="toggleSection('git-macos-list-3-2', event);" class="lesson-title magic-invisible">Install Git</span>
+        <ul id="git-macos-list-3-2" class="hidden">
+          <li>Open the downloaded <code>.dmg</code> file</li>
+          <li>Double-click the <code>.pkg</code> file inside</li>
+          <li>Follow the installation wizard</li>
+          <li>Click "Continue" and "Install"</li>
+          <li>Enter your password when prompted</li>
+          <li>Wait for installation to complete</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('git-macos-list-3-3', event);" onkeydown="toggleSection('git-macos-list-3-3', event);" class="lesson-title magic-invisible">Configure Git</span>
+        <ul id="git-macos-list-3-3" class="hidden">
+          <li>
+            <strong>Set Your Name and Email</strong>
+            <ul>
+              <li>Open Terminal</li>
+              <li>Set your name (replace "Your Name" with your actual name):
+                <pre><code>
+git config --global user.name "Your Name"
+                </code></pre>
+              </li>
+              <li>Set your email (replace with your actual email):
+                <pre><code>
+git config --global user.email "your.email@example.com"
+                </code></pre>
+              </li>
+              <li>These settings will be used to identify you in your Git commits</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('git-macos-list-3-4', event);" onkeydown="toggleSection('git-macos-list-3-4', event);" class="lesson-title magic-invisible">Verify Installation</span>
+        <ul id="git-macos-list-3-4" class="hidden">
+          <li>Type:
+            <pre><code>
+git --version
+            </code></pre>
+          </li>
+          <li>You should see the Git version number</li>
+          <li>Check your configuration:
+            <pre><code>
+git config --global --list
+            </code></pre>
+          </li>
+          <li>You should see your name and email listed</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+</div>`,
+        },
+        {
+          tool_id: 'sqlite',
+          tool_name: 'SQLite',
+          tool_content: `
+<div id="sqlite-macos">
+  <p><strong>Good News:</strong> macOS comes with SQLite pre-installed! You usually don't need to install it separately.</p>
+
+  <h4 onclick="toggleSection('sqlite-macos-list-1', event);" onkeydown="toggleSection('sqlite-macos-list-1', event);" class="lesson-title magic-invisible">Verify Existing Installation</h4>
+  <ol id="sqlite-macos-list-1" class="hidden">
+    <li>
+      <span onclick="toggleSection('sqlite-macos-list-1-1', event);" onkeydown="toggleSection('sqlite-macos-list-1-1', event);" class="lesson-title magic-invisible">Check SQLite Version</span>
+      <ul id="sqlite-macos-list-1-1" class="hidden">
+        <li>Open Terminal</li>
+        <li>Type:
+          <pre><code>
+sqlite3 --version
+          </code></pre>
+        </li>
+        <li>You should see the SQLite version (typically 3.x.x)</li>
+      </ul>
+    </li>
+  </ol>
+  <span onclick="toggleSection('sqlite-macos-list-1-2', event);" onkeydown="toggleSection('sqlite-macos-list-1-2', event);" class="lesson-title magic-invisible">Test SQLite</span>
+  <ul id="sqlite-macos-list-1-2" class="hidden">
+    <li>Type:
+      <pre><code>
+sqlite3
+      </code></pre>
+    </li>
+    <li>You should see the SQLite prompt: <code>sqlite&gt;</code></li>
+    <li>Try a simple command:
+      <pre><code>
+SELECT 'SQLite is working!';
+      </code></pre>
+    </li>
+    <li>You should see the message printed</li>
+    <li>Type <code>.quit</code> and press Enter to exit SQLite</li>
+  </ul>
+
+  <h4 onclick="toggleSection('sqlite-macos-list-2', event);" onkeydown="toggleSection('sqlite-macos-list-2', event);" class="lesson-title magic-invisible">Update SQLite via Homebrew (Optional)</h4>
+  <div id="sqlite-macos-list-2" class="hidden">
+    <p>If you want a newer version than what comes with macOS:</p>
+    <ol>
+      <li>
+        <span onclick="toggleSection('sqlite-macos-list-2-1', event);" onkeydown="toggleSection('sqlite-macos-list-2-1', event);" class="lesson-title magic-invisible">Install/Update via Homebrew</span>
+        <ul id="sqlite-macos-list-2-1" class="hidden">
+          <li>Open Terminal</li>
+          <li>If you have Homebrew installed:
+            <pre><code>
+brew install sqlite3
+            </code></pre>
+          </li>
+          <li>Or to update an existing installation:
+            <pre><code>
+brew upgrade sqlite3
+            </code></pre>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('sqlite-macos-list-2-2', event);" onkeydown="toggleSection('sqlite-macos-list-2-2', event);" class="lesson-title magic-invisible">Use the Homebrew Version</span>
+        <ul id="sqlite-macos-list-2-2" class="hidden">
+          <li>The Homebrew version will be installed to <code>/opt/homebrew/bin/sqlite3</code> or <code>/usr/local/bin/sqlite3</code></li>
+          <li>Check which version is being used:
+            <pre><code>
+which sqlite3
+            </code></pre>
+          </li>
+          <li>To prefer the Homebrew version, you may need to adjust your PATH in your shell configuration</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+
+  <h4 onclick="toggleSection('sqlite-macos-list-3', event);" onkeydown="toggleSection('sqlite-macos-list-3', event);" class="lesson-title magic-invisible">Create a Test Database (Optional)</h4>
+  <ol id="sqlite-macos-list-3" class="hidden">
+    <li>
+      <span onclick="toggleSection('sqlite-macos-list-3-1', event);" onkeydown="toggleSection('sqlite-macos-list-3-1', event);" class="lesson-title magic-invisible">Create a Test Directory</span>
+      <ul id="sqlite-macos-list-3-1" class="hidden">
+        <li>
+          In Terminal, run:
+          <pre><code>
+mkdir ~/test-sqlite &amp;&amp; cd ~/test-sqlite
+          </code></pre>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('sqlite-macos-list-3-2', event);" onkeydown="toggleSection('sqlite-macos-list-3-2', event);" class="lesson-title magic-invisible">Create a Database</span>
+      <ul id="sqlite-macos-list-3-2" class="hidden">
+        <li>Run:
+          <pre><code>
+sqlite3 test.db
+          </code></pre>
+        </li>
+        <li>Create a simple table:
+          <pre><code>
+CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT);
+INSERT INTO users (name) VALUES ('Alice');
+SELECT * FROM users;
+          </code></pre>
+        </li>
+        <li>You should see the data you inserted</li>
+        <li>Type <code>.quit</code> to exit</li>
+      </ul>
+    </li>
+    <li>
+      <span onclick="toggleSection('sqlite-macos-list-3-3', event);" onkeydown="toggleSection('sqlite-macos-list-3-3', event);" class="lesson-title magic-invisible">View the Database File</span>
+      <ul id="sqlite-macos-list-3-3" class="hidden">
+        <li>List files in the directory:
+          <pre><code>
+ls -lh
+          </code></pre>
+        </li>
+        <li>You should see <code>test.db</code></li>
+      </ul>
+    </li>
+  </ol>
+</div>`,
+        },
+        {
+          tool_id: 'projects-folder',
+          tool_name: 'Create a Projects Folder',
+          aria_label: 'Create a Projects Folder on macOS',
+          tool_content: `
+<div id="projects-folder-macos">
+  <p>It's helpful to keep all your coding projects organised in one place. Let's create a dedicated Projects folder:</p>
+  <ol>
+    <li onclick="toggleSection('create-folder-macos-list-1', event);" onkeydown="toggleSection('create-folder-macos-list-1', event);" class="magic-invisible">Open Finder
+      <ul id="create-folder-macos-list-1" class="hidden">
+        <li>Click on the Finder icon in the Dock</li>
+      </ul>
+    </li>
+    <li onclick="toggleSection('create-folder-macos-list-2', event);" onkeydown="toggleSection('create-folder-macos-list-2', event);" class="lesson-title magic-invisible">Navigate to Your Home Folder
+      <ul id="create-folder-macos-list-2" class="hidden">
+        <li>In the menu bar, click "Go" → "Home"</li>
+        <li>Or press <code>Shift + Cmd + H</code></li>
+      </ul>
+    </li>
+    <li onclick="toggleSection('create-folder-macos-list-3', event);" onkeydown="toggleSection('create-folder-macos-list-3', event);" class="lesson-title magic-invisible">Create the Projects Folder
+      <ul id="create-folder-macos-list-3" class="hidden">
+        <li>Right-click (or Control-click) in an empty space</li>
+        <li>Select "New Folder"</li>
+        <li>Name it <code>Projects</code></li>
+        <li>Press Enter</li>
+      </ul>
+    </li>
+  </ol>
+  <p>Your Projects folder is now at: <code>~/Projects</code> (or <code>/Users/YourUsername/Projects</code>)</p>
+  <p>In future lessons, you'll save your coding projects in this folder.</p>
+</div>`,
+        },
+        {
+          tool_id: 'dev-server',
+          tool_name: 'Setting Up the Development Server',
+          aria_label: 'Setting Up the Development Server on macOS',
+          tool_content: `
+<div id="dev-server-macos">
+  <p>
+    To view your web pages as you develop them, you'll need to run a local development server. This is important because some web features don't
+    work when opening HTML files directly in a browser. If you installed the Live Server extension in Visual Studio Code, you can skip this step
+    as that will do the same thing. Using this method lets you run and test your web pages even if you are not using Visual Studio Code.
+  </p>
+
+  <h4 onclick="toggleSection('dev-server-macos-list-1', event);" onkeydown="toggleSection('dev-server-macos-list-1', event);" class="lesson-title magic-invisible">Create a package.json File</h4>
+  <ol id="dev-server-macos-list-1" class="hidden">
+    <li>Open Visual Studio Code</li>
+    <li>Select <code>File → Open Folder</code></li>
+    <li>Navigate to and select your <code>Projects</code> folder (<code>~/Projects</code>)</li>
+    <li>Create a new file called <code>package.json</code> in the Projects folder</li>
+    <li>Add the following content to the file:
+      <div class="code-snippet-container">
+        <script type="text/plain" class="code-snippet-source">
+{
+  "name": "my-web-projects",
+  "version": "1.0.0",
+  "description": "Web development projects",
+  "scripts": {
+      "start": "http-server -p 8000"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
+        </script>
+        <div class="code-snippet-table"></div>
+      </div>
+    </li>
+    <li>Save the file (<code>Cmd + S</code>)</li>
+  </ol>
+
+  <h4 onclick="toggleSection('dev-server-macos-list-2', event);" onkeydown="toggleSection('dev-server-macos-list-2', event);" class="lesson-title magic-invisible">Install http-server</h4>
+  <ol id="dev-server-macos-list-2" class="hidden">
+    <li>Open the integrated terminal in VS Code by pressing <code>Ctrl + \`</code> (backtick key, usually above Tab)</li>
+    <li>Make sure you're in your Projects folder (the terminal should show the path)</li>
+    <li>Type <code>npm install</code> and press Enter</li>
+    <li>Wait for the installation to complete (this installs http-server locally in your Projects folder)</li>
+  </ol>
+
+  <h4 onclick="toggleSection('dev-server-macos-list-3', event);" onkeydown="toggleSection('dev-server-macos-list-3', event);" class="lesson-title magic-invisible">Start the Development Server</h4>
+  <ol id="dev-server-macos-list-3" class="hidden">
+    <li>In the same terminal, type <code>npm start</code> and press Enter</li>
+    <li>You should see a message saying the server is running on <code>http://localhost:8000</code></li>
+    <li>Open your web browser and go to <code>http://localhost:8000</code></li>
+    <li>You should see a directory listing of your Projects folder</li>
+  </ol>
+
+  <h4 onclick="toggleSection('dev-server-macos-list-4', event);" onkeydown="toggleSection('dev-server-macos-list-4', event);" class="lesson-title magic-invisible">Using the Development Server</h4>
+  <ul id="dev-server-macos-list-4" class="hidden">
+    <li>Keep the terminal open while you're working - the server needs to run continuously</li>
+    <li>When you create HTML files in your Projects folder, you can access them through the browser at <code>http://localhost:8000/filename.html</code></li>
+    <li>When you make changes to your files and save them, refresh your browser to see the changes</li>
+    <li>To stop the server, press <code>Ctrl + C</code> in the terminal</li>
+    <li>To restart the server later, just run <code>npm start</code> again from your Projects folder</li>
+  </ul>
+</div>`,
+        },
+      ],
+    },
+    {
+      os_id: 'linux',
+      os_name: 'Linux',
+      os_intro: `
+<p>
+  There are many different versions of Linux available, so these instructions will cover the most common distributions: <strong>Ubuntu</strong>,
+  <strong>Fedora</strong> and <strong>ArchLinux</strong>. If you are using a different distribution, the steps may vary slightly. The lessons
+  have been tested on Linux Mint 22.2 (which is based on Ubuntu 22.04) but should work fine with other flavours and versions. On the next
+  screens are the instructions for installing the recommended software on your Linux computer.
+</p>`,
+      tools: [
+        {
+          tool_id: 'vsc',
+          tool_name: 'Visual Studio Code',
+          tool_content: `
+<div id="vsc-linux">
+  <p>Check whether Visual Studio Code is already installed:</p>
+  <ul>
+    <li>Open Terminal (usually <code>Ctrl + Alt + T</code>)</li>
+    <li>Type <code>code --version</code> and press Enter</li>
+    <li>If you see a version number, you have it installed. If you get a "command not found" error, you need to install it.</li>
+  </ul>
+
+  <h4 onclick="toggleSection('vsc-linux-ubuntu-list', event);" onkeydown="toggleSection('vsc-linux-ubuntu-list', event);" class="lesson-title magic-invisible">Ubuntu / Debian-based Linux</h4>
+  <div id="vsc-linux-ubuntu-list" class="hidden">
+    <p>If you need to install Visual Studio Code on Ubuntu, follow these steps:</p>
+    <ol>
+      <li>
+        <span onclick="toggleSection('vsc-linux-ubuntu-list-1', event);" onkeydown="toggleSection('vsc-linux-ubuntu-list-1', event);" class="lesson-title magic-invisible">Download and Import Microsoft GPG Key</span>
+        <ul id="vsc-linux-ubuntu-list-1" class="hidden">
+          <li>Open Terminal</li>
+          <li>Run this command to download and install the Microsoft GPG key:
+            <pre><code>
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor &gt; packages.microsoft.gpg
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+            </code></pre>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('vsc-linux-ubuntu-list-2', event);" onkeydown="toggleSection('vsc-linux-ubuntu-list-2', event);" class="lesson-title magic-invisible">Add VS Code Repository</span>
+        <ul id="vsc-linux-ubuntu-list-2" class="hidden">
+          <li>Run this command to add the VS Code repository:
+            <pre><code>
+sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" &gt; /etc/apt/sources.list.d/vscode.list'
+            </code></pre>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('vsc-linux-ubuntu-list-3', event);" onkeydown="toggleSection('vsc-linux-ubuntu-list-3', event);" class="lesson-title magic-invisible">Update Package List and Install</span>
+        <ul id="vsc-linux-ubuntu-list-3" class="hidden">
+          <li>Install VS Code:
+            <pre><code>
+sudo apt update
+sudo apt install code
+            </code></pre>
+          </li>
+          <li>Wait for installation to complete</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('vsc-linux-ubuntu-list-4', event);" onkeydown="toggleSection('vsc-linux-ubuntu-list-4', event);" class="lesson-title magic-invisible">Launch VS Code</span>
+        <ul id="vsc-linux-ubuntu-list-4" class="hidden">
+          <li>Type <code>code</code> in Terminal and press Enter, or</li>
+          <li>Find "Visual Studio Code" in your application menu</li>
+          <li>Click to open VS Code</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+
+  <h4 onclick="toggleSection('vsc-linux-fedora-list', event);" onkeydown="toggleSection('vsc-linux-fedora-list', event);" class="lesson-title magic-invisible">Fedora / Red Hat-based Linux</h4>
+  <div id="vsc-linux-fedora-list" class="hidden">
+    <p>If you need to install Visual Studio Code on Fedora, follow these steps:</p>
+    <ol>
+      <li>
+        <span onclick="toggleSection('vsc-linux-fedora-list-1', event);" onkeydown="toggleSection('vsc-linux-fedora-list-1', event);" class="lesson-title magic-invisible">Import Microsoft GPG Key</span>
+        <ul id="vsc-linux-fedora-list-1" class="hidden">
+          <li>Open Terminal</li>
+          <li>Run this command:
+            <pre><code>
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+            </code></pre>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('vsc-linux-fedora-list-2', event);" onkeydown="toggleSection('vsc-linux-fedora-list-2', event);" class="lesson-title magic-invisible">Add VS Code Repository</span>
+        <ul id="vsc-linux-fedora-list-2" class="hidden">
+          <li>Run this command to create the repository file:
+            <pre><code>
+sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" &gt; /etc/yum.repos.d/vscode.repo'
+            </code></pre>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('vsc-linux-fedora-list-3', event);" onkeydown="toggleSection('vsc-linux-fedora-list-3', event);" class="lesson-title magic-invisible">Update Package Cache and Install</span>
+        <ul id="vsc-linux-fedora-list-3" class="hidden">
+          <li>For Fedora 22 and later:
+            <pre><code>
+sudo dnf check-update
+sudo dnf install code
+            </code></pre>
+          </li>
+          <li>For older versions:
+            <pre><code>
+sudo yum check-update
+sudo yum install code
+            </code></pre>
+          </li>
+          <li>Wait for installation to complete</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('vsc-linux-fedora-list-4', event);" onkeydown="toggleSection('vsc-linux-fedora-list-4', event);" class="lesson-title magic-invisible">Launch VS Code</span>
+        <ul id="vsc-linux-fedora-list-4" class="hidden">
+          <li>Type <code>code</code> in Terminal and press Enter, or</li>
+          <li>Find "Visual Studio Code" in your application menu</li>
+          <li>Click to open VS Code</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+  <h4 onclick="toggleSection('vsc-linux-alt-list', event);" onkeydown="toggleSection('vsc-linux-alt-list', event);" class="lesson-title magic-invisible">Alternative: Download .deb or .rpm Package</h4>
+  <div id="vsc-linux-alt-list" class="hidden">
+    <p>You can also download VS Code directly from the website:</p>
+    <ol>
+      <li>
+        <span onclick="toggleSection('vsc-linux-alt-list-1', event);" onkeydown="toggleSection('vsc-linux-alt-list-1', event);" class="lesson-title magic-invisible">Download from Official Website</span>
+        <ul id="vsc-linux-alt-list-1" class="hidden">
+          <li>Open your web browser</li>
+          <li>Go to <a href="https://code.visualstudio.com" target="_blank" rel="noopener noreferrer">https://code.visualstudio.com</a></li>
+          <li>Click "Download" and select:
+            <ul>
+              <li><code>.deb</code> for Ubuntu/Debian</li>
+              <li><code>.rpm</code> for Fedora/Red Hat</li>
+
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('vsc-linux-alt-list-2', event);" onkeydown="toggleSection('vsc-linux-alt-list-2', event);" class="lesson-title magic-invisible">Install the Package</span>
+        <ul id="vsc-linux-alt-list-2" class="hidden">
+          <li>Navigate to your Downloads folder</li>
+          <li>For Ubuntu/Debian: Double-click the <code>.deb</code> file and click "Install", or run:
+            <pre><code>
+sudo dpkg -i code_*.deb
+sudo apt-get install -f
+            </code></pre>
+          </li>
+          <li>For Fedora: Double-click the <code>.rpm</code> file, or run:
+            <pre><code>
+sudo dnf install ./code-*.rpm
+            </code></pre>
+          </li>
+          <li>For Arch Linux: Install using an AUR helper like <code>yay</code> or <code>paru</code>:
+            <pre><code>
+yay -S visual-studio-code-bin
+            </code></pre>
+            Or download from the <a href="https://archlinux.org/packages/" target="_blank" rel="noopener noreferrer">Arch repositories</a>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+</div>`,
+        },
+        {
+          tool_id: 'firefox',
+          tool_name: 'Mozilla Firefox',
+          tool_content: `
+<div id="firefox-linux">
+  <p>Check whether Firefox is already installed:</p>
+  <ul>
+    <li>Open Terminal (usually <code>Ctrl + Alt + T</code>)</li>
+    <li>Type <code>firefox --version</code> and press Enter</li>
+    <li>If you see a version number, you have it installed. If you get a "command not found" error, you need to install it.</li>
+  </ul>
+
+  <h4 onclick="toggleSection('firefox-linux-ubuntu-list', event);" onkeydown="toggleSection('firefox-linux-ubuntu-list', event);" class="lesson-title magic-invisible">Ubuntu / Debian-based Linux</h4>
+  <div id="firefox-linux-ubuntu-list" class="hidden">
+    <p>If you need to install Firefox on Ubuntu, follow these steps:</p>
+    <ol>
+      <li>
+        <span onclick="toggleSection('firefox-linux-ubuntu-list-1', event);" onkeydown="toggleSection('firefox-linux-ubuntu-list-1', event);" class="lesson-title magic-invisible">Update Package List</span>
+        <ul id="firefox-linux-ubuntu-list-1" class="hidden">
+          <li>Open Terminal</li>
+          <li>Run this command to update your package list:
+            <pre><code>
+sudo apt update
+            </code></pre>
+          </li>
+          <li>Enter your password when prompted</li>
+        </ul>
+      </li>
+      <li>
+        <span  onclick="toggleSection('firefox-linux-ubuntu-list-2', event);" onkeydown="toggleSection('firefox-linux-ubuntu-list-2', event);" class="lesson-title magic-invisible">Install Firefox</span>
+        <ul id="firefox-linux-ubuntu-list-2" class="hidden">
+          <li>Run this command:
+            <pre><code>
+sudo apt install firefox
+            </code></pre>
+          </li>
+          <li>Type <code>Y</code> when asked to confirm</li>
+          <li>Wait for installation to complete</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('firefox-linux-ubuntu-list-3', event);" onkeydown="toggleSection('firefox-linux-ubuntu-list-3', event);" class="lesson-title magic-invisible">Launch Firefox</span>
+          <ul id="firefox-linux-ubuntu-list-3" class="hidden">
+            <li>Type <code>firefox</code> in Terminal and press Enter, or</li>
+            <li>Find "Firefox" in your application menu</li>
+            <li>Click to open Firefox</li>
+          </ul>
+        </li>
+      <li>
+        <span onclick="toggleSection('firefox-linux-ubuntu-list-4', event);" onkeydown="toggleSection('firefox-linux-ubuntu-list-4', event);" class="lesson-title magic-invisible">Verify Installation</span>
+        <ul id="firefox-linux-ubuntu-list-4" class="hidden">
+          <li>In Firefox, click the menu button (three horizontal lines) in the top-right corner</li>
+          <li>Click "Help" → "About Firefox"</li>
+          <li>You should see the Firefox version number</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+
+  <h4 onclick="toggleSection('firefox-linux-fedora-list', event);" onkeydown="toggleSection('firefox-linux-fedora-list', event);" class="lesson-title magic-invisible">Fedora / Red Hat-based Linux</h4>
+  <div id="firefox-linux-fedora-list" class="hidden">
+    <p>If you need to install Firefox on Fedora, follow these steps:</p>
+    <ol>
+      <li>
+        <span onclick="toggleSection('firefox-linux-fedora-list-1', event);" onkeydown="toggleSection('firefox-linux-fedora-list-1', event);" class="lesson-title magic-invisible">Install Firefox</span>
+        <ul id="firefox-linux-fedora-list-1" class="hidden">
+          <li>Open Terminal</li>
+          <li>For Fedora 22 and later:
+            <pre><code>
+sudo dnf install firefox
+            </code></pre>
+          </li>
+          <li>For older versions:
+            <pre><code>
+sudo yum install firefox
+            </code></pre>
+          </li>
+          <li>Type <code>Y</code> when asked to confirm</li>
+          <li>Wait for installation to complete</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('firefox-linux-fedora-list-2', event);" onkeydown="toggleSection('firefox-linux-fedora-list-2', event);" class="lesson-title magic-invisible">Launch Firefox</span>
+        <ul id="firefox-linux-fedora-list-2" class="hidden">
+          <li>Type <code>firefox</code> in Terminal and press Enter, or</li>
+          <li>Find "Firefox" in your application menu</li>
+          <li>Click to open Firefox</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('firefox-linux-fedora-list-3', event);" onkeydown="toggleSection('firefox-linux-fedora-list-3', event);" class="lesson-title magic-invisible">Verify Installation</span>
+        <ul id="firefox-linux-fedora-list-3" class="hidden">
+          <li>In Firefox, click the menu button (three horizontal lines) in the top-right corner</li>
+          <li>Click "Help" → "About Firefox"</li>
+          <li>You should see the Firefox version number</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+
+  <h4 onclick="toggleSection('firefox-linux-arch-list', event);" onkeydown="toggleSection('firefox-linux-arch-list', event);" class="lesson-title magic-invisible">Arch Linux</h4>
+  <div id="firefox-linux-arch-list" class="hidden">
+    <p>If you need to install Firefox on Arch Linux, follow these steps:</p>
+    <ol>
+      <li>
+        <span onclick="toggleSection('firefox-linux-arch-list-1', event);" onkeydown="toggleSection('firefox-linux-arch-list-1', event);" class="lesson-title magic-invisible">Install Firefox</span>
+        <ul id="firefox-linux-arch-list-1" class="hidden">
+          <li>Open Terminal</li>
+          <li>Run this command:
+            <pre><code>
+sudo pacman -S firefox
+            </code></pre>
+          </li>
+          <li>Type <code>Y</code> when asked to confirm</li>
+          <li>Wait for installation to complete</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('firefox-linux-arch-list-2', event);" onkeydown="toggleSection('firefox-linux-arch-list-2', event);" class="lesson-title magic-invisible">Launch Firefox</span>
+        <ul id="firefox-linux-arch-list-2" class="hidden">
+          <li>Type <code>firefox</code> in Terminal and press Enter, or</li>
+          <li>Find "Firefox" in your application menu</li>
+          <li>Click to open Firefox</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+
+  <h4 onclick="toggleSection('firefox-linux-alt-list', event);" onkeydown="toggleSection('firefox-linux-alt-list', event);" class="lesson-title magic-invisible">Alternative: Download from Mozilla Website</h4>
+  <div id="firefox-linux-alt-list" class="hidden">
+    <p>You can also download Firefox directly from the website:</p>
+    <ol>
+      <li>
+        <span onclick="toggleSection('firefox-linux-alt-list-1', event);" onkeydown="toggleSection('firefox-linux-alt-list-1', event);" class="lesson-title magic-invisible">Download from Official Website</span>
+        <ul id="firefox-linux-alt-list-1" class="hidden">
+          <li>Open your web browser</li>
+          <li>Go to <a href="https://www.mozilla.org/firefox/" target="_blank" rel="noopener noreferrer">https://www.mozilla.org/firefox/</a></li>
+          <li>Click "Download Firefox"</li>
+          <li>A <code>.tar.bz2</code> file will download</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('firefox-linux-alt-list-2', event);" onkeydown="toggleSection('firefox-linux-alt-list-2', event);" class="lesson-title magic-invisible">Extract and Install</span>
+        <ul id="firefox-linux-alt-list-2" class="hidden">
+          <li>Navigate to your Downloads folder</li>
+          <li>Extract the archive:
+            <pre><code>
+tar xjf firefox-*.tar.bz2
+sudo mv firefox /opt/
+sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
+            </code></pre>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('firefox-linux-alt-list-3', event);" onkeydown="toggleSection('firefox-linux-alt-list-3', event);" class="lesson-title magic-invisible">Launch Firefox</span>
+        <ul id="firefox-linux-alt-list-3" class="hidden">
+          <li>Type <code>firefox</code> in Terminal and press Enter</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+</div>`,
+        },
+        {
+          tool_id: 'nodejs',
+          tool_name: 'Node.js',
+          tool_content: `
+<div id="nodejs-linux">
+  <p>Check whether Node.js is already installed:</p>
+  <ul>
+    <li>Open Terminal (usually <code>Ctrl + Alt + T</code>)</li>
+    <li>Type <code>node --version</code> and press Enter</li>
+    <li>If you see a version number, you have it installed. If you get a "command not found" error, you need to install it.</li>
+  </ul>
+
+  <h4 onclick="toggleSection('nodejs-linux-ubuntu-list', event);" onkeydown="toggleSection('nodejs-linux-ubuntu-list', event);" class="lesson-title magic-invisible">Ubuntu / Debian-based Linux</h4>
+  <div id="nodejs-linux-ubuntu-list" class="hidden">
+    <p>If you need to install Node.js on Ubuntu, follow these steps:</p>
+    <ol>
+      <li>
+        <span onclick="toggleSection('nodejs-linux-ubuntu-list-1', event);" onkeydown="toggleSection('nodejs-linux-ubuntu-list-1', event);" class="lesson-title magic-invisible">Install Node.js via NodeSource Repository (Recommended)</span>
+        <ul id="nodejs-linux-ubuntu-list-1" class="hidden">
+          <li>Open Terminal</li>
+          <li>Run these commands:
+            <pre><code>
+sudo apt update
+sudo apt install curl
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt install nodejs
+            </code></pre>
+          </li>
+          <li>Wait for installation to complete</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('nodejs-linux-ubuntu-list-2', event);" onkeydown="toggleSection('nodejs-linux-ubuntu-list-2', event);" class="lesson-title magic-invisible">Alternative: Install from Ubuntu Repositories</span>
+        <ul id="nodejs-linux-ubuntu-list-2" class="hidden">
+          <li>Note: This may install an older version</li>
+          <li>Open Terminal</li>
+          <li>Run:
+            <pre><code>
+sudo apt update
+sudo apt install nodejs npm
+            </code></pre>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong onclick="toggleSection('nodejs-linux-ubuntu-list-3', event);" onkeydown="toggleSection('nodejs-linux-ubuntu-list-3', event);" class="magic-invisible">Verify Installation</strong>
+        <ol id="nodejs-linux-ubuntu-list-3" class="hidden">
+          <li>
+            <span onclick="toggleSection('nodejs-linux-ubuntu-list-3-1', event);" onkeydown="toggleSection('nodejs-linux-ubuntu-list-3-1', event);" class="magic-invisible">Check Node.js and npm</span>
+            <ul id="nodejs-linux-ubuntu-list-3-1" class="hidden">
+              <li>Open a new Terminal window</li>
+              <li>Check Node.js version:
+                <pre><code>
+node --version
+                </code></pre>
+              </li>
+              <li>You should see the Node.js version number (e.g., v20.x.x)</li>
+              <li>Check npm version:
+                <pre><code>
+npm --version
+                </code></pre>
+              </li>
+              <li>You should see the npm version number</li>
+            </ul>
+          </li>
+          <li>
+            <span onclick="toggleSection('nodejs-linux-ubuntu-list-3-2', event);" onkeydown="toggleSection('nodejs-linux-ubuntu-list-3-2', event);" class="magic-invisible">Test Node.js</span>
+            <ul id="nodejs-linux-ubuntu-list-3-2" class="hidden">
+              <li>Run a simple command:
+                <pre><code>
+node -e "console.log('Node.js is working!')"
+                </code></pre>
+              </li>
+              <li>You should see "Node.js is working!" printed</li>
+            </ul>
+          </li>
+          <li>
+            <span onclick="toggleSection('nodejs-linux-ubuntu-list-3-3', event);" onkeydown="toggleSection('nodejs-linux-ubuntu-list-3-3', event);" class="magic-invisible">Create a Simple Test Server (Optional)</span>
+            <ul id="nodejs-linux-ubuntu-list-3-3" class="hidden">
+              <li>Create a test file and start a simple server:
+                <pre><code>
+mkdir ~/test-nodejs &amp;&amp; cd ~/test-nodejs
+echo "const http = require('http'); http.createServer((req, res) =&gt; { res.writeHead(200, {'Content-Type': 'text/html'}); res.end('&lt;h1&gt;Hello from Node.js!&lt;/h1&gt;'); }).listen(8000, () =&gt; console.log('Server running at http://localhost:8000/'));" &gt; server.js
+node server.js
+                </code></pre>
+              </li>
+              <li>Open your browser and go to <code>http://localhost:8000</code></li>
+              <li>You should see "Hello from Node.js!"</li>
+              <li>Press <code>Ctrl + C</code> in Terminal to stop the server</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+  <h4 onclick="toggleSection('nodejs-linux-fedora-list', event);" onkeydown="toggleSection('nodejs-linux-fedora-list', event);" class="lesson-title magic-invisible">Fedora / Red Hat-based Linux</h4>
+  <div id="nodejs-linux-fedora-list" class="hidden">
+    <p>If you need to install Node.js on Fedora:</p>
+    <ol>
+      <li>
+        <span onclick="toggleSection('nodejs-linux-fedora-list-1', event);" onkeydown="toggleSection('nodejs-linux-fedora-list-1', event);" class="lesson-title magic-invisible">Install Node.js</span>
+        <ul id="nodejs-linux-fedora-list-1" class="hidden">
+          <li>Open Terminal</li>
+          <li>For Fedora 22 and later:
+            <pre><code>
+sudo dnf install nodejs npm
+            </code></pre>
+          </li>
+          <li>For older versions:
+            <pre><code>
+sudo yum install nodejs npm
+            </code></pre>
+          </li>
+          <li>Wait for installation to complete</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('nodejs-linux-fedora-list-2', event);" onkeydown="toggleSection('nodejs-linux-fedora-list-2', event);" class="lesson-title magic-invisible">Verify Installation</span>
+        <ol id="nodejs-linux-fedora-list-2" class="hidden">
+          <li>
+            <span onclick="toggleSection('nodejs-linux-fedora-list-2-1', event);" onkeydown="toggleSection('nodejs-linux-fedora-list-2-1', event);" class="lesson-title magic-invisible">Check Node.js and npm</span>
+            <ul id="nodejs-linux-fedora-list-2-1" class="hidden">
+              <li>Open a new Terminal window</li>
+              <li>Check Node.js version:
+                <pre><code>
+node --version
+                </code></pre>
+              </li>
+              <li>You should see the Node.js version number (e.g., v20.x.x)</li>
+              <li>Check npm version:
+                <pre><code>
+npm --version
+                </code></pre>
+              </li>
+              <li>You should see the npm version number</li>
+            </ul>
+          </li>
+          <li>
+            <span onclick="toggleSection('nodejs-linux-fedora-list-2-2', event);" onkeydown="toggleSection('nodejs-linux-fedora-list-2-2', event);" class="magic-invisible">Test Node.js</span>
+            <ul id="nodejs-linux-fedora-list-2-2" class="hidden">
+              <li>Run a simple command:
+                <pre><code>
+node -e "console.log('Node.js is working!')"
+                </code></pre>
+              </li>
+              <li>You should see "Node.js is working!" printed</li>
+            </ul>
+          </li>
+          <li>
+            <span onclick="toggleSection('nodejs-linux-fedora-list-2-3', event);" onkeydown="toggleSection('nodejs-linux-fedora-list-2-3', event);" class="magic-invisible">Create a Simple Test Server (Optional)</span>
+            <ul id="nodejs-linux-fedora-list-2-3" class="hidden">
+              <li>Create a test file and start a simple server:
+                <pre><code>
+mkdir ~/test-nodejs &amp;&amp; cd ~/test-nodejs
+echo "const http = require('http'); http.createServer((req, res) =&gt; { res.writeHead(200, {'Content-Type': 'text/html'}); res.end('&lt;h1&gt;Hello from Node.js!&lt;/h1&gt;'); }).listen(8000, () =&gt; console.log('Server running at http://localhost:8000/'));" &gt; server.js
+node server.js
+                </code></pre>
+              </li>
+              <li>Open your browser and go to <code>http://localhost:8000</code></li>
+              <li>You should see "Hello from Node.js!"</li>
+              <li>Press <code>Ctrl + C</code> in Terminal to stop the server</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+  <h4 onclick="toggleSection('nodejs-linux-arch-list', event);" onkeydown="toggleSection('nodejs-linux-arch-list', event);" class="lesson-title magic-invisible">Arch Linux</h4>
+  <div id="nodejs-linux-arch-list" class="hidden">
+    <p>If you're using Arch Linux:</p>
+    <ol>
+      <li>
+        <span onclick="toggleSection('nodejs-linux-arch-list-1', event);" onkeydown="toggleSection('nodejs-linux-arch-list-1', event);" class="magic-invisible">Install Node.js</span>
+        <ul id="nodejs-linux-arch-list-1" class="hidden">
+          <li>Open Terminal</li>
+          <li>Run:
+            <pre><code>
+sudo pacman -S nodejs npm
+            </code></pre>
+          </li>
+          <li>Wait for installation to complete</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('nodejs-linux-arch-list-2', event);" onkeydown="toggleSection('nodejs-linux-arch-list-2', event);" class="magic-invisible">Verify Installation</span>
+        <ol id="nodejs-linux-arch-list-2" class="hidden">
+          <li>
+            <span onclick="toggleSection('nodejs-linux-arch-list-2-1', event);" onkeydown="toggleSection('nodejs-linux-arch-list-2-1', event);" class="lesson-title magic-invisible">Check Node.js and npm</span>
+            <ul id="nodejs-linux-arch-list-2-1" class="hidden">
+              <li>Open a new Terminal window</li>
+              <li>Check Node.js version:
+                <pre><code>
+node --version
+                </code></pre>
+              </li>
+              <li>You should see the Node.js version number (e.g., v20.x.x)</li>
+              <li>Check npm version:
+                <pre><code>
+npm --version
+                </code></pre>
+              </li>
+              <li>You should see the npm version number</li>
+            </ul>
+          </li>
+          <li>
+            <span onclick="toggleSection('nodejs-linux-arch-list-2-2', event);" onkeydown="toggleSection('nodejs-linux-arch-list-2-2', event);" class="magic-invisible">Test Node.js</span>
+            <ul id="nodejs-linux-arch-list-2-2" class="hidden">
+              <li>Run a simple command:
+                <pre><code>
+node -e "console.log('Node.js is working!')"
+                </code></pre>
+              </li>
+              <li>You should see "Node.js is working!" printed</li>
+            </ul>
+          </li>
+          <li>
+            <span onclick="toggleSection('nodejs-linux-arch-list-2-3', event);" onkeydown="toggleSection('nodejs-linux-arch-list-2-3', event);" class="magic-invisible">Create a Simple Test Server (Optional)</span>
+            <ul id="nodejs-linux-arch-list-2-3" class="hidden">
+              <li>Create a test file and start a simple server:
+                <pre><code>
+mkdir ~/test-nodejs &amp;&amp; cd ~/test-nodejs
+echo "const http = require('http'); http.createServer((req, res) =&gt; { res.writeHead(200, {'Content-Type': 'text/html'}); res.end('&lt;h1&gt;Hello from Node.js!&lt;/h1&gt;'); }).listen(8000, () =&gt; console.log('Server running at http://localhost:8000/'));" &gt; server.js
+node server.js
+                </code></pre>
+              </li>
+              <li>Open your browser and go to <code>http://localhost:8000</code></li>
+              <li>You should see "Hello from Node.js!"</li>
+              <li>Press <code>Ctrl + C</code> in Terminal to stop the server</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+  <h4  onclick="toggleSection('nodejs-linux-nvm-list', event);" onkeydown="toggleSection('nodejs-linux-nvm-list', event);" class="lesson-title magic-invisible">Using Node Version Manager (nvm) - Advanced Option</h4>
+  <div id="nodejs-linux-nvm-list" class="hidden">
+    <p>For more control over Node.js versions:</p>
+    <ol>
+      <li>
+        <span onclick="toggleSection('nodejs-linux-nvm-list-1', event);" onkeydown="toggleSection('nodejs-linux-nvm-list-1', event);" class="magic-invisible">Install nvm</span>
+        <ul id="nodejs-linux-nvm-list-1" class="hidden">
+          <li>Run this command:
+            <pre><code>
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+            </code></pre>
+          </li>
+          <li>Close and reopen your terminal</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('nodejs-linux-nvm-list-2', event);" onkeydown="toggleSection('nodejs-linux-nvm-list-2', event);" class="magic-invisible">Install Node.js with nvm</span>
+        <ul id="nodejs-linux-nvm-list-2" class="hidden">
+          <li>Install the LTS version:
+            <pre><code>
+nvm install --lts
+            </code></pre>
+          </li>
+          <li>Set it as default:
+            <pre><code>
+nvm use --lts
+            </code></pre>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('nodejs-linux-nvm-list-3', event);" onkeydown="toggleSection('nodejs-linux-nvm-list-3', event);" class="magic-invisible">Verify Installation</span>
+        <ol id="nodejs-linux-nvm-list-3" class="hidden">
+          <li>
+            <span onclick="toggleSection('nodejs-linux-nvm-list-3-1', event);" onkeydown="toggleSection('nodejs-linux-nvm-list-3-1', event);" class="magic-invisible">Check Node.js and npm</span>
+            <ul id="nodejs-linux-nvm-list-3-1" class="hidden">
+              <li>Open a new Terminal window</li>
+              <li>Check Node.js version:
+                <pre><code>
+node --version
+                </code></pre>
+              </li>
+              <li>You should see the Node.js version number (e.g., v20.x.x)</li>
+              <li>Check npm version:
+                <pre><code>
+npm --version
+                </code></pre>
+              </li>
+              <li>You should see the npm version number</li>
+            </ul>
+          </li>
+          <li>
+            <span onclick="toggleSection('nodejs-linux-nvm-list-3-2', event);" onkeydown="toggleSection('nodejs-linux-nvm-list-3-2', event);" class="magic-invisible">Test Node.js</span>
+            <ul id="nodejs-linux-nvm-list-3-2" class="hidden">
+              <li>Run a simple command:
+                <pre><code>
+node -e "console.log('Node.js is working!')"
+                </code></pre>
+              </li>
+              <li>You should see "Node.js is working!" printed</li>
+            </ul>
+          </li>
+          <li>
+            <span onclick="toggleSection('nodejs-linux-nvm-list-3-3', event);" onkeydown="toggleSection('nodejs-linux-nvm-list-3-3', event);" class="magic-invisible">Create a Simple Test Server (Optional)</span>
+            <ul id="nodejs-linux-nvm-list-3-3" class="hidden">
+              <li>Create a test directory:
+                <pre><code>
+mkdir ~/test-nodejs &amp;&amp; cd ~/test-nodejs
+                </code></pre>
+              </li>
+              <li>Create a test file:
+                <pre><code>
+echo "const http = require('http'); http.createServer((req, res) =&gt; { res.writeHead(200, {'Content-Type': 'text/html'}); res.end('&lt;h1&gt;Hello from Node.js!&lt;/h1&gt;'); }).listen(8000, () =&gt; console.log('Server running at http://localhost:8000/'));" &gt; server.js
+                </code></pre>
+              </li>
+              <li>Start the server:
+                <pre><code>
+node server.js
+                </code></pre>
+              </li>
+              <li>Open your browser and go to <code>http://localhost:8000</code></li>
+              <li>You should see "Hello from Node.js!"</li>
+              <li>Press <code>Ctrl + C</code> in Terminal to stop the server</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+</div>`,
+        },
+        {
+          tool_id: 'git',
+          tool_name: 'Git',
+          tool_content: `
+<div id="git-linux">
+  <p>Check whether Git is already installed:</p>
+  <ul>
+    <li>Open Terminal (usually <code>Ctrl + Alt + T</code>)</li>
+    <li>Type <code>git --version</code> and press Enter</li>
+    <li>If you see a version number, you have it installed. If you get a "command not found" error, you need to install it.</li>
+  </ul>
+
+  <h4 onclick="toggleSection('git-linux-ubuntu-list', event);" onkeydown="toggleSection('git-linux-ubuntu-list', event);" class="lesson-title magic-invisible">Ubuntu / Debian-based Linux</h4>
+  <div id="git-linux-ubuntu-list" class="hidden">
+    <p>If you need to install Git on Ubuntu, follow these steps:</p>
+    <ol>
+      <li>
+        <span onclick="toggleSection('git-linux-ubuntu-list-1', event);" onkeydown="toggleSection('git-linux-ubuntu-list-1', event);" class="magic-invisible">Update Package List</span>
+        <ul id="git-linux-ubuntu-list-1" class="hidden">
+          <li>Open Terminal</li>
+          <li>Run this command to update your package list:
+            <pre><code>
+sudo apt update
+            </code></pre>
+          </li>
+          <li>Enter your password when prompted</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('git-linux-ubuntu-list-2', event);" onkeydown="toggleSection('git-linux-ubuntu-list-2', event);" class="magic-invisible">Install Git</span>
+        <ul id="git-linux-ubuntu-list-2" class="hidden">
+          <li>Run this command:
+            <pre><code>
+sudo apt install git
+            </code></pre>
+          </li>
+          <li>Type <code>Y</code> when asked to confirm</li>
+          <li>Wait for installation to complete</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('git-linux-ubuntu-list-3', event);" onkeydown="toggleSection('git-linux-ubuntu-list-3', event);" class="magic-invisible">Configure Git</span>
+        <ol id="git-linux-ubuntu-list-3" class="hidden">
+          <li>
+            <span onclick="toggleSection('git-linux-ubuntu-list-3-1', event);" onkeydown="toggleSection('git-linux-ubuntu-list-3-1', event);" class="magic-invisible">Set Your Name and Email</span>
+            <ul id="git-linux-ubuntu-list-3-1" class="hidden">
+              <li>Open Terminal</li>
+              <li>Set your name and email (replace "Your Name" with your actual name and "your.email@example.com" with your actual email):
+                <pre><code>
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+                </code></pre>
+              </li>
+              <li>These settings will be used to identify you in your Git commits</li>
+            </ul>
+          </li>
+          <li>
+            <span onclick="toggleSection('git-linux-ubuntu-list-3-2', event);" onkeydown="toggleSection('git-linux-ubuntu-list-3-2', event);" class="magic-invisible">Verify Installation</span>
+            <ul id="git-linux-ubuntu-list-3-2" class="hidden">
+              <li>Type:
+                <pre><code>
+git --version
+                </code></pre>
+              </li>
+              <li>You should see the Git version number</li>
+              <li>Check your configuration:
+                <pre><code>
+git config --global --list
+                </code></pre>
+              </li>
+              <li>You should see your name and email listed</li>
+            </ul>
+          </li>
+          <li>
+            <span onclick="toggleSection('git-linux-ubuntu-list-3-3', event);" onkeydown="toggleSection('git-linux-ubuntu-list-3-3', event);" class=" magic-invisible">Optional: Configure Default Branch Name</span>
+            <div id="git-linux-ubuntu-list-3-3" class="hidden">
+              <p>Modern Git practices use "main" instead of "master" as the default branch name. To set this globally:</p>
+              <pre><code>
+git config --global init.defaultBranch main
+              </code></pre>
+            </div>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+  <h4  onclick="toggleSection('git-linux-fedora-list', event);" onkeydown="toggleSection('git-linux-fedora-list', event);" class="lesson-title magic-invisible">Fedora / Red Hat-based Linux</h4>
+  <div id="git-linux-fedora-list" class="hidden">
+    <p>If you need to install Git on Fedora, follow these steps:</p>
+    <ol>
+      <li>
+        <span onclick="toggleSection('git-linux-fedora-list-1', event);" onkeydown="toggleSection('git-linux-fedora-list-1', event);" class="magic-invisible">Install Git</span>
+        <ul id="git-linux-fedora-list-1" class="hidden">
+          <li>Open Terminal</li>
+          <li>For Fedora 22 and later:
+            <pre><code>
+sudo dnf install git
+            </code></pre>
+          </li>
+          <li>For older versions:
+            <pre><code>
+sudo yum install git
+            </code></pre>
+          </li>
+          <li>Type <code>Y</code> when asked to confirm</li>
+          <li>Wait for installation to complete</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('git-linux-fedora-list-2', event);" onkeydown="toggleSection('git-linux-fedora-list-2', event);" class="magic-invisible">Configure Git</span>
+        <ol id="git-linux-fedora-list-2" class="hidden">
+          <li>
+            <span onclick="toggleSection('git-linux-fedora-list-2-1', event);" onkeydown="toggleSection('git-linux-fedora-list-2-1', event);" class="magic-invisible">Set Your Name and Email</span>
+              <ul id="git-linux-fedora-list-2-1" class="hidden">
+                <li>Open Terminal</li>
+                <li>Set your name and email (replace "Your Name" with your actual name and "your.email@example.com" with your actual email):
+                  <pre><code>
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+                  </code></pre>
+                </li>
+                <li>These settings will be used to identify you in your Git commits</li>
+              </ul>
+            </li>
+          <li>
+            <span onclick="toggleSection('git-linux-fedora-list-2-2', event);" onkeydown="toggleSection('git-linux-fedora-list-2-2', event);" class="magic-invisible">Verify Installation</span>
+            <ul id="git-linux-fedora-list-2-2" class="hidden">
+              <li>Type:
+                <pre><code>
+git --version
+                </code></pre>
+              </li>
+              <li>You should see the Git version number</li>
+              <li>Check your configuration:
+                <pre><code>
+git config --global --list
+                </code></pre>
+              </li>
+              <li>You should see your name and email listed</li>
+            </ul>
+          </li>
+          <li>
+            <span onclick="toggleSection('git-linux-fedora-list-2-3', event);" onkeydown="toggleSection('git-linux-fedora-list-2-3', event);" class="magic-invisible">Optional: Configure Default Branch Name</span>
+            <div id="git-linux-fedora-list-2-3" class="hidden">
+              <p>Modern Git practices use "main" instead of "master" as the default branch name. To set this globally:</p>
+              <pre><code>
+git config --global init.defaultBranch main
+              </code></pre>
+            </div>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+  <h4 onclick="toggleSection('git-linux-arch-list', event);" onkeydown="toggleSection('git-linux-arch-list', event);" class="lesson-title magic-invisible">Arch Linux</h4>
+  <div id="git-linux-arch-list" class="hidden">
+    <p>If you're using Arch Linux:</p>
+      <ol>
+        <li>
+          <span onclick="toggleSection('git-linux-arch-list-1', event);" onkeydown="toggleSection('git-linux-arch-list-1', event);" class="magic-invisible">Install Git</span>
+          <ul id="git-linux-arch-list-1" class="hidden">
+            <li>Open Terminal</li>
+            <li>Run this command:
+              <pre><code>
+sudo pacman -S git
+              </code></pre>
+            </li>
+            <li>Type <code>Y</code> when asked to confirm</li>
+            <li>Wait for installation to complete</li>
+          </ul>
+        </li>
+      <li>
+        <span onclick="toggleSection('git-linux-arch-list-2', event);" onkeydown="toggleSection('git-linux-arch-list-2', event);" class="magic-invisible">Configure Git</span>
+        <ol id="git-linux-arch-list-2" class="hidden">
+          <li>
+            <span onclick="toggleSection('git-linux-arch-list-2-1', event);" onkeydown="toggleSection('git-linux-arch-list-2-1', event);" class="magic-invisible">Set Your Name and Email</span>
+            <ul id="git-linux-arch-list-2-1" class="hidden">
+              <li>Open Terminal</li>
+              <li>Set your name (replace "Your Name" with your actual name):
+                <pre><code>
+git config --global user.name "Your Name"
+                </code></pre>
+              </li>
+              <li>Set your email (replace with your actual email):
+                <pre><code>
+git config --global user.email "your.email@example.com"
+                </code></pre>
+              </li>
+              <li>These settings will be used to identify you in your Git commits</li>
+            </ul>
+          </li>
+          <li>
+            <span onclick="toggleSection('git-linux-arch-list-2-2', event);" onkeydown="toggleSection('git-linux-arch-list-2-2', event);" class="magic-invisible">Verify Installation</span>
+            <ul id="git-linux-arch-list-2-2" class="hidden">
+              <li>Type:
+                <pre><code>
+git --version
+                </code></pre>
+              </li>
+              <li>You should see the Git version number</li>
+              <li>Check your configuration:
+                <pre><code>
+git config --global --list
+                </code></pre>
+              </li>
+              <li>You should see your name and email listed</li>
+            </ul>
+          </li>
+          <li>
+            <span onclick="toggleSection('git-linux-arch-list-2-3', event);" onkeydown="toggleSection('git-linux-arch-list-2-3', event);" class="magic-invisible">Optional: Configure Default Branch Name</span>
+            <div id="git-linux-arch-list-2-3" class="hidden">
+              <p>Modern Git practices use "main" instead of "master" as the default branch name. To set this globally:</p>
+              <pre><code>
+git config --global init.defaultBranch main
+              </code></pre>
+            </div>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+</div>`,
+        },
+        {
+          tool_id: 'sqlite',
+          tool_name: 'SQLite',
+          tool_content: `
+<div id="sqlite-linux">
+  <p>Check whether SQLite is already installed:</p>
+  <ul>
+    <li>Open Terminal (usually <code>Ctrl + Alt + T</code>)</li>
+    <li>Type <code>sqlite3 --version</code> and press Enter</li>
+    <li>If you see a version number, you have it installed. If you get a "command not found" error, you need to install it.</li>
+  </ul>
+  <p><strong>Note:</strong> Many Linux distributions come with SQLite pre-installed, but if not, it's easy to install.</p>
+
+  <h4 onclick="toggleSection('sqlite-linux-ubuntu-list', event);" onkeydown="toggleSection('sqlite-linux-ubuntu-list', event);" class="lesson-title magic-invisible">Ubuntu / Debian-based Linux</h4>
+  <div id="sqlite-linux-ubuntu-list" class="hidden">
+    <p>If you need to install SQLite on Ubuntu, follow these steps:</p>
+    <ol>
+      <li>
+        <span onclick="toggleSection('sqlite-linux-ubuntu-list-1', event);" onkeydown="toggleSection('sqlite-linux-ubuntu-list-1', event);" class="lesson-title magic-invisible">Install SQLite</span>
+        <ul id="sqlite-linux-ubuntu-list-1" class="hidden">
+          <li>Run this command:
+            <pre><code>
+sudo apt update
+sudo apt install sqlite3
+            </code></pre>
+          </li>
+          <li>Enter your password when prompted</li>
+          <li>Type <code>Y</code> when asked to confirm</li>
+          <li>Wait for installation to complete</li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('sqlite-linux-ubuntu-list-2', event);" onkeydown="toggleSection('sqlite-linux-ubuntu-list-2', event);" class="lesson-title magic-invisible">Install SQLite Development Files (Optional)</span>
+        <ul id="sqlite-linux-ubuntu-list-2" class="hidden">
+          <li>If you plan to develop with SQLite or use it with programming languages:
+            <pre><code>
+sudo apt install libsqlite3-dev
+            </code></pre>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span onclick="toggleSection('sqlite-linux-ubuntu-list-3', event);" onkeydown="toggleSection('sqlite-linux-ubuntu-list-3', event);" class="lesson-title magic-invisible">Verify Installation (All Distributions):</span>
+        <ol id="sqlite-linux-ubuntu-list-3" class="hidden">
+          <li>
+            <span onclick="toggleSection('sqlite-linux-ubuntu-list-3-1', event);" onkeydown="toggleSection('sqlite-linux-ubuntu-list-3-1', event);" class="lesson-title magic-invisible">Check Version</span>
+            <ul id="sqlite-linux-ubuntu-list-3-1" class="hidden">
+              <li>In Terminal, type:
+                <pre><code>
+sqlite3 --version
+                </code></pre>
+              </li>
+              <li>You should see the SQLite version (typically 3.x.x)</li>
+            </ul>
+          </li>
+          <li>
+            <span onclick="toggleSection('sqlite-linux-ubuntu-list-3-2', event);" onkeydown="toggleSection('sqlite-linux-ubuntu-list-3-2', event);" class="lesson-title magic-invisible">Test SQLite</span>
+            <ul id="sqlite-linux-ubuntu-list-3-2" class="hidden">
+              <li>Type:
+                <pre><code>
+sqlite3
+                </code></pre>
+              </li>
+              <li>You should see the SQLite prompt: <code>sqlite&gt;</code></li>
+              <li>Try a simple command:
+                <pre><code>
+SELECT 'SQLite is working!';
+.quit
+                </code></pre>
+              </li>
+              <li>You should see the message printed</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Create a Test Database (Optional):</strong>
+            <ol>
+              <li>
+                <strong>Create a Test database</strong>
+                <ul>
+                  <li>In Terminal, type:
+                    <pre><code>
+mkdir ~/test-sqlite
+ cd ~/test-sqlite
+ sqlite3 test.db
+                    </code></pre>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <strong>Create a Database</strong>
+                <ul>
+                  <li>Create a simple table:
+                    <pre><code>
+CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT);
+INSERT INTO users (name) VALUES ('Alice');
+SELECT * FROM users;
+.quit;
+                    </code></pre>
+                  </li>
+                  <li>You should see the data you inserted</li>
+                </ul>
+              </li>
+              <li>
+                <strong>View the Database File</strong>
+                <ul>
+                  <li>List files in the directory:
+                    <pre><code>
+ls -lh
+                    </code></pre>
+                  </li>
+                  <li>You should see <code>test.db</code></li>
+                </ul>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+
+  <h4 onclick="toggleSection('sqlite-linux-fedora-list', event);" onkeydown="toggleSection('sqlite-linux-fedora-list', event);" class="lesson-title magic-invisible">Fedora / Red Hat-based Linux</h4>
+  <p>If you need to install SQLite on Fedora, follow these steps:</p>
+  <ol id="sqlite-linux-fedora-list" class="hidden">
+    <li>
+      <strong>Install SQLite</strong>
+      <ul>
+        <li>Open Terminal</li>
+        <li>For Fedora 22 and later:
+          <pre><code>
+sudo dnf install sqlite
+          </code></pre>
+        </li>
+        <li>For older versions:
+          <pre><code>
+sudo yum install sqlite
+          </code></pre>
+        </li>
+        <li>Type <code>Y</code> when asked to confirm</li>
+        <li>Wait for installation to complete</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Install Development Files (Optional)</strong>
+      <ul>
+        <li>If you plan to develop with SQLite:
+          <pre><code>
+sudo dnf install sqlite-devel
+          </code></pre>
+        </li>
+        <li>Or for older versions:
+          <pre><code>
+sudo yum install sqlite-devel
+          </code></pre>
+        </li>
+      </ul>
+    </li>
+  </ol>
+
+  <h4>Arch Linux</h4>
+  <p onclick="toggleSection('sqlite-linux-arch-list', event);" onkeydown="toggleSection('sqlite-linux-arch-list', event);" class="magic-invisible">If you're using Arch Linux:</p>
+  <ol id="sqlite-linux-arch-list" class="hidden">
+    <li>
+      <strong>Install SQLite</strong>
+      <ul>
+        <li>Open Terminal</li>
+        <li>Run this command:
+          <pre><code>
+sudo pacman -S sqlite
+          </code></pre>
+        </li>
+        <li>Type <code>Y</code> when asked to confirm</li>
+        <li>Wait for installation to complete</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h4>Useful SQLite Commands</h4>
+  <p>Once you're in the SQLite prompt, here are some helpful commands:</p>
+  <ul>
+    <li><code>.help</code> - Show help information</li>
+    <li><code>.tables</code> - List all tables in the database</li>
+    <li><code>.schema</code> - Show the database schema</li>
+    <li><code>.quit</code> or <code>.exit</code> - Exit SQLite</li>
+    <li><code>.mode column</code> - Display results in column format</li>
+    <li><code>.headers on</code> - Show column headers</li>
+    </ul>
+    </div>`,
+        },
+        {
+          tool_id: 'projects-folder',
+          tool_name: 'Create a Projects Folder',
+          aria_label: 'Create a Projects Folder on Linux',
+          tool_content: `
+<div id="projects-folder-linux">
+  <p>It's helpful to keep all your coding projects organised in one place. Let's create a dedicated Projects folder:</p>
+  <ol>
+    <li onclick="toggleSection('create-folder-linux-list-1', event);" onkeydown="toggleSection('create-folder-linux-list-1', event);" class="magic-invisible">Open Terminal
+      <ul id="create-folder-linux-list-1" class="hidden">
+        <li>Press <code>Ctrl + Alt + T</code></li>
+      </ul>
+    </li>
+    <li onclick="toggleSection('create-folder-linux-list-2', event);" onkeydown="toggleSection('create-folder-linux-list-2', event);" class="lesson-title magic-invisible">Navigate to Your Home Directory
+      <ul id="create-folder-linux-list-2" class="hidden">
+        <li>The terminal usually starts in your home directory</li>
+        <li>To confirm, type <code>pwd</code> and press Enter</li>
+        <li>You should see something like <code>/home/yourusername</code></li>
+      </ul>
+    </li>
+    <li onclick="toggleSection('create-folder-linux-list-3', event);" onkeydown="toggleSection('create-folder-linux-list-3', event);" class="lesson-title magic-invisible">Create the Projects Folder
+      <ul id="create-folder-linux-list-3" class="hidden">
+        <li>Type this command and press Enter:
+          <pre><code>
+mkdir Projects
+          </code></pre>
+        </li>
+        <li>Verify it was created:
+          <pre><code>
+ls
+          </code></pre>
+        </li>
+        <li>You should see <code>Projects</code> in the list</li>
+      </ul>
+    </li>
+  </ol>
+  <p>Your Projects folder is now at: <code>~/Projects</code> (or <code>/home/yourusername/Projects</code>)</p>
+  <p>In future lessons, you'll save your coding projects in this folder.</p>
+</div>`,
+        },
+        {
+          tool_id: 'dev-server',
+          tool_name: 'Setting Up the Development Server',
+          aria_label: 'Setting Up the Development Server on Linux',
+          tool_content: `+
+<div id="dev-server-linux">
+  <p>
+    To view your web pages as you develop them, you'll need to run a local development server. This is important because some web features don't work when
+    opening HTML files directly in a browser. If you installed the Live Server extension in Visual Studio Code, you can skip this step as that will do the
+    same thing. Using this method lets you run and test your web pages even if you are not using Visual Studio Code.
+  </p>
+
+  <h4 onclick="toggleSection('dev-server-linux-list-1', event);" onkeydown="toggleSection('dev-server-linux-list-1', event);" class="lesson-title magic-invisible">Create a package.json File</h4>
+  <ol id="dev-server-linux-list-1" class="hidden">
+    <li>Open Visual Studio Code</li>
+    <li>Select <code>File → Open Folder</code></li>
+    <li>Navigate to and select your <code>Projects</code> folder (<code>~/Projects</code>)</li>
+    <li>Create a new file called <code>package.json</code> in the Projects folder</li>
+    <li>Add the following content to the file:
+      <div class="code-snippet-container">
+        <script type="text/plain" class="code-snippet-source">
+{
+    "name": "my-web-projects",
+    "version": "1.0.0",
+    "description": "Web development projects",
+    "scripts": {
+        "start": "http-server -p 8000"
+    },
+    "devDependencies": {
+        "http-server": "^14.1.1"
+    }
+}
+        </script>
+        <div class="code-snippet-table"></div>
+      </div>
+    </li>
+    <li>Save the file (<code>Ctrl + S</code>)</li>
+  </ol>
+
+  <h4 onclick="toggleSection('dev-server-linux-list-2', event);" onkeydown="toggleSection('dev-server-linux-list-2', event);" class="lesson-title magic-invisible">Install http-server</h4>
+  <ol id="dev-server-linux-list-2" class="hidden">
+    <li>Open the integrated terminal in VS Code by pressing <code>Ctrl + \`</code> (backtick key, usually above Tab)</li>
+    <li>Make sure you're in your Projects folder (the terminal should show the path)</li>
+    <li>Type <code>npm install</code> and press Enter</li>
+    <li>Wait for the installation to complete (this installs http-server locally in your Projects folder)</li>
+  </ol>
+
+  <h4 onclick="toggleSection('dev-server-linux-list-3', event);" onkeydown="toggleSection('dev-server-linux-list-3', event);" class="lesson-title magic-invisible">Start the Development Server</h4>
+  <ol id="dev-server-linux-list-3" class="hidden">
+    <li>In the same terminal, type <code>npm start</code> and press Enter</li>
+    <li>You should see a message saying the server is running on <code>http://localhost:8000</code></li>
+    <li>Open your web browser and go to <code>http://localhost:8000</code></li>
+    <li>You should see a directory listing of your Projects folder</li>
+  </ol>
+
+  <h4 onclick="toggleSection('dev-server-linux-list-4', event);" onkeydown="toggleSection('dev-server-linux-list-4', event);" class="lesson-title magic-invisible">Using the Development Server</h4>
+  <ul id="dev-server-linux-list-4" class="hidden">
+    <li>Keep the terminal open while you're working - the server needs to run continuously</li>
+    <li>When you create HTML files in your Projects folder, you can access them through the browser at <code>http://localhost:8000/filename.html</code></li>
+    <li>When you make changes to your files and save them, refresh your browser to see the changes</li>
+    <li>To stop the server, press <code>Ctrl + C</code> in the terminal</li>
+    <li>To restart the server later, just run <code>npm start</code> again from your Projects folder</li>
+  </ul>
+</div>`,
+        },
+      ],
+    },
+  ],
+  conclusion_section: {
+    section: true,
+    section_id: 'conclusion',
+    title: 'Conclusion',
+    aria_label: 'Conclusion',
+    container_class: '',
+    content_class: '',
+    title_class: 'lesson-title',
+    class_list: 'lesson-install-windows lesson-install-macos lesson-install-linux conclusion',
+    content: `
+<div id="conclusion-block">
+  <p>
+    Congratulations! You have installed all the necessary tools to start your web development journey. In the next lesson, you will create your first web page using HTML and CSS.
+  </p>
+  <div id="wand-container" class="wand-container"></div>
+</div>`,
+  },
+};

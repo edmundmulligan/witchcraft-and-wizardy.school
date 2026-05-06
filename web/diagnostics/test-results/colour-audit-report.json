@@ -1,0 +1,48 @@
+{
+  "hardcodedColours": [],
+  "themeSpecificVars": [],
+  "missingThemeSystem": [
+    {
+      "file": "web/lessons/lesson-1.html",
+      "missing": {
+        "globals": true,
+        "themeSwitcher": true
+      }
+    },
+    {
+      "file": "web/lessons/lesson-2.html",
+      "missing": {
+        "globals": true,
+        "themeSwitcher": true
+      }
+    },
+    {
+      "file": "web/lessons/lesson-3.html",
+      "missing": {
+        "globals": true,
+        "themeSwitcher": true
+      }
+    },
+    {
+      "file": "web/lessons/lesson-4.html",
+      "missing": {
+        "globals": true,
+        "themeSwitcher": true
+      }
+    },
+    {
+      "file": "web/lessons/lesson-5.html",
+      "missing": {
+        "globals": true,
+        "themeSwitcher": true
+      }
+    },
+    {
+      "file": "web/lessons/lesson-6.html",
+      "missing": {
+        "globals": true,
+        "themeSwitcher": true
+      }
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script summarizes all test results and exits with error code if critical/serious issues found
+# This script summarises all test results and exits with error code if critical/serious issues found
 
 # Accept application folder parameter
 APP_FOLDER="${1:-.}"
@@ -10,12 +10,12 @@ if [ ! -d "$APP_FOLDER" ]; then
   exit 1
 fi
 
-RESULTS_DIR="$APP_FOLDER/test-results"
+RESULTS_DIR="$APP_FOLDER/diagnostics/test-results"
 EXIT_CODE=0
 OUTPUT_FILE="$RESULTS_DIR/test-summary.txt"
 TEMP_EXIT_FILE="$RESULTS_DIR/.exit_code"
 
-# Initialize exit code file
+# Initialise exit code file
 echo "0" > "$TEMP_EXIT_FILE"
 
 # Run the main script logic in a subshell and capture output
@@ -40,7 +40,9 @@ if [ -f "$RESULTS_DIR/validation-results.json" ]; then
 
     const totalErrors = data.summary.htmlErrors + data.summary.cssErrors;
     const totalWarnings = data.summary.htmlWarnings + data.summary.cssWarnings;
+    const filesChecked = data.summary.filesChecked || 0;
 
+    console.log('  Files checked: ' + filesChecked);
     console.log('  Files with issues: ' + data.files.length);
     console.log('  HTML errors: ' + data.summary.htmlErrors);
     console.log('  CSS errors: ' + data.summary.cssErrors);
@@ -53,6 +55,27 @@ if [ -f "$RESULTS_DIR/validation-results.json" ]; then
   " && echo "" || { echo ""; EXIT_CODE=1; }
 else
   echo "📄 Code Validation: No errors found"
+  echo ""
+fi
+
+# Check File Comments results
+if [ -f "$RESULTS_DIR/file-comments-check-results.json" ]; then
+  echo "📝 File Comments Results:"
+  node -e "
+    const fs = require('fs');
+    const data = JSON.parse(fs.readFileSync('$RESULTS_DIR/file-comments-check-results.json', 'utf8'));
+
+    console.log('  Files checked: ' + data.summary.totalFiles);
+    console.log('  Files with issues: ' + data.summary.filesWithIssues);
+    console.log('  Missing header blocks: ' + data.summary.missingHeaderBlocks);
+    console.log('  Missing required fields: ' + data.summary.missingRequiredFields);
+
+    if (data.summary.filesWithIssues > 0) {
+      process.exit(1);
+    }
+  " && echo "" || { echo ""; echo "1" > "$TEMP_EXIT_FILE"; }
+else
+  echo "📝 File Comments: No issues found"
   echo ""
 fi
 
@@ -226,13 +249,13 @@ if [ -f "$RESULTS_DIR/readability-results.json" ]; then
     const data = JSON.parse(fs.readFileSync('$RESULTS_DIR/readability-results.json', 'utf8'));
 
     if (data.pages.length === 0) {
-      console.log('  No pages analyzed');
+      console.log('  No pages analysed');
     } else {
       const avgGrade = data.pages.reduce((sum, p) => sum + p.averageGradeLevel, 0) / data.pages.length;
       const totalWords = data.pages.reduce((sum, p) => sum + p.wordCount, 0);
       const difficult = data.pages.filter(p => p.averageGradeLevel > 12);
 
-      console.log('  Pages analyzed: ' + data.pages.length);
+      console.log('  Pages analysed: ' + data.pages.length);
       console.log('  Total words: ' + totalWords);
       console.log('  Average grade level: ' + Math.round(avgGrade * 10) / 10);
 

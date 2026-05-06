@@ -1,0 +1,21 @@
+name: API - Testing and Deployment
+
+on:
+  pull_request:
+    branches: [ staging, main ]
+    paths:
+      - 'api/**'
+      - 'bin/**'
+      - '.github/workflows/test-and-deploy-reusable.yml'
+
+jobs:
+  test-and-deploy:
+    uses: ./.github/workflows/test-and-deploy-reusable.yml
+    with:
+      application: 'api'
+      deploy-path: '/var/www/api.witchcraft-and-wizardry.school'
+    secrets:
+      WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
+      NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
+      SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
+      SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}

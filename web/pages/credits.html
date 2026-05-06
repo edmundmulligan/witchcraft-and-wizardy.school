@@ -2,7 +2,7 @@
  **********************************************************************
  * File       : credits.html
  * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
- * Copyright  : (c) 2025 The Embodied Mind
+ * Copyright  : (c) 2026 The Embodied Mind
  * License    : MIT License (see license.html page)
  * Description:
  *   This is the credits page of the Web Witchcraft and
@@ -12,7 +12,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <!-- Start of meta tags -->
     <meta charset="UTF-8">
     <meta name="description" content="Web Witchcraft and Wizardry">
@@ -24,15 +24,17 @@
     <!-- End of meta tags -->
 
     <!-- Set the document title -->
-    <title>Credits|Web Witchcraft and Wizardry</title>
+    <title>Credits | Web Witchcraft and Wizardry</title>
 
     <!-- Link to Favicon -->
-    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="../images/icons/favicon.svg">
 
     <!--Links for Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Marcellus&family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+      rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <!-- End Google Fonts links -->
@@ -41,127 +43,172 @@
     <link rel="stylesheet" href="https://kit.fontawesome.com/3895b3f1a4.css" crossorigin="anonymous">
     <!-- End Font Awesome Icons -->
 
-    <!-- Start of CSS stylesheets section -->
-
-    <!-- main.css must be the first stylesheet loaded -->
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="../styles/globals.css">
     <link rel="stylesheet" href="../styles/main.css">
 
-    <!-- These stylesheets are common to all pages -->
-    <link rel="stylesheet" href="../styles/components/buttons.css">
-    <link rel="stylesheet" href="../styles/components/code.css">
-    <link rel="stylesheet" href="../styles/components/header-and-footer.css">
-    <link rel="stylesheet" href="../styles/components/navigation.css">
-    <link rel="stylesheet" href="../styles/components/popover.css">
-    <link rel="stylesheet" href="../styles/components/titles.css">
-    <link rel="stylesheet" href="../styles/pages.css">
-
-    <!-- media-queries must be the last stylesheets loaded -->
-    <link rel="stylesheet" href="../styles/media-queries.css">
-    <!-- End of CSS stylesheets section -->
-
     <!-- Load JavaScript files -->
-    <script src="../scripts/theme-switcher.js"></script>
-    <script src="../scripts/toggle-header-footer.js" defer></script>
-    <script src="../scripts/inject-header.js" defer></script>
-    <script src="../scripts/inject-footer.js" defer></script>
-    <script src="../scripts/inject-popover-text.js" defer></script>
+    <script src="../scripts/utils.js" defer></script>
+    <script src="../scripts/queryParams.js" defer></script>
+    <script src="../scripts/debug.js" defer></script>
+    <script src="../scripts/themeSwitcher.js" defer></script>
+    <script src="../scripts/toggleHeaderAndFooter.js" defer></script>
+    <script src="../scripts/injectCommonCode.js" type="module"></script>
+    <script src="../scripts/embodiedMindPopover.js" defer></script>
+    <script src="../scripts/showSiteVersion.js" defer></script>
     <!-- End JavaScript file link -->
 
     <noscript>
-        <link rel="stylesheet" href="../styles/noscript.css">
+      <link rel="stylesheet" href="../styles/utilities/noscript.css">
     </noscript>
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="header">
-        <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
+      <!-- Header content is injected by JavaScript to ensure it is the same across all pages -->
     </header>
 
     <main>
-        <h2 class="page-title">Third Party Credits</h2>
+      <h2 class="page-title">Third Party Credits</h2>
 
-        <section id="credits" class="credits">
-            <ul>
-                <li>
-                    Portraits of witches and wizards by
-                    <a href="https://www.rachelmulligan.co.uk/" target="_blank">
-                        Rachel Mulligan
-                    </a>
-                    on Stained Glass by Rachel Mulligan. Used with permission.
-                </li>
+      <section id="credits" >
+        <ul>
+          <li>
+            Portraits of witches and wizards by
+            <a href="https://www.rachelmulligan.co.uk/" target="_blank"> Stained Glass by Rachel Mulligan </a>. Used
+            with permission.
+          </li>
 
-                <li>
-                    Picture of witch and wizard silhouettes by
-                    <a href="https://pixabay.com/users/openclipart-vectors-30363" target="_blank">
-                        OpenClipart-Vectors on pixabay.com
-                    </a>
-                    licensed under the
-                    <a href="https://pixabay.com/service/license/" target="_blank">
-                        Pixabay License
-                    </a>
-                </li>
+          <li>
+            Picture of witch and wizard silhouettes by
+            <a href="https://pixabay.com/users/openclipart-vectors-30363" target="_blank">
+              OpenClipart-Vectors on pixabay.com
+            </a>
+            licensed under the
+            <a href="https://pixabay.com/service/license/" target="_blank"> Pixabay License </a>
+          </li>
 
-                <li>
-                    Cinzel and Cinzel Decorative fonts by
-                    <a href="https://fonts.google.com/?query=Natanael+Gama" target="_blank">
-                        Natanael Gama on Google Fonts
-                    </a>
-                    licensed under the
-                    <a href="https://openfontlicense.org/" target="_blank">
-                        SIL Open Font License
-                    </a>
-                </li>
+          <li>
+            Photograph of cat familiar by
+            <a href="https://unsplash.com/@kristinokarlsen" target="_blank"> Kristin O. Karlsen on Unsplash </a>
+            licensed under the
+            <a href="https://unsplash.com/license" target="_blank"> Unsplash License </a>
+          </li>
 
-                <li>
-                    Open Sans font by
-                    <a href="https://fonts.google.com/?query=Steve+Matteson" target="_blank">
-                        Steve Matteson on Google Fonts
-                    </a>
-                    licensed under the
-                    <a href="https://openfontlicense.org/" target="_blank">
-                        SIL Open Font License
-                    </a>
-                </li>
+          <li>
+            Photograph of bat familiar by
+            <a href="https://unsplash.com/@tumbao1949" target="_blank"> James Wainscoat on Unsplash </a>
+            licensed under the
+            <a href="https://unsplash.com/license" target="_blank"> Unsplash License </a>
+          </li>
 
-                <li>
-                    Fira Code font by
-                    <a href="https://fonts.google.com/specimen/Fira+Code" target="_blank">
-                        Nikita Prokopov on Google Fonts
-                    </a>
-                    licensed under the
-                    <a href="https://scripts.sil.org/OFL" target="_blank">
-                        SIL Open Font License
-                    </a>
-                </li>
+          <li>
+            Photograph of raven familiar by
+            <a href="https://unsplash.com/@dshap" target="_blank"> Daniel Shapiro on Unsplash </a>
+            licensed under the
+            <a href="https://unsplash.com/license" target="_blank"> Unsplash License </a>
+          </li>
 
-                <li>
-                    Font Awesome icons by
-                    <a href="https://fontawesome.com/" target="_blank">
-                        Fonticons, Inc. on Font Awesome
-                    </a>
-                    licensed under the
-                    <a href="https://fontawesome.com/license" target="_blank">
-                        Font Awesome Pro License
-                    </a>
-                </li>
+          <li>
+            Photograph of black dragon familiar by
+            <a href="https://unsplash.com/@rmrdnl" target="_blank"> Daniel Romero on Unsplash </a>
+            licensed under the
+            <a href="https://unsplash.com/license" target="_blank"> Unsplash License </a>
+          </li>
 
-                <li>
-                    The Embodied Mind logo &copy; 2022,
-                    <a href="https://www.embodied-mind.org/" target="_blank">
-                        The Embodied Mind
-                    </a>
-                    Used with permission
-                </li>
-            </ul>
-        </section>
+          <li>
+            Photograph of green dragon familiar by
+            <a href="https://unsplash.com/@inspiredimages" target="_blank"> Anthony on Unsplash </a>
+            licensed under the
+            <a href="https://unsplash.com/license" target="_blank"> Unsplash License </a>
+          </li>
+
+          <li>
+            Photograph of toad familiar by
+            <a href="https://unsplash.com/@luban95" target="_blank"> Luban Tvaroh on Unsplash </a>
+            licensed under the
+            <a href="https://unsplash.com/license" target="_blank"> Unsplash License </a>
+          </li>
+
+          <li>
+            Photograph of spider familiar by
+            <a href="https://unsplash.com/@eddyvanduijn" target="_blank"> Ed van duijn on Unsplash </a>
+            licensed under the
+            <a href="https://unsplash.com/license" target="_blank"> Unsplash License </a>
+          </li>
+
+          <li>
+            Photograph of octopus familiar by
+            <a href="https://unsplash.com/@diane_soko" target="_blank"> Diane Picchiottino on Unsplash </a>
+            licensed under the
+            <a href="https://unsplash.com/license" target="_blank"> Unsplash License </a>
+          </li>
+
+          <li>
+            Cinzel and Cinzel Decorative fonts by
+            <a href="https://fonts.google.com/?query=Natanael+Gama" target="_blank"> Natanael Gama on Google Fonts </a>
+            licensed under the
+            <a href="https://openfontlicense.org/" target="_blank"> SIL Open Font License </a>
+          </li>
+
+          <li>
+            Open Sans font by
+            <a href="https://fonts.google.com/?query=Steve+Matteson" target="_blank">
+              Steve Matteson on Google Fonts
+            </a>
+            licensed under the
+            <a href="https://openfontlicense.org/" target="_blank"> SIL Open Font License </a>
+          </li>
+
+          <li>
+            Marcellus font by
+            <a href="https://fonts.google.com/specimen/Marcellus" target="_blank"> Astigmatic on Google Fonts </a>
+            licensed under the
+            <a href="https://openfontlicense.org/" target="_blank"> SIL Open Font License </a>
+          </li>
+
+          <li>
+            Cormorant Garamond font by
+            <a href="https://fonts.google.com/specimen/Cormorant+Garamond" target="_blank">
+              Christian Thalmann on Google Fonts
+            </a>
+            licensed under the
+            <a href="https://openfontlicense.org/" target="_blank"> SIL Open Font License </a>
+          </li>
+
+          <li>
+            Fira Code font by
+            <a href="https://fonts.google.com/specimen/Fira+Code" target="_blank"> Nikita Prokopov on Google Fonts </a>
+            licensed under the
+            <a href="https://scripts.sil.org/OFL" target="_blank"> SIL Open Font License </a>
+          </li>
+
+          <li>
+            Font Awesome icons by
+            <a href="https://fontawesome.com/" target="_blank"> Fonticons, Inc. on Font Awesome </a>
+            licensed under the
+            <a href="https://fontawesome.com/license" target="_blank"> Font Awesome Pro License </a>
+          </li>
+
+          <li>
+            The Embodied Mind logo &copy; 2022,
+            <a href="https://www.embodied-mind.org/" target="_blank"> The Embodied Mind </a>
+            Used with permission
+          </li>
+        </ul>
+      </section>
+
+      <section id="site-version" >
+        <h3>Site Version</h3>
+        <p>
+          This site is currently version
+          <strong id="site-version-value">loading...</strong>.
+        </p>
+      </section>
     </main>
 
     <footer class="footer">
-        <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
+      <!-- Footer content is injected by JavaScript to ensure it is the same across all pages -->
     </footer>
-    <div id="not-implemented" popover="auto" class="popover">
-        <!-- Popover content is injected by JavaScript to ensure it is the same across all pages -->
-    </div>
-
-</body>
+  </body>
 </html>
