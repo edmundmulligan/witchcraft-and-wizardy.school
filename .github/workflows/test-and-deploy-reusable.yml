@@ -63,7 +63,7 @@ jobs:
         npx playwright install chromium
 
     - name: Setup Chrome for browser-based tests
-      uses: browser-actions/setup-chrome@v1
+      uses: browser-actions/setup-chrome@v2
 
     - name: Check Chrome installation
       run: |
