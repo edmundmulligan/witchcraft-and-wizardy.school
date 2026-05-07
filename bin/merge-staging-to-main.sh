@@ -10,23 +10,11 @@ set -e
 
 echo "🔄 Merging staging to main..."
 
-# Clean up any untracked files in node_modules to avoid merge conflicts
-if [ -d "node_modules" ]; then
-    echo "🧹 Cleaning untracked files in node_modules..."
-    git clean -fd node_modules/ || true
-fi
-
 # Fetch latest changes
 git fetch origin
 
 # Checkout main and ensure it's up to date
 git checkout main
-
-# Clean again after checkout in case main has different untracked files
-if [ -d "node_modules" ]; then
-    git clean -fd node_modules/ || true
-fi
-
 git pull origin main
 
 # Attempt merge
@@ -62,13 +50,6 @@ fi
 
 echo ""
 echo "✅ Staging has been merged into main"
-echo ""
-echo "🔧 Reinstalling dependencies to ensure consistency..."
-npm install
-echo ""
-echo "✅ Dependencies updated successfully"
-echo ""
 echo "Next steps:"
 echo "  1. Review the merge: git log --oneline -5"
-echo "  2. Test locally if needed"
-echo "  3. Push to GitHub: git push origin main"
+echo "  2. Push to GitHub: git push origin main"
