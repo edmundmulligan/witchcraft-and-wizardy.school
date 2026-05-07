@@ -34,7 +34,7 @@ const args = process.argv.slice(2);
 let folder = args[0];
 
 // Valid folders that can be built
-const validFolders = ['web', 'stats', 'sound'];
+const validFolders = ['web', 'stats', 'sound', 'api'];
 
 // Validate folder
 if (!folder) {
@@ -42,7 +42,7 @@ if (!folder) {
   console.error('');
   console.log('Usage: node bin/build-lessons.js <folder>');
   console.log('');
-  console.log('Folders: web, stats, sound');
+  console.log('Folders: web, stats, sound, api');
   process.exit(1);
 }
 
