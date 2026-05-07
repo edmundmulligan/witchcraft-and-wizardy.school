@@ -21,7 +21,7 @@ let folder = null;
 let port = 8000;
 
 // Valid folders that can be served
-const validFolders = ['web', 'stats', 'sound'];
+const validFolders = ['web', 'stats', 'sound', 'api'];
 
 for (let i = 0; i < args.length; i++) {
   const arg = args[i];

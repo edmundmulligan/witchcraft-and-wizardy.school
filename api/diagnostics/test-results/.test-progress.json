@@ -1,0 +1,27 @@
+{
+  "completed": [
+    "clear",
+    "validate-code",
+    "audit-colour",
+    "check-comments",
+    "check-links",
+    "axe-tests",
+    "lighthouse-tests",
+    "pa11y-tests",
+    "reading-age",
+    "browser-tests"
+  ],
+  "failed": [
+    "clear",
+    "validate-code",
+    "check-comments",
+    "check-links",
+    "axe-tests",
+    "lighthouse-tests",
+    "pa11y-tests",
+    "reading-age",
+    "browser-tests"
+  ],
+  "quickMode": false,
+  "runWave": false
+}
