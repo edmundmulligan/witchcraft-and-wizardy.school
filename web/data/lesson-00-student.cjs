@@ -118,14 +118,12 @@ module.exports = {
     You may use other tools if you prefer, but these are the ones the lessons will assume you have.
   </p>
   <ul>
-    <li>Microsoft Visual Studio Code (or another code editor).</li>
     <li>Mozilla Firefox (or another modern web browser such as Google Chrome or Apple Safari).</li>
-    <li>Git (optional, for version control, used in later lessons).</li>
+    <li>Microsoft Visual Studio Code (or another code editor).</li>
     <li>Node.js (required for running the development server).</li>
-    <li>SQLite (optional, for database management, used in later lessons).</li>
   </ul>
   <p>
-    Node.js is required from the start to run the development server. If you don't want to install Git or SQLite right now, that's okay; you can install them later when you get to the lessons that need them.
+    Other tools will be introduced in later lessons, but these are the basics you need to get started. Follow the instructions for your operating system to install these tools.
   </p>
 </div>`,
     },
@@ -143,140 +141,126 @@ module.exports = {
 </p>`,
       tools: [
         {
-          tool_id: 'vsc',
-          tool_name: 'Visual Studio Code',
-          tool_content: `
-<div id="vsc-windows">
-  <h4 class="lesson-title">Check whether Visual Studio Code is already installed</h4>
-  <ul>
-    <li>Press <code>Windows key + R</code></li>
-    <li>Type <code>code</code> and press Enter</li>
-    <li>If VS Code opens, you have it installed. If you get an error message, you need to install it.</li>
-  </ul>
-  <h4 onclick="toggleSection('vsc-windows-list-1', event);" onkeydown="toggleSection('vsc-windows-list-1', event);" class="lesson-title magic-invisible">If you need to install Visual Studio Code, follow these steps</h4>
-  <ol id="vsc-windows-list-1" class="hidden">
-    <li>
-      <span onclick="toggleSection('vsc-windows-list-1-1', event);" onkeydown="toggleSection('vsc-windows-list-1-1', event);" class="lesson-title magic-invisible">Download VS Code from the Official Website</span>
-      <ul id="vsc-windows-list-1-1" class="hidden">
-        <li>Open your web browser</li>
-        <li>Go to <a href="https://code.visualstudio.com" target="_blank" rel="noopener noreferrer">https://code.visualstudio.com</a></li>
-        <li>Click the large blue "Download for Windows" button</li>
-        <li>The file <code>VSCodeUserSetup-x64-[version].exe</code> will download (usually to your Downloads folder)</li>
-      </ul>
-    </li>
-    <li>
-      <span onclick="toggleSection('vsc-windows-list-1-2', event);" onkeydown="toggleSection('vsc-windows-list-1-2', event);" class="lesson-title magic-invisible">Run the Installer</span>
-      <ul id="vsc-windows-list-1-2" class="hidden">
-        <li>Open your Downloads folder (press <code>Windows key + E</code>, then click Downloads)</li>
-        <li>Double-click the VSCodeUserSetup file you just downloaded</li>
-        <li>If Windows asks "Do you want to allow this app to make changes?", click Yes</li>
-      </ul>
-    </li>
-    <li>
-      <span onclick="toggleSection('vsc-windows-list-1-3', event);" onkeydown="toggleSection('vsc-windows-list-1-3', event);" class="lesson-title magic-invisible">Setup Wizard</span>
-      <ul id="vsc-windows-list-1-3" class="hidden">
-        <li>Accept the license agreement, then click Next</li>
-        <li>Choose installation location (default is fine), click Next</li>
-        <li>Choose Start Menu folder (default is fine), click Next</li>
-      </ul>
-    </li>
-    <li>
-      <span onclick="toggleSection('vsc-windows-list-1-4', event);" onkeydown="toggleSection('vsc-windows-list-1-4', event);" class="lesson-title magic-invisible">Select Additional Tasks</span>
-      <ul id="vsc-windows-list-1-4" class="hidden">
-        <li>Check these recommended options
-          <ul>
-            <li>Create a desktop icon</li>
-            <li>Add "Open with Code" action to Windows Explorer file context menu</li>
-            <li>Add "Open with Code" action to Windows Explorer directory context menu</li>
-            <li>Register Code as an editor for supported file types</li>
-            <li>Add to PATH</li>
-          </ul>
-        </li>
-        <li>Click Next</li>
-      </ul>
-    </li>
-    <li>
-      <span onclick="toggleSection('vsc-windows-list-1-5', event);" onkeydown="toggleSection('vsc-windows-list-1-5', event);" class="lesson-title magic-invisible">Install</span>
-        <ul id="vsc-windows-list-1-5" class="hidden">
-          <li>Review your choices, then click Install</li>
-          <li>Wait for installation to complete (takes about 1-2 minutes)</li>
-          <li>Check "Launch Visual Studio Code", then click Finish</li>
-        </ul>
-      </li>
-      <li>
-        <span onclick="toggleSection('vsc-windows-list-1-6', event);" onkeydown="toggleSection('vsc-windows-list-1-6', event);" class="lesson-title magic-invisible">First Launch</span>
-        <ul id="vsc-windows-list-1-6" class="hidden"    >
-        <li>VS Code opens with a Welcome screen</li>
-        <li>You can choose your colour theme (light or dark)</li>
-        <li>You're ready to start coding!</li>
-      </ul>
-    </li>
-  </ol>
-</div>`,
-        },
-        {
           tool_id: 'firefox',
           tool_name: 'Mozilla Firefox',
           tool_content: `
 <div id="firefox-windows">
   <h4 class="lesson-title">Check whether Firefox is already installed</h4>
-  <ul>
-    <li>Press <code>Windows key</code></li>
-    <li>Type <code>Firefox</code></li>
-    <li>If Firefox appears in the search results, you have it installed. If not, you need to install it.</li>
-  </ul>
+  <ol>
+    <li>Click the <strong>Start</strong> button (Windows logo in the bottom-left corner)</li>
+    <li>Type <strong>"Firefox"</strong></li>
+    <li>If you see it appear in the search results with an orange/red fox icon, <strong>it's already installed!</strong></li>
+    <li>If you don't see it, continue to the installation steps below</li>
+  </ol>
+
   <h4 onclick="toggleSection('firefox-windows-list-1', event);" onkeydown="toggleSection('firefox-windows-list-1', event);" class="lesson-title magic-invisible">If you need to install Firefox, follow these steps</h4>
   <ol id="firefox-windows-list-1" class="hidden">
     <li>
       <span onclick="toggleSection('firefox-windows-list-1-1', event);" onkeydown="toggleSection('firefox-windows-list-1-1', event);" class="lesson-title magic-invisible">Download Firefox from the Official Website</span>
-      <ul id="firefox-windows-list-1-1" class="hidden">
-        <li>Open your web browser (Microsoft Edge or another browser)</li>
-        <li>Go to <a href="https://www.mozilla.org/firefox/" target="_blank" rel="noopener noreferrer">https://www.mozilla.org/firefox/</a></li>
-        <li>Click the blue "Download Firefox" button</li>
-        <li>The file <code>Firefox Installer.exe</code> will download (usually to your Downloads folder)</li>
-      </ul>
+      <ol id="firefox-windows-list-1-1" class="hidden">
+        <li>Open your current web browser (like Edge or Chrome)</li>
+        <li>Go to: <a href="https://www.mozilla.org/firefox/" target="_blank" rel="noopener noreferrer">https://www.mozilla.org/firefox/</a></li>
+        <li>Click the big <strong>"Download Firefox"</strong> button</li>
+        <li>Wait for the file to download (it's called something like <code>Firefox Installer.exe</code>)</li>
+      </ol>
     </li>
     <li>
       <span onclick="toggleSection('firefox-windows-list-1-2', event);" onkeydown="toggleSection('firefox-windows-list-1-2', event);" class="lesson-title magic-invisible">Run the Installer</span>
-      <ul id="firefox-windows-list-1-2" class="hidden">
-        <li>Open your Downloads folder (press <code>Windows key + E</code>, then click Downloads)</li>
-        <li>Double-click the <code>Firefox Installer.exe</code> file you just downloaded</li>
-        <li>If Windows asks "Do you want to allow this app to make changes?", click Yes</li>
-      </ul>
+      <ol id="firefox-windows-list-1-2" class="hidden">
+        <li>Find the downloaded file in your <strong>Downloads</strong> folder</li>
+        <li><strong>Double-click</strong> the file to start the installation</li>
+        <li>If Windows asks "Do you want to allow this app to make changes?", click <strong>Yes</strong></li>
+      </ol>
     </li>
     <li>
-      <span onclick="toggleSection('firefox-windows-list-1-3', event);" onkeydown="toggleSection('firefox-windows-list-1-3', event);" class="lesson-title magic-invisible">Installation Process</span>
-      <ul id="firefox-windows-list-1-3" class="hidden">
-        <li>The installer will start automatically</li>
-        <li>Firefox will install to the default location (usually <code>C:\\Program Files\\Mozilla Firefox</code>)</li>
-        <li>Wait for installation to complete (takes about 30 seconds to 1 minute)</li>
-        <li>Firefox will automatically launch when installation is complete</li>
-      </ul>
+      <span onclick="toggleSection('firefox-windows-list-1-3', event);" onkeydown="toggleSection('firefox-windows-list-1-3', event);" class="lesson-title magic-invisible">Follow the Setup Wizard</span>
+      <ol id="firefox-windows-list-1-3" class="hidden">
+        <li>Click <strong>Install</strong> on the welcome screen (the installer uses smart defaults)</li>
+        <li>Wait for the installation to finish (this takes about 30 seconds to 1 minute)</li>
+        <li>Firefox will open automatically when installation is complete</li>
+        <li>Congratulations! You've installed Firefox! </li>
+      </ol>
     </li>
     <li>
-      <span onclick="toggleSection('firefox-windows-list-1-4', event);" onkeydown="toggleSection('firefox-windows-list-1-4', event);" class="lesson-title magic-invisible">First Launch</span>
-      <ul id="firefox-windows-list-1-4" class="hidden">
-        <li>Firefox opens with a Welcome screen</li>
-        <li>You can choose to set Firefox as your default browser (optional)</li>
-        <li>You can import bookmarks and settings from other browsers (optional)</li>
-        <li>You're ready to browse!</li>
-      </ul>
+      <span onclick="toggleSection('firefox-windows-list-1-4', event);" onkeydown="toggleSection('firefox-windows-list-1-4', event);" class="lesson-title magic-invisible">First time opening Firefox</span>
+      <ol id="firefox-windows-list-1-4" class="hidden">
+        <li>Firefox will show a welcome page</li>
+        <li>You might be asked:
+          <ul>
+            <li><strong>"Make Firefox your default browser?"</strong> - This means Firefox will open when you click links. You can choose <strong>Yes</strong> or <strong>Skip</strong> (you can change this later)</li>
+            <li><strong>"Set Up Sync?"</strong> - This lets you save bookmarks to your account. You can choose <strong>Not now</strong> if you want (you can do this later)</li>
+          </ul>
+        </li>
+        <li>That's it! Firefox is ready to use!</li>
+      </ol>
+    </li>
+  </ol>
+</div>`,
+        },
+        {
+          tool_id: 'vsc',
+          tool_name: 'Visual Studio Code',
+          tool_content: `
+<div id="vsc-windows">
+  <h4 class="lesson-title">Check whether Visual Studio Code is already installed</h4>
+  <ol>
+    <li>Click the <strong>Start</strong> button</li>
+    <li>Type <strong>"cmd"</strong> or <strong>"Command Prompt"</strong></li>
+    <li>Click to open Command Prompt (a black window will appear)</li>
+    <li>Type this command and press <strong>Enter</strong>:
+      <pre><code>
+  code --version
+      </code></pre>
+    </li>
+    <li><strong>If you see version numbers</strong> (like 1.95.0), VS Code is already installed! Close this window and skip the installation.</li>
+    <li><strong>If you see an error</strong> like "'code' is not recognised", VS Code is not installed yet - continue to the next section.</li>
+  </ol>
+
+  <h4 onclick="toggleSection('vsc-windows-list-1', event);" onkeydown="toggleSection('vsc-windows-list-1', event);" class="lesson-title magic-invisible">If you need to install Visual Studio Code, follow these steps</h4>
+  <ol id="vsc-windows-list-1" class="hidden">
+    <li>
+      <span onclick="toggleSection('vsc-windows-list-1-1', event);" onkeydown="toggleSection('vsc-windows-list-1-1', event);" class="lesson-title magic-invisible">Download VS Code from the Official Website</span>
+      <ol id="vsc-windows-list-1-1" class="hidden">
+        <li>Open your web browser (like Firefox)</li>
+        <li>Go to: <a href="https://code.visualstudio.com" target="_blank">https://code.visualstudio.com</a></li>
+        <li>Click the big blue <strong>"Download for Windows"</strong> button</li>
+        <li>Wait for the file to download (it's called something like <code>VSCodeUserSetup-x64-1.xx.x.exe</code>)</li>
+      </ol>
     </li>
     <li>
-      <span onclick="toggleSection('firefox-windows-list-1-5', event);" onkeydown="toggleSection('firefox-windows-list-1-5', event);" class="lesson-title magic-invisible">Pin to Taskbar (Optional)</span>
-      <ul id="firefox-windows-list-1-5" class="hidden">
-        <li>With Firefox running, right-click the Firefox icon in the taskbar</li>
-        <li>Select "Pin to taskbar"</li>
-        <li>Now you can launch Firefox quickly from the taskbar</li>
-      </ul>
+      <span onclick="toggleSection('vsc-windows-list-1-2', event);" onkeydown="toggleSection('vsc-windows-list-1-2', event);" class="lesson-title magic-invisible">Run the Installer</span>
+      <ol id="vsc-windows-list-1-2" class="hidden">
+        <li>Find the downloaded file in your <strong>Downloads</strong> folder</li>
+        <li><strong>Double-click</strong> the file to start the installation</li>
+        <li>If Windows asks "Do you want to allow this app to make changes?", click <strong>Yes</strong></li>
+      </ol>
     </li>
     <li>
-      <span onclick="toggleSection('firefox-windows-list-1-6', event);" onkeydown="toggleSection('firefox-windows-list-1-6', event);" class="lesson-title magic-invisible">Verify Installation</span>
-      <ul id="firefox-windows-list-1-6" class="hidden">
-        <li>In Firefox, click the menu button (three horizontal lines) in the top-right corner</li>
-        <li>Click "Help" → "About Firefox"</li>
-        <li>You should see the Firefox version number</li>
-      </ul>
+      <span onclick="toggleSection('vsc-windows-list-1-3', event);" onkeydown="toggleSection('vsc-windows-list-1-3', event);" class="lesson-title magic-invisible">Follow the Setup Wizard</span>
+      <ol id="vsc-windows-list-1-3" class="hidden">
+        <li>Click <strong>Next</strong> on the welcome screen</li>
+        <li>Click <strong>I accept the agreement</strong>, then click <strong>Next</strong></li>
+        <li>Keep clicking <strong>Next</strong> (the default settings are fine)</li>
+        <li>On the "Select Additional Tasks" page, make sure these boxes are <strong>checked</strong>:
+          <ul>
+            <li>Create a desktop icon</li>
+            <li>Add "Open with Code" action to Windows Explorer file context menu</li>
+            <li>Add "Open with Code" action to Windows Explorer directory context menu</li>
+            <li>Add to PATH</li>
+          </ul>
+        </li>
+        <li>Click <strong>Next</strong>, then click <strong>Install</strong></li>
+        <li>Wait for the installation to finish (this takes about 1-2 minutes)</li>
+        <li>Click <strong>Finish</strong> (you can leave "Launch Visual Studio Code" checked)</li>
+      </ol>
+    </li>
+    <li>
+      <span onclick="toggleSection('vsc-windows-list-1-4', event);" onkeydown="toggleSection('vsc-windows-list-1-4', event);" class="lesson-title magic-invisible">Select First time opening Visual Studio Code</span>
+      <ol id="vsc-windows-list-1-4" class="hidden">
+        <li>VS Code will open automatically (or double-click the desktop icon)</li>
+        <li>You'll see a welcome screen - you can close this for now</li>
+        <li>Congratulations! You've installed VS Code!</li>
+      </ol>
     </li>
   </ol>
 </div>`,
@@ -287,46 +271,50 @@ module.exports = {
           tool_content: `
 <div id="nodejs-windows">
   <h4 class="lesson-title">Check whether Node.js is already installed</h4>
-  <ul>
-    <li>Press <code>Windows key + R</code></li>
-    <li>Type <code>cmd</code> and press Enter to open Command Prompt</li>
-    <li>Type <code>node --version</code> and press Enter</li>
-    <li>If you see a version number, you have it installed. If you get an error message, you need to install it.</li>
-  </ul>
+  <ol>
+    <li>Click the <strong>Start</strong> button</li>
+    <li>Type <strong>"cmd"</strong> or <strong>"Command Prompt"</strong></li>
+    <li>Click to open Command Prompt (a black window will appear)</li>
+    <li>Type this command and press <strong>Enter</strong>:
+      <pre><code>
+node --version
+      </code></pre>
+    </li>
+    <li><strong>If you see a version number</strong> (like v22.0.0 or v20.11.0), Node.js is already installed!</li>
+    <li><strong>If you see an error</strong> like "'node' is not recognised", Node.js is not installed yet - continue to the next section.</li>
+  </ol>
+
   <h4 onclick="toggleSection('nodejs-windows-list-1', event);" onkeydown="toggleSection('nodejs-windows-list-1', event);" class="lesson-title magic-invisible">If you need to install Node.js, follow these steps</h4>
   <ol id="nodejs-windows-list-1" class="hidden">
     <li>
       <span onclick="toggleSection('nodejs-windows-list-1-1', event);" onkeydown="toggleSection('nodejs-windows-list-1-1', event);" class="lesson-title magic-invisible">Download Node.js from the Official Website</span>
-      <ul id="nodejs-windows-list-1-1" class="hidden">
-        <li>Open your web browser</li>
-        <li>Go to <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer">https://nodejs.org/</a></li>
-        <li>You'll see two download options
+      <ol id="nodejs-windows-list-1-1" class="hidden">
+        <li>Open your web browser (like Firefox)</li>
+        <li>Go to: <a href="https://nodejs.org" target="_blank">https://nodejs.org</a></li>
+        <li>You'll see two big green buttons. Click the one that says <strong>"LTS"</strong> (Long Term Support)
           <ul>
-            <li><strong>LTS (Long Term Support)</strong> - Recommended for most users</li>
-            <li>Current - Latest features, but may be less stable</li>
+            <li>LTS means it's the most stable and recommended version</li>
+            <li>The button will say something like "20.11.0 LTS (Recommended For Most Users)"</li>
           </ul>
         </li>
-        <li>Click the green button for <strong>LTS</strong></li>
-        <li>The file <code>node-v[version]-x64.msi</code> will download (usually to your Downloads folder)</li>
-      </ul>
+        <li>Wait for the file to download (it's called something like <code>node-v20.11.0-x64.msi</code>)</li>
+      </ol>
     </li>
     <li>
       <span onclick="toggleSection('nodejs-windows-list-1-2', event);" onkeydown="toggleSection('nodejs-windows-list-1-2', event);" class="lesson-title magic-invisible">Run the Installer</span>
-      <ul id="nodejs-windows-list-1-2" class="hidden">
-        <li>Open your Downloads folder (press <code>Windows key + E</code>, then click Downloads)</li>
-        <li>Double-click the Node.js installer file you just downloaded</li>
-        <li>If Windows asks "Do you want to allow this app to make changes?", click Yes</li>
-      </ul>
+      <ol id="nodejs-windows-list-1-2" class="hidden">
+        <li>Find the downloaded file in your <strong>Downloads</strong> folder</li>
+        <li><strong>Double-click</strong> the file to start the installation</li>
+        <li>If Windows asks "Do you want to allow this app to make changes?", click <strong>Yes</strong></li>
+      </ol>
     </li>
     <li>
-      <span onclick="toggleSection('nodejs-windows-list-1-3', event);" onkeydown="toggleSection('nodejs-windows-list-1-3', event);" class="lesson-title magic-invisible">Setup Wizard</span>
-      <ul id="nodejs-windows-list-1-3" class="hidden">
-        <li>Click "Next" on the welcome screen</li>
-        <li>Check "I accept the terms in the License Agreement"</li>
-        <li>Click "Next"</li>
-        <li>Default location is fine (usually <code>C:\\Program Files\\nodejs\\</code>)</li>
-        <li>Click "Next"</li>
-        <li>Keep all default features selected
+      <span onclick="toggleSection('nodejs-windows-list-1-3', event);" onkeydown="toggleSection('nodejs-windows-list-1-3', event);" class="lesson-title magic-invisible">Follow the setup wizard</span>
+      <ol id="nodejs-windows-list-1-3" class="hidden">
+        <li>Click <strong>Next</strong> on the welcome screen</li>
+        <li>Click <strong>I accept</strong> the license agreement, then click <strong>Next</strong></li>
+        <li><strong>Choose where to install</strong> - keep the default location and click <strong>Next</strong></li>
+        <li><strong>Custom Setup</strong> - keep all the default options selected (everything should have a checkmark)
           <ul>
             <li>Node.js runtime</li>
             <li>npm package manager</li>
@@ -334,278 +322,35 @@ module.exports = {
             <li>Add to PATH</li>
           </ul>
         </li>
-        <li>Click "Next"</li>
-        <li>You can optionally check "Automatically install the necessary tools" (this installs Python and Visual Studio Build Tools)</li>
-        <li>For basic web development, you can skip this</li>
-        <li>Click "Next"</li>
-      </ul>
+        <li>Click <strong>Next</strong></li>
+        <li><strong>Tools for Native Modules</strong> - You'll see a checkbox about installing additional tools
+          <ul>
+            <li>You can <strong>uncheck this box</strong> for now (you won't need it yet)</li>
+          </ul>
+        </li>
+        <li>Click <strong>Next</strong>, then click <strong>Install</strong></li>
+        <li>Wait for the installation to finish (this takes about 1-2 minutes)</li>
+        <li>Click <strong>Finish</strong></li>
+      </ol>
     </li>
     <li>
-      <span onclick="toggleSection('nodejs-windows-list-1-8', event);" onkeydown="toggleSection('nodejs-windows-list-1-8', event);" class="lesson-title magic-invisible">Install</span>
-      <ul id="nodejs-windows-list-1-8" class="hidden">
-        <li>Click "Install"</li>
-        <li>Wait for installation to complete (takes about 1-2 minutes)</li>
-        <li>Click "Finish"</li>
-      </ul>
-    </li>
-    <li>
-      <span onclick="toggleSection('nodejs-windows-list-1-9', event);" onkeydown="toggleSection('nodejs-windows-list-1-9', event);" class="lesson-title magic-invisible">Verify Installation</span>
-      <ul id="nodejs-windows-list-1-9" class="hidden">
-        <li>Close any open Command Prompt windows</li>
-        <li>Press <code>Windows key + R</code>, type <code>cmd</code>, press Enter</li>
-        <li>Check Node.js version:
+      <span onclick="toggleSection('nodejs-windows-list-1-4', event);" onkeydown="toggleSection('nodejs-windows-list-1-4', event);" class="lesson-title magic-invisible">Verify Installation</span>
+      <ol id="nodejs-windows-list-1-4" class="hidden">
+        <li>Open <strong>Command Prompt</strong> again (or close and reopen it if it was already open)</li>
+        <li>Type these commands one at a time and press <strong>Enter</strong> after each:
           <pre><code>
 node --version
           </code></pre>
+          You should see something like <strong>v20.11.0</strong>
         </li>
-        <li>You should see the Node.js version number (e.g., v20.x.x)</li>
-        <li>Check npm (Node Package Manager) version
+        <li>Type the following command and press <strong>Enter</strong>:
           <pre><code>
 npm --version
           </code></pre>
+          You should see something like <strong>10.2.4</strong>
         </li>
-        <li>You should see the npm version number</li>
-      </ul>
-    </li>
-    <li>
-      <span onclick="toggleSection('nodejs-windows-list-1-10', event);" onkeydown="toggleSection('nodejs-windows-list-1-10', event);" class="lesson-title magic-invisible">Test Node.js (Optional)</span>
-      <ul id="nodejs-windows-list-1-10" class="hidden">
-        <li>In Command Prompt, type
-          <pre><code>
-node -e "console.log('Node.js is working!')"
-          </code></pre>
-        </li>
-        <li>You should see "Node.js is working!" printed</li>
-      </ul>
-    </li>
-    <li>
-      <span onclick="toggleSection('nodejs-windows-list-1-11', event);" onkeydown="toggleSection('nodejs-windows-list-1-11', event);" class="lesson-title magic-invisible">Create a Simple Test Server (Optional)</span>
-      <ul id="nodejs-windows-list-1-11" class="hidden">
-        <li>Create a test file and start a server
-          <pre><code>
-mkdir C:\\test-nodejs
-cd C:\\test-nodejs
-echo const http = require('http'); http.createServer((req, res) =&gt; {res.writeHead(200, {'Content-Type': 'text/html'});res.end('&lt;h1&gt;Hello from Node.js!&lt;/h1&gt;'); }).listen(8000, () =&gt; console.log('Server running at http://localhost:8000/')); &gt; server.js
-node server.js
-          </code></pre>
-        </li>
-        <li>Open your browser and go to <code>http://localhost:8000</code></li>
-        <li>You should see "Hello from Node.js!"</li>
-        <li>Press <code>Ctrl + C</code> in Command Prompt to stop the server</li>
-      </ul>
-    </li>
-  </ol>
-</div>`,
-        },
-        {
-          tool_id: 'git',
-          tool_name: 'Git',
-          tool_content: `
-<div id="git-windows">
-  <h4 class="lesson-title">Check whether Git is already installed</h4>
-  <ul>
-    <li>Press <code>Windows key + R</code></li>
-    <li>Type <code>cmd</code> and press Enter to open Command Prompt</li>
-    <li>Type <code>git --version</code> and press Enter</li>
-    <li>If you see a version number, you have it installed. If you get an error message, you need to install it.</li>
-  </ul>
-  <h4 onclick="toggleSection('git-windows-list-1', event);" onkeydown="toggleSection('git-windows-list-1', event);" class="lesson-title magic-invisible">If you need to install Git, follow these steps:</h4>
-  <ol id="git-windows-list-1" class="hidden">
-    <li>
-      <span onclick="toggleSection('git-windows-list-1-1', event);" onkeydown="toggleSection('git-windows-list-1-1', event);" class="lesson-title magic-invisible">Download Git from the Official Website</span>
-      <ul id="git-windows-list-1-1" class="hidden">
-        <li>Open your web browser</li>
-        <li>Go to <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">https://git-scm.com/</a></li>
-        <li>Click the "Download for Windows" button</li>
-        <li>The file <code>Git-[version]-64-bit.exe</code> will download (usually to your Downloads folder)</li>
-      </ul>
-    </li>
-    <li>
-      <span onclick="toggleSection('git-windows-list-1-2', event);" onkeydown="toggleSection('git-windows-list-1-2', event);" class="lesson-title magic-invisible">Run the Installer</span>
-      <ul id="git-windows-list-1-2" class="hidden">
-        <li>Open your Downloads folder (press <code>Windows key + E</code>, then click Downloads)</li>
-        <li>Double-click the Git installer file you just downloaded</li>
-        <li>If Windows asks "Do you want to allow this app to make changes?", click Yes</li>
-      </ul>
-    </li>
-    <li>
-      <span onclick="toggleSection('git-windows-list-1-3', event);" onkeydown="toggleSection('git-windows-list-1-3', event);" class="lesson-title magic-invisible">Setup Wizard</span>
-      <ul id="git-windows-list-1-3" class="hidden">
-        <li>Read the GNU General Public License</li>
-        <li>Click Next</li>
-        <li>Set install location. Default is fine (<code>C:\\Program Files\\Git</code>)</li>
-        <li>Click Next</li>
-        <li>Keep the default selections (recommended)
-          <ul>
-            <li>Additional icons (On the Desktop)</li>
-            <li>Git Bash Here</li>
-            <li>Git GUI Here</li>
-            <li>Associate .git* configuration files</li>
-            <li>Associate .sh files to be run with Bash</li>
-          </ul>
-        </li>
-        <li>Click Next</li>
-        <li>Set Start Menu Folder. Default is fine ("Git")</li>
-        <li>Click Next</li>
-        <li>Select "Use Visual Studio Code as Git's default editor" from the dropdown</li>
-        <li>Click Next</li>
-        <li>Select "Git from the command line and also from 3rd-party software" (recommended)</li>
-        <li>Click Next</li>
-        <li>For all remaining screens, keep the default settings</li>
-        <li>Click Next through each screen</li>
-        <li>Finally, click Install</li>
-        <li>Wait for installation to complete (takes about 1-2 minutes)</li>
-        <li>Uncheck "View Release Notes" and click Finish</li>
-      </ul>
-    </li>
-    <li>
-      <span onclick="toggleSection('git-windows-list-1-10', event);" onkeydown="toggleSection('git-windows-list-1-10', event);" class="lesson-title magic-invisible">Configure Git</span>
-      <ul id="git-windows-list-1-10" class="hidden">
-        <li>Press <code>Windows key + R</code></li>
-        <li>Type <code>cmd</code> and press Enter</li>
-        <li>Set your name and email address (replace "Your Name" and "your.email@example.com" with your actual name and email):
-          <pre><code>
-git config --global user.name "Your Name"
-git config --global user.email "your.email@example.com"
-          </code></pre>
-        </li>
-        <li>These settings will be used to identify you in your Git commits</li>
-      </ul>
-    </li>
-    <li>
-      <span onclick="toggleSection('git-windows-list-1-11', event);" onkeydown="toggleSection('git-windows-list-1-11', event);" class="lesson-title magic-invisible">Verify Installation</span>
-      <ul id="git-windows-list-1-11" class="hidden">
-        <li>In the same Command Prompt, type:
-          <pre><code>
-git --version
-          </code></pre>
-        </li>
-        <li>You should see the Git version number</li>
-        <li>Check your configuration
-          <pre><code>
-git config --global --list
-          </code></pre>
-        </li>
-        <li>You should see your name and email listed</li>
-      </ul>
-    </li>
-  </ol>
-</div>`,
-        },
-        {
-          tool_id: 'sqlite',
-          tool_name: 'SQLite',
-          tool_content: `
-<div id="sqlite-windows">
-  <h4 class="lesson-title">Check whether SQLite is already installed</h4>
-  <ul>
-    <li>Press <code>Windows key + R</code></li>
-    <li>Type <code>cmd</code> and press Enter to open Command Prompt</li>
-    <li>Type <code>sqlite3 --version</code> and press Enter</li>
-    <li>If you see a version number, you have it installed. If you get an error message, you need to install it.</li>
-  </ul>
-  <h4 onclick="toggleSection('sqlite-windows-list', event);" onkeydown="toggleSection('sqlite-windows-list', event);" class="lesson-title magic-invisible">If you need to install SQLite, follow these steps</h4>
-  <ol id="sqlite-windows-list" class="hidden">
-    <li>
-      <span onclick="toggleSection('sqlite-windows-list-1', event);" onkeydown="toggleSection('sqlite-windows-list-1', event);" class="lesson-title magic-invisible">Download SQLite from the Official Website</span>
-      <ul id="sqlite-windows-list-1" class="hidden">
-        <li>Open your web browser</li>
-        <li>Go to <a href="https://www.sqlite.org/download.html" target="_blank" rel="noopener noreferrer">https://www.sqlite.org/download.html</a></li>
-        <li>Scroll down to the "Precompiled Binaries for Windows" section</li>
-        <li>Download two files
-          <ul>
-            <li><strong>sqlite-tools-win32-x86-*.zip</strong> (contains sqlite3.exe command-line tool)</li>
-            <li><strong>sqlite-dll-win64-x64-*.zip</strong> (contains the DLL library)</li>
-          </ul>
-        </li>
-        <li>Both files will download to your Downloads folder</li>
-      </ul>
-    </li>
-    <li>
-      <span onclick="toggleSection('sqlite-windows-list-2', event);" onkeydown="toggleSection('sqlite-windows-list-2', event);" class="lesson-title magic-invisible">Create SQLite Directory</span>
-      <ul id="sqlite-windows-list-2" class="hidden">
-        <li>Press <code>Windows key + E</code> to open File Explorer</li>
-        <li>Navigate to your C: drive</li>
-        <li>Create a new folder called <code>sqlite</code> (full path: <code>C:\\sqlite</code>)</li>
-      </ul>
-    </li>
-    <li>
-      <span onclick="toggleSection('sqlite-windows-list-3', event);" onkeydown="toggleSection('sqlite-windows-list-3', event);" class="lesson-title magic-invisible">Extract SQLite Files</span>
-      <ul id="sqlite-windows-list-3" class="hidden">
-        <li>Go to your Downloads folder</li>
-        <li>Right-click <code>sqlite-tools-win32-x86-*.zip</code></li>
-        <li>Select "Extract All..."</li>
-        <li>Change destination to <code>C:\\sqlite</code> and click Extract</li>
-        <li>Right-click <code>sqlite-dll-win64-x64-*.zip</code></li>
-        <li>Select "Extract All..."</li>
-        <li>Change destination to <code>C:\\sqlite</code> and click Extract</li>
-        <li>Move all .exe and .dll files from the subfolders directly into <code>C:\\sqlite</code></li>
-      </ul>
-    </li>
-    <li>
-      <span onclick="toggleSection('sqlite-windows-list-4', event);" onkeydown="toggleSection('sqlite-windows-list-4', event);" class="lesson-title magic-invisible">Add SQLite to System PATH</span>
-      <ul id="sqlite-windows-list-4" class="hidden">
-        <li>Press <code>Windows key</code> and type "environment variables"</li>
-        <li>Click "Edit the system environment variables"</li>
-        <li>Click the "Environment Variables" button at the bottom</li>
-        <li>In the "System variables" section, find and select "Path"</li>
-        <li>Click "Edit"</li>
-        <li>Click "New"</li>
-        <li>Type <code>C:\\sqlite</code> and press Enter</li>
-        <li>Click "OK" on all windows to save</li>
-      </ul>
-    </li>
-    <li>
-      <span onclick="toggleSection('sqlite-windows-list-5', event);" onkeydown="toggleSection('sqlite-windows-list-5', event);" class="lesson-title magic-invisible">Verify Installation</span>
-      <ul id="sqlite-windows-list-5" class="hidden">
-        <li>Close any open Command Prompt windows</li>
-        <li>Press <code>Windows key + R</code>, type <code>cmd</code>, press Enter</li>
-        <li>Type:
-          <pre><code>
-sqlite3 --version
-          </code></pre>
-        </li>
-        <li>You should see the SQLite version number</li>
-      </ul>
-    </li>
-    <li>
-      <span onclick="toggleSection('sqlite-windows-list-6', event);" onkeydown="toggleSection('sqlite-windows-list-6', event);" class="lesson-title magic-invisible">Test SQLite (Optional)</span>
-      <ul id="sqlite-windows-list-6" class="hidden">
-        <li>In Command Prompt, type:
-          <pre><code>
-sqlite3
-          </code></pre>
-        </li>
-        <li>You should see the SQLite prompt: <code>sqlite&gt;</code></li>
-        <li>Try a simple command:
-          <pre><code>
-SELECT 'SQLite is working!';
-          </code></pre>
-        </li>
-        <li>You should see the message printed</li>
-        <li>Type <code>.quit</code> and press Enter to exit SQLite</li>
-      </ul>
-    </li>
-    <li>
-      <span onclick="toggleSection('sqlite-windows-list-7', event);" onkeydown="toggleSection('sqlite-windows-list-7', event);" class="lesson-title magic-invisible">Create a Test Database (Optional)</span>
-      <ul id="sqlite-windows-list-7" class="hidden">
-        <li>In Command Prompt, navigate to a test folder and create a database:
-          <pre><code>
-mkdir C:\\test-sqlite
-cd C:\\test-sqlite
-sqlite3 test.db
-          </code></pre>
-        </li>
-        <li>Create a simple table:
-          <pre><code>
-CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT);
-INSERT INTO users (name) VALUES ('Alice');
-SELECT * FROM users;
-.quit;
-          </code></pre>
-        </li>
-        <li>You should see the data you inserted</li>
-      </ul>
+        <li>If you see version numbers for both, <strong>congratulations!</strong> Node.js is installed correctly!</li>
+      </ol>
     </li>
   </ol>
 </div>`,
@@ -616,31 +361,48 @@ SELECT * FROM users;
           aria_label: 'Create a Projects Folder on Windows',
           tool_content: `
 <div id="projects-folder-windows">
-  <p>It's helpful to keep all your coding projects organised in one place. Let's create a dedicated Projects folder:</p>
+  <p>Projects folder is a special place on your computer where you keep all your coding projects organised. It's like having a toy box where you keep all your toys in one place - it makes everything easier to find!</p>
+
+<h3>Why Do You Need It?</h3>
+
+<p>When you start coding, you'll create lots of different projects. Having them all in one folder helps you:</p>
+<ul>
+  <li>Find your projects quickly</li>
+  <li>Keep your computer organised</li>
+  <li>Back up your work easily</li>
+  <li>Know where to save new projects</li>
+</ul>
+
   <ol>
     <li>
       <span onclick="toggleSection('create-folder-windows-list-1', event);" onkeydown="toggleSection('create-folder-windows-list-1', event);" class="lesson-title magic-invisible">Open File Explorer</span>
-      <ul id="create-folder-windows-list-1" class="hidden">
-        <li>Press <code>Windows key + E</code> to open File Explorer</li>
-      </ul>
+      <ol id="create-folder-windows-list-1" class="hidden">
+        <li>Click the <strong>folder icon</strong> on your taskbar (bottom of screen)</li>
+        <li>Or press the <strong>Windows key + E</strong> on your keyboard</li>
+      </ol>
     </li>
     <li>
       <span onclick="toggleSection('create-folder-windows-list-2', event);" onkeydown="toggleSection('create-folder-windows-list-2', event);" class="lesson-title magic-invisible">Navigate to Your User Folder</span>
-      <ul id="create-folder-windows-list-2" class="hidden">
-        <li>Click on "This PC" or "Computer" in the left sidebar</li>
-        <li>Open the <code>C:</code> drive</li>
-        <li>Open the <code>Users</code> folder</li>
-        <li>Open the folder with your username</li>
-      </ul>
+      <ol id="create-folder-windows-list-2" class="hidden">
+        <li>Look on the left side of File Explorer</li>
+        <li>Click on <strong>"This PC"</strong> or <strong>"Quick access"</strong></li>
+        <li>Find and click on your <strong>user folder</strong> (it has your name and a person icon)
+          <ul>
+            <li>It might be called something like <strong>"Documents"</strong> or your Windows username</li>
+          </ul>
+        </li>
+      </ol>
     </li>
     <li>
       <span onclick="toggleSection('create-folder-windows-list-3', event);" onkeydown="toggleSection('create-folder-windows-list-3', event);" class="lesson-title magic-invisible">Create the Projects Folder</span>
-      <ul id="create-folder-windows-list-3" class="hidden">
-        <li>Right-click in an empty space</li>
-        <li>Select "New" → "Folder"</li>
-        <li>Name it <code>Projects</code></li>
-        <li>Press Enter</li>
-      </ul>
+      <ol id="create-folder-windows-list-3" class="hidden">
+        <li>Right-click in an empty space in the window</li>
+        <li>Hover over <strong>"New"</strong> in the menu that appears</li>
+        <li>Click <strong>"Folder"</strong></li>
+        <li>A new folder appears with the name highlighted</li>
+        <li>Type: <strong>Projects</strong></li>
+        <li>Press <strong>Enter</strong></li>
+      </ol>
     </li>
   </ol>
   <p>Your Projects folder is now at: <code>C:\\Users\\YourUsername\\Projects</code></p>
@@ -654,66 +416,58 @@ SELECT * FROM users;
           tool_content: `
 <div id="dev-server-windows">
   <p>
-    To view your web pages as you develop them, you'll need to run a local development server. This is important because some web features don't work when opening HTML
-    files directly in a browser. If you installed the Live Server extension in Visual Studio Code, you can skip this step as that will do the same thing. Using this method
-    lets you run and test your web pages even if you are not using Visual Studio Code.
+    An HTTP server is a program that serves web pages to your browser. When you visit a website, you're connecting to an HTTP server! So here you'll create your own server that runs on your computer that you can use to view your web pages as you develop them.
   </p>
-  <h4 onclick="toggleSection('dev-server-windows-list-1', event);" onkeydown="toggleSection('dev-server-windows-list-1', event);" class="lesson-title magic-invisible">Create a package.json File</h4>
+
+  <h3>Before You Start</h3>
+
+  <p>Make sure you have:</p>
+  <ul>
+    <li>Node.js installed (check by typing <code>node --version</code> in Command Prompt)</li>
+    <li>A Projects folder created (see "How to Create a Projects Folder" guide)</li>
+  </ul>
+
+  <h4 onclick="toggleSection('dev-server-windows-list-1', event);" onkeydown="toggleSection('dev-server-windows-list-1', event);" class="lesson-title magic-invisible">Download   package.json File</h4>
   <ol id="dev-server-windows-list-1" class="hidden">
-    <li>Open Visual Studio Code</li>
-    <li>Select <code>File → Open Folder</code></li>
-    <li>Navigate to and select your <code>Projects</code> folder (<code>C:\\Users\\YourUsername\\Projects</code>)</li>
-    <li>Create a new file called <code>package.json</code> in the Projects folder</li>
-    <li>Add the following content to the file:
-        <div class="code-snippet-container">
-          <script type="text/plain" class="code-snippet-source">
-{
-  "name": "my-web-projects",
-  "version": "1.0.0",
-  "description": "Web development projects",
-  "scripts": {
-    "start": "http-server -p 8000"
-  },
-  "devDependencies": {
-    "http-server": "^14.1.1"
-  }
-}
-          </script>
-          <div class="code-snippet-table"></div>
-        </div>
-      </li>
-      <li>Save the file (<code>Ctrl + S</code>)</li>
+     <li>Open <strong>Firefox</strong> (or your web browser)</li>
+      <li>Visit this page: <a href="https:data/package.json" target="_blank" rel="noopener noreferrer">https:data/package.json</a></li>
+      <li>The file will download to your <strong>Downloads</strong> folder</li>
+      <li>Open <strong>File Explorer</strong> (click the folder icon on your taskbar)</li>
+      <li>Go to your <strong>Downloads</strong> folder</li>
+      <li>Find <strong>package.json</strong> and <strong>right-click</strong> on it</li>
+      <li>Choose <strong>Cut</strong> (or press Ctrl + X)</li>
+      <li>Navigate to your <strong>Projects</strong> folder</li>
+      <li><strong>Right-click</strong> in an empty space and choose <strong>Paste</strong> (or press Ctrl + V)</li> 
     </ol>
 
-    <h4 onclick="toggleSection('dev-server-windows-list-2', event);" onkeydown="toggleSection('dev-server-windows-list-2', event);" class="lesson-title magic-invisible">Install http-server</h4>
+    <h4 onclick="toggleSection('dev-server-windows-list-2', event);" onkeydown="toggleSection('dev-server-windows-list-2', event);" class="lesson-title magic-invisible">Start the server</h4>
     <ol id="dev-server-windows-list-2" class="hidden">
-      <li>Open the integrated terminal in VS Code by pressing <code>Ctrl + \`</code> (backtick key, usually above Tab)</li>
-      <li>Make sure you're in your Projects folder (the terminal should show the path)</li>
       <li>
-        Type
-        <pre><code>
-npm install
-        </code></pre>
-        and press Enter
+        In Command Prompt, type:
+        <code><pre>
+npm run start
+        </pre></code>
       </li>
-      <li>Wait for the installation to complete (this installs http-server locally in your Projects folder)</li>
+      <li>You should see:<code>Server running at http://localhost:8000</code></li>
+      <li>Open your web browser and visit: <code>http://localhost:8000</code></li>
+      <li>You should see: <strong>"Hello! Your server is working!"</strong></li>
     </ol>
 
-    <h4 onclick="toggleSection('dev-server-windows-list-3', event);" onkeydown="toggleSection('dev-server-windows-list-3', event);" class="lesson-title magic-invisible">Start the Development Server</h4>
+    <h4 onclick="toggleSection('dev-server-windows-list-3', event);" onkeydown="toggleSection('dev-server-windows-list-3', event);" class="lesson-title magic-invisible">Stop the server</h4>
     <ol id="dev-server-windows-list-3" class="hidden">
-      <li>In the same terminal, type <code>npm start</code> and press Enter</li>
-      <li>You should see a message saying the server is running on <code>http://localhost:8000</code></li>
-      <li>Open your web browser and go to <code>http://localhost:8000</code></li>
-      <li>You should see a directory listing of your Projects folder</li>
+      <li>Go back to the <strong>Command Prompt</strong></li>
+      <li>Press <strong>Ctrl + C</strong></li>
+      <li>The server will stop</li>
     </ol>
 
     <h4 onclick="toggleSection('dev-server-windows-list-4', event);" onkeydown="toggleSection('dev-server-windows-list-4', event);" class="lesson-title magic-invisible">Using the Development Server</h4>
     <ul id="dev-server-windows-list-4" class="hidden">
-      <li>Keep the terminal open while you're working - the server needs to run continuously</li>
+      <li>Whenever you need to start the server, run <code>npm start</code> from your Projects folder</li>
       <li>When you create HTML files in your Projects folder, you can access them through the browser at <code>http://localhost:8000/filename.html</code></li>
       <li>When you make changes to your files and save them, refresh your browser to see the changes</li>
       <li>To stop the server, press <code>Ctrl + C</code> in the terminal</li>
       <li>To restart the server later, just run <code>npm start</code> again from your Projects folder</li>
+      <li>In future lessons, when you have learned about Visual Studio Code, you can use a Terminal inside VS Code to run these commands</li>
     </ul>
   </div>`,
         },
