@@ -1,0 +1,44 @@
+/*
+ **********************************************************************
+ * File       : components/scrollbar.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 6 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Simplified scrollbar styles - all scrollbars behave consistently
+ *   regardless of shape or size.
+ **********************************************************************
+ */
+
+@layer components {
+  ::-webkit-scrollbar {
+    width: var(--scrollbar-width);
+    height: var(--scrollbar-width);
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--colour-effective-button-background);
+    border-radius: var(--border-radius);
+    margin-block: var(--margin-vertical);
+    margin-inline: var(--margin-horizontal);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--colour-effective-button-text);
+    border-radius: var(--border-radius);
+    border: var(--border-weight) var(--border-style) var(--colour-effective-button-text);
+
+    &:hover {
+      background-color: var(--colour-effective-button-text-hover);
+      border: var(--border-weight) var(--border-style) var(--colour-effective-button-text-hover);
+    }
+  }
+
+  /* For Firefox */
+  @supports selector(* scrollbar-color) {
+    * {
+      scrollbar-width: var(--scrollbar-width);
+      scrollbar-color: var(--colour-effective-button-text) var(--colour-effective-button-background);
+    }
+  }
+}

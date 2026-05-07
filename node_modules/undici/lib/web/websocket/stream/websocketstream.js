@@ -1,7 +1,7 @@
 'use strict'
 
-const { createDeferredPromise } = require('../../../util/promise')
-const { environmentSettingsObject } = require('../../fetch/util')
+const { addAbortListener } = require('node:events')
+const { environmentSettingsObject, readableStreamClose } = require('../../fetch/util')
 const { states, opcodes, sentCloseFrameState } = require('../constants')
 const { webidl } = require('../../webidl')
 const { getURLRecord, isValidSubprotocol, isEstablished, utf8Decode } = require('../util')
@@ -10,8 +10,8 @@ const { channels } = require('../../../core/diagnostics')
 const { WebsocketFrameSend } = require('../frame')
 const { ByteParser } = require('../receiver')
 const { WebSocketError, createUnvalidatedWebSocketError } = require('./websocketerror')
-const { utf8DecodeBytes } = require('../../fetch/util')
 const { kEnumerableProperty } = require('../../../core/util')
+const { utf8DecodeBytes } = require('../../../encoding')
 
 let emittedExperimentalWarning = false
 
@@ -21,11 +21,11 @@ class WebSocketStream {
   #url
 
   // Each WebSocketStream object has an associated opened promise , which is a promise.
-  /** @type {import('../../../util/promise').DeferredPromise} */
+  /** @type {ReturnType<typeof Promise.withResolvers>} */
   #openedPromise
 
   // Each WebSocketStream object has an associated closed promise , which is a promise.
-  /** @type {import('../../../util/promise').DeferredPromise} */
+  /** @type {ReturnType<typeof Promise.withResolvers>} */
   #closedPromise
 
   // Each WebSocketStream object has an associated readable stream , which is a ReadableStream .
@@ -113,8 +113,8 @@ class WebSocketStream {
     this.#url = urlRecord.toString()
 
     // 6. Set this 's opened promise and closed promise to new promises.
-    this.#openedPromise = createDeferredPromise()
-    this.#closedPromise = createDeferredPromise()
+    this.#openedPromise = Promise.withResolvers()
+    this.#closedPromise = Promise.withResolvers()
 
     // 7. Apply backpressure to the WebSocket.
     // TODO
@@ -133,7 +133,7 @@ class WebSocketStream {
       }
 
       // 8.3. Add the following abort steps to signal :
-      signal.addEventListener('abort', () => {
+      addAbortListener(signal, () => {
         // 8.3.1. If the WebSocket connection is not yet established : [WSP]
         if (!isEstablished(this.#handler.readyState)) {
           // 8.3.1.1. Fail the WebSocket connection .
@@ -149,7 +149,7 @@ class WebSocketStream {
           // Set this 's handshake aborted to true.
           this.#handshakeAborted = true
         }
-      }, { once: true })
+      })
     }
 
     // 9.  Let client be this 's relevant settings object .
@@ -202,7 +202,7 @@ class WebSocketStream {
     chunk = webidl.converters.WebSocketStreamWrite(chunk)
 
     // 1. Let promise be a new promise created in stream ’s relevant realm .
-    const promise = createDeferredPromise()
+    const promise = Promise.withResolvers()
 
     // 2. Let data be null.
     let data = null
@@ -284,12 +284,6 @@ class WebSocketStream {
       start: (controller) => {
         this.#readableStreamController = controller
       },
-      pull (controller) {
-        let chunk
-        while (controller.desiredSize > 0 && (chunk = response.socket.read()) !== null) {
-          controller.enqueue(chunk)
-        }
-      },
       cancel: (reason) => this.#cancel(reason)
     })
 
@@ -338,7 +332,7 @@ class WebSocketStream {
       try {
         chunk = utf8Decode(data)
       } catch {
-        failWebsocketConnection(this.#handler, 'Received invalid UTF-8 in text frame.')
+        failWebsocketConnection(this.#handler, 1007, 'Received invalid UTF-8 in text frame.')
         return
       }
     } else if (type === opcodes.BINARY) {
@@ -370,7 +364,7 @@ class WebSocketStream {
       this.#openedPromise.reject(new WebSocketError('Socket never opened'))
     }
 
-    const result = this.#parser.closingInfo
+    const result = this.#parser?.closingInfo
 
     // 4. Let code be the WebSocket connection close code .
     // https://datatracker.ietf.org/doc/html/rfc6455#section-7.1.5
@@ -392,7 +386,7 @@ class WebSocketStream {
     // 6. If the connection was closed cleanly ,
     if (wasClean) {
       // 6.1. Close stream ’s readable stream .
-      this.#readableStreamController.close()
+      readableStreamClose(this.#readableStreamController)
 
       // 6.2. Error stream ’s writable stream with an " InvalidStateError " DOMException indicating that a closed WebSocketStream cannot be written to.
       if (!this.#writableStream.locked) {
@@ -411,10 +405,10 @@ class WebSocketStream {
       const error = createUnvalidatedWebSocketError('unclean close', code, reason)
 
       // 7.2. Error stream ’s readable stream with error .
-      this.#readableStreamController.error(error)
+      this.#readableStreamController?.error(error)
 
       // 7.3. Error stream ’s writable stream with error .
-      this.#writableStream.abort(error)
+      this.#writableStream?.abort(error)
 
       // 7.4. Reject stream ’s closed promise with error .
       this.#closedPromise.reject(error)

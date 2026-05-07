@@ -1,0 +1,376 @@
+/*
+ **********************************************************************
+ * File       : prototypes.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see ../../license-and-credits.html page)
+ * Description:
+ *   Styles for the prototypes viewer diagnostic page.
+ *   Displays screenshots from the output folder in a tabbed interface
+ *   with controls for theme, style, and viewport selection.
+ *   Includes modal/lightbox for viewing full-size images.
+ **********************************************************************
+ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    padding: 2rem;
+    background: #f5f5f5;
+    color: #333;
+}
+
+header {
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+header nav {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+header nav a {
+    color: #4a90e2;
+    text-decoration: none;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+header nav a[aria-current="page"] {
+    color: #666;
+    pointer-events: none;
+}
+
+main {
+    margin-top: 2rem;
+}
+
+h1 {
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+.tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #ddd;
+}
+
+.tab-button {
+    padding: 0.75rem 1.5rem;
+    background: white;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px 5px 0 0;
+    transition: background 0.2s;
+}
+
+.tab-button:hover {
+    background: #f8f8f8;
+}
+
+.tab-button.active {
+    background: #4a90e2;
+    color: white;
+    border-color: #4a90e2;
+}
+
+.tab-content {
+    display: none;
+    background: white;
+    padding: 2rem;
+    border-radius: 0 5px 5px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.controls {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 5px;
+    flex-wrap: wrap;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.control-group label {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #555;
+}
+
+.radio-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.radio-option input[type="radio"] {
+    cursor: pointer;
+}
+
+.radio-option label {
+    cursor: pointer;
+    font-weight: normal;
+    color: #333;
+}
+
+.screenshots {
+    display: grid;
+    grid-template-columns: 1fr 3fr 5fr 7fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Animations tab displays a single full-width GIF */
+#animations-screenshots {
+    display: block;
+    max-width: 800px;
+}
+
+#animations-screenshots .screenshot-container {
+    width: 100%;
+}
+
+#animations-screenshots .screenshot-wrapper img {
+    width: 100%;
+    max-width: none;
+    cursor: default;
+}
+
+#animations-screenshots .screenshot-wrapper img:hover {
+    opacity: 1;
+}
+
+.screenshot-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.screenshot-label {
+    font-weight: 600;
+    color: #555;
+    text-align: center;
+}
+
+.screenshot-wrapper {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+}
+
+.screenshot-wrapper img {
+    display: block;
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.screenshot-wrapper img:hover {
+    opacity: 0.8;
+}
+
+.screenshot-wrapper img.error {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.screenshot-wrapper img.error:hover {
+    opacity: 0.3;
+}
+
+.error-message {
+    padding: 2rem;
+    text-align: center;
+    color: #999;
+    font-style: italic;
+}
+
+.section-control {
+    margin-top: 1rem;
+}
+
+/* Image modal/lightbox */
+.image-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0 0 0 / 90%);
+    z-index: 9999;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.image-modal.active {
+    display: flex;
+}
+
+.image-modal img {
+    max-width: 95%;
+    max-height: 95%;
+    object-fit: contain;
+    box-shadow: 0 4px 20px rgb(0 0 0 / 50%);
+    cursor: default;
+}
+
+.image-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgb(255 255 255 / 90%);
+    border: none;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+    color: #333;
+    z-index: 10000;
+}
+
+.image-modal-close:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+.image-modal-close:active {
+    transform: scale(0.95);
+}
+
+/* Digital Images tab styles */
+#images-tab h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+#images-tab h2:first-child {
+    margin-top: 0;
+}
+
+.image-display {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.image-display img,
+.image-display video {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+}
+
+#favicon-container svg {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+    background: white;
+}
+
+/* Favicon animation styles */
+.sparkle-1 {
+    fill: #f00;
+}
+
+.sparkle-2 {
+    fill: #0f0;
+}
+
+.sparkle-3 {
+    fill: #00f;
+}
+
+svg.animated .sparkle-1 {
+    animation: color-change-1 1.5s infinite;
+}
+
+svg.animated .sparkle-2 {
+    animation: color-change-2 1.5s infinite;
+    animation-delay: 0.5s;
+}
+
+svg.animated .sparkle-3 {
+    animation: color-change-3 1.5s infinite;
+    animation-delay: 1s;
+}
+
+@keyframes color-change-1 {
+    0%, 100% { fill: #FF1744; }
+    33% { fill: #00E676; }
+    66% { fill: #FFD600; }
+}
+
+@keyframes color-change-2 {
+    0%, 100% { fill: #2979FF; }
+    33% { fill: #FF6D00; }
+    66% { fill: #E040FB; }
+}
+
+@keyframes color-change-3 {
+    0%, 100% { fill: #00E5FF; }
+    33% { fill: #FF4081; }
+    66% { fill: #76FF03; }
+}
+
+@media (width <= 800px) {
+    body {
+        padding: 1rem;
+    }
+
+    .controls {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .screenshots {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,256 @@
+/*
+ **********************************************************************
+ * File       : styles/pages/lesson.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Styles used by all the lesson pages
+ **********************************************************************
+ */
+
+@layer pages {
+  /*
+     * Introduction section with student image
+     */
+
+  .student-image {
+    float: left;
+    width: 15rem;
+    margin-right: 1.5rem;
+    margin-bottom: 1rem;
+    border: var(--border-weight) var(--border-style) var(--colour-effective-page-text);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+
+  .avatar-image {
+    max-width: 15rem;
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius, 0.5rem);
+  }
+
+  .avatar-caption {
+    margin-top: 0.5rem;
+    font-size: var(--fontsize-normal);
+    font-weight: bold;
+    font-family: var(--font-family-subtitle);
+  }
+
+  /* Visually hidden class for accessibility */
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(
+      0,
+      0,
+      0,
+      0
+    ); /* Keep for older browser compatibility */ /* stylelint-disable-line property-no-deprecated */
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .operating-systems {
+    display: flex;
+    max-width: 100%;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    gap: 1rem;
+    padding: 1rem;
+    border: var(--border-weight) var(--border-style) var(--colour-effective-page-text);
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+  }
+
+  .installing-required-software legend,
+  .installing-required-software label {
+    font-weight: bold;
+    font-size: var(--fontsize-header-small);
+    font-family: var(--font-family-subtitle);
+    margin-top: 2rem;
+  }
+
+  .lesson-title {
+    font-family: var(--font-family-subtitle);
+    font-weight: 600;
+    font-size: var(--fontsize-header-medium);
+    text-align: left;
+  }
+
+  /* Ensure lists don't overlap with floated student-image */
+  .lesson-section ul,
+  .lesson-section ol {
+    overflow: auto;
+    clear: none;
+  }
+
+  .lesson-section ul li,
+  .lesson-section ol li {
+    margin-left: 0;
+    list-style-position: inside;
+  }
+
+  /* Description list styling - terms and descriptions on same line */
+  .lesson-section dl {
+    margin: var(--margin-vertical) var(--margin-horizontal);
+    font-family: var(--font-family-text);
+    font-size: var(--fontsize-normal);
+  }
+
+  .lesson-section dt {
+    display: inline;
+    font-family: var(--font-family-text);
+    font-weight: bold;
+    margin: 0;
+
+    &::after {
+      content: ": ";
+    }
+  }
+
+  .lesson-section dd {
+    display: inline;
+    font-family: var(--font-family-text);
+    margin: 0;
+
+    &::after {
+      content: "";
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  /* Clickable image with modal */
+  .clickable-image-figure {
+    text-align: center;
+  }
+
+  .clickable-image-figure figcaption {
+    text-align: center;
+  }
+
+  .clickable-image-figure picture {
+    cursor: pointer;
+  }
+
+  /* Image Modal Styles */
+  .image-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 3rem;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(10 18 28 / 55%);
+  }
+
+  @supports ((backdrop-filter: blur(1rem)) or (-webkit-backdrop-filter: blur(1rem))) {
+    .image-modal {
+      background-color: rgb(10 18 28 / 22%);
+      -webkit-backdrop-filter: blur(1rem);
+      backdrop-filter: blur(1rem);
+    }
+  }
+
+  .image-modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80vh;
+    object-fit: contain;
+  }
+
+  .image-modal-caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 43rem;
+    text-align: center;
+    color: var(--colour-effective-page-text);
+    padding: 0.6rem 0;
+    min-height: 3rem;
+  }
+
+  .image-modal-content,
+  .image-modal-caption {
+    animation-name: zoom;
+    animation-duration: 0.3s;
+  }
+
+  .image-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 2.2rem;
+    color: var(--colour-white);
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      color: var(--colour-effective-page-text);
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+
+  /* Wand uses inline SVG so favicon sparkle classes can animate. */
+  .wand-container-row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .wand-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+
+    & .wand-conclusion,
+    & .wand-fallback {
+      display: block;
+      width: 9.375rem;
+      height: 9.375rem;
+      max-width: 100%;
+      padding: 0.75rem;
+      border: var(--border-weight-thin) var(--border-style) var(--colour-effective-page-text);
+      border-radius: 50%;
+      box-sizing: border-box;
+      cursor: default;
+    }
+
+    & .wand-conclusion:hover {
+      transform: none;
+    }
+
+    & .wand-fallback {
+      object-fit: contain;
+    }
+  }
+
+  /* Responsive layout for small screens */
+  @media (width < 800px) {
+    .intro-container {
+      display: block;
+    }
+
+    .student-image {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .intro-content {
+      width: 100%;
+    }
+  }
+}

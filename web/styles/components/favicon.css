@@ -1,0 +1,39 @@
+/*
+ **********************************************************************
+ * File       : components/favicon.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This stylesheet defines styles for the favicon sparkles used across the Web Witchcraft and Wizardry website.
+ **********************************************************************
+ */
+
+@layer components {
+  .sparkle-1 {
+    fill: var(--colour-red); /* Red sparkle */
+  }
+
+  .sparkle-2 {
+    fill: var(--colour-blue); /* Blue sparkle */
+  }
+
+  .sparkle-3 {
+    fill: var(--colour-cyan); /* Cyan sparkle */
+  }
+
+  /* Animated sparkle colours - activated when parent svg has 'animated' class */
+  svg.animated .sparkle-1 {
+    animation: sparkle-1 1.5s infinite;
+  }
+
+  svg.animated .sparkle-2 {
+    animation: sparkle-2 1.6s infinite;
+    animation-delay: 0.5s;
+  }
+
+  svg.animated .sparkle-3 {
+    animation: sparkle-3 1.7s infinite;
+    animation-delay: 1s;
+  }
+}

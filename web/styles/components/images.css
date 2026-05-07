@@ -1,0 +1,30 @@
+/*
+ **********************************************************************
+ * File       : components/images.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Styles for images, figures, and image-based interactive elements.
+ **********************************************************************
+ */
+
+@layer components {
+  .screenshot {
+    border: var(--border-weight-thin) var(--border-style) var(--colour-effective-headings-text);
+    max-width: 60%;
+    height: auto;
+    box-sizing: border-box;
+    margin: auto;
+    display: block;
+  }
+
+  .image-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: block;
+  }
+}

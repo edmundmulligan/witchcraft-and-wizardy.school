@@ -1,0 +1,408 @@
+/*
+**********************************************************************
+ * File       : test-results.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see ../license-and-credits.html page)
+ * Description:
+ *    Styles for Test Results Dashboard page
+**********************************************************************
+*/
+
+body {
+    background: var(--colour-page-background);
+    color: var(--colour-page-text);
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: var(--colour-headings-background);
+    color: var(--colour-headings-text);
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+}
+
+header h1 {
+    margin: 0 0 1rem;
+    font-family: 'Roboto Slab', serif;
+}
+
+nav {
+    font-size: 0.9rem;
+}
+
+nav a {
+    color: var(--colour-headings-text);
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.dashboard-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.refresh-btn {
+    padding: 0.5rem 1rem;
+    background: var(--colour-headings-background);
+    color: var(--colour-headings-text);
+    border: 2px solid var(--colour-headings-text);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.refresh-btn:hover {
+    transform: scale(1.05);
+}
+
+.summary-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.summary-card {
+    flex: 1;
+    min-width: 200px;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+    text-align: center;
+}
+
+.summary-card.success {
+    background: hsl(120deg 100% 90%);
+    border: 2px solid hsl(120deg 100% 30%);
+    color: hsl(120deg 100% 20%);
+}
+
+.summary-card.warning {
+    background: hsl(45deg 100% 90%);
+    border: 2px solid hsl(45deg 100% 40%);
+    color: hsl(45deg 100% 20%);
+}
+
+.summary-card.error {
+    background: hsl(0deg 100% 90%);
+    border: 2px solid hsl(0deg 100% 40%);
+    color: hsl(0deg 100% 20%);
+}
+
+.summary-card.info {
+    background: hsl(210deg 100% 90%);
+    border: 2px solid hsl(210deg 100% 40%);
+    color: hsl(210deg 100% 20%);
+}
+
+.summary-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.summary-label {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.test-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.test-card {
+    background: var(--colour-headings-background);
+    color: var(--colour-headings-text);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+    transition: transform 0.3s ease;
+}
+
+.test-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 12px rgb(0 0 0 / 15%);
+}
+
+.test-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--colour-page-background);
+}
+
+.test-card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.status-badge.pass {
+    background: hsl(120deg 100% 30%);
+    color: white;
+}
+
+.status-badge.fail {
+    background: hsl(0deg 100% 40%);
+    color: white;
+}
+
+.status-badge.warning {
+    background: hsl(45deg 100% 50%);
+    color: hsl(0deg 0% 10%);
+}
+
+.status-badge.info {
+    background: hsl(210deg 100% 50%);
+    color: white;
+}
+
+.test-card-body {
+    font-size: 0.95rem;
+}
+
+.test-metric {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--colour-page-background);
+}
+
+.test-metric:last-child {
+    border-bottom: none;
+}
+
+.metric-label {
+    font-weight: 600;
+}
+
+.metric-value {
+    font-weight: normal;
+}
+
+.loading {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+}
+
+.error-message {
+    background: hsl(0deg 100% 90%);
+    border: 2px solid hsl(0deg 100% 40%);
+    color: hsl(0deg 100% 20%);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+}
+
+.details-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 3px solid var(--colour-headings-background);
+}
+
+.details-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.details-content {
+    background: var(--colour-code-background);
+    color: var(--colour-code-text);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+.timestamp {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: var(--colour-page-text);
+    opacity: 0.7;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0 0 0 / 70%);
+}
+
+.modal-content {
+    background-color: var(--colour-page-background);
+    color: var(--colour-page-text);
+    margin: 3% auto;
+    padding: 0;
+    border: 2px solid var(--colour-headings-background);
+    border-radius: 0.5rem;
+    width: 90%;
+    max-width: 1200px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    background: var(--colour-headings-background);
+    color: var(--colour-headings-text);
+    padding: 1.5rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.modal-close {
+    color: var(--colour-headings-text);
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    line-height: 1;
+    opacity: 0.8;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    opacity: 1;
+}
+
+.modal-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.error-item {
+    background: var(--colour-code-background);
+    border-left: 4px solid hsl(0deg 100% 50%);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+}
+
+.warning-item {
+    background: var(--colour-code-background);
+    border-left: 4px solid hsl(45deg 100% 50%);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+}
+
+.error-item h4,
+.warning-item h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+}
+
+.error-detail,
+.warning-detail {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0.5rem 0;
+}
+
+.error-location {
+    opacity: 0.8;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.test-card.clickable {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.test-card.clickable:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgb(0 0 0 / 20%);
+}
+
+.clickable-hint {
+    font-size: 0.85rem;
+    color: var(--colour-link-text);
+    margin-top: 0.5rem;
+    text-align: center;
+    opacity: 0.8;
+}
+
+@media (width <= 800px) {
+    .test-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-bar {
+        flex-direction: column;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+    }
+}

@@ -1,0 +1,31 @@
+/*
+ **********************************************************************
+ * File       : test-js-parsing.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License
+ * Description:
+ *   Styles for the JavaScript colour parsing test page
+ **********************************************************************
+ */
+
+body {
+    font-family: monospace;
+    padding: 20px;
+    background: #f0f0f0;
+}
+
+.test {
+    background: white;
+    padding: 10px;
+    margin: 10px 0;
+    border-left: 4px solid #06c;
+}
+
+.pass {
+    border-left-color: green;
+}
+
+.fail {
+    border-left-color: red;
+}

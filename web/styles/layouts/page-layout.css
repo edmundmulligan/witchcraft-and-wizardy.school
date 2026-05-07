@@ -1,0 +1,70 @@
+/*
+ **********************************************************************
+ * File       : components/page-layout.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Page-level layout styles: body, header, main, and footer elements.
+ **********************************************************************
+ */
+
+@layer layouts {
+  body {
+    /* create positioning context for absolutely positioned child elements */
+    position: relative;
+
+    /* use grid to layout header, main and footer vertically */
+    display: grid;
+    grid-template-rows: auto;
+
+    /* prevent horizontal overflow */
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden auto;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+
+    /*
+         * use a readable font for body text
+         * N.B. These are inherited by child elements unless overridden
+        */
+
+    font-family: var(--font-family-text);
+    font-style: var(--font-style-normal);
+    line-height: var(--line-height-normal);
+    text-align: var(--text-align);
+    color: var(--colour-effective-page-text);
+    background-color: var(--colour-effective-page-background);
+  }
+
+  header {
+    flex: 0 0 auto; /* Don't grow, don't shrink, auto basis */
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  main {
+    flex: 1 1 auto; /* Grow to fill space, shrink if needed, auto basis */
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    padding-bottom: 10rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    min-width: 0;
+  }
+}

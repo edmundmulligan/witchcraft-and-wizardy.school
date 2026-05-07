@@ -1,0 +1,150 @@
+/*
+ **********************************************************************
+ * File       : components/lessons-sidebar.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Styles for the lessons sidebar/hamburger navigation component.
+ **********************************************************************
+ */
+
+@layer components {
+  /* Page container with sidebar layout */
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--page-gap);
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: var(--page-margin);
+    padding: var(--page-padding);
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  /* Sidebar navigation for lessons */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    z-index: 999;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    background-color: var(--colour-effective-headings-background);
+    border: var(--border-weight) var(--border-style) var(--colour-effective-headings-text);
+    border-radius: 0;
+    padding: var(--menu-padding);
+    overflow-y: auto;
+    box-sizing: border-box;
+    box-shadow: 2px 0 8px var(--colour-shadow);
+
+    &.sidebar-open {
+      transform: translateX(0);
+    }
+
+    & h3 {
+      color: var(--colour-effective-headings-text);
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+  }
+
+  .lesson-nav {
+    list-style: none;
+    padding: 0 0 1rem;
+    margin: 0;
+
+    & li {
+      font-family: var(--font-family-menu);
+      margin: 0;
+      padding: 0;
+    }
+
+    & a,
+    & button {
+      display: block;
+      padding: 0.75rem 1rem;
+      color: var(--colour-effective-menu-text);
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      margin-bottom: 0.5rem;
+      transition: background-color 0.2s ease;
+      text-align: left;
+      width: 100%;
+      background: var(--colour-effective-menu-background);
+      border: none;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+
+    & a:visited {
+      background-color: var(--colour-effective-menu-background-visited);
+      color: var(--colour-effective-menu-text-visited);
+    }
+
+    & a:hover,
+    & button:hover {
+      background-color: var(--colour-effective-menu-background-hover);
+      color: var(--colour-effective-menu-text-hover);
+    }
+
+    & a:focus-visible,
+    & button:focus-visible {
+      background-color: var(--colour-effective-menu-background-focus);
+      color: var(--colour-effective-menu-text-focus);
+      outline: var(--border-weight-thin) var(--border-style) currentcolor;
+      outline-offset: 0.1rem;
+    }
+  }
+
+  /* Hamburger menu button for lessons navigation */
+  .lessons-hamburger {
+    display: block; /* Visible by default for all viewport sizes */
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1000;
+    background-color: var(--colour-effective-button-background);
+    color: var(--colour-effective-button-text);
+    border: var(--border-weight) var(--border-style) var(--colour-effective-button-text);
+    border-radius: var(--border-radius);
+    padding: 0.75rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  /* Overlay for sidebar */
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0 0 0 / 50%);
+    z-index: 998;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    &.sidebar-overlay-visible {
+      display: block;
+      opacity: 1;
+    }
+  }
+
+  /* Main content area */
+  .main-content {
+    flex: 1;
+    min-width: 0;
+    max-width: 100%;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+  }
+}
