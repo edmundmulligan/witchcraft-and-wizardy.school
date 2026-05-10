@@ -30,7 +30,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Determine version bump type
       id: bump_type
@@ -60,7 +60,7 @@ jobs:
         echo "archive_name=$archive_name" >> "$GITHUB_OUTPUT"
 
     - name: Copy release tarball to server
-      uses: appleboy/scp-action@v0.1.7
+      uses: appleboy/scp-action@v1.0.0
       with:
         host: ${{ inputs.server }}
         username: ${{ secrets.SERVER_USERNAME }}

@@ -34,7 +34,7 @@ export default {
                     <li><a href="{{pathPrefix}}pages/facts.html">Facts</a></li>
                     <li><a href="{{pathPrefix}}pages/glossary.html">Glossary</a></li>
                     <li><a href="{{pathPrefix}}pages/faq.html">FAQ</a></li>
-                    <li><a href="{{pathPrefix}}pages/feedback.html">Feedback</a></li>
+                    <!-- <li><a href="{{pathPrefix}}pages/feedback.html">Feedback</a></li> -->
                     <li><a href="{{pathPrefix}}pages/license.html">License</a></li>
                     <li><a href="{{pathPrefix}}pages/credits.html">Credits</a></li>
                 </ul>
@@ -78,7 +78,7 @@ export default {
                     <li><a href="{{pathPrefix}}pages/facts.html">Facts</a></li>
                     <li><a href="{{pathPrefix}}pages/glossary.html">Glossary</a></li>
                     <li><a href="{{pathPrefix}}pages/faq.html">FAQ</a></li>
-                    <li><a href="{{pathPrefix}}pages/feedback.html">Feedback</a></li>
+                    <!-- <li><a href="{{pathPrefix}}pages/feedback.html">Feedback</a></li> -->
                     <li><a href="{{pathPrefix}}pages/license.html">License</a></li>
                     <li><a href="{{pathPrefix}}pages/credits.html">Credits</a></li>
                 </ul>
