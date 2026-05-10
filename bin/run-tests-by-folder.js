@@ -25,7 +25,7 @@ let runWave = false;
 let continueMode = false;
 
 // Valid folders that can be tested
-const validFolders = ['web', 'stats', 'sound'];
+const validFolders = ['web', 'stats', 'sound', 'api'];
 
 for (let i = 0; i < args.length; i++) {
   const arg = args[i];
@@ -37,6 +37,7 @@ for (let i = 0; i < args.length; i++) {
     console.log('  web      Run tests for web application');
     console.log('  stats    Run tests for stats module');
     console.log('  sound    Run tests for sound module');
+    console.log('  api      Run tests for API module');
     console.log('');
     console.log('Options:');
     console.log('  -c, --continue   Continue from last interrupted test run');
@@ -75,7 +76,7 @@ if (!folder) {
   console.error('');
   console.log('Usage: npm run tests <folder> [options]');
   console.log('');
-  console.log('Folders: web, stats, sound');
+  console.log('Folders: web, stats, sound, api');
   console.log('Run with --help for more information');
   process.exit(1);
 }

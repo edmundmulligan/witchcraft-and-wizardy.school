@@ -71,7 +71,7 @@ jobs:
         strip_components: 1
 
     - name: Extract release tarball on server
-      uses: appleboy/ssh-action@v1.0.3
+      uses: appleboy/ssh-action@v1.2.5
       with:
         host: ${{ inputs.server }}
         username: ${{ secrets.SERVER_USERNAME }}
