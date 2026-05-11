@@ -42,7 +42,15 @@ jobs:
 
     - name: Bump semantic version
       id: version
+      shell: bash
       run: |
+        set -euo pipefail
+
+        if [ ! -f VERSION ] || [ ! -s VERSION ]; then
+          echo "VERSION missing or empty; defaulting to 0.0.0"
+          echo "0.0.0" > VERSION
+        fi
+
         new_version="$(bin/bump-version.sh "${{ steps.bump_type.outputs.value }}" VERSION)"
         echo "new_version=${new_version}" >> "$GITHUB_OUTPUT"
         echo "New version: ${new_version}"
