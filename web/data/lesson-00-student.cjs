@@ -879,7 +879,7 @@ cat /etc/os-release | grep -E 'ID=|ID_LIKE='
       tools: [
         {
           tool_id: 'super-user',
-          tool_name: 'Using Super User (sudo) on Linux',
+          tool_name: 'Using Super User (sudo)',
           tool_content: `
 <div id="super-user-linux">
   <p>
