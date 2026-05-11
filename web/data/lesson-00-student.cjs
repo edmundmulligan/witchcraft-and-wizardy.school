@@ -363,7 +363,7 @@ npm --version
 <div id="projects-folder-windows">
   <p>Projects folder is a special place on your computer where you keep all your coding projects organised. It's like having a toy box where you keep all your toys in one place - it makes everything easier to find!</p>
 
-<h3>Why Do You Need It?</h3>
+<h3 class="lesson-title">Why Do You Need It?</h3>
 
 <p>When you start coding, you'll create lots of different projects. Having them all in one folder helps you:</p>
 <ul>
@@ -419,7 +419,7 @@ npm --version
     An HTTP server is a program that serves web pages to your browser. When you visit a website, you're connecting to an HTTP server! So here you'll create your own server that runs on your computer that you can use to view your web pages as you develop them.
   </p>
 
-  <h3>Before You Start</h3>
+  <h3 class="lesson-title">Before You Start</h3>
 
   <p>Make sure you have:</p>
   <ul>
@@ -745,7 +745,7 @@ npm --version
     Projects folder is a special place on your computer where you keep all your coding projects organised. It's like having a toy box where you keep all your toys in one place - it makes everything easier to find!
   </p>
 
-  <h3>Why Do You Need It?</h3>
+  <h3 class="lesson-title">Why Do You Need It?</h3>
 
   <p>When you start coding, you'll create lots of different projects. Having them all in one folder helps you:</p>
   <ul>
@@ -797,7 +797,7 @@ npm --version
     An HTTP server is a program that serves web pages to your browser. When you visit a website, you're connecting to an HTTP server! Today, you'll create your own
     server that runs on your computer.
   </p>
-  <h3>Before You Start</h3>
+  <h3 class="lesson-title">Before You Start</h3>
   <p>
     Make sure you have:
   </p>
@@ -877,6 +877,28 @@ cat /etc/os-release | grep -E 'ID=|ID_LIKE='
   <li>If you see <strong>arch</strong>, you are using an Arch-based distribution</li>
 </ul>`,
       tools: [
+        {
+          tool_id: 'super-user',
+          tool_name: 'Using Super User (sudo) on Linux',
+          tool_content: `
+<div id="super-user-linux">
+  <p>
+    On Linux, some commands require special permissions to run. This is for security reasons - it prevents accidental changes to important system files. When you see a command that starts with <code>sudo</code>, it means "run this command as a super user (administrator)".
+  </p>
+  <p>
+    Not all users have super user privileges. If you don't have these privileges, you'll need to log in as a user who does. You can check if you have sudo access by pressing <strong>Ctrl + Alt + T</strong> to open Terminal and typing:
+  </p>
+  <pre><code>
+sudo -v
+  </code></pre>
+  <p>
+    If you are prompted for a password, enter your user password. If you see no error message, you have sudo access!
+  </p>
+  <p>
+    When you run a command with <code>sudo</code>, you'll be asked to enter your password. This is the same password you use to log in to your Linux account. When you type it, you won't see any characters appear - this is normal! Just type your password and press Enter.
+  </p>
+</div>`,
+        },
         {
           tool_id: 'firefox',
           tool_name: 'Mozilla Firefox',
@@ -983,9 +1005,9 @@ code --version
         <pre><code>
 sudo apt update
 sudo apt install wget gpg -y
-wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor &gt; packages.microsoft.gpg
 sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
+echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list &gt; /dev/null
 sudo apt update
 sudo apt install code -y
         </code></pre>
@@ -1002,7 +1024,7 @@ sudo apt install code -y
       <li>Import Microsoft's GPG key:
         <pre><code>
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" &gt; /etc/yum.repos.d/vscode.repo'
         </code></pre>
       </li>
       <li>
