@@ -9,7 +9,7 @@
  **********************************************************************
  */
 
-module.exports = {
+const lessonData = {
   lesson: {
     number: 0,
     title: 'Getting Started',
@@ -495,6 +495,7 @@ npm run start
     <li>Scroll through the list looking for <strong>Firefox</strong> (orange/red fox icon)</li>
     <li>If you find it, <strong>Firefox is already installed!</strong> </li>
     <li>If you don't see it, continue to the installation steps below</li>
+  </ol>
 
   <h4 onclick="toggleSection('firefox-macos-list-1', event);" onkeydown="toggleSection('firefox-macos-list-1', event);" class="lesson-title magic-invisible">If you need to install Firefox, follow these steps:</h4>
   <ol id="firefox-macos-list-1" class="hidden">
@@ -517,11 +518,13 @@ npm run start
         <li>A window will appear showing the <strong>Firefox</strong> icon and an <strong>Applications</strong> folder</li>
         <li><strong>Drag the Firefox icon</strong> into the <strong>Applications</strong> folder</li>
         <li>Wait for Firefox to copy (this takes about 10-30 seconds)</li>
-        <li>Once copying is complete, <strong>eject the Firefox disk image</strong>:</li>
-        <ul>
-          <li>Click the <strong>eject button</strong> next to "Firefox" in Finder's sidebar</li>
-          <li>Or drag the Firefox disk image to the Trash</li>
-        </ul>
+        <li>
+          Once copying is complete, <strong>eject the Firefox disk image</strong>:
+          <ul>
+            <li>Click the <strong>eject button</strong> next to "Firefox" in Finder's sidebar</li>
+            <li>Or drag the Firefox disk image to the Trash</li>
+          </ul>
+        </li>
       </ol>
     </li>
 
@@ -710,10 +713,12 @@ npm run start
     <li>
       <span onclick="toggleSection('nodejs-macos-list-1-4', event);" onkeydown="toggleSection('nodejs-macos-list-1-4', event);" class="lesson-title magic-invisible">Verify Installation</span>
       <ol id="nodejs-macos-list-1-4" class="hidden">
-        <li>Open <strong>Terminal</strong> (or close and reopen it if it was already open)</li>
-        <ul>
-          <li>Press <strong>Command (⌘) + Space</strong>, type "Terminal", press <strong>Return</strong></li>
-        </ul>
+        <li>
+          Open <strong>Terminal</strong> (or close and reopen it if it was already open)
+          <ul>
+            <li>Press <strong>Command (⌘) + Space</strong>, type "Terminal", press <strong>Return</strong></li>
+          </ul>
+        </li>
         <li>Type these commands one at a time and press <strong>Return</strong> after each:
           <pre><code>
 node --version
@@ -862,17 +867,15 @@ Server running at http://localhost:8000
   have been tested on Linux Mint 22.2 (which is based on Ubuntu 22.04) but should work fine with other flavours and versions. On the next
   screens are the instructions for installing the recommended software on your Linux computer.
 </p>
-<p>
-  To determine which Linux distribution you are using, open a terminal and type:
+<p>To determine which Linux distribution you are using, open a terminal and type:</p>
   <pre><code>
 cat /etc/os-release | grep -E 'ID=|ID_LIKE='
   </code></pre>
-  <ul>
-    <li>If you see <strong>debian</strong> or <strong>ubuntu</strong>, you are using a Debian-based distribution</li>
-    <li>If you see <strong>fedora</strong> or <strong>rhel</strong>, you are using a Fedora-based distribution</li>
-    <li>If you see <strong>arch</strong>, you are using an Arch-based distribution</li>
-  </ul>
-</p>`,
+<ul>
+  <li>If you see <strong>debian</strong> or <strong>ubuntu</strong>, you are using a Debian-based distribution</li>
+  <li>If you see <strong>fedora</strong> or <strong>rhel</strong>, you are using a Fedora-based distribution</li>
+  <li>If you see <strong>arch</strong>, you are using an Arch-based distribution</li>
+</ul>`,
       tools: [
         {
           tool_id: 'firefox',
@@ -944,9 +947,10 @@ sudo pacman -Syu
 sudo pacman -S firefox
 firefox --version
         </code></pre>
-        <ul></ul>
+        <ul>
           <li>Enter your password when prompted (you won't see it being typed - this is normal!)</li>
           <li>Press <strong>Enter</strong> to confirm installation</li>
+        </ul>
       </li>
     </ol>
     <p><strong>Done!</strong> Firefox is installed!</p>
@@ -1011,7 +1015,7 @@ sudo dnf install code -y
             </code></pre>
           </li>
           <li>For RHEL 7 (YUM):
-            <pre><code></code>
+            <pre><code>
 sudo yum check-update
 sudo yum install code -y
             </code></pre>
@@ -1500,3 +1504,38 @@ ls
 </div>`,
   },
 };
+
+const normaliseHtmlBlock = (html) =>
+  html
+    .split('\n')
+    .map((line) => line.replace(/\s+$/g, ''))
+    .join('\n')
+    .trim();
+
+lessonData.platforms = lessonData.platforms.map((platform) => ({
+  ...platform,
+  description: platform.description ? normaliseHtmlBlock(platform.description) : platform.description,
+}));
+
+lessonData.common_sections = lessonData.common_sections.map((section) => ({
+  ...section,
+  content: section.content ? normaliseHtmlBlock(section.content) : section.content,
+}));
+
+lessonData.developer_platforms = lessonData.developer_platforms.map((platform) => ({
+  ...platform,
+  os_intro: platform.os_intro ? normaliseHtmlBlock(platform.os_intro) : platform.os_intro,
+  tools: platform.tools.map((tool) => ({
+    ...tool,
+    tool_content: tool.tool_content ? normaliseHtmlBlock(tool.tool_content) : tool.tool_content,
+  })),
+}));
+
+lessonData.conclusion_section = {
+  ...lessonData.conclusion_section,
+  content: lessonData.conclusion_section.content
+    ? normaliseHtmlBlock(lessonData.conclusion_section.content)
+    : lessonData.conclusion_section.content,
+};
+
+module.exports = lessonData;

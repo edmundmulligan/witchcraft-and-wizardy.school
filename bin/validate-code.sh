@@ -89,6 +89,7 @@ echo "Detected Node.js version: $NODE_VERSION"
 HTML_VALIDATE_CMD="$(resolve_tool html-validate || true)"
 STYLELINT_CMD="$(resolve_tool stylelint || true)"
 JSHINT_CMD="$(resolve_tool jshint || true)"
+JSHINT_MISSING_WARNED=false
 
 if [ -z "$HTML_VALIDATE_CMD" ] || [ -z "$STYLELINT_CMD" ]; then
   echo "❌ Error: Required validators are not installed."
@@ -101,6 +102,11 @@ echo "📄 Validating HTML, CSS, and JavaScript files..."
 echo ""
 
 ORIGINAL_DIR=$(pwd)
+# In Git Bash/MSYS on Windows, pwd can return /c/...; Node interprets that as C:\c\...
+# which breaks absolute path reads inside node -e snippets.
+if command -v cygpath > /dev/null 2>&1 && [[ "$ORIGINAL_DIR" == /* ]]; then
+  ORIGINAL_DIR=$(cygpath -m "$ORIGINAL_DIR")
+fi
 if [ ! -d "$FOLDER" ]; then
   echo "Error: Provided folder '$FOLDER' does not exist."
   exit 1
@@ -243,10 +249,16 @@ for file in $FILES; do
     else
       # Run JSHint for stricter static analysis (plain text output) with timeout
       if [ -z "$JSHINT_CMD" ]; then
-        JSHINT_CMD="npx --yes jshint"
+        if [ "$JSHINT_MISSING_WARNED" = false ]; then
+          echo "  ⚠️  JSHint not installed; skipping JS lint checks (syntax checks still run)"
+          JSHINT_MISSING_WARNED=true
+        fi
+        echo "[]" > "$TEMP_RESULT"
+        JSHINT_EXIT=0
+      else
+        JSHINT_OUTPUT=$(timeout 15 "$JSHINT_CMD" "$file" 2>&1)
+        JSHINT_EXIT=$?
       fi
-      JSHINT_OUTPUT=$(timeout 15 $JSHINT_CMD "$file" 2>&1)
-      JSHINT_EXIT=$?
       
       # Check if jshint timed out
       if [ $JSHINT_EXIT -eq 124 ]; then
