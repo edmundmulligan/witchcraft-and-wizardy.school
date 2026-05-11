@@ -16,7 +16,7 @@
  */
 
 import fs from 'fs';
-import { glob } from 'glob';
+import { glob } from 'glob/raw';
 
 /**
  * Fix HTML5 compliance issues in a file
