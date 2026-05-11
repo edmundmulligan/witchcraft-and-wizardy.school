@@ -64,8 +64,13 @@ jobs:
         archive_path="$(bash bin/create-release-tar.sh "${{ steps.version.outputs.new_version }}" "${{ inputs.application }}" releases)"
         archive_name="$(basename "$archive_path")"
 
+        # Count path components so SCP places the file directly under /tmp
+        # e.g. stats/releases/archive.tar.gz has 2 leading components to strip
+        strip_count="$(echo "$archive_path" | tr -cd '/' | wc -c)"
+
         echo "archive_path=$archive_path" >> "$GITHUB_OUTPUT"
         echo "archive_name=$archive_name" >> "$GITHUB_OUTPUT"
+        echo "strip_count=$strip_count" >> "$GITHUB_OUTPUT"
 
     - name: Copy release tarball to server
       uses: appleboy/scp-action@v1.0.0
@@ -76,7 +81,7 @@ jobs:
         fingerprint: ${{ secrets.SERVER_FINGERPRINT }}
         source: ${{ steps.package.outputs.archive_path }}
         target: /tmp
-        strip_components: 1
+        strip_components: ${{ steps.package.outputs.strip_count }}
 
     - name: Extract release tarball on server
       uses: appleboy/ssh-action@v1.2.5
