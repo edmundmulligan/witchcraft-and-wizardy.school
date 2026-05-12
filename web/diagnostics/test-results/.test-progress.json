@@ -12,7 +12,6 @@
     "browser-tests"
   ],
   "failed": [
-    "validate-code",
     "reading-age"
   ],
   "quickMode": false,

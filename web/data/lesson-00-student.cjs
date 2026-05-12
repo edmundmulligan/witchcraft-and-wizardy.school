@@ -135,7 +135,7 @@ const lessonData = {
       os_intro: `
 <p>
   The latest version of Windows is <strong>Windows 11</strong>, but you should be able to use <strong>Windows 10</strong> as well. The lessons have not been tested on earlier
-  versions of Windows, but they may work ok. It's possible that the browser on older versions of windows won't run all the features used in the lessons. In particular,
+  versions of Windows, but they may work ok. It&rsquo;s possible that the browser on older versions of windows won&rsquo;t run all the features used in the lessons. In particular,
   beware of using Internet Explorer - it is not supported any more and Microsoft Edge is recommended instead. On the next screens are the instructions for installing
   the recommended software on your Windows computer.
 </p>`,
@@ -149,8 +149,8 @@ const lessonData = {
   <ol>
     <li>Click the <strong>Start</strong> button (Windows logo in the bottom-left corner)</li>
     <li>Type <strong>"Firefox"</strong></li>
-    <li>If you see it appear in the search results with an orange/red fox icon, <strong>it's already installed!</strong></li>
-    <li>If you don't see it, continue to the installation steps below</li>
+    <li>If you see it appear in the search results with an orange/red fox icon, <strong>it&rsquo;s already installed!</strong></li>
+    <li>If you don&rsquo;t see it, continue to the installation steps below</li>
   </ol>
 
   <h4 onclick="toggleSection('firefox-windows-list-1', event);" onkeydown="toggleSection('firefox-windows-list-1', event);" class="lesson-title magic-invisible">If you need to install Firefox, follow these steps</h4>
@@ -161,7 +161,7 @@ const lessonData = {
         <li>Open your current web browser (like Edge or Chrome)</li>
         <li>Go to: <a href="https://www.mozilla.org/firefox/" target="_blank" rel="noopener noreferrer">https://www.mozilla.org/firefox/</a></li>
         <li>Click the big <strong>"Download Firefox"</strong> button</li>
-        <li>Wait for the file to download (it's called something like <code>Firefox Installer.exe</code>)</li>
+        <li>Wait for the file to download (it&rsquo;s called something like <code>Firefox Installer.exe</code>)</li>
       </ol>
     </li>
     <li>
@@ -178,7 +178,7 @@ const lessonData = {
         <li>Click <strong>Install</strong> on the welcome screen (the installer uses smart defaults)</li>
         <li>Wait for the installation to finish (this takes about 30 seconds to 1 minute)</li>
         <li>Firefox will open automatically when installation is complete</li>
-        <li>Congratulations! You've installed Firefox! </li>
+        <li>Congratulations! You&rsquo;ve installed Firefox! </li>
       </ol>
     </li>
     <li>
@@ -187,11 +187,11 @@ const lessonData = {
         <li>Firefox will show a welcome page</li>
         <li>You might be asked:
           <ul>
-            <li><strong>"Make Firefox your default browser?"</strong> - This means Firefox will open when you click links. You can choose <strong>Yes</strong> or <strong>Skip</strong> (you can change this later)</li>
-            <li><strong>"Set Up Sync?"</strong> - This lets you save bookmarks to your account. You can choose <strong>Not now</strong> if you want (you can do this later)</li>
+            <li><strong>&ldquo;Make Firefox your default browser?&rdquo;</strong> - This means Firefox will open when you click links. You can choose <strong>Yes</strong> or <strong>Skip</strong> (you can change this later)</li>
+            <li><strong>&ldquo;Set Up Sync?&rdquo;</strong> - This lets you save bookmarks to your account. You can choose <strong>Not now</strong> if you want (you can do this later)</li>
           </ul>
         </li>
-        <li>That's it! Firefox is ready to use!</li>
+        <li>That&rsquo;s it! Firefox is ready to use!</li>
       </ol>
     </li>
   </ol>
@@ -213,7 +213,7 @@ const lessonData = {
       </code></pre>
     </li>
     <li><strong>If you see version numbers</strong> (like 1.95.0), VS Code is already installed! Close this window and skip the installation.</li>
-    <li><strong>If you see an error</strong> like "'code' is not recognised", VS Code is not installed yet - continue to the next section.</li>
+    <li><strong>If you see an error</strong> like &ldquo;&lsquo;code&rsquo; is not recognised&rdquo;, VS Code is not installed yet - continue to the next section.</li>
   </ol>
 
   <h4 onclick="toggleSection('vsc-windows-list-1', event);" onkeydown="toggleSection('vsc-windows-list-1', event);" class="lesson-title magic-invisible">If you need to install Visual Studio Code, follow these steps</h4>
@@ -224,7 +224,7 @@ const lessonData = {
         <li>Open your web browser (like Firefox)</li>
         <li>Go to: <a href="https://code.visualstudio.com" target="_blank">https://code.visualstudio.com</a></li>
         <li>Click the big blue <strong>"Download for Windows"</strong> button</li>
-        <li>Wait for the file to download (it's called something like <code>VSCodeUserSetup-x64-1.xx.x.exe</code>)</li>
+        <li>Wait for the file to download (it&rsquo;s called something like <code>VSCodeUserSetup-x64-1.xx.x.exe</code>)</li>
       </ol>
     </li>
     <li>
@@ -258,8 +258,8 @@ const lessonData = {
       <span onclick="toggleSection('vsc-windows-list-1-4', event);" onkeydown="toggleSection('vsc-windows-list-1-4', event);" class="lesson-title magic-invisible">Select First time opening Visual Studio Code</span>
       <ol id="vsc-windows-list-1-4" class="hidden">
         <li>VS Code will open automatically (or double-click the desktop icon)</li>
-        <li>You'll see a welcome screen - you can close this for now</li>
-        <li>Congratulations! You've installed VS Code!</li>
+        <li>You&rsquo;ll see a welcome screen - you can close this for now</li>
+        <li>Congratulations! You&rsquo;ve installed VS Code!</li>
       </ol>
     </li>
   </ol>
@@ -281,7 +281,7 @@ node --version
       </code></pre>
     </li>
     <li><strong>If you see a version number</strong> (like v22.0.0 or v20.11.0), Node.js is already installed!</li>
-    <li><strong>If you see an error</strong> like "'node' is not recognised", Node.js is not installed yet - continue to the next section.</li>
+    <li><strong>If you see an error</strong> like &ldquo;&lsquo;node&rsquo; is not recognised&rdquo;, Node.js is not installed yet - continue to the next section.</li>
   </ol>
 
   <h4 onclick="toggleSection('nodejs-windows-list-1', event);" onkeydown="toggleSection('nodejs-windows-list-1', event);" class="lesson-title magic-invisible">If you need to install Node.js, follow these steps</h4>
@@ -291,13 +291,13 @@ node --version
       <ol id="nodejs-windows-list-1-1" class="hidden">
         <li>Open your web browser (like Firefox)</li>
         <li>Go to: <a href="https://nodejs.org" target="_blank">https://nodejs.org</a></li>
-        <li>You'll see two big green buttons. Click the one that says <strong>"LTS"</strong> (Long Term Support)
+        <li>You&rsquo;ll see two big green buttons. Click the one that says <strong>"LTS"</strong> (Long Term Support)
           <ul>
-            <li>LTS means it's the most stable and recommended version</li>
+            <li>LTS means it&rsquo;s the most stable and recommended version</li>
             <li>The button will say something like "20.11.0 LTS (Recommended For Most Users)"</li>
           </ul>
         </li>
-        <li>Wait for the file to download (it's called something like <code>node-v20.11.0-x64.msi</code>)</li>
+        <li>Wait for the file to download (it&rsquo;s called something like <code>node-v20.11.0-x64.msi</code>)</li>
       </ol>
     </li>
     <li>
@@ -323,9 +323,9 @@ node --version
           </ul>
         </li>
         <li>Click <strong>Next</strong></li>
-        <li><strong>Tools for Native Modules</strong> - You'll see a checkbox about installing additional tools
+        <li><strong>Tools for Native Modules</strong> - You&rsquo;ll see a checkbox about installing additional tools
           <ul>
-            <li>You can <strong>uncheck this box</strong> for now (you won't need it yet)</li>
+            <li>You can <strong>uncheck this box</strong> for now (you won&rsquo;t need it yet)</li>
           </ul>
         </li>
         <li>Click <strong>Next</strong>, then click <strong>Install</strong></li>
@@ -361,11 +361,11 @@ npm --version
           aria_label: 'Create a Projects Folder on Windows',
           tool_content: `
 <div id="projects-folder-windows">
-  <p>Projects folder is a special place on your computer where you keep all your coding projects organised. It's like having a toy box where you keep all your toys in one place - it makes everything easier to find!</p>
+  <p>Projects folder is a special place on your computer where you keep all your coding projects organised. It&rsquo;s like having a toy box where you keep all your toys in one place - it makes everything easier to find!</p>
 
 <h3 class="lesson-title">Why Do You Need It?</h3>
 
-<p>When you start coding, you'll create lots of different projects. Having them all in one folder helps you:</p>
+<p>When you start coding, you&rsquo;ll create lots of different projects. Having them all in one folder helps you:</p>
 <ul>
   <li>Find your projects quickly</li>
   <li>Keep your computer organised</li>
@@ -406,7 +406,7 @@ npm --version
     </li>
   </ol>
   <p>Your Projects folder is now at: <code>C:\\Users\\YourUsername\\Projects</code></p>
-  <p>In future lessons, you'll save your coding projects in this folder.</p>
+  <p>In future lessons, you&rsquo;ll save your coding projects in this folder.</p>
 </div>`,
         },
         {
@@ -416,7 +416,7 @@ npm --version
           tool_content: `
 <div id="dev-server-windows">
   <p>
-    An HTTP server is a program that serves web pages to your browser. When you visit a website, you're connecting to an HTTP server! So here you'll create your own server that runs on your computer that you can use to view your web pages as you develop them.
+    An HTTP server is a program that serves web pages to your browser. When you visit a website, you&rsquo;re connecting to an HTTP server! So here you&rsquo;ll create your own server that runs on your computer that you can use to view your web pages as you develop them.
   </p>
 
   <h3 class="lesson-title">Before You Start</h3>
@@ -446,7 +446,7 @@ npm --version
     <li>
       In Command Prompt, type:
       <pre><code>
-npm run start
+npm start
       </code></pre>
     </li>
     <li>You should see: <code>Server running at http://localhost:8000</code></li>
@@ -479,7 +479,7 @@ npm run start
       os_name: 'macOS',
       os_intro: `
 <p>
-  The latest version of Apple's macOS is <strong>macOS Ventura</strong>, but you should be able to use recent versions as well. The lessons have not been tested on earlier versions of macOS,
+  The latest version of Apple&rsquo;s macOS is <strong>macOS Ventura</strong>, but you should be able to use recent versions as well. The lessons have not been tested on earlier versions of macOS,
   but they may work ok. On the next screens are the instructions for installing the recommended software on your macOS computer.
 </p>`,
       tools: [
@@ -494,7 +494,7 @@ npm run start
     <li>Click <strong>Applications</strong> in the left sidebar</li>
     <li>Scroll through the list looking for <strong>Firefox</strong> (orange/red fox icon)</li>
     <li>If you find it, <strong>Firefox is already installed!</strong> </li>
-    <li>If you don't see it, continue to the installation steps below</li>
+    <li>If you don&rsquo;t see it, continue to the installation steps below</li>
   </ol>
 
   <h4 onclick="toggleSection('firefox-macos-list-1', event);" onkeydown="toggleSection('firefox-macos-list-1', event);" class="lesson-title magic-invisible">If you need to install Firefox, follow these steps:</h4>
@@ -505,7 +505,7 @@ npm run start
         <li>Open your current web browser (like Safari)</li>
         <li>Go to: <a href="https://www.mozilla.org/firefox/" target="_blank" rel="noopener noreferrer">https://www.mozilla.org/firefox/</a></li>
         <li>Click the big <strong>"Download Firefox"</strong> button</li>
-        <li>Wait for the file to download (it's called something like <code>Firefox xx.x.dmg</code>)</li>
+        <li>Wait for the file to download (it&rsquo;s called something like <code>Firefox xx.x.dmg</code>)</li>
         <li>The file will be saved to your <strong>Downloads</strong> folder</li>
       </ol>
     </li>
@@ -521,7 +521,7 @@ npm run start
         <li>
           Once copying is complete, <strong>eject the Firefox disk image</strong>:
           <ul>
-            <li>Click the <strong>eject button</strong> next to "Firefox" in Finder's sidebar</li>
+            <li>Click the <strong>eject button</strong> next to &ldquo;Firefox&rdquo; in Finder&rsquo;s sidebar</li>
             <li>Or drag the Firefox disk image to the Trash</li>
           </ul>
         </li>
@@ -536,7 +536,7 @@ npm run start
         <li>Find and <strong>double-click Firefox</strong></li>
         <li>You might see a message: <strong>"Firefox is an app downloaded from the internet. Are you sure you want to open it?"</strong>
           <ul>
-            <li>Click <strong>Open</strong> (this is safe - Firefox is from Mozilla's official website)</li>
+            <li>Click <strong>Open</strong> (this is safe - Firefox is from Mozilla&rsquo;s official website)</li>
           </ul>
         </li>
         <li>Firefox will open!</li>
@@ -549,11 +549,11 @@ npm run start
         <li>Firefox will show a welcome page</li>
         <li>You might be asked:
           <ul>
-            <li><strong>"Make Firefox your default browser?"</strong> - This means Firefox will open when you click links. You can choose <strong>Set as Default</strong> or <strong>Not now</strong> (you can change this later)</li>
-            <li><strong>"Set Up Firefox Sync?"</strong> - This lets you save bookmarks to your account. You can choose <strong>Not now</strong> if you want (you can do this later)</li>
+            <li><strong>&ldquo;Make Firefox your default browser?&rdquo;</strong> - This means Firefox will open when you click links. You can choose <strong>Set as Default</strong> or <strong>Not now</strong> (you can change this later)</li>
+            <li><strong>&ldquo;Set Up Firefox Sync?&rdquo;</strong> - This lets you save bookmarks to your account. You can choose <strong>Not now</strong> if you want (you can do this later)</li>
           </ul>
         </li>
-        <li>That's it! Firefox is ready to use!</li>
+        <li>That&rsquo;s it! Firefox is ready to use!</li>
       </ol>
     </li>
 
@@ -580,8 +580,8 @@ npm run start
   <ol>
     <li>Press <strong>Command (⌘) + Space</strong> to open Spotlight</li>
     <li>Type <strong>"Visual Studio Code"</strong> or <strong>"VS Code"</strong></li>
-    <li>If you see it appear with a blue icon, <strong>it's already installed!</strong></li>
-    <li>If you don't see it, continue to the installation steps below</li>
+    <li>If you see it appear with a blue icon, <strong>it&rsquo;s already installed!</strong></li>
+    <li>If you don&rsquo;t see it, continue to the installation steps below</li>
   </ol>
 
   <h4 onclick="toggleSection('vsc-macos-list-1', event);" onkeydown="toggleSection('vsc-macos-list-1', event);" class="lesson-title magic-invisible">If you need to install Visual Studio Code, follow these steps:</h4>
@@ -593,7 +593,7 @@ npm run start
         <li>Go to: <a href="https://code.visualstudio.com" target="_blank" rel="noopener noreferrer">https://code.visualstudio.com</a></li>
         <li>Click the big blue <strong>"Download Mac Universal"</strong> button</li>
         <li>This version works on both Intel and Apple Silicon (M1/M2/M3) Macs</li>
-        <li>Wait for the file to download (it's called something like <code>VSCode-darwin-universal.zip</code>)</li>
+        <li>Wait for the file to download (it&rsquo;s called something like <code>VSCode-darwin-universal.zip</code>)</li>
         <li>The file will be saved to your <strong>Downloads</strong> folder</li>
       </ol>
     </li>
@@ -603,7 +603,7 @@ npm run start
       <ol id="vsc-macos-list-1-2" class="hidden">
         <li>Find the <strong>VSCode-darwin-universal.zip</strong> file in your <strong>Downloads</strong> folder</li>
         <li><strong>Double-click</strong> the .zip file to extract it</li>
-        <li>You'll see a <strong>Visual Studio Code.app</strong> file appear</li>
+        <li>You&rsquo;ll see a <strong>Visual Studio Code.app</strong> file appear</li>
         <li><strong>Drag</strong> the <strong>Visual Studio Code</strong> app to your <strong>Applications</strong> folder</li>
         <li>You can open a new Finder window and click <strong>Applications</strong> in the sidebar</li>
         <li>Or drag it to the Applications shortcut in the Downloads folder window</li>
@@ -618,7 +618,7 @@ npm run start
         <li>Find and <strong>double-click Visual Studio Code</strong></li>
         <li>You might see a message: <strong>"Visual Studio Code is an app downloaded from the internet. Are you sure you want to open it?"</strong>
           <ul>
-            <li>Click <strong>Open</strong> (this is safe - VS Code is from Microsoft's official website)</li>
+            <li>Click <strong>Open</strong> (this is safe - VS Code is from Microsoft&rsquo;s official website)</li>
           </ul>
         </li>
         <li>VS Code will open!</li>
@@ -646,7 +646,7 @@ npm run start
         <li>Type <strong>"shell command"</strong></li>
         <li>Click <strong>"Shell Command: Install 'code' command in PATH"</strong></li>
         <li>Enter your password if asked</li>
-        <li>You'll see a message saying it was installed successfully</li>
+        <li>You&rsquo;ll see a message saying it was installed successfully</li>
       </ol>
     </li>
   </ol>
@@ -676,13 +676,13 @@ npm run start
       <ol id="nodejs-macos-list-1-1" class="hidden">
         <li>Open your web browser (like Safari or Firefox)</li>
         <li>Go to: <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer">https://nodejs.org</a></li>
-        <li>You'll see two big green buttons. Click the one that says <strong>"LTS"</strong> (Long Term Support)
+        <li>You&rsquo;ll see two big green buttons. Click the one that says <strong>"LTS"</strong> (Long Term Support)
           <ul>
-            <li>LTS means it's the most stable and recommended version</li>
+            <li>LTS means it&rsquo;s the most stable and recommended version</li>
             <li>The button will say something like "20.11.0 LTS (Recommended For Most Users)"</li>
           </ul>
         </li>
-        <li>Wait for the file to download (it's called something like <code>node-v20.11.0.pkg</code>)</li>
+        <li>Wait for the file to download (it&rsquo;s called something like <code>node-v20.11.0.pkg</code>)</li>
         <li>The file will be saved to your <strong>Downloads</strong> folder</li>
       </ol>
     </li>
@@ -742,12 +742,12 @@ npm --version
           tool_content: `
 <div id="projects-folder-macos">
   <p>
-    Projects folder is a special place on your computer where you keep all your coding projects organised. It's like having a toy box where you keep all your toys in one place - it makes everything easier to find!
+    Projects folder is a special place on your computer where you keep all your coding projects organised. It&rsquo;s like having a toy box where you keep all your toys in one place - it makes everything easier to find!
   </p>
 
   <h3 class="lesson-title">Why Do You Need It?</h3>
 
-  <p>When you start coding, you'll create lots of different projects. Having them all in one folder helps you:</p>
+  <p>When you start coding, you&rsquo;ll create lots of different projects. Having them all in one folder helps you:</p>
   <ul>
     <li>Find your projects quickly</li>
     <li>Keep your computer organised</li>
@@ -766,7 +766,7 @@ npm --version
       <ol id="create-folder-macos-list-2" class="hidden">
         <li>In Finder, click <strong>Go</strong> in the menu bar at the top</li>
         <li>Click <strong>Home</strong> (or press <strong>Shift + Command + H</strong>)</li>
-        <li>You're now in your home folder (it has your username and a house icon)</li>
+        <li>You&rsquo;re now in your home folder (it has your username and a house icon)</li>
       </ol>
     </li>
     <li onclick="toggleSection('create-folder-macos-list-3', event);" onkeydown="toggleSection('create-folder-macos-list-3', event);" class="magic-invisible">Create the Projects Folder
@@ -783,7 +783,7 @@ npm --version
     Your Projects folder is in your <strong>home folder</strong>, which is usually here: <code>/Users/YourName/Projects</code> (Replace "YourName" with your actual macOS username)
   </p>
   <p>
-    In future lessons, you'll save your coding projects in this folder.
+    In future lessons, you&rsquo;ll save your coding projects in this folder.
   </p>
 </div>`,
         },
@@ -794,7 +794,7 @@ npm --version
           tool_content: `
 <div id="dev-server-macos">
   <p>
-    An HTTP server is a program that serves web pages to your browser. When you visit a website, you're connecting to an HTTP server! Today, you'll create your own
+    An HTTP server is a program that serves web pages to your browser. When you visit a website, you&rsquo;re connecting to an HTTP server! Today, you&rsquo;ll create your own
     server that runs on your computer.
   </p>
   <h3 class="lesson-title">Before You Start</h3>
@@ -837,7 +837,7 @@ cd ~/Projects
   <ol id="dev-server-macos-list-3" class="hidden">
     <li>In Terminal, type:
       <pre><code>    
-npm run start
+npm start
       </code></pre>
     </li>
     <li>You should see:
@@ -847,7 +847,7 @@ Server running at http://localhost:8000
     </li>
     <li>Open your web browser and visit: <strong>http://localhost:8000</strong></li>
     <li>You should see: <strong>"Hello! Your server is working!"</strong> 🎉</li>
-    <li>Keep the terminal open while you're working - the server needs to run continuously</li>
+    <li>Keep the terminal open while you&rsquo;re working - the server needs to run continuously</li>
     <li>When you create HTML files in your Projects folder, you can access them through the browser at <code>http://localhost:8000/filename.html</code></li>
     <li>When you make changes to your files and save them, refresh your browser to see the changes</li>
     <li>To stop the server, press <code>Ctrl + C</code> in the terminal</li>
@@ -886,16 +886,16 @@ cat /etc/os-release | grep -E 'ID=|ID_LIKE='
     On Linux, some commands require special permissions to run. This is for security reasons - it prevents accidental changes to important system files. When you see a command that starts with <code>sudo</code>, it means "run this command as a super user (administrator)".
   </p>
   <p>
-    Not all users have super user privileges. If you don't have these privileges, you'll need to log in as a user who does. You can check if you have sudo access by pressing <strong>Ctrl + Alt + T</strong> to open Terminal and typing:
+    Not all users have super user privileges. You can check if you have sudo access by pressing <strong>Ctrl + Alt + T</strong> to open Terminal and typing:
   </p>
   <pre><code>
-sudo -v
+sudo echo "sudo works"
   </code></pre>
   <p>
-    If you are prompted for a password, enter your user password. If you see no error message, you have sudo access!
+    If you are prompted for a password, enter your user password. If you see the message <strong>sudo works</strong>, you have sudo access! If you see an error like <strong>user is not in the sudoers file</strong>, you don&rsquo;t have sudo access and will need to log in as a user who does.
   </p>
   <p>
-    When you run a command with <code>sudo</code>, you'll be asked to enter your password. This is the same password you use to log in to your Linux account. When you type it, you won't see any characters appear - this is normal! Just type your password and press Enter.
+    When you run a command with <code>sudo</code>, you&rsquo;ll be asked to enter your password. This is the same password you use to log in to your Linux account. When you type it, you won&rsquo;t see any characters appear - this is normal! Just type your password and press Enter.
   </p>
 </div>`,
         },
@@ -933,7 +933,7 @@ sudo apt install firefox -y
 firefox --version
         </code></pre>
         <ul>
-          <li>Enter your password when prompted (you won't see it being typed - this is normal!)</li>
+          <li>Enter your password when prompted (you won&rsquo;t see it being typed - this is normal!)</li>
           <li>You should see the Firefox version number</li>
 
         </ul>
@@ -970,7 +970,7 @@ sudo pacman -S firefox
 firefox --version
         </code></pre>
         <ul>
-          <li>Enter your password when prompted (you won't see it being typed - this is normal!)</li>
+          <li>Enter your password when prompted (you won&rsquo;t see it being typed - this is normal!)</li>
           <li>Press <strong>Enter</strong> to confirm installation</li>
         </ul>
       </li>
@@ -1243,7 +1243,7 @@ node server.js
 
   <h4 onclick="toggleSection('nodejs-linux-arch-list', event);" onkeydown="toggleSection('nodejs-linux-arch-list', event);" class="lesson-title magic-invisible">Arch Linux</h4>
   <div id="nodejs-linux-arch-list" class="hidden">
-    <p>If you're using Arch Linux:</p>
+    <p>If you&rsquo;re using Arch Linux:</p>
     <ol>
       <li>
         <span onclick="toggleSection('nodejs-linux-arch-list-1', event);" onkeydown="toggleSection('nodejs-linux-arch-list-1', event);" class="magic-invisible">Install Node.js</span>
@@ -1406,22 +1406,31 @@ node server.js
           aria_label: 'Create a Projects Folder on Linux',
           tool_content: `
 <div id="projects-folder-linux">
-  <p>It's helpful to keep all your coding projects organised in one place. Let's create a dedicated Projects folder:</p>
+  <p>Projects folder is a special place on your computer where you keep all your coding projects organised. It&rsquo;s like having a toy box where you keep all your toys in one place - it makes everything easier to find!</p>
+  <h3 class="lesson-title">Why Do You Need It?</h3>
+
+  <p>When you start coding, you&rsquo;ll create lots of different projects. Having them all in one folder helps you:</p>
+  <ul>
+    <li>Find your projects quickly</li>
+    <li>Keep your computer organised</li>
+    <li>Back up your work easily</li>
+    <li>Know where to save new projects</li>
+  </ul>
+
   <ol>
-    <li onclick="toggleSection('create-folder-linux-list-1', event);" onkeydown="toggleSection('create-folder-linux-list-1', event);" class="magic-invisible">Open Terminal
-      <ul id="create-folder-linux-list-1" class="hidden">
-        <li>Press <code>Ctrl + Alt + T</code></li>
-      </ul>
+    <li>Press <code>Ctrl + Alt + T</code> to open Terminal</li>
+    <li>The terminal usually starts in your home directory</li>
+    <li>
+      To confirm, type 
+      <pre><code>
+pwd
+      </code></pre>
+      and press Enter
     </li>
-    <li onclick="toggleSection('create-folder-linux-list-2', event);" onkeydown="toggleSection('create-folder-linux-list-2', event);" class="lesson-title magic-invisible">Navigate to Your Home Directory
-      <ul id="create-folder-linux-list-2" class="hidden">
-        <li>The terminal usually starts in your home directory</li>
-        <li>To confirm, type <code>pwd</code> and press Enter</li>
-        <li>You should see something like <code>/home/yourusername</code></li>
-      </ul>
-    </li>
-    <li onclick="toggleSection('create-folder-linux-list-3', event);" onkeydown="toggleSection('create-folder-linux-list-3', event);" class="lesson-title magic-invisible">Create the Projects Folder
-      <ul id="create-folder-linux-list-3" class="hidden">
+    <li>You should see something like <code>/home/yourusername</code></li>
+    <li>
+      Create the Projects Folder
+      <ul>
         <li>Type this command and press Enter:
           <pre><code>
 mkdir Projects
@@ -1444,65 +1453,53 @@ ls
           tool_id: 'dev-server',
           tool_name: 'Setting Up the Development Server',
           aria_label: 'Setting Up the Development Server on Linux',
-          tool_content: `+
+          tool_content: `
 <div id="dev-server-linux">
   <p>
-    To view your web pages as you develop them, you'll need to run a local development server. This is important because some web features don't work when
-    opening HTML files directly in a browser. If you installed the Live Server extension in Visual Studio Code, you can skip this step as that will do the
-    same thing. Using this method lets you run and test your web pages even if you are not using Visual Studio Code.
+    An HTTP server is a program that serves web pages to your browser. When you visit a website, you&rsquo;re connecting to an HTTP server! So here you&rsquo;ll create your own server that runs on your computer that you can use to view your web pages as you develop them.
   </p>
 
-  <h4 onclick="toggleSection('dev-server-linux-list-1', event);" onkeydown="toggleSection('dev-server-linux-list-1', event);" class="lesson-title magic-invisible">Create a package.json File</h4>
-  <ol id="dev-server-linux-list-1" class="hidden">
-    <li>Open Visual Studio Code</li>
-    <li>Select <code>File → Open Folder</code></li>
-    <li>Navigate to and select your <code>Projects</code> folder (<code>~/Projects</code>)</li>
-    <li>Create a new file called <code>package.json</code> in the Projects folder</li>
-    <li>Add the following content to the file:
-      <div class="code-snippet-container">
-        <script type="text/plain" class="code-snippet-source">
-{
-    "name": "my-web-projects",
-    "version": "1.0.0",
-    "description": "Web development projects",
-    "scripts": {
-        "start": "http-server -p 8000"
-    },
-    "devDependencies": {
-        "http-server": "^14.1.1"
-    }
-}
-        </script>
-        <div class="code-snippet-table"></div>
-      </div>
-    </li>
-    <li>Save the file (<code>Ctrl + S</code>)</li>
-  </ol>
+  <h3 class="lesson-title">Before You Start</h3>
 
-  <h4 onclick="toggleSection('dev-server-linux-list-2', event);" onkeydown="toggleSection('dev-server-linux-list-2', event);" class="lesson-title magic-invisible">Install http-server</h4>
-  <ol id="dev-server-linux-list-2" class="hidden">
-    <li>Open the integrated terminal in VS Code by pressing <code>Ctrl + \`</code> (backtick key, usually above Tab)</li>
-    <li>Make sure you're in your Projects folder (the terminal should show the path)</li>
-    <li>Type <code>npm install</code> and press Enter</li>
-    <li>Wait for the installation to complete (this installs http-server locally in your Projects folder)</li>
-  </ol>
-
-  <h4 onclick="toggleSection('dev-server-linux-list-3', event);" onkeydown="toggleSection('dev-server-linux-list-3', event);" class="lesson-title magic-invisible">Start the Development Server</h4>
-  <ol id="dev-server-linux-list-3" class="hidden">
-    <li>In the same terminal, type <code>npm start</code> and press Enter</li>
-    <li>You should see a message saying the server is running on <code>http://localhost:8000</code></li>
-    <li>Open your web browser and go to <code>http://localhost:8000</code></li>
-    <li>You should see a directory listing of your Projects folder</li>
-  </ol>
-
-  <h4 onclick="toggleSection('dev-server-linux-list-4', event);" onkeydown="toggleSection('dev-server-linux-list-4', event);" class="lesson-title magic-invisible">Using the Development Server</h4>
-  <ul id="dev-server-linux-list-4" class="hidden">
-    <li>Keep the terminal open while you're working - the server needs to run continuously</li>
-    <li>When you create HTML files in your Projects folder, you can access them through the browser at <code>http://localhost:8000/filename.html</code></li>
-    <li>When you make changes to your files and save them, refresh your browser to see the changes</li>
-    <li>To stop the server, press <code>Ctrl + C</code> in the terminal</li>
-    <li>To restart the server later, just run <code>npm start</code> again from your Projects folder</li>
+  <p>Make sure you have:</p>
+  <ul>
+    <li>Node.js installed (check by typing <code>node --version</code> in a Terminal)</li>
+    <li>A Projects folder created (see "How to Create a Projects Folder" guide)</li>
   </ul>
+
+  <h3 onclick="toggleSection('dev-server-linux-list-1', event);" onkeydown="toggleSection('dev-server-linux-list-1', event);" class="lesson-title magic-invisible">Download package.json File</h3>
+  <ol id="dev-server-linux-list-1" class="hidden">
+    <li>Open <strong>Firefox</strong> (or your web browser)</li>
+    <li>Right click on this link: <a href="../data/package.json" target="_blank" rel="noopener noreferrer">package.json</a> and select <strong>Save Link As...</strong></li>
+    <li>Save the file to your <strong>Downloads</strong> folder as <strong>package.json</strong></li>
+    <li>The file will download to your <strong>Downloads</strong> folder</li>
+    <li>Open your <strong>file manager</strong> (Files, Dolphin, Thunar, or Nautilus)</li>
+    <li>Go to your <strong>Downloads</strong> folder</li>
+    <li>Find <strong>package.json</strong> and <strong>right-click</strong> on it</li>
+    <li>Choose <strong>Cut</strong> (or press Ctrl + X)</li>
+    <li>Navigate to your <strong>Projects</strong> folder (in your Home folder)</li>
+    <li><strong>Right-click</strong> in an empty space and choose <strong>Paste</strong> (or press Ctrl + V)</li> 
+  </ol>
+
+  <h3 onclick="toggleSection('dev-server-linux-list-2', event);" onkeydown="toggleSection('dev-server-linux-list-2', event);" class="lesson-title magic-invisible">Start the server</h3>
+  <ol id="dev-server-linux-list-2" class="hidden">
+    <li>
+      In a Terminal, type:
+      <pre><code>
+npm start
+      </code></pre>
+    </li>
+    <li>You should see: <code>Server running at http://localhost:8000</code></li>
+    <li>Open your web browser and visit: <code>http://localhost:8000</code></li>
+    <li>You should see: <strong>"Hello! Your server is working!"</strong></li>
+  </ol>
+
+  <h3 onclick="toggleSection('dev-server-linux-list-3', event);" onkeydown="toggleSection('dev-server-linux-list-3', event);" class="lesson-title magic-invisible">Stop the server</h3>
+  <ol id="dev-server-linux-list-3" class="hidden">
+    <li>Go back to the <strong>Terminal</strong></li>
+    <li>Press <strong>Ctrl + C</strong></li>
+    <li>The server will stop</li>
+  </ol>
 </div>`,
         },
       ],

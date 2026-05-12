@@ -32,13 +32,13 @@ function initFeedbackForm() {
       triggerName: 'sender-computer',
       targetDivId: 'sender-other-computer-div',
       showValue: 'other',
-      isRadioGroup: true,
+      isCheckboxGroup: true,
     },
     {
       triggerName: 'sender-browser',
       targetDivId: 'sender-other-browser-div',
       showValue: 'other',
-      isRadioGroup: true,
+      isCheckboxGroup: true,
     },
     {
       triggerName: 'sender-location',
@@ -299,9 +299,9 @@ function collectFormData(formData) {
     technical: {
       languages: formData.getAll('sender-languages'),
       otherLanguages: formData.get('sender-other-languages') || '',
-      computer: formData.get('sender-computer') || '',
+      computer: formData.getAll('sender-computer'),
       otherComputer: formData.get('sender-other-computer') || '',
-      browser: formData.get('sender-browser') || '',
+      browser: formData.getAll('sender-browser'),
       otherBrowser: formData.get('sender-other-browser') || '',
       location: formData.getAll('sender-location'),
       otherLocation: formData.get('sender-other-location') || '',
@@ -347,8 +347,8 @@ function formatHumanReadable(data) {
   text += 'TECHNICAL INFORMATION\n';
   text += '---------------------\n';
   text += `Programming Languages: ${data.technical.languages.join(', ')}${data.technical.otherLanguages ? ' (' + data.technical.otherLanguages + ')' : ''}\n`;
-  text += `Computer: ${data.technical.computer}${data.technical.otherComputer ? ' (' + data.technical.otherComputer + ')' : ''}\n`;
-  text += `Browser: ${data.technical.browser}${data.technical.otherBrowser ? ' (' + data.technical.otherBrowser + ')' : ''}\n`;
+  text += `Computer: ${data.technical.computer.join(', ')}${data.technical.otherComputer ? ' (' + data.technical.otherComputer + ')' : ''}\n`;
+  text += `Browser: ${data.technical.browser.join(', ')}${data.technical.otherBrowser ? ' (' + data.technical.otherBrowser + ')' : ''}\n`;
   text += `Location: ${data.technical.location.join(', ')}${data.technical.otherLocation ? ' (' + data.technical.otherLocation + ')' : ''}\n\n`;
 
   text += 'COURSE FEEDBACK\n';

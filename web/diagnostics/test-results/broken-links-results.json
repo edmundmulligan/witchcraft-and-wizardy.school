@@ -103,7 +103,7 @@
       "url": "students/lesson-00.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 57,
+      "totalCount": 58,
       "timeoutCount": 0
     },
     {
@@ -152,7 +152,7 @@
       "url": "pages/feedback.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 44,
+      "totalCount": 51,
       "timeoutCount": 0
     },
     {
@@ -178,10 +178,18 @@
     },
     {
       "url": "pages/credits.html",
-      "links": [],
+      "links": [
+        {
+          "url": "https://www.rachelmulligan.co.uk/",
+          "original": "https://www.rachelmulligan.co.uk/",
+          "warning": "timeout",
+          "tagName": "a",
+          "text": "Stained Glass by Rachel Mulligan"
+        }
+      ],
       "brokenCount": 0,
       "totalCount": 71,
-      "timeoutCount": 0
+      "timeoutCount": 1
     },
     {
       "url": "pages/start.html",
@@ -192,9 +200,9 @@
     }
   ],
   "summary": {
-    "totalLinks": 1376,
+    "totalLinks": 1384,
     "brokenLinks": 0,
-    "timeoutLinks": 1,
+    "timeoutLinks": 2,
     "excludedLinks": 0
   }
 }
