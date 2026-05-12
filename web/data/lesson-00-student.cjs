@@ -886,13 +886,13 @@ cat /etc/os-release | grep -E 'ID=|ID_LIKE='
     On Linux, some commands require special permissions to run. This is for security reasons - it prevents accidental changes to important system files. When you see a command that starts with <code>sudo</code>, it means "run this command as a super user (administrator)".
   </p>
   <p>
-    Not all users have super user privileges. If you don't have these privileges, you'll need to log in as a user who does. You can check if you have sudo access by pressing <strong>Ctrl + Alt + T</strong> to open Terminal and typing:
+    Not all users have super user privileges. You can check if you have sudo access by pressing <strong>Ctrl + Alt + T</strong> to open Terminal and typing:
   </p>
   <pre><code>
-sudo -v
+sudo echo "sudo works"
   </code></pre>
   <p>
-    If you are prompted for a password, enter your user password. If you see no error message, you have sudo access!
+    If you are prompted for a password, enter your user password. If you see the message <strong>sudo works</strong>, you have sudo access! If you see an error like <strong>user is not in the sudoers file</strong>, you don't have sudo access and will need to log in as a user who does.
   </p>
   <p>
     When you run a command with <code>sudo</code>, you'll be asked to enter your password. This is the same password you use to log in to your Linux account. When you type it, you won't see any characters appear - this is normal! Just type your password and press Enter.
