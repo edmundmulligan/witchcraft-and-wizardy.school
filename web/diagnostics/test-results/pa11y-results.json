@@ -685,6 +685,15 @@
       "issues": []
     },
     {
+      "url": "pages/credits.html",
+      "theme": "light",
+      "style": "subdued",
+      "viewport": "900",
+      "documentTitle": "Credits | Web Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/pages/credits",
+      "issues": []
+    },
+    {
       "url": "pages/start.html",
       "theme": "light",
       "style": "subdued",

@@ -9,7 +9,7 @@
  **********************************************************************
  */
 
-module.exports = {
+const lessonData = {
   lesson: {
     number: 0,
     title: 'Getting Started',
@@ -363,7 +363,7 @@ npm --version
 <div id="projects-folder-windows">
   <p>Projects folder is a special place on your computer where you keep all your coding projects organised. It's like having a toy box where you keep all your toys in one place - it makes everything easier to find!</p>
 
-<h3>Why Do You Need It?</h3>
+<h3 class="lesson-title">Why Do You Need It?</h3>
 
 <p>When you start coding, you'll create lots of different projects. Having them all in one folder helps you:</p>
 <ul>
@@ -419,7 +419,7 @@ npm --version
     An HTTP server is a program that serves web pages to your browser. When you visit a website, you're connecting to an HTTP server! So here you'll create your own server that runs on your computer that you can use to view your web pages as you develop them.
   </p>
 
-  <h3>Before You Start</h3>
+  <h3 class="lesson-title">Before You Start</h3>
 
   <p>Make sure you have:</p>
   <ul>
@@ -495,6 +495,7 @@ npm run start
     <li>Scroll through the list looking for <strong>Firefox</strong> (orange/red fox icon)</li>
     <li>If you find it, <strong>Firefox is already installed!</strong> </li>
     <li>If you don't see it, continue to the installation steps below</li>
+  </ol>
 
   <h4 onclick="toggleSection('firefox-macos-list-1', event);" onkeydown="toggleSection('firefox-macos-list-1', event);" class="lesson-title magic-invisible">If you need to install Firefox, follow these steps:</h4>
   <ol id="firefox-macos-list-1" class="hidden">
@@ -517,11 +518,13 @@ npm run start
         <li>A window will appear showing the <strong>Firefox</strong> icon and an <strong>Applications</strong> folder</li>
         <li><strong>Drag the Firefox icon</strong> into the <strong>Applications</strong> folder</li>
         <li>Wait for Firefox to copy (this takes about 10-30 seconds)</li>
-        <li>Once copying is complete, <strong>eject the Firefox disk image</strong>:</li>
-        <ul>
-          <li>Click the <strong>eject button</strong> next to "Firefox" in Finder's sidebar</li>
-          <li>Or drag the Firefox disk image to the Trash</li>
-        </ul>
+        <li>
+          Once copying is complete, <strong>eject the Firefox disk image</strong>:
+          <ul>
+            <li>Click the <strong>eject button</strong> next to "Firefox" in Finder's sidebar</li>
+            <li>Or drag the Firefox disk image to the Trash</li>
+          </ul>
+        </li>
       </ol>
     </li>
 
@@ -710,10 +713,12 @@ npm run start
     <li>
       <span onclick="toggleSection('nodejs-macos-list-1-4', event);" onkeydown="toggleSection('nodejs-macos-list-1-4', event);" class="lesson-title magic-invisible">Verify Installation</span>
       <ol id="nodejs-macos-list-1-4" class="hidden">
-        <li>Open <strong>Terminal</strong> (or close and reopen it if it was already open)</li>
-        <ul>
-          <li>Press <strong>Command (⌘) + Space</strong>, type "Terminal", press <strong>Return</strong></li>
-        </ul>
+        <li>
+          Open <strong>Terminal</strong> (or close and reopen it if it was already open)
+          <ul>
+            <li>Press <strong>Command (⌘) + Space</strong>, type "Terminal", press <strong>Return</strong></li>
+          </ul>
+        </li>
         <li>Type these commands one at a time and press <strong>Return</strong> after each:
           <pre><code>
 node --version
@@ -740,7 +745,7 @@ npm --version
     Projects folder is a special place on your computer where you keep all your coding projects organised. It's like having a toy box where you keep all your toys in one place - it makes everything easier to find!
   </p>
 
-  <h3>Why Do You Need It?</h3>
+  <h3 class="lesson-title">Why Do You Need It?</h3>
 
   <p>When you start coding, you'll create lots of different projects. Having them all in one folder helps you:</p>
   <ul>
@@ -792,7 +797,7 @@ npm --version
     An HTTP server is a program that serves web pages to your browser. When you visit a website, you're connecting to an HTTP server! Today, you'll create your own
     server that runs on your computer.
   </p>
-  <h3>Before You Start</h3>
+  <h3 class="lesson-title">Before You Start</h3>
   <p>
     Make sure you have:
   </p>
@@ -862,18 +867,38 @@ Server running at http://localhost:8000
   have been tested on Linux Mint 22.2 (which is based on Ubuntu 22.04) but should work fine with other flavours and versions. On the next
   screens are the instructions for installing the recommended software on your Linux computer.
 </p>
-<p>
-  To determine which Linux distribution you are using, open a terminal and type:
+<p>To determine which Linux distribution you are using, open a terminal and type:</p>
   <pre><code>
 cat /etc/os-release | grep -E 'ID=|ID_LIKE='
   </code></pre>
-  <ul>
-    <li>If you see <strong>debian</strong> or <strong>ubuntu</strong>, you are using a Debian-based distribution</li>
-    <li>If you see <strong>fedora</strong> or <strong>rhel</strong>, you are using a Fedora-based distribution</li>
-    <li>If you see <strong>arch</strong>, you are using an Arch-based distribution</li>
-  </ul>
-</p>`,
+<ul>
+  <li>If you see <strong>debian</strong> or <strong>ubuntu</strong>, you are using a Debian-based distribution</li>
+  <li>If you see <strong>fedora</strong> or <strong>rhel</strong>, you are using a Fedora-based distribution</li>
+  <li>If you see <strong>arch</strong>, you are using an Arch-based distribution</li>
+</ul>`,
       tools: [
+        {
+          tool_id: 'super-user',
+          tool_name: 'Using Super User (sudo)',
+          tool_content: `
+<div id="super-user-linux">
+  <p>
+    On Linux, some commands require special permissions to run. This is for security reasons - it prevents accidental changes to important system files. When you see a command that starts with <code>sudo</code>, it means "run this command as a super user (administrator)".
+  </p>
+  <p>
+    Not all users have super user privileges. If you don't have these privileges, you'll need to log in as a user who does. You can check if you have sudo access by pressing <strong>Ctrl + Alt + T</strong> to open Terminal and typing:
+  </p>
+  <pre><code>
+sudo -v
+  </code></pre>
+  <p>
+    If you are prompted for a password, enter your user password. If you see no error message, you have sudo access!
+  </p>
+  <p>
+    When you run a command with <code>sudo</code>, you'll be asked to enter your password. This is the same password you use to log in to your Linux account. When you type it, you won't see any characters appear - this is normal! Just type your password and press Enter.
+  </p>
+</div>`,
+        },
         {
           tool_id: 'firefox',
           tool_name: 'Mozilla Firefox',
@@ -944,9 +969,10 @@ sudo pacman -Syu
 sudo pacman -S firefox
 firefox --version
         </code></pre>
-        <ul></ul>
+        <ul>
           <li>Enter your password when prompted (you won't see it being typed - this is normal!)</li>
           <li>Press <strong>Enter</strong> to confirm installation</li>
+        </ul>
       </li>
     </ol>
     <p><strong>Done!</strong> Firefox is installed!</p>
@@ -979,9 +1005,9 @@ code --version
         <pre><code>
 sudo apt update
 sudo apt install wget gpg -y
-wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor &gt; packages.microsoft.gpg
 sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
+echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list &gt; /dev/null
 sudo apt update
 sudo apt install code -y
         </code></pre>
@@ -998,7 +1024,7 @@ sudo apt install code -y
       <li>Import Microsoft's GPG key:
         <pre><code>
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" &gt; /etc/yum.repos.d/vscode.repo'
         </code></pre>
       </li>
       <li>
@@ -1011,7 +1037,7 @@ sudo dnf install code -y
             </code></pre>
           </li>
           <li>For RHEL 7 (YUM):
-            <pre><code></code>
+            <pre><code>
 sudo yum check-update
 sudo yum install code -y
             </code></pre>
@@ -1500,3 +1526,38 @@ ls
 </div>`,
   },
 };
+
+const normaliseHtmlBlock = (html) =>
+  html
+    .split('\n')
+    .map((line) => line.replace(/\s+$/g, ''))
+    .join('\n')
+    .trim();
+
+lessonData.platforms = lessonData.platforms.map((platform) => ({
+  ...platform,
+  description: platform.description ? normaliseHtmlBlock(platform.description) : platform.description,
+}));
+
+lessonData.common_sections = lessonData.common_sections.map((section) => ({
+  ...section,
+  content: section.content ? normaliseHtmlBlock(section.content) : section.content,
+}));
+
+lessonData.developer_platforms = lessonData.developer_platforms.map((platform) => ({
+  ...platform,
+  os_intro: platform.os_intro ? normaliseHtmlBlock(platform.os_intro) : platform.os_intro,
+  tools: platform.tools.map((tool) => ({
+    ...tool,
+    tool_content: tool.tool_content ? normaliseHtmlBlock(tool.tool_content) : tool.tool_content,
+  })),
+}));
+
+lessonData.conclusion_section = {
+  ...lessonData.conclusion_section,
+  content: lessonData.conclusion_section.content
+    ? normaliseHtmlBlock(lessonData.conclusion_section.content)
+    : lessonData.conclusion_section.content,
+};
+
+module.exports = lessonData;
