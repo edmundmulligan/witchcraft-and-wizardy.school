@@ -491,6 +491,11 @@
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
+    
+    /* Button reset for semantic button elements */
+    padding: 0;
+    border: none;
+    font: inherit;
   }
 
   .feedback-wand-icon img {

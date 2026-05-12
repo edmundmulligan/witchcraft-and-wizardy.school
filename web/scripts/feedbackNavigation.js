@@ -71,34 +71,44 @@
     }
 
     /**
-     * Generate wand icons HTML for progress bar
+     * Create wand icon elements using DOM APIs (secure)
      */
-    generateWandIcons(sections) {
-      if (sections.length === 0) return '';
+    createWandIcons(sections, container) {
+      if (sections.length === 0) return;
 
-      return sections
-        .map((section, index) => {
-          const iconClass = index === 0 ? 'current' : 'next';
-          const imgSrc =
-            index === 0
-              ? '../images/fontawesome/wand-magic-sparkles-sharp-duotone-regular-full.svg'
-              : '../images/fontawesome/wand-magic-duotone-regular-full.svg';
-          const altText = index === 0 ? 'Current section' : 'Next section';
-          const imgClass = index === 0 ? 'wand-current' : 'wand-next';
+      sections.forEach((section, index) => {
+        const iconClass = index === 0 ? 'current' : 'next';
+        const imgSrc =
+          index === 0
+            ? '../images/fontawesome/wand-magic-sparkles-sharp-duotone-regular-full.svg'
+            : '../images/fontawesome/wand-magic-duotone-regular-full.svg';
+        const altText = index === 0 ? 'Current section' : 'Next section';
+        const imgClass = index === 0 ? 'wand-current' : 'wand-next';
 
-          return `
-                    <span class="feedback-wand-icon ${iconClass}" data-section="${index}" title="${section.title}">
-                        <img src="${imgSrc}" alt="${altText}" class="${imgClass}">
-                    </span>`;
-        })
-        .join('');
+        // Create button element
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = `feedback-wand-icon ${iconClass}`;
+        button.setAttribute('data-section', index);
+        // Safely set attributes - browser handles escaping
+        button.setAttribute('aria-label', `Go to section ${index + 1}: ${section.title}`);
+        button.title = section.title;
+
+        // Create and append image
+        const img = document.createElement('img');
+        img.src = imgSrc;
+        img.alt = altText;
+        img.className = imgClass;
+
+        button.appendChild(img);
+        container.appendChild(button);
+      });
     }
 
     /**
      * Generate the complete navigation panel HTML
      */
     generateNavigationPanelHTML(sections) {
-      const wandIcons = this.generateWandIcons(sections);
       const maxSections = Math.max(sections.length, 1);
 
       return `
@@ -115,7 +125,6 @@
                         <div id="progressBar" class="feedback-progress-bar" role="progressbar" 
                              aria-valuenow="1" aria-valuemin="1" aria-valuemax="${maxSections}" 
                              aria-label="Section progress">
-                            ${wandIcons}
                         </div>
                     </div>
 
@@ -145,6 +154,12 @@
 
       if (pageTitle) {
         pageTitle.insertAdjacentHTML('afterend', navigationHTML);
+        
+        // Create wand icons using DOM APIs for security
+        const progressBar = document.getElementById('progressBar');
+        if (progressBar) {
+          this.createWandIcons(this.sections, progressBar);
+        }
       }
     }
 
@@ -193,7 +208,6 @@
             this.goToSection(index);
           }
         });
-        wand.setAttribute('tabindex', '0');
       });
     }
 
