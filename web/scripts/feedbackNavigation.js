@@ -157,6 +157,7 @@
       this.setupProgressBarListeners();
       this.setupKeyboardNavigation();
       this.updateProgress();
+      this.updateButtons();
     }
 
     /**
