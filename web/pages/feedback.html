@@ -61,6 +61,7 @@
     <script src="../scripts/localStorage.js" defer></script>
     <script src="../scripts/toggleSection.js" defer></script>
     <script src="../scripts/populateLessonsMenu.js" defer></script>
+    <script src="../scripts/feedbackNavigation.js" defer></script>
     <script src="../scripts/feedbackForm.js" defer></script>
 
     <!-- End JavaScript file link -->
@@ -78,11 +79,15 @@
     <div class="page-container">
       <main class="main-content">
         <h2 class="page-title">Send Feedback to the Embodied Mind</h2>
+        <!-- Feedback navigation panel will be injected here by feedbackNavigation.js -->
+
         <p>We value your feedback. Please fill out the form below to share your thoughts about the website and your learning experience.</p>
         <section id="feedback-form" class="feedback-form" aria-label="Feedback form">
           <h3>Feedback Form</h3>
           <form id="feedback-form-element" method="post">
-            <section id="about-sender">
+            <div class="feedback-content">
+            <section id="about-sender" class="feedback-section" aria-label="About You">
+              <h3 class="lesson-title">About You</h3>
               <div class="feedback-form-item">
                 <label for="sender-name"> Your Name: </label>
                 <input type="text" id="sender-name" name="sender-name" required>
@@ -100,7 +105,8 @@
               </p>
               </section>
 
-              <section id="about-sender-demographics">
+              <section id="about-sender-demographics" class="feedback-section hidden" aria-label="Demographics">
+              <h3 class="lesson-title">Demographics</h3>
               <fieldset class="feedback-form-item">
                 <legend>What was your role?</legend>
                 <div class="radio-group">
@@ -195,7 +201,40 @@
                   </div>
                 </div>
               </fieldset>
+            </section>
 
+            <section id="about-sender-technology" class="feedback-section hidden" aria-label="Technology">
+              <h3 class="lesson-title">Technology</h3>
+              <fieldset class="feedback-form-item">
+                <legend>Where did you do this course?</legend>
+                <div class="checkbox-group">
+                  <div>
+                    <input type="checkbox" id="loc-coder-dojo" name="sender-location" value="coder-dojo">
+                    <label for="loc-coder-dojo">At a Coder Dojo or coding club</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="loc-school" name="sender-location" value="school">
+                    <label for="loc-school">At school</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="loc-home" name="sender-location" value="home">
+                    <label for="loc-home">At home</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="loc-library" name="sender-location" value="library">
+                    <label for="loc-library">At a library</label>
+                  </div>
+                  <div>
+                    <input type="checkbox" id="loc-other" name="sender-location" value="other">
+                    <label for="loc-other">Other</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div id="sender-other-location-div" class="feedback-form-item">
+                <label for="sender-other-location"> Other Location: </label>
+                <input type="text" id="sender-other-location" name="sender-other-location">
+              </div>
               <fieldset class="feedback-form-item">
                 <legend>What programming languages have you used before?</legend>
                 <div class="checkbox-group">
@@ -237,37 +276,37 @@
 
               <fieldset class="feedback-form-item">
                 <legend>What sort of computer did you use for this course?</legend>
-                <div class="radio-group">
+                <div class="checkbox-group">
                   <div>
-                    <input type="radio" id="computer-coder-dojo" name="sender-computer" value="coder-dojo" required>
+                    <input type="checkbox" id="computer-coder-dojo" name="sender-computer" value="coder-dojo">
                     <label for="computer-coder-dojo">Coder Dojo Club Laptop</label>
                   </div>
                   <div>
-                    <input type="radio" id="computer-windows" name="sender-computer" value="windows" required>
+                    <input type="checkbox" id="computer-windows" name="sender-computer" value="windows">
                     <label for="computer-windows">Windows Computer</label>
                   </div>
                   <div>
-                    <input type="radio" id="computer-mac" name="sender-computer" value="mac" required>
+                    <input type="checkbox" id="computer-mac" name="sender-computer" value="mac">
                     <label for="computer-mac">Mac Computer</label>
                   </div>
                   <div>
-                    <input type="radio" id="computer-linux" name="sender-computer" value="linux" required>
+                    <input type="checkbox" id="computer-linux" name="sender-computer" value="linux">
                     <label for="computer-linux">Linux Computer</label>
                   </div>
                   <div>
-                    <input type="radio" id="computer-tablet" name="sender-computer" value="tablet" required>
+                    <input type="checkbox" id="computer-tablet" name="sender-computer" value="tablet">
                     <label for="computer-tablet">Tablet</label>
                   </div>
                   <div>
-                    <input type="radio" id="computer-mobile" name="sender-computer" value="mobile" required>
+                    <input type="checkbox" id="computer-mobile" name="sender-computer" value="mobile">
                     <label for="computer-mobile">Mobile Phone</label>
                   </div>
                   <div>
-                    <input type="radio" id="computer-chromebook" name="sender-computer" value="chromebook" required>
+                    <input type="checkbox" id="computer-chromebook" name="sender-computer" value="chromebook">
                     <label for="computer-chromebook">Chromebook</label>
                   </div>
                   <div>
-                    <input type="radio" id="computer-other" name="sender-computer" value="other" required>
+                    <input type="checkbox" id="computer-other" name="sender-computer" value="other">
                     <label for="computer-other">Other</label>
                   </div>
                 </div>
@@ -280,29 +319,29 @@
 
               <fieldset class="feedback-form-item">
                 <legend>What browser did you use?</legend>
-                <div class="radio-group">
+                <div class="checkbox-group">
                   <div>
-                    <input type="radio" id="browser-firefox" name="sender-browser" value="firefox" required>
+                    <input type="checkbox" id="browser-firefox" name="sender-browser" value="firefox">
                     <label for="browser-firefox">Mozilla Firefox</label>
                   </div>
                   <div>
-                    <input type="radio" id="browser-chrome" name="sender-browser" value="chrome" required>
+                    <input type="checkbox" id="browser-chrome" name="sender-browser" value="chrome">
                     <label for="browser-chrome">Google Chrome</label>
                   </div>
                   <div>
-                    <input type="radio" id="browser-edge" name="sender-browser" value="edge" required>
+                    <input type="checkbox" id="browser-edge" name="sender-browser" value="edge">
                     <label for="browser-edge">Microsoft Edge</label>
                   </div>
                   <div>
-                    <input type="radio" id="browser-safari" name="sender-browser" value="safari" required>
+                    <input type="checkbox" id="browser-safari" name="sender-browser" value="safari">
                     <label for="browser-safari">Apple Safari</label>
                   </div>
                   <div>
-                    <input type="radio" id="browser-opera" name="sender-browser" value="opera" required>
+                    <input type="checkbox" id="browser-opera" name="sender-browser" value="opera">
                     <label for="browser-opera">Opera</label>
                   </div>
                   <div>
-                    <input type="radio" id="browser-other" name="sender-browser" value="other" required>
+                    <input type="checkbox" id="browser-other" name="sender-browser" value="other">
                     <label for="browser-other">Other</label>
                   </div>
                 </div>
@@ -312,40 +351,10 @@
                 <label for="sender-other-browser"> Other Browser: </label>
                 <input type="text" id="sender-other-browser" name="sender-other-browser">
               </div>
-
-              <fieldset class="feedback-form-item">
-                <legend>Where did you do this course?</legend>
-                <div class="checkbox-group">
-                  <div>
-                    <input type="checkbox" id="loc-coder-dojo" name="sender-location" value="coder-dojo">
-                    <label for="loc-coder-dojo">At a Coder Dojo or coding club</label>
-                  </div>
-                  <div>
-                    <input type="checkbox" id="loc-school" name="sender-location" value="school">
-                    <label for="loc-school">At school</label>
-                  </div>
-                  <div>
-                    <input type="checkbox" id="loc-home" name="sender-location" value="home">
-                    <label for="loc-home">At home</label>
-                  </div>
-                  <div>
-                    <input type="checkbox" id="loc-library" name="sender-location" value="library">
-                    <label for="loc-library">At a library</label>
-                  </div>
-                  <div>
-                    <input type="checkbox" id="loc-other" name="sender-location" value="other">
-                    <label for="loc-other">Other</label>
-                  </div>
-                </div>
-              </fieldset>
-
-              <div id="sender-other-location-div" class="feedback-form-item">
-                <label for="sender-other-location"> Other Location: </label>
-                <input type="text" id="sender-other-location" name="sender-other-location">
-              </div>
             </section>
 
-            <section id="about-course">
+            <section id="about-course" class="feedback-section hidden" aria-label="About the Course">
+              <h3 class="lesson-title">About the Course</h3>
               <fieldset class="feedback-form-item">
                 <legend>Was this course helpful?</legend>
                 <div class="radio-group">
@@ -361,31 +370,31 @@
               </fieldset>
 
               <fieldset class="feedback-form-item">
-                <legend>Which lessons did you complete?</legend>
-                <div class="checkbox-group">
+                <legend>How many lessons did you complete?</legend>
+                <div class="radio-group">
                   <div>
-                    <input type="checkbox" id="completed-lessons-none" name="completed-lessons" value="0">
+                    <input type="radio" id="completed-lessons-none" name="completed-lessons" value="0">
                     <label for="completed-lessons-none">None</label>
                   </div>
                   <div>
-                    <input type="checkbox" id="completed-lessons-html" name="completed-lessons" value="html">
-                    <label for="completed-lessons-html">The HTML lessons</label>
+                    <input type="radio" id="completed-lessons-html" name="completed-lessons" value="1-5">
+                    <label for="completed-lessons-html">1-5 lessons</label>
                   </div>
                   <div>
-                    <input type="checkbox" id="completed-lessons-css" name="completed-lessons" value="css">
-                    <label for="completed-lessons-css">The CSS lessons</label>
+                    <input type="radio" id="completed-lessons-css" name="completed-lessons" value="6-10">
+                    <label for="completed-lessons-css">6-10 lessons</label>
                   </div>
                   <div>
-                    <input type="checkbox" id="completed-lessons-javascript" name="completed-lessons" value="javascript">
-                    <label for="completed-lessons-javascript">The JavaScript lessons</label>
+                    <input type="radio" id="completed-lessons-javascript" name="completed-lessons" value="11-20">
+                    <label for="completed-lessons-javascript">11-20 lessons</label>
                   </div>
                   <div>
-                    <input type="checkbox" id="completed-lessons-projects" name="completed-lessons" value="projects">
-                    <label for="completed-lessons-projects">The projects</label>
+                    <input type="radio" id="completed-lessons-projects" name="completed-lessons" value="21-30">
+                    <label for="completed-lessons-projects">21-30 lessons</label>
                   </div>
                   <div>
-                    <input type="checkbox" id="completed-lessons-all" name="completed-lessons" value="all">
-                    <label for="completed-lessons-all">All lessons</label>
+                    <input type="radio" id="completed-lessons-all" name="completed-lessons" value="30+">
+                    <label for="completed-lessons-all">Over 30 lessons</label>
                   </div>
                 </div>
               </fieldset>
@@ -531,7 +540,8 @@
               </fieldset>
             </section>
 
-            <section id="course-feedback-section">
+            <section id="course-feedback-section" class="feedback-section hidden" aria-label="Your Feedback">
+              <h3 class="lesson-title">Your Feedback</h3>
               <div id="course-likes-div" class="feedback-form-item">
                 <label for="course-likes"> What did you like about the course? </label>
                 <textarea id="course-likes" name="course-likes"></textarea>
@@ -558,7 +568,8 @@
               </div>
             </section>
 
-            <section id="submit-feedback-section">
+            <section id="submit-feedback-section" class="feedback-section hidden" aria-label="Submit">
+              <h3 class="lesson-title">Submit</h3>
               <p>
                 By submitting this form, you consent to the collection and use of your feedback and the information you have provided in
                 accordance with our <a href="privacy-policy.html" target="_blank">Privacy Policy</a>. Your feedback will be used to improve our courses
@@ -588,6 +599,8 @@
                 <button type="submit" id="send-information-btn" class="button-rectangle" disabled>Send Feedback</button>
               </div>
             </section>
+            </div>
+            <!-- End feedback-content -->
           </form>
         </section>
       </main>

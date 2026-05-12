@@ -354,4 +354,237 @@
     }
   }
 */
+
+  /********************************************************
+     * Feedback Navigation Panel
+     ********************************************************/
+  
+  /* Section visibility controls */
+  .feedback-section.hidden {
+    display: none;
+  }
+
+  .feedback-content {
+    padding-top: 1rem;
+  }
+
+  /* Navigation Panel */
+  .feedback-navigation-panel {
+    margin: 1rem 0;
+    padding: 0.75rem;
+    background-color: var(--colour-effective-background);
+    border: var(--border-weight-thin) var(--border-style) var(--colour-effective-border);
+    border-radius: var(--border-radius);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
+  }
+
+  .feedback-navigation-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* Navigation Buttons */
+  .feedback-nav-button {
+    padding: 0.75rem;
+    color: var(--colour-effective-button-text);
+    background-color: var(--colour-effective-button-background);
+    border: var(--border-style) var(--border-weight) var(--colour-effective-button-text);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    min-width: 3rem;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+
+    & i {
+      display: flex;
+      line-height: 1;
+      vertical-align: middle;
+    }
+
+    &:hover:not(:disabled) {
+      color: var(--colour-effective-button-text-hover);
+      background-color: var(--colour-effective-button-background-hover);
+      transform: scale(1.05);
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(0.95);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background-color: var(--colour-effective-button-background-disabled);
+      color: var(--colour-effective-button-text-disabled);
+    }
+  }
+
+  .feedback-section-nav .fa-backward-step,
+  .feedback-section-nav .fa-forward-step {
+    font-size: 1.1rem;
+    transform: translateY(-1px);
+  }
+
+  /* Progress Bar with Wand Icons */
+  .feedback-progress-container {
+    flex: 1;
+    max-width: min(500px, 100%);
+    margin: 0 1rem;
+    container-type: inline-size;
+  }
+
+  .feedback-progress-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: var(--colour-effective-surface);
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    border: var(--border-weight-thin) var(--border-style) var(--colour-effective-border);
+    position: relative;
+  }
+
+  /* Progress line connecting wands */
+  .feedback-progress-bar::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0.5rem;
+    right: 0.5rem;
+    height: 2px;
+    background: linear-gradient(
+      to right,
+      var(--colour-effective-accent) 0%,
+      var(--colour-effective-accent) var(--progress-percent, 20%),
+      var(--colour-effective-border) var(--progress-percent, 20%),
+      var(--colour-effective-border) 100%
+    );
+    z-index: 1;
+    border-radius: 1px;
+  }
+
+  /* Hide progress line when container is narrow and wands will wrap */
+  @container (max-width: var(--breakpoint-small)) {
+    .feedback-progress-bar::before {
+      display: none;
+    }
+  }
+
+  .feedback-wand-icon {
+    position: relative;
+    z-index: 2;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--colour-effective-background);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .feedback-wand-icon img {
+    width: 1.5rem;
+    height: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  /* Current section wand (theme accent coloured) */
+  .feedback-wand-icon.current {
+    background-color: var(--colour-effective-accent);
+    border: 2px solid var(--colour-effective-accent);
+    transform: scale(1.1);
+  }
+
+  .feedback-wand-icon.current img {
+    filter: brightness(0) saturate(100%) var(--wand-filter-on-accent);
+    opacity: 1;
+  }
+
+  /* Previous sections (completed - themed) */
+  .feedback-wand-icon.previous {
+    background-color: var(--colour-effective-surface);
+    border: 1px solid var(--colour-effective-accent);
+  }
+
+  .feedback-wand-icon.previous img {
+    filter: brightness(0) saturate(100%) var(--wand-filter-on-surface);
+    opacity: 0.8;
+  }
+
+  /* Next sections (future - very muted) */
+  .feedback-wand-icon.next {
+    background-color: var(--colour-effective-background);
+    border: 1px solid var(--colour-effective-border);
+  }
+
+  .feedback-wand-icon.next img {
+    filter: brightness(0) saturate(100%) var(--wand-filter-on-background);
+    opacity: 0.3;
+  }
+
+  /* Hover effects */
+  .feedback-wand-icon:hover {
+    transform: scale(1.1);
+  }
+
+  .feedback-wand-icon.current:hover {
+    transform: scale(1.2);
+  }
+
+  /* Mobile Responsive Design */
+  @media (width <= 800px) {
+    .feedback-navigation-panel {
+      padding: 0.5rem;
+    }
+
+    .feedback-navigation-controls {
+      flex-flow: row wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    .feedback-progress-container {
+      order: 3;
+      width: 100%;
+      margin: 0.5rem 0;
+    }
+
+    .feedback-progress-bar::before {
+      display: none;
+    }
+
+    .feedback-nav-button {
+      flex: 0 1 auto;
+      min-width: 2.5rem;
+      min-height: 2.5rem;
+      padding: 0.5rem;
+    }
+  }
+
+  @media (width <= 480px) {
+    .feedback-progress-bar {
+      padding: 0.25rem;
+    }
+
+    .feedback-wand-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .feedback-wand-icon img {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
 }
