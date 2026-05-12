@@ -1561,34 +1561,48 @@ node server.js
                     <h3 class="lesson-title">Create a Projects Folder</h3>
                     <div class="tool-content">
                         <div id="projects-folder-linux">
-  <p>It's helpful to keep all your coding projects organised in one place. Let's create a dedicated Projects folder:</p>
+  <p>Projects folder is a special place on your computer where you keep all your coding projects organised. It's like having a toy box where you keep all your toys in one place - it makes everything easier to find!</p>
+  <h3 class="lesson-title">Why Do You Need It?</h3>
+
+  <p>When you start coding, you'll create lots of different projects. Having them all in one folder helps you:</p>
+  <ul>
+    <li>Find your projects quickly</li>
+    <li>Keep your computer organised</li>
+    <li>Back up your work easily</li>
+    <li>Know where to save new projects</li>
+  </ul>
+
   <ol>
-    <li onclick="toggleSection('create-folder-linux-list-1', event);" onkeydown="toggleSection('create-folder-linux-list-1', event);" class="magic-invisible">Open Terminal
-      <ul id="create-folder-linux-list-1" class="hidden">
-        <li>Press <code>Ctrl + Alt + T</code></li>
-      </ul>
-    </li>
-    <li onclick="toggleSection('create-folder-linux-list-2', event);" onkeydown="toggleSection('create-folder-linux-list-2', event);" class="lesson-title magic-invisible">Navigate to Your Home Directory
-      <ul id="create-folder-linux-list-2" class="hidden">
+    <li>
+      <span onclick="toggleSection('create-folder-linux-list-1', event);" onkeydown="toggleSection('create-folder-linux-list-1', event);" class="lesson-title magic-invisible">Open a Terminal and navigate to your home directory</span>
+      <ol id="create-folder-linux-list-1" class="hidden">
+        <li>Press <code>Ctrl + Alt + T</code> to open Terminal</li>
         <li>The terminal usually starts in your home directory</li>
-        <li>To confirm, type <code>pwd</code> and press Enter</li>
+        <li>
+          To confirm, type
+          <pre><code>
+pwd
+          </code></pre>
+          and press Enter
+        </li>
         <li>You should see something like <code>/home/yourusername</code></li>
-      </ul>
-    </li>
-    <li onclick="toggleSection('create-folder-linux-list-3', event);" onkeydown="toggleSection('create-folder-linux-list-3', event);" class="lesson-title magic-invisible">Create the Projects Folder
-      <ul id="create-folder-linux-list-3" class="hidden">
-        <li>Type this command and press Enter:
-          <pre><code>
+        <li>
+          Create the Projects Folder
+          <ul id="create-folder-linux-list-3" class="hidden">
+            <li>Type this command and press Enter:
+              <pre><code>
 mkdir Projects
-          </code></pre>
-        </li>
-        <li>Verify it was created:
-          <pre><code>
+              </code></pre>
+            </li>
+            <li>Verify it was created:
+              <pre><code>
 ls
-          </code></pre>
+              </code></pre>
+            </li>
+            <li>You should see <code>Projects</code> in the list</li>
+          </ul>
         </li>
-        <li>You should see <code>Projects</code> in the list</li>
-      </ul>
+      </ol>
     </li>
   </ol>
   <p>Your Projects folder is now at: <code>~/Projects</code> (or <code>/home/yourusername/Projects</code>)</p>
@@ -1605,61 +1619,59 @@ ls
                         +
 <div id="dev-server-linux">
   <p>
-    To view your web pages as you develop them, you'll need to run a local development server. This is important because some web features don't work when
-    opening HTML files directly in a browser. If you installed the Live Server extension in Visual Studio Code, you can skip this step as that will do the
-    same thing. Using this method lets you run and test your web pages even if you are not using Visual Studio Code.
+    An HTTP server is a program that serves web pages to your browser. When you visit a website, you're connecting to an HTTP server! So here you'll create your own server that runs on your computer that you can use to view your web pages as you develop them.
   </p>
 
-  <h4 onclick="toggleSection('dev-server-linux-list-1', event);" onkeydown="toggleSection('dev-server-linux-list-1', event);" class="lesson-title magic-invisible">Create a package.json File</h4>
+  <h3 class="lesson-title">Before You Start</h3>
+
+  <p>Make sure you have:</p>
+  <ul>
+    <li>Node.js installed (check by typing <code>node --version</code> in a Terminal)</li>
+    <li>A Projects folder created (see "How to Create a Projects Folder" guide)</li>
+  </ul>
+
+  <h3 onclick="toggleSection('dev-server-linux-list-1', event);" onkeydown="toggleSection('dev-server-linux-list-1', event);" class="lesson-title magic-invisible">Download package.json File</h3>
   <ol id="dev-server-linux-list-1" class="hidden">
-    <li>Open Visual Studio Code</li>
-    <li>Select <code>File → Open Folder</code></li>
-    <li>Navigate to and select your <code>Projects</code> folder (<code>~/Projects</code>)</li>
-    <li>Create a new file called <code>package.json</code> in the Projects folder</li>
-    <li>Add the following content to the file:
-      <div class="code-snippet-container">
-        <script type="text/plain" class="code-snippet-source">
-{
-    "name": "my-web-projects",
-    "version": "1.0.0",
-    "description": "Web development projects",
-    "scripts": {
-        "start": "http-server -p 8000"
-    },
-    "devDependencies": {
-        "http-server": "^14.1.1"
-    }
-}
-        </script>
-        <div class="code-snippet-table"></div>
-      </div>
-    </li>
-    <li>Save the file (<code>Ctrl + S</code>)</li>
+    <li>Open <strong>Firefox</strong> (or your web browser)</li>
+    <li>Right click on this link: <a href="../data/package.json" target="_blank" rel="noopener noreferrer">package.json</a> and select <strong>Save Link As...</strong></li>
+    <li>Save the file to your <strong>Downloads</strong> folder as <strong>package.json</strong></li>
+    <li>The file will download to your <strong>Downloads</strong> folder</li>
+    <li>Open your <strong>file manager</strong> (Files, Dolphin, Thunar, or Nautilus)</li>
+    <li>Go to your <strong>Downloads</strong> folder</li>
+    <li>Find <strong>package.json</strong> and <strong>right-click</strong> on it</li>
+    <li>Choose <strong>Cut</strong> (or press Ctrl + X)</li>
+    <li>Navigate to your <strong>Projects</strong> folder (in your Home folder)</li>
+    <li><strong>Right-click</strong> in an empty space and choose <strong>Paste</strong> (or press Ctrl + V)</li>
   </ol>
 
-  <h4 onclick="toggleSection('dev-server-linux-list-2', event);" onkeydown="toggleSection('dev-server-linux-list-2', event);" class="lesson-title magic-invisible">Install http-server</h4>
+  <h3 onclick="toggleSection('dev-server-linux-list-2', event);" onkeydown="toggleSection('dev-server-linux-list-2', event);" class="lesson-title magic-invisible">Start the server</h3>
   <ol id="dev-server-linux-list-2" class="hidden">
-    <li>Open the integrated terminal in VS Code by pressing <code>Ctrl + `</code> (backtick key, usually above Tab)</li>
-    <li>Make sure you're in your Projects folder (the terminal should show the path)</li>
-    <li>Type <code>npm install</code> and press Enter</li>
-    <li>Wait for the installation to complete (this installs http-server locally in your Projects folder)</li>
+    <li>
+      In a Terminal, type:
+      <pre><code>
+npm run start
+      </code></pre>
+    </li>
+    <li>You should see: <code>Server running at http://localhost:8000</code></li>
+    <li>Open your web browser and visit: <code>http://localhost:8000</code></li>
+    <li>You should see: <strong>"Hello! Your server is working!"</strong></li>
   </ol>
 
-  <h4 onclick="toggleSection('dev-server-linux-list-3', event);" onkeydown="toggleSection('dev-server-linux-list-3', event);" class="lesson-title magic-invisible">Start the Development Server</h4>
+  <h3 onclick="toggleSection('dev-server-linux-list-3', event);" onkeydown="toggleSection('dev-server-linux-list-3', event);" class="lesson-title magic-invisible">Stop the server</h3>
   <ol id="dev-server-linux-list-3" class="hidden">
-    <li>In the same terminal, type <code>npm start</code> and press Enter</li>
-    <li>You should see a message saying the server is running on <code>http://localhost:8000</code></li>
-    <li>Open your web browser and go to <code>http://localhost:8000</code></li>
-    <li>You should see a directory listing of your Projects folder</li>
+    <li>Go back to the <strong>Terminal</strong></li>
+    <li>Press <strong>Ctrl + C</strong></li>
+    <li>The server will stop</li>
   </ol>
 
-  <h4 onclick="toggleSection('dev-server-linux-list-4', event);" onkeydown="toggleSection('dev-server-linux-list-4', event);" class="lesson-title magic-invisible">Using the Development Server</h4>
+  <h3 onclick="toggleSection('dev-server-linux-list-4', event);" onkeydown="toggleSection('dev-server-linux-list-4', event);" class="lesson-title magic-invisible">Using the Development Server</h3>
   <ul id="dev-server-linux-list-4" class="hidden">
-    <li>Keep the terminal open while you're working - the server needs to run continuously</li>
+    <li>Whenever you need to start the server, run <code>npm start</code> from your Projects folder</li>
     <li>When you create HTML files in your Projects folder, you can access them through the browser at <code>http://localhost:8000/filename.html</code></li>
     <li>When you make changes to your files and save them, refresh your browser to see the changes</li>
     <li>To stop the server, press <code>Ctrl + C</code> in the terminal</li>
     <li>To restart the server later, just run <code>npm start</code> again from your Projects folder</li>
+    <li>In future lessons, when you have learned about Visual Studio Code, you can use a Terminal inside VS Code to run these commands</li>
   </ul>
 </div>
                     </div>
