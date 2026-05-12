@@ -46,12 +46,14 @@ jobs:
       run: |
         set -euo pipefail
 
-        if [ ! -f VERSION ] || [ ! -s VERSION ]; then
+        VERSION_FILE="${{ inputs.application }}/VERSION"
+
+        if [ ! -f "$VERSION_FILE" ] || [ ! -s "$VERSION_FILE" ]; then
           echo "VERSION missing or empty; defaulting to 0.0.0"
-          echo "0.0.0" > VERSION
+          echo "0.0.0" > "$VERSION_FILE"
         fi
 
-        new_version="$(bin/bump-version.sh "${{ steps.bump_type.outputs.value }}" VERSION)"
+        new_version="$(bin/bump-version.sh "${{ steps.bump_type.outputs.value }}" "$VERSION_FILE")"
         echo "new_version=${new_version}" >> "$GITHUB_OUTPUT"
         echo "New version: ${new_version}"
 
