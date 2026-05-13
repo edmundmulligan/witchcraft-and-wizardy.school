@@ -47,9 +47,9 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "{{baseUrl}}/api/health",
+          "raw": "{{baseUrl}}/health",
           "host": ["{{baseUrl}}"],
-          "path": ["api", "health"]
+          "path": ["health"]
         },
         "description": "Health check endpoint to verify the API server is running"
       },

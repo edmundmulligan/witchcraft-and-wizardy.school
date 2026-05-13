@@ -394,7 +394,7 @@ async function sendFeedbackEmail(recipientEmail, senderEmail, sendCopy, humanRea
   const apiUrl =
     window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
       ? 'http://localhost:3000/api/send-feedback'
-      : 'https://web.witchcraft-and-wizardry.school/api/send-feedback';
+      : 'https://api.witchcraft-and-wizardry.school/api/send-feedback';
 
   try {
     const response = await fetch(apiUrl, {

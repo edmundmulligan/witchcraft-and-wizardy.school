@@ -46,7 +46,7 @@ app.use((req, res, next) => {
 });
 
 // Health check endpoint
-app.get('/api/health', (req, res) => {
+app.get('/health', (req, res) => {
   res.json({
     status: 'ok',
     timestamp: new Date().toISOString(),
@@ -85,7 +85,7 @@ app.use((req, res) => {
 const server = app.listen(PORT, () => {
   console.log(`\n🚀 API Server running on http://localhost:${PORT}`);
   console.log(`📧 Feedback endpoint: http://localhost:${PORT}/api/send-feedback`);
-  console.log(`🏥 Health check: http://localhost:${PORT}/api/health`);
+  console.log(`🏥 Health check: http://localhost:${PORT}/health`);
   console.log(`\n🌐 Make sure your static site is running on http://localhost:${STATIC_PORT}`);
   console.log(`   Run: npm run dev\n`);
 });
