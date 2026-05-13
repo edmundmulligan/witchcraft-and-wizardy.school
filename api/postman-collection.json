@@ -1,0 +1,290 @@
+{
+  "info": {
+    "name": "Web Witchcraft and Wizardry API",
+    "description": "API endpoints for the Web Witchcraft and Wizardry website",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Response has correct structure', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('status');",
+              "    pm.expect(jsonData).to.have.property('timestamp');",
+              "    pm.expect(jsonData).to.have.property('uptime');",
+              "});",
+              "",
+              "pm.test('Status is ok', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.status).to.eql('ok');",
+              "});",
+              "",
+              "pm.test('Timestamp is valid ISO 8601', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.timestamp).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$/);",
+              "});",
+              "",
+              "pm.test('Uptime is a positive number', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.uptime).to.be.a('number');",
+              "    pm.expect(jsonData.uptime).to.be.above(0);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "health"]
+        },
+        "description": "Health check endpoint to verify the API server is running"
+      },
+      "response": []
+    },
+    {
+      "name": "Send Feedback - Valid Minimal",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Response indicates success', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('success');",
+              "    pm.expect(jsonData.success).to.be.true;",
+              "});",
+              "",
+              "pm.test('Response has message', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property('message');",
+              "    pm.expect(jsonData.message).to.include('successfully');",
+              "});",
+              "",
+              "pm.test('Response has messageId or info', function () {",
+              "    var jsonData = pm.response.json();",
+              "    // In console mode, there might not be a messageId",
+              "    pm.expect(jsonData).to.satisfy(function(data) {",
+              "        return data.hasOwnProperty('messageId') || data.hasOwnProperty('info');",
+              "    });",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+           "raw": "{\n  \"to\": \"{{testEmail}}\",\n  \"subject\": \"Test Feedback - Minimal\",\n  \"text\": \"This is a minimal test feedback submission from the Postman test harness.\"\n}"        },
+        "url": {
+          "raw": "{{baseUrl}}/api/send-feedback",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "send-feedback"]
+        },
+        "description": "Test feedback submission with minimal required fields"
+      },
+      "response": []
+    },
+    {
+      "name": "Send Feedback - With CC and Attachment",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Response indicates success', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.be.true;",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+           "raw": "{\n  \"to\": \"feedback@embodied-mind.org\",\n  \"cc\": \"{{feedbackCc}}\",\n  \"subject\": \"Test Feedback - Full\",\n  \"text\": \"FEEDBACK FORM SUBMISSION\\n========================\\n\\nSubmitted: 2026-05-13\\n\\nPERSONAL INFORMATION\\n--------------------\\nName: Test User\\nEmail: test@example.com\\n\\nTECHNICAL INFORMATION\\n---------------------\\nComputer: Windows\\nBrowser: Firefox\\n\\nCOURSE FEEDBACK\\n---------------\\nThe course was very helpful!\\n\",\n  \"attachment\": {\n    \"filename\": \"feedback.json\",\n    \"content\": \"{\\\"personal\\\":{\\\"name\\\":\\\"Test User\\\",\\\"email\\\":\\\"test@example.com\\\"},\\\"technical\\\":{\\\"computer\\\":[\\\"windows\\\"],\\\"browser\\\":[\\\"firefox\\\"]},\\\"course\\\":{\\\"helpful\\\":\\\"yes\\\"},\\\"timestamp\\\":\\\"2026-05-13T12:00:00.000Z\\\"}\"\n  }\n}"        },
+        "url": {
+          "raw": "{{baseUrl}}/api/send-feedback",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "send-feedback"]
+        },
+        "description": "Test feedback submission with CC and JSON attachment"
+      },
+      "response": []
+    },
+    {
+      "name": "Send Feedback - Missing Required Fields",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 400', function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "pm.test('Response indicates failure', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.be.false;",
+              "});",
+              "",
+              "pm.test('Error message mentions missing fields', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.error).to.include('required');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"subject\": \"Test Feedback\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/send-feedback",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "send-feedback"]
+        },
+        "description": "Test validation - missing required 'to' and 'text' fields"
+      },
+      "response": []
+    },
+    {
+      "name": "Send Feedback - Invalid Email",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 400', function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "pm.test('Response indicates failure', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.be.false;",
+              "});",
+              "",
+              "pm.test('Error message mentions invalid email', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.error).to.include('email');",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"to\": \"not-an-email\",\n  \"subject\": \"Test Feedback\",\n  \"text\": \"This should fail validation.\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/send-feedback",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "send-feedback"]
+        },
+        "description": "Test validation - invalid email address format"
+      },
+      "response": []
+    },
+    {
+      "name": "Invalid Endpoint - 404",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 404', function () {",
+              "    pm.response.to.have.status(404);",
+              "});",
+              "",
+              "pm.test('Response indicates failure', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.success).to.be.false;",
+              "});",
+              "",
+              "pm.test('Error message mentions not found', function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.error).to.match(/not found/i);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/nonexistent",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "nonexistent"]
+        },
+        "description": "Test 404 handling for non-existent endpoints"
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ]
+}
