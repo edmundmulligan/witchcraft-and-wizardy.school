@@ -111,7 +111,6 @@
      * @param {string} position - 'top' or 'bottom' to differentiate IDs
      */
     generateNavigationPanelHTML(sections, position = 'top') {
-      const maxSections = Math.max(sections.length, 1);
       const suffix = position === 'bottom' ? '-bottom' : '';
 
       return `
