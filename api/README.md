@@ -158,13 +158,32 @@ CORS is configured to allow requests from:
 
 ## Testing
 
-### Test Health Endpoint
+### Automated API Tests
+
+Run the full Postman test suite:
+
+```bash
+npm run tests:api
+```
+
+This runs automated tests covering:
+- Health check endpoint
+- Feedback submission with various scenarios
+- Input validation
+- Error handling
+- 404 responses
+
+See [TESTING.md](TESTING.md) for detailed testing documentation.
+
+### Manual Testing
+
+#### Test Health Endpoint
 
 ```bash
 curl http://localhost:3000/api/health
 ```
 
-### Test Feedback Endpoint
+#### Test Feedback Endpoint
 
 ```bash
 curl -X POST http://localhost:3000/api/send-feedback \

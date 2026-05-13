@@ -19,7 +19,8 @@
     "tests:continue": "node bin/run-tests-by-folder.js . -c -x lessons diagnostics",
     "tests:full": "node bin/run-tests-by-folder.js . -x lessons diagnostics",
     "tests:quick": "node bin/run-tests-by-folder.js . -q -x lessons diagnostics",
-    "tests:wave": "node bin/run-tests-by-folder.js . -w -x lessons diagnostics"
+    "tests:wave": "node bin/run-tests-by-folder.js . -w -x lessons diagnostics",
+    "tests:api": "newman run api/postman-collection.json -e api/postman-environment.json --color on --reporters cli,json --reporter-json-export api/test-results.json"
   },
   "keywords": [
     "html",
@@ -37,6 +38,7 @@
     "http-server": "^14.1.1",
     "jshint": "^2.13.6",
     "mustache": "^4.2.0",
+    "newman": "^6.2.1",
     "prettier": "^3.2.5"
   },
   "dependencies": {

@@ -107,29 +107,32 @@
 
     /**
      * Generate the complete navigation panel HTML
+     * @param {Array} sections - Array of section information
+     * @param {string} position - 'top' or 'bottom' to differentiate IDs
      */
-    generateNavigationPanelHTML(sections) {
+    generateNavigationPanelHTML(sections, position = 'top') {
       const maxSections = Math.max(sections.length, 1);
+      const suffix = position === 'bottom' ? '-bottom' : '';
 
       return `
-            <nav class="feedback-navigation-panel" aria-label="Form section navigation">
+            <nav class="feedback-navigation-panel" aria-label="Form section navigation ${position}">
                 <div class="feedback-navigation-controls">
                     <!-- Backward -->
-                    <button type="button" id="backwardBtn" class="feedback-nav-button feedback-section-nav" 
+                    <button type="button" id="backwardBtn${suffix}" class="feedback-nav-button feedback-section-nav" 
                             title="Go to previous section" aria-label="Previous section" disabled>
                         <i class="fa-duotone fa-regular fa-backward-step" aria-hidden="true"></i>
                     </button>
 
                     <!-- Progress Bar with Wand Icons -->
                     <div class="feedback-progress-container">
-                        <div id="progressBar" class="feedback-progress-bar" role="progressbar" 
+                        <div id="progressBar${suffix}" class="feedback-progress-bar" role="progressbar" 
                              aria-valuenow="1" aria-valuemin="1" aria-valuemax="${maxSections}" 
                              aria-label="Section progress">
                         </div>
                     </div>
 
                     <!-- Forward -->
-                    <button type="button" id="forwardBtn" class="feedback-nav-button feedback-section-nav" 
+                    <button type="button" id="forwardBtn${suffix}" class="feedback-nav-button feedback-section-nav" 
                             title="Go to next section" aria-label="Next section">
                         <i class="fa-duotone fa-regular fa-forward-step" aria-hidden="true"></i>
                     </button>
@@ -149,16 +152,31 @@
         return;
       }
 
-      const navigationHTML = this.generateNavigationPanelHTML(this.sections);
+      // Inject top navigation
+      const navigationTopHTML = this.generateNavigationPanelHTML(this.sections, 'top');
       const pageTitle = document.querySelector('.page-title');
 
       if (pageTitle) {
-        pageTitle.insertAdjacentHTML('afterend', navigationHTML);
+        pageTitle.insertAdjacentHTML('afterend', navigationTopHTML);
         
-        // Create wand icons using DOM APIs for security
-        const progressBar = document.getElementById('progressBar');
-        if (progressBar) {
-          this.createWandIcons(this.sections, progressBar);
+        // Create wand icons for top navigation using DOM APIs for security
+        const progressBarTop = document.getElementById('progressBar');
+        if (progressBarTop) {
+          this.createWandIcons(this.sections, progressBarTop);
+        }
+      }
+
+      // Inject bottom navigation
+      const navigationBottomHTML = this.generateNavigationPanelHTML(this.sections, 'bottom');
+      const form = document.getElementById('feedback-form-element');
+
+      if (form) {
+        form.insertAdjacentHTML('afterend', navigationBottomHTML);
+        
+        // Create wand icons for bottom navigation using DOM APIs for security
+        const progressBarBottom = document.getElementById('progressBar-bottom');
+        if (progressBarBottom) {
+          this.createWandIcons(this.sections, progressBarBottom);
         }
       }
     }
@@ -181,8 +199,13 @@
     setupButtonListeners() {
       if (this.listenersSetup) return;
 
+      // Top navigation buttons
       const forwardBtn = document.getElementById('forwardBtn');
       const backwardBtn = document.getElementById('backwardBtn');
+
+      // Bottom navigation buttons
+      const forwardBtnBottom = document.getElementById('forwardBtn-bottom');
+      const backwardBtnBottom = document.getElementById('backwardBtn-bottom');
 
       if (forwardBtn) {
         forwardBtn.addEventListener('click', () => this.goToNextSection());
@@ -190,6 +213,14 @@
 
       if (backwardBtn) {
         backwardBtn.addEventListener('click', () => this.goToPreviousSection());
+      }
+
+      if (forwardBtnBottom) {
+        forwardBtnBottom.addEventListener('click', () => this.goToNextSection());
+      }
+
+      if (backwardBtnBottom) {
+        backwardBtnBottom.addEventListener('click', () => this.goToPreviousSection());
       }
 
       this.listenersSetup = true;
@@ -299,13 +330,18 @@
      */
     updateProgress() {
       const wandIcons = document.querySelectorAll('.feedback-wand-icon');
-      const progressBar = document.querySelector('.feedback-progress-bar');
+      const progressBars = document.querySelectorAll('.feedback-progress-bar');
 
-      if (progressBar && this.totalSections > 0) {
+      // Update progress percentage on all progress bars
+      if (progressBars.length > 0 && this.totalSections > 0) {
         const progressPercent = ((this.currentSectionIndex + 1) / this.totalSections) * 100;
-        progressBar.style.setProperty('--progress-percent', `${progressPercent}%`);
+        progressBars.forEach((progressBar) => {
+          progressBar.style.setProperty('--progress-percent', `${progressPercent}%`);
+          progressBar.setAttribute('aria-valuenow', this.currentSectionIndex + 1);
+        });
       }
 
+      // Update wand icon states
       wandIcons.forEach((wand, index) => {
         wand.classList.remove('current', 'previous', 'next');
 
@@ -332,26 +368,37 @@
           }
         }
       });
-
-      // Update ARIA attributes
-      if (progressBar) {
-        progressBar.setAttribute('aria-valuenow', this.currentSectionIndex + 1);
-      }
     }
 
     /**
      * Update button states
      */
     updateButtons() {
+      // Top navigation buttons
       const forwardBtn = document.getElementById('forwardBtn');
       const backwardBtn = document.getElementById('backwardBtn');
 
+      // Bottom navigation buttons
+      const forwardBtnBottom = document.getElementById('forwardBtn-bottom');
+      const backwardBtnBottom = document.getElementById('backwardBtn-bottom');
+
+      const isAtStart = this.currentSectionIndex === 0;
+      const isAtEnd = this.currentSectionIndex >= this.totalSections - 1;
+
       if (backwardBtn) {
-        backwardBtn.disabled = this.currentSectionIndex === 0;
+        backwardBtn.disabled = isAtStart;
       }
 
       if (forwardBtn) {
-        forwardBtn.disabled = this.currentSectionIndex >= this.totalSections - 1;
+        forwardBtn.disabled = isAtEnd;
+      }
+
+      if (backwardBtnBottom) {
+        backwardBtnBottom.disabled = isAtStart;
+      }
+
+      if (forwardBtnBottom) {
+        forwardBtnBottom.disabled = isAtEnd;
       }
     }
   }

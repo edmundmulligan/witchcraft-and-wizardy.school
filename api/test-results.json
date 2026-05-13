@@ -1,0 +1,2175 @@
+{
+  "collection": {
+    "item": [
+      {
+        "id": "744ae686-44fd-475b-a88a-10e26ccb78e0",
+        "name": "Health Check",
+        "request": {
+          "description": {
+            "content": "Health check endpoint to verify the API server is running",
+            "type": "text/plain"
+          },
+          "url": {
+            "path": [
+              "api",
+              "health"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "2ce7118f-f91a-4579-b3ce-e1641b4507d8",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('Status code is 200', function () {",
+                "    pm.response.to.have.status(200);",
+                "});",
+                "",
+                "pm.test('Response has correct structure', function () {",
+                "    var jsonData = pm.response.json();",
+                "    pm.expect(jsonData).to.have.property('status');",
+                "    pm.expect(jsonData).to.have.property('timestamp');",
+                "    pm.expect(jsonData).to.have.property('uptime');",
+                "});",
+                "",
+                "pm.test('Status is ok', function () {",
+                "    var jsonData = pm.response.json();",
+                "    pm.expect(jsonData.status).to.eql('ok');",
+                "});",
+                "",
+                "pm.test('Timestamp is valid ISO 8601', function () {",
+                "    var jsonData = pm.response.json();",
+                "    pm.expect(jsonData.timestamp).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$/);",
+                "});",
+                "",
+                "pm.test('Uptime is a positive number', function () {",
+                "    var jsonData = pm.response.json();",
+                "    pm.expect(jsonData.uptime).to.be.a('number');",
+                "    pm.expect(jsonData.uptime).to.be.above(0);",
+                "});"
+              ],
+              "_lastExecutionId": "b9596453-ceec-4ea6-ad6a-c539a33abd02"
+            }
+          }
+        ]
+      },
+      {
+        "id": "c05c87a2-15bc-4748-9a7b-5b0bd05f46d8",
+        "name": "Send Feedback - Valid Minimal",
+        "request": {
+          "description": {
+            "content": "Test feedback submission with minimal required fields",
+            "type": "text/plain"
+          },
+          "url": {
+            "path": [
+              "api",
+              "send-feedback"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"to\": \"feedback@embodied-mind.org\",\n  \"subject\": \"Test Feedback - Minimal\",\n  \"text\": \"This is a minimal test feedback submission from the Postman test harness.\"\n}"
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "3ae25cd7-d6a0-458e-92f1-6d6edef741b5",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('Status code is 200', function () {",
+                "    pm.response.to.have.status(200);",
+                "});",
+                "",
+                "pm.test('Response indicates success', function () {",
+                "    var jsonData = pm.response.json();",
+                "    pm.expect(jsonData).to.have.property('success');",
+                "    pm.expect(jsonData.success).to.be.true;",
+                "});",
+                "",
+                "pm.test('Response has message', function () {",
+                "    var jsonData = pm.response.json();",
+                "    pm.expect(jsonData).to.have.property('message');",
+                "    pm.expect(jsonData.message).to.include('successfully');",
+                "});",
+                "",
+                "pm.test('Response has messageId or info', function () {",
+                "    var jsonData = pm.response.json();",
+                "    // In console mode, there might not be a messageId",
+                "    pm.expect(jsonData).to.satisfy(function(data) {",
+                "        return data.hasOwnProperty('messageId') || data.hasOwnProperty('info');",
+                "    });",
+                "});"
+              ],
+              "_lastExecutionId": "f8a9ae27-cbff-4f27-812c-2e64da2b58d2"
+            }
+          }
+        ]
+      },
+      {
+        "id": "cf16b4f6-54b5-470b-a2b2-badf0f3e6cfa",
+        "name": "Send Feedback - With CC and Attachment",
+        "request": {
+          "description": {
+            "content": "Test feedback submission with CC and JSON attachment",
+            "type": "text/plain"
+          },
+          "url": {
+            "path": [
+              "api",
+              "send-feedback"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"to\": \"feedback@embodied-mind.org\",\n  \"cc\": \"test@example.com\",\n  \"subject\": \"Test Feedback - Full\",\n  \"text\": \"FEEDBACK FORM SUBMISSION\\n========================\\n\\nSubmitted: 2026-05-13\\n\\nPERSONAL INFORMATION\\n--------------------\\nName: Test User\\nEmail: test@example.com\\n\\nTECHNICAL INFORMATION\\n---------------------\\nComputer: Windows\\nBrowser: Firefox\\n\\nCOURSE FEEDBACK\\n---------------\\nThe course was very helpful!\\n\",\n  \"attachment\": {\n    \"filename\": \"feedback.json\",\n    \"content\": \"{\\\"personal\\\":{\\\"name\\\":\\\"Test User\\\",\\\"email\\\":\\\"test@example.com\\\"},\\\"technical\\\":{\\\"computer\\\":[\\\"windows\\\"],\\\"browser\\\":[\\\"firefox\\\"]},\\\"course\\\":{\\\"helpful\\\":\\\"yes\\\"},\\\"timestamp\\\":\\\"2026-05-13T12:00:00.000Z\\\"}\"\n  }\n}"
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "38b77c81-d67c-4d85-b862-c2ab610fa77a",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('Status code is 200', function () {",
+                "    pm.response.to.have.status(200);",
+                "});",
+                "",
+                "pm.test('Response indicates success', function () {",
+                "    var jsonData = pm.response.json();",
+                "    pm.expect(jsonData.success).to.be.true;",
+                "});"
+              ],
+              "_lastExecutionId": "1df1bffe-730d-4592-ac72-790f09328d21"
+            }
+          }
+        ]
+      },
+      {
+        "id": "0dda7d1b-7726-4dc2-a390-d46fdced0bf3",
+        "name": "Send Feedback - Missing Required Fields",
+        "request": {
+          "description": {
+            "content": "Test validation - missing required 'to' and 'text' fields",
+            "type": "text/plain"
+          },
+          "url": {
+            "path": [
+              "api",
+              "send-feedback"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"subject\": \"Test Feedback\"\n}"
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "5b1f2b34-8369-4f84-af00-58c4550c2223",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('Status code is 400', function () {",
+                "    pm.response.to.have.status(400);",
+                "});",
+                "",
+                "pm.test('Response indicates failure', function () {",
+                "    var jsonData = pm.response.json();",
+                "    pm.expect(jsonData.success).to.be.false;",
+                "});",
+                "",
+                "pm.test('Error message mentions missing fields', function () {",
+                "    var jsonData = pm.response.json();",
+                "    pm.expect(jsonData.error).to.include('required');",
+                "});"
+              ],
+              "_lastExecutionId": "a1efb73d-a314-49e0-a9de-8a9408fb9444"
+            }
+          }
+        ]
+      },
+      {
+        "id": "540ed1cc-530e-4eb0-8fed-96b28efecc92",
+        "name": "Send Feedback - Invalid Email",
+        "request": {
+          "description": {
+            "content": "Test validation - invalid email address format",
+            "type": "text/plain"
+          },
+          "url": {
+            "path": [
+              "api",
+              "send-feedback"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"to\": \"not-an-email\",\n  \"subject\": \"Test Feedback\",\n  \"text\": \"This should fail validation.\"\n}"
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "5f181550-d88a-442f-af88-0a21fcc3a063",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('Status code is 400', function () {",
+                "    pm.response.to.have.status(400);",
+                "});",
+                "",
+                "pm.test('Response indicates failure', function () {",
+                "    var jsonData = pm.response.json();",
+                "    pm.expect(jsonData.success).to.be.false;",
+                "});",
+                "",
+                "pm.test('Error message mentions invalid email', function () {",
+                "    var jsonData = pm.response.json();",
+                "    pm.expect(jsonData.error).to.include('email');",
+                "});"
+              ],
+              "_lastExecutionId": "79b1c9f1-a387-43aa-ab9e-6b8b7c7d90b3"
+            }
+          }
+        ]
+      },
+      {
+        "id": "af9f5e97-3519-4e7a-9152-f777ed84ec46",
+        "name": "Invalid Endpoint - 404",
+        "request": {
+          "description": {
+            "content": "Test 404 handling for non-existent endpoints",
+            "type": "text/plain"
+          },
+          "url": {
+            "path": [
+              "api",
+              "nonexistent"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "2a2b8a89-eba2-4d9e-bd3c-a07a503772fc",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('Status code is 404', function () {",
+                "    pm.response.to.have.status(404);",
+                "});",
+                "",
+                "pm.test('Response indicates failure', function () {",
+                "    var jsonData = pm.response.json();",
+                "    pm.expect(jsonData.success).to.be.false;",
+                "});",
+                "",
+                "pm.test('Error message mentions not found', function () {",
+                "    var jsonData = pm.response.json();",
+                "    pm.expect(jsonData.error).to.match(/not found/i);",
+                "});"
+              ],
+              "_lastExecutionId": "d05fd556-5376-4152-a731-302e889d41e3"
+            }
+          }
+        ]
+      }
+    ],
+    "event": [],
+    "variable": [
+      {
+        "type": "string",
+        "value": "http://localhost:3000",
+        "key": "baseUrl"
+      }
+    ],
+    "info": {
+      "_postman_id": "a7f2cb57-3b5e-4026-9a01-6b707130bbd6",
+      "name": "Web Witchcraft and Wizardry API",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+      "description": {
+        "content": "API endpoints for the Web Witchcraft and Wizardry website",
+        "type": "text/plain"
+      }
+    }
+  },
+  "environment": {
+    "_": {
+      "postman_variable_scope": "environment"
+    },
+    "id": "api-test-environment",
+    "name": "API Test Environment",
+    "values": [
+      {
+        "type": "any",
+        "value": "http://localhost:3000",
+        "key": "baseUrl"
+      },
+      {
+        "type": "any",
+        "value": "feedback@embodied-mind.org",
+        "key": "testEmail"
+      }
+    ]
+  },
+  "globals": {
+    "id": "748e27d9-a365-4fcd-bb46-a9815a7766b9",
+    "values": []
+  },
+  "run": {
+    "stats": {
+      "iterations": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "items": {
+        "total": 6,
+        "pending": 0,
+        "failed": 0
+      },
+      "scripts": {
+        "total": 6,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequests": {
+        "total": 6,
+        "pending": 0,
+        "failed": 0
+      },
+      "requests": {
+        "total": 6,
+        "pending": 0,
+        "failed": 0
+      },
+      "tests": {
+        "total": 6,
+        "pending": 0,
+        "failed": 0
+      },
+      "assertions": {
+        "total": 20,
+        "pending": 0,
+        "failed": 0
+      },
+      "testScripts": {
+        "total": 6,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequestScripts": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      }
+    },
+    "timings": {
+      "responseAverage": 340.3333333333333,
+      "responseMin": 3,
+      "responseMax": 1107,
+      "responseSd": 474.3383696148656,
+      "dnsAverage": 0,
+      "dnsMin": 0,
+      "dnsMax": 0,
+      "dnsSd": 0,
+      "firstByteAverage": 0,
+      "firstByteMin": 0,
+      "firstByteMax": 0,
+      "firstByteSd": 0,
+      "started": 1778662573391,
+      "completed": 1778662575557
+    },
+    "executions": [
+      {
+        "cursor": {
+          "position": 0,
+          "iteration": 0,
+          "length": 6,
+          "cycles": 1,
+          "empty": false,
+          "eof": false,
+          "bof": true,
+          "cr": false,
+          "ref": "f0367957-7e87-4db6-b061-dac3632e7f14",
+          "httpRequestId": "c394b6ea-9358-44b8-b6c6-f4f29f97f2cf"
+        },
+        "item": {
+          "id": "744ae686-44fd-475b-a88a-10e26ccb78e0",
+          "name": "Health Check",
+          "request": {
+            "description": {
+              "content": "Health check endpoint to verify the API server is running",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "2ce7118f-f91a-4579-b3ce-e1641b4507d8",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has correct structure', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('status');",
+                  "    pm.expect(jsonData).to.have.property('timestamp');",
+                  "    pm.expect(jsonData).to.have.property('uptime');",
+                  "});",
+                  "",
+                  "pm.test('Status is ok', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql('ok');",
+                  "});",
+                  "",
+                  "pm.test('Timestamp is valid ISO 8601', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.timestamp).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$/);",
+                  "});",
+                  "",
+                  "pm.test('Uptime is a positive number', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.uptime).to.be.a('number');",
+                  "    pm.expect(jsonData.uptime).to.be.above(0);",
+                  "});"
+                ],
+                "_lastExecutionId": "b9596453-ceec-4ea6-ad6a-c539a33abd02"
+              }
+            }
+          ]
+        },
+        "request": {
+          "description": {
+            "content": "Health check endpoint to verify the API server is running",
+            "type": "text/plain"
+          },
+          "url": {
+            "protocol": "http",
+            "port": "3000",
+            "path": [
+              "api",
+              "health"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "d6f9d372-bfc6-4acb-b6a1-7b86e286792a",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:3000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "fd6eaf68-23f1-4638-8959-42355873cdea",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "Access-Control-Allow-Credentials",
+              "value": "true"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "76"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"4c-xmDCCW0l7dYgZXTHbbuWyyIh8vo\""
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 13 May 2026 08:56:13 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              115,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              34,
+              111,
+              107,
+              34,
+              44,
+              34,
+              116,
+              105,
+              109,
+              101,
+              115,
+              116,
+              97,
+              109,
+              112,
+              34,
+              58,
+              34,
+              50,
+              48,
+              50,
+              54,
+              45,
+              48,
+              53,
+              45,
+              49,
+              51,
+              84,
+              48,
+              56,
+              58,
+              53,
+              54,
+              58,
+              49,
+              51,
+              46,
+              52,
+              49,
+              53,
+              90,
+              34,
+              44,
+              34,
+              117,
+              112,
+              116,
+              105,
+              109,
+              101,
+              34,
+              58,
+              52,
+              54,
+              46,
+              54,
+              57,
+              53,
+              55,
+              48,
+              50,
+              48,
+              56,
+              57,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 21,
+          "responseSize": 76
+        },
+        "id": "744ae686-44fd-475b-a88a-10e26ccb78e0",
+        "assertions": [
+          {
+            "assertion": "Status code is 200",
+            "skipped": false
+          },
+          {
+            "assertion": "Response has correct structure",
+            "skipped": false
+          },
+          {
+            "assertion": "Status is ok",
+            "skipped": false
+          },
+          {
+            "assertion": "Timestamp is valid ISO 8601",
+            "skipped": false
+          },
+          {
+            "assertion": "Uptime is a positive number",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "e5d9d8fd-5e49-4c9a-9eb1-7214dfdac326",
+          "length": 6,
+          "cycles": 1,
+          "position": 1,
+          "iteration": 0,
+          "httpRequestId": "9d5f3173-c23b-417d-8e34-432c4e28e904"
+        },
+        "item": {
+          "id": "c05c87a2-15bc-4748-9a7b-5b0bd05f46d8",
+          "name": "Send Feedback - Valid Minimal",
+          "request": {
+            "description": {
+              "content": "Test feedback submission with minimal required fields",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "send-feedback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": \"feedback@embodied-mind.org\",\n  \"subject\": \"Test Feedback - Minimal\",\n  \"text\": \"This is a minimal test feedback submission from the Postman test harness.\"\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "3ae25cd7-d6a0-458e-92f1-6d6edef741b5",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response indicates success', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('success');",
+                  "    pm.expect(jsonData.success).to.be.true;",
+                  "});",
+                  "",
+                  "pm.test('Response has message', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('message');",
+                  "    pm.expect(jsonData.message).to.include('successfully');",
+                  "});",
+                  "",
+                  "pm.test('Response has messageId or info', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    // In console mode, there might not be a messageId",
+                  "    pm.expect(jsonData).to.satisfy(function(data) {",
+                  "        return data.hasOwnProperty('messageId') || data.hasOwnProperty('info');",
+                  "    });",
+                  "});"
+                ],
+                "_lastExecutionId": "f8a9ae27-cbff-4f27-812c-2e64da2b58d2"
+              }
+            }
+          ]
+        },
+        "request": {
+          "description": {
+            "content": "Test feedback submission with minimal required fields",
+            "type": "text/plain"
+          },
+          "url": {
+            "protocol": "http",
+            "port": "3000",
+            "path": [
+              "api",
+              "send-feedback"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "51b65f11-8e44-47c9-98bb-fd531d6ac677",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:3000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "167",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"to\": \"feedback@embodied-mind.org\",\n  \"subject\": \"Test Feedback - Minimal\",\n  \"text\": \"This is a minimal test feedback submission from the Postman test harness.\"\n}"
+          }
+        },
+        "response": {
+          "id": "e56cf5f2-c42c-4b08-9193-a6c1b6c02400",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "Access-Control-Allow-Credentials",
+              "value": "true"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "126"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"7e-CkS9RJyahFPJQ+QWQEhCmwZVIhY\""
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 13 May 2026 08:56:14 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              115,
+              117,
+              99,
+              99,
+              101,
+              115,
+              115,
+              34,
+              58,
+              116,
+              114,
+              117,
+              101,
+              44,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              34,
+              70,
+              101,
+              101,
+              100,
+              98,
+              97,
+              99,
+              107,
+              32,
+              115,
+              101,
+              110,
+              116,
+              32,
+              115,
+              117,
+              99,
+              99,
+              101,
+              115,
+              115,
+              102,
+              117,
+              108,
+              108,
+              121,
+              34,
+              44,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              73,
+              100,
+              34,
+              58,
+              34,
+              60,
+              99,
+              100,
+              57,
+              57,
+              55,
+              100,
+              98,
+              57,
+              45,
+              53,
+              55,
+              56,
+              52,
+              45,
+              56,
+              98,
+              49,
+              98,
+              45,
+              102,
+              56,
+              57,
+              55,
+              45,
+              98,
+              54,
+              57,
+              55,
+              99,
+              100,
+              100,
+              53,
+              102,
+              101,
+              98,
+              48,
+              64,
+              101,
+              109,
+              98,
+              111,
+              100,
+              105,
+              101,
+              100,
+              45,
+              109,
+              105,
+              110,
+              100,
+              46,
+              111,
+              114,
+              103,
+              62,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 1107,
+          "responseSize": 126
+        },
+        "id": "c05c87a2-15bc-4748-9a7b-5b0bd05f46d8",
+        "assertions": [
+          {
+            "assertion": "Status code is 200",
+            "skipped": false
+          },
+          {
+            "assertion": "Response indicates success",
+            "skipped": false
+          },
+          {
+            "assertion": "Response has message",
+            "skipped": false
+          },
+          {
+            "assertion": "Response has messageId or info",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "680341de-20c2-4231-bfcf-7fc763eaa338",
+          "length": 6,
+          "cycles": 1,
+          "position": 2,
+          "iteration": 0,
+          "httpRequestId": "1353125c-bf91-4266-9991-f241ab43b751"
+        },
+        "item": {
+          "id": "cf16b4f6-54b5-470b-a2b2-badf0f3e6cfa",
+          "name": "Send Feedback - With CC and Attachment",
+          "request": {
+            "description": {
+              "content": "Test feedback submission with CC and JSON attachment",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "send-feedback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": \"feedback@embodied-mind.org\",\n  \"cc\": \"test@example.com\",\n  \"subject\": \"Test Feedback - Full\",\n  \"text\": \"FEEDBACK FORM SUBMISSION\\n========================\\n\\nSubmitted: 2026-05-13\\n\\nPERSONAL INFORMATION\\n--------------------\\nName: Test User\\nEmail: test@example.com\\n\\nTECHNICAL INFORMATION\\n---------------------\\nComputer: Windows\\nBrowser: Firefox\\n\\nCOURSE FEEDBACK\\n---------------\\nThe course was very helpful!\\n\",\n  \"attachment\": {\n    \"filename\": \"feedback.json\",\n    \"content\": \"{\\\"personal\\\":{\\\"name\\\":\\\"Test User\\\",\\\"email\\\":\\\"test@example.com\\\"},\\\"technical\\\":{\\\"computer\\\":[\\\"windows\\\"],\\\"browser\\\":[\\\"firefox\\\"]},\\\"course\\\":{\\\"helpful\\\":\\\"yes\\\"},\\\"timestamp\\\":\\\"2026-05-13T12:00:00.000Z\\\"}\"\n  }\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "38b77c81-d67c-4d85-b862-c2ab610fa77a",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response indicates success', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.success).to.be.true;",
+                  "});"
+                ],
+                "_lastExecutionId": "1df1bffe-730d-4592-ac72-790f09328d21"
+              }
+            }
+          ]
+        },
+        "request": {
+          "description": {
+            "content": "Test feedback submission with CC and JSON attachment",
+            "type": "text/plain"
+          },
+          "url": {
+            "protocol": "http",
+            "port": "3000",
+            "path": [
+              "api",
+              "send-feedback"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "1acfdc4c-4d8b-4457-a6e4-f8b55e5b426c",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:3000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "724",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"to\": \"feedback@embodied-mind.org\",\n  \"cc\": \"test@example.com\",\n  \"subject\": \"Test Feedback - Full\",\n  \"text\": \"FEEDBACK FORM SUBMISSION\\n========================\\n\\nSubmitted: 2026-05-13\\n\\nPERSONAL INFORMATION\\n--------------------\\nName: Test User\\nEmail: test@example.com\\n\\nTECHNICAL INFORMATION\\n---------------------\\nComputer: Windows\\nBrowser: Firefox\\n\\nCOURSE FEEDBACK\\n---------------\\nThe course was very helpful!\\n\",\n  \"attachment\": {\n    \"filename\": \"feedback.json\",\n    \"content\": \"{\\\"personal\\\":{\\\"name\\\":\\\"Test User\\\",\\\"email\\\":\\\"test@example.com\\\"},\\\"technical\\\":{\\\"computer\\\":[\\\"windows\\\"],\\\"browser\\\":[\\\"firefox\\\"]},\\\"course\\\":{\\\"helpful\\\":\\\"yes\\\"},\\\"timestamp\\\":\\\"2026-05-13T12:00:00.000Z\\\"}\"\n  }\n}"
+          }
+        },
+        "response": {
+          "id": "88e12035-c10a-41ce-8944-0818809c0718",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "Access-Control-Allow-Credentials",
+              "value": "true"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "126"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"7e-tfRgatdbxvrmYijpQ9J6ZoeC6E8\""
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 13 May 2026 08:56:15 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              115,
+              117,
+              99,
+              99,
+              101,
+              115,
+              115,
+              34,
+              58,
+              116,
+              114,
+              117,
+              101,
+              44,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              34,
+              70,
+              101,
+              101,
+              100,
+              98,
+              97,
+              99,
+              107,
+              32,
+              115,
+              101,
+              110,
+              116,
+              32,
+              115,
+              117,
+              99,
+              99,
+              101,
+              115,
+              115,
+              102,
+              117,
+              108,
+              108,
+              121,
+              34,
+              44,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              73,
+              100,
+              34,
+              58,
+              34,
+              60,
+              57,
+              98,
+              48,
+              57,
+              51,
+              49,
+              100,
+              50,
+              45,
+              48,
+              101,
+              101,
+              98,
+              45,
+              48,
+              50,
+              57,
+              56,
+              45,
+              52,
+              56,
+              55,
+              97,
+              45,
+              100,
+              52,
+              98,
+              101,
+              50,
+              97,
+              52,
+              102,
+              98,
+              97,
+              49,
+              57,
+              64,
+              101,
+              109,
+              98,
+              111,
+              100,
+              105,
+              101,
+              100,
+              45,
+              109,
+              105,
+              110,
+              100,
+              46,
+              111,
+              114,
+              103,
+              62,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 905,
+          "responseSize": 126
+        },
+        "id": "cf16b4f6-54b5-470b-a2b2-badf0f3e6cfa",
+        "assertions": [
+          {
+            "assertion": "Status code is 200",
+            "skipped": false
+          },
+          {
+            "assertion": "Response indicates success",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "53a570ff-bd55-4a3c-a84b-30459d127421",
+          "length": 6,
+          "cycles": 1,
+          "position": 3,
+          "iteration": 0,
+          "httpRequestId": "dc49e613-debf-438b-be8c-adc226c64cee"
+        },
+        "item": {
+          "id": "0dda7d1b-7726-4dc2-a390-d46fdced0bf3",
+          "name": "Send Feedback - Missing Required Fields",
+          "request": {
+            "description": {
+              "content": "Test validation - missing required 'to' and 'text' fields",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "send-feedback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subject\": \"Test Feedback\"\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5b1f2b34-8369-4f84-af00-58c4550c2223",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 400', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test('Response indicates failure', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.success).to.be.false;",
+                  "});",
+                  "",
+                  "pm.test('Error message mentions missing fields', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.error).to.include('required');",
+                  "});"
+                ],
+                "_lastExecutionId": "a1efb73d-a314-49e0-a9de-8a9408fb9444"
+              }
+            }
+          ]
+        },
+        "request": {
+          "description": {
+            "content": "Test validation - missing required 'to' and 'text' fields",
+            "type": "text/plain"
+          },
+          "url": {
+            "protocol": "http",
+            "port": "3000",
+            "path": [
+              "api",
+              "send-feedback"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "007efcf2-b649-4b25-b765-4507dc07cecc",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:3000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "32",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"subject\": \"Test Feedback\"\n}"
+          }
+        },
+        "response": {
+          "id": "c9db163a-0864-4e24-a521-a057542f30cb",
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "Access-Control-Allow-Credentials",
+              "value": "true"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "70"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"46-0Xxr4D8cANkdZBzQx71E70pEYYg\""
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 13 May 2026 08:56:15 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              115,
+              117,
+              99,
+              99,
+              101,
+              115,
+              115,
+              34,
+              58,
+              102,
+              97,
+              108,
+              115,
+              101,
+              44,
+              34,
+              101,
+              114,
+              114,
+              111,
+              114,
+              34,
+              58,
+              34,
+              77,
+              105,
+              115,
+              115,
+              105,
+              110,
+              103,
+              32,
+              114,
+              101,
+              113,
+              117,
+              105,
+              114,
+              101,
+              100,
+              32,
+              102,
+              105,
+              101,
+              108,
+              100,
+              115,
+              58,
+              32,
+              116,
+              111,
+              44,
+              32,
+              115,
+              117,
+              98,
+              106,
+              101,
+              99,
+              116,
+              44,
+              32,
+              116,
+              101,
+              120,
+              116,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 3,
+          "responseSize": 70
+        },
+        "id": "0dda7d1b-7726-4dc2-a390-d46fdced0bf3",
+        "assertions": [
+          {
+            "assertion": "Status code is 400",
+            "skipped": false
+          },
+          {
+            "assertion": "Response indicates failure",
+            "skipped": false
+          },
+          {
+            "assertion": "Error message mentions missing fields",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "f26a1b8c-b7f2-4514-92f9-7fd523893a8c",
+          "length": 6,
+          "cycles": 1,
+          "position": 4,
+          "iteration": 0,
+          "httpRequestId": "ebf7bbb5-2014-4c4f-a502-27366bda5f75"
+        },
+        "item": {
+          "id": "540ed1cc-530e-4eb0-8fed-96b28efecc92",
+          "name": "Send Feedback - Invalid Email",
+          "request": {
+            "description": {
+              "content": "Test validation - invalid email address format",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "send-feedback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": \"not-an-email\",\n  \"subject\": \"Test Feedback\",\n  \"text\": \"This should fail validation.\"\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5f181550-d88a-442f-af88-0a21fcc3a063",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 400', function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test('Response indicates failure', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.success).to.be.false;",
+                  "});",
+                  "",
+                  "pm.test('Error message mentions invalid email', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.error).to.include('email');",
+                  "});"
+                ],
+                "_lastExecutionId": "79b1c9f1-a387-43aa-ab9e-6b8b7c7d90b3"
+              }
+            }
+          ]
+        },
+        "request": {
+          "description": {
+            "content": "Test validation - invalid email address format",
+            "type": "text/plain"
+          },
+          "url": {
+            "protocol": "http",
+            "port": "3000",
+            "path": [
+              "api",
+              "send-feedback"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "9d3664e2-526d-40af-ab16-ec891851ed86",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:3000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "98",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"to\": \"not-an-email\",\n  \"subject\": \"Test Feedback\",\n  \"text\": \"This should fail validation.\"\n}"
+          }
+        },
+        "response": {
+          "id": "26856b15-de6a-4299-bf58-5bbb33778df6",
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "Access-Control-Allow-Credentials",
+              "value": "true"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "59"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"3b-VqIl4kV2DZQPw1rfk+jI50UU2MA\""
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 13 May 2026 08:56:15 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              115,
+              117,
+              99,
+              99,
+              101,
+              115,
+              115,
+              34,
+              58,
+              102,
+              97,
+              108,
+              115,
+              101,
+              44,
+              34,
+              101,
+              114,
+              114,
+              111,
+              114,
+              34,
+              58,
+              34,
+              73,
+              110,
+              118,
+              97,
+              108,
+              105,
+              100,
+              32,
+              114,
+              101,
+              99,
+              105,
+              112,
+              105,
+              101,
+              110,
+              116,
+              32,
+              101,
+              109,
+              97,
+              105,
+              108,
+              32,
+              97,
+              100,
+              100,
+              114,
+              101,
+              115,
+              115,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 3,
+          "responseSize": 59
+        },
+        "id": "540ed1cc-530e-4eb0-8fed-96b28efecc92",
+        "assertions": [
+          {
+            "assertion": "Status code is 400",
+            "skipped": false
+          },
+          {
+            "assertion": "Response indicates failure",
+            "skipped": false
+          },
+          {
+            "assertion": "Error message mentions invalid email",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "1d230a5c-069e-47ed-856b-33bb9a17ae9c",
+          "length": 6,
+          "cycles": 1,
+          "position": 5,
+          "iteration": 0,
+          "httpRequestId": "ccaa354e-36c4-40c5-976a-893891240b44"
+        },
+        "item": {
+          "id": "af9f5e97-3519-4e7a-9152-f777ed84ec46",
+          "name": "Invalid Endpoint - 404",
+          "request": {
+            "description": {
+              "content": "Test 404 handling for non-existent endpoints",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "nonexistent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "2a2b8a89-eba2-4d9e-bd3c-a07a503772fc",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status code is 404', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test('Response indicates failure', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.success).to.be.false;",
+                  "});",
+                  "",
+                  "pm.test('Error message mentions not found', function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.error).to.match(/not found/i);",
+                  "});"
+                ],
+                "_lastExecutionId": "d05fd556-5376-4152-a731-302e889d41e3"
+              }
+            }
+          ]
+        },
+        "request": {
+          "description": {
+            "content": "Test 404 handling for non-existent endpoints",
+            "type": "text/plain"
+          },
+          "url": {
+            "protocol": "http",
+            "port": "3000",
+            "path": [
+              "api",
+              "nonexistent"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "41aa417b-e367-4932-9dbf-0b924054af98",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:3000",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "4d07364e-144f-4ea5-a80c-e588f3f22cbf",
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Vary",
+              "value": "Origin"
+            },
+            {
+              "key": "Access-Control-Allow-Credentials",
+              "value": "true"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "46"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"2e-3kScnk993La6oVf29j3p04z6SVM\""
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 13 May 2026 08:56:15 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              115,
+              117,
+              99,
+              99,
+              101,
+              115,
+              115,
+              34,
+              58,
+              102,
+              97,
+              108,
+              115,
+              101,
+              44,
+              34,
+              101,
+              114,
+              114,
+              111,
+              114,
+              34,
+              58,
+              34,
+              69,
+              110,
+              100,
+              112,
+              111,
+              105,
+              110,
+              116,
+              32,
+              110,
+              111,
+              116,
+              32,
+              102,
+              111,
+              117,
+              110,
+              100,
+              34,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 3,
+          "responseSize": 46
+        },
+        "id": "af9f5e97-3519-4e7a-9152-f777ed84ec46",
+        "assertions": [
+          {
+            "assertion": "Status code is 404",
+            "skipped": false
+          },
+          {
+            "assertion": "Response indicates failure",
+            "skipped": false
+          },
+          {
+            "assertion": "Error message mentions not found",
+            "skipped": false
+          }
+        ]
+      }
+    ],
+    "transfers": {
+      "responseTotal": 503
+    },
+    "failures": [],
+    "error": null
+  }
+}

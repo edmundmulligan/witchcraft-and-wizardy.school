@@ -1,0 +1,19 @@
+{
+  "id": "api-test-environment",
+  "name": "API Test Environment",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "testEmail",
+      "value": "feedback@embodied-mind.org",
+      "type": "default",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment"
+}
