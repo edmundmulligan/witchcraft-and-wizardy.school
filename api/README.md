@@ -7,7 +7,7 @@ Node.js/Express API server for Web Witchcraft and Wizardry website.
 - **Feedback Form Submissions**: Receives and emails feedback from the website
 - **Email Service**: Sends formatted emails with JSON attachments
 - **CORS Support**: Configured for local development and production domains
-- **Input Validation**: Validates and sanitizes all incoming data
+- **Input Validation**: Validates and sanitises all incoming data
 - **Error Handling**: Comprehensive error handling with appropriate status codes
 - **Health Checks**: Monitoring endpoint for server status
 
@@ -147,7 +147,7 @@ Rate limiting is configured to prevent abuse:
 All incoming data is validated:
 - Email addresses must be valid format
 - Required fields are enforced
-- Data is sanitized to prevent XSS
+- Data is sanitised to prevent XSS
 
 ### CORS
 

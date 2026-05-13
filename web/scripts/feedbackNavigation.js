@@ -125,9 +125,8 @@
 
                     <!-- Progress Bar with Wand Icons -->
                     <div class="feedback-progress-container">
-                        <div id="progressBar${suffix}" class="feedback-progress-bar" role="progressbar" 
-                             aria-valuenow="1" aria-valuemin="1" aria-valuemax="${maxSections}" 
-                             aria-label="Section progress">
+                        <div id="progressBar${suffix}" class="feedback-progress-bar" 
+                             aria-label="Section progress navigation">
                         </div>
                     </div>
 
@@ -338,7 +337,6 @@
         const progressPercent = ((this.currentSectionIndex + 1) / this.totalSections) * 100;
         progressBars.forEach((progressBar) => {
           progressBar.style.setProperty('--progress-percent', `${progressPercent}%`);
-          progressBar.setAttribute('aria-valuenow', this.currentSectionIndex + 1);
         });
       }
 
