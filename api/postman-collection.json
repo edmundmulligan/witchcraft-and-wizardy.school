@@ -100,8 +100,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"to\": \"feedback@embodied-mind.org\",\n  \"subject\": \"Test Feedback - Minimal\",\n  \"text\": \"This is a minimal test feedback submission from the Postman test harness.\"\n}"
-        },
+           "raw": "{\n  \"to\": \"{{testEmail}}\",\n  \"subject\": \"Test Feedback - Minimal\",\n  \"text\": \"This is a minimal test feedback submission from the Postman test harness.\"\n}"        },
         "url": {
           "raw": "{{baseUrl}}/api/send-feedback",
           "host": ["{{baseUrl}}"],
@@ -141,8 +140,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"to\": \"feedback@embodied-mind.org\",\n  \"cc\": \"test@example.com\",\n  \"subject\": \"Test Feedback - Full\",\n  \"text\": \"FEEDBACK FORM SUBMISSION\\n========================\\n\\nSubmitted: 2026-05-13\\n\\nPERSONAL INFORMATION\\n--------------------\\nName: Test User\\nEmail: test@example.com\\n\\nTECHNICAL INFORMATION\\n---------------------\\nComputer: Windows\\nBrowser: Firefox\\n\\nCOURSE FEEDBACK\\n---------------\\nThe course was very helpful!\\n\",\n  \"attachment\": {\n    \"filename\": \"feedback.json\",\n    \"content\": \"{\\\"personal\\\":{\\\"name\\\":\\\"Test User\\\",\\\"email\\\":\\\"test@example.com\\\"},\\\"technical\\\":{\\\"computer\\\":[\\\"windows\\\"],\\\"browser\\\":[\\\"firefox\\\"]},\\\"course\\\":{\\\"helpful\\\":\\\"yes\\\"},\\\"timestamp\\\":\\\"2026-05-13T12:00:00.000Z\\\"}\"\n  }\n}"
-        },
+           "raw": "{\n  \"to\": \"feedback@embodied-mind.org\",\n  \"cc\": \"{{feedbackCc}}\",\n  \"subject\": \"Test Feedback - Full\",\n  \"text\": \"FEEDBACK FORM SUBMISSION\\n========================\\n\\nSubmitted: 2026-05-13\\n\\nPERSONAL INFORMATION\\n--------------------\\nName: Test User\\nEmail: test@example.com\\n\\nTECHNICAL INFORMATION\\n---------------------\\nComputer: Windows\\nBrowser: Firefox\\n\\nCOURSE FEEDBACK\\n---------------\\nThe course was very helpful!\\n\",\n  \"attachment\": {\n    \"filename\": \"feedback.json\",\n    \"content\": \"{\\\"personal\\\":{\\\"name\\\":\\\"Test User\\\",\\\"email\\\":\\\"test@example.com\\\"},\\\"technical\\\":{\\\"computer\\\":[\\\"windows\\\"],\\\"browser\\\":[\\\"firefox\\\"]},\\\"course\\\":{\\\"helpful\\\":\\\"yes\\\"},\\\"timestamp\\\":\\\"2026-05-13T12:00:00.000Z\\\"}\"\n  }\n}"        },
         "url": {
           "raw": "{{baseUrl}}/api/send-feedback",
           "host": ["{{baseUrl}}"],

@@ -160,11 +160,17 @@ CORS is configured to allow requests from:
 
 ### Automated API Tests
 
-Run the full Postman test suite:
+**Quick Start:**
 
 ```bash
+# Terminal 1: Start API server in development mode (logs emails to console)
+NODE_ENV=development EMAIL_PROVIDER=console npm run api
+
+# Terminal 2: Run tests
 npm run tests:api
 ```
+
+**Note:** Tests require the API server to be running with appropriate environment variables. Using `NODE_ENV=development` and `EMAIL_PROVIDER=console` allows testing without configuring SMTP credentials.
 
 This runs automated tests covering:
 - Health check endpoint
@@ -173,7 +179,7 @@ This runs automated tests covering:
 - Error handling
 - 404 responses
 
-See [TESTING.md](TESTING.md) for detailed testing documentation.
+See [TESTING.md](TESTING.md) for detailed testing documentation, including environment configuration and troubleshooting.
 
 ### Manual Testing
 

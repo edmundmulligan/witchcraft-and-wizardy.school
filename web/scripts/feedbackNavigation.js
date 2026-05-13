@@ -231,12 +231,13 @@
      */
     setupProgressBarListeners() {
       const wandIcons = document.querySelectorAll('.feedback-wand-icon');
-      wandIcons.forEach((wand, index) => {
-        wand.addEventListener('click', () => this.goToSection(index));
+      wandIcons.forEach((wand) => {
+        const sectionIndex = parseInt(wand.getAttribute('data-section'), 10);
+        wand.addEventListener('click', () => this.goToSection(sectionIndex));
         wand.addEventListener('keydown', (event) => {
           if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
-            this.goToSection(index);
+            this.goToSection(sectionIndex);
           }
         });
       });
@@ -341,18 +342,19 @@
         });
       }
 
-      // Update wand icon states
-      wandIcons.forEach((wand, index) => {
+      // Update wand icon states based on data-section attribute
+      wandIcons.forEach((wand) => {
+        const sectionIndex = parseInt(wand.getAttribute('data-section'), 10);
         wand.classList.remove('current', 'previous', 'next');
 
-        if (index < this.currentSectionIndex) {
+        if (sectionIndex < this.currentSectionIndex) {
           wand.classList.add('previous');
           const img = wand.querySelector('img');
           if (img) {
             img.src = '../images/fontawesome/wand-magic-sparkles-sharp-duotone-regular-full.svg';
             img.alt = 'Completed section';
           }
-        } else if (index === this.currentSectionIndex) {
+        } else if (sectionIndex === this.currentSectionIndex) {
           wand.classList.add('current');
           const img = wand.querySelector('img');
           if (img) {

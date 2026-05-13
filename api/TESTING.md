@@ -2,6 +2,20 @@
 
 This directory contains a Postman collection for automated testing of the API endpoints.
 
+## Quick Start
+
+**TL;DR** - Run these commands to test the API:
+
+```bash
+# Terminal 1: Start API server (logs emails to console, doesn't send real emails)
+NODE_ENV=development EMAIL_PROVIDER=console npm run api
+
+# Terminal 2: Run all tests
+npm run tests:api
+```
+
+For detailed setup instructions, see below.
+
 ## Files
 
 - **postman-collection.json** - Postman collection with all API tests
@@ -18,18 +32,74 @@ Newman is the command-line runner for Postman collections. It's included as a de
 npm install
 ```
 
-### 2. Start the API Server
+### 2. Configure Environment Variables
 
-The API server must be running before executing tests:
+**For testing (recommended)**, create a `.env` file in the project root with development settings:
+
+```bash
+# Copy the example file (recommended)
+cp .env.example .env
+```
+
+The `.env.example` file is already configured for development/testing mode. It contains:
+
+```bash
+# .env file for testing
+NODE_ENV=development
+EMAIL_PROVIDER=console
+```
+
+This configuration logs emails to the console instead of sending real emails.
+
+**Alternative:** Set environment variables inline when starting the server (see step 3).
+
+**For production testing**, configure SMTP settings:
+
+```bash
+# .env file for production testing
+NODE_ENV=production
+EMAIL_PROVIDER=smtp
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-app-password
+EMAIL_FROM=noreply@embodied-mind.org
+```
+
+⚠️ **Note:** Production mode will send real emails. Only use for production deployment testing.
+
+### 3. Start the API Server
+
+The API server must be running before executing tests.
+
+**Option A: Using .env file (recommended)**
 
 ```bash
 # In a separate terminal
 npm run api
 ```
 
+**Option B: Inline environment variables**
+
+```bash
+# In a separate terminal
+NODE_ENV=development EMAIL_PROVIDER=console npm run api
+```
+
 This starts the server on `http://localhost:3000`.
 
 ## Running Tests
+
+### Quick Start (Complete Workflow)
+
+```bash
+# Terminal 1: Start API server in development mode
+NODE_ENV=development EMAIL_PROVIDER=console npm run api
+
+# Terminal 2: Run tests
+npm run tests:api
+```
 
 ### Command Line
 
@@ -38,6 +108,10 @@ Run all API tests:
 ```bash
 npm run tests:api
 ```
+
+**Prerequisites:**
+- API server must be running (see Setup step 3)
+- Environment variables must be configured (see Setup step 2)
 
 This will:
 - Execute all requests in the collection
@@ -184,6 +258,31 @@ jobs:
 
 ## Troubleshooting
 
+### Email Service Not Configured
+
+If the API server fails to start with:
+
+```
+❌ Missing email configuration. Check your .env file.
+Error: Email service not configured properly
+```
+
+**Solution:** Set the required environment variables before starting the server:
+
+```bash
+# For testing (recommended)
+NODE_ENV=development EMAIL_PROVIDER=console npm run api
+```
+
+Or create a `.env` file in the project root:
+
+```bash
+NODE_ENV=development
+EMAIL_PROVIDER=console
+```
+
+See the [Environment Variables](#2-configure-environment-variables) section above for details.
+
 ### Server Not Running
 
 If tests fail with connection errors:
@@ -214,8 +313,8 @@ newman run api/postman-collection.json \
 ```
 
 ### Rate Limiting
-
-The API has rate limiting. If you run tests too frequently, you may get 429 errors. Wait 15 minutes or increase the rate limit in the API configuration.
+	
+The current API server configuration does not enable built-in rate limiting. If you receive `429 Too Many Requests` responses while testing, check whether a proxy, gateway, or hosting environment in front of the API is enforcing request limits.
 
 ## Documentation
 

@@ -20,7 +20,7 @@
     "tests:full": "node bin/run-tests-by-folder.js . -x lessons diagnostics",
     "tests:quick": "node bin/run-tests-by-folder.js . -q -x lessons diagnostics",
     "tests:wave": "node bin/run-tests-by-folder.js . -w -x lessons diagnostics",
-    "tests:api": "newman run api/postman-collection.json -e api/postman-environment.json --color on --reporters cli,json --reporter-json-export api/test-results.json"
+    "tests:api": "newman run api/postman-collection.json -e api/postman-environment.json --color on --reporters cli,json --reporter-json-export api/diagnostics/test-results/postman.json"
   },
   "keywords": [
     "html",
