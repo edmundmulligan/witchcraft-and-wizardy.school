@@ -402,6 +402,12 @@ function getAllFiles(dir, extensions, excludeList, rootDir, stats) {
     if (stat && stat.isDirectory()) {
       // Skip node_modules, .git, diagnostics/test-results, etc.
       if (!['node_modules', '.git', 'diagnostics', 'artwork'].includes(file)) {
+        // Check if directory matches exclude list
+        const relativePath = path.relative(rootDir, filePath).replace(/\\/g, '/');
+        if (matchesExcludeList(relativePath, excludeList)) {
+          // Don't increment stats.excluded here - we'll count files when we skip them
+          return;
+        }
         results = results.concat(getAllFiles(filePath, extensions, excludeList, rootDir, stats));
       }
     } else {
