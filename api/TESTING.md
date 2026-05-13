@@ -196,7 +196,7 @@ You can also import the collection into Postman desktop app:
 5. Select the environment in the top-right dropdown
 6. Click **Run Collection** to execute all tests
 
-## Customizing Tests
+## Customising Tests
 
 ### Changing the Base URL
 
