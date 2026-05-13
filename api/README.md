@@ -121,7 +121,7 @@ Sends feedback form data via email.
 }
 ```
 
-### GET /api/health
+### GET /health
 
 Health check endpoint.
 
@@ -186,7 +186,7 @@ See [TESTING.md](TESTING.md) for detailed testing documentation, including envir
 #### Test Health Endpoint
 
 ```bash
-curl http://localhost:3000/api/health
+curl http://localhost:3000/health
 ```
 
 #### Test Feedback Endpoint
@@ -260,7 +260,7 @@ Logs include:
 
 ### Health Checks
 
-Monitor server health at `/api/health` endpoint.
+Monitor server health at `/health` endpoint.
 
 ## Troubleshooting
 
