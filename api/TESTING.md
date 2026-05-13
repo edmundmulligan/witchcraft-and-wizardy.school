@@ -123,7 +123,7 @@ This will:
 
 ```
 → Health Check
-  GET http://localhost:3000/api/health [200 OK, 234B, 15ms]
+  GET http://localhost:3000/health [200 OK, 234B, 15ms]
   ✓  Status code is 200
   ✓  Response has correct structure
   ✓  Status is ok
@@ -158,7 +158,7 @@ This will:
 
 The collection includes tests for:
 
-### 1. Health Check (GET /api/health)
+### 1. Health Check (GET /health)
 - ✓ Returns 200 status code
 - ✓ Response structure is correct
 - ✓ Status is "ok"
