@@ -152,7 +152,7 @@
       "url": "pages/feedback.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 51,
+      "totalCount": 57,
       "timeoutCount": 0
     },
     {
@@ -178,18 +178,10 @@
     },
     {
       "url": "pages/credits.html",
-      "links": [
-        {
-          "url": "https://www.rachelmulligan.co.uk/",
-          "original": "https://www.rachelmulligan.co.uk/",
-          "warning": "timeout",
-          "tagName": "a",
-          "text": "Stained Glass by Rachel Mulligan"
-        }
-      ],
+      "links": [],
       "brokenCount": 0,
       "totalCount": 71,
-      "timeoutCount": 1
+      "timeoutCount": 0
     },
     {
       "url": "pages/start.html",
@@ -200,9 +192,9 @@
     }
   ],
   "summary": {
-    "totalLinks": 1384,
+    "totalLinks": 1390,
     "brokenLinks": 0,
-    "timeoutLinks": 2,
+    "timeoutLinks": 1,
     "excludedLinks": 0
   }
 }

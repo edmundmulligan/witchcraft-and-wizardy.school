@@ -84,8 +84,17 @@
         wrapper.className = 'screenshot-wrapper';
         
         const img = document.createElement('img');
-        img.src = OUTPUT_PATH + filename;
-        img.alt = `Screenshot: ${label}`;
+        
+        // Validate filename to prevent XSS - only allow alphanumeric, hyphens, underscores, dots
+        const safeFilenamePattern = /^[a-zA-Z0-9_\-\.]+$/;
+        if (!safeFilenamePattern.test(filename)) {
+            console.warn('Invalid filename pattern:', filename);
+            return container;
+        }
+        
+        // Use setAttribute for safer URL construction
+        img.setAttribute('src', OUTPUT_PATH + filename);
+        img.setAttribute('alt', `Screenshot: ${label}`);
         
         // Handle image load errors
         img.onerror = () => {
@@ -274,8 +283,29 @@
         const modal = document.getElementById('image-modal');
         const img = modal.querySelector('img');
         
-        img.src = src;
-        img.alt = alt;
+        // Validate URL to prevent XSS - only allow safe protocols and relative paths
+        try {
+            // Allow relative paths or safe protocols (http, https, data for images)
+            if (src.startsWith('/') || src.startsWith('../') || src.startsWith('./')) {
+                // Relative path - safe
+                img.setAttribute('src', src);
+            } else {
+                // Parse as URL to validate protocol
+                const url = new URL(src, window.location.origin);
+                if (url.protocol === 'http:' || url.protocol === 'https:' || url.protocol === 'data:') {
+                    img.setAttribute('src', src);
+                } else {
+                    console.warn('Blocked potentially unsafe image URL:', src);
+                    return;
+                }
+            }
+        } catch (e) {
+            console.warn('Invalid image URL:', src, e);
+            return;
+        }
+        
+        // Alt text is safe to set as property (text content, not parsed as HTML)
+        img.alt = alt || '';
         modal.classList.add('active');
         
         // Prevent body scroll when modal is open

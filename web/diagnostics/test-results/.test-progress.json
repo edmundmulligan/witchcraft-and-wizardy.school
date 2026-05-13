@@ -12,6 +12,7 @@
     "browser-tests"
   ],
   "failed": [
+    "axe-tests",
     "reading-age"
   ],
   "quickMode": false,

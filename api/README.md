@@ -7,7 +7,7 @@ Node.js/Express API server for Web Witchcraft and Wizardry website.
 - **Feedback Form Submissions**: Receives and emails feedback from the website
 - **Email Service**: Sends formatted emails with JSON attachments
 - **CORS Support**: Configured for local development and production domains
-- **Input Validation**: Validates and sanitizes all incoming data
+- **Input Validation**: Validates and sanitises all incoming data
 - **Error Handling**: Comprehensive error handling with appropriate status codes
 - **Health Checks**: Monitoring endpoint for server status
 
@@ -147,7 +147,7 @@ Rate limiting is configured to prevent abuse:
 All incoming data is validated:
 - Email addresses must be valid format
 - Required fields are enforced
-- Data is sanitized to prevent XSS
+- Data is sanitised to prevent XSS
 
 ### CORS
 
@@ -158,13 +158,38 @@ CORS is configured to allow requests from:
 
 ## Testing
 
-### Test Health Endpoint
+### Automated API Tests
+
+**Quick Start:**
+
+```bash
+# Terminal 1: Start API server in development mode (logs emails to console)
+NODE_ENV=development EMAIL_PROVIDER=console npm run api
+
+# Terminal 2: Run tests
+npm run tests:api
+```
+
+**Note:** Tests require the API server to be running with appropriate environment variables. Using `NODE_ENV=development` and `EMAIL_PROVIDER=console` allows testing without configuring SMTP credentials.
+
+This runs automated tests covering:
+- Health check endpoint
+- Feedback submission with various scenarios
+- Input validation
+- Error handling
+- 404 responses
+
+See [TESTING.md](TESTING.md) for detailed testing documentation, including environment configuration and troubleshooting.
+
+### Manual Testing
+
+#### Test Health Endpoint
 
 ```bash
 curl http://localhost:3000/api/health
 ```
 
-### Test Feedback Endpoint
+#### Test Feedback Endpoint
 
 ```bash
 curl -X POST http://localhost:3000/api/send-feedback \

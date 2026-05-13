@@ -17,7 +17,7 @@
 
 [Links] Broken Links Results:
   Pages checked: 26
-  Total links: 1384
+  Total links: 1390
   Broken links: 0
 
 ======================
@@ -25,9 +25,9 @@
 [Browser] Browser Compatibility: Not tested
 
 [Axe] Axe Accessibility Results:
-  Total violations: 0
+  Total violations: 6
   [Critical] Critical: 0
-  [Serious] Serious: 0
+  [Serious] Serious: 6
   [Moderate] Moderate: 0
   [Minor] Minor: 0
 
