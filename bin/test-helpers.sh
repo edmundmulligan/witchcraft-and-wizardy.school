@@ -25,7 +25,14 @@ path_matches_exclude() {
 
   exclude_path="${exclude_path%/}"
 
+  # Check exact match, starts with pattern, or basename match
   if [ "$input_base" = "$exclude_base" ] || [ "$input_path" = "$exclude_path" ] || [ "$input_path" = "./$exclude_path" ] || [[ "$input_path" == "$exclude_path/"* ]]; then
+    return 0
+  fi
+
+  # Check if exclude pattern appears as a path component anywhere in the path
+  # e.g., "web/lessons/file.html" should match exclude pattern "lessons"
+  if [[ "$input_path" == *"/$exclude_path/"* ]] || [[ "$input_path" == *"/$exclude_path" ]]; then
     return 0
   fi
 
