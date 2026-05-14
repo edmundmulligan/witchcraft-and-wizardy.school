@@ -97,6 +97,11 @@ npm ci --omit=dev
 NODE_ENV=production npm start
 ```
 
+CI/CD deployment note:
+- The deploy workflow copies `api.env` to `.env` on the server.
+- Sensitive values are not stored in `api.env`.
+- SMTP credentials are injected at runtime from Azure Key Vault.
+
 ## API Endpoints
 
 ### POST /api/send-feedback

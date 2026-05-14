@@ -6,6 +6,10 @@ on:
     - cron: '0 2 * * *'
   workflow_dispatch: # Allow manual trigger
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   check-changes:
     runs-on: ubuntu-latest
@@ -39,8 +43,12 @@ jobs:
       application: 'api'
       deploy-path: '/var/www/api.witchcraft-and-wizardry.school'
       test-mode: 'full'
+      use-azure-keyvault: true
+      # Replace with your Azure Key Vault and federated identity values.
+      keyvault-name: magic-kv
+      azure-client-id: b96a868a-23a8-4b5e-8f78-274dd57d6a9b
+      azure-tenant-id: 9a2a3100-fefb-41f9-8640-d4f22f3868e1
+      azure-subscription-id: 7eac63bd-20a8-4559-9411-8bb42f97bc6c
     secrets:
       WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
       NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
-      SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
-      SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}

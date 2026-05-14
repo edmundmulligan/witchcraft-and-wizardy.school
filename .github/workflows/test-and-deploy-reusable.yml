@@ -26,15 +26,40 @@ on:
         type: string
         default: 'prod.edmundmulligan.name'
         description: 'Server hostname'
+      use-azure-keyvault:
+        required: false
+        type: boolean
+        default: false
+        description: 'Load deployment credentials from Azure Key Vault'
+      keyvault-name:
+        required: false
+        type: string
+        default: ''
+        description: 'Azure Key Vault name used when use-azure-keyvault=true'
+      azure-client-id:
+        required: false
+        type: string
+        default: ''
+        description: 'Azure application (client) ID for OIDC login when use-azure-keyvault=true'
+      azure-tenant-id:
+        required: false
+        type: string
+        default: ''
+        description: 'Azure tenant ID for OIDC login when use-azure-keyvault=true'
+      azure-subscription-id:
+        required: false
+        type: string
+        default: ''
+        description: 'Azure subscription ID for OIDC login when use-azure-keyvault=true'
     secrets:
       WAVE_API_KEY:
         required: false
       NGROK_AUTHTOKEN:
         required: false
       SERVER_USERNAME:
-        required: true
+        required: false
       SERVER_SSH_KEY:
-        required: true
+        required: false
 
 env:
   testurl: 'http://localhost:8080'
@@ -169,6 +194,11 @@ jobs:
       application: ${{ inputs.application }}
       deploy-path: ${{ inputs.deploy-path }}
       server: ${{ inputs.server }}
+      use-azure-keyvault: ${{ inputs.use-azure-keyvault }}
+      keyvault-name: ${{ inputs.keyvault-name }}
+      azure-client-id: ${{ inputs.azure-client-id }}
+      azure-tenant-id: ${{ inputs.azure-tenant-id }}
+      azure-subscription-id: ${{ inputs.azure-subscription-id }}
     secrets:
       SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
       SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
