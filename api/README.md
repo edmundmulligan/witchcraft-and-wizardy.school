@@ -100,7 +100,8 @@ NODE_ENV=production npm start
 CI/CD deployment note:
 - The deploy workflow copies `api.env` to `.env` on the server.
 - Sensitive values are not stored in `api.env`.
-- SMTP credentials are injected at runtime from Azure Key Vault.
+- When `use-azure-keyvault=true`, SMTP credentials are injected at runtime from Azure Key Vault.
+- When `use-azure-keyvault=false`, SMTP credentials must be provided by existing server environment configuration (for example, a managed `.env` on the host).
 
 ## API Endpoints
 

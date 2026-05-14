@@ -95,7 +95,32 @@ jobs:
 
         get_optional_secret() {
           local secret_name="$1"
-          az keyvault secret show --vault-name "$KEYVAULT_NAME" --name "$secret_name" --query value -o tsv 2>/dev/null || true
+          local value
+          local rc
+          local err_file
+          local err_text
+
+          err_file="$(mktemp)"
+          if value="$(az keyvault secret show --vault-name "$KEYVAULT_NAME" --name "$secret_name" --query value -o tsv 2>"$err_file")"; then
+            rm -f "$err_file"
+            printf '%s' "$value"
+            return 0
+          fi
+
+          rc=$?
+          err_text="$(cat "$err_file")"
+          rm -f "$err_file"
+
+          # Optional secrets should resolve to empty only when the secret does not exist.
+          if [[ "$err_text" == *"SecretNotFound"* || "$err_text" == *"not found"* || "$err_text" == *"could not be found"* ]]; then
+            return 0
+          fi
+
+          echo "Failed to read optional secret '$secret_name' from Key Vault '$KEYVAULT_NAME'." >&2
+          if [[ -n "$err_text" ]]; then
+            echo "$err_text" >&2
+          fi
+          exit "$rc"
         }
 
         server_username="$(get_required_secret 'SERVER-USERNAME')"
@@ -103,8 +128,14 @@ jobs:
         server_fingerprint="$(get_optional_secret 'SERVER-FINGERPRINT')"
 
         smtp_host="$(get_required_secret 'SMTP-HOST')"
-        smtp_port="$(get_required_secret 'SMTP-PORT')"
-        smtp_secure="$(get_required_secret 'SMTP-SECURE')"
+        smtp_port="$(get_optional_secret 'SMTP-PORT')"
+        if [[ -z "$smtp_port" ]]; then
+          smtp_port='587'
+        fi
+        smtp_secure="$(get_optional_secret 'SMTP-SECURE')"
+        if [[ -z "$smtp_secure" ]]; then
+          smtp_secure='false'
+        fi
         smtp_user="$(get_required_secret 'SMTP-USER')"
         smtp_pass="$(get_required_secret 'SMTP-PASS')"
         email_from="$(get_optional_secret 'EMAIL-FROM')"
@@ -133,25 +164,28 @@ jobs:
           echo "server_fingerprint<<$output_delim"
           echo "$server_fingerprint"
           echo "$output_delim"
-          echo "smtp_host<<$output_delim"
+        } >> "$GITHUB_OUTPUT"
+
+        {
+          echo "SMTP_HOST<<$output_delim"
           echo "$smtp_host"
           echo "$output_delim"
-          echo "smtp_port<<$output_delim"
+          echo "SMTP_PORT<<$output_delim"
           echo "$smtp_port"
           echo "$output_delim"
-          echo "smtp_secure<<$output_delim"
+          echo "SMTP_SECURE<<$output_delim"
           echo "$smtp_secure"
           echo "$output_delim"
-          echo "smtp_user<<$output_delim"
+          echo "SMTP_USER<<$output_delim"
           echo "$smtp_user"
           echo "$output_delim"
-          echo "smtp_pass<<$output_delim"
+          echo "SMTP_PASS<<$output_delim"
           echo "$smtp_pass"
           echo "$output_delim"
-          echo "email_from<<$output_delim"
+          echo "EMAIL_FROM<<$output_delim"
           echo "$email_from"
           echo "$output_delim"
-        } >> "$GITHUB_OUTPUT"
+        } >> "$GITHUB_ENV"
 
     - name: Resolve deploy auth from Key Vault
       if: inputs.use-azure-keyvault
@@ -184,11 +218,15 @@ jobs:
       if: ${{ !inputs.use-azure-keyvault }}
       id: deploy_auth_secrets
       shell: bash
+      env:
+        SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
+        SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+        SERVER_FINGERPRINT: ${{ secrets.SERVER_FINGERPRINT }}
       run: |
         set -euo pipefail
-        server_username="${{ secrets.SERVER_USERNAME }}"
-        server_ssh_key="${{ secrets.SERVER_SSH_KEY }}"
-        server_fingerprint="${{ secrets.SERVER_FINGERPRINT }}"
+        server_username="$SERVER_USERNAME"
+        server_ssh_key="$SERVER_SSH_KEY"
+        server_fingerprint="$SERVER_FINGERPRINT"
 
         if [[ -z "$server_username" || -z "$server_ssh_key" ]]; then
           echo "Missing required GitHub secrets for deploy auth when use-azure-keyvault=false." >&2
@@ -284,13 +322,6 @@ jobs:
     - name: Install API dependencies and restart API process
       if: inputs.application == 'api'
       uses: appleboy/ssh-action@v1.2.5
-      env:
-        SMTP_HOST: ${{ steps.keyvault.outputs.smtp_host }}
-        SMTP_PORT: ${{ steps.keyvault.outputs.smtp_port }}
-        SMTP_SECURE: ${{ steps.keyvault.outputs.smtp_secure }}
-        SMTP_USER: ${{ steps.keyvault.outputs.smtp_user }}
-        SMTP_PASS: ${{ steps.keyvault.outputs.smtp_pass }}
-        EMAIL_FROM: ${{ steps.keyvault.outputs.email_from }}
       with:
         host: ${{ inputs.server }}
         username: ${{ steps.deploy_auth_keyvault.outputs.ssh_username || steps.deploy_auth_secrets.outputs.ssh_username }}
@@ -302,21 +333,52 @@ jobs:
           cd "${{ inputs.deploy-path }}"
 
           # Keep a non-sensitive local config file available for defaults.
-          if [[ -f api.env ]]; then
-            cp -f api.env .env
+          # In non-Key Vault mode, preserve an existing server-managed .env.
+          if [[ "${{ inputs.use-azure-keyvault }}" == "true" ]]; then
+            if [[ -f api.env ]]; then
+              cp -f api.env .env
 
-            # Enforce production-safe defaults in deployed runtime config.
-            sed -i '/^NODE_ENV=/d;/^EMAIL_PROVIDER=/d' .env
-            {
-              echo 'NODE_ENV=production'
-              echo 'EMAIL_PROVIDER=smtp'
-            } >> .env
+              # Enforce production-safe defaults in deployed runtime config.
+              sed -i '/^NODE_ENV=/d;/^EMAIL_PROVIDER=/d' .env
+              {
+                echo 'NODE_ENV=production'
+                echo 'EMAIL_PROVIDER=smtp'
+              } >> .env
 
-            chmod 600 .env
+              chmod 600 .env
+            fi
+          else
+            if [[ ! -f .env && -f api.env ]]; then
+              cp -f api.env .env
+              chmod 600 .env
+            fi
           fi
 
+          get_env_file_value() {
+            local key="$1"
+            local env_file=".env"
+
+            if [[ ! -f "$env_file" ]]; then
+              return 0
+            fi
+
+            awk -F= -v key="$key" '
+              /^[[:space:]]*#/ { next }
+              index($0, "=") == 0 { next }
+              {
+                current_key=$1
+                gsub(/^[[:space:]]+|[[:space:]]+$/, "", current_key)
+                if (current_key == key) {
+                  value=substr($0, index($0, "=") + 1)
+                  sub(/\r$/, "", value)
+                  print value
+                }
+              }
+            ' "$env_file" | tail -n 1
+          }
+
           if [[ "${{ inputs.use-azure-keyvault }}" == "true" ]]; then
-            required_vars=(SMTP_HOST SMTP_PORT SMTP_SECURE SMTP_USER SMTP_PASS)
+            required_vars=(SMTP_HOST SMTP_USER SMTP_PASS)
             for var_name in "${required_vars[@]}"; do
               if [[ -z "${!var_name:-}" ]]; then
                 echo "Missing required API runtime secret: $var_name" >&2
@@ -328,8 +390,17 @@ jobs:
             export APP_ENABLE_CORS=false
             export EMAIL_PROVIDER=smtp
           else
+            smtp_host_effective="${SMTP_HOST:-$(get_env_file_value SMTP_HOST)}"
+            smtp_user_effective="${SMTP_USER:-$(get_env_file_value SMTP_USER)}"
+            smtp_pass_effective="${SMTP_PASS:-$(get_env_file_value SMTP_PASS)}"
+
+            if [[ -z "$smtp_host_effective" || -z "$smtp_user_effective" || -z "$smtp_pass_effective" ]]; then
+              echo "Missing SMTP configuration for non-Key Vault deploy." >&2
+              echo "Set SMTP_HOST/SMTP_USER/SMTP_PASS in the server environment or managed .env file." >&2
+              exit 1
+            fi
+
             export NODE_ENV=production
-            export EMAIL_PROVIDER=smtp
           fi
 
           # Install only production dependencies for the standalone API package.
