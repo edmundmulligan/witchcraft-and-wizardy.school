@@ -21,19 +21,23 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 const STATIC_PORT = process.env.STATIC_PORT || 8000;
+const manageCorsInApp =
+  process.env.APP_ENABLE_CORS === 'true' || process.env.NODE_ENV !== 'production';
 
 // Middleware
-app.use(
-  cors({
-    origin: [
-      `http://localhost:${STATIC_PORT}`,
-      `http://127.0.0.1:${STATIC_PORT}`,
-      'https://web.witchcraft-and-wizardry.school',
-      'https://www.witchcraft-and-wizardry.school',
-    ],
-    credentials: true,
-  })
-);
+if (manageCorsInApp) {
+  app.use(
+    cors({
+      origin: [
+        `http://localhost:${STATIC_PORT}`,
+        `http://127.0.0.1:${STATIC_PORT}`,
+        'https://web.witchcraft-and-wizardry.school',
+        'https://www.witchcraft-and-wizardry.school',
+      ],
+      credentials: true,
+    })
+  );
+}
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
@@ -86,6 +90,9 @@ const server = app.listen(PORT, () => {
   console.log(`\n🚀 API Server running on http://localhost:${PORT}`);
   console.log(`📧 Feedback endpoint: http://localhost:${PORT}/api/send-feedback`);
   console.log(`🏥 Health check: http://localhost:${PORT}/health`);
+  console.log(
+    `🛡️ App-level CORS: ${manageCorsInApp ? 'enabled' : 'disabled (expecting reverse proxy CORS)'}`
+  );
   console.log(`\n🌐 Make sure your static site is running on http://localhost:${STATIC_PORT}`);
   console.log(`   Run: npm run dev\n`);
 });
