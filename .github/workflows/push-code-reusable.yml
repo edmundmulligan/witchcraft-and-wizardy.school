@@ -60,6 +60,48 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v6
 
+    - name: Validate deployment auth configuration
+      shell: bash
+      env:
+        SERVER_USERNAME_INPUT: ${{ secrets.SERVER_USERNAME }}
+        SERVER_SSH_KEY_INPUT: ${{ secrets.SERVER_SSH_KEY }}
+      run: |
+        set -euo pipefail
+
+        if [[ "${{ inputs.use-azure-keyvault }}" == "true" ]]; then
+          missing_inputs=()
+          if [[ -z "${{ inputs.keyvault-name }}" ]]; then
+            missing_inputs+=("keyvault-name")
+          fi
+          if [[ -z "${{ inputs.azure-client-id }}" ]]; then
+            missing_inputs+=("azure-client-id")
+          fi
+          if [[ -z "${{ inputs.azure-tenant-id }}" ]]; then
+            missing_inputs+=("azure-tenant-id")
+          fi
+          if [[ -z "${{ inputs.azure-subscription-id }}" ]]; then
+            missing_inputs+=("azure-subscription-id")
+          fi
+
+          if (( ${#missing_inputs[@]} > 0 )); then
+            echo "Missing required inputs when use-azure-keyvault=true: ${missing_inputs[*]}" >&2
+            exit 1
+          fi
+
+          # OIDC federation requires id-token permission in the effective caller chain.
+          if [[ -z "${ACTIONS_ID_TOKEN_REQUEST_TOKEN:-}" || -z "${ACTIONS_ID_TOKEN_REQUEST_URL:-}" ]]; then
+            echo "OIDC token request metadata is unavailable." >&2
+            echo "Ensure caller workflows grant permissions: id-token: write (and contents: read)." >&2
+            exit 1
+          fi
+        else
+          if [[ -z "$SERVER_USERNAME_INPUT" || -z "$SERVER_SSH_KEY_INPUT" ]]; then
+            echo "Missing required GitHub secrets when use-azure-keyvault=false." >&2
+            echo "Set SERVER_USERNAME and SERVER_SSH_KEY, or enable use-azure-keyvault=true." >&2
+            exit 1
+          fi
+        fi
+
     - name: Azure login (OIDC)
       if: inputs.use-azure-keyvault
       uses: azure/login@v2
@@ -105,22 +147,22 @@ jobs:
             rm -f "$err_file"
             printf '%s' "$value"
             return 0
-          fi
+          else
+            rc=$?
+            err_text="$(cat "$err_file")"
+            rm -f "$err_file"
 
-          rc=$?
-          err_text="$(cat "$err_file")"
-          rm -f "$err_file"
+            # Optional secrets should resolve to empty only when the secret does not exist.
+            if [[ "$err_text" == *"SecretNotFound"* || "$err_text" == *"not found"* || "$err_text" == *"could not be found"* ]]; then
+              return 0
+            fi
 
-          # Optional secrets should resolve to empty only when the secret does not exist.
-          if [[ "$err_text" == *"SecretNotFound"* || "$err_text" == *"not found"* || "$err_text" == *"could not be found"* ]]; then
-            return 0
+            echo "Failed to read optional secret '$secret_name' from Key Vault '$KEYVAULT_NAME'." >&2
+            if [[ -n "$err_text" ]]; then
+              echo "$err_text" >&2
+            fi
+            exit "$rc"
           fi
-
-          echo "Failed to read optional secret '$secret_name' from Key Vault '$KEYVAULT_NAME'." >&2
-          if [[ -n "$err_text" ]]; then
-            echo "$err_text" >&2
-          fi
-          exit "$rc"
         }
 
         server_username="$(get_required_secret 'SERVER-USERNAME')"
@@ -145,7 +187,7 @@ jobs:
 
         for value in \
           "$server_username" "$server_ssh_key" "$server_fingerprint" \
-          "$smtp_host" "$smtp_port" "$smtp_secure" "$smtp_user" "$smtp_pass" "$email_from"
+          "$smtp_host" "$smtp_user" "$smtp_pass"
         do
           if [[ -n "$value" ]]; then
             echo "::add-mask::$value"
@@ -164,53 +206,23 @@ jobs:
           echo "server_fingerprint<<$output_delim"
           echo "$server_fingerprint"
           echo "$output_delim"
-        } >> "$GITHUB_OUTPUT"
-
-        {
-          echo "SMTP_HOST<<$output_delim"
+          echo "smtp_host<<$output_delim"
           echo "$smtp_host"
           echo "$output_delim"
-          echo "SMTP_PORT<<$output_delim"
+          echo "smtp_port<<$output_delim"
           echo "$smtp_port"
           echo "$output_delim"
-          echo "SMTP_SECURE<<$output_delim"
+          echo "smtp_secure<<$output_delim"
           echo "$smtp_secure"
           echo "$output_delim"
-          echo "SMTP_USER<<$output_delim"
+          echo "smtp_user<<$output_delim"
           echo "$smtp_user"
           echo "$output_delim"
-          echo "SMTP_PASS<<$output_delim"
+          echo "smtp_pass<<$output_delim"
           echo "$smtp_pass"
           echo "$output_delim"
-          echo "EMAIL_FROM<<$output_delim"
+          echo "email_from<<$output_delim"
           echo "$email_from"
-          echo "$output_delim"
-        } >> "$GITHUB_ENV"
-
-    - name: Resolve deploy auth from Key Vault
-      if: inputs.use-azure-keyvault
-      id: deploy_auth_keyvault
-      shell: bash
-      env:
-        KV_SERVER_USERNAME: ${{ steps.keyvault.outputs.server_username }}
-        KV_SERVER_SSH_KEY: ${{ steps.keyvault.outputs.server_ssh_key }}
-        KV_SERVER_FINGERPRINT: ${{ steps.keyvault.outputs.server_fingerprint }}
-      run: |
-        set -euo pipefail
-        kv_server_username="$KV_SERVER_USERNAME"
-        kv_server_ssh_key="$KV_SERVER_SSH_KEY"
-        kv_server_fingerprint="$KV_SERVER_FINGERPRINT"
-
-        output_delim="$(openssl rand -hex 16)"
-        {
-          echo "ssh_username<<$output_delim"
-          echo "$kv_server_username"
-          echo "$output_delim"
-          echo "ssh_key<<$output_delim"
-          echo "$kv_server_ssh_key"
-          echo "$output_delim"
-          echo "ssh_fingerprint<<$output_delim"
-          echo "$kv_server_fingerprint"
           echo "$output_delim"
         } >> "$GITHUB_OUTPUT"
 
@@ -299,9 +311,9 @@ jobs:
       uses: appleboy/scp-action@v1.0.0
       with:
         host: ${{ inputs.server }}
-        username: ${{ steps.deploy_auth_keyvault.outputs.ssh_username || steps.deploy_auth_secrets.outputs.ssh_username }}
-        key: ${{ steps.deploy_auth_keyvault.outputs.ssh_key || steps.deploy_auth_secrets.outputs.ssh_key }}
-        fingerprint: ${{ steps.deploy_auth_keyvault.outputs.ssh_fingerprint || steps.deploy_auth_secrets.outputs.ssh_fingerprint }}
+        username: ${{ steps.keyvault.outputs.server_username || steps.deploy_auth_secrets.outputs.ssh_username }}
+        key: ${{ steps.keyvault.outputs.server_ssh_key || steps.deploy_auth_secrets.outputs.ssh_key }}
+        fingerprint: ${{ steps.keyvault.outputs.server_fingerprint || steps.deploy_auth_secrets.outputs.ssh_fingerprint }}
         source: ${{ steps.package.outputs.archive_path }}
         target: /tmp
         strip_components: ${{ steps.package.outputs.strip_count }}
@@ -310,9 +322,9 @@ jobs:
       uses: appleboy/ssh-action@v1.2.5
       with:
         host: ${{ inputs.server }}
-        username: ${{ steps.deploy_auth_keyvault.outputs.ssh_username || steps.deploy_auth_secrets.outputs.ssh_username }}
-        key: ${{ steps.deploy_auth_keyvault.outputs.ssh_key || steps.deploy_auth_secrets.outputs.ssh_key }}
-        fingerprint: ${{ steps.deploy_auth_keyvault.outputs.ssh_fingerprint || steps.deploy_auth_secrets.outputs.ssh_fingerprint }}
+        username: ${{ steps.keyvault.outputs.server_username || steps.deploy_auth_secrets.outputs.ssh_username }}
+        key: ${{ steps.keyvault.outputs.server_ssh_key || steps.deploy_auth_secrets.outputs.ssh_key }}
+        fingerprint: ${{ steps.keyvault.outputs.server_fingerprint || steps.deploy_auth_secrets.outputs.ssh_fingerprint }}
         script: |
           set -e
           mkdir -p "${{ inputs.deploy-path }}"
@@ -322,11 +334,18 @@ jobs:
     - name: Install API dependencies and restart API process
       if: inputs.application == 'api'
       uses: appleboy/ssh-action@v1.2.5
+      env:
+        SMTP_HOST: ${{ steps.keyvault.outputs.smtp_host }}
+        SMTP_PORT: ${{ steps.keyvault.outputs.smtp_port }}
+        SMTP_SECURE: ${{ steps.keyvault.outputs.smtp_secure }}
+        SMTP_USER: ${{ steps.keyvault.outputs.smtp_user }}
+        SMTP_PASS: ${{ steps.keyvault.outputs.smtp_pass }}
+        EMAIL_FROM: ${{ steps.keyvault.outputs.email_from }}
       with:
         host: ${{ inputs.server }}
-        username: ${{ steps.deploy_auth_keyvault.outputs.ssh_username || steps.deploy_auth_secrets.outputs.ssh_username }}
-        key: ${{ steps.deploy_auth_keyvault.outputs.ssh_key || steps.deploy_auth_secrets.outputs.ssh_key }}
-        fingerprint: ${{ steps.deploy_auth_keyvault.outputs.ssh_fingerprint || steps.deploy_auth_secrets.outputs.ssh_fingerprint }}
+        username: ${{ steps.keyvault.outputs.server_username || steps.deploy_auth_secrets.outputs.ssh_username }}
+        key: ${{ steps.keyvault.outputs.server_ssh_key || steps.deploy_auth_secrets.outputs.ssh_key }}
+        fingerprint: ${{ steps.keyvault.outputs.server_fingerprint || steps.deploy_auth_secrets.outputs.ssh_fingerprint }}
         envs: SMTP_HOST,SMTP_PORT,SMTP_SECURE,SMTP_USER,SMTP_PASS,EMAIL_FROM
         script: |
           set -e
@@ -336,16 +355,36 @@ jobs:
           # In non-Key Vault mode, preserve an existing server-managed .env.
           if [[ "${{ inputs.use-azure-keyvault }}" == "true" ]]; then
             if [[ -f api.env ]]; then
-              cp -f api.env .env
+              api_env_hash_file=".api-env.sha256"
+              api_env_hash="$(sha256sum api.env | awk '{print $1}')"
 
-              # Enforce production-safe defaults in deployed runtime config.
-              sed -i '/^NODE_ENV=/d;/^EMAIL_PROVIDER=/d' .env
-              {
-                echo 'NODE_ENV=production'
-                echo 'EMAIL_PROVIDER=smtp'
-              } >> .env
+              should_regenerate_env=false
+              if [[ ! -f .env ]]; then
+                should_regenerate_env=true
+              elif [[ -f "$api_env_hash_file" ]]; then
+                previous_api_env_hash="$(cat "$api_env_hash_file" 2>/dev/null || true)"
+                if [[ "$api_env_hash" != "$previous_api_env_hash" ]]; then
+                  should_regenerate_env=true
+                fi
+              else
+                echo "No api.env hash marker found; preserving existing .env and recording current api.env hash."
+              fi
 
-              chmod 600 .env
+              if [[ "$should_regenerate_env" == "true" ]]; then
+                cp -f api.env .env
+
+                # Enforce production-safe defaults in deployed runtime config.
+                sed -i '/^NODE_ENV=/d;/^EMAIL_PROVIDER=/d' .env
+                {
+                  echo 'NODE_ENV=production'
+                  echo 'EMAIL_PROVIDER=smtp'
+                } >> .env
+
+                chmod 600 .env
+              fi
+
+              printf '%s\n' "$api_env_hash" > "$api_env_hash_file"
+              chmod 600 "$api_env_hash_file"
             fi
           else
             if [[ ! -f .env && -f api.env ]]; then
@@ -391,8 +430,21 @@ jobs:
             export EMAIL_PROVIDER=smtp
           else
             smtp_host_effective="${SMTP_HOST:-$(get_env_file_value SMTP_HOST)}"
+            smtp_port_effective="${SMTP_PORT:-$(get_env_file_value SMTP_PORT)}"
+            smtp_secure_effective="${SMTP_SECURE:-$(get_env_file_value SMTP_SECURE)}"
             smtp_user_effective="${SMTP_USER:-$(get_env_file_value SMTP_USER)}"
             smtp_pass_effective="${SMTP_PASS:-$(get_env_file_value SMTP_PASS)}"
+            email_from_effective="${EMAIL_FROM:-$(get_env_file_value EMAIL_FROM)}"
+
+            if [[ -z "$smtp_port_effective" ]]; then
+              smtp_port_effective='587'
+            fi
+            if [[ -z "$smtp_secure_effective" ]]; then
+              smtp_secure_effective='false'
+            fi
+            if [[ -z "$email_from_effective" ]]; then
+              email_from_effective='noreply@embodied-mind.org'
+            fi
 
             if [[ -z "$smtp_host_effective" || -z "$smtp_user_effective" || -z "$smtp_pass_effective" ]]; then
               echo "Missing SMTP configuration for non-Key Vault deploy." >&2
@@ -401,6 +453,12 @@ jobs:
             fi
 
             export NODE_ENV=production
+            export SMTP_HOST="$smtp_host_effective"
+            export SMTP_PORT="$smtp_port_effective"
+            export SMTP_SECURE="$smtp_secure_effective"
+            export SMTP_USER="$smtp_user_effective"
+            export SMTP_PASS="$smtp_pass_effective"
+            export EMAIL_FROM="$email_from_effective"
           fi
 
           # Install only production dependencies for the standalone API package.

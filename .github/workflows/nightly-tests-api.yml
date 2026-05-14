@@ -44,6 +44,8 @@ jobs:
       deploy-path: '/var/www/api.witchcraft-and-wizardry.school'
       test-mode: 'full'
       use-azure-keyvault: true
+      skip-content-audits: true
+      # If this is set to false, re-add SERVER_USERNAME and SERVER_SSH_KEY in the secrets block below.
       keyvault-name: ${{ vars.AZURE_KEYVAULT_NAME }}
       azure-client-id: ${{ vars.AZURE_CLIENT_ID }}
       azure-tenant-id: ${{ vars.AZURE_TENANT_ID }}
@@ -51,3 +53,4 @@ jobs:
     secrets:
       WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
       NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
+      # Deploy SSH secrets intentionally omitted while use-azure-keyvault=true.

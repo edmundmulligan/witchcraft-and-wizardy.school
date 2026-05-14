@@ -51,6 +51,11 @@ on:
         type: string
         default: ''
         description: 'Azure subscription ID for OIDC login when use-azure-keyvault=true'
+      skip-content-audits:
+        required: false
+        type: boolean
+        default: false
+        description: 'Skip content audits (colour usage, reading levels) for non-frontend apps.'
     secrets:
       WAVE_API_KEY:
         required: false
@@ -104,7 +109,7 @@ jobs:
         bin/validate-code.sh ${{ inputs.application }}
 
     - name: Audit colour usage
-      if: inputs.application != 'api'
+      if: !inputs.skip-content-audits
       continue-on-error: true
       run: |
         IGNORES="${{ inputs.ignores }}"
@@ -123,7 +128,7 @@ jobs:
         bin/check-links.sh ${{ inputs.application }} ${IGNORES:+-x $IGNORES}
 
     - name: Check reading levels
-      if: inputs.application != 'api'
+      if: !inputs.skip-content-audits
       continue-on-error: true
       run: |
         IGNORES="${{ inputs.ignores }}"
@@ -191,6 +196,9 @@ jobs:
   deploy:
     needs: run-pre-deployment-test
     if: github.base_ref == 'main'
+    permissions:
+      id-token: write
+      contents: read
     uses: ./.github/workflows/push-code-reusable.yml
     with:
       application: ${{ inputs.application }}
