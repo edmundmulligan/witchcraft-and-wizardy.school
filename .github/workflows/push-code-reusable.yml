@@ -97,3 +97,34 @@ jobs:
           mkdir -p "${{ inputs.deploy-path }}"
           tar -xzf "/tmp/${{ steps.package.outputs.archive_name }}" -C "${{ inputs.deploy-path }}" --strip-components=1
           rm -f "/tmp/${{ steps.package.outputs.archive_name }}"
+
+    - name: Install API dependencies and restart API process
+      if: inputs.application == 'api'
+      uses: appleboy/ssh-action@v1.2.5
+      with:
+        host: ${{ inputs.server }}
+        username: ${{ secrets.SERVER_USERNAME }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        fingerprint: ${{ secrets.SERVER_FINGERPRINT }}
+        script: |
+          set -e
+          cd "${{ inputs.deploy-path }}"
+
+          # Install only production dependencies for the standalone API package.
+          npm ci --omit=dev
+
+          process_name="$(basename "${{ inputs.deploy-path }}")"
+
+          # Keep the API alive across deployments by restarting when possible.
+          if command -v pm2 >/dev/null 2>&1; then
+            if pm2 describe "$process_name" >/dev/null 2>&1; then
+              NODE_ENV=production pm2 restart "$process_name" --update-env
+            else
+              NODE_ENV=production pm2 start npm --name "$process_name" -- start
+            fi
+            pm2 save
+          else
+            # Fallback when PM2 is not available on the target host.
+            pkill -f "node server.js" || true
+            nohup env NODE_ENV=production npm start > api.log 2>&1 < /dev/null &
+          fi

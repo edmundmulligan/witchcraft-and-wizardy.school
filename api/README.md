@@ -16,6 +16,7 @@ Node.js/Express API server for Web Witchcraft and Wizardry website.
 ### 1. Install Dependencies
 
 ```bash
+cd api
 npm install
 ```
 
@@ -67,21 +68,33 @@ EMAIL_FROM=noreply@embodied-mind.org
 
 #### Development Mode:
 ```bash
-npm run api
+npm run start:dev
 ```
 
 #### With Static Site:
 ```bash
 # Terminal 1: Static site
+cd ..
 npm run dev
 
 # Terminal 2: API server
-npm run api
+cd api
+npm run start:dev
 ```
 
 #### Production Mode:
 ```bash
-npm run api:prod
+npm start
+```
+
+### Standalone API Deployment
+
+When deploying only the API folder, use it as the Node.js app root:
+
+```bash
+cd api
+npm ci --omit=dev
+NODE_ENV=production npm start
 ```
 
 ## API Endpoints
@@ -240,11 +253,14 @@ Create `vercel.json`:
 
 1. Install Node.js
 2. Clone repository
-3. Configure `.env`
-4. Use PM2 for process management:
+3. Change to API directory: `cd api`
+4. Configure `.env`
+5. Install dependencies: `npm install`
+  Or for production reproducibility: `npm ci --omit=dev`
+6. Use PM2 for process management:
    ```bash
    npm install -g pm2
-   pm2 start api/server.js
+  pm2 start server.js --name witchcraft-api
    pm2 save
    pm2 startup
    ```
