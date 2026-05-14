@@ -107,7 +107,10 @@ jobs:
         smtp_secure="$(get_required_secret 'SMTP-SECURE')"
         smtp_user="$(get_required_secret 'SMTP-USER')"
         smtp_pass="$(get_required_secret 'SMTP-PASS')"
-        email_from="$(get_required_secret 'EMAIL-FROM')"
+        email_from="$(get_optional_secret 'EMAIL-FROM')"
+        if [[ -z "$email_from" ]]; then
+          email_from='noreply@embodied-mind.org'
+        fi
 
         for value in \
           "$server_username" "$server_ssh_key" "$server_fingerprint" \
@@ -118,52 +121,63 @@ jobs:
           fi
         done
 
+        output_delim="$(openssl rand -hex 16)"
+
         {
-          echo "server_username<<EOF"
+          echo "server_username<<$output_delim"
           echo "$server_username"
-          echo "EOF"
-          echo "server_ssh_key<<EOF"
+          echo "$output_delim"
+          echo "server_ssh_key<<$output_delim"
           echo "$server_ssh_key"
-          echo "EOF"
-          echo "server_fingerprint<<EOF"
+          echo "$output_delim"
+          echo "server_fingerprint<<$output_delim"
           echo "$server_fingerprint"
-          echo "EOF"
-          echo "smtp_host<<EOF"
+          echo "$output_delim"
+          echo "smtp_host<<$output_delim"
           echo "$smtp_host"
-          echo "EOF"
-          echo "smtp_port<<EOF"
+          echo "$output_delim"
+          echo "smtp_port<<$output_delim"
           echo "$smtp_port"
-          echo "EOF"
-          echo "smtp_secure<<EOF"
+          echo "$output_delim"
+          echo "smtp_secure<<$output_delim"
           echo "$smtp_secure"
-          echo "EOF"
-          echo "smtp_user<<EOF"
+          echo "$output_delim"
+          echo "smtp_user<<$output_delim"
           echo "$smtp_user"
-          echo "EOF"
-          echo "smtp_pass<<EOF"
+          echo "$output_delim"
+          echo "smtp_pass<<$output_delim"
           echo "$smtp_pass"
-          echo "EOF"
-          echo "email_from<<EOF"
+          echo "$output_delim"
+          echo "email_from<<$output_delim"
           echo "$email_from"
-          echo "EOF"
+          echo "$output_delim"
         } >> "$GITHUB_OUTPUT"
 
     - name: Resolve deploy auth from Key Vault
       if: inputs.use-azure-keyvault
       id: deploy_auth_keyvault
       shell: bash
+      env:
+        KV_SERVER_USERNAME: ${{ steps.keyvault.outputs.server_username }}
+        KV_SERVER_SSH_KEY: ${{ steps.keyvault.outputs.server_ssh_key }}
+        KV_SERVER_FINGERPRINT: ${{ steps.keyvault.outputs.server_fingerprint }}
       run: |
         set -euo pipefail
+        kv_server_username="$KV_SERVER_USERNAME"
+        kv_server_ssh_key="$KV_SERVER_SSH_KEY"
+        kv_server_fingerprint="$KV_SERVER_FINGERPRINT"
+
+        output_delim="$(openssl rand -hex 16)"
         {
-          echo "ssh_username<<EOF"
-          echo "${{ steps.keyvault.outputs.server_username }}"
-          echo "EOF"
-          echo "ssh_key<<EOF"
-          echo "${{ steps.keyvault.outputs.server_ssh_key }}"
-          echo "EOF"
-          echo "ssh_fingerprint<<EOF"
-          echo "${{ steps.keyvault.outputs.server_fingerprint }}"
-          echo "EOF"
+          echo "ssh_username<<$output_delim"
+          echo "$kv_server_username"
+          echo "$output_delim"
+          echo "ssh_key<<$output_delim"
+          echo "$kv_server_ssh_key"
+          echo "$output_delim"
+          echo "ssh_fingerprint<<$output_delim"
+          echo "$kv_server_fingerprint"
+          echo "$output_delim"
         } >> "$GITHUB_OUTPUT"
 
     - name: Resolve deploy auth from GitHub secrets
@@ -172,16 +186,33 @@ jobs:
       shell: bash
       run: |
         set -euo pipefail
+        server_username="${{ secrets.SERVER_USERNAME }}"
+        server_ssh_key="${{ secrets.SERVER_SSH_KEY }}"
+        server_fingerprint="${{ secrets.SERVER_FINGERPRINT }}"
+
+        if [[ -z "$server_username" || -z "$server_ssh_key" ]]; then
+          echo "Missing required GitHub secrets for deploy auth when use-azure-keyvault=false." >&2
+          echo "Set SERVER_USERNAME and SERVER_SSH_KEY, or enable use-azure-keyvault." >&2
+          exit 1
+        fi
+
+        echo "::add-mask::$server_username"
+        echo "::add-mask::$server_ssh_key"
+        if [[ -n "$server_fingerprint" ]]; then
+          echo "::add-mask::$server_fingerprint"
+        fi
+
+        output_delim="$(openssl rand -hex 16)"
         {
-          echo "ssh_username<<EOF"
-          echo "${{ secrets.SERVER_USERNAME }}"
-          echo "EOF"
-          echo "ssh_key<<EOF"
-          echo "${{ secrets.SERVER_SSH_KEY }}"
-          echo "EOF"
-          echo "ssh_fingerprint<<EOF"
-          echo "${{ secrets.SERVER_FINGERPRINT }}"
-          echo "EOF"
+          echo "ssh_username<<$output_delim"
+          echo "$server_username"
+          echo "$output_delim"
+          echo "ssh_key<<$output_delim"
+          echo "$server_ssh_key"
+          echo "$output_delim"
+          echo "ssh_fingerprint<<$output_delim"
+          echo "$server_fingerprint"
+          echo "$output_delim"
         } >> "$GITHUB_OUTPUT"
 
     - name: Determine version bump type
@@ -273,11 +304,19 @@ jobs:
           # Keep a non-sensitive local config file available for defaults.
           if [[ -f api.env ]]; then
             cp -f api.env .env
+
+            # Enforce production-safe defaults in deployed runtime config.
+            sed -i '/^NODE_ENV=/d;/^EMAIL_PROVIDER=/d' .env
+            {
+              echo 'NODE_ENV=production'
+              echo 'EMAIL_PROVIDER=smtp'
+            } >> .env
+
             chmod 600 .env
           fi
 
           if [[ "${{ inputs.use-azure-keyvault }}" == "true" ]]; then
-            required_vars=(SMTP_HOST SMTP_PORT SMTP_SECURE SMTP_USER SMTP_PASS EMAIL_FROM)
+            required_vars=(SMTP_HOST SMTP_PORT SMTP_SECURE SMTP_USER SMTP_PASS)
             for var_name in "${required_vars[@]}"; do
               if [[ -z "${!var_name:-}" ]]; then
                 echo "Missing required API runtime secret: $var_name" >&2
@@ -290,6 +329,7 @@ jobs:
             export EMAIL_PROVIDER=smtp
           else
             export NODE_ENV=production
+            export EMAIL_PROVIDER=smtp
           fi
 
           # Install only production dependencies for the standalone API package.
@@ -304,6 +344,9 @@ jobs:
             else
               pm2 start npm --name "$process_name" -- start
             fi
+
+            # Persist process changes so pm2 resurrect restores on reboot.
+            pm2 save
           else
             # Fallback when PM2 is not available on the target host.
             pkill -f "node server.js" || true
