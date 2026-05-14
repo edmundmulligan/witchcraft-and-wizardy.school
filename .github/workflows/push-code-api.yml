@@ -6,12 +6,18 @@ on:
     paths:
       - 'api/**'
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   deploy-to-server:
     uses: ./.github/workflows/push-code-reusable.yml
     with:
       application: api
       deploy-path: /var/www/api.witchcraft-and-wizardry.school
-    secrets:
-      SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
-      SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+      use-azure-keyvault: true
+      keyvault-name: ${{ vars.AZURE_KEYVAULT_NAME }}
+      azure-client-id: ${{ vars.AZURE_CLIENT_ID }}
+      azure-tenant-id: ${{ vars.AZURE_TENANT_ID }}
+      azure-subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
