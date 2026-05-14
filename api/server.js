@@ -27,7 +27,7 @@ app.use(
   cors({
     origin: [
       `http://localhost:${STATIC_PORT}`,
-      'http://127.0.0.1:${STATIC_PORT}',
+      `http://127.0.0.1:${STATIC_PORT}`,
       'https://web.witchcraft-and-wizardry.school',
       'https://www.witchcraft-and-wizardry.school',
     ],
