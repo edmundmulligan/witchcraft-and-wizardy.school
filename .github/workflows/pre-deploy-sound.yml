@@ -8,6 +8,10 @@ on:
       - 'bin/**'
       - '.github/workflows/test-and-deploy-reusable.yml'
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   test-and-deploy:
     uses: ./.github/workflows/test-and-deploy-reusable.yml

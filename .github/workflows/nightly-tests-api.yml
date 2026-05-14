@@ -6,6 +6,10 @@ on:
     - cron: '0 2 * * *'
   workflow_dispatch: # Allow manual trigger
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   check-changes:
     runs-on: ubuntu-latest
@@ -39,8 +43,14 @@ jobs:
       application: 'api'
       deploy-path: '/var/www/api.witchcraft-and-wizardry.school'
       test-mode: 'full'
+      use-azure-keyvault: true
+      skip-content-audits: true
+      # If this is set to false, re-add SERVER_USERNAME and SERVER_SSH_KEY in the secrets block below.
+      keyvault-name: ${{ vars.AZURE_KEYVAULT_NAME }}
+      azure-client-id: ${{ vars.AZURE_CLIENT_ID }}
+      azure-tenant-id: ${{ vars.AZURE_TENANT_ID }}
+      azure-subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
     secrets:
       WAVE_API_KEY: ${{ secrets.WAVE_API_KEY }}
       NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
-      SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
-      SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+      # Deploy SSH secrets intentionally omitted while use-azure-keyvault=true.
