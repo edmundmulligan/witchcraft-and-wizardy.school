@@ -104,6 +104,7 @@ jobs:
         bin/validate-code.sh ${{ inputs.application }}
 
     - name: Audit colour usage
+      if: inputs.application != 'api'
       continue-on-error: true
       run: |
         IGNORES="${{ inputs.ignores }}"
@@ -122,6 +123,7 @@ jobs:
         bin/check-links.sh ${{ inputs.application }} ${IGNORES:+-x $IGNORES}
 
     - name: Check reading levels
+      if: inputs.application != 'api'
       continue-on-error: true
       run: |
         IGNORES="${{ inputs.ignores }}"
