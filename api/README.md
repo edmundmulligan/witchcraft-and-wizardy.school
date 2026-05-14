@@ -169,6 +169,10 @@ CORS is configured to allow requests from:
 - `https://web.witchcraft-and-wizardry.school` (production)
 - Additional origins can be configured in `.env`
 
+In production, app-level CORS is disabled by default to avoid duplicate
+`Access-Control-Allow-Origin` headers when a reverse proxy already manages CORS.
+Set `APP_ENABLE_CORS=true` to force CORS handling in the Node.js API app.
+
 ## Testing
 
 ### Automated API Tests
