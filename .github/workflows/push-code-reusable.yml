@@ -278,22 +278,28 @@ jobs:
           email_from='noreply@embodied-mind.org'
         fi
 
-        db_host="$(get_required_secret 'DB-HOST')"
-        db_port="$(get_optional_secret 'DB-PORT')"
-        if [[ -z "$db_port" ]]; then
-          db_port='3306'
+        if [[ "${{ inputs.application }}" == "api" ]]; then
+          db_host="$(get_required_secret 'DB-HOST')"
+          db_port="$(get_optional_secret 'DB-PORT')"
+          if [[ -z "$db_port" ]]; then
+            db_port='3306'
+          fi
+          db_user="$(get_required_secret 'DB-USER')"
+          db_password="$(get_required_secret 'DB-PASSWORD')"
+          db_name="$(get_required_secret 'DB-NAME')"
         fi
-        db_user="$(get_required_secret 'DB-USER')"
-        db_password="$(get_required_secret 'DB-PASSWORD')"
-        db_name="$(get_required_secret 'DB-NAME')"
 
         for value in \
           "$server_username" "$server_fingerprint" \
-          "$smtp_host" "$smtp_user" "$smtp_pass" \
-          "$db_host" "$db_user" "$db_password" "$db_name"
+          "$smtp_host" "$smtp_user" "$smtp_pass"
         do
           add_mask_safe "$value"
         done
+        if [[ "${{ inputs.application }}" == "api" ]]; then
+          for value in "$db_host" "$db_user" "$db_password" "$db_name"; do
+            add_mask_safe "$value"
+          done
+        fi
         add_mask_safe "$server_ssh_key"
 
         output_delim="$(openssl rand -hex 16)"
@@ -326,21 +332,23 @@ jobs:
           echo "email_from<<$output_delim"
           echo "$email_from"
           echo "$output_delim"
-          echo "db_host<<$output_delim"
-          echo "$db_host"
-          echo "$output_delim"
-          echo "db_port<<$output_delim"
-          echo "$db_port"
-          echo "$output_delim"
-          echo "db_user<<$output_delim"
-          echo "$db_user"
-          echo "$output_delim"
-          echo "db_password<<$output_delim"
-          echo "$db_password"
-          echo "$output_delim"
-          echo "db_name<<$output_delim"
-          echo "$db_name"
-          echo "$output_delim"
+          if [[ "${{ inputs.application }}" == "api" ]]; then
+            echo "db_host<<$output_delim"
+            echo "$db_host"
+            echo "$output_delim"
+            echo "db_port<<$output_delim"
+            echo "$db_port"
+            echo "$output_delim"
+            echo "db_user<<$output_delim"
+            echo "$db_user"
+            echo "$output_delim"
+            echo "db_password<<$output_delim"
+            echo "$db_password"
+            echo "$output_delim"
+            echo "db_name<<$output_delim"
+            echo "$db_name"
+            echo "$output_delim"
+          fi
         } >> "$GITHUB_OUTPUT"
 
     - name: Resolve deploy auth from GitHub secrets
