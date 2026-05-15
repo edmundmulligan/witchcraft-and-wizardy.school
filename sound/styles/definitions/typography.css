@@ -1,5 +1,5 @@
 /**
- * File: typography.css
+ * File: definitions/typography.css
  * Author: Edmund Mulligan <edmund@edmundmulligan.name>
  * Copyright: (c) 2026 The Embodied Mind
  * License: MIT
@@ -10,12 +10,12 @@
 
 :root {
   /* Font family definitions */
-  --font-family-text: "Open Sans", "sans-serif";
-  --font-family-title: "Cinzel Decorative", "serif";
-  --font-family-subtitle: "Cinzel", "serif";
-  --font-family-menu: "Marcellus", "serif";
-  --font-family-button: "Cormorant Garamond", "serif";
-  --font-family-mono: "Fira Code", "monospace";
+  --font-family-text: "Open Sans", sans-serif;
+  --font-family-title: "Cinzel Decorative", serif;
+  --font-family-subtitle: "Cinzel", serif;
+  --font-family-menu: "Marcellus", serif;
+  --font-family-button: "Cormorant Garamond", serif;
+  --font-family-mono: "Fira Code", monospace;
   --font-family-icons: "Font Awesome 7 Pro";
 
   /* responsive font and button sizes using clamp() - see https://modern-fluid-typography.vercel.app for a size calculator */
