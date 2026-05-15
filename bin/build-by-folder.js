@@ -15,6 +15,52 @@ import { execSync } from 'child_process';
 import path from 'path';
 import fs from 'fs';
 
+function copySharedStylesToApp(folder) {
+  if (!['web', 'stats', 'sound'].includes(folder)) {
+    return;
+  }
+
+  const repoRoot = process.cwd();
+  const commonStylesDir = path.join(repoRoot, 'common', 'styles');
+  const appStylesDir = path.join(repoRoot, folder, 'styles');
+
+  if (!fs.existsSync(commonStylesDir)) {
+    console.error(`❌ Error: Shared styles folder does not exist: ${commonStylesDir}`);
+    process.exit(1);
+  }
+
+  fs.mkdirSync(path.join(appStylesDir, 'definitions'), { recursive: true });
+  fs.mkdirSync(path.join(appStylesDir, 'utilities'), { recursive: true });
+
+  fs.copyFileSync(
+    path.join(commonStylesDir, 'globals.css'),
+    path.join(appStylesDir, 'globals.css'),
+  );
+
+  const definitionFiles = fs.readdirSync(path.join(commonStylesDir, 'definitions'));
+  definitionFiles.forEach((file) => {
+    fs.copyFileSync(
+      path.join(commonStylesDir, 'definitions', file),
+      path.join(appStylesDir, 'definitions', file),
+    );
+  });
+
+  const utilityFiles = fs.readdirSync(path.join(commonStylesDir, 'utilities'));
+  utilityFiles.forEach((file) => {
+    fs.copyFileSync(
+      path.join(commonStylesDir, 'utilities', file),
+      path.join(appStylesDir, 'utilities', file),
+    );
+  });
+
+  if (folder === 'stats' || folder === 'sound') {
+    fs.copyFileSync(
+      path.join(commonStylesDir, 'main.css'),
+      path.join(appStylesDir, 'main.css'),
+    );
+  }
+}
+
 // Parse command line arguments
 const args = process.argv.slice(2);
 let folder = null;
@@ -73,11 +119,21 @@ if (!fs.existsSync(folderPath)) {
 console.log(`🔨 Building assets for: ${folder}`);
 console.log('');
 
-// first generate the colours. This uses web colours as the source of truth, so it needs to be done before building any other assets
+try {
+  console.log('🎨 Syncing shared styles...');
+  copySharedStylesToApp(folder);
+} catch (error) {
+  console.error('');
+  console.error('❌ Syncing shared styles failed');
+  process.exit(error.status || 1);
+}
+console.log('');
+
+// first generate the colours. This uses common styles as the source of truth, so it needs to be done before building any other assets
 try {
   // Generate latex colours from CSS
   console.log('🎨 Generating latex colours...');
-  execSync('bin/generate-colours-from-css.py web/styles/definitions/colours.css artwork/common/colours.tex', {
+  execSync('bin/generate-colours-from-css.py common/styles/definitions/colours.css artwork/common/colours.tex', {
     stdio: 'inherit',
     cwd: process.cwd(),
   });

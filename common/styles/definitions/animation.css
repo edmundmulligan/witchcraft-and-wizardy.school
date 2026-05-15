@@ -1,0 +1,33 @@
+/*
+ **********************************************************************
+ * File       : definitions/animation.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *    Definition of global animation CSS variables
+ **********************************************************************
+ */
+
+:root {
+  /* View transition animation settings */
+  --view-transition-duration: 2000ms;
+  --view-transition-timing-function: ease-in-out;
+
+  /* Header and Footer toggle animation settings */
+  --toggle-duration: 300ms;
+  --toggle-timing-function: ease-in-out;
+
+  /* Theme switcher animation settings */
+  --theme-switch-duration: 600ms;
+  --theme-switch-timing-function: ease-in-out;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --view-transition-duration: 0ms;
+    --toggle-duration: 0ms;
+    --theme-switch-duration: 0ms;
+  }
+}
