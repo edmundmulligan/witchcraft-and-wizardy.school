@@ -186,6 +186,20 @@ jobs:
           rm -f "$tmp_key"
         }
 
+        add_mask_safe() {
+          local value="$1"
+          local line
+          if [[ -z "$value" ]]; then
+            return
+          fi
+
+          while IFS= read -r line || [[ -n "$line" ]]; do
+            if [[ -n "$line" ]]; then
+              echo "::add-mask::$line"
+            fi
+          done <<< "$value"
+        }
+
         if [[ -z "$KEYVAULT_NAME" ]]; then
           echo "keyvault-name is required when use-azure-keyvault=true" >&2
           exit 1
@@ -233,7 +247,12 @@ jobs:
         }
 
         server_username="$(get_required_secret 'SERVER-USERNAME')"
-        server_ssh_key="$(get_required_secret 'SERVER-SSH-KEY')"
+        server_ssh_key_raw="$(get_required_secret 'SERVER-SSH-KEY')"
+        if [[ -n "$server_ssh_key_raw" ]]; then
+          # Mask the original one-line payload before any newline normalization.
+          echo "::add-mask::$server_ssh_key_raw"
+        fi
+        server_ssh_key="$server_ssh_key_raw"
         server_ssh_key="$(normalize_private_key "$server_ssh_key")"
         ensure_private_key_shape "$server_ssh_key"
         validate_private_key_parse "SERVER-SSH-KEY" "$server_ssh_key"
@@ -256,13 +275,12 @@ jobs:
         fi
 
         for value in \
-          "$server_username" "$server_ssh_key" "$server_fingerprint" \
+          "$server_username" "$server_fingerprint" \
           "$smtp_host" "$smtp_user" "$smtp_pass"
         do
-          if [[ -n "$value" ]]; then
-            echo "::add-mask::$value"
-          fi
+          add_mask_safe "$value"
         done
+        add_mask_safe "$server_ssh_key"
 
         output_delim="$(openssl rand -hex 16)"
 
@@ -363,8 +381,26 @@ jobs:
           rm -f "$tmp_key"
         }
 
+        add_mask_safe() {
+          local value="$1"
+          local line
+          if [[ -z "$value" ]]; then
+            return
+          fi
+
+          while IFS= read -r line || [[ -n "$line" ]]; do
+            if [[ -n "$line" ]]; then
+              echo "::add-mask::$line"
+            fi
+          done <<< "$value"
+        }
+
         server_username="$SERVER_USERNAME"
-        server_ssh_key="$SERVER_SSH_KEY"
+        server_ssh_key_raw="$SERVER_SSH_KEY"
+        if [[ -n "$server_ssh_key_raw" ]]; then
+          echo "::add-mask::$server_ssh_key_raw"
+        fi
+        server_ssh_key="$server_ssh_key_raw"
         server_ssh_key="$(normalize_private_key "$server_ssh_key")"
         ensure_private_key_shape "$server_ssh_key"
         validate_private_key_parse "SERVER_SSH_KEY" "$server_ssh_key"
@@ -376,11 +412,9 @@ jobs:
           exit 1
         fi
 
-        echo "::add-mask::$server_username"
-        echo "::add-mask::$server_ssh_key"
-        if [[ -n "$server_fingerprint" ]]; then
-          echo "::add-mask::$server_fingerprint"
-        fi
+        add_mask_safe "$server_username"
+        add_mask_safe "$server_ssh_key"
+        add_mask_safe "$server_fingerprint"
 
         output_delim="$(openssl rand -hex 16)"
         {
