@@ -1,0 +1,44 @@
+/*
+ **********************************************************************
+ * File       : components/utilities.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Utility classes and general-purpose layout helpers.
+ **********************************************************************
+ */
+
+@layer utilities {
+  /* Utility class to visually hide elements */
+  .hidden {
+    display: none;
+  }
+
+  .text-container {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 2rem;
+    padding: var(--padding-text);
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .text-block {
+    flex: 1 1 17rem;
+    max-width: 80ch;
+    min-width: 50ch;
+    box-sizing: border-box;
+    padding: var(--padding-text);
+    border: var(--border-weight) var(--border-style) var(--colour-effective-page-text);
+    border-radius: var(--border-radius);
+  }
+
+  /* Responsive adjustments for smaller screens */
+  @media (width < 800px) {
+    .text-block {
+      min-width: 0;
+      flex: 1 1 100%;
+    }
+  }
+}

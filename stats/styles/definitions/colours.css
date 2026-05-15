@@ -1,0 +1,318 @@
+/**
+ * File: colours.css
+ * Author: Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright: (c) 2026 The Embodied Mind
+ * License: MIT
+ * Description: Colour definitions in HSL format
+ * 
+ * This is the source of truth for colours used in both web and LaTeX documents.
+ * The LaTeX colours.tex file is auto-generated from this file.
+ */
+
+:root {
+  /* Basic colours used in themes. N.B. These are not official CSS colour names */
+  --colour-grey: hsl(0deg 0% 50%);
+  --colour-red: hsl(0deg 100% 50%);
+  --colour-orange: hsl(30deg 100% 50%);
+  --colour-yellow: hsl(60deg 100% 50%);
+  --colour-green: hsl(120deg 100% 50%);
+  --colour-cyan: hsl(180deg 100% 50%);
+  --colour-blue: hsl(210deg 100% 50%);
+  --colour-navy: hsl(240deg 100% 50%);
+  --colour-magenta: hsl(300deg 100% 50%);
+  --colour-pink: hsl(330deg 100% 50%);
+  --colour-purple: hsl(270deg 100% 50%);
+
+  /* non-theme colours */
+  --colour-warning-background: hsl(from var(--colour-red) h s 25%);
+  --colour-warning-text: hsl(from var(--colour-grey) h s 100%);
+  --colour-error-background: hsl(from var(--colour-red) h s 75%);
+  --colour-error-text: hsl(from var(--colour-grey) h s 0%);
+  --colour-success-background: hsl(from var(--colour-green) h s 35%);
+  --colour-success-text: hsl(from var(--colour-grey) h s 100%);
+  --colour-shadow: hsl(from var(--colour-grey) h s 0% / 30%);
+  --colour-overlay: hsl(from var(--colour-grey) h s 0% / 50%);
+
+  /* normal light theme colours */
+  --colour-normal-light-page-background: hsl(from var(--colour-cyan) h s 85%);
+  --colour-normal-light-page-text: hsl(from var(--colour-purple) h s 25%);
+  --colour-normal-light-headings-background: hsl(from var(--colour-cyan) h s l);
+  --colour-normal-light-headings-text: hsl(from var(--colour-magenta) h s 25%);
+  --colour-normal-light-code-background: hsl(from var(--colour-blue) h s 75%);
+  --colour-normal-light-code-text: hsl(from var(--colour-blue) h s 15%);
+
+  /* normal light theme buttons */
+  --colour-normal-light-button-background: hsl(from var(--colour-blue) h s 85%);
+  --colour-normal-light-button-text: hsl(from var(--colour-purple) h s 25%);
+  --colour-normal-light-button-background-hover: hsl(from var(--colour-cyan) h s 85%);
+  --colour-normal-light-button-text-hover: hsl(from var(--colour-magenta) h s 25%);
+  --colour-normal-light-button-background-selected: hsl(from var(--colour-magenta) h s 25%);
+  --colour-normal-light-button-text-selected: hsl(from var(--colour-cyan) h s 85%);
+  --colour-normal-light-button-background-disabled: hsl(from var(--colour-blue) h s 15%);
+  --colour-normal-light-button-text-disabled: hsl(from var(--colour-blue) h s 75%);
+
+  /* normal light theme menu links */
+  --colour-normal-light-menu-background: hsl(from var(--colour-cyan) h s l);
+  --colour-normal-light-menu-text: hsl(from var(--colour-magenta) h s 25%);
+  --colour-normal-light-menu-background-hover: hsl(from var(--colour-cyan) h s 40%);
+  --colour-normal-light-menu-text-hover: hsl(from var(--colour-magenta) h s 15%);
+  --colour-normal-light-menu-background-visited: hsl(from var(--colour-cyan) h s l);
+  --colour-normal-light-menu-text-visited: hsl(from var(--colour-purple) h s 25%);
+  --colour-normal-light-menu-background-focus: hsl(from var(--colour-cyan) h s 40%);
+  --colour-normal-light-menu-text-focus: hsl(from var(--colour-magenta) h s 15%);
+
+  /* normal light theme content links */
+  --colour-normal-light-link-background: transparent;
+  --colour-normal-light-link-text: hsl(from var(--colour-magenta) h s 25%);
+  --colour-normal-light-link-background-hover: transparent;
+  --colour-normal-light-link-text-hover: hsl(from var(--colour-magenta) h s 15%);
+  --colour-normal-light-link-background-visited: transparent;
+  --colour-normal-light-link-text-visited: hsl(from var(--colour-purple) h s 25%);
+  --colour-normal-light-link-background-focus: transparent;
+  --colour-normal-light-link-text-focus: hsl(from var(--colour-magenta) h s 15%);
+
+  /* normal dark theme colours */
+  --colour-normal-dark-page-background: hsl(from var(--colour-purple) h s 25%);
+  --colour-normal-dark-page-text: hsl(from var(--colour-cyan) h s 85%);
+  --colour-normal-dark-headings-background: hsl(from var(--colour-blue) h s 25%);
+  --colour-normal-dark-headings-text: hsl(from var(--colour-cyan) h s 85%);
+  --colour-normal-dark-code-background: hsl(from var(--colour-blue) h s 15%);
+  --colour-normal-dark-code-text: hsl(from var(--colour-blue) h s 75%);
+
+  /* normal dark theme buttons */
+  --colour-normal-dark-button-background: hsl(from var(--colour-blue) h s 15%);
+  --colour-normal-dark-button-text: hsl(from var(--colour-blue) h s 85%);
+  --colour-normal-dark-button-background-hover: hsl(from var(--colour-magenta) h s 25%);
+  --colour-normal-dark-button-text-hover: hsl(from var(--colour-cyan) h s 55%);
+  --colour-normal-dark-button-background-selected: hsl(from var(--colour-cyan) h s 55%);
+  --colour-normal-dark-button-text-selected: hsl(from var(--colour-magenta) h s 25%);
+  --colour-normal-dark-button-background-disabled: hsl(from var(--colour-blue) h s 85%);
+  --colour-normal-dark-button-text-disabled: hsl(from var(--colour-blue) h s 15%);
+
+  /* normal dark theme menu links */
+  --colour-normal-dark-menu-background: hsl(from var(--colour-magenta) h s 25%);
+  --colour-normal-dark-menu-text: hsl(from var(--colour-cyan) h s l);
+  --colour-normal-dark-menu-background-hover: hsl(from var(--colour-magenta) h s 15%);
+  --colour-normal-dark-menu-text-hover: hsl(from var(--colour-cyan) h s 40%);
+  --colour-normal-dark-menu-background-visited: hsl(from var(--colour-magenta) h s 25%);
+  --colour-normal-dark-menu-text-visited: hsl(from var(--colour-purple) h s 95%);
+  --colour-normal-dark-menu-background-focus: hsl(from var(--colour-magenta) h s 15%);
+  --colour-normal-dark-menu-text-focus: hsl(from var(--colour-cyan) h s 40%);
+
+  /* normal dark theme content links */
+  --colour-normal-dark-link-background: transparent;
+  --colour-normal-dark-link-text: hsl(from var(--colour-cyan) h s l);
+  --colour-normal-dark-link-background-hover: transparent;
+  --colour-normal-dark-link-text-hover: hsl(from var(--colour-purple) h s 95%);
+  --colour-normal-dark-link-background-visited: transparent;
+  --colour-normal-dark-link-text-visited: hsl(from var(--colour-cyan) h s 40%);
+  --colour-normal-dark-link-background-focus: transparent;
+  --colour-normal-dark-link-text-focus: hsl(from var(--colour-cyan) h s 40%);
+
+  /* subdued light theme colours - desaturated, closer to greyscale */
+  --colour-subdued-light-page-background: hsl(from var(--colour-grey) h s 85%);
+  --colour-subdued-light-page-text: hsl(from var(--colour-grey) h s 15%);
+  --colour-subdued-light-headings-background: hsl(from var(--colour-grey) h s 95%);
+  --colour-subdued-light-headings-text: hsl(from var(--colour-grey) h s 10%);
+  --colour-subdued-light-code-background: hsl(from var(--colour-grey) h s 90%);
+  --colour-subdued-light-code-text: hsl(from var(--colour-grey) h s 0%);
+
+  /* subdued light theme buttons */
+  --colour-subdued-light-button-background: hsl(from var(--colour-grey) h s 90%);
+  --colour-subdued-light-button-text: hsl(from var(--colour-grey) h s 15%);
+  --colour-subdued-light-button-background-hover: hsl(from var(--colour-grey) h s 75%);
+  --colour-subdued-light-button-text-hover: hsl(from var(--colour-grey) h s 0%);
+  --colour-subdued-light-button-background-selected: hsl(from var(--colour-grey) h s 25%);
+  --colour-subdued-light-button-text-selected: hsl(from var(--colour-grey) h s 100%);
+  --colour-subdued-light-button-background-disabled: hsl(from var(--colour-grey) h s 90%);
+  --colour-subdued-light-button-text-disabled: hsl(from var(--colour-grey) h s 35%);
+
+  /* subdued light theme menu links */
+  --colour-subdued-light-menu-background: hsl(from var(--colour-grey) h s 75%);
+  --colour-subdued-light-menu-text: hsl(from var(--colour-grey) h s 15%);
+  --colour-subdued-light-menu-background-hover: hsl(from var(--colour-grey) h s 60%);
+  --colour-subdued-light-menu-text-hover: hsl(from var(--colour-grey) h s 0%);
+  --colour-subdued-light-menu-background-visited: hsl(from var(--colour-grey) h s 75%);
+  --colour-subdued-light-menu-text-visited: hsl(from var(--colour-grey) h s 5%);
+  --colour-subdued-light-menu-background-focus: hsl(from var(--colour-grey) h s 60%);
+  --colour-subdued-light-menu-text-focus: hsl(from var(--colour-grey) h s 0%);
+
+  /* subdued light theme content links */
+  --colour-subdued-light-link-background: transparent;
+  --colour-subdued-light-link-text: hsl(from var(--colour-grey) h s 15%);
+  --colour-subdued-light-link-background-hover: transparent;
+  --colour-subdued-light-link-text-hover: hsl(from var(--colour-grey) h s 0%);
+  --colour-subdued-light-link-background-visited: transparent;
+  --colour-subdued-light-link-text-visited: hsl(from var(--colour-grey) h s 5%);
+  --colour-subdued-light-link-background-focus: transparent;
+  --colour-subdued-light-link-text-focus: hsl(from var(--colour-grey) h s 0%);
+
+  /* subdued dark theme colours - desaturated, closer to greyscale */
+  --colour-subdued-dark-page-background: hsl(from var(--colour-grey) h s 5%);
+  --colour-subdued-dark-page-text: hsl(from var(--colour-grey) h s 75%);
+  --colour-subdued-dark-headings-background: hsl(from var(--colour-grey) h s 35%);
+  --colour-subdued-dark-headings-text: hsl(from var(--colour-grey) h s 100%);
+  --colour-subdued-dark-code-background: hsl(from var(--colour-grey) h s 15%);
+  --colour-subdued-dark-code-text: hsl(from var(--colour-grey) h s 75%);
+
+  /* subdued dark theme buttons */
+  --colour-subdued-dark-button-background: hsl(from var(--colour-grey) h s 25%);
+  --colour-subdued-dark-button-text: hsl(from var(--colour-grey) h s 75%);
+  --colour-subdued-dark-button-background-hover: hsl(from var(--colour-grey) h s 40%);
+  --colour-subdued-dark-button-text-hover: hsl(from var(--colour-grey) h s 95%);
+  --colour-subdued-dark-button-background-selected: hsl(from var(--colour-grey) h s 95%);
+  --colour-subdued-dark-button-text-selected: hsl(from var(--colour-grey) h s 40%);
+  --colour-subdued-dark-button-background-disabled: hsl(from var(--colour-grey) h s 10%);
+  --colour-subdued-dark-button-text-disabled: hsl(from var(--colour-grey) h s 52%);
+
+  /* subdued dark theme menu links */
+  --colour-subdued-dark-menu-background: hsl(from var(--colour-grey) h s 25%);
+  --colour-subdued-dark-menu-text: hsl(from var(--colour-grey) h s 75%);
+  --colour-subdued-dark-menu-background-hover: hsl(from var(--colour-grey) h s 35%);
+  --colour-subdued-dark-menu-text-hover: hsl(from var(--colour-grey) h s 95%);
+  --colour-subdued-dark-menu-background-visited: hsl(from var(--colour-grey) h s 25%);
+  --colour-subdued-dark-menu-text-visited: hsl(from var(--colour-grey) h s 95%);
+  --colour-subdued-dark-menu-background-focus: hsl(from var(--colour-grey) h s 35%);
+  --colour-subdued-dark-menu-text-focus: hsl(from var(--colour-grey) h s 95%);
+
+  /* subdued dark theme content links */
+  --colour-subdued-dark-link-background: transparent;
+  --colour-subdued-dark-link-text: hsl(0deg 0% 92%);
+  --colour-subdued-dark-link-background-hover: transparent;
+  --colour-subdued-dark-link-text-hover: hsl(from var(--colour-grey) h s 65%);
+  --colour-subdued-dark-link-background-visited: transparent;
+  --colour-subdued-dark-link-text-visited: hsl(from var(--colour-grey) h s 95%);
+  --colour-subdued-dark-link-background-focus: transparent;
+  --colour-subdued-dark-link-text-focus: hsl(from var(--colour-grey) h s 95%);
+
+  /* vibrant light theme colours - op-art inspired with bold colours */
+  --colour-vibrant-light-page-background: hsl(from var(--colour-pink) h s 75%);
+  --colour-vibrant-light-page-text: hsl(from var(--colour-navy) h s 15%);
+  --colour-vibrant-light-headings-background: hsl(from var(--colour-green) h s 75%);
+  --colour-vibrant-light-headings-text: hsl(from var(--colour-blue) h s 25%);
+  --colour-vibrant-light-code-background: hsl(from var(--colour-yellow) h s 75%);
+  --colour-vibrant-light-code-text: hsl(from var(--colour-cyan) h s 15%);
+
+  /* vibrant light theme buttons */
+  --colour-vibrant-light-button-background: hsl(from var(--colour-orange) h s 75%);
+  --colour-vibrant-light-button-text: hsl(from var(--colour-blue) h s 15%);
+  --colour-vibrant-light-button-background-hover: hsl(from var(--colour-green) h s 75%);
+  --colour-vibrant-light-button-text-hover: hsl(from var(--colour-magenta) h s 25%);
+  --colour-vibrant-light-button-background-selected: hsl(from var(--colour-magenta) h s 25%);
+  --colour-vibrant-light-button-text-selected: hsl(from var(--colour-green) h s 75%);
+  --colour-vibrant-light-button-background-disabled: hsl(from var(--colour-grey) h s 85%);
+  --colour-vibrant-light-button-text-disabled: hsl(from var(--colour-grey) h s 30%);
+
+  /* vibrant light theme menu links */
+  --colour-vibrant-light-menu-background: hsl(from var(--colour-green) h s 75%);
+  --colour-vibrant-light-menu-text: hsl(from var(--colour-blue) h s 25%);
+  --colour-vibrant-light-menu-background-hover: hsl(from var(--colour-yellow) h s 75%);
+  --colour-vibrant-light-menu-text-hover: hsl(from var(--colour-green) h s 15%);
+  --colour-vibrant-light-menu-background-visited: hsl(from var(--colour-green) h s 75%);
+  --colour-vibrant-light-menu-text-visited: hsl(from var(--colour-blue) h s 10%);
+  --colour-vibrant-light-menu-background-focus: hsl(from var(--colour-yellow) h s 75%);
+  --colour-vibrant-light-menu-text-focus: hsl(from var(--colour-green) h s 15%);
+
+  /* vibrant light theme content links */
+  --colour-vibrant-light-link-background: transparent;
+  --colour-vibrant-light-link-text: hsl(from var(--colour-blue) h s 10%);
+  --colour-vibrant-light-link-background-hover: transparent;
+  --colour-vibrant-light-link-text-hover: hsl(from var(--colour-green) h s 8%);
+  --colour-vibrant-light-link-background-visited: transparent;
+  --colour-vibrant-light-link-text-visited: hsl(from var(--colour-magenta) h s 10%);
+  --colour-vibrant-light-link-background-focus: transparent;
+  --colour-vibrant-light-link-text-focus: hsl(from var(--colour-green) h s 8%);
+
+  /* vibrant dark theme colours - op-art inspired with bold colours */
+  --colour-vibrant-dark-page-background: hsl(from var(--colour-green) h s 18%);
+  --colour-vibrant-dark-page-text: hsl(from var(--colour-cyan) h s 85%);
+  --colour-vibrant-dark-headings-background: hsl(from var(--colour-magenta) h s 20%);
+  --colour-vibrant-dark-headings-text: hsl(from var(--colour-yellow) h s 75%);
+  --colour-vibrant-dark-code-background: hsl(from var(--colour-pink) h s 20%);
+  --colour-vibrant-dark-code-text: hsl(from var(--colour-cyan) h s 85%);
+
+  /* vibrant dark theme buttons */
+  --colour-vibrant-dark-button-background: hsl(from var(--colour-pink) h s 65%);
+  --colour-vibrant-dark-button-text: hsl(from var(--colour-navy) h s 15%);
+  --colour-vibrant-dark-button-background-hover: hsl(from var(--colour-yellow) h s 65%);
+  --colour-vibrant-dark-button-text-hover: hsl(from var(--colour-navy) h s 15%);
+  --colour-vibrant-dark-button-background-selected: hsl(from var(--colour-cyan) h s 65%);
+  --colour-vibrant-dark-button-text-selected: hsl(from var(--colour-navy) h s 15%);
+  --colour-vibrant-dark-button-background-disabled: hsl(from var(--colour-grey) h s 30%);
+  --colour-vibrant-dark-button-text-disabled: hsl(from var(--colour-grey) h s 70%);
+
+  /* vibrant dark theme menu links */
+  --colour-vibrant-dark-menu-background: hsl(from var(--colour-pink) h s 65%);
+  --colour-vibrant-dark-menu-text: hsl(from var(--colour-navy) h s 15%);
+  --colour-vibrant-dark-menu-background-hover: hsl(from var(--colour-yellow) h s 65%);
+  --colour-vibrant-dark-menu-text-hover: hsl(from var(--colour-navy) h s 15%);
+  --colour-vibrant-dark-menu-background-visited: hsl(from var(--colour-pink) h s 65%);
+  --colour-vibrant-dark-menu-text-visited: hsl(from var(--colour-purple) h s 20%);
+  --colour-vibrant-dark-menu-background-focus: hsl(from var(--colour-yellow) h s 65%);
+  --colour-vibrant-dark-menu-text-focus: hsl(from var(--colour-navy) h s 15%);
+
+  /* vibrant dark theme content links */
+  --colour-vibrant-dark-link-background: transparent;
+  --colour-vibrant-dark-link-text: hsl(from var(--colour-pink) h s 85%);
+  --colour-vibrant-dark-link-background-hover: transparent;
+  --colour-vibrant-dark-link-text-hover: hsl(from var(--colour-yellow) h s 80%);
+  --colour-vibrant-dark-link-background-visited: transparent;
+  --colour-vibrant-dark-link-text-visited: hsl(from var(--colour-cyan) h s 85%);
+  --colour-vibrant-dark-link-background-focus: transparent;
+  --colour-vibrant-dark-link-text-focus: hsl(from var(--colour-yellow) h s 80%);
+
+  /* Effective theme colour variables - default to normal-light theme - will be overridden by themeSwitcher.js */
+  --colour-effective-page-background: var(--colour-normal-light-page-background);
+  --colour-effective-page-text: var(--colour-normal-light-page-text);
+  --colour-effective-headings-background: var(--colour-normal-light-headings-background);
+  --colour-effective-headings-text: var(--colour-normal-light-headings-text);
+  --colour-effective-code-background: var(--colour-normal-light-code-background);
+  --colour-effective-code-text: var(--colour-normal-light-code-text);
+  --colour-effective-button-background: var(--colour-normal-light-button-background);
+  --colour-effective-button-text: var(--colour-normal-light-button-text);
+  --colour-effective-button-background-hover: var(--colour-normal-light-button-background-hover);
+  --colour-effective-button-text-hover: var(--colour-normal-light-button-text-hover);
+  --colour-effective-button-background-selected: var(
+    --colour-normal-light-button-background-selected
+  );
+  --colour-effective-button-text-selected: var(--colour-normal-light-button-text-selected);
+  --colour-effective-button-background-disabled: var(
+    --colour-normal-light-button-background-disabled
+  );
+  --colour-effective-button-text-disabled: var(--colour-normal-light-button-text-disabled);
+  --colour-effective-menu-background: var(--colour-normal-light-menu-background);
+  --colour-effective-menu-text: var(--colour-normal-light-menu-text);
+  --colour-effective-menu-background-hover: var(--colour-normal-light-menu-background-hover);
+  --colour-effective-menu-text-hover: var(--colour-normal-light-menu-text-hover);
+  --colour-effective-menu-background-visited: var(--colour-normal-light-menu-background-visited);
+  --colour-effective-menu-text-visited: var(--colour-normal-light-menu-text-visited);
+  --colour-effective-menu-background-focus: var(--colour-normal-light-menu-background-focus);
+  --colour-effective-menu-text-focus: var(--colour-normal-light-menu-text-focus);
+  --colour-effective-link-background: var(--colour-normal-light-link-background);
+  --colour-effective-link-text: var(--colour-normal-light-link-text);
+  --colour-effective-link-background-hover: var(--colour-normal-light-link-background-hover);
+  --colour-effective-link-text-hover: var(--colour-normal-light-link-text-hover);
+  --colour-effective-link-background-visited: var(--colour-normal-light-link-background-visited);
+  --colour-effective-link-text-visited: var(--colour-normal-light-link-text-visited);
+  --colour-effective-link-background-focus: var(--colour-normal-light-link-background-focus);
+  --colour-effective-link-text-focus: var(--colour-normal-light-link-text-focus);
+
+  /* Additional effective colours for navigation components */
+  --colour-effective-background: var(--colour-effective-page-background);
+  --colour-effective-surface: var(--colour-effective-button-background);
+  --colour-effective-border: var(--colour-effective-button-text);
+  --colour-effective-accent: var(--colour-effective-headings-text);
+
+  /* Wand icon filter values for proper contrast - default to light theme (black wands) */
+  --wand-filter-on-accent: invert(100%); /* Current section - white on accent */
+  --wand-filter-on-surface: invert(0%); /* Previous sections - contrasts with button background */
+  --wand-filter-on-background: invert(0%); /* Next sections - contrasts with page background */
+
+  /* Static generic colour variables for diagnostics pages - always normal-light theme. These are NOT overridden by themeSwitcher.js and remain constant */
+  --colour-page-background: var(--colour-normal-light-page-background);
+  --colour-page-text: var(--colour-normal-light-page-text);
+  --colour-headings-background: var(--colour-normal-light-headings-background);
+  --colour-headings-text: var(--colour-normal-light-headings-text);
+  --colour-code-background: var(--colour-normal-light-code-background);
+  --colour-code-text: var(--colour-normal-light-code-text);
+}
