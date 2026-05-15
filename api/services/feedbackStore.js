@@ -64,26 +64,16 @@ async function ensureSchema() {
   }
 
   const db = await getPool();
-  await db.execute(`
-    CREATE TABLE IF NOT EXISTS feedback_responses (
-      id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-      created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-      recipient_to VARCHAR(320) NOT NULL,
-      recipient_cc VARCHAR(320) NULL,
-      subject VARCHAR(255) NOT NULL,
-      message_text MEDIUMTEXT NOT NULL,
-      attachment_filename VARCHAR(255) NULL,
-      feedback_payload JSON NULL,
-      email_status VARCHAR(16) NOT NULL DEFAULT 'pending',
-      email_message_id VARCHAR(255) NULL,
-      email_error TEXT NULL,
-      request_ip VARCHAR(45) NULL,
-      user_agent VARCHAR(512) NULL,
-      PRIMARY KEY (id),
-      INDEX idx_feedback_created_at (created_at),
-      INDEX idx_feedback_email_status (email_status)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-  `);
+
+  try {
+    // Least-privilege mode: schema is provisioned out-of-band, no runtime DDL.
+    await db.execute('SELECT 1 FROM feedback_responses LIMIT 1');
+  } catch (error) {
+    if (error && (error.code === 'ER_NO_SUCH_TABLE' || error.errno === 1146)) {
+      throw new Error('feedback_responses table does not exist. Provision schema first.');
+    }
+    throw error;
+  }
 
   schemaReady = true;
 }
