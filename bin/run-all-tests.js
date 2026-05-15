@@ -186,7 +186,9 @@ if (
   failedTests++;
 }
 
-if (
+if (folder === 'api') {
+  console.log('\n⏭️  Skipping colour usage audit for API (frontend theme checks are not applicable)');
+} else if (
   !runTest(
     'audit-colour',
     '🎨 Running colour usage audit...',

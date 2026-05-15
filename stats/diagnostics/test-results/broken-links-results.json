@@ -4,12 +4,14 @@
       "url": "index.html",
       "links": [],
       "brokenCount": 0,
-      "totalCount": 25
+      "totalCount": 7,
+      "timeoutCount": 0
     }
   ],
   "summary": {
-    "totalLinks": 25,
+    "totalLinks": 7,
     "brokenLinks": 0,
+    "timeoutLinks": 0,
     "excludedLinks": 0
   }
 }
