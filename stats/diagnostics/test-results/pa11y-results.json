@@ -1,0 +1,58 @@
+{
+  "pages": [
+    {
+      "url": "index.html",
+      "theme": "light",
+      "style": "normal",
+      "viewport": "900",
+      "documentTitle": "Stats Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/",
+      "issues": []
+    },
+    {
+      "url": "index.html",
+      "theme": "dark",
+      "style": "normal",
+      "viewport": "900",
+      "documentTitle": "Stats Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/",
+      "issues": []
+    },
+    {
+      "url": "index.html",
+      "theme": "light",
+      "style": "subdued",
+      "viewport": "900",
+      "documentTitle": "Stats Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/",
+      "issues": []
+    },
+    {
+      "url": "index.html",
+      "theme": "dark",
+      "style": "subdued",
+      "viewport": "900",
+      "documentTitle": "Stats Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/",
+      "issues": []
+    },
+    {
+      "url": "index.html",
+      "theme": "light",
+      "style": "vibrant",
+      "viewport": "900",
+      "documentTitle": "Stats Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/",
+      "issues": []
+    },
+    {
+      "url": "index.html",
+      "theme": "dark",
+      "style": "vibrant",
+      "viewport": "900",
+      "documentTitle": "Stats Witchcraft and Wizardry",
+      "pageUrl": "http://localhost:8080/",
+      "issues": []
+    }
+  ]
+}

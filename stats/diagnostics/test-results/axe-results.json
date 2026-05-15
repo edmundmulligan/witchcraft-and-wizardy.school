@@ -1,0 +1,64 @@
+{
+  "violations": [],
+  "passes": [
+    {
+      "pageUrl": "index.html",
+      "theme": "light",
+      "style": "normal",
+      "viewport": "900",
+      "count": 18
+    },
+    {
+      "pageUrl": "index.html",
+      "theme": "dark",
+      "style": "normal",
+      "viewport": "900",
+      "count": 18
+    },
+    {
+      "pageUrl": "index.html",
+      "theme": "light",
+      "style": "subdued",
+      "viewport": "900",
+      "count": 18
+    },
+    {
+      "pageUrl": "index.html",
+      "theme": "dark",
+      "style": "subdued",
+      "viewport": "900",
+      "count": 18
+    },
+    {
+      "pageUrl": "index.html",
+      "theme": "light",
+      "style": "vibrant",
+      "viewport": "900",
+      "count": 18
+    },
+    {
+      "pageUrl": "index.html",
+      "theme": "dark",
+      "style": "vibrant",
+      "viewport": "900",
+      "count": 18
+    }
+  ],
+  "incomplete": [],
+  "metadata": {
+    "pagesTestedCount": 1,
+    "totalTestRuns": 6,
+    "viewports": [
+      "900"
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "styles": [
+      "normal",
+      "subdued",
+      "vibrant"
+    ]
+  }
+}

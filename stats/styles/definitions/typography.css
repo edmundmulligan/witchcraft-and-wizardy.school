@@ -1,0 +1,54 @@
+/*
+ **********************************************************************
+ * File       : definitions/typography.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *    Typography definitions including font families and sizes
+ * Note:
+ *    This is a shared resource and should be edited in the common folder.
+ **********************************************************************
+ */
+
+ * 
+ * This is the source of truth for typography used in web documents.
+ */
+
+:root {
+  /* Font family definitions */
+  --font-family-text: "Open Sans", sans-serif;
+  --font-family-title: "Cinzel Decorative", serif;
+  --font-family-subtitle: "Cinzel", serif;
+  --font-family-menu: "Marcellus", serif;
+  --font-family-button: "Cormorant Garamond", serif;
+  --font-family-mono: "Fira Code", monospace;
+  --font-family-icons: "Font Awesome 7 Pro";
+
+  /* responsive font and button sizes using clamp() - see https://modern-fluid-typography.vercel.app for a size calculator */
+  --fontsize-normal: clamp(0.5rem, 2vw + 1rem, 2.25rem);
+  --fontsize-small: clamp(0.5rem, 1.5vw + 0.75rem, 1.75rem);
+  --fontsize-large: clamp(1rem, 3vw + 1rem, 3rem);
+  --fontsize-header-large: clamp(0.625rem, 1.5vw + 0.75rem, 2.5rem);
+  --fontsize-header-medium: clamp(0.625rem, 1.5vw + 0.75rem, 2.5rem);
+  --fontsize-header-small: clamp(0.5rem, 1.25vw + 0.625rem, 2rem);
+  --fontsize-button: clamp(0.4rem, 1.75vw + 0.75rem, 2rem);
+  --fontsize-nav: clamp(0.5rem, 1.5vw + 0.5rem, 1rem);
+  --buttonsize-circle: clamp(4rem, 8vw + 5rem, 12rem);
+  --margin-vertical: clamp(0.333rem, 0.5vw + 0.5rem, 1rem);
+  --margin-horizontal: clamp(0.333rem, 1vw + 1rem, 2rem);
+  --padding-nav: clamp(0.25rem, 1vw + 0.25rem, 0.5rem);
+  --padding-title: clamp(0.1rem, 1vw + 0.25rem, 1rem);
+  --padding-text: clamp(0.1rem, 0.5vw + 0.25rem, 1rem);
+  --scrollbar-width: clamp(1rem, 2vw + 3rem, 5rem);
+
+  /* other typography definitions */
+  --line-height-normal: 1.6;
+  --text-align: left;
+  --font-style-normal: normal;
+  --font-style-italic: italic;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+  --font-weight-extra-bold: 900;
+}

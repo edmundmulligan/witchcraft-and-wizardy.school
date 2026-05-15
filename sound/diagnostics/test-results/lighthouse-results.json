@@ -1,0 +1,52 @@
+{
+  "pages": [
+    {
+      "url": "index.html",
+      "theme": "light",
+      "style": "normal",
+      "viewport": "900",
+      "score": 1,
+      "failedAudits": []
+    },
+    {
+      "url": "index.html",
+      "theme": "dark",
+      "style": "normal",
+      "viewport": "900",
+      "score": 1,
+      "failedAudits": []
+    },
+    {
+      "url": "index.html",
+      "theme": "light",
+      "style": "subdued",
+      "viewport": "900",
+      "score": 1,
+      "failedAudits": []
+    },
+    {
+      "url": "index.html",
+      "theme": "dark",
+      "style": "subdued",
+      "viewport": "900",
+      "score": 1,
+      "failedAudits": []
+    },
+    {
+      "url": "index.html",
+      "theme": "light",
+      "style": "vibrant",
+      "viewport": "900",
+      "score": 1,
+      "failedAudits": []
+    },
+    {
+      "url": "index.html",
+      "theme": "dark",
+      "style": "vibrant",
+      "viewport": "900",
+      "score": 1,
+      "failedAudits": []
+    }
+  ]
+}

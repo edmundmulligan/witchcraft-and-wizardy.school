@@ -109,7 +109,7 @@ jobs:
         bin/validate-code.sh ${{ inputs.application }}
 
     - name: Audit colour usage
-      if: !inputs.skip-content-audits
+      if: ${{ !inputs['skip-content-audits'] }}
       continue-on-error: true
       run: |
         IGNORES="${{ inputs.ignores }}"
@@ -128,7 +128,7 @@ jobs:
         bin/check-links.sh ${{ inputs.application }} ${IGNORES:+-x $IGNORES}
 
     - name: Check reading levels
-      if: !inputs.skip-content-audits
+      if: ${{ !inputs['skip-content-audits'] }}
       continue-on-error: true
       run: |
         IGNORES="${{ inputs.ignores }}"
@@ -193,22 +193,3 @@ jobs:
           ${{ inputs.application }}/diagnostics/test-results/readability-results.json
           ${{ inputs.application }}/diagnostics/test-results/validation-results.json
           ${{ inputs.application }}/diagnostics/test-results/wave-results.json
-  deploy:
-    needs: run-pre-deployment-test
-    if: github.base_ref == 'main'
-    permissions:
-      id-token: write
-      contents: read
-    uses: ./.github/workflows/push-code-reusable.yml
-    with:
-      application: ${{ inputs.application }}
-      deploy-path: ${{ inputs.deploy-path }}
-      server: ${{ inputs.server }}
-      use-azure-keyvault: ${{ inputs.use-azure-keyvault }}
-      keyvault-name: ${{ inputs.keyvault-name }}
-      azure-client-id: ${{ inputs.azure-client-id }}
-      azure-tenant-id: ${{ inputs.azure-tenant-id }}
-      azure-subscription-id: ${{ inputs.azure-subscription-id }}
-    secrets:
-      SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
-      SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}

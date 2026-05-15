@@ -1,0 +1,17 @@
+{
+  "pages": [
+    {
+      "url": "index.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 7,
+      "timeoutCount": 0
+    }
+  ],
+  "summary": {
+    "totalLinks": 7,
+    "brokenLinks": 0,
+    "timeoutLinks": 0,
+    "excludedLinks": 0
+  }
+}

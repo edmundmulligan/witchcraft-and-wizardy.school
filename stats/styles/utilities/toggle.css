@@ -1,0 +1,54 @@
+/*
+ **********************************************************************
+ * File       : utilities/toggle.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This stylesheet defines styles for toggling visibility of sections.
+ * Note:
+ *   This is a shared resource and should be edited in the common folder.
+ **********************************************************************
+ */
+
+@layer utilities {
+  .magic-invisible {
+    &::before {
+      content: "\f0d0\f054"; /* Font Awesome Magic Wand + Chevron Right */
+      font-family: var(--font-family-icons);
+      font-weight: var(--font-weight-extra-bold); /* needed for solid style icons */
+      margin-right: var(--margin-horizontal);
+      display: inline-block;
+    }
+  }
+
+  .magic-visible {
+    &::before {
+      content: "\e2ca\f078"; /* Font Awesome Magic Wand with sparkles + Chevron Down */
+      font-family: var(--font-family-icons);
+      font-weight: var(--font-weight-extra-bold); /* needed for solid style icons */
+      margin-right: var(--margin-horizontal);
+      display: inline-block;
+    }
+  }
+
+  .magic-block-close {
+    display: inline;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-family: var(--font-family-icons);
+    font-weight: var(--font-weight-extra-bold);
+
+    &.h3-level,
+    &.h4-level {
+      font-size: var(--fontsize-header-medium);
+    }
+
+    &::before {
+      content: "\e2ca\f077"; /* Font Awesome Magic Wand with sparkles + Chevron Up */
+      margin-right: var(--margin-horizontal);
+    }
+  }
+}

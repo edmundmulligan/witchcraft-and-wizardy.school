@@ -1,0 +1,54 @@
+/*
+ **********************************************************************
+ * File       : definitions/layout.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *    definition of global CSS variables and styles
+ * Note:
+ *    This is a shared resource and should be edited in the common folder.
+ **********************************************************************
+ */
+
+:root {
+  /* Background image sources */
+  --bg-landscape-normal-light: url("../../images/backgrounds/background-web-landscape-normal-light.svg");
+  --bg-landscape-normal-dark: url("../../images/backgrounds/background-web-landscape-normal-dark.svg");
+  --bg-portrait-normal-light: url("../../images/backgrounds/background-web-portrait-normal-light.svg");
+  --bg-portrait-normal-dark: url("../../images/backgrounds/background-web-portrait-normal-dark.svg");
+  --bg-landscape-subdued-light: url("../../images/backgrounds/background-web-landscape-subdued-light.svg");
+  --bg-landscape-subdued-dark: url("../../images/backgrounds/background-web-landscape-subdued-dark.svg");
+  --bg-portrait-subdued-light: url("../../images/backgrounds/background-web-portrait-subdued-light.svg");
+  --bg-portrait-subdued-dark: url("../../images/backgrounds/background-web-portrait-subdued-dark.svg");
+  --bg-landscape-vibrant-light: url("../../images/backgrounds/background-web-landscape-vibrant-light.svg");
+  --bg-landscape-vibrant-dark: url("../../images/backgrounds/background-web-landscape-vibrant-dark.svg");
+  --bg-portrait-vibrant-light: url("../../images/backgrounds/background-web-portrait-vibrant-light.svg");
+  --bg-portrait-vibrant-dark: url("../../images/backgrounds/background-web-portrait-vibrant-dark.svg");
+
+  /* Active background images - default to normal-light, overridden by theme-switcher.js */
+  --bg-landscape: var(--bg-landscape-normal-light);
+  --bg-portrait: var(--bg-portrait-normal-light);
+
+  /* other global variables to ensure site-wide consistency */
+  --border-radius: 2rem;
+  --border-weight: 0.2rem;
+  --border-weight-thin: 0.1rem;
+  --border-style: solid;
+  --grid-gap: 1rem;
+  --grid-padding: 1rem;
+  --page-gap: 2rem;
+  --page-margin: 0;
+  --page-padding: 0;
+  --button-padding: 1rem;
+  --menu-padding: 0.5rem 1rem;
+  --image-padding: 0.5rem;
+  --box-shadow: 0 2px 8px var(--colour-shadow);
+  --carousel-portrait-width: clamp(20rem, 15vw + 10rem, 30rem);
+  --carousel-portrait-height: clamp(20rem, 15vw + 10rem, 30rem);
+  --carousel-accessory-width: clamp(20rem, 15vw + 10rem, 30rem);
+  --carousel-accessory-height: clamp(20rem, 15vw + 10rem, 30rem);
+  --carousel-familiar-width: clamp(20rem, 15vw + 10rem, 30rem);
+  --carousel-familiar-height: clamp(20rem, 15vw + 10rem, 30rem);
+  --faq-column-width: clamp(80ch, 44vw, 120ch);
+}
