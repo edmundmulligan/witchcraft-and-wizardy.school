@@ -104,7 +104,7 @@ jobs:
 
     - name: Azure login (OIDC)
       if: inputs.use-azure-keyvault
-      uses: azure/login@v2
+      uses: azure/login@v3
       with:
         client-id: ${{ inputs.azure-client-id }}
         tenant-id: ${{ inputs.azure-tenant-id }}
