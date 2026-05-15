@@ -278,12 +278,28 @@ jobs:
           email_from='noreply@embodied-mind.org'
         fi
 
+        if [[ "${{ inputs.application }}" == "api" ]]; then
+          db_host="$(get_required_secret 'DB-HOST')"
+          db_port="$(get_optional_secret 'DB-PORT')"
+          if [[ -z "$db_port" ]]; then
+            db_port='3306'
+          fi
+          db_user="$(get_required_secret 'DB-USER')"
+          db_password="$(get_required_secret 'DB-PASSWORD')"
+          db_name="$(get_required_secret 'DB-NAME')"
+        fi
+
         for value in \
           "$server_username" "$server_fingerprint" \
           "$smtp_host" "$smtp_user" "$smtp_pass"
         do
           add_mask_safe "$value"
         done
+        if [[ "${{ inputs.application }}" == "api" ]]; then
+          for value in "$db_host" "$db_user" "$db_password" "$db_name"; do
+            add_mask_safe "$value"
+          done
+        fi
         add_mask_safe "$server_ssh_key"
 
         output_delim="$(openssl rand -hex 16)"
@@ -316,6 +332,23 @@ jobs:
           echo "email_from<<$output_delim"
           echo "$email_from"
           echo "$output_delim"
+          if [[ "${{ inputs.application }}" == "api" ]]; then
+            echo "db_host<<$output_delim"
+            echo "$db_host"
+            echo "$output_delim"
+            echo "db_port<<$output_delim"
+            echo "$db_port"
+            echo "$output_delim"
+            echo "db_user<<$output_delim"
+            echo "$db_user"
+            echo "$output_delim"
+            echo "db_password<<$output_delim"
+            echo "$db_password"
+            echo "$output_delim"
+            echo "db_name<<$output_delim"
+            echo "$db_name"
+            echo "$output_delim"
+          fi
         } >> "$GITHUB_OUTPUT"
 
     - name: Resolve deploy auth from GitHub secrets
@@ -513,12 +546,17 @@ jobs:
         SMTP_USER: ${{ steps.keyvault.outputs.smtp_user }}
         SMTP_PASS: ${{ steps.keyvault.outputs.smtp_pass }}
         EMAIL_FROM: ${{ steps.keyvault.outputs.email_from }}
+        DB_HOST: ${{ steps.keyvault.outputs.db_host }}
+        DB_PORT: ${{ steps.keyvault.outputs.db_port }}
+        DB_USER: ${{ steps.keyvault.outputs.db_user }}
+        DB_PASSWORD: ${{ steps.keyvault.outputs.db_password }}
+        DB_NAME: ${{ steps.keyvault.outputs.db_name }}
       with:
         host: ${{ inputs.server }}
         username: ${{ steps.keyvault.outputs.server_username || steps.deploy_auth_secrets.outputs.ssh_username }}
         key: ${{ steps.keyvault.outputs.server_ssh_key || steps.deploy_auth_secrets.outputs.ssh_key }}
         fingerprint: ${{ steps.keyvault.outputs.server_fingerprint || steps.deploy_auth_secrets.outputs.ssh_fingerprint }}
-        envs: SMTP_HOST,SMTP_PORT,SMTP_SECURE,SMTP_USER,SMTP_PASS,EMAIL_FROM
+        envs: SMTP_HOST,SMTP_PORT,SMTP_SECURE,SMTP_USER,SMTP_PASS,EMAIL_FROM,DB_HOST,DB_PORT,DB_USER,DB_PASSWORD,DB_NAME
         script: |
           set -e
           cd "${{ inputs.deploy-path }}"
@@ -546,10 +584,11 @@ jobs:
                 cp -f api.env .env
 
                 # Enforce production-safe defaults in deployed runtime config.
-                sed -i '/^NODE_ENV=/d;/^EMAIL_PROVIDER=/d' .env
+                sed -i '/^NODE_ENV=/d;/^EMAIL_PROVIDER=/d;/^FEEDBACK_STORE_PROVIDER=/d' .env
                 {
                   echo 'NODE_ENV=production'
                   echo 'EMAIL_PROVIDER=smtp'
+                  echo 'FEEDBACK_STORE_PROVIDER=mariadb'
                 } >> .env
 
                 chmod 600 .env
@@ -589,7 +628,7 @@ jobs:
           }
 
           if [[ "${{ inputs.use-azure-keyvault }}" == "true" ]]; then
-            required_vars=(SMTP_HOST SMTP_USER SMTP_PASS)
+            required_vars=(SMTP_HOST SMTP_USER SMTP_PASS DB_HOST DB_USER DB_PASSWORD DB_NAME)
             for var_name in "${required_vars[@]}"; do
               if [[ ! "$var_name" =~ ^[A-Za-z_][A-Za-z0-9_]*$ ]]; then
                 echo "Invalid environment variable name while checking required API runtime secret: $var_name" >&2
@@ -607,6 +646,12 @@ jobs:
             export NODE_ENV=production
             export APP_ENABLE_CORS=false
             export EMAIL_PROVIDER=smtp
+            export FEEDBACK_STORE_PROVIDER=mariadb
+            export DB_HOST="$DB_HOST"
+            export DB_PORT="${DB_PORT:-3306}"
+            export DB_USER="$DB_USER"
+            export DB_PASSWORD="$DB_PASSWORD"
+            export DB_NAME="$DB_NAME"
           else
             smtp_host_effective="${SMTP_HOST:-$(get_env_file_value SMTP_HOST)}"
             smtp_port_effective="${SMTP_PORT:-$(get_env_file_value SMTP_PORT)}"
@@ -614,6 +659,11 @@ jobs:
             smtp_user_effective="${SMTP_USER:-$(get_env_file_value SMTP_USER)}"
             smtp_pass_effective="${SMTP_PASS:-$(get_env_file_value SMTP_PASS)}"
             email_from_effective="${EMAIL_FROM:-$(get_env_file_value EMAIL_FROM)}"
+            db_host_effective="${DB_HOST:-$(get_env_file_value DB_HOST)}"
+            db_port_effective="${DB_PORT:-$(get_env_file_value DB_PORT)}"
+            db_user_effective="${DB_USER:-$(get_env_file_value DB_USER)}"
+            db_password_effective="${DB_PASSWORD:-$(get_env_file_value DB_PASSWORD)}"
+            db_name_effective="${DB_NAME:-$(get_env_file_value DB_NAME)}"
 
             if [[ -z "$smtp_port_effective" ]]; then
               smtp_port_effective='587'
@@ -623,6 +673,9 @@ jobs:
             fi
             if [[ -z "$email_from_effective" ]]; then
               email_from_effective='noreply@embodied-mind.org'
+            fi
+            if [[ -z "$db_port_effective" ]]; then
+              db_port_effective='3306'
             fi
 
             if [[ -z "$smtp_host_effective" || -z "$smtp_user_effective" || -z "$smtp_pass_effective" ]]; then
@@ -638,6 +691,19 @@ jobs:
             export SMTP_USER="$smtp_user_effective"
             export SMTP_PASS="$smtp_pass_effective"
             export EMAIL_FROM="$email_from_effective"
+
+            # Only enable MariaDB feedback store if all DB credentials are present
+            if [[ -n "$db_host_effective" && -n "$db_user_effective" && -n "$db_password_effective" && -n "$db_name_effective" ]]; then
+              export FEEDBACK_STORE_PROVIDER=mariadb
+              export DB_HOST="$db_host_effective"
+              export DB_PORT="$db_port_effective"
+              export DB_USER="$db_user_effective"
+              export DB_PASSWORD="$db_password_effective"
+              export DB_NAME="$db_name_effective"
+            else
+              export FEEDBACK_STORE_PROVIDER=none
+              echo "[WARN] MariaDB feedback store not enabled: missing DB credentials (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)" >&2
+            fi
           fi
 
           # Install only production dependencies for the standalone API package.
