@@ -549,7 +549,8 @@ jobs:
           if [[ "${{ inputs.use-azure-keyvault }}" == "true" ]]; then
             required_vars=(SMTP_HOST SMTP_USER SMTP_PASS)
             for var_name in "${required_vars[@]}"; do
-              if [[ -z "${!var_name:-}" ]]; then
+              var_value="$(printenv "$var_name" 2>/dev/null || true)"
+              if [[ -z "$var_value" ]]; then
                 echo "Missing required API runtime secret: $var_name" >&2
                 exit 1
               fi
