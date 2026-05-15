@@ -5,6 +5,7 @@ Node.js/Express API server for Web Witchcraft and Wizardry website.
 ## Features
 
 - **Feedback Form Submissions**: Receives and emails feedback from the website
+- **Optional MariaDB Storage**: Persists feedback responses for reporting/auditing
 - **Email Service**: Sends formatted emails with JSON attachments
 - **CORS Support**: Configured for local development and production domains
 - **Input Validation**: Validates and sanitises all incoming data
@@ -64,7 +65,29 @@ EMAIL_FROM=noreply@embodied-mind.org
 - **AWS SES**: Check AWS documentation for endpoint
 - **Custom SMTP**: Use your server's SMTP settings
 
-### 4. Start the Server
+### 4. MariaDB Configuration (Optional)
+
+To persist feedback responses in MariaDB, set:
+
+```env
+FEEDBACK_STORE_PROVIDER=mariadb
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_USER=witchcraft_api
+DB_PASSWORD=replace-with-strong-password
+DB_NAME=witchcraft_feedback
+```
+
+Create the database and table:
+
+```bash
+mysql -u root -p < sql/mariadb-feedback-schema.sql
+```
+
+When enabled, each submission is inserted into `feedback_responses` before email delivery,
+then marked `sent` or `failed` depending on email outcome.
+
+### 5. Start the Server
 
 #### Development Mode:
 ```bash
@@ -110,6 +133,9 @@ CI/CD deployment note:
 
 Sends feedback form data via email.
 
+When MariaDB storage is enabled, this endpoint also persists the submission and returns
+`feedbackRecordId` in successful responses.
+
 **Request Body:**
 ```json
 {
@@ -129,7 +155,8 @@ Sends feedback form data via email.
 {
   "success": true,
   "message": "Feedback sent successfully",
-  "messageId": "<message-id@server>"
+  "messageId": "<message-id@server>",
+  "feedbackRecordId": 123
 }
 ```
 
