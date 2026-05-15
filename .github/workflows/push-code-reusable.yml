@@ -52,6 +52,10 @@ on:
 jobs:
   deploy-to-server:
     runs-on: ubuntu-latest
+    # Stabilise GitHub OIDC subject claim for Azure workload identity federation.
+    # Required Azure federated credential subject:
+    # repo:edmundmulligan/witchcraft-and-wizardy.school:environment:production
+    environment: production
     permissions:
       contents: read
       id-token: write
@@ -94,6 +98,9 @@ jobs:
             echo "Ensure caller workflows grant permissions: id-token: write (and contents: read)." >&2
             exit 1
           fi
+
+          echo "Using GitHub Actions environment 'production' for OIDC subject claim." >&2
+          echo "Ensure Azure federated credential subject is: repo:${{ github.repository }}:environment:production" >&2
         else
           if [[ -z "$SERVER_USERNAME_INPUT" || -z "$SERVER_SSH_KEY_INPUT" ]]; then
             echo "Missing required GitHub secrets when use-azure-keyvault=false." >&2
