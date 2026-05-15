@@ -84,8 +84,12 @@ Create the database and table:
 mysql -u root -p < sql/mariadb-feedback-schema.sql
 ```
 
-When enabled, each submission is inserted into `feedback_responses` before email delivery,
-then marked `sent` or `failed` depending on email outcome.
+The API does **not** run runtime DDL and assumes `feedback_responses` is pre-provisioned.
+This keeps least-privilege grants (`SELECT`, `INSERT`, `UPDATE`) valid.
+
+When enabled, MariaDB persistence is **best-effort**. The API attempts to insert each submission
+into `feedback_responses` and update status (`sent` or `failed`), but email delivery continues even
+if MariaDB is unavailable or a persistence step fails.
 
 ### 5. Start the Server
 
@@ -133,8 +137,8 @@ CI/CD deployment note:
 
 Sends feedback form data via email.
 
-When MariaDB storage is enabled, this endpoint also persists the submission and returns
-`feedbackRecordId` in successful responses.
+When MariaDB storage is enabled, this endpoint also attempts to persist the submission.
+If persistence succeeds, responses include `feedbackRecordId`.
 
 **Request Body:**
 ```json

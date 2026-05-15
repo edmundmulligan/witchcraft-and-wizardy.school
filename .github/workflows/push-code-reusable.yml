@@ -126,6 +126,66 @@ jobs:
       run: |
         set -euo pipefail
 
+        normalize_private_key() {
+          local raw="$1"
+          local decoded
+
+          # Remove CR characters introduced by copy/paste on Windows systems.
+          raw="${raw//$'\r'/}"
+          raw="${raw//\\r/}"
+
+          # Unwrap a single pair of wrapping quotes if present.
+          if [[ "$raw" =~ ^\".*\"$ ]]; then
+            raw="${raw:1:${#raw}-2}"
+          elif [[ "$raw" =~ ^\'.*\'$ ]]; then
+            raw="${raw:1:${#raw}-2}"
+          fi
+
+          # Convert literal "\\n" sequences into real newlines.
+          if [[ "$raw" == *"\\n"* ]]; then
+            raw="${raw//\\n/$'\n'}"
+          fi
+
+          # Accept base64-encoded private keys as input and decode them.
+          if [[ "$raw" != *"-----BEGIN "* ]]; then
+            decoded="$(printf '%s' "$raw" | base64 --decode 2>/dev/null || true)"
+            if [[ "$decoded" == *"-----BEGIN "* && "$decoded" == *"PRIVATE KEY-----"* ]]; then
+              raw="$decoded"
+            fi
+          fi
+
+          printf '%s' "$raw"
+        }
+
+        ensure_private_key_shape() {
+          local key_value="$1"
+          if [[ "$key_value" != *"-----BEGIN "* || "$key_value" != *"PRIVATE KEY-----"* || "$key_value" != *"-----END "* ]]; then
+            echo "SERVER-SSH-KEY is not a valid SSH private key payload." >&2
+            echo "Store the full private key (including BEGIN/END lines)." >&2
+            echo "If stored as one line, use literal \\n sequences; this workflow will normalise them." >&2
+            exit 1
+          fi
+        }
+
+        validate_private_key_parse() {
+          local key_name="$1"
+          local key_value="$2"
+          local tmp_key
+
+          tmp_key="$(mktemp)"
+          chmod 600 "$tmp_key"
+          printf '%s\n' "$key_value" > "$tmp_key"
+
+          if ! ssh-keygen -yf "$tmp_key" >/dev/null 2>&1; then
+            rm -f "$tmp_key"
+            echo "$key_name is present but could not be parsed as a valid SSH private key." >&2
+            echo "Ensure it is an unencrypted private key in OpenSSH/PEM format." >&2
+            exit 1
+          fi
+
+          rm -f "$tmp_key"
+        }
+
         if [[ -z "$KEYVAULT_NAME" ]]; then
           echo "keyvault-name is required when use-azure-keyvault=true" >&2
           exit 1
@@ -174,6 +234,9 @@ jobs:
 
         server_username="$(get_required_secret 'SERVER-USERNAME')"
         server_ssh_key="$(get_required_secret 'SERVER-SSH-KEY')"
+        server_ssh_key="$(normalize_private_key "$server_ssh_key")"
+        ensure_private_key_shape "$server_ssh_key"
+        validate_private_key_parse "SERVER-SSH-KEY" "$server_ssh_key"
         server_fingerprint="$(get_optional_secret 'SERVER-FINGERPRINT')"
 
         smtp_host="$(get_required_secret 'SMTP-HOST')"
@@ -243,8 +306,68 @@ jobs:
         SERVER_FINGERPRINT: ${{ secrets.SERVER_FINGERPRINT }}
       run: |
         set -euo pipefail
+
+        normalize_private_key() {
+          local raw="$1"
+          local decoded
+
+          raw="${raw//$'\r'/}"
+          raw="${raw//\\r/}"
+
+          if [[ "$raw" =~ ^\".*\"$ ]]; then
+            raw="${raw:1:${#raw}-2}"
+          elif [[ "$raw" =~ ^\'.*\'$ ]]; then
+            raw="${raw:1:${#raw}-2}"
+          fi
+
+          if [[ "$raw" == *"\\n"* ]]; then
+            raw="${raw//\\n/$'\n'}"
+          fi
+
+          if [[ "$raw" != *"-----BEGIN "* ]]; then
+            decoded="$(printf '%s' "$raw" | base64 --decode 2>/dev/null || true)"
+            if [[ "$decoded" == *"-----BEGIN "* && "$decoded" == *"PRIVATE KEY-----"* ]]; then
+              raw="$decoded"
+            fi
+          fi
+
+          printf '%s' "$raw"
+        }
+
+        ensure_private_key_shape() {
+          local key_value="$1"
+          if [[ "$key_value" != *"-----BEGIN "* || "$key_value" != *"PRIVATE KEY-----"* || "$key_value" != *"-----END "* ]]; then
+            echo "SERVER_SSH_KEY GitHub secret is not a valid SSH private key payload." >&2
+            echo "Store the full private key (including BEGIN/END lines)." >&2
+            echo "If stored as one line, use literal \\n sequences; this workflow will normalise them." >&2
+            exit 1
+          fi
+        }
+
+        validate_private_key_parse() {
+          local key_name="$1"
+          local key_value="$2"
+          local tmp_key
+
+          tmp_key="$(mktemp)"
+          chmod 600 "$tmp_key"
+          printf '%s\n' "$key_value" > "$tmp_key"
+
+          if ! ssh-keygen -yf "$tmp_key" >/dev/null 2>&1; then
+            rm -f "$tmp_key"
+            echo "$key_name is present but could not be parsed as a valid SSH private key." >&2
+            echo "Ensure it is an unencrypted private key in OpenSSH/PEM format." >&2
+            exit 1
+          fi
+
+          rm -f "$tmp_key"
+        }
+
         server_username="$SERVER_USERNAME"
         server_ssh_key="$SERVER_SSH_KEY"
+        server_ssh_key="$(normalize_private_key "$server_ssh_key")"
+        ensure_private_key_shape "$server_ssh_key"
+        validate_private_key_parse "SERVER_SSH_KEY" "$server_ssh_key"
         server_fingerprint="$SERVER_FINGERPRINT"
 
         if [[ -z "$server_username" || -z "$server_ssh_key" ]]; then

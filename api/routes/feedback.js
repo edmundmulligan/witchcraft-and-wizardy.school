@@ -99,17 +99,21 @@ router.post('/send-feedback', async (req, res, next) => {
 
     let feedbackRecordId = null;
     if (isMariaDbFeedbackStoreEnabled()) {
-      feedbackRecordId = await saveFeedbackSubmission({
-        to,
-        cc: cc || null,
-        subject,
-        text,
-        attachmentFilename: attachment?.filename || null,
-        feedbackData: sanitizedFeedbackData,
-        requestIp: req.ip,
-        userAgent: req.get('user-agent') || null,
-      });
-      console.log(`💾 Feedback stored in MariaDB (id=${feedbackRecordId})`);
+      try {
+        feedbackRecordId = await saveFeedbackSubmission({
+          to,
+          cc: cc || null,
+          subject,
+          text,
+          attachmentFilename: attachment?.filename || null,
+          feedbackData: sanitizedFeedbackData,
+          requestIp: req.ip,
+          userAgent: req.get('user-agent') || null,
+        });
+        console.log(`💾 Feedback stored in MariaDB (id=${feedbackRecordId})`);
+      } catch (storeError) {
+        console.warn('⚠️ Failed to persist feedback in MariaDB. Continuing with email delivery.', storeError);
+      }
     }
 
     // Send email
@@ -123,11 +127,19 @@ router.post('/send-feedback', async (req, res, next) => {
         attachment: attachment || null,
       });
       if (feedbackRecordId) {
-        await markFeedbackEmailSent(feedbackRecordId, result.messageId);
+        try {
+          await markFeedbackEmailSent(feedbackRecordId, result.messageId);
+        } catch (storeStatusError) {
+          console.warn('⚠️ Failed to update feedback email status in MariaDB after successful send.', storeStatusError);
+        }
       }
     } catch (emailError) {
       if (feedbackRecordId) {
-        await markFeedbackEmailFailed(feedbackRecordId, emailError.message || emailError);
+        try {
+          await markFeedbackEmailFailed(feedbackRecordId, emailError.message || emailError);
+        } catch (storeStatusError) {
+          console.warn('⚠️ Failed to update feedback email failure status in MariaDB.', storeStatusError);
+        }
       }
       throw emailError;
     }
