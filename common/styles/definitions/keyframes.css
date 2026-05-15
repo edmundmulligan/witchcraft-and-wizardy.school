@@ -1,0 +1,234 @@
+/*
+ **********************************************************************
+ * File       : definitions/keyframes.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Keyframe definitions for animations.
+ * Note:
+ *   This is a shared resource and should be edited in the common folder.
+ **********************************************************************
+ */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Only apply view transition animations if the user has not requested reduced motion */
+  ::view-transition-group(root) {
+    animation-duration: var(--view-transition-duration);
+    animation-timing-function: var(--view-transition-timing-function);
+  }
+
+  ::view-transition-old(root) {
+    animation-name: circle-out;
+  }
+
+  ::view-transition-new(root) {
+    animation-name: circle-in;
+  }
+}
+
+/* Respect user's motion preferences */
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes circle-in {
+  from {
+    clip-path: circle(0% at 50% 50%);
+  }
+  to {
+    clip-path: circle(150% at 50% 50%);
+  }
+}
+
+@keyframes circle-out {
+  from {
+    clip-path: circle(150% at 50% 50%);
+  }
+  to {
+    clip-path: circle(0% at 50% 50%);
+  }
+}
+
+/* Toggle fade animation keyframes */
+@keyframes toggle-fade-out {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes toggle-fade-in {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Theme switcher fade animation keyframes */
+
+/* Header and Footer slide animation keyframes */
+@keyframes slide-header-down {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-header-up {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes slide-footer-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-footer-down {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+/* Theme switcher fade animation keyframes */
+@keyframes theme-switch-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes theme-switch-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes sparkle-1 {
+  0%,
+  100% {
+    fill: var(--colour-red);
+  } /* Deep Red */
+  33% {
+    fill: var(--colour-green);
+  } /* Bright Green */
+  66% {
+    fill: var(--colour-navy);
+  } /* Vibrant Yellow */
+}
+
+@keyframes sparkle-2 {
+  0%,
+  100% {
+    fill: var(--colour-orange);
+  } /* Bright Blue */
+  33% {
+    fill: var(--colour-cyan);
+  } /* Deep Orange */
+  66% {
+    fill: var(--colour-purple);
+  } /* Bright Purple */
+}
+
+@keyframes sparkle-3 {
+  0%,
+  100% {
+    fill: var(--colour-yellow);
+  } /* Cyan */
+  33% {
+    fill: var(--colour-blue);
+  } /* Hot Pink */
+  66% {
+    fill: var(--colour-magenta);
+  } /* Lime Green */
+}
+
+@keyframes portrait-cycle {
+  0% {
+    opacity: 0;
+  }
+
+  22.22% {
+    /* 2s / 9s = 22.22% */
+    opacity: 1;
+  }
+
+  77.78% {
+    /* (2s + 5s) / 9s = 77.78% */
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

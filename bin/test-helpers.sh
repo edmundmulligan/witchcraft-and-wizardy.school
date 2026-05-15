@@ -162,12 +162,22 @@ parse_test_options() {
 # Start local server if not running
 start_server_if_needed() {
   local url="$1"
+  local server_port
+
+  server_port="$(printf '%s' "$url" | sed -n 's#^https\{0,1\}://[^:/]*:\([0-9][0-9]*\).*$#\1#p')"
+  if [ -z "$server_port" ]; then
+    if [[ "$url" == https://* ]]; then
+      server_port=443
+    else
+      server_port=80
+    fi
+  fi
 
   if ! curl -s -f "$url" > /dev/null 2>&1
   then
     echo "⚠️  No server detected at $url"
     echo "Starting local server..."
-    npx serve . -l 8080 > /dev/null 2>&1 &
+    npx serve . -l "$server_port" > /dev/null 2>&1 &
     SERVER_PID=$!
     sleep 2
     STOP_SERVER=true

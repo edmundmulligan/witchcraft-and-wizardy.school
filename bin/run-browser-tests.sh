@@ -14,6 +14,7 @@ print_usage() {
 TEST_URL="http://localhost:8080"
 FOLDER=""
 EXCLUDE_LIST="diagnostics lessons"
+URL_EXPLICITLY_SET=false
 
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
@@ -29,6 +30,7 @@ while [[ $# -gt 0 ]]; do
                 exit 1
             fi
             TEST_URL="$1"
+            URL_EXPLICITLY_SET=true
             shift
             ;;
         -x|--exclude)
@@ -60,6 +62,15 @@ FOLDER="${FOLDER:-.}"
 if [ ! -d "$FOLDER" ]; then
         echo "❌ Error: '$FOLDER' is not a valid directory"
         exit 1
+fi
+
+if [ "$URL_EXPLICITLY_SET" = false ]; then
+    case "$FOLDER" in
+        web|.) TEST_URL="http://localhost:8080" ;;
+        stats) TEST_URL="http://localhost:8081" ;;
+        sound) TEST_URL="http://localhost:8082" ;;
+        api) TEST_URL="http://localhost:8083" ;;
+    esac
 fi
 
 # Verify Playwright installation integrity before running tests.
@@ -107,7 +118,7 @@ start_server_if_needed "$TEST_URL"
 
 # Run the browser tests - resolve tests from repo root and serve the selected folder.
 echo "Running browser compatibility tests..."
-TEST_URL="$TEST_URL" BROWSER_TEST_FOLDER="$ORIGINAL_DIR" BROWSER_TEST_EXCLUDES="$EXCLUDE_LIST" node "$SCRIPT_DIR/run-browser-tests.js"
+TEST_URL="$TEST_URL" BROWSER_TEST_FOLDER="$ORIGINAL_DIR" BROWSER_TEST_APP="$FOLDER" BROWSER_TEST_EXCLUDES="$EXCLUDE_LIST" node "$SCRIPT_DIR/run-browser-tests.js"
 EXIT_CODE=$?
 
 # Stop server if we started it

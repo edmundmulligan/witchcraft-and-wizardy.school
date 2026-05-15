@@ -78,3 +78,4 @@ lerna-debug.log*
 *.md5
 *.auxlock
 
+node_modules

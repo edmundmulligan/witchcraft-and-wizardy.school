@@ -1,0 +1,35 @@
+/*
+ *********************************************************************************************************************
+ * File       : main.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   This is the main stylesheet for the Web Witchcraft and Wizardry website.
+ *   It imports all component stylesheets and should be the first stylesheet
+ *   linked from all HTML files after globals.css.
+ * Note:
+ *   This is a shared resource and should be edited in the common folder.
+ *
+ *   CSS files in layouts folder only contain element selectors, not classes or IDs.
+ *   CSS files in components folder only contain class selectors, not element or ID selectors.
+ *   CSS files in pages folder can contain all types of selectors but should only be imported by the relevant page.
+ *
+ *   Precedent in the cascade is determined by the @layer order. This helps avoid specificity conflicts.
+ *********************************************************************************************************************
+ */
+
+@layer reset, layouts, pages, components, utilities;
+
+@import url("./utilities/utilities.css");
+@import url("./utilities/toggle.css");
+
+/* Ensure that form elements inherit the same font as their parent elements for visual consistency */
+@layer reset {
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+}
