@@ -278,14 +278,14 @@ jobs:
           email_from='noreply@embodied-mind.org'
         fi
 
-        db_host="$(get_optional_secret 'DB-HOST')"
+        db_host="$(get_required_secret 'DB-HOST')"
         db_port="$(get_optional_secret 'DB-PORT')"
         if [[ -z "$db_port" ]]; then
           db_port='3306'
         fi
-        db_user="$(get_optional_secret 'DB-USER')"
-        db_password="$(get_optional_secret 'DB-PASSWORD')"
-        db_name="$(get_optional_secret 'DB-NAME')"
+        db_user="$(get_required_secret 'DB-USER')"
+        db_password="$(get_required_secret 'DB-PASSWORD')"
+        db_name="$(get_required_secret 'DB-NAME')"
 
         for value in \
           "$server_username" "$server_fingerprint" \
@@ -683,12 +683,19 @@ jobs:
             export SMTP_USER="$smtp_user_effective"
             export SMTP_PASS="$smtp_pass_effective"
             export EMAIL_FROM="$email_from_effective"
-            export FEEDBACK_STORE_PROVIDER=mariadb
-            export DB_HOST="$db_host_effective"
-            export DB_PORT="$db_port_effective"
-            export DB_USER="$db_user_effective"
-            export DB_PASSWORD="$db_password_effective"
-            export DB_NAME="$db_name_effective"
+
+            # Only enable MariaDB feedback store if all DB credentials are present
+            if [[ -n "$db_host_effective" && -n "$db_user_effective" && -n "$db_password_effective" && -n "$db_name_effective" ]]; then
+              export FEEDBACK_STORE_PROVIDER=mariadb
+              export DB_HOST="$db_host_effective"
+              export DB_PORT="$db_port_effective"
+              export DB_USER="$db_user_effective"
+              export DB_PASSWORD="$db_password_effective"
+              export DB_NAME="$db_name_effective"
+            else
+              export FEEDBACK_STORE_PROVIDER=none
+              echo "[WARN] MariaDB feedback store not enabled: missing DB credentials (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)" >&2
+            fi
           fi
 
           # Install only production dependencies for the standalone API package.
