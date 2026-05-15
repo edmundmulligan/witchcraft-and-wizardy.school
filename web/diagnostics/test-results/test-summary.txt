@@ -2,7 +2,7 @@
 ======================
 
 [Code] Code Validation Results:
-  Files checked: 109
+  Files checked: 86
   Files with issues: 0
   HTML errors: 0
   CSS errors: 0
@@ -10,14 +10,14 @@
   Total warnings: 0
 
 📝 File Comments Results:
-  Files checked: 103
+  Files checked: 86
   Files with issues: 0
   Missing header blocks: 0
   Missing required fields: 0
 
 [Links] Broken Links Results:
   Pages checked: 26
-  Total links: 1390
+  Total links: 1494
   Broken links: 0
 
 ======================
@@ -25,9 +25,9 @@
 [Browser] Browser Compatibility: Not tested
 
 [Axe] Axe Accessibility Results:
-  Total violations: 6
+  Total violations: 0
   [Critical] Critical: 0
-  [Serious] Serious: 6
+  [Serious] Serious: 0
   [Moderate] Moderate: 0
   [Minor] Minor: 0
 
@@ -46,8 +46,8 @@
 [WAVE] WAVE: Not tested or no errors found
 
 [Reading] Reading Age Results:
-  Pages analysed: 18
-  Total words: 14873
-  Average grade level: 10.1
-  [Warning]  College-level pages: 2
+  Pages analysed: 14
+  Total words: 14428
+  Average grade level: 9.7
+  [OK] All pages at high school level or below
 

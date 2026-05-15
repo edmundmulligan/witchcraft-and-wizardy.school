@@ -6,11 +6,13 @@
  * License    : MIT License (see license-and-credits.html page)
  * Description:
  *    definition of global CSS variables and keyframes.
+ * Note:
+ *    This is a shared resource and should be edited in the common folder.
  *
  *    The imported files should only contain global CSS variables except 
  *    for the keyframes.css file, which contains global keyframe definitions.
  *
- *    This file should by the first stylesheet linked from all HTML files, 
+ *    This file should be the first stylesheet linked from all HTML files, 
  *    before main.css and any page-specific stylesheets.
  **********************************************************************
  */

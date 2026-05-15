@@ -1,9 +1,16 @@
-/**
- * File: definitions/typography.css
- * Author: Edmund Mulligan <edmund@edmundmulligan.name>
- * Copyright: (c) 2026 The Embodied Mind
- * License: MIT
- * Description: Typography definitions including font families and sizes
+/*
+ **********************************************************************
+ * File       : definitions/typography.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *    Typography definitions including font families and sizes
+ * Note:
+ *    This is a shared resource and should be edited in the common folder.
+ **********************************************************************
+ */
+
  * 
  * This is the source of truth for typography used in web documents.
  */

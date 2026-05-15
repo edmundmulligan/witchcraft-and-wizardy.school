@@ -12,7 +12,7 @@
  *   to localStorage and loads them when pages load. Falls back to
  *   browser/system preference if no user choice is saved. Also allows
  *   for theme/style to be set via URL parameter for testing purposes.
- *   All colour combination meet WCAG 2.2 AAA standards.
+ *   All colour combinations meet WCAG 2.2 AAA standards.
  *   Requires: queryParams.js (for window.QueryParams)
  *   Requires: utils.js (for Utils.capitalise)
  **********************************************************************
@@ -320,7 +320,7 @@
 
     /**
      * Handle theme change from radio button or button click
-     * @param {string} theme - 'light' or 'dark'
+     * @param {string} theme - 'light', 'dark', or 'auto'
      */
     handleThemeChange(theme) {
       Debug.methodEntry('ThemeSwitcher', 'handleThemeChange', { theme });

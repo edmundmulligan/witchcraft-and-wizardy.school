@@ -27,7 +27,6 @@
   .text-block {
     flex: 1 1 17rem;
     max-width: 80ch;
-    min-width: 50ch;
     box-sizing: border-box;
     padding: var(--padding-text);
     border: var(--border-weight) var(--border-style) var(--colour-effective-page-text);

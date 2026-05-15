@@ -1,0 +1,95 @@
+<!--
+**********************************************************************
+ * File       : index.html
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see ../license-and-credits.html page)
+ * Description:
+ *    Diagnostics section index page - links to all diagnostic tools
+ **********************************************************************
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Diagnostics - Web Witchcraft and Wizardry">
+    <meta name="keywords" content="diagnostics, testing, colour palette, accessibility">
+    <meta name="author" content="Edmund Mulligan">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Diagnostics - Web Witchcraft and Wizardry</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../images/icons/favicon.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Roboto+Slab:wght@400;700&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles/globals.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/diagnostics/colourSwatches.css">
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-wrench"></i> Web Witchcraft and Wizardry Diagnostics</h1>
+        <nav aria-label="breadcrumb">
+            <a href="../index.html">Home</a> &gt;
+            <a href="index.html" aria-current="page">Diagnostics</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="description">
+            <p>Diagnostic tools and test pages for the Web Witchcraft and Wizardry project. These pages help with development, testing, and quality assurance of the website's colour system, accessibility features, and JavaScript functionality.</p>
+        </div>
+
+        <section class="section">
+            <h2>Design System</h2>
+            <div class="theme-colours">
+                <div class="colour-pair colour-pair-normal-light-page">
+                    <h3><a href="prototypes.html"><i class="fas fa-images"></i> Prototypes</a></h3>
+                    <p>Interactive viewer for design prototypes showing all theme, style, and viewport combinations. View landing page, student dashboard, and lesson screenshots side by side for design review and visual comparison.</p>
+                </div>
+
+                <div class="colour-pair colour-pair-normal-light-page">
+                    <h3><a href="colourSwatches.html"><i class="fas fa-swatchbook"></i> Colour Swatches</a></h3>
+                    <p>Visual reference showing all theme and style colours used throughout the project. Displays base colours and complete theme variations with actual colour combinations.</p>
+                </div>
+
+                <div class="colour-pair colour-pair-normal-light-page">
+                    <h3><a href="colourPalette.html"><i class="fas fa-palette"></i> Colour Palette</a></h3>
+                    <p>Interactive colour palette with contrast checking and WCAG compliance verification. Includes tabs for all theme variants (normal, subdued, vibrant) in both light and dark modes.</p>
+                </div>
+
+                <div class="colour-pair colour-pair-normal-light-page">
+                    <h3><a href="typography.html"><i class="fas fa-font"></i> Typography</a></h3>
+                    <p>Comprehensive typography reference showing all font families, sizes, weights, and responsive scaling. Demonstrates heading hierarchy, font samples, and fluid typography with clamp() functions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Testing &amp; Validation</h2>
+            <div class="theme-colours">
+                <div class="colour-pair colour-pair-normal-light-page">
+                    <h3><a href="test-results.html"><i class="fas fa-chart-line"></i> Test Results Dashboard</a></h3>
+                    <p>Automated test suite results including accessibility tests (Pa11y, WAVE, Axe), Lighthouse audits, and HTML/CSS validation. Provides a unified dashboard view with visual indicators.</p>
+                </div>
+
+                <div class="colour-pair colour-pair-normal-light-page">
+                    <h3><a href="test-js-parsing.html"><i class="fas fa-code"></i> JavaScript Colour Parsing Tests</a></h3>
+                    <p>Unit tests for JavaScript colour parsing utilities. Tests RGB to HSL conversion, colour normalization, contrast ratio calculations, and WCAG level detection.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

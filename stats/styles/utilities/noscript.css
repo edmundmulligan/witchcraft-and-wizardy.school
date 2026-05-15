@@ -8,7 +8,9 @@
  *    Noscript CSS styles for the Web Witchcraft and Wizardry
  *    website. These styles only apply when JavaScript is
  *    disabled.
- *************************************************************
+ * Note:
+ *    This is a shared resource and should be edited in the common folder.
+ **********************************************************************
  */
 
 @layer utilities {
@@ -18,6 +20,10 @@
 
   body::before {
     display: block;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
     color: var(--colour-warning-text);
     background-color: var(--colour-warning-background);
     content: "This page uses JavaScript for enhanced functionality. Please enable JavaScript for the best experience.";

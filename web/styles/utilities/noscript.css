@@ -18,6 +18,10 @@
 
   body::before {
     display: block;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
     color: var(--colour-warning-text);
     background-color: var(--colour-warning-background);
     content: "This page uses JavaScript for enhanced functionality. Please enable JavaScript for the best experience.";
