@@ -12,7 +12,13 @@
 
 import express from 'express';
 import { sendFeedbackEmail } from '../services/emailService.js';
-import { validateFeedbackData } from '../validators/feedbackValidator.js';
+import {
+  markFeedbackEmailFailed,
+  markFeedbackEmailSent,
+  saveFeedbackSubmission,
+  isMariaDbFeedbackStoreEnabled,
+} from '../services/feedbackStore.js';
+import { sanitizeFeedbackData, validateFeedbackData } from '../validators/feedbackValidator.js';
 
 const router = express.Router();
 
@@ -52,6 +58,7 @@ function isValidEmailAddress(value) {
 router.post('/send-feedback', async (req, res, next) => {
   try {
     const { to, cc, subject, text, attachment } = req.body;
+    let sanitizedFeedbackData = null;
 
     // Validate required fields
     if (!to || !subject || !text) {
@@ -80,6 +87,7 @@ router.post('/send-feedback', async (req, res, next) => {
     if (attachment && attachment.content) {
       try {
         const feedbackData = JSON.parse(attachment.content);
+        sanitizedFeedbackData = sanitizeFeedbackData(feedbackData);
         const validation = validateFeedbackData(feedbackData);
         if (!validation.valid) {
           console.warn('Feedback data validation warnings:', validation.warnings);
@@ -89,14 +97,40 @@ router.post('/send-feedback', async (req, res, next) => {
       }
     }
 
+    let feedbackRecordId = null;
+    if (isMariaDbFeedbackStoreEnabled()) {
+      feedbackRecordId = await saveFeedbackSubmission({
+        to,
+        cc: cc || null,
+        subject,
+        text,
+        attachmentFilename: attachment?.filename || null,
+        feedbackData: sanitizedFeedbackData,
+        requestIp: req.ip,
+        userAgent: req.get('user-agent') || null,
+      });
+      console.log(`💾 Feedback stored in MariaDB (id=${feedbackRecordId})`);
+    }
+
     // Send email
-    const result = await sendFeedbackEmail({
-      to,
-      cc: cc || null,
-      subject,
-      text,
-      attachment: attachment || null,
-    });
+    let result;
+    try {
+      result = await sendFeedbackEmail({
+        to,
+        cc: cc || null,
+        subject,
+        text,
+        attachment: attachment || null,
+      });
+      if (feedbackRecordId) {
+        await markFeedbackEmailSent(feedbackRecordId, result.messageId);
+      }
+    } catch (emailError) {
+      if (feedbackRecordId) {
+        await markFeedbackEmailFailed(feedbackRecordId, emailError.message || emailError);
+      }
+      throw emailError;
+    }
 
     // Log success
     console.log(`✅ Feedback email sent successfully to ${to}${cc ? ` (CC: ${cc})` : ''}`);
@@ -105,6 +139,7 @@ router.post('/send-feedback', async (req, res, next) => {
       success: true,
       message: 'Feedback sent successfully',
       messageId: result.messageId,
+      ...(feedbackRecordId ? { feedbackRecordId } : {}),
     });
   } catch (error) {
     console.error('Error sending feedback email:', error);
