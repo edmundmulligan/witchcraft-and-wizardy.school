@@ -9,12 +9,6 @@ else
   FIND_BIN="$(command -v find)"
 fi
 
-if [ "$OS" = "Windows_NT" ] && command -v npx.cmd > /dev/null 2>&1; then
-  NPX_BIN="npx.cmd"
-else
-  NPX_BIN="npx"
-fi
-
 normalise_path_for_node() {
   local input_path="$1"
   if command -v cygpath > /dev/null 2>&1 && [[ "$input_path" == /* ]]; then
@@ -185,6 +179,7 @@ parse_test_options() {
 start_server_if_needed() {
   local url="$1"
   local server_port
+  local http_server_bin
 
   server_port="$(printf '%s' "$url" | sed -n 's#^https\{0,1\}://[^:/]*:\([0-9][0-9]*\).*$#\1#p')"
   if [ -z "$server_port" ]; then
@@ -210,10 +205,17 @@ start_server_if_needed() {
   if [ "$server_running" = false ]; then
     echo "⚠️  No server detected at $url, starting..."
     echo "Starting local server..."
+
+    http_server_bin="$(node -e \"process.stdout.write(require.resolve('http-server/bin/http-server'))\" 2>/dev/null)"
+    if [ -z "$http_server_bin" ]; then
+      echo "❌ Cannot resolve http-server CLI. Run 'npm ci' and try again."
+      return 1
+    fi
+
     local server_log_dir="${TMPDIR:-/tmp}"
     mkdir -p "$server_log_dir" > /dev/null 2>&1
     SERVER_LOG="$server_log_dir/wws-server-$server_port.log"
-    $NPX_BIN http-server . -p "$server_port" -a 127.0.0.1 --silent > "$SERVER_LOG" 2>&1 &
+    node "$http_server_bin" . -p "$server_port" -a 127.0.0.1 --silent > "$SERVER_LOG" 2>&1 &
     SERVER_PID=$!
     SERVER_PORT="$server_port"
 
