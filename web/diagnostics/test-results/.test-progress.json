@@ -1,17 +1,8 @@
 {
   "completed": [
-    "clear",
-    "validate-code",
-    "audit-colour",
-    "check-comments",
-    "check-links"
+    "clear"
   ],
-  "failed": [
-    "validate-code",
-    "audit-colour",
-    "check-comments",
-    "check-links"
-  ],
+  "failed": [],
   "quickMode": false,
   "runWave": false
 }

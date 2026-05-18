@@ -67,6 +67,14 @@ else
   LIGHTHOUSE_CMD=(npx --yes lighthouse)
 fi
 
+# Prefer Playwright's Chromium to avoid platform-specific browser resolution issues.
+CHROME_PATH="$(node -e "try { const p = require('playwright'); process.stdout.write(p.chromium.executablePath()); } catch (e) {}")"
+if [ -n "$CHROME_PATH" ] && [ -f "$CHROME_PATH" ]; then
+  LIGHTHOUSE_CHROME_ARGS=(--chrome-path="$CHROME_PATH")
+else
+  LIGHTHOUSE_CHROME_ARGS=()
+fi
+
 
 # Accept optional folder parameter
 FOLDER="${FOLDER:-.}"
@@ -135,6 +143,8 @@ for VIEWPORT in "${VIEWPORTS[@]}"; do
           --emulated-form-factor=desktop \
           --screen-emulation-width=$VIEWPORT \
           --screen-emulation-height=768 \
+          --no-enable-error-reporting \
+          "${LIGHTHOUSE_CHROME_ARGS[@]}" \
           --chrome-flags="--headless --no-sandbox --force-prefers-color-scheme=$THEME --window-size=${VIEWPORT},768" \
           --quiet 2>&1 | grep -E "(Testing|Runtime)" || true
 
