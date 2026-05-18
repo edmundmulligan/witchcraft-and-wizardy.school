@@ -73,8 +73,7 @@ const lessonData = {
     <div id="introduction-block">
       <p>
         In this lesson, you will ensure that you have all the necessary tools installed on your computer to start learning web development.
-        By the end of this lesson, you will be ready to create your first web page. If you are at a Code Dojo and are using a club computer, these tools
-        will already be installed for you so you can skip to the next lesson.
+        By the end of this lesson, you will be ready to create your first web page. If you are at a Code Dojo and are using a club computer, these tools will already be installed for you so you can skip to the next lesson.
       </p>
     </div>
   </div>
@@ -120,7 +119,6 @@ const lessonData = {
   <ul>
     <li>Mozilla Firefox (or another modern web browser such as Google Chrome or Apple Safari).</li>
     <li>Microsoft Visual Studio Code (or another code editor).</li>
-    <li>Node.js (required for running the development server).</li>
   </ul>
   <p>
     Other tools will be introduced in later lessons, but these are the basics you need to get started. Follow the instructions for your operating system to install these tools.
@@ -149,7 +147,7 @@ const lessonData = {
   <ol>
     <li>Click the <strong>Start</strong> button (Windows logo in the bottom-left corner)</li>
     <li>Type <strong>"Firefox"</strong></li>
-    <li>If you see it appear in the search results with an orange/red fox icon, <strong>it&rsquo;s already installed!</strong></li>
+    <li>If you see it appear in the search results with an orange/red fox icon <img src="../images/logos/mozilla-firefox-logo.png" alt="Firefox logo" width="16" height="16">, click to open it</li>
     <li>If you don&rsquo;t see it, continue to the installation steps below</li>
   </ol>
 

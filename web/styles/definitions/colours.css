@@ -1,9 +1,16 @@
-/**
- * File: definitions/colours.css
- * Author: Edmund Mulligan <edmund@edmundmulligan.name>
- * Copyright: (c) 2026 The Embodied Mind
- * License: MIT
- * Description: Colour definitions in HSL format
+/*
+ **********************************************************************
+ * File       : definitions/colours.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *    Colour definitions in HSL format
+ * Note:
+ *    This is a shared resource and should be edited in the common folder.
+ **********************************************************************
+ */
+
  * 
  * This is the source of truth for colours used in both web and LaTeX documents.
  * The LaTeX colours.tex file is auto-generated from this file.

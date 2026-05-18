@@ -1,5 +1,1734 @@
 {
   "hardcodedColours": [],
-  "themeSpecificVars": [],
+  "themeSpecificVars": [
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 44,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-page-background: hsl(from var(--colour-cyan) h s 85%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 45,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-page-text: hsl(from var(--colour-purple) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 46,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-headings-background: hsl(from var(--colour-cyan) h s l);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 47,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-headings-text: hsl(from var(--colour-magenta) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 48,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-code-background: hsl(from var(--colour-blue) h s 75%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 49,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-code-text: hsl(from var(--colour-blue) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 52,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-button-background: hsl(from var(--colour-blue) h s 85%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 53,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-button-text: hsl(from var(--colour-purple) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 54,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-button-background-hover: hsl(from var(--colour-cyan) h s 85%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 55,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-button-text-hover: hsl(from var(--colour-magenta) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 56,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-button-background-selected: hsl(from var(--colour-magenta) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 57,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-button-text-selected: hsl(from var(--colour-cyan) h s 85%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 58,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-button-background-disabled: hsl(from var(--colour-blue) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 59,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-button-text-disabled: hsl(from var(--colour-blue) h s 75%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 62,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-menu-background: hsl(from var(--colour-cyan) h s l);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 63,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-menu-text: hsl(from var(--colour-magenta) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 64,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-menu-background-hover: hsl(from var(--colour-cyan) h s 40%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 65,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-menu-text-hover: hsl(from var(--colour-magenta) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 66,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-menu-background-visited: hsl(from var(--colour-cyan) h s l);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 67,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-menu-text-visited: hsl(from var(--colour-purple) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 68,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-menu-background-focus: hsl(from var(--colour-cyan) h s 40%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 69,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-menu-text-focus: hsl(from var(--colour-magenta) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 72,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-link-background: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 73,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-link-text: hsl(from var(--colour-magenta) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 74,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-link-background-hover: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 75,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-link-text-hover: hsl(from var(--colour-magenta) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 76,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-link-background-visited: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 77,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-link-text-visited: hsl(from var(--colour-purple) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 78,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-link-background-focus: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 79,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-link-text-focus: hsl(from var(--colour-magenta) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 82,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-page-background: hsl(from var(--colour-purple) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 83,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-page-text: hsl(from var(--colour-cyan) h s 85%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 84,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-headings-background: hsl(from var(--colour-blue) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 85,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-headings-text: hsl(from var(--colour-cyan) h s 85%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 86,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-code-background: hsl(from var(--colour-blue) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 87,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-code-text: hsl(from var(--colour-blue) h s 75%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 90,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-button-background: hsl(from var(--colour-blue) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 91,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-button-text: hsl(from var(--colour-blue) h s 85%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 92,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-button-background-hover: hsl(from var(--colour-magenta) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 93,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-button-text-hover: hsl(from var(--colour-cyan) h s 55%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 94,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-button-background-selected: hsl(from var(--colour-cyan) h s 55%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 95,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-button-text-selected: hsl(from var(--colour-magenta) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 96,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-button-background-disabled: hsl(from var(--colour-blue) h s 85%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 97,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-button-text-disabled: hsl(from var(--colour-blue) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 100,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-menu-background: hsl(from var(--colour-magenta) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 101,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-menu-text: hsl(from var(--colour-cyan) h s l);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 102,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-menu-background-hover: hsl(from var(--colour-magenta) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 103,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-menu-text-hover: hsl(from var(--colour-cyan) h s 40%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 104,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-menu-background-visited: hsl(from var(--colour-magenta) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 105,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-menu-text-visited: hsl(from var(--colour-purple) h s 95%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 106,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-menu-background-focus: hsl(from var(--colour-magenta) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 107,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-menu-text-focus: hsl(from var(--colour-cyan) h s 40%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 110,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-link-background: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 111,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-link-text: hsl(from var(--colour-cyan) h s l);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 112,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-link-background-hover: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 113,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-link-text-hover: hsl(from var(--colour-purple) h s 95%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 114,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-link-background-visited: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 115,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-link-text-visited: hsl(from var(--colour-cyan) h s 40%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 116,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-link-background-focus: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 117,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-dark-...",
+      "context": "--colour-normal-dark-link-text-focus: hsl(from var(--colour-cyan) h s 40%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 120,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-page-background: hsl(from var(--colour-grey) h s 85%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 121,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-page-text: hsl(from var(--colour-grey) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 122,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-headings-background: hsl(from var(--colour-grey) h s 95%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 123,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-headings-text: hsl(from var(--colour-grey) h s 10%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 124,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-code-background: hsl(from var(--colour-grey) h s 90%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 125,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-code-text: hsl(from var(--colour-grey) h s 0%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 128,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-button-background: hsl(from var(--colour-grey) h s 90%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 129,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-button-text: hsl(from var(--colour-grey) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 130,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-button-background-hover: hsl(from var(--colour-grey) h s 75%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 131,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-button-text-hover: hsl(from var(--colour-grey) h s 0%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 132,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-button-background-selected: hsl(from var(--colour-grey) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 133,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-button-text-selected: hsl(from var(--colour-grey) h s 100%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 134,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-button-background-disabled: hsl(from var(--colour-grey) h s 90%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 135,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-button-text-disabled: hsl(from var(--colour-grey) h s 35%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 138,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-menu-background: hsl(from var(--colour-grey) h s 75%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 139,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-menu-text: hsl(from var(--colour-grey) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 140,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-menu-background-hover: hsl(from var(--colour-grey) h s 60%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 141,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-menu-text-hover: hsl(from var(--colour-grey) h s 0%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 142,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-menu-background-visited: hsl(from var(--colour-grey) h s 75%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 143,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-menu-text-visited: hsl(from var(--colour-grey) h s 5%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 144,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-menu-background-focus: hsl(from var(--colour-grey) h s 60%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 145,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-menu-text-focus: hsl(from var(--colour-grey) h s 0%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 148,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-link-background: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 149,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-link-text: hsl(from var(--colour-grey) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 150,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-link-background-hover: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 151,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-link-text-hover: hsl(from var(--colour-grey) h s 0%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 152,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-link-background-visited: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 153,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-link-text-visited: hsl(from var(--colour-grey) h s 5%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 154,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-link-background-focus: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 155,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-light-...",
+      "context": "--colour-subdued-light-link-text-focus: hsl(from var(--colour-grey) h s 0%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 158,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-page-background: hsl(from var(--colour-grey) h s 5%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 159,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-page-text: hsl(from var(--colour-grey) h s 75%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 160,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-headings-background: hsl(from var(--colour-grey) h s 35%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 161,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-headings-text: hsl(from var(--colour-grey) h s 100%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 162,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-code-background: hsl(from var(--colour-grey) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 163,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-code-text: hsl(from var(--colour-grey) h s 75%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 166,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-button-background: hsl(from var(--colour-grey) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 167,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-button-text: hsl(from var(--colour-grey) h s 75%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 168,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-button-background-hover: hsl(from var(--colour-grey) h s 40%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 169,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-button-text-hover: hsl(from var(--colour-grey) h s 95%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 170,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-button-background-selected: hsl(from var(--colour-grey) h s 95%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 171,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-button-text-selected: hsl(from var(--colour-grey) h s 40%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 172,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-button-background-disabled: hsl(from var(--colour-grey) h s 10%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 173,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-button-text-disabled: hsl(from var(--colour-grey) h s 52%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 176,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-menu-background: hsl(from var(--colour-grey) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 177,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-menu-text: hsl(from var(--colour-grey) h s 75%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 178,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-menu-background-hover: hsl(from var(--colour-grey) h s 35%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 179,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-menu-text-hover: hsl(from var(--colour-grey) h s 95%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 180,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-menu-background-visited: hsl(from var(--colour-grey) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 181,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-menu-text-visited: hsl(from var(--colour-grey) h s 95%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 182,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-menu-background-focus: hsl(from var(--colour-grey) h s 35%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 183,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-menu-text-focus: hsl(from var(--colour-grey) h s 95%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 186,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-link-background: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 187,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-link-text: hsl(0deg 0% 92%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 188,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-link-background-hover: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 189,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-link-text-hover: hsl(from var(--colour-grey) h s 65%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 190,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-link-background-visited: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 191,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-link-text-visited: hsl(from var(--colour-grey) h s 95%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 192,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-link-background-focus: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 193,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-subdued-dark-...",
+      "context": "--colour-subdued-dark-link-text-focus: hsl(from var(--colour-grey) h s 95%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 196,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-page-background: hsl(from var(--colour-pink) h s 75%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 197,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-page-text: hsl(from var(--colour-navy) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 198,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-headings-background: hsl(from var(--colour-green) h s 75%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 199,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-headings-text: hsl(from var(--colour-blue) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 200,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-code-background: hsl(from var(--colour-yellow) h s 75%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 201,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-code-text: hsl(from var(--colour-cyan) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 204,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-button-background: hsl(from var(--colour-orange) h s 75%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 205,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-button-text: hsl(from var(--colour-blue) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 206,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-button-background-hover: hsl(from var(--colour-green) h s 75%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 207,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-button-text-hover: hsl(from var(--colour-magenta) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 208,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-button-background-selected: hsl(from var(--colour-magenta) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 209,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-button-text-selected: hsl(from var(--colour-green) h s 75%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 210,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-button-background-disabled: hsl(from var(--colour-grey) h s 85%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 211,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-button-text-disabled: hsl(from var(--colour-grey) h s 30%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 214,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-menu-background: hsl(from var(--colour-green) h s 75%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 215,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-menu-text: hsl(from var(--colour-blue) h s 25%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 216,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-menu-background-hover: hsl(from var(--colour-yellow) h s 75%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 217,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-menu-text-hover: hsl(from var(--colour-green) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 218,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-menu-background-visited: hsl(from var(--colour-green) h s 75%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 219,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-menu-text-visited: hsl(from var(--colour-blue) h s 10%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 220,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-menu-background-focus: hsl(from var(--colour-yellow) h s 75%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 221,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-menu-text-focus: hsl(from var(--colour-green) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 224,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-link-background: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 225,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-link-text: hsl(from var(--colour-blue) h s 10%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 226,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-link-background-hover: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 227,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-link-text-hover: hsl(from var(--colour-green) h s 8%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 228,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-link-background-visited: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 229,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-link-text-visited: hsl(from var(--colour-magenta) h s 10%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 230,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-link-background-focus: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 231,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-light-...",
+      "context": "--colour-vibrant-light-link-text-focus: hsl(from var(--colour-green) h s 8%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 234,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-page-background: hsl(from var(--colour-green) h s 18%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 235,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-page-text: hsl(from var(--colour-cyan) h s 85%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 236,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-headings-background: hsl(from var(--colour-magenta) h s 20%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 237,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-headings-text: hsl(from var(--colour-yellow) h s 75%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 238,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-code-background: hsl(from var(--colour-pink) h s 20%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 239,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-code-text: hsl(from var(--colour-cyan) h s 85%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 242,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-button-background: hsl(from var(--colour-pink) h s 65%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 243,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-button-text: hsl(from var(--colour-navy) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 244,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-button-background-hover: hsl(from var(--colour-yellow) h s 65%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 245,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-button-text-hover: hsl(from var(--colour-navy) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 246,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-button-background-selected: hsl(from var(--colour-cyan) h s 65%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 247,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-button-text-selected: hsl(from var(--colour-navy) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 248,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-button-background-disabled: hsl(from var(--colour-grey) h s 30%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 249,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-button-text-disabled: hsl(from var(--colour-grey) h s 70%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 252,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-menu-background: hsl(from var(--colour-pink) h s 65%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 253,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-menu-text: hsl(from var(--colour-navy) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 254,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-menu-background-hover: hsl(from var(--colour-yellow) h s 65%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 255,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-menu-text-hover: hsl(from var(--colour-navy) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 256,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-menu-background-visited: hsl(from var(--colour-pink) h s 65%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 257,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-menu-text-visited: hsl(from var(--colour-purple) h s 20%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 258,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-menu-background-focus: hsl(from var(--colour-yellow) h s 65%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 259,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-menu-text-focus: hsl(from var(--colour-navy) h s 15%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 262,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-link-background: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 263,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-link-text: hsl(from var(--colour-pink) h s 85%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 264,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-link-background-hover: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 265,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-link-text-hover: hsl(from var(--colour-yellow) h s 80%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 266,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-link-background-visited: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 267,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-link-text-visited: hsl(from var(--colour-cyan) h s 85%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 268,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-link-background-focus: transparent;",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 269,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-vibrant-dark-...",
+      "context": "--colour-vibrant-dark-link-text-focus: hsl(from var(--colour-yellow) h s 80%);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 272,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-page-background: var(--colour-normal-light-page-background);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 273,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-page-text: var(--colour-normal-light-page-text);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 274,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-headings-background: var(--colour-normal-light-headings-background);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 275,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-headings-text: var(--colour-normal-light-headings-text);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 276,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-code-background: var(--colour-normal-light-code-background);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 277,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-code-text: var(--colour-normal-light-code-text);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 278,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-button-background: var(--colour-normal-light-button-background);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 279,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-button-text: var(--colour-normal-light-button-text);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 280,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-button-background-hover: var(--colour-normal-light-button-background-hover);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 281,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-button-text-hover: var(--colour-normal-light-button-text-hover);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 283,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-button-background-selected",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 285,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-button-text-selected: var(--colour-normal-light-button-text-selected);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 287,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-normal-light-button-background-disabled",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 289,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-button-text-disabled: var(--colour-normal-light-button-text-disabled);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 290,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-menu-background: var(--colour-normal-light-menu-background);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 291,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-menu-text: var(--colour-normal-light-menu-text);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 292,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-menu-background-hover: var(--colour-normal-light-menu-background-hover);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 293,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-menu-text-hover: var(--colour-normal-light-menu-text-hover);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 294,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-menu-background-visited: var(--colour-normal-light-menu-background-visited);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 295,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-menu-text-visited: var(--colour-normal-light-menu-text-visited);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 296,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-menu-background-focus: var(--colour-normal-light-menu-background-focus);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 297,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-menu-text-focus: var(--colour-normal-light-menu-text-focus);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 298,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-link-background: var(--colour-normal-light-link-background);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 299,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-link-text: var(--colour-normal-light-link-text);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 300,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-link-background-hover: var(--colour-normal-light-link-background-hover);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 301,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-link-text-hover: var(--colour-normal-light-link-text-hover);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 302,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-link-background-visited: var(--colour-normal-light-link-background-visited);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 303,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-link-text-visited: var(--colour-normal-light-link-text-visited);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 304,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-link-background-focus: var(--colour-normal-light-link-background-focus);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 305,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-effective-link-text-focus: var(--colour-normal-light-link-text-focus);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 319,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-page-background: var(--colour-normal-light-page-background);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 320,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-page-text: var(--colour-normal-light-page-text);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 321,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-headings-background: var(--colour-normal-light-headings-background);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 322,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-headings-text: var(--colour-normal-light-headings-text);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 323,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-code-background: var(--colour-normal-light-code-background);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    },
+    {
+      "file": "web\\styles\\definitions\\colours.css",
+      "line": 324,
+      "type": "Theme-Specific Variable",
+      "value": "--colour-normal-light-...",
+      "context": "--colour-code-text: var(--colour-normal-light-code-text);",
+      "suggestion": "Use generic variable from themeSwitcher instead"
+    }
+  ],
   "missingThemeSystem": []
 }

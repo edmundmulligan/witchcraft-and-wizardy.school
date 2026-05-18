@@ -8,7 +8,9 @@
  *    Noscript CSS styles for the Web Witchcraft and Wizardry
  *    website. These styles only apply when JavaScript is
  *    disabled.
- *************************************************************
+ * Note:
+ *    This is a shared resource and should be edited in the common folder.
+ **********************************************************************
  */
 
 @layer utilities {
