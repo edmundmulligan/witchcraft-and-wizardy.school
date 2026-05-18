@@ -73,38 +73,39 @@ if [ "$URL_EXPLICITLY_SET" = false ]; then
     esac
 fi
 
-# Verify Playwright installation integrity before running tests.
-if ! node -e "require.resolve('playwright'); require.resolve('playwright-core/lib/utils/isomorphic/imageUtils')" >/dev/null 2>&1; then
-    echo "⚠️  Playwright installation appears incomplete. Repairing with npm ci..."
-    if ! npm ci --no-audit --no-fund >/dev/null 2>&1; then
-        echo "❌ Error: Failed to repair Playwright dependencies via npm ci"
-        exit 1
-    fi
+# Verify Playwright is available without relying on internal file paths.
+if ! node -e "require.resolve('playwright')" >/dev/null 2>&1; then
+    echo "❌ Error: Playwright dependency is unavailable."
+    echo "Run 'npm ci' before executing browser tests."
+    exit 1
 fi
 
 # Install all browsers
 echo "Installing browsers (Chromium, Firefox, WebKit)..."
-npx playwright install > /dev/null 2>&1
+if ! node ./node_modules/playwright/cli.js install; then
+    echo "⚠️  Playwright browser installation failed. Attempting to continue..."
+fi
 
 # Install system dependencies for WebKit (works in GitHub Actions)
 echo "Checking WebKit system dependencies..."
-# Check if webkit deps are already installed by trying to run a quick playwright check
-if npx playwright install-deps webkit --dry-run 2>&1 | grep -q "All browsers are already installed"; then
+if [ "$OS" = "Windows_NT" ]; then
+    echo "ℹ️  Skipping WebKit system dependency checks on Windows"
+elif node ./node_modules/playwright/cli.js install-deps webkit --dry-run 2>&1 | grep -q "All browsers are already installed"; then
     echo "✓ WebKit dependencies already installed"
 elif command -v sudo &> /dev/null; then
     # Running locally with sudo available - try non-interactive installation
     # Use -n flag to prevent sudo from prompting for password
     echo "Installing WebKit system dependencies (non-interactive)..."
-    if sudo -n npx playwright install-deps webkit > /dev/null 2>&1; then
+    if sudo -n node ./node_modules/playwright/cli.js install-deps webkit > /dev/null 2>&1; then
         echo "✓ WebKit dependencies installed"
     else
         echo "⚠️  WebKit dependencies installation skipped (requires sudo password or permissions)"
-        echo "   To enable WebKit tests, run: sudo npx playwright install-deps webkit"
+        echo "   To enable WebKit tests, run: sudo node ./node_modules/playwright/cli.js install-deps webkit"
     fi
 else
     # Running in CI/GitHub Actions (already has permissions)
     echo "Installing WebKit system dependencies..."
-    npx playwright install-deps webkit > /dev/null 2>&1 && echo "✓ WebKit dependencies installed" || echo "⚠️  WebKit dependencies installation failed"
+    node ./node_modules/playwright/cli.js install-deps webkit > /dev/null 2>&1 && echo "✓ WebKit dependencies installed" || echo "⚠️  WebKit dependencies installation failed"
 fi
 
 # Change to the specified folder to serve files from there
@@ -114,7 +115,10 @@ mkdir -p "$RESULTS_DIR"
 cd "$FOLDER" || exit 1
 
 # Start server and setup
-start_server_if_needed "$TEST_URL"
+if ! start_server_if_needed "$TEST_URL"; then
+    echo "❌ Browser tests aborted: local server did not start"
+    exit 1
+fi
 
 # Run the browser tests - resolve tests from repo root and serve the selected folder.
 echo "Running browser compatibility tests..."

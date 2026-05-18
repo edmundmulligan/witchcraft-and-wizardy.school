@@ -95,7 +95,7 @@ start_server_if_needed "$TEST_URL"
 discover_html_pages "." "$EXCLUDE_LIST"
 
 # Initialise combined results
-echo '{"pages":[]}' > "$RESULTS_DIR/lighthouse-results.json"
+echo '{"pages":[],"failures":[]}' > "$RESULTS_DIR/lighthouse-results.json"
 
 # Define viewport widths to test
 if [ "$QUICK_MODE" = true ]; then
@@ -156,6 +156,10 @@ for VIEWPORT in "${VIEWPORTS[@]}"; do
           const combined = JSON.parse(fs.readFileSync('$RESULTS_DIR/lighthouse-results.json'));
           const newData = JSON.parse(fs.readFileSync('$TEMP_RESULT'));
 
+          if (!Array.isArray(combined.failures)) {
+            combined.failures = [];
+          }
+
           // Extract accessibility score and failed audits
           const accessibility = newData.categories?.accessibility;
           const audits = newData.audits || {};
@@ -191,6 +195,23 @@ for VIEWPORT in "${VIEWPORTS[@]}"; do
       } catch (e) {
           console.error('Error merging results for $URL_PATH:', e.message);
         }
+      "
+    else
+      node -e "
+        const fs = require('fs');
+        const resultsFile = '$RESULTS_DIR/lighthouse-results.json';
+        const data = JSON.parse(fs.readFileSync(resultsFile, 'utf8'));
+        if (!Array.isArray(data.failures)) {
+          data.failures = [];
+        }
+        data.failures.push({
+          url: '$URL_PATH',
+          theme: '$THEME',
+          style: '$STYLE',
+          viewport: '$VIEWPORT',
+          error: 'lighthouse run failed or no result file generated'
+        });
+        fs.writeFileSync(resultsFile, JSON.stringify(data, null, 2));
       "
     fi
       done
@@ -280,8 +301,12 @@ EXIT_CODE=$(node -p "
   const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8'));
   const failures = data.pages.filter(p => p.score < 0.9).length;
   const warnings = data.pages.filter(p => p.score >= 0.9 && p.score < 1.0).length;
-  
-  if (failures > 0) {
+  const runFailures = Array.isArray(data.failures) ? data.failures.length : 0;
+
+  if (runFailures > 0) {
+    process.stderr.write('❌ ' + runFailures + ' lighthouse run(s) failed to execute.\\n');
+    1;
+  } else if (failures > 0) {
     process.stderr.write('❌ ' + failures + ' page(s) below 90% accessibility threshold.\\n');
     1; // Exit with error
   } else if (warnings > 0) {
@@ -292,5 +317,18 @@ EXIT_CODE=$(node -p "
     0; // Exit with success
   }
 ")
+
+if node -e "const fs = require('fs'); const d = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8')); process.exit(Array.isArray(d.failures) && d.failures.length > 0 ? 0 : 1);"; then
+  node -e "
+    const fs = require('fs');
+    const d = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8'));
+    (d.failures || []).slice(0, 10).forEach(f => {
+      console.log('  - ' + f.url + ' [' + f.viewport + 'px, ' + f.style + '-' + f.theme + ']');
+    });
+    if ((d.failures || []).length > 10) {
+      console.log('  ... and ' + (d.failures.length - 10) + ' more failed runs');
+    }
+  "
+fi
 
 exit $EXIT_CODE
