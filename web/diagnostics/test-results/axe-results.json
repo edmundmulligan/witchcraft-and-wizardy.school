@@ -1,0 +1,12 @@
+{
+  "violations":[],
+  "passes":[],
+  "incomplete":[],
+  "metadata": {
+    "pagesTestedCount": 0,
+    "totalTestRuns": 0,
+    "viewports": [],
+    "themes": ["light", "dark"],
+    "styles": ["normal", "subdued", "vibrant"]
+  }
+}

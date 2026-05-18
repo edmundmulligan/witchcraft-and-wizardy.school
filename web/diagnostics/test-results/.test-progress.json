@@ -3,12 +3,14 @@
     "clear",
     "validate-code",
     "audit-colour",
-    "check-comments"
+    "check-comments",
+    "check-links"
   ],
   "failed": [
     "validate-code",
     "audit-colour",
-    "check-comments"
+    "check-comments",
+    "check-links"
   ],
   "quickMode": false,
   "runWave": false
