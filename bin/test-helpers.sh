@@ -206,7 +206,7 @@ start_server_if_needed() {
     echo "⚠️  No server detected at $url, starting..."
     echo "Starting local server..."
 
-    http_server_bin="$(node -e \"process.stdout.write(require.resolve('http-server/bin/http-server'))\" 2>/dev/null)"
+    http_server_bin="$(node -e 'process.stdout.write(require.resolve("http-server/bin/http-server"))' 2>/dev/null)"
     if [ -z "$http_server_bin" ]; then
       echo "❌ Cannot resolve http-server CLI. Run 'npm ci' and try again."
       return 1
