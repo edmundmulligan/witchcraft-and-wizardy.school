@@ -3,25 +3,12 @@
     "clear",
     "validate-code",
     "audit-colour",
-    "check-comments",
-    "check-links",
-    "axe-tests",
-    "lighthouse-tests",
-    "pa11y-tests",
-    "reading-age",
-    "browser-tests"
+    "check-comments"
   ],
   "failed": [
-    "clear",
     "validate-code",
     "audit-colour",
-    "check-comments",
-    "check-links",
-    "axe-tests",
-    "lighthouse-tests",
-    "pa11y-tests",
-    "reading-age",
-    "browser-tests"
+    "check-comments"
   ],
   "quickMode": false,
   "runWave": false

@@ -17,6 +17,8 @@ import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
+const commandShell = process.platform === 'win32' ? 'sh' : true;
+
 // Parse command line arguments
 const args = process.argv.slice(2);
 let folder = '.';
@@ -134,6 +136,7 @@ function runTest(testName, description, command, options = {}) {
     execSync(command, {
       stdio: 'inherit',
       cwd: process.cwd(),
+      shell: commandShell,
       ...options,
     });
     markTestCompleted(testName, true);
@@ -292,7 +295,11 @@ if (
 // Always run summary at the end
 console.log('\n📊 Generating test summary...');
 try {
-  execSync(`bin/summarise-tests.sh ${folder}`, { stdio: 'inherit' });
+  execSync(`bin/summarise-tests.sh ${folder}`, {
+    stdio: 'inherit',
+    cwd: process.cwd(),
+    shell: commandShell,
+  });
 } catch (error) {
   // Don't fail if summary fails
 }

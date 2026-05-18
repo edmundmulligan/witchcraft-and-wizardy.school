@@ -101,12 +101,7 @@ echo ""
 echo "📄 Validating HTML, CSS, and JavaScript files..."
 echo ""
 
-ORIGINAL_DIR=$(pwd)
-# In Git Bash/MSYS on Windows, pwd can return /c/...; Node interprets that as C:\c\...
-# which breaks absolute path reads inside node -e snippets.
-if command -v cygpath > /dev/null 2>&1 && [[ "$ORIGINAL_DIR" == /* ]]; then
-  ORIGINAL_DIR=$(cygpath -m "$ORIGINAL_DIR")
-fi
+ORIGINAL_DIR=$(normalise_path_for_node "$(pwd)")
 if [ ! -d "$FOLDER" ]; then
   echo "Error: Provided folder '$FOLDER' does not exist."
   exit 1
@@ -141,7 +136,7 @@ should_skip_validation() {
 }
 
 # Find all HTML, CSS, and JS files in the specified folder
-FILES=$(find "$FOLDER" \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -not -path "*/node_modules/*" -not -path "*/tests/*" -not -path "*/bin/*" -not -name "eslint.config.js" -print)
+FILES=$($FIND_BIN "$FOLDER" \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -not -path "*/node_modules/*" -not -path "*/tests/*" -not -path "*/bin/*" -not -name "eslint.config.js" -print)
 
 if [ -n "$EXCLUDE_LIST" ]; then
   filter_excluded_paths "$FILES" "$EXCLUDE_LIST"

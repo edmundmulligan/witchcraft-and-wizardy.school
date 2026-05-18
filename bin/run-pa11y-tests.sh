@@ -78,7 +78,7 @@ if [ ! -d "$FOLDER" ]; then
 fi
 
 # Change to the specified folder to serve files from there
-ORIGINAL_DIR=$(pwd)
+ORIGINAL_DIR=$(normalise_path_for_node "$(pwd)")
 RESULTS_DIR="$ORIGINAL_DIR/$FOLDER/diagnostics/test-results"
 mkdir -p "$RESULTS_DIR"
 cd "$FOLDER" || exit 1

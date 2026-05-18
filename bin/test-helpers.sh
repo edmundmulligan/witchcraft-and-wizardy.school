@@ -2,6 +2,22 @@
 
 # Common helper functions for accessibility testing scripts
 
+# Prefer GNU find in Git Bash on Windows to avoid invoking Windows find.exe.
+if [ -x "/usr/bin/find" ]; then
+  FIND_BIN="/usr/bin/find"
+else
+  FIND_BIN="$(command -v find)"
+fi
+
+normalise_path_for_node() {
+  local input_path="$1"
+  if command -v cygpath > /dev/null 2>&1 && [[ "$input_path" == /* ]]; then
+    cygpath -m "$input_path"
+  else
+    echo "$input_path"
+  fi
+}
+
 # Normalise exclude arguments (comma-separated and/or space-separated) into a space list
 normalise_exclude_list() {
   local normalised=""
@@ -207,7 +223,7 @@ discover_html_pages() {
     PAGE_COUNT=0
     return
   fi
-  PAGES=$(find "$folder" -name "*.html" -not -path "*/node_modules/*" -not -path "*/tests/*" -not -path "*/diagnostics/*" -print)
+  PAGES=$($FIND_BIN "$folder" -name "*.html" -not -path "*/node_modules/*" -not -path "*/tests/*" -not -path "*/diagnostics/*" -print)
 
   if [ -n "$exclude_list" ]; then
     filter_excluded_paths "$PAGES" "$exclude_list"
