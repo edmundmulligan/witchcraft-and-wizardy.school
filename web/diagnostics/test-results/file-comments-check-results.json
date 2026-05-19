@@ -1,9 +1,38 @@
 {
-  "files": [],
+  "files": [
+    {
+      "file": "web/styles/components/local-fonts-and-icons.css",
+      "issues": [
+        {
+          "type": "missing-fields",
+          "message": "Missing required fields: Author, Copyright, License",
+          "missingFields": [
+            "Author",
+            "Copyright",
+            "License"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "web/styles/definitions/fonts.css",
+      "issues": [
+        {
+          "type": "missing-fields",
+          "message": "Missing required fields: Author, Copyright, License",
+          "missingFields": [
+            "Author",
+            "Copyright",
+            "License"
+          ]
+        }
+      ]
+    }
+  ],
   "summary": {
-    "totalFiles": 86,
-    "filesWithIssues": 0,
+    "totalFiles": 88,
+    "filesWithIssues": 2,
     "missingHeaderBlocks": 0,
-    "missingRequiredFields": 0
+    "missingRequiredFields": 2
   }
 }

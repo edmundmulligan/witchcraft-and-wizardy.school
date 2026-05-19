@@ -56,7 +56,7 @@ MISSING_FIELDS=0
 REQUIRED_FIELDS=("File" "Author" "Copyright" "License" "Description")
 
 # Validate folder parameter
-ORIGINAL_DIR=$(pwd)
+ORIGINAL_DIR=$(normalise_path_for_node "$(pwd)")
 if [ ! -d "$FOLDER" ]; then
   echo "❌ Error: '$FOLDER' is not a valid directory"
   exit 1
@@ -71,7 +71,7 @@ echo "📝 Checking file header comments..."
 echo ""
 
 # Find all HTML, CSS, and JS files (excluding node_modules, tests, and lessons)
-FILES=$(find "$FOLDER" -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) \
+FILES=$($FIND_BIN "$FOLDER" -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) \
     ! -path "*/node_modules/*" \
     ! -path "*/.git/*" \
     ! -path "*/tests/*" \

@@ -2,7 +2,7 @@
 ======================
 
 [Code] Code Validation Results:
-  Files checked: 86
+  Files checked: 88
   Files with issues: 0
   HTML errors: 0
   CSS errors: 0
@@ -10,18 +10,18 @@
   Total warnings: 0
 
 📝 File Comments Results:
-  Files checked: 86
-  Files with issues: 0
+  Files checked: 88
+  Files with issues: 2
   Missing header blocks: 0
-  Missing required fields: 0
+  Missing required fields: 2
 
 [Links] Broken Links Results:
   Pages checked: 26
-  Total links: 1494
+  Total links: 1391
   Broken links: 0
 
 ======================
-[OK] All tests passed (no critical/serious issues)
+[X] Critical or serious accessibility issues found
 [Browser] Browser Compatibility: Not tested
 
 [Axe] Axe Accessibility Results:

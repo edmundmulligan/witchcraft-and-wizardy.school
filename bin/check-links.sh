@@ -55,7 +55,7 @@ done
 [ -z "$FOLDER" ] && FOLDER="."
 
 # Validate folder parameter
-ORIGINAL_DIR=$(pwd)
+ORIGINAL_DIR=$(normalise_path_for_node "$(pwd)")
 if [ ! -d "$FOLDER" ]; then
   echo "❌ Error: '$FOLDER' is not a valid directory"
   exit 1

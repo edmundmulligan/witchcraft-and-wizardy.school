@@ -74,7 +74,7 @@
 
     & a::before,
     & button::before {
-      content: "\f0d0"; /* Font Awesome Magic Wand */
+      content: "✦";
       font-family: var(--font-family-icons);
       font-weight: 900; /* needed for solid style icons */
       margin-right: clamp(0.15rem, 1vw, 0.35rem);
@@ -101,7 +101,7 @@
     & a:focus-visible::before,
     & button:hover::before,
     & button:focus-visible::before {
-      content: "\e2ca"; /* Font Awesome Magic Wand with sparkles */
+      content: "✨";
     }
   }
 

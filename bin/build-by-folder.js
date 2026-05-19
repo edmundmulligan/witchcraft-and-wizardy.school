@@ -15,6 +15,18 @@ import { execSync } from 'child_process';
 import path from 'path';
 import fs from 'fs';
 
+// Helper function to execute shell scripts cross-platform
+function runShellScript(scriptPath, args = '') {
+  const command = `${scriptPath}${args ? ' ' + args : ''}`;
+  
+  return execSync(command, {
+    stdio: 'inherit',
+    cwd: process.cwd(),
+    // On Windows with Git Bash/MSYS2, use 'sh'. On Unix, use default.
+    shell: process.platform === 'win32' ? 'sh' : true,
+  });
+}
+
 function copySharedStylesToApp(folder) {
   if (!['web', 'stats', 'sound'].includes(folder)) {
     return;
@@ -58,31 +70,6 @@ function copySharedStylesToApp(folder) {
       path.join(commonStylesDir, 'main.css'),
       path.join(appStylesDir, 'main.css'),
     );
-  }
-}
-
-function copyCleanUrlHtmlFiles(rootDir) {
-  const entries = fs.readdirSync(rootDir, { withFileTypes: true });
-
-  for (const entry of entries) {
-    const entryPath = path.join(rootDir, entry.name);
-
-    if (entry.isDirectory()) {
-      copyCleanUrlHtmlFiles(entryPath);
-      continue;
-    }
-
-    if (!entry.isFile() || !entry.name.endsWith('.html')) {
-      continue;
-    }
-
-    const cleanUrlPath = path.join(rootDir, entry.name.replace(/\.html$/, ''));
-
-    if (fs.existsSync(cleanUrlPath) && fs.statSync(cleanUrlPath).isDirectory()) {
-      continue;
-    }
-
-    fs.copyFileSync(entryPath, cleanUrlPath);
   }
 }
 
@@ -158,7 +145,7 @@ console.log('');
 try {
   // Generate latex colours from CSS
   console.log('🎨 Generating latex colours...');
-  execSync('bin/generate-colours-from-css.py common/styles/definitions/colours.css artwork/common/colours.tex', {
+  execSync('python3 bin/generate-colours-from-css.py common/styles/definitions/colours.css artwork/common/colours.tex', {
     stdio: 'inherit',
     cwd: process.cwd(),
   });
@@ -172,10 +159,7 @@ console.log('');
 // generate embodied mind logos
 try {
   console.log('🖼️  Generating embodied mind logos...');
-  execSync('bin/generate-logo-images.sh', {
-    stdio: 'inherit',
-    cwd: process.cwd(),
-  });
+  runShellScript('bin/generate-logo-images.sh');
 
   // copy generated logos to application folders if building web
   if (folder === 'web') {
@@ -204,7 +188,7 @@ if (folder === 'web') {
   try {
     // Generate backgrounds
     console.log('🖼️  Generating web backgrounds...');
-    execSync('bin/generate-web-backgrounds.py', {
+    execSync('python3 bin/generate-web-backgrounds.py', {
       stdio: 'inherit',
       cwd: process.cwd(),
     });
@@ -221,10 +205,7 @@ if (folder === 'web') {
       for (const style of ['normal', 'subdued', 'vibrant']) {
         for (const mode of ['dark', 'light']) {
           const sourceFile = `background-web-${orientation}-${style}-${mode}`;
-          execSync(`bin/tex-to-svg.sh artwork/source/backgrounds/web/${sourceFile} artwork/generated/web`, {
-            stdio: 'inherit',
-            cwd: process.cwd(),
-          });
+          runShellScript('bin/tex-to-svg.sh', `artwork/source/backgrounds/web/${sourceFile} artwork/generated/web`);
         }
       }
     }
@@ -275,17 +256,6 @@ try {
   console.error('');
   console.error('❌ Building lessons failed');
   process.exit(error.status || 1);
-}
-
-if (folder === 'web') {
-  try {
-    console.log('🔗 Creating clean URL HTML copies...');
-    copyCleanUrlHtmlFiles(path.join(process.cwd(), folder));
-  } catch (error) {
-    console.error('');
-    console.error('❌ Creating clean URL HTML copies failed');
-    process.exit(error.status || 1);
-  }
 }
 
 console.log('');
