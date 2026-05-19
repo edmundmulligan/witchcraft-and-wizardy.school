@@ -12,13 +12,7 @@
     "browser-tests"
   ],
   "failed": [
-    "validate-code",
-    "audit-colour",
     "check-comments",
-    "check-links",
-    "axe-tests",
-    "lighthouse-tests",
-    "pa11y-tests",
     "browser-tests"
   ],
   "quickMode": false,
