@@ -3,36 +3,36 @@
     {
       "name": "chromium",
       "status": "failed",
-      "error": "browserType.launch: Executable doesn't exist at C:\\Users\\EdmundMulligan.ONELONDON\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1223\\chrome-headless-shell-win64\\chrome-headless-shell.exe\n╔════════════════════════════════════════════════════════════╗\n║ Looks like Playwright was just installed or updated.       ║\n║ Please run the following command to download new browsers: ║\n║                                                            ║\n║     npx playwright install                                 ║\n║                                                            ║\n║ <3 Playwright Team                                         ║\n╚════════════════════════════════════════════════════════════╝",
+      "error": "Home CSS Variables not applied correctly",
       "tests": [
         {
           "name": "browser test",
           "status": "failed",
-          "error": "browserType.launch: Executable doesn't exist at C:\\Users\\EdmundMulligan.ONELONDON\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1223\\chrome-headless-shell-win64\\chrome-headless-shell.exe\n╔════════════════════════════════════════════════════════════╗\n║ Looks like Playwright was just installed or updated.       ║\n║ Please run the following command to download new browsers: ║\n║                                                            ║\n║     npx playwright install                                 ║\n║                                                            ║\n║ <3 Playwright Team                                         ║\n╚════════════════════════════════════════════════════════════╝"
+          "error": "Home CSS Variables not applied correctly"
         }
       ]
     },
     {
       "name": "firefox",
       "status": "failed",
-      "error": "browserType.launch: Executable doesn't exist at C:\\Users\\EdmundMulligan.ONELONDON\\AppData\\Local\\ms-playwright\\firefox-1522\\firefox\\firefox.exe\n╔════════════════════════════════════════════════════════════╗\n║ Looks like Playwright was just installed or updated.       ║\n║ Please run the following command to download new browsers: ║\n║                                                            ║\n║     npx playwright install                                 ║\n║                                                            ║\n║ <3 Playwright Team                                         ║\n╚════════════════════════════════════════════════════════════╝",
+      "error": "Home CSS Variables not applied correctly",
       "tests": [
         {
           "name": "browser test",
           "status": "failed",
-          "error": "browserType.launch: Executable doesn't exist at C:\\Users\\EdmundMulligan.ONELONDON\\AppData\\Local\\ms-playwright\\firefox-1522\\firefox\\firefox.exe\n╔════════════════════════════════════════════════════════════╗\n║ Looks like Playwright was just installed or updated.       ║\n║ Please run the following command to download new browsers: ║\n║                                                            ║\n║     npx playwright install                                 ║\n║                                                            ║\n║ <3 Playwright Team                                         ║\n╚════════════════════════════════════════════════════════════╝"
+          "error": "Home CSS Variables not applied correctly"
         }
       ]
     },
     {
       "name": "webkit",
       "status": "failed",
-      "error": "browserType.launch: Executable doesn't exist at C:\\Users\\EdmundMulligan.ONELONDON\\AppData\\Local\\ms-playwright\\webkit-2287\\Playwright.exe\n╔════════════════════════════════════════════════════════════╗\n║ Looks like Playwright was just installed or updated.       ║\n║ Please run the following command to download new browsers: ║\n║                                                            ║\n║     npx playwright install                                 ║\n║                                                            ║\n║ <3 Playwright Team                                         ║\n╚════════════════════════════════════════════════════════════╝",
+      "error": "Home CSS Variables not applied correctly",
       "tests": [
         {
           "name": "browser test",
           "status": "failed",
-          "error": "browserType.launch: Executable doesn't exist at C:\\Users\\EdmundMulligan.ONELONDON\\AppData\\Local\\ms-playwright\\webkit-2287\\Playwright.exe\n╔════════════════════════════════════════════════════════════╗\n║ Looks like Playwright was just installed or updated.       ║\n║ Please run the following command to download new browsers: ║\n║                                                            ║\n║     npx playwright install                                 ║\n║                                                            ║\n║ <3 Playwright Team                                         ║\n╚════════════════════════════════════════════════════════════╝"
+          "error": "Home CSS Variables not applied correctly"
         }
       ]
     }

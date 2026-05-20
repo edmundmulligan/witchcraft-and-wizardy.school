@@ -1,0 +1,222 @@
+{
+  "pages": [
+    {
+      "url": "index.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 46,
+      "timeoutCount": 0
+    },
+    {
+      "url": "mentors/lesson-00.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 53,
+      "timeoutCount": 0
+    },
+    {
+      "url": "mentors/lesson-01.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 62,
+      "timeoutCount": 0
+    },
+    {
+      "url": "mentors/lesson-02.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 59,
+      "timeoutCount": 0
+    },
+    {
+      "url": "mentors/lesson-03.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 57,
+      "timeoutCount": 0
+    },
+    {
+      "url": "mentors/lesson-04.html",
+      "links": [
+        {
+          "url": "https://www.adobe.com/acrobat/hub/guide-to-image-file-formats.html",
+          "original": "https://www.adobe.com/acrobat/hub/guide-to-image-file-formats.html",
+          "warning": "timeout",
+          "tagName": "a",
+          "text": "Adobe Guide to Image File Formats"
+        }
+      ],
+      "brokenCount": 0,
+      "totalCount": 57,
+      "timeoutCount": 1
+    },
+    {
+      "url": "mentors/lesson-05.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 56,
+      "timeoutCount": 0
+    },
+    {
+      "url": "mentors/lesson-06.html",
+      "links": [
+        {
+          "url": "https://www.w3schools.com/html/html_tables.asp",
+          "original": "https://www.w3schools.com/html/html_tables.asp",
+          "error": "getaddrinfo ENOTFOUND www.w3schools.com",
+          "tagName": "a",
+          "text": "W3Schools HTML Tables"
+        },
+        {
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table",
+          "original": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table",
+          "error": "getaddrinfo ENOTFOUND developer.mozilla.org",
+          "tagName": "a",
+          "text": "MDN Web Docs - HTML <table> Element"
+        },
+        {
+          "url": "https://www.embodied-mind.org/",
+          "original": "https://www.embodied-mind.org/",
+          "error": "getaddrinfo ENOTFOUND www.embodied-mind.org",
+          "tagName": "a",
+          "text": "Visit The Embodied Mind website"
+        }
+      ],
+      "brokenCount": 3,
+      "totalCount": 57,
+      "timeoutCount": 0
+    },
+    {
+      "url": "pages/credits.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 71,
+      "timeoutCount": 0
+    },
+    {
+      "url": "pages/facts.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 39,
+      "timeoutCount": 0
+    },
+    {
+      "url": "pages/faq.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 42,
+      "timeoutCount": 0
+    },
+    {
+      "url": "pages/feedback.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 57,
+      "timeoutCount": 0
+    },
+    {
+      "url": "pages/gallery.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 77,
+      "timeoutCount": 0
+    },
+    {
+      "url": "pages/glossary.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 39,
+      "timeoutCount": 0
+    },
+    {
+      "url": "pages/license.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 38,
+      "timeoutCount": 0
+    },
+    {
+      "url": "pages/mentors.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 41,
+      "timeoutCount": 0
+    },
+    {
+      "url": "pages/privacy-policy.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 41,
+      "timeoutCount": 0
+    },
+    {
+      "url": "pages/start.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 43,
+      "timeoutCount": 0
+    },
+    {
+      "url": "pages/students.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 42,
+      "timeoutCount": 0
+    },
+    {
+      "url": "students/lesson-00.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 59,
+      "timeoutCount": 0
+    },
+    {
+      "url": "students/lesson-01.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 58,
+      "timeoutCount": 0
+    },
+    {
+      "url": "students/lesson-02.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 58,
+      "timeoutCount": 0
+    },
+    {
+      "url": "students/lesson-03.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 61,
+      "timeoutCount": 0
+    },
+    {
+      "url": "students/lesson-04.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 63,
+      "timeoutCount": 0
+    },
+    {
+      "url": "students/lesson-05.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 58,
+      "timeoutCount": 0
+    },
+    {
+      "url": "students/lesson-06.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 57,
+      "timeoutCount": 0
+    }
+  ],
+  "summary": {
+    "totalLinks": 1391,
+    "brokenLinks": 3,
+    "timeoutLinks": 1,
+    "excludedLinks": 0
+  }
+}

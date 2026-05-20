@@ -4,22 +4,13 @@
     "validate-code",
     "audit-colour",
     "check-comments",
-    "check-links",
-    "axe-tests",
-    "lighthouse-tests",
-    "pa11y-tests",
-    "reading-age",
-    "browser-tests"
+    "check-links"
   ],
   "failed": [
     "validate-code",
     "audit-colour",
     "check-comments",
-    "check-links",
-    "axe-tests",
-    "lighthouse-tests",
-    "pa11y-tests",
-    "browser-tests"
+    "check-links"
   ],
   "quickMode": false,
   "runWave": false
