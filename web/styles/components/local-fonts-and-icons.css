@@ -1,16 +1,15 @@
 /*
  **********************************************************************
  * File       : components/local-fonts-and-icons.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
  * Description:
  *   Local fallback styles so pages render without external font CDNs.
  *   This provides robust system font stacks plus lightweight icon
  *   glyph mappings for the Font Awesome classes used in this project.
  **********************************************************************
  */
-
-:root {
-  --font-family-icons: "Segoe UI Symbol", "Noto Sans Symbols", sans-serif;
-}
 
 .fa-solid,
 .fas,
@@ -54,12 +53,3 @@
   animation: fa-spin 1s linear infinite;
 }
 
-@keyframes fa-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
