@@ -7,8 +7,6 @@
     "check-links"
   ],
   "failed": [
-    "validate-code",
-    "audit-colour",
     "check-comments",
     "check-links"
   ],

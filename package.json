@@ -20,7 +20,8 @@
     "tests:full": "node bin/run-tests-by-folder.js . -x lessons diagnostics",
     "tests:quick": "node bin/run-tests-by-folder.js . -q -x lessons diagnostics",
     "tests:wave": "node bin/run-tests-by-folder.js . -w -x lessons diagnostics",
-    "tests:api": "newman run api/postman-collection.json -e api/postman-environment.json --color on --reporters cli,json --reporter-json-export api/diagnostics/test-results/postman.json"
+    "tests:api": "newman run api/postman-collection.json -e api/postman-environment.json --color on --reporters cli,json --reporter-json-export api/diagnostics/test-results/postman.json",
+    "tests:api:store": "node api/diagnostics/test-feedback-store-normalized.js"
   },
   "keywords": [
     "html",
@@ -53,11 +54,11 @@
     "cheerio": "^1.2.0",
     "cors": "^2.8.5",
     "dotenv": "^17.4.2",
-    "eslint": "^10.3.0",
+    "eslint": "^10.4.0",
     "express": "^5.2.1",
     "flatted": ">=3.4.2",
     "follow-redirects": ">=1.16.0",
-    "html-validate": "^11.1.0",
+    "html-validate": "^11.2.0",
     "jsonpath": ">=1.3.0",
     "lodash": ">=4.18.0",
     "minimatch": ">=10.2.3",

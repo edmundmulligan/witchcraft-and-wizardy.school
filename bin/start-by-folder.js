@@ -11,9 +11,9 @@
  **********************************************************************
  */
 
-import { execSync } from 'child_process';
 import path from 'path';
 import fs from 'fs';
+import express from 'express';
 
 // Parse command line arguments
 const args = process.argv.slice(2);
@@ -85,12 +85,28 @@ console.log(`🚀 Starting dev server for: ${folder}/`);
 console.log(`📡 Server will run on: http://localhost:${port}`);
 console.log('');
 
-try {
-  // Start http-server in the specified folder
-  execSync(`http-server ${folder} -p ${port} -c-1`, {
-    stdio: 'inherit',
-    cwd: process.cwd(),
-  });
-} catch (error) {
-  process.exit(error.status || 1);
-}
+const app = express();
+
+const staticOptions = {
+  etag: false,
+  lastModified: false,
+  maxAge: 0,
+  setHeaders(res) {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+  },
+};
+
+// Serve the selected app folder at root (/) as the canonical path.
+app.use(express.static(folderPath, staticOptions));
+
+// Also serve it at /<folder>/ so old bookmarks and habits still work.
+app.use(`/${folder}`, express.static(folderPath, staticOptions));
+
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Serving ${folderPath}`);
+  console.log('Available on:');
+  console.log(`  http://127.0.0.1:${port}`);
+  console.log('Hit CTRL-C to stop the server');
+});
