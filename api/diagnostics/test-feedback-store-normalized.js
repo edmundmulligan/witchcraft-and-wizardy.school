@@ -19,6 +19,11 @@ function assert(condition, message) {
   }
 }
 
+function isCleanupEnabled() {
+  const value = (process.env.DIAGNOSTIC_CLEANUP || '').trim().toLowerCase();
+  return value === 'true' || value === '1' || value === 'yes';
+}
+
 function getDbConfig() {
   return {
     host: process.env.DB_HOST || '127.0.0.1',
@@ -44,6 +49,7 @@ async function run() {
   }
 
   const config = getDbConfig();
+  const cleanupEnabled = isCleanupEnabled();
   assert(config.user, 'Missing DB_USER');
   assert(config.password, 'Missing DB_PASSWORD');
   assert(config.database, 'Missing DB_NAME');
@@ -197,6 +203,31 @@ async function run() {
       connection.release();
     }
   } finally {
+    if (cleanupEnabled && feedbackResponseId) {
+      try {
+        // Delete the parent response row; child rows are removed via ON DELETE CASCADE.
+        const cleanupPool = db || (await mysql.createPool(config));
+        const [result] = await cleanupPool.execute('DELETE FROM feedback_responses WHERE id = ?', [
+          feedbackResponseId,
+        ]);
+
+        if (Number(result.affectedRows) === 1) {
+          console.log(`CLEANUP: deleted feedback_response_id=${feedbackResponseId}`);
+        } else {
+          console.warn(
+            `CLEANUP: expected to delete 1 row for feedback_response_id=${feedbackResponseId}, deleted ${result.affectedRows}`
+          );
+        }
+
+        if (!db) {
+          await cleanupPool.end();
+        }
+      } catch (cleanupError) {
+        console.warn(`CLEANUP: failed for feedback_response_id=${feedbackResponseId}`);
+        console.warn(cleanupError.message || cleanupError);
+      }
+    }
+
     if (db) {
       await db.end();
     }
