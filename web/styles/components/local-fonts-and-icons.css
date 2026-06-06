@@ -47,7 +47,20 @@
 .fa-forward-fast::before { content: "▶▶"; }
 .fa-backward-step::before { content: "◀"; }
 .fa-backward-fast::before { content: "◀◀"; }
-.fa-circle-question::before { content: "?"; }
+
+/* Use the actual Font Awesome icon asset (no text fallback) for glossary help icons. */
+.fa-circle-question {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  background-color: currentColor;
+  -webkit-mask: url("../../images/fontawesome/circle-question-regular-full.svg") no-repeat center / contain;
+  mask: url("../../images/fontawesome/circle-question-regular-full.svg") no-repeat center / contain;
+}
+
+.fa-circle-question::before {
+  content: none;
+}
 
 .fa-spin {
   animation: fa-spin 1s linear infinite;
