@@ -124,6 +124,13 @@
     &:not(:disabled) {
       background-color: var(--colour-effective-button-background-disabled);
     }
+
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled) {
+      background-color: var(--colour-effective-button-background-disabled);
+      color: var(--colour-effective-button-text);
+      transform: scale(1.02);
+    }
   }
 
   .lesson-jump-nav .fa-backward-fast,

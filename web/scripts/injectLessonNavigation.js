@@ -156,7 +156,7 @@
             <nav class="lesson-navigation-panel" aria-label="Section navigation">
                 <div class="navigation-controls">
                     <!-- Fast Rewind -->
-                        <button type="button" id="fastBackwardBtn" class="nav-button lesson-jump-nav" 
+                        <button type="button" id="fastBackwardBtn" class="nav-button section-nav" 
                             title="Go to previous lesson" aria-label="Previous lesson" ${disabledAttr}>
                         <i class="fa-duotone fa-regular fa-backward-fast" aria-hidden="true"></i>
                     </button>
@@ -183,7 +183,7 @@
                     </button>
 
                     <!-- Fast Forward -->
-                        <button type="button" id="fastForwardBtn" class="nav-button lesson-jump-nav" 
+                        <button type="button" id="fastForwardBtn" class="nav-button section-nav" 
                             title="Go to next lesson" aria-label="Next lesson">
                         <i class="fa-duotone fa-regular fa-forward-fast" aria-hidden="true"></i>
                     </button>
