@@ -2,48 +2,54 @@
   "violations": [],
   "passes": [
     {
-      "pageUrl": "mentors/lesson-05.html",
+      "pageUrl": "http://127.0.0.1:8000/students/lesson-06.html?theme=dark&style=subdued",
+      "theme": "light",
+      "style": "normal",
+      "viewport": "900",
+      "count": 41
+    },
+    {
+      "pageUrl": "http://127.0.0.1:8000/students/lesson-06.html?theme=dark&style=subdued",
+      "theme": "dark",
+      "style": "normal",
+      "viewport": "900",
+      "count": 41
+    },
+    {
+      "pageUrl": "http://127.0.0.1:8000/students/lesson-06.html?theme=dark&style=subdued",
+      "theme": "light",
+      "style": "subdued",
+      "viewport": "900",
+      "count": 41
+    },
+    {
+      "pageUrl": "http://127.0.0.1:8000/students/lesson-06.html?theme=dark&style=subdued",
+      "theme": "dark",
+      "style": "subdued",
+      "viewport": "900",
+      "count": 41
+    },
+    {
+      "pageUrl": "http://127.0.0.1:8000/students/lesson-06.html?theme=dark&style=subdued",
       "theme": "light",
       "style": "vibrant",
       "viewport": "900",
       "count": 41
     },
     {
-      "pageUrl": "mentors/lesson-03.html",
-      "theme": "light",
-      "style": "normal",
-      "viewport": "150",
-      "count": 41
-    },
-    {
-      "pageUrl": "mentors/lesson-01.html",
-      "theme": "light",
+      "pageUrl": "http://127.0.0.1:8000/students/lesson-06.html?theme=dark&style=subdued",
+      "theme": "dark",
       "style": "vibrant",
       "viewport": "900",
-      "count": 41
-    },
-    {
-      "pageUrl": "mentors/lesson-02.html",
-      "theme": "light",
-      "style": "normal",
-      "viewport": "150",
-      "count": 41
-    },
-    {
-      "pageUrl": "mentors/lesson-04.html",
-      "theme": "light",
-      "style": "normal",
-      "viewport": "150",
       "count": 41
     }
   ],
   "incomplete": [],
   "metadata": {
-    "pagesTestedCount": 0,
-    "totalTestRuns": 5,
+    "pagesTestedCount": 1,
+    "totalTestRuns": 6,
     "viewports": [
-      "900",
-      "150"
+      "900"
     ],
     "themes": [
       "light",

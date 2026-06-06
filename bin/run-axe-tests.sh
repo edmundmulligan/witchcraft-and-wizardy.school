@@ -15,6 +15,7 @@ print_usage() {
 TEST_URL="http://localhost:8080"
 QUICK_MODE=false
 EXCLUDE_LIST=""
+EXACT_PAGE_URL=""
 
 # Parse command line arguments
 FOLDER=""
@@ -60,6 +61,14 @@ while [[ $# -gt 0 ]]; do
       ;;
   esac
 done
+
+# Support both base URLs (e.g. http://localhost:8080) and exact page URLs
+# (e.g. http://localhost:8080/students/lesson-06.html?theme=dark&style=subdued).
+# When an exact page URL is provided, run tests only against that page URL.
+if [[ "$TEST_URL" =~ ^https?://[^/]+/.+ ]]; then
+  EXACT_PAGE_URL="$TEST_URL"
+  TEST_URL=$(printf '%s' "$TEST_URL" | sed -E 's#^(https?://[^/]+).*$#\1#')
+fi
 
 # Resolve axe command without mutating workspace dependencies.
 if command -v axe > /dev/null 2>&1; then
@@ -141,7 +150,13 @@ mkdir -p "$RESULTS_DIR"
 
 # Start server and setup
 start_server_if_needed "$TEST_URL"
-discover_html_pages "." "$EXCLUDE_LIST"
+
+if [ -n "$EXACT_PAGE_URL" ]; then
+  PAGES="__single_page__"
+  PAGE_COUNT=1
+else
+  discover_html_pages "." "$EXCLUDE_LIST"
+fi
 
 # Clean up any orphaned chromedriver processes from previous runs
 pkill -f chromedriver 2>/dev/null || true
@@ -189,14 +204,17 @@ for VIEWPORT in "${VIEWPORTS[@]}"; do
       
       for page in $PAGES; do
         TESTED=$((TESTED + 1))
-        # Convert file path to URL path
-        URL_PATH="${page#./}"
-        
-        # Add theme and style parameters to URL
-        if [[ "$URL_PATH" == *"?"* ]]; then
-          FULL_URL="$TEST_URL/$URL_PATH&theme=$THEME&style=$STYLE"
+        # Convert file path to URL path and build target URL.
+        if [ -n "$EXACT_PAGE_URL" ]; then
+          URL_PATH="$EXACT_PAGE_URL"
+          FULL_URL="$EXACT_PAGE_URL"
         else
-          FULL_URL="$TEST_URL/$URL_PATH?theme=$THEME&style=$STYLE"
+          URL_PATH="${page#./}"
+          if [[ "$URL_PATH" == *"?"* ]]; then
+            FULL_URL="$TEST_URL/$URL_PATH&theme=$THEME&style=$STYLE"
+          else
+            FULL_URL="$TEST_URL/$URL_PATH?theme=$THEME&style=$STYLE"
+          fi
         fi
 
         echo "    [$TESTED/$TOTAL_TESTS] Testing $URL_PATH (${VIEWPORT}px, $STYLE-$THEME)"
