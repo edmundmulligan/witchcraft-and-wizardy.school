@@ -227,6 +227,44 @@ async function runPageTests(page, pageInfo) {
     }
   }
 
+  // Test 11: Lesson wand navigation regression - clicking wand icons should navigate
+  // to the clicked section and not jump back to the first section.
+  const isLessonPage = /\/(students|mentors)\/lesson-\d+\.html$/.test(pageInfo.url);
+  if (isLessonPage) {
+    const wandCount = await page.$$eval('#progressBar .wand-icon', (nodes) => nodes.length);
+
+    // Only run when there are enough visible sections to verify navigation progression.
+    if (wandCount >= 3) {
+      const getCurrentSectionIndex = async () =>
+        page.$$eval('#progressBar .wand-icon', (nodes) =>
+          nodes.findIndex((node) => node.classList.contains('current'))
+        );
+
+      await page.click('#progressBar .wand-icon[data-section="1"]');
+      await page.waitForTimeout(120);
+      const afterFirstClick = await getCurrentSectionIndex();
+
+      if (afterFirstClick !== 1) {
+        throw new Error(
+          `${pageInfo.name} wand navigation regression: expected current section 1 after clicking wand 1, got ${afterFirstClick}`
+        );
+      }
+
+      await page.click('#progressBar .wand-icon[data-section="2"]');
+      await page.waitForTimeout(120);
+      const afterSecondClick = await getCurrentSectionIndex();
+
+      if (afterSecondClick !== 2) {
+        throw new Error(
+          `${pageInfo.name} wand navigation regression: expected current section 2 after clicking wand 2, got ${afterSecondClick}`
+        );
+      }
+
+      console.log(`✅ ${pageInfo.name} wand section navigation stable`);
+      tests.push({ name: `${pageInfo.name} wand section navigation`, status: 'passed' });
+    }
+  }
+
   return tests;
 }
 

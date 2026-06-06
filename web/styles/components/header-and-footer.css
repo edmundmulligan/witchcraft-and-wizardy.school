@@ -298,6 +298,15 @@
     }
   }
 
+  .header-button button i.fa-chevron-up,
+  .header-button button i.fa-chevron-down,
+  .footer-button button i.fa-chevron-up,
+  .footer-button button i.fa-chevron-down {
+    display: inline-block;
+    font-size: 1.2em;
+    line-height: 1;
+  }
+
   /* header warning banner - only visible on very small screens */
   .header-warning {
     display: none;

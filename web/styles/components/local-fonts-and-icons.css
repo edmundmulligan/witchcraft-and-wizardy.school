@@ -1,16 +1,15 @@
 /*
  **********************************************************************
  * File       : components/local-fonts-and-icons.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
  * Description:
  *   Local fallback styles so pages render without external font CDNs.
  *   This provides robust system font stacks plus lightweight icon
  *   glyph mappings for the Font Awesome classes used in this project.
  **********************************************************************
  */
-
-:root {
-  --font-family-icons: "Segoe UI Symbol", "Noto Sans Symbols", sans-serif;
-}
 
 .fa-solid,
 .fas,
@@ -32,8 +31,8 @@
 
 .fa-home::before { content: "⌂"; }
 .fa-bars::before { content: "☰"; }
-.fa-chevron-up::before { content: "▴"; }
-.fa-chevron-down::before { content: "▾"; }
+.fa-chevron-up::before { content: "▲"; }
+.fa-chevron-down::before { content: "▼"; }
 .fa-wrench::before { content: "🔧"; }
 .fa-images::before { content: "🖼"; }
 .fa-swatchbook::before { content: "🎨"; }
@@ -44,22 +43,13 @@
 .fa-sync-alt::before { content: "↻"; }
 .fa-spinner::before { content: "◌"; }
 .fa-play::before { content: "▶"; }
-.fa-forward-step::before { content: "⏭"; }
-.fa-forward-fast::before { content: "⏩"; }
-.fa-backward-step::before { content: "⏮"; }
-.fa-backward-fast::before { content: "⏪"; }
+.fa-forward-step::before { content: "▶"; }
+.fa-forward-fast::before { content: "▶▶"; }
+.fa-backward-step::before { content: "◀"; }
+.fa-backward-fast::before { content: "◀◀"; }
 .fa-circle-question::before { content: "?"; }
 
 .fa-spin {
   animation: fa-spin 1s linear infinite;
 }
 
-@keyframes fa-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
