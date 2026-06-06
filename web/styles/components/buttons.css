@@ -99,10 +99,12 @@
 
   /* override for small circular buttons */
   .button-circle-small {
-    width: calc(var(--buttonsize-circle) * 0.67);
-    height: calc(var(--buttonsize-circle) * 0.67);
+    width: calc(var(--buttonsize-circle) * 0.8);
+    height: calc(var(--buttonsize-circle) * 0.8);
     max-width: 10rem;
     max-height: 10rem;
+    font-size: calc(var(--fontsize-button) * 0.85);
+    line-height: 1.1;
   }
 
   /* Glossary icon button styling */

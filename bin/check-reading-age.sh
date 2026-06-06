@@ -64,7 +64,7 @@ if ! node -e "require('text-readability'); require('cheerio')" > /dev/null 2>&1;
 fi
 
 # Setup results directory in application folder
-ORIGINAL_DIR=$(pwd)
+ORIGINAL_DIR=$(normalise_path_for_node "$(pwd)")
 RESULTS_DIR="$ORIGINAL_DIR/$FOLDER/diagnostics/test-results"
 mkdir -p "$RESULTS_DIR"
 RESULT_FILE="$RESULTS_DIR/readability-results.json"

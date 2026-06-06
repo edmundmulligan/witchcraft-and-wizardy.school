@@ -486,6 +486,10 @@
           "status": "passed"
         },
         {
+          "name": "Student Lesson 01 wand section navigation",
+          "status": "passed"
+        },
+        {
           "name": "Student Lesson 02 page title",
           "status": "passed"
         },
@@ -523,6 +527,10 @@
         },
         {
           "name": "Student Lesson 02 font rendering",
+          "status": "passed"
+        },
+        {
+          "name": "Student Lesson 02 wand section navigation",
           "status": "passed"
         },
         {
@@ -566,6 +574,10 @@
           "status": "passed"
         },
         {
+          "name": "Student Lesson 03 wand section navigation",
+          "status": "passed"
+        },
+        {
           "name": "Student Lesson 04 page title",
           "status": "passed"
         },
@@ -603,6 +615,10 @@
         },
         {
           "name": "Student Lesson 04 font rendering",
+          "status": "passed"
+        },
+        {
+          "name": "Student Lesson 04 wand section navigation",
           "status": "passed"
         },
         {
@@ -646,6 +662,10 @@
           "status": "passed"
         },
         {
+          "name": "Student Lesson 05 wand section navigation",
+          "status": "passed"
+        },
+        {
           "name": "Student Lesson 06 page title",
           "status": "passed"
         },
@@ -683,6 +703,10 @@
         },
         {
           "name": "Student Lesson 06 font rendering",
+          "status": "passed"
+        },
+        {
+          "name": "Student Lesson 06 wand section navigation",
           "status": "passed"
         },
         {
@@ -726,6 +750,10 @@
           "status": "passed"
         },
         {
+          "name": "Mentor Lesson 00 wand section navigation",
+          "status": "passed"
+        },
+        {
           "name": "Mentor Lesson 01 page title",
           "status": "passed"
         },
@@ -763,6 +791,10 @@
         },
         {
           "name": "Mentor Lesson 01 font rendering",
+          "status": "passed"
+        },
+        {
+          "name": "Mentor Lesson 01 wand section navigation",
           "status": "passed"
         },
         {
@@ -806,6 +838,10 @@
           "status": "passed"
         },
         {
+          "name": "Mentor Lesson 02 wand section navigation",
+          "status": "passed"
+        },
+        {
           "name": "Mentor Lesson 03 page title",
           "status": "passed"
         },
@@ -843,6 +879,10 @@
         },
         {
           "name": "Mentor Lesson 03 font rendering",
+          "status": "passed"
+        },
+        {
+          "name": "Mentor Lesson 03 wand section navigation",
           "status": "passed"
         },
         {
@@ -886,6 +926,10 @@
           "status": "passed"
         },
         {
+          "name": "Mentor Lesson 04 wand section navigation",
+          "status": "passed"
+        },
+        {
           "name": "Mentor Lesson 05 page title",
           "status": "passed"
         },
@@ -926,6 +970,10 @@
           "status": "passed"
         },
         {
+          "name": "Mentor Lesson 05 wand section navigation",
+          "status": "passed"
+        },
+        {
           "name": "Mentor Lesson 06 page title",
           "status": "passed"
         },
@@ -963,6 +1011,10 @@
         },
         {
           "name": "Mentor Lesson 06 font rendering",
+          "status": "passed"
+        },
+        {
+          "name": "Mentor Lesson 06 wand section navigation",
           "status": "passed"
         }
       ]
@@ -1453,6 +1505,10 @@
           "status": "passed"
         },
         {
+          "name": "Student Lesson 01 wand section navigation",
+          "status": "passed"
+        },
+        {
           "name": "Student Lesson 02 page title",
           "status": "passed"
         },
@@ -1490,6 +1546,10 @@
         },
         {
           "name": "Student Lesson 02 font rendering",
+          "status": "passed"
+        },
+        {
+          "name": "Student Lesson 02 wand section navigation",
           "status": "passed"
         },
         {
@@ -1533,6 +1593,10 @@
           "status": "passed"
         },
         {
+          "name": "Student Lesson 03 wand section navigation",
+          "status": "passed"
+        },
+        {
           "name": "Student Lesson 04 page title",
           "status": "passed"
         },
@@ -1570,6 +1634,10 @@
         },
         {
           "name": "Student Lesson 04 font rendering",
+          "status": "passed"
+        },
+        {
+          "name": "Student Lesson 04 wand section navigation",
           "status": "passed"
         },
         {
@@ -1613,6 +1681,10 @@
           "status": "passed"
         },
         {
+          "name": "Student Lesson 05 wand section navigation",
+          "status": "passed"
+        },
+        {
           "name": "Student Lesson 06 page title",
           "status": "passed"
         },
@@ -1650,6 +1722,10 @@
         },
         {
           "name": "Student Lesson 06 font rendering",
+          "status": "passed"
+        },
+        {
+          "name": "Student Lesson 06 wand section navigation",
           "status": "passed"
         },
         {
@@ -1693,6 +1769,10 @@
           "status": "passed"
         },
         {
+          "name": "Mentor Lesson 00 wand section navigation",
+          "status": "passed"
+        },
+        {
           "name": "Mentor Lesson 01 page title",
           "status": "passed"
         },
@@ -1730,6 +1810,10 @@
         },
         {
           "name": "Mentor Lesson 01 font rendering",
+          "status": "passed"
+        },
+        {
+          "name": "Mentor Lesson 01 wand section navigation",
           "status": "passed"
         },
         {
@@ -1773,6 +1857,10 @@
           "status": "passed"
         },
         {
+          "name": "Mentor Lesson 02 wand section navigation",
+          "status": "passed"
+        },
+        {
           "name": "Mentor Lesson 03 page title",
           "status": "passed"
         },
@@ -1810,6 +1898,10 @@
         },
         {
           "name": "Mentor Lesson 03 font rendering",
+          "status": "passed"
+        },
+        {
+          "name": "Mentor Lesson 03 wand section navigation",
           "status": "passed"
         },
         {
@@ -1853,6 +1945,10 @@
           "status": "passed"
         },
         {
+          "name": "Mentor Lesson 04 wand section navigation",
+          "status": "passed"
+        },
+        {
           "name": "Mentor Lesson 05 page title",
           "status": "passed"
         },
@@ -1893,6 +1989,10 @@
           "status": "passed"
         },
         {
+          "name": "Mentor Lesson 05 wand section navigation",
+          "status": "passed"
+        },
+        {
           "name": "Mentor Lesson 06 page title",
           "status": "passed"
         },
@@ -1930,6 +2030,10 @@
         },
         {
           "name": "Mentor Lesson 06 font rendering",
+          "status": "passed"
+        },
+        {
+          "name": "Mentor Lesson 06 wand section navigation",
           "status": "passed"
         }
       ]
@@ -2420,6 +2524,10 @@
           "status": "passed"
         },
         {
+          "name": "Student Lesson 01 wand section navigation",
+          "status": "passed"
+        },
+        {
           "name": "Student Lesson 02 page title",
           "status": "passed"
         },
@@ -2457,6 +2565,10 @@
         },
         {
           "name": "Student Lesson 02 font rendering",
+          "status": "passed"
+        },
+        {
+          "name": "Student Lesson 02 wand section navigation",
           "status": "passed"
         },
         {
@@ -2500,6 +2612,10 @@
           "status": "passed"
         },
         {
+          "name": "Student Lesson 03 wand section navigation",
+          "status": "passed"
+        },
+        {
           "name": "Student Lesson 04 page title",
           "status": "passed"
         },
@@ -2537,6 +2653,10 @@
         },
         {
           "name": "Student Lesson 04 font rendering",
+          "status": "passed"
+        },
+        {
+          "name": "Student Lesson 04 wand section navigation",
           "status": "passed"
         },
         {
@@ -2580,6 +2700,10 @@
           "status": "passed"
         },
         {
+          "name": "Student Lesson 05 wand section navigation",
+          "status": "passed"
+        },
+        {
           "name": "Student Lesson 06 page title",
           "status": "passed"
         },
@@ -2617,6 +2741,10 @@
         },
         {
           "name": "Student Lesson 06 font rendering",
+          "status": "passed"
+        },
+        {
+          "name": "Student Lesson 06 wand section navigation",
           "status": "passed"
         },
         {
@@ -2660,6 +2788,10 @@
           "status": "passed"
         },
         {
+          "name": "Mentor Lesson 00 wand section navigation",
+          "status": "passed"
+        },
+        {
           "name": "Mentor Lesson 01 page title",
           "status": "passed"
         },
@@ -2697,6 +2829,10 @@
         },
         {
           "name": "Mentor Lesson 01 font rendering",
+          "status": "passed"
+        },
+        {
+          "name": "Mentor Lesson 01 wand section navigation",
           "status": "passed"
         },
         {
@@ -2740,6 +2876,10 @@
           "status": "passed"
         },
         {
+          "name": "Mentor Lesson 02 wand section navigation",
+          "status": "passed"
+        },
+        {
           "name": "Mentor Lesson 03 page title",
           "status": "passed"
         },
@@ -2777,6 +2917,10 @@
         },
         {
           "name": "Mentor Lesson 03 font rendering",
+          "status": "passed"
+        },
+        {
+          "name": "Mentor Lesson 03 wand section navigation",
           "status": "passed"
         },
         {
@@ -2820,6 +2964,10 @@
           "status": "passed"
         },
         {
+          "name": "Mentor Lesson 04 wand section navigation",
+          "status": "passed"
+        },
+        {
           "name": "Mentor Lesson 05 page title",
           "status": "passed"
         },
@@ -2860,6 +3008,10 @@
           "status": "passed"
         },
         {
+          "name": "Mentor Lesson 05 wand section navigation",
+          "status": "passed"
+        },
+        {
           "name": "Mentor Lesson 06 page title",
           "status": "passed"
         },
@@ -2897,6 +3049,10 @@
         },
         {
           "name": "Mentor Lesson 06 font rendering",
+          "status": "passed"
+        },
+        {
+          "name": "Mentor Lesson 06 wand section navigation",
           "status": "passed"
         }
       ]

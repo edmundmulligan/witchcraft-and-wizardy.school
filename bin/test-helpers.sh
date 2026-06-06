@@ -2,6 +2,22 @@
 
 # Common helper functions for accessibility testing scripts
 
+# Prefer GNU find in Git Bash on Windows to avoid invoking Windows find.exe.
+if [ -x "/usr/bin/find" ]; then
+  FIND_BIN="/usr/bin/find"
+else
+  FIND_BIN="$(command -v find)"
+fi
+
+normalise_path_for_node() {
+  local input_path="$1"
+  if command -v cygpath > /dev/null 2>&1 && [[ "$input_path" == /* ]]; then
+    cygpath -m "$input_path"
+  else
+    echo "$input_path"
+  fi
+}
+
 # Normalise exclude arguments (comma-separated and/or space-separated) into a space list
 normalise_exclude_list() {
   local normalised=""
@@ -163,6 +179,7 @@ parse_test_options() {
 start_server_if_needed() {
   local url="$1"
   local server_port
+  local http_server_bin
 
   server_port="$(printf '%s' "$url" | sed -n 's#^https\{0,1\}://[^:/]*:\([0-9][0-9]*\).*$#\1#p')"
   if [ -z "$server_port" ]; then
@@ -173,25 +190,77 @@ start_server_if_needed() {
     fi
   fi
 
-  if ! curl -s -f "$url" > /dev/null 2>&1
-  then
-    echo "⚠️  No server detected at $url"
+  # Check if server is running with multiple retries
+  server_running=false
+  for attempt in 1 2 3; do
+    if curl -s -f "$url" > /dev/null 2>&1; then
+      server_running=true
+      break
+    fi
+    if [ $attempt -lt 3 ]; then
+      sleep 1
+    fi
+  done
+
+  if [ "$server_running" = false ]; then
+    echo "⚠️  No server detected at $url, starting..."
     echo "Starting local server..."
-    npx serve . -l "$server_port" > /dev/null 2>&1 &
+
+    http_server_bin="$(node -e 'process.stdout.write(require.resolve("http-server/bin/http-server"))' 2>/dev/null)"
+    if [ -z "$http_server_bin" ]; then
+      echo "❌ Cannot resolve http-server CLI. Run 'npm ci' and try again."
+      return 1
+    fi
+
+    local server_log_dir="${TMPDIR:-/tmp}"
+    mkdir -p "$server_log_dir" > /dev/null 2>&1
+    SERVER_LOG="$server_log_dir/wws-server-$server_port.log"
+    node "$http_server_bin" . -p "$server_port" -a 127.0.0.1 --silent > "$SERVER_LOG" 2>&1 &
     SERVER_PID=$!
-    sleep 2
+    SERVER_PORT="$server_port"
+
+    # Wait for server to start with multiple retries
+    for attempt in 1 2 3 4 5 6 7 8 9 10; do
+      if curl -s -f "$url" > /dev/null 2>&1; then
+        echo "✓ Server started successfully on port $server_port"
+        STOP_SERVER=true
+        return 0
+      fi
+      if [ $attempt -lt 10 ]; then
+        sleep 1
+      fi
+    done
+
+    echo "❌ Failed to start local server on port $server_port"
+    if [ -f "$SERVER_LOG" ]; then
+      echo "Recent server log:"
+      tail -20 "$SERVER_LOG"
+    fi
     STOP_SERVER=true
+    return 1
   else
     echo "✓ Server is running at $url"
     STOP_SERVER=false
   fi
 }
 
+ensure_server_running() {
+  local url="$1"
+
+  if curl -s -f "$url" > /dev/null 2>&1; then
+    return 0
+  fi
+
+  echo "⚠️  Server health check failed for $url. Attempting restart..."
+  start_server_if_needed "$url"
+}
+
 # Stop server if we started it
 stop_server_if_started() {
   if [ "$STOP_SERVER" = true ]; then
     echo "Stopping local server..."
-    kill $SERVER_PID 2>/dev/null
+    kill "$SERVER_PID" 2>/dev/null
+    wait "$SERVER_PID" 2>/dev/null
   fi
 }
 
@@ -207,7 +276,7 @@ discover_html_pages() {
     PAGE_COUNT=0
     return
   fi
-  PAGES=$(find "$folder" -name "*.html" -not -path "*/node_modules/*" -not -path "*/tests/*" -not -path "*/diagnostics/*" -print)
+  PAGES=$($FIND_BIN "$folder" -name "*.html" -not -path "*/node_modules/*" -not -path "*/tests/*" -not -path "*/diagnostics/*" -print)
 
   if [ -n "$exclude_list" ]; then
     filter_excluded_paths "$PAGES" "$exclude_list"

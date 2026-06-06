@@ -1,0 +1,118 @@
+/*
+ **********************************************************************
+ * File       : definitions/fonts.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Local self-hosted font-face declarations for offline rendering.
+ **********************************************************************
+ */
+
+@font-face {
+  font-family: "Open Sans Local";
+  src: url("../../fonts/OpenSans-Variable.woff2") format("woff2"),
+       url("../../fonts/OpenSans-Variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("../../fonts/OpenSans-Variable.woff2") format("woff2"),
+       url("../../fonts/OpenSans-Variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cinzel Decorative Local";
+  src: url("../../fonts/CinzelDecorative-Regular.woff2") format("woff2"),
+       url("../../fonts/CinzelDecorative-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cinzel Decorative Local";
+  src: url("../../fonts/CinzelDecorative-Bold.woff2") format("woff2"),
+       url("../../fonts/CinzelDecorative-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cinzel Local";
+  src: url("../../fonts/Cinzel-Variable.woff2") format("woff2"),
+       url("../../fonts/Cinzel-Variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Marcellus Local";
+  src: url("../../fonts/Marcellus-Regular.woff2") format("woff2"),
+       url("../../fonts/Marcellus-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cormorant Garamond Local";
+  src: url("../../fonts/CormorantGaramond-Variable.woff2") format("woff2"),
+       url("../../fonts/CormorantGaramond-Variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fira Code Local";
+  src: url("../../fonts/FiraCode-Variable.woff2") format("woff2"),
+       url("../../fonts/FiraCode-Variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fira Code";
+  src: url("../../fonts/FiraCode-Variable.woff2") format("woff2"),
+       url("../../fonts/FiraCode-Variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Code Pro Local";
+  src: url("../../fonts/SourceCodePro-Variable.woff2") format("woff2"),
+       url("../../fonts/SourceCodePro-Variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Code Pro";
+  src: url("../../fonts/SourceCodePro-Variable.woff2") format("woff2"),
+       url("../../fonts/SourceCodePro-Variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto Slab";
+  src: url("../../fonts/RobotoSlab-Variable.woff2") format("woff2"),
+       url("../../fonts/RobotoSlab-Variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}

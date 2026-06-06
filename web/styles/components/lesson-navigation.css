@@ -119,17 +119,16 @@
     }
   }
 
-  /* Lesson navigation buttons (fast forward/backward) */
-  .lesson-nav .fa-backward-fast,
-  .lesson-nav .fa-forward-fast {
-    font-size: 1.1rem;
+  .section-nav .fa-backward-fast,
+  .section-nav .fa-forward-fast {
+    font-size: 1.5rem;
     transform: translateY(-1px);
   }
 
   /* Section navigation buttons */
   .section-nav .fa-backward-step,
   .section-nav .fa-forward-step {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     transform: translateY(-1px);
   }
 

@@ -1,0 +1,55 @@
+/*
+ **********************************************************************
+ * File       : components/local-fonts-and-icons.css
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license-and-credits.html page)
+ * Description:
+ *   Local fallback styles so pages render without external font CDNs.
+ *   This provides robust system font stacks plus lightweight icon
+ *   glyph mappings for the Font Awesome classes used in this project.
+ **********************************************************************
+ */
+
+.fa-solid,
+.fas,
+.fa-regular,
+.fa-duotone {
+  font-family: var(--font-family-icons);
+  font-style: normal;
+  font-weight: 700;
+  display: inline-block;
+  line-height: 1;
+}
+
+.fa-solid::before,
+.fas::before,
+.fa-regular::before,
+.fa-duotone::before {
+  display: inline-block;
+}
+
+.fa-home::before { content: "⌂"; }
+.fa-bars::before { content: "☰"; }
+.fa-chevron-up::before { content: "▲"; }
+.fa-chevron-down::before { content: "▼"; }
+.fa-wrench::before { content: "🔧"; }
+.fa-images::before { content: "🖼"; }
+.fa-swatchbook::before { content: "🎨"; }
+.fa-palette::before { content: "🎨"; }
+.fa-font::before { content: "𝐀"; }
+.fa-chart-line::before { content: "📈"; }
+.fa-code::before { content: "</>"; }
+.fa-sync-alt::before { content: "↻"; }
+.fa-spinner::before { content: "◌"; }
+.fa-play::before { content: "▶"; }
+.fa-forward-step::before { content: "▶"; }
+.fa-forward-fast::before { content: "▶▶"; }
+.fa-backward-step::before { content: "◀"; }
+.fa-backward-fast::before { content: "◀◀"; }
+.fa-circle-question::before { content: "?"; }
+
+.fa-spin {
+  animation: fa-spin 1s linear infinite;
+}
+

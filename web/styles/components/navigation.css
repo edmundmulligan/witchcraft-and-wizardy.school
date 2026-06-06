@@ -47,7 +47,9 @@
     }
 
     & button {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: var(--colour-effective-menu-text);
       text-decoration: none;
       padding: var(--padding-nav);
@@ -61,7 +63,9 @@
     }
 
     & a {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: var(--colour-effective-menu-text);
       text-decoration: none;
       padding: var(--padding-nav);
@@ -74,10 +78,21 @@
 
     & a::before,
     & button::before {
-      content: "\f0d0"; /* Font Awesome Magic Wand */
-      font-family: var(--font-family-icons);
-      font-weight: 900; /* needed for solid style icons */
+      content: "";
+      display: inline-block;
+      width: 1em;
+      height: 1em;
       margin-right: clamp(0.15rem, 1vw, 0.35rem);
+      background-color: currentColor;
+      -webkit-mask-image: url("../../images/fontawesome/wand-magic-duotone-regular-full.svg");
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      -webkit-mask-size: contain;
+      mask-image: url("../../images/fontawesome/wand-magic-duotone-regular-full.svg");
+      mask-repeat: no-repeat;
+      mask-position: center;
+      mask-size: contain;
+      flex: 0 0 auto;
     }
 
     & a:visited {
@@ -101,7 +116,8 @@
     & a:focus-visible::before,
     & button:hover::before,
     & button:focus-visible::before {
-      content: "\e2ca"; /* Font Awesome Magic Wand with sparkles */
+      -webkit-mask-image: url("../../images/fontawesome/wand-magic-sparkles-sharp-duotone-regular-full.svg");
+      mask-image: url("../../images/fontawesome/wand-magic-sparkles-sharp-duotone-regular-full.svg");
     }
   }
 

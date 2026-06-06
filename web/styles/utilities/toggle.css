@@ -6,32 +6,83 @@
  * License    : MIT License (see license-and-credits.html page)
  * Description:
  *   This stylesheet defines styles for toggling visibility of sections.
+ * Note:
+ *   This is a shared resource and should be edited in the common folder.
  **********************************************************************
  */
 
 @layer utilities {
+  .magic-invisible,
+  .magic-visible {
+    position: relative;
+    padding-left: 1.7em;
+  }
+
   .magic-invisible {
     &::before {
-      content: "\f0d0\f054"; /* Font Awesome Magic Wand + Chevron Right */
-      font-family: var(--font-family-icons);
-      font-weight: var(--font-weight-extra-bold); /* needed for solid style icons */
-      margin-right: var(--margin-horizontal);
+      content: "";
+      width: 1.1em;
+      height: 1.1em;
+      background-color: currentColor;
+      -webkit-mask-image: url("../../images/fontawesome/wand-magic-sparkles-sharp-duotone-regular-full.svg");
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      -webkit-mask-size: contain;
+      mask-image: url("../../images/fontawesome/wand-magic-sparkles-sharp-duotone-regular-full.svg");
+      mask-repeat: no-repeat;
+      mask-position: center;
+      mask-size: contain;
       display: inline-block;
+      position: absolute;
+      left: 0;
+      top: 0.15em;
+    }
+
+    &::after {
+      content: "▸";
+      display: inline-block;
+      position: absolute;
+      left: 1.05em;
+      top: 0.08em;
+      font-size: 1.1em;
+      line-height: 1;
     }
   }
 
   .magic-visible {
     &::before {
-      content: "\e2ca\f078"; /* Font Awesome Magic Wand with sparkles + Chevron Down */
-      font-family: var(--font-family-icons);
-      font-weight: var(--font-weight-extra-bold); /* needed for solid style icons */
-      margin-right: var(--margin-horizontal);
+      content: "";
+      width: 1.1em;
+      height: 1.1em;
+      background-color: currentColor;
+      -webkit-mask-image: url("../../images/fontawesome/wand-magic-sparkles-sharp-duotone-regular-full.svg");
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      -webkit-mask-size: contain;
+      mask-image: url("../../images/fontawesome/wand-magic-sparkles-sharp-duotone-regular-full.svg");
+      mask-repeat: no-repeat;
+      mask-position: center;
+      mask-size: contain;
       display: inline-block;
+      position: absolute;
+      left: 0;
+      top: 0.15em;
+    }
+
+    &::after {
+      content: "▾";
+      display: inline-block;
+      position: absolute;
+      left: 1.05em;
+      top: 0.08em;
+      font-size: 1.1em;
+      line-height: 1;
     }
   }
 
   .magic-block-close {
-    display: inline;
+    display: inline-flex;
+    align-items: center;
     background: none;
     border: none;
     text-align: left;
@@ -45,8 +96,29 @@
     }
 
     &::before {
-      content: "\e2ca\f077"; /* Font Awesome Magic Wand with sparkles + Chevron Up */
-      margin-right: var(--margin-horizontal);
+      content: "";
+      width: 1em;
+      height: 1em;
+      background-color: currentColor;
+      -webkit-mask-image: url("../../images/fontawesome/wand-magic-sparkles-sharp-duotone-regular-full.svg");
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      -webkit-mask-size: contain;
+      mask-image: url("../../images/fontawesome/wand-magic-sparkles-sharp-duotone-regular-full.svg");
+      mask-repeat: no-repeat;
+      mask-position: center;
+      mask-size: contain;
+      margin-right: 0.45rem;
+      vertical-align: -0.1em;
+      display: inline-block;
+    }
+
+    &::after {
+      content: "▴";
+      display: inline-block;
+      margin-left: 0.1rem;
+      font-size: 1.1em;
+      line-height: 1;
     }
   }
 }

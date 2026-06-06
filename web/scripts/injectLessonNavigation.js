@@ -111,6 +111,20 @@
     }
 
     /**
+     * Escape text for safe use in HTML attributes.
+     *
+     * @param {string} text Text to escape.
+     * @returns {string} Escaped attribute-safe text.
+     */
+    escapeAttribute(text) {
+      return String(text)
+        .replaceAll('&', '&amp;')
+        .replaceAll('"', '&quot;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;');
+    }
+
+    /**
      * Generate wand icons HTML for progress bar
      */
     generateWandIcons(sections) {
@@ -125,9 +139,12 @@
               : '../images/fontawesome/wand-magic-duotone-regular-full.svg';
           const altText = index === 0 ? 'Current section' : 'Next section';
           const imgClass = index === 0 ? 'wand-current' : 'wand-next';
+            const sectionTitle = section.title || `Section ${index + 1}`;
+            const safeTitle = this.escapeAttribute(sectionTitle);
+            const wandAriaLabel = this.escapeAttribute(`Go to section ${index + 1}: ${sectionTitle}`);
 
           return `
-                    <span class="wand-icon ${iconClass}" data-section="${index}" title="${section.title}">
+                <span class="wand-icon ${iconClass}" data-section="${index}" title="${safeTitle}" aria-label="${wandAriaLabel}">
                         <img src="${imgSrc}" alt="${altText}" class="${imgClass}">
                     </span>`;
         })
@@ -156,7 +173,7 @@
             <nav class="lesson-navigation-panel" aria-label="Section navigation">
                 <div class="navigation-controls">
                     <!-- Fast Rewind -->
-                    <button type="button" id="fastBackwardBtn" class="nav-button section-nav" 
+                        <button type="button" id="fastBackwardBtn" class="nav-button section-nav" 
                             title="Go to previous lesson" aria-label="Previous lesson" ${disabledAttr}>
                         <i class="fa-duotone fa-regular fa-backward-fast" aria-hidden="true"></i>
                     </button>
@@ -169,9 +186,8 @@
 
                     <!-- Progress Bar with Wand Icons -->
                     <div class="progress-container">
-                        <div id="progressBar" class="progress-bar" role="progressbar" 
-                             aria-valuenow="1" aria-valuemin="1" aria-valuemax="${maxSections}" 
-                             aria-label="Section progress">
+                      <div id="progressBar" class="progress-bar" role="group" 
+                         aria-label="Section progress: 1 of ${maxSections}">
                             ${wandIcons}
                         </div>
                     </div>
@@ -183,7 +199,7 @@
                     </button>
 
                     <!-- Fast Forward -->
-                    <button type="button" id="fastForwardBtn" class="nav-button section-nav" 
+                        <button type="button" id="fastForwardBtn" class="nav-button section-nav" 
                             title="Go to next lesson" aria-label="Next lesson">
                         <i class="fa-duotone fa-regular fa-forward-fast" aria-hidden="true"></i>
                     </button>

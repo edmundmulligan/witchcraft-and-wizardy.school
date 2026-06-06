@@ -78,17 +78,20 @@ if [ ! -d "$FOLDER" ]; then
 fi
 
 # Change to the specified folder to serve files from there
-ORIGINAL_DIR=$(pwd)
+ORIGINAL_DIR=$(normalise_path_for_node "$(pwd)")
 RESULTS_DIR="$ORIGINAL_DIR/$FOLDER/diagnostics/test-results"
 mkdir -p "$RESULTS_DIR"
 cd "$FOLDER" || exit 1
 
 # Start server and setup
-start_server_if_needed "$TEST_URL"
+if ! start_server_if_needed "$TEST_URL"; then
+  echo "❌ pa11y tests aborted: local server did not start"
+  exit 1
+fi
 discover_html_pages "." "$EXCLUDE_LIST"
 
 # Initialise combined results
-echo '{"pages":[]}' > "$RESULTS_DIR/pa11y-results.json"
+echo '{"pages":[],"failures":[]}' > "$RESULTS_DIR/pa11y-results.json"
 
 # Define viewport widths to test
 if [ "$QUICK_MODE" = true ]; then
@@ -129,6 +132,27 @@ for VIEWPORT in "${VIEWPORTS[@]}"; do
         fi
 
         echo "    [$TESTED/$TOTAL_TESTS] Testing $URL_PATH (${VIEWPORT}px, $STYLE-$THEME)"
+
+        if ! ensure_server_running "$TEST_URL"; then
+          echo "      Failed: unable to reach local server"
+          node -e "
+            const fs = require('fs');
+            const resultsFile = '$RESULTS_DIR/pa11y-results.json';
+            const data = JSON.parse(fs.readFileSync(resultsFile, 'utf8'));
+            if (!Array.isArray(data.failures)) {
+              data.failures = [];
+            }
+            data.failures.push({
+              url: '$URL_PATH',
+              theme: '$THEME',
+              style: '$STYLE',
+              viewport: '$VIEWPORT',
+              error: 'local server unavailable before pa11y run'
+            });
+            fs.writeFileSync(resultsFile, JSON.stringify(data, null, 2));
+          "
+          continue
+        fi
 
         # Run pa11y on this page using inline Node.js
         TEMP_RESULT="$RESULTS_DIR/pa11y-temp-$TESTED.json"
@@ -177,14 +201,18 @@ for VIEWPORT in "${VIEWPORTS[@]}"; do
         node -e "
           try {
             const fs = require('fs');
-            
+
             // Ensure results file exists
             if (!fs.existsSync('$RESULTS_DIR/pa11y-results.json')) {
-              fs.writeFileSync('$RESULTS_DIR/pa11y-results.json', JSON.stringify({ pages: [] }));
+              fs.writeFileSync('$RESULTS_DIR/pa11y-results.json', JSON.stringify({ pages: [], failures: [] }));
             }
-            
+
             const combined = JSON.parse(fs.readFileSync('$RESULTS_DIR/pa11y-results.json'));
             const newData = JSON.parse(fs.readFileSync('$TEMP_RESULT'));
+
+            if (!Array.isArray(combined.failures)) {
+              combined.failures = [];
+            }
 
             const pageResult = {
               url: '$URL_PATH',
@@ -214,6 +242,23 @@ for VIEWPORT in "${VIEWPORTS[@]}"; do
             console.error('Error merging results for $URL_PATH:', e.message);
           }
         "
+      else
+        node -e "
+          const fs = require('fs');
+          const resultsFile = '$RESULTS_DIR/pa11y-results.json';
+          const data = JSON.parse(fs.readFileSync(resultsFile, 'utf8'));
+          if (!Array.isArray(data.failures)) {
+            data.failures = [];
+          }
+          data.failures.push({
+            url: '$URL_PATH',
+            theme: '$THEME',
+            style: '$STYLE',
+            viewport: '$VIEWPORT',
+            error: 'pa11y run failed or no result file generated'
+          });
+          fs.writeFileSync(resultsFile, JSON.stringify(data, null, 2));
+        "
       fi
       done
     done
@@ -236,7 +281,6 @@ node -e "
     process.exit(0);
   }
 
-  // Count total issues
   let totalErrors = 0;
   let totalWarnings = 0;
   let totalNotices = 0;
@@ -248,39 +292,45 @@ node -e "
   });
 
   console.log('  Pages tested: ' + data.pages.length);
-  console.log('  ❌ Total errors: ' + totalErrors);
-  console.log('  ⚠️  Total warnings: ' + totalWarnings);
-  console.log('  ℹ️  Total notices: ' + totalNotices);
+  console.log('  Errors: ' + totalErrors);
+  console.log('  Warnings: ' + totalWarnings);
+  console.log('  Notices: ' + totalNotices);
   console.log('');
 
-  // Show only pages with errors
   const pagesWithErrors = data.pages.filter(p => p.issues.some(i => i.type === 'error'));
 
-  if (pagesWithErrors.length === 0) {
-    console.log('  No errors found! ✨');
-  } else {
+  if (pagesWithErrors.length > 0) {
     console.log('  Pages with errors:');
-    pagesWithErrors.forEach(page => {
+    pagesWithErrors.slice(0, 10).forEach(page => {
       const errors = page.issues.filter(i => i.type === 'error');
-    console.log('');  
-    console.log('❌ ' + page.url + ' [' + (page.viewport || 'unknown') + 'px, ' + (page.style || 'unknown') + '-' + (page.theme || 'unknown') + '] (' + errors.length + ' errors)');
-
-      errors.slice(0, 5).forEach(issue => {
-        console.log('    • ' + issue.message);
-        console.log('      ' + issue.selector);
-      });
-
-      if (errors.length > 5) {
-        console.log('    ... and ' + (errors.length - 5) + ' more');
-      }
+      console.log('  [' + page.viewport + 'px] ' + page.url + ' (' + errors.length + ' errors)');
     });
+    if (pagesWithErrors.length > 10) {
+      console.log('  ... and ' + (pagesWithErrors.length - 10) + ' more pages with errors');
+    }
   }
 
   console.log('');
 "
 
-# Check if any pages have errors
+# Check if any pages have errors or failed runs
 HAS_ERRORS=$(node -p "const fs = require('fs'); const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8')); data.pages.some(p => p.issues.some(i => i.type === 'error')) ? 1 : 0")
+HAS_FAILURES=$(node -p "const fs = require('fs'); const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8')); Array.isArray(data.failures) && data.failures.length > 0 ? 1 : 0")
+
+if [ "$HAS_FAILURES" -eq 1 ]; then
+  echo "❌ Some pa11y runs failed to execute."
+  node -e "
+    const fs = require('fs');
+    const data = JSON.parse(fs.readFileSync('$RESULT_FILE', 'utf8'));
+    (data.failures || []).slice(0, 10).forEach(f => {
+      console.log('  - ' + f.url + ' [' + f.viewport + 'px, ' + f.style + '-' + f.theme + ']');
+    });
+    if ((data.failures || []).length > 10) {
+      console.log('  ... and ' + (data.failures.length - 10) + ' more failed runs');
+    }
+  "
+  exit 1
+fi
 
 if [ "$HAS_ERRORS" -eq 0 ]; then
   echo "✅ All pages passed pa11y tests (no errors)."

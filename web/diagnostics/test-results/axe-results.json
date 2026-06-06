@@ -97,7 +97,7 @@
       "theme": "light",
       "style": "normal",
       "viewport": "900",
-      "count": 41
+      "count": 40
     },
     {
       "pageUrl": "students/lesson-06.html",
@@ -279,7 +279,7 @@
       "theme": "dark",
       "style": "normal",
       "viewport": "900",
-      "count": 41
+      "count": 40
     },
     {
       "pageUrl": "students/lesson-06.html",
@@ -461,7 +461,7 @@
       "theme": "light",
       "style": "subdued",
       "viewport": "900",
-      "count": 41
+      "count": 40
     },
     {
       "pageUrl": "students/lesson-06.html",
@@ -643,7 +643,7 @@
       "theme": "dark",
       "style": "subdued",
       "viewport": "900",
-      "count": 41
+      "count": 40
     },
     {
       "pageUrl": "students/lesson-06.html",
@@ -825,7 +825,7 @@
       "theme": "light",
       "style": "vibrant",
       "viewport": "900",
-      "count": 41
+      "count": 40
     },
     {
       "pageUrl": "students/lesson-06.html",
@@ -1007,7 +1007,7 @@
       "theme": "dark",
       "style": "vibrant",
       "viewport": "900",
-      "count": 41
+      "count": 40
     },
     {
       "pageUrl": "students/lesson-06.html",
@@ -1588,12 +1588,19 @@
                 "contrastRatio": 0,
                 "fontSize": "17.8pt (23.7px)",
                 "fontWeight": "bold",
-                "messageKey": "elmPartiallyObscuring",
+                "messageKey": "imgNode",
                 "expectedContrastRatio": "3:1"
               },
-              "relatedNodes": [],
+              "relatedNodes": [
+                {
+                  "html": "<img src=\"../images/fontawesome/hat-wizard-duotone-solid-full.svg\" alt=\"An icon of a pointy wizard’s hat\" class=\"accessory-image\">",
+                  "target": [
+                    ".accessory-item:nth-child(4) > .accessory-image"
+                  ]
+                }
+              ],
               "impact": "serious",
-              "message": "Element's background color could not be determined because it partially overlaps other elements"
+              "message": "Element's background color could not be determined because element contains an image node"
             }
           ],
           "all": [],
@@ -1603,7 +1610,7 @@
           "target": [
             ".accessory-item:nth-child(4) > .catalogue-number > strong"
           ],
-          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
         },
         {
           "any": [
@@ -3864,12 +3871,19 @@
                 "contrastRatio": 0,
                 "fontSize": "17.8pt (23.7px)",
                 "fontWeight": "bold",
-                "messageKey": "elmPartiallyObscuring",
+                "messageKey": "imgNode",
                 "expectedContrastRatio": "3:1"
               },
-              "relatedNodes": [],
+              "relatedNodes": [
+                {
+                  "html": "<img src=\"../images/fontawesome/hat-wizard-duotone-solid-full.svg\" alt=\"An icon of a pointy wizard’s hat\" class=\"accessory-image\">",
+                  "target": [
+                    ".accessory-item:nth-child(4) > .accessory-image"
+                  ]
+                }
+              ],
               "impact": "serious",
-              "message": "Element's background color could not be determined because it partially overlaps other elements"
+              "message": "Element's background color could not be determined because element contains an image node"
             }
           ],
           "all": [],
@@ -3879,7 +3893,7 @@
           "target": [
             ".accessory-item:nth-child(4) > .catalogue-number > strong"
           ],
-          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
         },
         {
           "any": [
@@ -6140,12 +6154,19 @@
                 "contrastRatio": 0,
                 "fontSize": "17.8pt (23.7px)",
                 "fontWeight": "bold",
-                "messageKey": "elmPartiallyObscuring",
+                "messageKey": "imgNode",
                 "expectedContrastRatio": "3:1"
               },
-              "relatedNodes": [],
+              "relatedNodes": [
+                {
+                  "html": "<img src=\"../images/fontawesome/hat-wizard-duotone-solid-full.svg\" alt=\"An icon of a pointy wizard’s hat\" class=\"accessory-image\">",
+                  "target": [
+                    ".accessory-item:nth-child(4) > .accessory-image"
+                  ]
+                }
+              ],
               "impact": "serious",
-              "message": "Element's background color could not be determined because it partially overlaps other elements"
+              "message": "Element's background color could not be determined because element contains an image node"
             }
           ],
           "all": [],
@@ -6155,7 +6176,7 @@
           "target": [
             ".accessory-item:nth-child(4) > .catalogue-number > strong"
           ],
-          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
         },
         {
           "any": [
@@ -8416,12 +8437,19 @@
                 "contrastRatio": 0,
                 "fontSize": "17.8pt (23.7px)",
                 "fontWeight": "bold",
-                "messageKey": "elmPartiallyObscuring",
+                "messageKey": "imgNode",
                 "expectedContrastRatio": "3:1"
               },
-              "relatedNodes": [],
+              "relatedNodes": [
+                {
+                  "html": "<img src=\"../images/fontawesome/hat-wizard-duotone-solid-full.svg\" alt=\"An icon of a pointy wizard’s hat\" class=\"accessory-image\">",
+                  "target": [
+                    ".accessory-item:nth-child(4) > .accessory-image"
+                  ]
+                }
+              ],
               "impact": "serious",
-              "message": "Element's background color could not be determined because it partially overlaps other elements"
+              "message": "Element's background color could not be determined because element contains an image node"
             }
           ],
           "all": [],
@@ -8431,7 +8459,7 @@
           "target": [
             ".accessory-item:nth-child(4) > .catalogue-number > strong"
           ],
-          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
         },
         {
           "any": [
@@ -10692,12 +10720,19 @@
                 "contrastRatio": 0,
                 "fontSize": "17.8pt (23.7px)",
                 "fontWeight": "bold",
-                "messageKey": "elmPartiallyObscuring",
+                "messageKey": "imgNode",
                 "expectedContrastRatio": "3:1"
               },
-              "relatedNodes": [],
+              "relatedNodes": [
+                {
+                  "html": "<img src=\"../images/fontawesome/hat-wizard-duotone-solid-full.svg\" alt=\"An icon of a pointy wizard’s hat\" class=\"accessory-image\">",
+                  "target": [
+                    ".accessory-item:nth-child(4) > .accessory-image"
+                  ]
+                }
+              ],
               "impact": "serious",
-              "message": "Element's background color could not be determined because it partially overlaps other elements"
+              "message": "Element's background color could not be determined because element contains an image node"
             }
           ],
           "all": [],
@@ -10707,7 +10742,7 @@
           "target": [
             ".accessory-item:nth-child(4) > .catalogue-number > strong"
           ],
-          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
         },
         {
           "any": [
@@ -12968,12 +13003,19 @@
                 "contrastRatio": 0,
                 "fontSize": "17.8pt (23.7px)",
                 "fontWeight": "bold",
-                "messageKey": "elmPartiallyObscuring",
+                "messageKey": "imgNode",
                 "expectedContrastRatio": "3:1"
               },
-              "relatedNodes": [],
+              "relatedNodes": [
+                {
+                  "html": "<img src=\"../images/fontawesome/hat-wizard-duotone-solid-full.svg\" alt=\"An icon of a pointy wizard’s hat\" class=\"accessory-image\">",
+                  "target": [
+                    ".accessory-item:nth-child(4) > .accessory-image"
+                  ]
+                }
+              ],
               "impact": "serious",
-              "message": "Element's background color could not be determined because it partially overlaps other elements"
+              "message": "Element's background color could not be determined because element contains an image node"
             }
           ],
           "all": [],
@@ -12983,7 +13025,7 @@
           "target": [
             ".accessory-item:nth-child(4) > .catalogue-number > strong"
           ],
-          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it partially overlaps other elements"
+          "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because element contains an image node"
         },
         {
           "any": [
