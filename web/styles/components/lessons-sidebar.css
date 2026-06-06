@@ -125,6 +125,11 @@
     aspect-ratio: 1 / 1;
   }
 
+  .lessons-hamburger i.fa-bars {
+    font-size: 1.85rem;
+    line-height: 1;
+  }
+
   /* Overlay for sidebar */
   .sidebar-overlay {
     display: none;

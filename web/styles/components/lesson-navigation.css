@@ -119,17 +119,23 @@
     }
   }
 
-  /* Lesson navigation buttons (fast forward/backward) */
-  .lesson-nav .fa-backward-fast,
-  .lesson-nav .fa-forward-fast {
-    font-size: 1.1rem;
+  /* Lesson-to-lesson navigation buttons (fast forward/backward) */
+  .lesson-jump-nav {
+    &:not(:disabled) {
+      background-color: var(--colour-effective-button-background-disabled);
+    }
+  }
+
+  .lesson-jump-nav .fa-backward-fast,
+  .lesson-jump-nav .fa-forward-fast {
+    font-size: 1.5rem;
     transform: translateY(-1px);
   }
 
   /* Section navigation buttons */
   .section-nav .fa-backward-step,
   .section-nav .fa-forward-step {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     transform: translateY(-1px);
   }
 

@@ -12,6 +12,19 @@
  */
 
 @layer utilities {
+  button.button-circle,
+  button.button-rectangle,
+  button.button-circle-small {
+    font-family: var(--font-family-button);
+    font-size: var(--fontsize-button);
+    font-weight: var(--font-weight-bold);
+  }
+
+  button.button-circle-small {
+    font-size: calc(var(--fontsize-button) * 0.85);
+    line-height: 1.1;
+  }
+
   /* Utility class to visually hide elements */
   .hidden {
     display: none;

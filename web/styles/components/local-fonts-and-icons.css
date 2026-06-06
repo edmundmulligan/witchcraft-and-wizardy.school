@@ -43,10 +43,10 @@
 .fa-sync-alt::before { content: "↻"; }
 .fa-spinner::before { content: "◌"; }
 .fa-play::before { content: "▶"; }
-.fa-forward-step::before { content: "⏭"; }
-.fa-forward-fast::before { content: "⏩"; }
-.fa-backward-step::before { content: "⏮"; }
-.fa-backward-fast::before { content: "⏪"; }
+.fa-forward-step::before { content: "▶"; }
+.fa-forward-fast::before { content: "▶▶"; }
+.fa-backward-step::before { content: "◀"; }
+.fa-backward-fast::before { content: "◀◀"; }
 .fa-circle-question::before { content: "?"; }
 
 .fa-spin {

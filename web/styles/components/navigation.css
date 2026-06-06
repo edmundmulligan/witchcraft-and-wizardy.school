@@ -47,7 +47,9 @@
     }
 
     & button {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: var(--colour-effective-menu-text);
       text-decoration: none;
       padding: var(--padding-nav);
@@ -61,7 +63,9 @@
     }
 
     & a {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: var(--colour-effective-menu-text);
       text-decoration: none;
       padding: var(--padding-nav);
@@ -88,6 +92,7 @@
       mask-repeat: no-repeat;
       mask-position: center;
       mask-size: contain;
+      flex: 0 0 auto;
     }
 
     & a:visited {

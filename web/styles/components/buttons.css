@@ -76,6 +76,14 @@
     }
   }
 
+  button.button-circle,
+  button.button-rectangle,
+  button.button-circle-small {
+    font-family: var(--font-family-button);
+    font-size: var(--fontsize-button);
+    font-weight: var(--font-weight-bold);
+  }
+
   /* Shape modifier: rectangular buttons */
   .button-rectangle {
     display: block;
