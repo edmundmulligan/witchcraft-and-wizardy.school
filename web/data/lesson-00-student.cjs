@@ -528,89 +528,6 @@ const lessonData = {
 </div>`,
         },
         {
-          tool_id: 'nodejs',
-          tool_name: 'Node.js',
-          tool_content: `
-<div id="nodejs-macos">
-  <h4 class="lesson-title">Check whether Node.js is already installed:</h4>
-  <ol>
-    <li>Press <strong>Command (⌘) + Space</strong> to open Spotlight</li>
-    <li>Type <strong>Terminal</strong></li>
-    <li>Press <strong>Return</strong> to open Terminal</li>
-    <li>Type this command and press <strong>Return</strong>:
-      <pre><code>node --version</code></pre>
-    </li>
-    <li><strong>If you see a version number</strong> (like v22.0.0 or v20.11.0), Node.js is already installed!</li>
-    <li><strong>If you see an error</strong> like "command not found", Node.js is not installed yet - continue to the next section.</li>
-  </ol>
-
-  <h4 onclick="toggleSection('nodejs-macos-list-1', event);" onkeydown="toggleSection('nodejs-macos-list-1', event);" class="lesson-title magic-invisible">If you need to install Node.js, follow these steps:</h4>
-  <ol id="nodejs-macos-list-1" class="hidden">
-    <li>
-      <span onclick="toggleSection('nodejs-macos-list-1-1', event);" onkeydown="toggleSection('nodejs-macos-list-1-1', event);" class="lesson-title magic-invisible">Download Node.js</span>
-      <ol id="nodejs-macos-list-1-1" class="hidden">
-        <li>Open your web browser (like Safari or Firefox)</li>
-        <li>Go to: <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer">https://nodejs.org</a></li>
-        <li>You&rsquo;ll see two big green buttons. Click the one that says <strong>"LTS"</strong> (Long Term Support)
-          <ul>
-            <li>LTS means it&rsquo;s the most stable and recommended version</li>
-            <li>The button will say something like "20.11.0 LTS (Recommended For Most Users)"</li>
-          </ul>
-        </li>
-        <li>Wait for the file to download (it&rsquo;s called something like <code>node-v20.11.0.pkg</code>)</li>
-        <li>The file will be saved to your <strong>Downloads</strong> folder</li>
-      </ol>
-    </li>
-
-    <li>
-      <span onclick="toggleSection('nodejs-macos-list-1-2', event);" onkeydown="toggleSection('nodejs-macos-list-1-2', event);" class="lesson-title magic-invisible">Install Node.js</span>
-      <ol id="nodejs-macos-list-1-2" class="hidden">
-        <li>Find the downloaded <strong>.pkg</strong> file in your <strong>Downloads</strong> folder</li>
-        <li><strong>Double-click</strong> the file to start the installation</li>
-        <li>If macOS asks for your password, enter it (this is your Mac login password)</li>
-      </ol>
-    </li>
-
-    <li>
-      <span onclick="toggleSection('nodejs-macos-list-1-3', event);" onkeydown="toggleSection('nodejs-macos-list-1-3', event);" class="lesson-title magic-invisible">Follow the Installation Wizard</span>
-      <ol id="nodejs-macos-list-1-3" class="hidden">
-        <li>Click <strong>Continue</strong> on the welcome screen</li>
-        <li>Click <strong>Continue</strong> again on the license screen</li>
-        <li>Click <strong>Agree</strong> to accept the license</li>
-        <li><strong>Choose where to install</strong> - keep the default location and click <strong>Continue</strong></li>
-        <li>Click <strong>Install</strong> (you may need to enter your password again)</li>
-        <li>Wait for the installation to finish (this takes about 1-2 minutes)</li>
-        <li>Click <strong>Close</strong></li>
-        <li>You can move the installer to Trash if asked</li>
-      </ol>
-    </li>
-
-    <li>
-      <span onclick="toggleSection('nodejs-macos-list-1-4', event);" onkeydown="toggleSection('nodejs-macos-list-1-4', event);" class="lesson-title magic-invisible">Verify Installation</span>
-      <ol id="nodejs-macos-list-1-4" class="hidden">
-        <li>
-          Open <strong>Terminal</strong> (or close and reopen it if it was already open)
-          <ul>
-            <li>Press <strong>Command (⌘) + Space</strong>, type "Terminal", press <strong>Return</strong></li>
-          </ul>
-        </li>
-        <li>Type these commands one at a time and press <strong>Return</strong> after each:
-          <pre><code>
-node --version
-          </code></pre>
-          You should see something like <strong>v20.11.0</strong>
-          <pre><code>
-npm --version
-          </code></pre>
-          You should see something like <strong>10.2.4</strong>
-        </li>
-        <li>If you see version numbers for both, <strong>congratulations!</strong> Node.js is installed correctly!</li>
-      </ol>
-    </li>
-  </ol>
-</div>`,
-        },
-        {
           tool_id: 'projects-folder',
           tool_name: 'Create a Projects Folder',
           aria_label: 'Create a Projects Folder on macOS',
@@ -663,70 +580,32 @@ npm --version
 </div>`,
         },
         {
-          tool_id: 'dev-server',
-          tool_name: 'Setting Up the Development Server',
-          aria_label: 'Setting Up the Development Server on macOS',
+          tool_id: 'live-server',
+          tool_name: 'Setting Up the Live Server',
+          aria_label: 'Setting Up the Live Server on macOS',
           tool_content: `
-<div id="dev-server-macos">
+<div id="live-server-macos">
   <p>
-    An HTTP server is a program that serves web pages to your browser. When you visit a website, you&rsquo;re connecting to an HTTP server! Today, you&rsquo;ll create your own
-    server that runs on your computer.
+    An HTTP server is a program that serves web pages to your browser. When you visit a website, you&rsquo;re connecting to an HTTP server! There are several ways to set up a local server on your computer, and in this lesson, we&rsquo;ll use the Live Server extension for Visual Studio Code.
   </p>
+
   <h3 class="lesson-title">Before You Start</h3>
-  <p>
-    Make sure you have:
-  </p>
+
+  <p>Make sure you have:</p>
   <ul>
-    <li>Node.js installed (check by typing <code>node --version</code> in Terminal)</li>
-    <li>A Projects folder created (see "How to Create a Projects Folder" guide)</li>
+    <li>Visual Studio Code installed</li>
   </ul>
 
-  <h3 onclick="toggleSection('dev-server-macos-list-1', event);" onkeydown="toggleSection('dev-server-macos-list-1', event);" class="lesson-title magic-invisible">Download package.json File</h3>
-    <ol id="dev-server-macos-list-1" class="hidden">
-    <li>Open <strong>Firefox</strong> or <strong>Safari</strong></li>
-    <li>Right click on this link: <a href="../data/package.json" target="_blank" rel="noopener noreferrer">package.json</a> and select <strong>Save Link As...</strong></li>
-    <li>Save the file to your <strong>Downloads</strong> folder as <strong>package.json</strong></li>
-    <li>The file will download to your <strong>Downloads</strong> folder</li>
-    <li>Open <strong>Finder</strong> (click the Finder icon on your dock)</li>
-    <li>Go to your <strong>Downloads</strong> folder</li>
-    <li>Find <strong>package.json</strong> and <strong>right-click</strong> on it</li>
-    <li>Choose <strong>Cut</strong> (or press Command + X)</li>
-    <li>Navigate to your <strong>Projects</strong> folder</li>
-    <li><strong>Right-click</strong> in an empty space and choose <strong>Paste</strong> (or press Command + V)</li> 
-  </ol>
-
-  <h3 onclick="toggleSection('dev-server-macos-list-2', event);" onkeydown="toggleSection('dev-server-macos-list-2', event);" class="lesson-title magic-invisible">Open a terminal in your Projects folder</h3>
-  <ol id="dev-server-macos-list-2" class="hidden">
-    <li>Open <strong>Terminal</strong> (press <strong>Command (⌘) + Space</strong>, type "Terminal", press <strong>Return</strong>)</li>
-    <li>Type these commands:
-      <pre><code>    
-cd ~/Projects
-      </code></pre>
-    </li>
-    <li>You should now be in your Projects folder (you can check by typing <code>pwd</code> and pressing Enter - it should show something like <code>/Users/YourName/Projects</code>)</li>
-    <li>cd <code>cd</code> means "change directory" (move to that folder)</li>
-    <li><code>~</code> is a shortcut for your home folder</li>
-  </ol>
-
-  <h3 onclick="toggleSection('dev-server-macos-list-3', event);" onkeydown="toggleSection('dev-server-macos-list-3', event);" class="lesson-title magic-invisible">Start the server</h3>
-  <ol id="dev-server-macos-list-3" class="hidden">
-    <li>In Terminal, type:
-      <pre><code>    
-npm start
-      </code></pre>
-    </li>
-    <li>You should see:
-      <pre><code>
-Server running at http://localhost:8000
-      </code></pre>
-    </li>
-    <li>Open your web browser and visit: <strong>http://localhost:8000</strong></li>
-    <li>You should see: <strong>"Hello! Your server is working!"</strong> 🎉</li>
-    <li>Keep the terminal open while you&rsquo;re working - the server needs to run continuously</li>
-    <li>When you create HTML files in your Projects folder, you can access them through the browser at <code>http://localhost:8000/filename.html</code></li>
-    <li>When you make changes to your files and save them, refresh your browser to see the changes</li>
-    <li>To stop the server, press <code>Ctrl + C</code> in the terminal</li>
-    <li>To restart the server later, just run <code>npm start</code> again from your Projects folder</li>
+  <h3 onclick="toggleSection('live-server-macos-list-1', event);" onkeydown="toggleSection('live-server-macos-list-1', event);" class="lesson-title magic-invisible">Install the Live Server Extension</h3>
+  <ol id="live-server-macos-list-1" class="hidden">
+    <li>Open <strong>Visual Studio Code</strong></li>
+    <li>Click the <strong>Extensions</strong> icon in the left sidebar, or press <strong>Command (⌘) + Shift + X</strong></li>
+    <li>Type <strong>Live Server</strong> in the search box</li>
+    <li>Find the extension called <strong>Live Server</strong> by <strong>Ritwick Dey</strong></li>
+    <li>Click <strong>Install</strong></li>
+    <li>Wait for the installation to finish</li>
+    <li>When it is installed, you will see the <strong>Install</strong> button change to <strong>Uninstall</strong> and <strong>Disable</strong></li>
+    <li>That&rsquo;s it! You have installed the Live Server extension</li>
   </ol>
 </div>`,
         },
@@ -948,334 +827,6 @@ code --version
 </div>`,
         },
         {
-          tool_id: 'nodejs',
-          tool_name: 'Node.js',
-          tool_content: `
-<div id="nodejs-linux">
-  <p>Check whether Node.js is already installed:</p>
-  <ul>
-    <li>Open Terminal (usually <code>Ctrl + Alt + T</code>)</li>
-    <li>Type <code>node --version</code> and press Enter</li>
-    <li>If you see a version number, you have it installed. If you get a "command not found" error, you need to install it.</li>
-  </ul>
-
-  <h4 onclick="toggleSection('nodejs-linux-ubuntu-list', event);" onkeydown="toggleSection('nodejs-linux-ubuntu-list', event);" class="lesson-title magic-invisible">Ubuntu / Debian-based Linux</h4>
-  <div id="nodejs-linux-ubuntu-list" class="hidden">
-    <p>If you need to install Node.js on Ubuntu, follow these steps:</p>
-    <ol>
-      <li>
-        <span onclick="toggleSection('nodejs-linux-ubuntu-list-1', event);" onkeydown="toggleSection('nodejs-linux-ubuntu-list-1', event);" class="lesson-title magic-invisible">Install Node.js via NodeSource Repository (Recommended)</span>
-        <ul id="nodejs-linux-ubuntu-list-1" class="hidden">
-          <li>Open Terminal</li>
-          <li>Run these commands:
-            <pre><code>
-sudo apt update
-sudo apt install curl
-curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-sudo apt install nodejs
-            </code></pre>
-          </li>
-          <li>Wait for installation to complete</li>
-        </ul>
-      </li>
-      <li>
-        <span onclick="toggleSection('nodejs-linux-ubuntu-list-2', event);" onkeydown="toggleSection('nodejs-linux-ubuntu-list-2', event);" class="lesson-title magic-invisible">Alternative: Install from Ubuntu Repositories</span>
-        <ul id="nodejs-linux-ubuntu-list-2" class="hidden">
-          <li>Note: This may install an older version</li>
-          <li>Open Terminal</li>
-          <li>Run:
-            <pre><code>
-sudo apt update
-sudo apt install nodejs npm
-            </code></pre>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <strong onclick="toggleSection('nodejs-linux-ubuntu-list-3', event);" onkeydown="toggleSection('nodejs-linux-ubuntu-list-3', event);" class="magic-invisible">Verify Installation</strong>
-        <ol id="nodejs-linux-ubuntu-list-3" class="hidden">
-          <li>
-            <span onclick="toggleSection('nodejs-linux-ubuntu-list-3-1', event);" onkeydown="toggleSection('nodejs-linux-ubuntu-list-3-1', event);" class="magic-invisible">Check Node.js and npm</span>
-            <ul id="nodejs-linux-ubuntu-list-3-1" class="hidden">
-              <li>Open a new Terminal window</li>
-              <li>Check Node.js version:
-                <pre><code>
-node --version
-                </code></pre>
-              </li>
-              <li>You should see the Node.js version number (e.g., v20.x.x)</li>
-              <li>Check npm version:
-                <pre><code>
-npm --version
-                </code></pre>
-              </li>
-              <li>You should see the npm version number</li>
-            </ul>
-          </li>
-          <li>
-            <span onclick="toggleSection('nodejs-linux-ubuntu-list-3-2', event);" onkeydown="toggleSection('nodejs-linux-ubuntu-list-3-2', event);" class="magic-invisible">Test Node.js</span>
-            <ul id="nodejs-linux-ubuntu-list-3-2" class="hidden">
-              <li>Run a simple command:
-                <pre><code>
-node -e "console.log('Node.js is working!')"
-                </code></pre>
-              </li>
-              <li>You should see "Node.js is working!" printed</li>
-            </ul>
-          </li>
-          <li>
-            <span onclick="toggleSection('nodejs-linux-ubuntu-list-3-3', event);" onkeydown="toggleSection('nodejs-linux-ubuntu-list-3-3', event);" class="magic-invisible">Create a Simple Test Server (Optional)</span>
-            <ul id="nodejs-linux-ubuntu-list-3-3" class="hidden">
-              <li>Create a test file and start a simple server:
-                <pre><code>
-mkdir ~/test-nodejs &amp;&amp; cd ~/test-nodejs
-echo "const http = require('http'); http.createServer((req, res) =&gt; { res.writeHead(200, {'Content-Type': 'text/html'}); res.end('&lt;h1&gt;Hello from Node.js!&lt;/h1&gt;'); }).listen(8000, () =&gt; console.log('Server running at http://localhost:8000/'));" &gt; server.js
-node server.js
-                </code></pre>
-              </li>
-              <li>Open your browser and go to <code>http://localhost:8000</code></li>
-              <li>You should see "Hello from Node.js!"</li>
-              <li>Press <code>Ctrl + C</code> in Terminal to stop the server</li>
-            </ul>
-          </li>
-        </ol>
-      </li>
-    </ol>
-  </div>
-
-  <h4 onclick="toggleSection('nodejs-linux-fedora-list', event);" onkeydown="toggleSection('nodejs-linux-fedora-list', event);" class="lesson-title magic-invisible">Fedora / Red Hat-based Linux</h4>
-  <div id="nodejs-linux-fedora-list" class="hidden">
-    <p>If you need to install Node.js on Fedora:</p>
-    <ol>
-      <li>
-        <span onclick="toggleSection('nodejs-linux-fedora-list-1', event);" onkeydown="toggleSection('nodejs-linux-fedora-list-1', event);" class="lesson-title magic-invisible">Install Node.js</span>
-        <ul id="nodejs-linux-fedora-list-1" class="hidden">
-          <li>Open Terminal</li>
-          <li>For Fedora 22 and later:
-            <pre><code>
-sudo dnf install nodejs npm
-            </code></pre>
-          </li>
-          <li>For older versions:
-            <pre><code>
-sudo yum install nodejs npm
-            </code></pre>
-          </li>
-          <li>Wait for installation to complete</li>
-        </ul>
-      </li>
-      <li>
-        <span onclick="toggleSection('nodejs-linux-fedora-list-2', event);" onkeydown="toggleSection('nodejs-linux-fedora-list-2', event);" class="lesson-title magic-invisible">Verify Installation</span>
-        <ol id="nodejs-linux-fedora-list-2" class="hidden">
-          <li>
-            <span onclick="toggleSection('nodejs-linux-fedora-list-2-1', event);" onkeydown="toggleSection('nodejs-linux-fedora-list-2-1', event);" class="lesson-title magic-invisible">Check Node.js and npm</span>
-            <ul id="nodejs-linux-fedora-list-2-1" class="hidden">
-              <li>Open a new Terminal window</li>
-              <li>Check Node.js version:
-                <pre><code>
-node --version
-                </code></pre>
-              </li>
-              <li>You should see the Node.js version number (e.g., v20.x.x)</li>
-              <li>Check npm version:
-                <pre><code>
-npm --version
-                </code></pre>
-              </li>
-              <li>You should see the npm version number</li>
-            </ul>
-          </li>
-          <li>
-            <span onclick="toggleSection('nodejs-linux-fedora-list-2-2', event);" onkeydown="toggleSection('nodejs-linux-fedora-list-2-2', event);" class="magic-invisible">Test Node.js</span>
-            <ul id="nodejs-linux-fedora-list-2-2" class="hidden">
-              <li>Run a simple command:
-                <pre><code>
-node -e "console.log('Node.js is working!')"
-                </code></pre>
-              </li>
-              <li>You should see "Node.js is working!" printed</li>
-            </ul>
-          </li>
-          <li>
-            <span onclick="toggleSection('nodejs-linux-fedora-list-2-3', event);" onkeydown="toggleSection('nodejs-linux-fedora-list-2-3', event);" class="magic-invisible">Create a Simple Test Server (Optional)</span>
-            <ul id="nodejs-linux-fedora-list-2-3" class="hidden">
-              <li>Create a test file and start a simple server:
-                <pre><code>
-mkdir ~/test-nodejs &amp;&amp; cd ~/test-nodejs
-echo "const http = require('http'); http.createServer((req, res) =&gt; { res.writeHead(200, {'Content-Type': 'text/html'}); res.end('&lt;h1&gt;Hello from Node.js!&lt;/h1&gt;'); }).listen(8000, () =&gt; console.log('Server running at http://localhost:8000/'));" &gt; server.js
-node server.js
-                </code></pre>
-              </li>
-              <li>Open your browser and go to <code>http://localhost:8000</code></li>
-              <li>You should see "Hello from Node.js!"</li>
-              <li>Press <code>Ctrl + C</code> in Terminal to stop the server</li>
-            </ul>
-          </li>
-        </ol>
-      </li>
-    </ol>
-  </div>
-
-  <h4 onclick="toggleSection('nodejs-linux-arch-list', event);" onkeydown="toggleSection('nodejs-linux-arch-list', event);" class="lesson-title magic-invisible">Arch Linux</h4>
-  <div id="nodejs-linux-arch-list" class="hidden">
-    <p>If you&rsquo;re using Arch Linux:</p>
-    <ol>
-      <li>
-        <span onclick="toggleSection('nodejs-linux-arch-list-1', event);" onkeydown="toggleSection('nodejs-linux-arch-list-1', event);" class="magic-invisible">Install Node.js</span>
-        <ul id="nodejs-linux-arch-list-1" class="hidden">
-          <li>Open Terminal</li>
-          <li>Run:
-            <pre><code>
-sudo pacman -S nodejs npm
-            </code></pre>
-          </li>
-          <li>Wait for installation to complete</li>
-        </ul>
-      </li>
-      <li>
-        <span onclick="toggleSection('nodejs-linux-arch-list-2', event);" onkeydown="toggleSection('nodejs-linux-arch-list-2', event);" class="magic-invisible">Verify Installation</span>
-        <ol id="nodejs-linux-arch-list-2" class="hidden">
-          <li>
-            <span onclick="toggleSection('nodejs-linux-arch-list-2-1', event);" onkeydown="toggleSection('nodejs-linux-arch-list-2-1', event);" class="lesson-title magic-invisible">Check Node.js and npm</span>
-            <ul id="nodejs-linux-arch-list-2-1" class="hidden">
-              <li>Open a new Terminal window</li>
-              <li>Check Node.js version:
-                <pre><code>
-node --version
-                </code></pre>
-              </li>
-              <li>You should see the Node.js version number (e.g., v20.x.x)</li>
-              <li>Check npm version:
-                <pre><code>
-npm --version
-                </code></pre>
-              </li>
-              <li>You should see the npm version number</li>
-            </ul>
-          </li>
-          <li>
-            <span onclick="toggleSection('nodejs-linux-arch-list-2-2', event);" onkeydown="toggleSection('nodejs-linux-arch-list-2-2', event);" class="magic-invisible">Test Node.js</span>
-            <ul id="nodejs-linux-arch-list-2-2" class="hidden">
-              <li>Run a simple command:
-                <pre><code>
-node -e "console.log('Node.js is working!')"
-                </code></pre>
-              </li>
-              <li>You should see "Node.js is working!" printed</li>
-            </ul>
-          </li>
-          <li>
-            <span onclick="toggleSection('nodejs-linux-arch-list-2-3', event);" onkeydown="toggleSection('nodejs-linux-arch-list-2-3', event);" class="magic-invisible">Create a Simple Test Server (Optional)</span>
-            <ul id="nodejs-linux-arch-list-2-3" class="hidden">
-              <li>Create a test file and start a simple server:
-                <pre><code>
-mkdir ~/test-nodejs &amp;&amp; cd ~/test-nodejs
-echo "const http = require('http'); http.createServer((req, res) =&gt; { res.writeHead(200, {'Content-Type': 'text/html'}); res.end('&lt;h1&gt;Hello from Node.js!&lt;/h1&gt;'); }).listen(8000, () =&gt; console.log('Server running at http://localhost:8000/'));" &gt; server.js
-node server.js
-                </code></pre>
-              </li>
-              <li>Open your browser and go to <code>http://localhost:8000</code></li>
-              <li>You should see "Hello from Node.js!"</li>
-              <li>Press <code>Ctrl + C</code> in Terminal to stop the server</li>
-            </ul>
-          </li>
-        </ol>
-      </li>
-    </ol>
-  </div>
-
-  <h4  onclick="toggleSection('nodejs-linux-nvm-list', event);" onkeydown="toggleSection('nodejs-linux-nvm-list', event);" class="lesson-title magic-invisible">Using Node Version Manager (nvm) - Advanced Option</h4>
-  <div id="nodejs-linux-nvm-list" class="hidden">
-    <p>For more control over Node.js versions:</p>
-    <ol>
-      <li>
-        <span onclick="toggleSection('nodejs-linux-nvm-list-1', event);" onkeydown="toggleSection('nodejs-linux-nvm-list-1', event);" class="magic-invisible">Install nvm</span>
-        <ul id="nodejs-linux-nvm-list-1" class="hidden">
-          <li>Run this command:
-            <pre><code>
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-            </code></pre>
-          </li>
-          <li>Close and reopen your terminal</li>
-        </ul>
-      </li>
-      <li>
-        <span onclick="toggleSection('nodejs-linux-nvm-list-2', event);" onkeydown="toggleSection('nodejs-linux-nvm-list-2', event);" class="magic-invisible">Install Node.js with nvm</span>
-        <ul id="nodejs-linux-nvm-list-2" class="hidden">
-          <li>Install the LTS version:
-            <pre><code>
-nvm install --lts
-            </code></pre>
-          </li>
-          <li>Set it as default:
-            <pre><code>
-nvm use --lts
-            </code></pre>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <span onclick="toggleSection('nodejs-linux-nvm-list-3', event);" onkeydown="toggleSection('nodejs-linux-nvm-list-3', event);" class="magic-invisible">Verify Installation</span>
-        <ol id="nodejs-linux-nvm-list-3" class="hidden">
-          <li>
-            <span onclick="toggleSection('nodejs-linux-nvm-list-3-1', event);" onkeydown="toggleSection('nodejs-linux-nvm-list-3-1', event);" class="magic-invisible">Check Node.js and npm</span>
-            <ul id="nodejs-linux-nvm-list-3-1" class="hidden">
-              <li>Open a new Terminal window</li>
-              <li>Check Node.js version:
-                <pre><code>
-node --version
-                </code></pre>
-              </li>
-              <li>You should see the Node.js version number (e.g., v20.x.x)</li>
-              <li>Check npm version:
-                <pre><code>
-npm --version
-                </code></pre>
-              </li>
-              <li>You should see the npm version number</li>
-            </ul>
-          </li>
-          <li>
-            <span onclick="toggleSection('nodejs-linux-nvm-list-3-2', event);" onkeydown="toggleSection('nodejs-linux-nvm-list-3-2', event);" class="magic-invisible">Test Node.js</span>
-            <ul id="nodejs-linux-nvm-list-3-2" class="hidden">
-              <li>Run a simple command:
-                <pre><code>
-node -e "console.log('Node.js is working!')"
-                </code></pre>
-              </li>
-              <li>You should see "Node.js is working!" printed</li>
-            </ul>
-          </li>
-          <li>
-            <span onclick="toggleSection('nodejs-linux-nvm-list-3-3', event);" onkeydown="toggleSection('nodejs-linux-nvm-list-3-3', event);" class="magic-invisible">Create a Simple Test Server (Optional)</span>
-            <ul id="nodejs-linux-nvm-list-3-3" class="hidden">
-              <li>Create a test directory:
-                <pre><code>
-mkdir ~/test-nodejs &amp;&amp; cd ~/test-nodejs
-                </code></pre>
-              </li>
-              <li>Create a test file:
-                <pre><code>
-echo "const http = require('http'); http.createServer((req, res) =&gt; { res.writeHead(200, {'Content-Type': 'text/html'}); res.end('&lt;h1&gt;Hello from Node.js!&lt;/h1&gt;'); }).listen(8000, () =&gt; console.log('Server running at http://localhost:8000/'));" &gt; server.js
-                </code></pre>
-              </li>
-              <li>Start the server:
-                <pre><code>
-node server.js
-                </code></pre>
-              </li>
-              <li>Open your browser and go to <code>http://localhost:8000</code></li>
-              <li>You should see "Hello from Node.js!"</li>
-              <li>Press <code>Ctrl + C</code> in Terminal to stop the server</li>
-            </ul>
-          </li>
-        </ol>
-      </li>
-    </ol>
-  </div>
-</div>`,
-        },
-        {
           tool_id: 'projects-folder',
           tool_name: 'Create a Projects Folder',
           aria_label: 'Create a Projects Folder on Linux',
@@ -1325,55 +876,32 @@ ls
 </div>`,
         },
         {
-          tool_id: 'dev-server',
-          tool_name: 'Setting Up the Development Server',
-          aria_label: 'Setting Up the Development Server on Linux',
+          tool_id: 'live-server',
+          tool_name: 'Setting Up the Live Server',
+          aria_label: 'Setting Up the Live Server on Linux',
           tool_content: `
-<div id="dev-server-linux">
+<div id="live-server-linux">
   <p>
-    An HTTP server is a program that serves web pages to your browser. When you visit a website, you&rsquo;re connecting to an HTTP server! So here you&rsquo;ll create your own server that runs on your computer that you can use to view your web pages as you develop them.
+    An HTTP server is a program that serves web pages to your browser. When you visit a website, you&rsquo;re connecting to an HTTP server! There are several ways to set up a local server on your computer, and in this lesson, we&rsquo;ll use the Live Server extension for Visual Studio Code.
   </p>
 
   <h3 class="lesson-title">Before You Start</h3>
 
   <p>Make sure you have:</p>
   <ul>
-    <li>Node.js installed (check by typing <code>node --version</code> in a Terminal)</li>
-    <li>A Projects folder created (see "How to Create a Projects Folder" guide)</li>
+    <li>Visual Studio Code installed</li>
   </ul>
 
-  <h3 onclick="toggleSection('dev-server-linux-list-1', event);" onkeydown="toggleSection('dev-server-linux-list-1', event);" class="lesson-title magic-invisible">Download package.json File</h3>
-  <ol id="dev-server-linux-list-1" class="hidden">
-    <li>Open <strong>Firefox</strong> (or your web browser)</li>
-    <li>Right click on this link: <a href="../data/package.json" target="_blank" rel="noopener noreferrer">package.json</a> and select <strong>Save Link As...</strong></li>
-    <li>Save the file to your <strong>Downloads</strong> folder as <strong>package.json</strong></li>
-    <li>The file will download to your <strong>Downloads</strong> folder</li>
-    <li>Open your <strong>file manager</strong> (Files, Dolphin, Thunar, or Nautilus)</li>
-    <li>Go to your <strong>Downloads</strong> folder</li>
-    <li>Find <strong>package.json</strong> and <strong>right-click</strong> on it</li>
-    <li>Choose <strong>Cut</strong> (or press Ctrl + X)</li>
-    <li>Navigate to your <strong>Projects</strong> folder (in your Home folder)</li>
-    <li><strong>Right-click</strong> in an empty space and choose <strong>Paste</strong> (or press Ctrl + V)</li> 
-  </ol>
-
-  <h3 onclick="toggleSection('dev-server-linux-list-2', event);" onkeydown="toggleSection('dev-server-linux-list-2', event);" class="lesson-title magic-invisible">Start the server</h3>
-  <ol id="dev-server-linux-list-2" class="hidden">
-    <li>
-      In a Terminal, type:
-      <pre><code>
-npm start
-      </code></pre>
-    </li>
-    <li>You should see: <code>Server running at http://localhost:8000</code></li>
-    <li>Open your web browser and visit: <code>http://localhost:8000</code></li>
-    <li>You should see: <strong>"Hello! Your server is working!"</strong></li>
-  </ol>
-
-  <h3 onclick="toggleSection('dev-server-linux-list-3', event);" onkeydown="toggleSection('dev-server-linux-list-3', event);" class="lesson-title magic-invisible">Stop the server</h3>
-  <ol id="dev-server-linux-list-3" class="hidden">
-    <li>Go back to the <strong>Terminal</strong></li>
-    <li>Press <strong>Ctrl + C</strong></li>
-    <li>The server will stop</li>
+  <h3 onclick="toggleSection('live-server-linux-list-1', event);" onkeydown="toggleSection('live-server-linux-list-1', event);" class="lesson-title magic-invisible">Install the Live Server Extension</h3>
+  <ol id="live-server-linux-list-1" class="hidden">
+    <li>Open <strong>Visual Studio Code</strong></li>
+    <li>Click the <strong>Extensions</strong> icon in the left sidebar, or press <strong>Ctrl + Shift + X</strong></li>
+    <li>Type <strong>Live Server</strong> in the search box</li>
+    <li>Find the extension called <strong>Live Server</strong> by <strong>Ritwick Dey</strong></li>
+    <li>Click <strong>Install</strong></li>
+    <li>Wait for the installation to finish</li>
+    <li>When it is installed, you will see the <strong>Install</strong> button change to <strong>Uninstall</strong> and <strong>Disable</strong></li>
+    <li>That&rsquo;s it! You have installed the Live Server extension</li>
   </ol>
 </div>`,
         },
