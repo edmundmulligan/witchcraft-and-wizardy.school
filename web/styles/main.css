@@ -41,7 +41,7 @@
 /* Ensure that form elements inherit the same font as their parent elements for visual consistency */
 @layer reset {
   input,
-  button:not(.button-circle):not(.button-rectangle):not(.button-circle-small),
+  button,
   textarea,
   select {
     font: inherit;

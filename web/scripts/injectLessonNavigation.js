@@ -111,6 +111,20 @@
     }
 
     /**
+     * Escape text for safe use in HTML attributes.
+     *
+     * @param {string} text Text to escape.
+     * @returns {string} Escaped attribute-safe text.
+     */
+    escapeAttribute(text) {
+      return String(text)
+        .replaceAll('&', '&amp;')
+        .replaceAll('"', '&quot;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;');
+    }
+
+    /**
      * Generate wand icons HTML for progress bar
      */
     generateWandIcons(sections) {
@@ -125,9 +139,12 @@
               : '../images/fontawesome/wand-magic-duotone-regular-full.svg';
           const altText = index === 0 ? 'Current section' : 'Next section';
           const imgClass = index === 0 ? 'wand-current' : 'wand-next';
+            const sectionTitle = section.title || `Section ${index + 1}`;
+            const safeTitle = this.escapeAttribute(sectionTitle);
+            const wandAriaLabel = this.escapeAttribute(`Go to section ${index + 1}: ${sectionTitle}`);
 
           return `
-                    <span class="wand-icon ${iconClass}" data-section="${index}" title="${section.title}">
+                <span class="wand-icon ${iconClass}" data-section="${index}" title="${safeTitle}" aria-label="${wandAriaLabel}">
                         <img src="${imgSrc}" alt="${altText}" class="${imgClass}">
                     </span>`;
         })

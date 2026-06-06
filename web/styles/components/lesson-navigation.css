@@ -119,22 +119,8 @@
     }
   }
 
-  /* Lesson-to-lesson navigation buttons (fast forward/backward) */
-  .lesson-jump-nav {
-    &:not(:disabled) {
-      background-color: var(--colour-effective-button-background-disabled);
-    }
-
-    &:hover:not(:disabled),
-    &:focus-visible:not(:disabled) {
-      background-color: var(--colour-effective-button-background-disabled);
-      color: var(--colour-effective-button-text);
-      transform: scale(1.02);
-    }
-  }
-
-  .lesson-jump-nav .fa-backward-fast,
-  .lesson-jump-nav .fa-forward-fast {
+  .section-nav .fa-backward-fast,
+  .section-nav .fa-forward-fast {
     font-size: 1.5rem;
     transform: translateY(-1px);
   }
