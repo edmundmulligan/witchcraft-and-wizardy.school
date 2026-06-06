@@ -1,6 +1,9 @@
 /**
  * **********************************************************************
  * File       : api/diagnostics/test-feedback-store-normalized.js
+ * Author     : Edmund Mulligan <edmund@edmundmulligan.name>
+ * Copyright  : (c) 2026 The Embodied Mind
+ * License    : MIT License (see license.html page)
  * Description:
  *   Integration diagnostic for normalized MariaDB feedback persistence.
  * **********************************************************************
