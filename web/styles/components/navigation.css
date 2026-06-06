@@ -74,10 +74,20 @@
 
     & a::before,
     & button::before {
-      content: "✦";
-      font-family: var(--font-family-icons);
-      font-weight: 900; /* needed for solid style icons */
+      content: "";
+      display: inline-block;
+      width: 1em;
+      height: 1em;
       margin-right: clamp(0.15rem, 1vw, 0.35rem);
+      background-color: currentColor;
+      -webkit-mask-image: url("../../images/fontawesome/wand-magic-duotone-regular-full.svg");
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      -webkit-mask-size: contain;
+      mask-image: url("../../images/fontawesome/wand-magic-duotone-regular-full.svg");
+      mask-repeat: no-repeat;
+      mask-position: center;
+      mask-size: contain;
     }
 
     & a:visited {
@@ -101,7 +111,8 @@
     & a:focus-visible::before,
     & button:hover::before,
     & button:focus-visible::before {
-      content: "✨";
+      -webkit-mask-image: url("../../images/fontawesome/wand-magic-sparkles-sharp-duotone-regular-full.svg");
+      mask-image: url("../../images/fontawesome/wand-magic-sparkles-sharp-duotone-regular-full.svg");
     }
   }
 

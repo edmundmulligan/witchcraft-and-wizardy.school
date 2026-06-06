@@ -56,15 +56,9 @@ for (let i = 0; i < args.length; i++) {
   }
 }
 
-// Show help if no folder provided
+// Default to the web app when no folder is provided.
 if (!folder) {
-  console.error('❌ Error: No folder specified');
-  console.error('');
-  console.log('Usage: npm run start <folder>');
-  console.log('');
-  console.log('Folders: web, stats, sound');
-  console.log('Run with --help for more information');
-  process.exit(1);
+  folder = 'web';
 }
 
 // Validate folder

@@ -264,96 +264,6 @@ const lessonData = {
 </div>`,
         },
         {
-          tool_id: 'nodejs',
-          tool_name: 'Node.js',
-          tool_content: `
-<div id="nodejs-windows">
-  <h4 class="lesson-title">Check whether Node.js is already installed</h4>
-  <ol>
-    <li>Click the <strong>Start</strong> button</li>
-    <li>Type <strong>"cmd"</strong> or <strong>"Command Prompt"</strong></li>
-    <li>Click to open Command Prompt (a black window will appear)</li>
-    <li>Type this command and press <strong>Enter</strong>:
-      <pre><code>
-node --version
-      </code></pre>
-    </li>
-    <li><strong>If you see a version number</strong> (like v22.0.0 or v20.11.0), Node.js is already installed!</li>
-    <li><strong>If you see an error</strong> like &ldquo;&lsquo;node&rsquo; is not recognised&rdquo;, Node.js is not installed yet - continue to the next section.</li>
-  </ol>
-
-  <h4 onclick="toggleSection('nodejs-windows-list-1', event);" onkeydown="toggleSection('nodejs-windows-list-1', event);" class="lesson-title magic-invisible">If you need to install Node.js, follow these steps</h4>
-  <ol id="nodejs-windows-list-1" class="hidden">
-    <li>
-      <span onclick="toggleSection('nodejs-windows-list-1-1', event);" onkeydown="toggleSection('nodejs-windows-list-1-1', event);" class="lesson-title magic-invisible">Download Node.js from the Official Website</span>
-      <ol id="nodejs-windows-list-1-1" class="hidden">
-        <li>Open your web browser (like Firefox)</li>
-        <li>Go to: <a href="https://nodejs.org" target="_blank">https://nodejs.org</a></li>
-        <li>You&rsquo;ll see two big green buttons. Click the one that says <strong>"LTS"</strong> (Long Term Support)
-          <ul>
-            <li>LTS means it&rsquo;s the most stable and recommended version</li>
-            <li>The button will say something like "20.11.0 LTS (Recommended For Most Users)"</li>
-          </ul>
-        </li>
-        <li>Wait for the file to download (it&rsquo;s called something like <code>node-v20.11.0-x64.msi</code>)</li>
-      </ol>
-    </li>
-    <li>
-      <span onclick="toggleSection('nodejs-windows-list-1-2', event);" onkeydown="toggleSection('nodejs-windows-list-1-2', event);" class="lesson-title magic-invisible">Run the Installer</span>
-      <ol id="nodejs-windows-list-1-2" class="hidden">
-        <li>Find the downloaded file in your <strong>Downloads</strong> folder</li>
-        <li><strong>Double-click</strong> the file to start the installation</li>
-        <li>If Windows asks "Do you want to allow this app to make changes?", click <strong>Yes</strong></li>
-      </ol>
-    </li>
-    <li>
-      <span onclick="toggleSection('nodejs-windows-list-1-3', event);" onkeydown="toggleSection('nodejs-windows-list-1-3', event);" class="lesson-title magic-invisible">Follow the setup wizard</span>
-      <ol id="nodejs-windows-list-1-3" class="hidden">
-        <li>Click <strong>Next</strong> on the welcome screen</li>
-        <li>Click <strong>I accept</strong> the license agreement, then click <strong>Next</strong></li>
-        <li><strong>Choose where to install</strong> - keep the default location and click <strong>Next</strong></li>
-        <li><strong>Custom Setup</strong> - keep all the default options selected (everything should have a checkmark)
-          <ul>
-            <li>Node.js runtime</li>
-            <li>npm package manager</li>
-            <li>Online documentation shortcuts</li>
-            <li>Add to PATH</li>
-          </ul>
-        </li>
-        <li>Click <strong>Next</strong></li>
-        <li><strong>Tools for Native Modules</strong> - You&rsquo;ll see a checkbox about installing additional tools
-          <ul>
-            <li>You can <strong>uncheck this box</strong> for now (you won&rsquo;t need it yet)</li>
-          </ul>
-        </li>
-        <li>Click <strong>Next</strong>, then click <strong>Install</strong></li>
-        <li>Wait for the installation to finish (this takes about 1-2 minutes)</li>
-        <li>Click <strong>Finish</strong></li>
-      </ol>
-    </li>
-    <li>
-      <span onclick="toggleSection('nodejs-windows-list-1-4', event);" onkeydown="toggleSection('nodejs-windows-list-1-4', event);" class="lesson-title magic-invisible">Verify Installation</span>
-      <ol id="nodejs-windows-list-1-4" class="hidden">
-        <li>Open <strong>Command Prompt</strong> again (or close and reopen it if it was already open)</li>
-        <li>Type these commands one at a time and press <strong>Enter</strong> after each:
-          <pre><code>
-node --version
-          </code></pre>
-          You should see something like <strong>v20.11.0</strong>
-        </li>
-        <li>Type the following command and press <strong>Enter</strong>:
-          <pre><code>
-npm --version
-          </code></pre>
-          You should see something like <strong>10.2.4</strong>
-        </li>
-        <li>If you see version numbers for both, <strong>congratulations!</strong> Node.js is installed correctly!</li>
-      </ol>
-    </li>
-  </ol>
-</div>`,
-        },
-        {
           tool_id: 'projects-folder',
           tool_name: 'Create a Projects Folder',
           aria_label: 'Create a Projects Folder on Windows',
@@ -408,65 +318,32 @@ npm --version
 </div>`,
         },
         {
-          tool_id: 'dev-server',
-          tool_name: 'Setting Up the Development Server',
-          aria_label: 'Setting Up the Development Server on Windows',
+          tool_id: 'live-server',
+          tool_name: 'Setting Up the Live Server',
+          aria_label: 'Setting Up the Live Server on Windows',
           tool_content: `
-<div id="dev-server-windows">
+<div id="live-server-windows">
   <p>
-    An HTTP server is a program that serves web pages to your browser. When you visit a website, you&rsquo;re connecting to an HTTP server! So here you&rsquo;ll create your own server that runs on your computer that you can use to view your web pages as you develop them.
+    An HTTP server is a program that serves web pages to your browser. When you visit a website, you&rsquo;re connecting to an HTTP server! There are several ways to set up a local server on your computer, and in this lesson, we&rsquo;ll use the Live Server extension for Visual Studio Code.
   </p>
 
   <h3 class="lesson-title">Before You Start</h3>
 
   <p>Make sure you have:</p>
   <ul>
-    <li>Node.js installed (check by typing <code>node --version</code> in Command Prompt)</li>
-    <li>A Projects folder created (see "How to Create a Projects Folder" guide)</li>
+    <li>Visual Studio Code installed</li>
   </ul>
 
-  <h3 onclick="toggleSection('dev-server-windows-list-1', event);" onkeydown="toggleSection('dev-server-windows-list-1', event);" class="lesson-title magic-invisible">Download   package.json File</h3>
-  <ol id="dev-server-windows-list-1" class="hidden">
-    <li>Open <strong>Firefox</strong> (or your web browser)</li>
-    <li>Right click on this link: <a href="../data/package.json" target="_blank" rel="noopener noreferrer">package.json</a> and select <strong>Save Link As...</strong></li>
-    <li>Save the file to your <strong>Downloads</strong> folder as <strong>package.json</strong></li>
-    <li>The file will download to your <strong>Downloads</strong> folder</li>
-    <li>Open <strong>File Explorer</strong> (click the folder icon on your taskbar)</li>
-    <li>Go to your <strong>Downloads</strong> folder</li>
-    <li>Find <strong>package.json</strong> and <strong>right-click</strong> on it</li>
-    <li>Choose <strong>Cut</strong> (or press Ctrl + X)</li>
-    <li>Navigate to your <strong>Projects</strong> folder</li>
-    <li><strong>Right-click</strong> in an empty space and choose <strong>Paste</strong> (or press Ctrl + V)</li> 
-  </ol>
-
-  <h3 onclick="toggleSection('dev-server-windows-list-2', event);" onkeydown="toggleSection('dev-server-windows-list-2', event);" class="lesson-title magic-invisible">Start the server</h3>
-  <ol id="dev-server-windows-list-2" class="hidden">
-    <li>
-      In Command Prompt, type:
-      <pre><code>
-npm start
-      </code></pre>
-    </li>
-    <li>You should see: <code>Server running at http://localhost:8000</code></li>
-    <li>Open your web browser and visit: <code>http://localhost:8000</code></li>
-    <li>You should see: <strong>"Hello! Your server is working!"</strong></li>
-  </ol>
-
-  <h3 onclick="toggleSection('dev-server-windows-list-3', event);" onkeydown="toggleSection('dev-server-windows-list-3', event);" class="lesson-title magic-invisible">Stop the server</h3>
-  <ol id="dev-server-windows-list-3" class="hidden">
-    <li>Go back to the <strong>Command Prompt</strong></li>
-    <li>Press <strong>Ctrl + C</strong></li>
-    <li>The server will stop</li>
-  </ol>
-
-  <h3 onclick="toggleSection('dev-server-windows-list-4', event);" onkeydown="toggleSection('dev-server-windows-list-4', event);" class="lesson-title magic-invisible">Using the Development Server</h3>
-  <ul id="dev-server-windows-list-4" class="hidden">
-    <li>Whenever you need to start the server, run <code>npm start</code> from your Projects folder</li>
-    <li>When you create HTML files in your Projects folder, you can access them through the browser at <code>http://localhost:8000/filename.html</code></li>
-    <li>When you make changes to your files and save them, refresh your browser to see the changes</li>
-    <li>To stop the server, press <code>Ctrl + C</code> in the terminal</li>
-    <li>To restart the server later, just run <code>npm start</code> again from your Projects folder</li>
-    <li>In future lessons, when you have learned about Visual Studio Code, you can use a Terminal inside VS Code to run these commands</li>
+  <h3 onclick="toggleSection('live-server-windows-list-1', event);" onkeydown="toggleSection('live-server-windows-list-1', event);" class="lesson-title magic-invisible">Install the Live Server Extension</h3>
+  <ol id="live-server-windows-list-1" class="hidden">
+    <li>Open <strong>Visual Studio Code</strong></li>
+    <li>Click the <strong>Extensions</strong> icon in the left sidebar, or press <strong>Ctrl + Shift + X</strong></li>
+    <li>Type <strong>Live Server</strong> in the search box</li>
+    <li>Find the extension called <strong>Live Server</strong> by <strong>Ritwick Dey</strong></li>
+    <li>Click <strong>Install</strong></li>
+    <li>Wait for the installation to finish</li>
+    <li>When it is installed, you will see the <strong>Install</strong> button change to <strong>Uninstall</strong> and <strong>Disable</strong></li>
+    <li>That&rsquo;s it! You have installed the Live Server extension</li>
   </ul>
 </div>`,
         },

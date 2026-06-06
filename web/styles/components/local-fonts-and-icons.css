@@ -31,8 +31,8 @@
 
 .fa-home::before { content: "⌂"; }
 .fa-bars::before { content: "☰"; }
-.fa-chevron-up::before { content: "▴"; }
-.fa-chevron-down::before { content: "▾"; }
+.fa-chevron-up::before { content: "▲"; }
+.fa-chevron-down::before { content: "▼"; }
 .fa-wrench::before { content: "🔧"; }
 .fa-images::before { content: "🖼"; }
 .fa-swatchbook::before { content: "🎨"; }
