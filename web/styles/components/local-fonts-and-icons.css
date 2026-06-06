@@ -48,18 +48,23 @@
 .fa-backward-step::before { content: "◀"; }
 .fa-backward-fast::before { content: "◀◀"; }
 
-/* Use the actual Font Awesome icon asset (no text fallback) for glossary help icons. */
 .fa-circle-question {
-  width: 1em;
-  height: 1em;
   vertical-align: -0.125em;
-  background-color: currentColor;
-  -webkit-mask: url("../../images/fontawesome/circle-question-regular-full.svg") no-repeat center / contain;
-  mask: url("../../images/fontawesome/circle-question-regular-full.svg") no-repeat center / contain;
 }
 
-.fa-circle-question::before {
-  content: none;
+@supports ((-webkit-mask-image: url("")) or (mask-image: url(""))) {
+  /* Use the actual Font Awesome icon asset (no text fallback) for glossary help icons. */
+  .fa-circle-question {
+    width: 1em;
+    height: 1em;
+    background-color: currentColor;
+    -webkit-mask: url("../../images/fontawesome/circle-question-regular-full.svg") no-repeat center / contain;
+    mask: url("../../images/fontawesome/circle-question-regular-full.svg") no-repeat center / contain;
+  }
+
+  .fa-circle-question::before {
+    content: none;
+  }
 }
 
 .fa-spin {
