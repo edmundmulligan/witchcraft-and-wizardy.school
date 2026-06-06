@@ -6,10 +6,7 @@
     "check-comments",
     "check-links"
   ],
-  "failed": [
-    "check-comments",
-    "check-links"
-  ],
+  "failed": [],
   "quickMode": false,
   "runWave": false
 }

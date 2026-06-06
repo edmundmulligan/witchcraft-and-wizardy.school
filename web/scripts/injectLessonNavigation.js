@@ -169,9 +169,8 @@
 
                     <!-- Progress Bar with Wand Icons -->
                     <div class="progress-container">
-                        <div id="progressBar" class="progress-bar" role="progressbar" 
-                             aria-valuenow="1" aria-valuemin="1" aria-valuemax="${maxSections}" 
-                             aria-label="Section progress">
+                      <div id="progressBar" class="progress-bar" role="group" 
+                         aria-label="Section progress: 1 of ${maxSections}">
                             ${wandIcons}
                         </div>
                     </div>

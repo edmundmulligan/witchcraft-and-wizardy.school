@@ -267,17 +267,25 @@
      * Set up progress bar click listeners
      */
     setupProgressBarListeners() {
-      const wandIcons = document.querySelectorAll('.wand-icon');
-      wandIcons.forEach((wand, index) => {
-        wand.addEventListener('click', () => this.goToSection(index));
-        wand.addEventListener('keydown', (event) => {
+      const wandIcons = document.querySelectorAll('#progressBar .wand-icon');
+      wandIcons.forEach((wand) => {
+        const sectionIndex = parseInt(wand.getAttribute('data-section'), 10);
+        if (Number.isNaN(sectionIndex)) {
+          return;
+        }
+
+        // Replace existing handlers to avoid stacked listeners after reinits.
+        wand.onclick = () => this.goToSection(sectionIndex);
+        wand.onkeydown = (event) => {
           if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
-            this.goToSection(index);
+            this.goToSection(sectionIndex);
           }
-        });
-        // Make wands focusable
+        };
+
+        // Make wands keyboard focusable and announce them as interactive.
         wand.setAttribute('tabindex', '0');
+        wand.setAttribute('role', 'button');
       });
     }
 
@@ -438,7 +446,7 @@
      * Update progress bar display
      */
     updateProgress() {
-      const wandIcons = document.querySelectorAll('.wand-icon');
+      const wandIcons = document.querySelectorAll('#progressBar .wand-icon');
       const progressBar = document.querySelector('.progress-bar');
 
       if (progressBar && this.totalSections > 0) {
@@ -478,10 +486,13 @@
         }
       });
 
-      // Update ARIA attributes
+      // Update accessible progress text for assistive technologies.
       const progressElement = document.getElementById('progressBar');
       if (progressElement && this.totalSections > 0) {
-        progressElement.setAttribute('aria-valuenow', this.currentSectionIndex + 1);
+        progressElement.setAttribute(
+          'aria-label',
+          `Section progress: ${this.currentSectionIndex + 1} of ${this.totalSections}`
+        );
       }
     }
 

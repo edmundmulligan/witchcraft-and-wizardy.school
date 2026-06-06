@@ -344,7 +344,7 @@ const lessonData = {
     <li>Wait for the installation to finish</li>
     <li>When it is installed, you will see the <strong>Install</strong> button change to <strong>Uninstall</strong> and <strong>Disable</strong></li>
     <li>That&rsquo;s it! You have installed the Live Server extension</li>
-  </ul>
+  </ol>
 </div>`,
         },
       ],
