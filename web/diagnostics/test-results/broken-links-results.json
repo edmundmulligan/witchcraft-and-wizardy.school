@@ -79,6 +79,13 @@
       "timeoutCount": 0
     },
     {
+      "url": "students/lesson-07.html",
+      "links": [],
+      "brokenCount": 0,
+      "totalCount": 56,
+      "timeoutCount": 0
+    },
+    {
       "url": "students/lesson-04.html",
       "links": [],
       "brokenCount": 0,
@@ -192,7 +199,7 @@
     }
   ],
   "summary": {
-    "totalLinks": 1386,
+    "totalLinks": 1442,
     "brokenLinks": 0,
     "timeoutLinks": 1,
     "excludedLinks": 0
