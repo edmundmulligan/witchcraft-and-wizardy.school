@@ -109,7 +109,7 @@ const lessonData = {
                   learn how to use JavaScript to handle clicks,
                 </li>
               </ul>
-                <li>Adding hyperlinks to other web pages or resources that you find interesting.</li>
+              <p>
                 The <code>href</code> attribute in the <code>&lt;a&gt;</code> element can point to different types of
                 resources, such as:
               </p>
@@ -274,7 +274,7 @@ const lessonData = {
                 code. Try modifying the code you wrote earlier in different ways, such as:
               </p>
               <ul>
-                <li>Adding hyper links to other web pages or resources that you find interesting.</li>
+                <li>Adding hyperlinks to other web pages or resources that you find interesting.</li>
 
                 <li>
                   Add links to the previous lessons you have created (lesson-01.html to lesson-04.html), so that you can
