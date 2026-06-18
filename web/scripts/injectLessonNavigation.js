@@ -139,9 +139,9 @@
               : '../images/fontawesome/wand-magic-duotone-regular-full.svg';
           const altText = index === 0 ? 'Current section' : 'Next section';
           const imgClass = index === 0 ? 'wand-current' : 'wand-next';
-            const sectionTitle = section.title || `Section ${index + 1}`;
-            const safeTitle = this.escapeAttribute(sectionTitle);
-            const wandAriaLabel = this.escapeAttribute(`Go to section ${index + 1}: ${sectionTitle}`);
+          const sectionTitle = section.title || `Section ${index + 1}`;
+          const safeTitle = this.escapeAttribute(sectionTitle);
+          const wandAriaLabel = this.escapeAttribute(`Go to section ${index + 1}: ${sectionTitle}`);
 
           return `
                 <span class="wand-icon ${iconClass}" data-section="${index}" title="${safeTitle}" aria-label="${wandAriaLabel}">

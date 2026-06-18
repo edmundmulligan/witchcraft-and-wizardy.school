@@ -358,7 +358,7 @@
   /********************************************************
      * Feedback Navigation Panel
      ********************************************************/
-  
+
   /* Section visibility controls */
   .feedback-section.hidden {
     display: none;
@@ -491,7 +491,7 @@
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
-    
+
     /* Button reset for semantic button elements */
     padding: 0;
     border: none;
