@@ -87,7 +87,48 @@ const buildTasks = [
     studentData: path.join(folder, 'data/lesson-00-student.cjs'),
     studentOutput: path.join(folder, 'students/lesson-00.html'),
   },
-  // Add more lessons as needed
+  {
+    lesson: 1,
+    studentTemplate: path.join(folder, 'templates/lesson-01-student.mustache'),
+    studentData: path.join(folder, 'data/lesson-01-student.cjs'),
+    studentOutput: path.join(folder, 'students/lesson-01.html'),
+  },
+  {
+    lesson: 2,
+    studentTemplate: path.join(folder, 'templates/lesson-02-student.mustache'),
+    studentData: path.join(folder, 'data/lesson-02-student.cjs'),
+    studentOutput: path.join(folder, 'students/lesson-02.html'),
+  },
+  {
+    lesson: 3,
+    studentTemplate: path.join(folder, 'templates/lesson-03-student.mustache'),
+    studentData: path.join(folder, 'data/lesson-03-student.cjs'),
+    studentOutput: path.join(folder, 'students/lesson-03.html'),
+  },
+  {
+    lesson: 4,
+    studentTemplate: path.join(folder, 'templates/lesson-04-student.mustache'),
+    studentData: path.join(folder, 'data/lesson-04-student.cjs'),
+    studentOutput: path.join(folder, 'students/lesson-04.html'),
+  },
+  {
+    lesson: 5,
+    studentTemplate: path.join(folder, 'templates/lesson-05-student.mustache'),
+    studentData: path.join(folder, 'data/lesson-05-student.cjs'),
+    studentOutput: path.join(folder, 'students/lesson-05.html'),
+  },
+  {
+    lesson: 6,
+    studentTemplate: path.join(folder, 'templates/lesson-06-student.mustache'),
+    studentData: path.join(folder, 'data/lesson-06-student.cjs'),
+    studentOutput: path.join(folder, 'students/lesson-06.html'),
+  },
+  {
+    lesson: 7,
+    studentTemplate: path.join(folder, 'templates/lesson-07-student.mustache'),
+    studentData: path.join(folder, 'data/lesson-07-student.cjs'),
+    studentOutput: path.join(folder, 'students/lesson-07.html'),
+  },
 ];
 
 /**
@@ -131,7 +172,11 @@ async function buildLesson(task) {
       const processedData = preprocessData(data);
 
       // Render using Mustache
-      const output = Mustache.render(template, processedData);
+      const rendered = Mustache.render(template, processedData);
+
+      // Strip trailing whitespace from each line (Mustache can leave trailing
+      // spaces when multi-line content is indented via {{{content}}} tags)
+      const output = rendered.split('\n').map((line) => line.trimEnd()).join('\n');
 
       // Write output file
       fs.writeFileSync(task.studentOutput, output, 'utf8');
