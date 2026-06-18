@@ -120,13 +120,12 @@
       "description": "Add buttons to your web pages.",
       "file": "lesson-19.html"
     },
-        {
+    {
       "id": "lesson 20",
       "title": "JavaScript Events",
       "description": "Learn how to handle events in JavaScript.",
       "file": "lesson-20.html"
     },
-
     {
       "id": "lesson 21",
       "title": "JavaScript Errors and Exceptions",
