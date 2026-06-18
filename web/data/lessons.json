@@ -44,8 +44,8 @@
     },
     {
       "id": "lesson 7",
-      "title": "Tools",
-      "description": "Learn about tools that can help you with web development.",
+      "title": "Firefox Developer Tools",
+      "description": "Learn how to use Firefox Developer Tools to inspect and debug your web pages.",
       "file": "lesson-07.html"
     },
     {
