@@ -126,6 +126,7 @@
   }
 
   .lessons-hamburger i.fa-bars {
+    font-family: "Noto Sans Symbols 2", "Segoe UI Symbol", "Apple Symbols", sans-serif;
     font-size: 1.85rem;
     line-height: 1;
   }

@@ -156,7 +156,7 @@
 
       if (pageTitle) {
         pageTitle.insertAdjacentHTML('afterend', navigationTopHTML);
-        
+
         // Create wand icons for top navigation using DOM APIs for security
         const progressBarTop = document.getElementById('progressBar');
         if (progressBarTop) {
@@ -170,7 +170,7 @@
 
       if (form) {
         form.insertAdjacentHTML('afterend', navigationBottomHTML);
-        
+
         // Create wand icons for bottom navigation using DOM APIs for security
         const progressBarBottom = document.getElementById('progressBar-bottom');
         if (progressBarBottom) {
@@ -249,10 +249,7 @@
 
       document.addEventListener('keydown', (event) => {
         // Don't interfere if user is typing in a form field
-        if (
-          event.target.matches('input, textarea, select') ||
-          event.target.isContentEditable
-        ) {
+        if (event.target.matches('input, textarea, select') || event.target.isContentEditable) {
           return;
         }
 
