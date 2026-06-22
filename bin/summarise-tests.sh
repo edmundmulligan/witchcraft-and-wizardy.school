@@ -85,10 +85,17 @@ if [ -f "$RESULTS_DIR/broken-links-results.json" ]; then
   node -e "
     const fs = require('fs');
     const data = JSON.parse(fs.readFileSync('$RESULTS_DIR/broken-links-results.json', 'utf8'));
+    const pagesChecked = Array.isArray(data.pages) ? data.pages.length : 0;
+    const totalLinks = data.summary && typeof data.summary.totalLinks === 'number' ? data.summary.totalLinks : 0;
 
-    console.log('  Pages checked: ' + data.pages.length);
-    console.log('  Total links: ' + data.summary.totalLinks);
+    console.log('  Pages checked: ' + pagesChecked);
+    console.log('  Total links: ' + totalLinks);
     console.log('  Broken links: ' + data.summary.brokenLinks);
+
+    if (pagesChecked === 0 || totalLinks === 0) {
+      console.log('  ❌ Link check did not discover pages/links; results are invalid');
+      process.exit(1);
+    }
 
     if (data.summary.brokenLinks > 0) {
       console.log('  Pages with broken links: ' + data.pages.filter(p => p.brokenCount > 0).length);
