@@ -16,8 +16,8 @@
   Missing required fields: 0
 
 [Links] Broken Links Results:
-  Pages checked: 0
-  Total links: 0
+  Pages checked: 34
+  Total links: 1513
   Broken links: 0
 
 ======================
