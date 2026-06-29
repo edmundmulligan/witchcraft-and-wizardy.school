@@ -86,16 +86,11 @@ jobs:
 
     - name: Install dependencies
       run: |
-        # Prefer deterministic installs, but recover if the lockfile is temporarily out of sync.
-        if ! npm ci; then
-          echo "npm ci failed due to package-lock drift; falling back to npm install for this CI run."
-          npm install
-        fi
-
-    - name: Install Playwright Chromium
-      run: |
-        npx playwright install chromium
-
+        npm ci || {
+          echo "npm ci failed. package-lock.json appears to be out of sync with package.json; please run 'npm install' locally and commit the updated lockfile.";
+          exit 1;
+        }
+  
     - name: Setup Chrome for browser-based tests
       uses: browser-actions/setup-chrome@v2
 
