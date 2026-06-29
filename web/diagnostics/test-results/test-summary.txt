@@ -16,8 +16,8 @@
   Missing required fields: 0
 
 [Links] Broken Links Results:
-  Pages checked: 28
-  Total links: 1499
+  Pages checked: 34
+  Total links: 1513
   Broken links: 0
 
 ======================
@@ -47,7 +47,7 @@
 
 [Reading] Reading Age Results:
   Pages analysed: 15
-  Total words: 15634
+  Total words: 15633
   Average grade level: 9.7
   [OK] All pages at high school level or below
 

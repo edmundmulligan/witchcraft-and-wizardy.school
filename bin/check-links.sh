@@ -80,6 +80,13 @@ cd "$FOLDER" || exit 1
 start_server_if_needed "$TEST_URL"
 discover_html_pages "." "$EXCLUDE_LIST"
 
+if [ "$PAGE_COUNT" -eq 0 ]; then
+  echo "❌ Error: No HTML pages discovered for link checking"
+  echo "Check folder/exclude settings before rerunning."
+  stop_server_if_started
+  exit 1
+fi
+
 # Wait for server to be ready
 echo "Waiting for server to be ready..."
 for i in {1..10}; do

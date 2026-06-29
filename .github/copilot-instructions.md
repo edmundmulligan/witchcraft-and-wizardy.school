@@ -7,7 +7,7 @@ This is a web-based learning platform for teaching HTML, CSS, and JavaScript. Th
 ## Technology Stack
 
 - **Frontend**: HTML5, CSS3, Vanilla JavaScript
-- **Server**: http-server for local development
+- **Server**: Express static dev server via `bin/start-by-folder.js` (default port 8000)
 - **Testing**: Playwright for browser testing, Pa11y and axe for accessibility
 - **Validation**: html-validate, ESLint, Stylelint
 - **Build Tools**: Node.js scripts in the `bin/` directory
@@ -23,7 +23,7 @@ web/                    # Main website files
 ├── scripts/           # JavaScript files
 ├── styles/            # CSS stylesheets
 ├── images/            # Image assets
-└── tests/             # Browser test definitions
+└── (browser tests configured via bin/browser-tests.js)
 
 bin/                   # Build and test scripts
 tests/                 # Test configuration and results
@@ -44,7 +44,7 @@ stats/                 # Statistics application
 ### CSS
 - Use Stylelint with the standard config (`stylelint-config-standard`)
 - CSS files should start with a header comment similar to HTML files
-- Use `main.css` as the primary stylesheet (loaded first)
+- Load `globals.css` first, then `main.css`, followed by component/page-specific styles
 - Organize styles in a logical order
 - Descending specificity is allowed (the `no-descending-specificity` rule is disabled in `.stylelintrc.json`)
 
@@ -53,8 +53,8 @@ stats/                 # Statistics application
 - Use **4 spaces** for indentation (not tabs)
 - Use **single quotes** for strings
 - Always use semicolons
-- Use ES2021 features and module syntax
-- Add `'use strict';` at the top of files
+ - Use ES2021 features; use ES modules only for scripts loaded with `type="module"` (e.g. `web/scripts/injectCommonCode.js`)
+ - For non-module scripts, wrap code in an IIFE and put `'use strict';` at the top of the IIFE (modules are strict by default)
 - Unix line endings (LF)
 - Include proper file header comments
 
@@ -70,7 +70,7 @@ All source files (HTML, CSS, JavaScript) must include a header comment block wit
 
 ### Running the Development Server
 ```bash
-npm start          # Starts http-server on port 8000
+ npm start          # Starts the local dev server (bin/start-by-folder.js) on port 8000
 # or
 npm run dev        # Same as npm start
 ```
@@ -104,8 +104,8 @@ The project has comprehensive automated testing:
 
 4. **Browser Testing** (`bin/run-browser-tests.sh`)
    - Tests across Chromium, Firefox, and WebKit
-   - Custom test definitions in `web/tests/browser-tests.js`
-   - Edit `web/tests/browser-tests.js` to modify pages or tests
+    - Custom test definitions in `bin/browser-tests.js`
+    - Edit `bin/browser-tests.js` to modify pages or tests
 
 5. **Accessibility Testing**
    - axe accessibility tests (`bin/run-axe-tests.sh`)
@@ -118,7 +118,7 @@ The project uses GitHub Actions workflows:
 - `pre-deploy-web.yml` - Tests web application changes
 - `pre-deploy-sound.yml` - Tests sound application changes
 - `pre-deploy-stats.yml` - Tests stats application changes
-- Tests run on pushes to `development` and `main` branches
+ - Tests run on pull requests targeting `staging` and `main`, and on nightly scheduled workflows
 - All validations and tests must pass before deployment
 
 ## Accessibility Requirements
@@ -152,7 +152,7 @@ This project places a strong emphasis on web accessibility:
 2. Include proper header comment and meta tags
 3. Link to required stylesheets (starting with `main.css`)
 4. Follow existing page structure
-5. Add page to `web/tests/browser-tests.js` if it needs testing
+5. Add page to `bin/browser-tests.js` if it needs testing
 6. Validate HTML, CSS, and accessibility
 7. Update `web/sitemap.xml` if the page should be indexed by search engines
 

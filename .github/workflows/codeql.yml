@@ -7,7 +7,7 @@ on:
       - 'documentation/**'
       - 'artwork/**'
   pull_request:
-    branches: [ "main" ]
+    branches: [ "staging", "main" ]
     paths-ignore:
       - 'documentation/**'
       - 'artwork/**'
