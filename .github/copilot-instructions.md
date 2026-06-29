@@ -44,7 +44,7 @@ stats/                 # Statistics application
 ### CSS
 - Use Stylelint with the standard config (`stylelint-config-standard`)
 - CSS files should start with a header comment similar to HTML files
-- Use `main.css` as the primary stylesheet (loaded first)
+- Load `globals.css` first, then `main.css`, followed by component/page-specific styles
 - Organize styles in a logical order
 - Descending specificity is allowed (the `no-descending-specificity` rule is disabled in `.stylelintrc.json`)
 
@@ -53,8 +53,8 @@ stats/                 # Statistics application
 - Use **4 spaces** for indentation (not tabs)
 - Use **single quotes** for strings
 - Always use semicolons
-- Use ES2021 features and module syntax
-- Add `'use strict';` at the top of files
+ - Use ES2021 features; use ES modules only for scripts loaded with `type="module"` (e.g. `web/scripts/injectCommonCode.js`)
+ - For non-module scripts, wrap code in an IIFE and put `'use strict';` at the top of the IIFE (modules are strict by default)
 - Unix line endings (LF)
 - Include proper file header comments
 
