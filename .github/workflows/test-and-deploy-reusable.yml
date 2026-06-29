@@ -86,12 +86,10 @@ jobs:
 
     - name: Install dependencies
       run: |
-        # Prefer deterministic installs, but recover if the lockfile is temporarily out of sync.
-        if ! npm ci; then
-          echo "npm ci failed; attempting to repair lockfile drift and retry npm ci."
-          npm install --package-lock-only
-          npm ci
-        fi
+        npm ci || {
+          echo "npm ci failed. package-lock.json appears to be out of sync with package.json; please run 'npm install' locally and commit the updated lockfile.";
+          exit 1;
+        }
 
     - name: Install Playwright Chromium
       run: |
