@@ -90,7 +90,15 @@ jobs:
           echo "npm ci failed. package-lock.json appears to be out of sync with package.json; please run 'npm install' locally and commit the updated lockfile.";
           exit 1;
         }
+<<<<<<< HEAD
   
+=======
+
+    - name: Install Playwright Chromium
+      run: |
+        npx playwright install chromium
+
+>>>>>>> 94ed985d416ad433949af2e0cdb11e0592ad7b38
     - name: Setup Chrome for browser-based tests
       uses: browser-actions/setup-chrome@v2
 
